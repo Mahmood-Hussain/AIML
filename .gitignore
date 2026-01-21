@@ -1,0 +1,14 @@
+*.pdf
+*.log
+*.aux
+*.out
+*.bbl
+*.blg
+*.dvi
+*.fls
+*.synctex
+*.fdb_latexmk
+*.pdfsync
+*.synctex.gz
+*.synctex.gz
+!latex/AIML_EduCasheer_v1.pdf

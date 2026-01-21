@@ -1,0 +1,2357 @@
+Hello and welcome everyone. 
+ So now we were discussing about loss 
+ functions in the previous lectures. So 
+ now we sort of wrapped up about loss 
+ functions. We said that this is a 
+ function which quantifies how much 
+ better or how much good your model is. 
+ Now we'll have to perform back 
+ propagation. So that will be the title 
+ of the lecture back propagation. But 
+ I'll just give you the big picture. So 
+ we had data that we haven't learned much 
+ about. So because we need to encode data 
+ and there is a lot to learn about data. 
+ You will have to see how can we encode 
+ textual data, how can we encode speech 
+ data, how can we encode images. So there 
+ is a lot to learn in this. After this we 
+ had model. So in this model we are now 
+ in in the model we selected is neural 
+ network and we'll change different 
+ architectures of this and I gave you a 
+ brief summary of what a neural network 
+ looks like. Okay, not just maybe more 
+ than a brief summary and then we were in 
+ the learning learning thing. So in this 
+ learning we said we'll use gradient 
+ descent to learn. 
+ So this will be the learning algorithm. 
+ Okay, gradient descent. We have to 
+ compute gradients of something and then 
+ we'll have to move in a certain 
+ direction and we'll use this gradient 
+ descent to update our parameters. Now 
+ we'll have to see how to find these 
+ gradients. 
+ So these gradients are to be found 
+ somehow. So if we are given a network 
+ and then you know that I'll perform 
+ something and then I have to adjust 
+ these parameters. I have to adjust these 
+ weights and biases. So how to adjust 
+ now? So we have to find gradient for 
+ that and how to find this gradient 
+ that's why we'll come to backward prop 
+ backward pass our back propagation 
+ this is going to be one of the important 
+ lectures in whole the deep learning if 
+ you understand back propagation you 
+ understanding heart of deep learning 
+ okay this I can consider the heart of 
+ deep learning back propagation if you 
+ understand this because because of this 
+ back propagation algorithm that's why 
+ deep learning took the turn it is uh it 
+ took 
+ maybe 20 years back or 15 years back and 
+ you are seeing it in some state today. 
+ This was because of back propagation. It 
+ was discovered way earlier but we didn't 
+ have any method to any sort of good 
+ hardware to implement it uh at scale. So 
+ that this was made possible by back 
+ propagation. Okay, let's now see let's 
+ again do a bit of revision about how the 
+ network was. So we had neural network in 
+ which we had some input layer and then 
+ we had some hidden layers and after that 
+ we had an output layer. Okay, I hate to 
+ make this again and again again but no 
+ choice. 
+ Okay, so let's suppose this is our input 
+ layer and let's suppose now we have some 
+ hidden layers over here. 
+ I can use this throughout the class. 
+ This 
+ these are some more hidden layers. 
+ Okay. And suppose we can have more head 
+ layers like this. and we'll have an 
+ output layer from which we'll get an 
+ output. 
+ Okay, if somebody of you remember the 
+ notation, so what we did is we said 
+ we'll 
+ represent these WQ matrices. These WK 
+ matrices will be the matrices that will 
+ be in the middle of these layers because 
+ this is uh we have connections between 
+ these layers. So that for each of the 
+ layer we have this WQ mat WK matrix and 
+ for this each of this will be by weight 
+ something of this or W K I and J. Okay, 
+ we have matrix of this sort. I think if 
+ you see some previous lecture, you will 
+ find that notation. You'll find those 
+ notations and then we also have biases. 
+ So bias will be something represent like 
+ this B of K of I let's suppose. So this 
+ will be telling you the I bias and then 
+ in the middle we said before this we had 
+ pre-activation. 
+ So you had aggregation or activation 
+ function. So we wrote it something like 
+ this. So this aggregation function was 
+ represented by a and then after you 
+ activate something it was represented by 
+ h. Okay. So this is what this is the 
+ notation that we had. So I'll just write 
+ them down. So this is these were your 
+ weights 
+ and these are your biases. 
+ And then we had 
+ AK. AK was the pre-activation values. 
+ Pre-activation values. 
+ And then we had HK. HK were hidden 
+ activations. 
+ So these were like we had linear layers 
+ because we did a finite transformation 
+ and then we have to activate these 
+ things and then that's how we wrote H 
+ and K and H of zero was our input. So 
+ this was our input. 
+ Okay. And output was written by H of L. 
+ This was output. So this is just 
+ summarize notations that we earlier 
+ covered in one of the lectures. Again to 
+ tell you these will be notations we'll 
+ be using throughout. So math might look 
+ a little messy. That's why I am 
+ refocusing on these notations much. So 
+ this WK will be the M weight matrix. So 
+ what is this K? So this is the layer 
+ which will be connecting K minus one and 
+ K layer. Okay. And if I write I J. So I 
+ this will be the source neuron and this 
+ will be destination. This is source and 
+ destination or source sync. And we start 
+ we usually do it in reverse. And then we 
+ have this B of again this K uh this is a 
+ K layer the bias for the neuron I in the 
+ K layer. And then we have this AK. So AK 
+ is a pre-activation layer and HK is the 
+ hidden activation layer. And now we'll 
+ do how is the forward pass done. Okay, I 
+ just write the forward pass. Now based 
+ on how can we do forward pass? The only 
+ difference can lie in the last layer 
+ where we apply this last activation 
+ functions. Okay. So I have given you the 
+ rational behind that. So if I let's 
+ suppose take any layer K. K can be 1 2 3 
+ let's suppose till L if we have L layers 
+ in our network. So if I take AK 
+ activation of a layer AK. So this is our 
+ aggregation. So this nonlinear rather so 
+ I find transformation you'll take wk 
+ you'll take the matrix correspond to 
+ that and hk minus one okay and then 
+ you'll add the bias k towards it. This 
+ is what this is the equation we also 
+ wrote in the previous session somewhere. 
+ So this is the aggregation function that 
+ you do or 
+ this is the linear transformation or 
+ fine transformation. 
+ This is the first step in the forward 
+ pass. So you will be given let's suppose 
+ something if you have to calculate AK of 
+ this. So you will take weight matrix 
+ correspond to the K layer basically the 
+ layer which is which K minus one and K. 
+ So it will be between that and then you 
+ will have this hidden layer HK minus and 
+ you'll add bias to this and then after 
+ you have this you'll have to apply 
+ activation. Consider this is activation. 
+ F of K is the activation. 
+ Let me also write that over here. So 
+ consider this F of K. So this is 
+ activation function or of layer K and K 
+ minus one where we apply this 
+ activation. So I can write this f of k 
+ like this f of k and then I'll this will 
+ take input a k and this will give you 
+ the hidden output. 
+ So this should be giving you the hidden 
+ output. So h of k. So I am writing k 
+ rather. So h of k is f of k and a of k. 
+ So this over here is application of 
+ nonlinearity. 
+ So nonlinear activation. 
+ Okay. So this is how you do the forward 
+ pass. So if you have to let's suppose do 
+ it for one step. So previously I have 
+ not told I have just given these 
+ equations. So this over here is your 
+ forward pass 
+ these two things happen. So at each of 
+ the layer so you take this W K you 
+ multiply it with what was the what was 
+ previously there and then you add bias 
+ to it you'll get the aggregation 
+ basically an F transformation. Then on 
+ the Fine transform because that is a 
+ linear that is transformation linear 
+ fine. So you have to apply an activation 
+ function on that so as to get 
+ nonlinearity. So this is what you will 
+ do. So let's suppose you have input like 
+ this. So you have input H not that is 
+ equal to X1 X2. This is how usually 
+ input if we have input which has let's 
+ suppose two data points. And now second 
+ thing is we have to have some hidden 
+ layers. Consider we have an hidden layer 
+ A1. Now I won't be making this network 
+ again and again. You will have to like 
+ this network is just for the visual 
+ representation. But in practice this is 
+ how you will write this. You'll write 
+ the code in this. This is how the 
+ mathematics also represent it. So the 
+ better picture is to get a very good 
+ hold of these things. H not is equal X1 
+ and X2. And now at A1. So A1 as you know 
+ now that so this is the pre-activation 
+ pre-activation between the input and the 
+ first hidden layer. So how to do that? 
+ So you'll have one matrix assocated with 
+ this because from the inputs you will 
+ these inputs will be fed into this 
+ network. So this W1 H of 0 plus bias. So 
+ this is what will happen in the first 
+ let's consider W1 to be like this. Say 
+ W1 is something of this sort 
+ because if you have very good grip of 
+ this it won't be difficult to code the 
+ back propagation algorithm otherwise 
+ you'll find some difficulty. So you have 
+ W11 
+ W12 
+ 1 and W211 
+ W 221. So this is how the matrix let's 
+ also write the bias matrix or bias 
+ vector rather. So B1. So here we'll 
+ write B11 B12. 
+ So this is corresponding to the first 
+ layer. basically what is in between uh 
+ these layers. So when you when you give 
+ this input so this is for the first 
+ hidden layer. So now after this you'll 
+ have to compute this h of one after 
+ you'll have to activate these things. 
+ Consider this activation function to be 
+ boop function. You can consider as a 
+ sigmoid function whatever you have and 
+ the definition should be given. So you 
+ this will be f of a of one. So this is 
+ how I wrote over here. So f of a1 and if 
+ it is suppose a rel function so relu 
+ function is defined something of this 
+ sort max of a z of a1 whichever is max 
+ so you'll take that value so this is the 
+ definition of relu function rectified 
+ linear function okay so this is how we 
+ do it and then let's suppose now there 
+ is an output layer so this was our step 
+ one so step one was our input so this 
+ was our data 
+ okay and this was our step two what I 
+ wrote in between this this is our step 
+ two or the first hidden layer. So this 
+ is step 
+ one. So this is step two. And you can 
+ you can keep you can add a lot of these 
+ step two. You can add more hidden layers 
+ so that you get some output. Let's 
+ suppose now we have an output layer. 
+ So output in output layer what you can 
+ do is you'll have to have some separate 
+ activation function. If the task is a 
+ regression it can be classification. So 
+ how to do that? Now you'll compute A2 
+ basically. So A2 will be again W2. It 
+ will be a matrix W2 and then you will 
+ multiply at H1. So what came previously 
+ and then this bias two and again this H2 
+ will be equal to activation of two. You 
+ can keep it like this if it is 
+ regression 
+ because in regression you will just use 
+ the trans f transformation you will not 
+ apply any activation function or if it's 
+ a classification task so you can use 
+ soft max things like that. So this is 
+ one of the examples is is it clear 
+ everybody? 
+ Let's take second example where we'll 
+ have some input. Say we have input. So 
+ input will be like this. So this is the 
+ abstraction of the thing. So whatever 
+ you have to think from now onwards about 
+ learning this is how you should think. 
+ So first thing you should have some 
+ input. So input will be X that will be 
+ of some dimension. Let's consider this 
+ as three dimensional input. So usually 
+ in suppose in natural language 
+ processing the input will be very high 
+ dimensional input say maybe thousands or 
+ hundreds of dimensions of input and this 
+ why might be input. Then you'll have to 
+ think about the architecture. So how 
+ should our architecture be? So depending 
+ on that you'll derive an architect. So 
+ here I'll keep the again simple. So I 
+ let's suppose I have hidden layer 1, 
+ hidden layer two. I'll have hidden layer 
+ one, 
+ hidden layer one and hidden layer two. 
+ The second thing I have to decide is so 
+ how many number of neurons should be 
+ there. Okay. So what I can do is I can 
+ say the hidden number of layers suppose 
+ is one is to four neurons. 
+ Okay. From one will go to go to four and 
+ then let's suppose here we'll have two 
+ is to three something of this sort. You 
+ can you can control these neuron 
+ hyperparameters. So here these are 
+ hyperparameters I should not give any 
+ number because I don't know in the 
+ example what is coming parameters so 
+ you'll have decide on these things 
+ because input will be given to you and 
+ this also is your parameter how many 
+ number of hidden layers okay number of 
+ hidden layers this is again h parameter 
+ you have to choose this so this all 
+ comes in the architecture so you have 
+ hidden layer one hidden layer two so 
+ suppose here you again have to make 
+ decision so in this hidden layer one so 
+ what is the activation you can use 
+ because you can use different 
+ activations for different layers so 
+ let's suppose you decide you will use 
+ yellow here you decide you use sigmoid 
+ here or sometimes usually you decide 
+ that in the whole network we'll only use 
+ sigmoid layers but it's not you you're 
+ not being constrained by just one 
+ function you can just make separate 
+ networks and decide what functions to 
+ use it's all all up to you okay let's 
+ consider this you have input and then 
+ there are parameters to adjust how many 
+ input neurons how many output neurons 
+ should be there and let's suppose you 
+ are also having at the end an output 
+ layer 
+ so output layer is also there okay and 
+ if it is two if it's a classification 
+ problem. Let's suppose you can have just 
+ one neuron. It can be high or low. If it 
+ is some say regression problem, you can 
+ again have say one neuron. It will just 
+ give you one output. If it's some sort 
+ of distribution, so you can have those 
+ many number of neurons as in terms of 
+ natural language processing. We saw that 
+ it can there can be a lot of neurons and 
+ then we apply soft max function on this. 
+ This again is a this is problem 
+ dependent. So how to decide on output 
+ layer? So this is problem dependent 
+ and then you also have to see what 
+ activation to use, what output 
+ activation to use. Let's suppose now in 
+ this input if input looks like this. So 
+ h of zero always will represent the 
+ input like this. So input will be x1 x2 
+ x3. Consider this as an input example. 
+ Okay. So this belongs to R3 in this 
+ case. So each input example will 
+ something look like this. And then what 
+ will be happening at the head layer 
+ first? So you'll compute A1. A1 is W1 H0 
+ plus bias. Okay. So you are free to set 
+ this weight and bias because that's how 
+ you will learn and after this you'll 
+ apply an activation function. Now if you 
+ see W1 matrix so W1 matrix will be 
+ suppose uh if you have these if you have 
+ some certain examples if you had say if 
+ you write W1 of this sort 
+ so you had four examples suppose you can 
+ but though it depends how do you decide 
+ on this because the problem is sometimes 
+ people write and W doesn't matter. 
+ Sometimes people write E data point like 
+ this. this. So let's suppose we have 
+ data point this X1. So they'll write X11 
+ X12 X13 something of this sort or they 
+ can write data from this like this X11 
+ X12 X13. Okay. So it depends how do you 
+ choose the notation. Okay. So depending 
+ on that you can also have different 
+ dimension. So if let's suppose you have 
+ this in hidden layer you use four 
+ neurons. Say suppose you use four 
+ neurons and you use three neurons over 
+ here. So now based on this you'll have 
+ these W matrices W and W1 W2 matrix will 
+ have values according to that. Let me 
+ show you that. [snorts] So let's suppose 
+ if we chose values in such a way so that 
+ this W1 matrix this weight matrix has 
+ dimensions 4 + 3 because if you each 
+ point has now each of each of this point 
+ if you see is written like because it 
+ has three columns now so it has 1 2 
+ three columns of this sort. So because 
+ we had three features so each of this 
+ data point is written like this. This is 
+ data point one. So data point one and 
+ then you have data point two and then 
+ you have data point 3 and then you have 
+ data point 4 something of this sort. 
+ Each of this is now a feature because 
+ each data point might belong to here it 
+ belongs to three dimension. So we have 
+ the columns representing data. So the 
+ representation will be if you are given 
+ data points suppose our data points are 
+ uh maybe x1 x2 and x3. Okay. Okay, I'm 
+ using supercript subscripts here. If you 
+ see these were the features which I just 
+ mentioned over here. So it can be 
+ something of this sort. X11 
+ X1 2 1 X13 
+ maybe I can write it like this. 
+ This is the first data point. For the 
+ second data point suppose we have four 
+ data points and then we'll write it X 
+ 2 X2 X2 2 X2 3 and so on. So this is how 
+ I'll get a matrix. So I'll get matrix of 
+ this sort. Okay. So that matrix I I can 
+ call like input matrix I can call data 
+ matrix. Okay. I can call that as a data 
+ matrix. And now if I have to construct 
+ uh this might this might be my data 
+ matrix. So if I have to this is my data 
+ matrix. 
+ After this I'll have to give this input 
+ to this rather this W1 should not this 
+ is not that this is the matrix which is 
+ before the first layer between the input 
+ and this. So this is our data matrix and 
+ then we'll go to this W1. This W1 is 
+ this is not this matrix. So this is data 
+ matrix once we construct data. So now 
+ let's suppose this W1 belongs to say R R 
+ 3 + 4 4 + 3. So how how will this be 
+ computed? So this will be computed based 
+ on this. 
+ So if you have some neurons over here 
+ and if you have some neurons over here. 
+ So the matrix in between you can compute 
+ based on this. Okay. It usually is the 
+ reverse of this. How do you represent? 
+ It depends how do you represent these 
+ numbers. So how do you represent this? 
+ So you'll again give the dimensions 
+ according to that. Okay. After that 
+ you'll have to apply this. So you 
+ compute A1 based on whatever matrix you 
+ had, whatever inputs you were given. 
+ Okay, you can give even a matrix of 
+ inputs also and then plus uh then you 
+ will have the bias also and after this 
+ you can apply activation on this. So 
+ you'll have H1. So that will apply let's 
+ say re of this. So you'll have rel of a 
+ of one. But do keep an eye on these W's 
+ and maybe on these X because if one if 
+ you do some problem in let's suppose 
+ hidden layers or you had some problems 
+ with weight you have some problem by 
+ that will propagate throughout. So 
+ that's why you have to be very careful 
+ with this. Okay. And similar this is 
+ this again will happen with this. So if 
+ I give you an I would not do this now. 
+ So at your home what you can do is let's 
+ suppose if I give 10 neurons over here. 
+ If I give say five neurons over here. If 
+ I give let's suppose some four neurons 
+ over here. So you have to compute in 
+ this you have to compute W1 W2 uh and 
+ let's suppose output also what are the 
+ dimensions. So you can lay out the whole 
+ network here. It will take me a little 
+ bit of time. So it is better you do it 
+ on your spare time and I believe that 
+ you you should be able to do it to just 
+ construct W1 W2 H1 A1 something of that 
+ sort and then see output. And let's 
+ suppose if you now decide you can use 
+ here you use this soft max activation 
+ you here you use softmax activation 
+ let's say here you'll also use softmax 
+ suppose so can you sketch out the whole 
+ thing can you can you do it on paper not 
+ just creating some network because in 
+ pytorch you'll just write some code then 
+ import torch and do this this this and 
+ you can easily get how many parameters 
+ and this how many par the best exercise 
+ would be to do it one by one to start it 
+ from input and see I have data matrix of 
+ this sort here let's suppose I had four 
+ examples 
+ Okay, I had four example n example or m 
+ n m n m n m n m n m n m n m n m n m n m 
+ n d d d d d d d d d d d d d d d d d d d 
+ d d d d d d d d d d d d d d d d d d d d 
+ da so m d d d d d d d d d d d d d d d d 
+ d d d d data points were there and each 
+ had three features. So how will my data 
+ matrix look like? So it will be X1 three 
+ and this is M cross three data points. 
+ So each of the row will be and then you 
+ have to construct this W1 based on so 
+ the these two things will be based on 
+ the number of hidden neurons here. Okay. 
+ And uh you tell the you have to you can 
+ even even do it by hand there forward 
+ pass. You can assign some random values 
+ to these W's and after this do the 
+ multiplication and go with this. So this 
+ is your H knot. So this thing over here 
+ is your H not this is the data matrix 
+ initially the matrix that you have and 
+ then you perform the multiplication with 
+ W1 the matrix which is in between the 
+ input layer and the first head layer. 
+ And then you will have a bias vector 
+ which you can again which you can again 
+ initialize and it'll also have 
+ dimensions. So play with these 
+ dimensions highly recommended. So okay 
+ suggestion over here. So whoever will be 
+ watching this video so in the interest 
+ of time I won't do the whole sketch 
+ myself. So what you can do is you can 
+ stop the video over here and you can 
+ compute W1. You can compute this W2 
+ because we have two hidden layers here 
+ and then you can also compute H1. You 
+ can also compute uh H2 and then 
+ activations also. Before this you have 
+ to have pre 
+ this you have to have this nonlinear 
+ fine transformations uh and then you can 
+ rather linear app transformation. So 
+ then you can apply H1 and H2 then also 
+ you have to compute output basically HL 
+ in this case. So keep in the view that 
+ you also have to compute dimensions of 
+ everything. So also have in the view 
+ that I'll compute dimensions of all 
+ these matrix so as to see if the numbers 
+ are matching up and then you can also 
+ apply soft max on this or maybe take a 
+ small example than this. Start with 
+ small example and see if you can do the 
+ forward pass by hand. If I give you 
+ example of this sort say I'll give 
+ example like this. I have data point X. 
+ So X1 is my first data point. X2 is my 
+ second data point. X3 is my third point. 
+ If I give you numbers like this 0.1.4 
+ 0.8 8. Okay. 0.2 0.3 0.6 
+ 0.4 0.3 0.1 Suppose it's a 
+ classification problem. Say this is 1 0 
+ and one something of this sort. It's a 
+ binary classification problem. So if you 
+ are given these labels and these are 
+ your inputs and if you are asked that 
+ you are hidden you have two hidden 
+ layers. 
+ Okay. So after the input so you can 
+ decide on these hidden layers and then 
+ do this exercise and apply soft max 
+ function on this. So so that you can 
+ perform the forward pass by hand. Here 
+ if I perform by it will take me maybe 
+ more than half an hour to do that. Any 
+ questions on this? Till here is 
+ everything clear. This should be crystal 
+ clear. Why? Because this is the notation 
+ we'll be using throughout and probably 
+ this will be the notation which we will 
+ be using while we are coding these 
+ we coding these algorithms so as to 
+ implement neural network from scratch by 
+ just using maybe numpy or we can use we 
+ can even use list we can just truncate 
+ numpy as well. Any questions? So once 
+ you are done with this once you know 
+ that how to perform forward pass and 
+ then you will have to do loss 
+ computation. This is where the story 
+ gets interesting now. 
+ So you have to compute loss. 
+ So if you're not paying attention till 
+ now, it's all right. Maybe you can 
+ revise it a bit because that there you 
+ just had to take care of these 
+ dimensions and notations. Now this is 
+ the real D. You have to compute loss. 
+ Now and we had a huge discussion about 
+ we had I think couple of lectures on 
+ just loss loss functions and now how to 
+ compute loss. So based on this you have 
+ to have a divergence function. So if it 
+ is a regression problem you will select 
+ your loss function or divergence 
+ function accordingly. If it is a 
+ classification problem, you'll again 
+ select your divergence function 
+ something of x sort. But last, let's 
+ suppose consider that we call that as yt 
+ okay or uh we can call it y t something 
+ of this sort or yi however you like it 
+ to be. So I'll use yt over here and then 
+ this yt is a prediction of that. So this 
+ is our ground truth and this is a 
+ prediction. Okay. And this is your again 
+ have parameter that way you decide. It's 
+ not a parameter actually. So this thing 
+ is your choice. So what function should 
+ you use? So now you have to compute loss 
+ for one thing. So you'll compute it for 
+ all the points. So I'm labeling it here 
+ T. So I can sum it over all the points. 
+ So this T goes from one to let's suppose 
+ some capital T points are there. And 
+ you'll compute loss for this. This is 
+ how you'll compute loss. And this T over 
+ here is total training examples. Okay. 
+ And this divergence function is the 
+ desired. So this is the desired function 
+ or the loss function you chose chosen 
+ loss function. 
+ And it depends on the problem that you 
+ are doing. So this is ground truth. This 
+ is your prediction value and this is 
+ what what is this doing. So this is 
+ summing it all and we can take average. 
+ So usually people take average of this. 
+ They don't just sum it up. So they'll 
+ take average. So this over here is 
+ taking average. 
+ Okay. I hope this loss is pretty clear. 
+ So there's uh nothing no problem with 
+ this. Now the problem is we have to find 
+ we have to find if this loss is more so 
+ is there is there a way we can decrease 
+ this loss. So that's what our the main 
+ task is to somehow decrease this loss. 
+ So that's our job. The goal is the goal 
+ is decrease the loss. That's why we need 
+ loss computation once you compute the 
+ loss. Now you are seeing oh so you have 
+ our loss is this much. So can we 
+ decrease this loss? If we can decrease 
+ the loss and we can show that our sort 
+ of model is learning something. Now how 
+ to how to learn that how to sort of find 
+ the ways in which we can learn that in 
+ which we can decrease this loss. Now for 
+ that you should you should know a bit of 
+ calculus because you know that calculus 
+ is the tool by which you can if you are 
+ given some function you can perform you 
+ can apply derivative onto that and you 
+ can get let's suppose some local min and 
+ you can equate to zero and then you can 
+ see if I nudge something by this okay 
+ let me just go a bit towards 
+ uh this calculus so I'll give you the 
+ refresher to think about these things 
+ and how can you how can we basically 
+ find these values so as to see how can 
+ we do the back propagation in f2 suppose 
+ you this function you have a function y 
+ which is equal to f ofx okay so this is 
+ the function so in the neural network 
+ term this function won't be just a 
+ single variable function it'll be a 
+ multivaried function you'll have a lot 
+ of variables so we'll start it here and 
+ then we'll slowly go to a multivaried 
+ function also so consider this so if I'm 
+ telling you this if I'm making some 
+ slides so x is somehow related to y many 
+ of you people might know this so I'll 
+ just give a different perspective of 
+ looking at this so that whenever you see 
+ these things this is the picture that 
+ pops into your head okay we'll make 
+ competition graphs from this so this is 
+ x and this is y and Y here if you see f 
+ of x if you give some value to x and 
+ this will give some value to y so if I 
+ make some change in x so delta x so it 
+ will some change will be made in y so I 
+ can write it something of this so wx is 
+ somehow proportional to wy it can be 
+ inversely proportional direct it will 
+ depend we can change that and if I can 
+ change this to a constant I'll say w x 
+ say if I write some value over here some 
+ maybe if I can write x x of x doesn't 
+ look maybe Z of delta Y something of 
+ this sort. So this Z term over here is 
+ derivative. 
+ This is how how derivative is defined. 
+ So we have seen a lot of perspective on 
+ derivatives. So this is how you can 
+ write it. So you can say delta x is 
+ equal to if I write dative now by dy by 
+ dx multiplied by this is delta y. So if 
+ if there is some change made in x so 
+ there will be something happening to y. 
+ So which quantity will tell you that? So 
+ this derivative will tell you that. So 
+ you have to somehow look it from look it 
+ from this perspective now. So small 
+ change in x will perform some small 
+ change in y. Okay. So if you 
+ this is rather delta y not delta x. So I 
+ should be writing delta y over here and 
+ delta x over here. Okay. So if you make 
+ some nudge in x so something will happen 
+ to y. Okay. So again this should be 
+ reverse over here. So this is delta y 
+ because we are we are computing change 
+ of delta y. So how much will delta y 
+ change? 
+ Okay. So this picture is right. So some 
+ something will be done here. Some change 
+ will happen over here. So what change 
+ will be happening? So if you are doing 
+ something of this sort. So something 
+ will be multiply divide whatever. So 
+ this quantity will be there. It will 
+ give you the value of delta y. Okay. So 
+ I called that quantity as derative and 
+ we represent that with by dy by dx and 
+ we had a proper course on calculus. But 
+ here I just wanted to see you this 
+ notion. So if you make a small change in 
+ here so this is what will happen because 
+ of that. And now we'll have these are 
+ called as influence diagrams. So I'll be 
+ making diagrams of this sort. So these 
+ diagrams are called as influence 
+ diagrams. 
+ Consider this as let's suppose one 
+ neuron. You have one neuron and one 
+ neuron will have an impact on other 
+ neuron. So that neuron will look 
+ something of this sort. Say this is 
+ neuron n1. This is some neuron n12 and 
+ this is some neuron let's n1 suppose 
+ something of this sort. So one one 
+ neuron is influencing other. So there 
+ will be a lot of things will be 
+ happening. So we will keep on these 
+ pictures. That's why I'm giving a 
+ different perspective on on looking at 
+ uh looking towards these derivatives. 
+ Okay. So these influence diagram keep 
+ them in in your mind. So I'll just make 
+ them as nodes so that we'll just 
+ extrapolate to the neural networks. 
+ Now I'll take this example. So I'll take 
+ a multivaried case. If I have a function 
+ so initially I had just one function. I 
+ had function which was univariate. So in 
+ that I had fal f ofx. Now what I can 
+ tell is I can take multivariate case. 
+ I'll say this y is equal to f of x1 x2 
+ comma and so on until x of m. So these 
+ many values are there. So how to do this 
+ now? So we cannot now compute just a 
+ change. So if I make a diagram of this, 
+ if I make inflence diagram, how to make 
+ inflence diagram? So I'll say x1 x2 till 
+ xm. So if I change these things, so 
+ they'll have some impact on this y. 
+ This is how I can make this diagram. 
+ Okay. So if I write this so if I change 
+ this x1 so it'll have some impact on y. 
+ If I change this x2 it'll have some 
+ impact on y and we also learned about 
+ partial derivative. So if you are having 
+ a multivaried case there we don't take 
+ just derivative we'll take partial 
+ derivative because we'll keep all of 
+ those constant and we'll take derivative 
+ with respect to one thing. So if I just 
+ relate these two things. So if I say 
+ delta y is equal some derivative and 
+ this delta x1. Okay. I can compute 
+ partial derative. I can say delta y is 
+ partial derivative of this. As we said 
+ dy by dx. So here we will write dy by dx 
+ dy by dx. This how it's read delta x1. 
+ Okay. Similarly this delta y also is 
+ related to delta x2. Change in x2 will 
+ some impact delta y. So we can again 
+ write partial derivative of this s dy by 
+ dx2. Okay. And so on. So in order to 
+ make this influence diagram I'll just 
+ write these things above above these. So 
+ this will be dy by dx1 
+ dy by dx2 and this will be dy by dxm 
+ any question equation is still here. So 
+ now if I change this to delta m. So I 
+ can write it like this. So delta x1 if I 
+ change something of this sort so it will 
+ have an impact on delta y. And similarly 
+ delta x2 this will have some impact on 
+ this. This is delta x m this will have 
+ some impact on this. And now how to 
+ compute the total? How to compute this 
+ uh total basically change in these 
+ because I I have the ability I can 
+ because this is a multivaried function I 
+ have ability to change a lot of these I 
+ can nudge a lot of these values a lot of 
+ input values so what I can do is I can 
+ apply summation rule over here because 
+ this is going towards the whole same 
+ input so I can write something of this 
+ sort so this dy by dx 
+ let me just exactly see the value so I 
+ can actually write this delta x1 and 
+ then this is 
+ dy by dx x1 plus delta x2 
+ dy by dx2 
+ plus and so on delta xm dy by dxm. 
+ This is how I can write the total 
+ change. So this is total change 
+ in y if I change x by a little delta x1 
+ by a little x2 by a little and xm by if 
+ I nudge all the parent this this is the 
+ total change that will happen. Any 
+ questions still here? 
+ Now the first thing is we took a 
+ univaried case. We had y is equal f ofx. 
+ So there we nudged x and we got y. 
+ Second case was multivaried case. We had 
+ inputs which we have we had multiple of 
+ them. And if we nudge any of these or 
+ maybe all of these some of these so we 
+ can compute what's the total change. 
+ Similarly if you have a nested function 
+ you have something of this or y is equal 
+ f of g of x. 
+ So what do you do in this case? Okay so 
+ you have something of this or x is 
+ dependent on g. This is dependent on y. 
+ So you want to see if I nudge something. 
+ So if I nudge delta x, so how will this 
+ delta g be impacted and how will this 
+ delta y be impacted? This is what you 
+ want. Now we know this. So if you change 
+ suppose if you change delta g and then 
+ uh you'll go to you you'll do something 
+ with delta y. So how are these two 
+ quantities related? So these quantities 
+ are related by dy by dg. This is how 
+ these quantities are related. So how how 
+ can I write it? d y delta y is equal dy 
+ by dg * delta g. This is how these 
+ quantities are related. Okay. Similarly, 
+ how are these two quantity related? If I 
+ made some change in x, if I made some 
+ change in x and how will the g be 
+ impacted? So, how are they related? So, 
+ they are related by this. So, this is dg 
+ by dx. Okay. So, in this case or we can 
+ write partial derivatives if it is a 
+ multivaried function. So, here I'm just 
+ taking a uni function but it is uh this 
+ is composion of functions. These 
+ functions are nested functions or we can 
+ write as composition. So they are nested 
+ or composite functions. 
+ Okay. So this is where the back 
+ propagation lies. So you'll be having 
+ something of this sort. You'll be having 
+ some input which will be impacting 
+ something. So that will be impacting 
+ your loss function. It will be a chain 
+ of your functions. So that's why here if 
+ you see this delta x is related to this 
+ delta g. How? So they related by this. 
+ So this delta g is related to this delta 
+ y. So how are they related? They're 
+ related by this dy by dg. So if I have 
+ to compute total change delta y. So how 
+ can you take now compute total change? 
+ So we'll compute total change something 
+ of this sort. You'll see we'll first 
+ relate these two terms. You see okay if 
+ I relate this if I say dy by dg of this 
+ uh delta of g. Now you know you can 
+ compute this delta g from these two 
+ things. Okay. So you'll compute. So if I 
+ write one equation of this sort. So 
+ let's suppose one equation is this. So 
+ how is delta y and delta j related? So 
+ I'm basically writing this equation over 
+ here. So if I write second equation to 
+ make it more clearer I can write 
+ something of this delta y 
+ or delta x rather here in this case this 
+ delta g this is equal to dg by dx delta 
+ [snorts] x. 
+ Okay. So what I'm doing is I'm taking 
+ this portion over here. So I can relate 
+ it with this. Consider this is not 
+ there. Okay. If I can just mask it, I'll 
+ have delta G is having some effect on 
+ delta Y. So how how I can quantify that? 
+ So delta Y is equal DY by DG multiplied 
+ by delta G. And now if I can just 
+ truncate this portion, I know how are 
+ these two things related. So delta G is 
+ equal to this. So if in this case this 
+ is equation one, this is equation two. 
+ If in equation one, if I substitute the 
+ value of delta G, so what will you get? 
+ So delta Y is equal to DY by DG. And 
+ then you are substituting these values. 
+ So you'll get dg by dx delta x. 
+ Okay. And this over here is the 
+ derivative. So if I now write how how is 
+ how is how are these things related? So 
+ how is uh dy by 
+ dxel related. So I can write so this 
+ they are related by this. So this is 
+ this basically is showing me how is this 
+ delta y related to dy. So this is 
+ related by this. So I can write directly 
+ like this. dy by dg and dg by dx. So 
+ this over here is chain rule which you 
+ people have seen earlier also. So this 
+ is chain rule. 
+ Any questions still here? Isn't it very 
+ nice to see it like this? The third and 
+ very important case basically is if now 
+ your function is such that it takes uh 
+ it takes input as functions itself and 
+ those functions take input as input 
+ variables. Suppose you have this f and 
+ you have this z1 comma z2 and so on 
+ until zm. But here I can define the ZI. 
+ So this ZI is G of IX. So these are 
+ different functions. So if I have to 
+ make inference diagram for this, how can 
+ I make inference diagram for this? So 
+ now you have functions, you have 
+ variables, you have a lot of things 
+ going on. So you have this X first. So 
+ this X goes to this all these functions. 
+ So it goes to GI of this. So it also 
+ goes to say G1. It also goes to G2. 
+ It goes to G3 of this and so on. and 
+ let's suppose GM 
+ GM of this. So now these things 
+ aggregate these things then are 
+ transformed by this f again a function 
+ is applied so as 
+ on this so as to give us this value y 
+ this is how this x is related to y. Now 
+ you can see this exact looks like neural 
+ networks. So if you take a neuron okay 
+ and there will be a lot of outputs going 
+ to different neurons and somehow if you 
+ add more of these things in between 
+ you'll have a last loss function somehow 
+ like this. So this will be loss. So this 
+ is our input and these might be our 
+ hidden layers in between. So but general 
+ this is how this is the template you 
+ will see. So now we'll deal with this 
+ portion. So we'll deal with this portion 
+ first. If you have this Z1, this is your 
+ Z2. Let me write this in brackets. This 
+ is Z1. This is your Z2. And this is your 
+ Z3 and this is your ZM. So if I have to 
+ relate these Z's with this Y. So if I 
+ change something in Z's, if I do some 
+ nudge in this Z1, so how what will be 
+ the effect on this Y? So I can relate 
+ this delta Y and this delta Z. Uh this 
+ delta Y and these delta Z's. Okay. Okay, 
+ if I just look for one one thing. Okay, 
+ because we did earlier. So this will be 
+ summation later on. So we'll do it for 
+ just one. This was Z1. So here how will 
+ these two be related? So delta ZI and 
+ delta Z1 and delta Y will be related by 
+ suppose do Z by DY. Okay, something of 
+ this. So I can write do Z by D Y. So for 
+ one example this will be Z1 Z2 and if I 
+ write it general so this will be Z. So 
+ now I have to sum them all all these 
+ things. So if I sum them up, so this 
+ will be summation of I goes from 1 to m. 
+ Keep this as equation one. This is going 
+ from here to here. Now I have to see how 
+ these how this x is related to all these 
+ function. So if I say how this delta zi 
+ so if I take one function now delta zi 
+ how is this related with to this delta 
+ x? If I make some change in x so how 
+ will this delta zi be? How will be zi 
+ impacted? So how I can do that? So I'll 
+ say this will be equal to do z by dox. 
+ Okay because x here is constant. So I 
+ can write this as equation two. 
+ And now we can again substitute the 
+ values. So you can see substitute this 
+ value delta zi into this. So what you 
+ will get? You'll get the total loss. So 
+ you'll see total change rather not loss. 
+ This will be equal to summation of i 
+ goes from 1 to m. So this is do zi by do 
+ y and then multiplied by so this is 
+ delta z y i delta z i is equal to do zi. 
+ So this should be i over here. 
+ So delta z do zi by do x and this is 
+ delta x. 
+ If you have understood this so this is 
+ what will be happening in the back 
+ propagation. Okay. Is it clear so far? 
+ Okay. If this is clear to most of you, 
+ so what you can expand this over you, 
+ you can you can form a big equation of 
+ this sort and then you can again add 
+ more hidden layers in between and then 
+ you will calculate how how is one 
+ content related to other. So that that 
+ is the what I can say we said heart of 
+ deep learning is back propagation. Heart 
+ of back propagation is chain rule and we 
+ saw how to apply this chain rule. 
+ Okay. Now you should not forget this. So 
+ usually people try to memorize chain 
+ rule. If I give if I let's suppose have 
+ to compute dy by dx. So you introduce a 
+ variable dy by dz multiply by dz by dx 
+ something of this sort. Okay you need 
+ not to memorize this this way. Okay. So 
+ rather you should now internalize it. 
+ You should be saying okay I I can make 
+ these influence diagrams. So influence 
+ diagram why are they called influence 
+ diagrams? Because input somehow uh 
+ influences some other thing that 
+ influence some other thing that 
+ influence some other thing and at the 
+ end the loss is influenced by something. 
+ So if I just take one weight okay in 
+ order to first give intuition of back 
+ propagation then we'll do the 
+ mathematics of that. So what is back 
+ propagation doing? Okay. So you have 
+ this network. Suppose you have a 
+ network. So I'll just make network like 
+ this now. Or I have some somewhere I can 
+ copy that network. 
+ Here is my network. So if I take this 
+ if I copy this network. 
+ Okay. This is my network. Suppose 
+ I'm giving some input. Say I'm giving 
+ some input to this. So this is my x1, 
+ x2, x3, something of this. So if I'm 
+ giving a input and this is doing the 
+ forward pass and you know how the 
+ forward pass is done now. 
+ So once the forward pass is done and 
+ then I'm computing some loss. So when 
+ I'm computing the loss, let's suppose I 
+ am up by some error. I'm getting loss 
+ very high. Okay. So when I'm getting 
+ this loss is very high. So the only 
+ thing is I can see okay why what is 
+ wrong? What is happening inside this 
+ network? So why am I doing something 
+ wrong? Where is the scope of 
+ improvement? So if there is the scope of 
+ improvement, I can change that. If I can 
+ change that somehow so that I can reach 
+ some loss, I can reach some value where 
+ the losses are less. So let's suppose if 
+ you see this loss function over here. So 
+ this will be output. Okay. So output 
+ will be HL. 
+ If I go on the hunt, where is the 
+ problem line? So I can say okay, there 
+ is something wrong with this HL. But 
+ this HL in turn is somehow we got it 
+ from an activation function called that 
+ f. So we got it some from some output 
+ activation function and that activation 
+ I got from let's suppose A okay 
+ basically the linear fine transformation 
+ of the last layer okay so from this last 
+ year because I have to change the values 
+ if I say okay I have to do some 
+ adjustment to this HL this HL is not a 
+ dep is not independent so actually I got 
+ this value from these functions okay 
+ when I dissect it more so I said okay so 
+ I got this HL from function of AL so I 
+ this AL I got from let's suppose W 
+ because you So this a L is equal to WL 
+ HL -1 + B L. So this is how what this is 
+ equal to if you understood the forward 
+ pass before this. So I can say this is 
+ equal to WL H L -1 + B L this is what it 
+ is equal to this A. 
+ Now if I ask okay why can I change so I 
+ can change this way I can change this I 
+ can make change into this because this 
+ where I have the control and I can 
+ change this. Okay, so these two things 
+ which I am now writing in red this WL 
+ and BL this is why I can make changes 
+ okay because I was on a hunt why is why 
+ is my loss more so I was inspecting the 
+ network I was saying oh there is 
+ something wrong with this loss function 
+ HL the last output so I'm saying can I 
+ do something with this HL this HL was a 
+ product of AL applied we applying some 
+ activation function on this I cannot do 
+ anything with activation function I can 
+ rather change it but I can't do much 
+ with that so I said okay can I dissect 
+ this AL more yes I can do WL HL minus 1 
+ plus B So what can I change? What do I 
+ have control over? I have control over 
+ this W and biases. Okay, I can control 
+ this. Okay. So can I change WHL? No, 
+ it'll again go something of this sort. 
+ So I'll have to again this HL minus one. 
+ So this HL minus one will be equal to 
+ some function call that let's suppose 
+ this was F say L. So this was this is F 
+ L minus one some other activation 
+ function or let's consider this only F. 
+ So now I have to compute this as L minus 
+ one. So this was equal to I had some 
+ activation function on L minus one. So 
+ can I change a a L minus one? No, I 
+ cannot. Can I change H L minus one? I 
+ cannot directly. So what should I do? I 
+ should again dissect this. I should say 
+ F. What was this equal? This was equal W 
+ L minus one H L -2 plus B L minus one. 
+ Okay. Again I have only control over do 
+ these two things. I can change this 
+ weight and I can change these biases. So 
+ what I'm writing it in the pink is what 
+ I have control over. 
+ Okay. Now if you constantly see on 
+ inspecting the network, you can only 
+ change two things. You can change these 
+ weights and you can change the biases. 
+ You can you can rather change these soft 
+ activation functions. But if you have to 
+ make network do something with the loss, 
+ if you can nudge some values, the only 
+ values that you can nudge are these 
+ weights and biases. So this is the core 
+ thing that you should get out of this 
+ because there are a lot of functions in 
+ the picture. So what you can do? You can 
+ probably change this weights and you can 
+ change the bias if you keep on going. So 
+ at the end you will get h0. So h0 using 
+ your input and the input is fixed. You 
+ cannot change this. So all in all what 
+ you are changing? You are changing all 
+ these. You are changing from WL WL -1 
+ till W1. You can change this. You can 
+ change BL BL minus one till let's 
+ suppose B1. You can change weights and 
+ biases 
+ because these are the culprits which are 
+ which are giving either a good loss or 
+ the bad loss. So these are weights and 
+ these are our biases. This is what you 
+ can change. So on inspect the network we 
+ cannot do anything with the functions 
+ because they are just this H is getting 
+ an output of activation of something. 
+ Okay, activation of linear 
+ transformation or a finite 
+ transformation. So and that fine 
+ transformation we got it from weights 
+ and biases. So we can change weights and 
+ biases. Is this clear? Is this picture 
+ clear right now? 
+ So here if I categorize this in two 
+ things. So I had input as my input is 
+ fixed. I cannot do anything with input. 
+ Input is fixed. 
+ Okay. And then I had something which I 
+ can call as dependent functions or 
+ dependent parameters. 
+ Dependent parameters. So what are these 
+ dependent parameters? So these are the 
+ parameters which are just the causation. 
+ Okay. which just happened. They happened 
+ because something happened. They 
+ happened as as something happened before 
+ them. So what are the dependent 
+ parameters? These are those activation 
+ functions. This activation when you 
+ apply the activation function basically 
+ the hidden output the hidden outputs 
+ the hidden outputs comma the 
+ aggregation. 
+ So these also can be like tuned. So we 
+ can see that okay if I if we change 
+ these we can have but they're dependent 
+ parameters. They're dependent output. So 
+ what are the dependent or there are 
+ something which we call can call as 
+ independent parameters. 
+ So what are these independent 
+ parameters? There are only two types in 
+ in neural networks. We have these 
+ weights and biases. 
+ You have weights, bias. Okay. This 
+ this will usually change. This is what 
+ we have control over. So you have 
+ control over these and this these things 
+ happen or these things take value as a 
+ consequence of this. So there is some 
+ cause and there is some effect. So these 
+ things show an effect because this 
+ caused something. Okay. So this is where 
+ we have the control. So independent 
+ parameters the parameters that we can 
+ nudge that we can adjust so as to 
+ decrease or increase the loss. They 
+ should be very clear in into your head. 
+ Why? Because sometimes you might have 
+ this question that we have weights and 
+ biases and then we have a lot of 
+ functions in also. Can't we change these 
+ things? Okay. There there's a proper 
+ categorization. What? So independent 
+ parameters are the ones which we can 
+ change by hand which you can change by 
+ back propagation. But these dependent 
+ parameters or these dependent values 
+ which we'll get. So they'll be as an 
+ effect of this cause. So these things 
+ produce the cause. So these are the 
+ causes. These are the cause and this is 
+ the effect that we get. Okay. And we 
+ usually do not worry about the effect. 
+ We see what was the cause. Why did it 
+ come from? So if we can somehow do 
+ something to these weights and biases. 
+ Maybe this dependent parameters will 
+ change their behavior. Okay. Because 
+ that's why that's why we called them as 
+ dependent parameters because independent 
+ parameters were the one which we had 
+ control over. And these dependent 
+ parameters were giving us the values 
+ because of the causation of these init 
+ parameters. Any questions still here. 
+ Now if you understood this. 
+ So second thing that I want you to know 
+ about this back propagation algorithm 
+ and from these weights and biases is 
+ this. So how to intuitively understand 
+ this? What is happening actually? So 
+ what is happening is you have a lot of 
+ parameters. Consider that you have a 
+ vector of parameters. So you have this 
+ cost function C or J or L. You have some 
+ loss function of this L of theta. So 
+ this is L. It takes value some weights 
+ w1 w2 something of this sort and then 
+ bias one bias 2 something of this sort. 
+ So what will happen it we can consider 
+ consider this as a vector if you flatten 
+ this out. So you can consider this as a 
+ vector. So let's let's consider just one 
+ neuron. So you have one neuron over 
+ here. 
+ Okay. 
+ And then what you can do is you have a 
+ lot of output layers. Let's suppose we 
+ are doing amnest classification or you 
+ are doing cat dog let's suppose man 
+ woman some example image classification. 
+ Suppose you have in output you have four 
+ neurons. Okay. And you have to adjust 
+ these weights. If you see this, 
+ if you see this sort of thing. So you 
+ have to adjust these you know and these 
+ things will have certain values. So 
+ these weights why are they even called 
+ weights? Because there is strength 
+ associated with this. So there is some 
+ strength. 
+ So suppose the value that we got we gave 
+ a picture to this whole unit. I'm just 
+ talking about now one neuron and the 
+ output layer. There are a lot of things 
+ happening outside. I just want to 
+ isolate this thing to make you 
+ understand what is actually happening. 
+ So what is happening there is you had 
+ let's suppose this was cat and this was 
+ dog this was say man this was woman so 
+ this this is the classification that you 
+ are doing it a multi-class 
+ classification where these are the 
+ images so now your network predicted 
+ something of this sort it predicted 0.1 
+ okay and now this is say 0.4 
+ and this is 0.2 two. 
+ But now the actual thing that the image 
+ actual the image that you gave suppose 
+ this was the image and this was image of 
+ a cat. Say this was image of a cat. So 
+ when this was given to the network and 
+ at the output we got this. So it the 
+ vector should have been something of 
+ this sort 1 0 0 0 one hot encoder one 
+ hot encoded vector but you got something 
+ of this sort. So what is this basically 
+ telling? So you have to do something in 
+ the network so that this cat goes up. 
+ This this cat goes up by huge. Okay. And 
+ this dog comes down and this this comes 
+ down a lot more than dog and this comes 
+ down a lot less than dog. A little less 
+ than dog. So but this cat should go up 
+ by by a huge by a huge thing. So so that 
+ you'll have you'll have vector of 
+ something and you'll have to have these 
+ weights. You'll have these weights over 
+ here. You'll have some weight over here. 
+ You'll have some weight. So this weight 
+ will have some strength. So this weight 
+ and this weight let's suppose this 
+ weight has some strength three. This 
+ weight has some strength one. This has 
+ some two, this has four. So that 
+ basically means whatever thing that you 
+ do to this and if if you do it to this. 
+ So there is some relation with this. So 
+ if you do some changes with this, okay, 
+ so it will have four times impact of 
+ this. Why you have just one that's why 
+ they're called weights. You might be 
+ having a question why they called 
+ weights. That's why they called weights 
+ because they have strain associated with 
+ them. So whatever change you made to 
+ this. So let's suppose you have this 
+ one. You made some slight change in 
+ this. So if you made the same change in 
+ this, if you made this slight change 
+ because this thing has four times impact 
+ in this roughly speaking okay that's 
+ what you should get out of this. So if 
+ this weight was one, this was two, this 
+ was three and this was four. If you made 
+ some change in this suppose in this okay 
+ and you made the same change in this, 
+ whatever change you made here and 
+ whatever the same change you made here, 
+ this thing will have three times the 
+ impact than this. Okay, that's why 
+ they're called they're called weights 
+ and why because there is some strength 
+ associated with this. So that there is a 
+ theory which he theory which we also 
+ discussed briefly in the history. So 
+ neurons that fire together they wire 
+ together. Okay, so this is that thing. 
+ So if you somehow make some change over 
+ here. So this will give you maybe less 
+ output and this will give you more 
+ output because this these things and how 
+ is this coming probably this might be 
+ come from some other things. So this 
+ weight is more important weight than 
+ this weight. Okay you might have heard 
+ about dropouts and things like that. So 
+ you should see back propagation like 
+ this. What back propagation is basically 
+ trying to do is it is trying to see okay 
+ what change will give you more more 
+ better outputs. What what what change 
+ matter more? So if I made slight change 
+ in this so what will happen? So as I 
+ said if you made some change in here and 
+ if you made same change in here so this 
+ neuron seems to be producing the thigh 
+ effect of that. Okay, but depending on 
+ should we get it up or should we should 
+ we bring it down because you know that 
+ it's a combination of all these things 
+ up. Did you get the intuition what is 
+ why are they called weights and what is 
+ back propagation? What is the goal of 
+ back propagation basically? So how in 
+ actuality how it is happening now? So 
+ we'll see that now. So before going into 
+ the math I want you people to understand 
+ the intuition behind that and what is 
+ happening underneath the hood. So I'm 
+ saying now you have to change all of 
+ these things. So what is happening you 
+ give one example and you are computing 
+ this vector. You're computing a vector 
+ which which is telling you okay you 
+ adjust these weights and biases. So this 
+ will be a lot of a lot of network will 
+ be so the huge network will be there. So 
+ there will be a lot of these weights and 
+ biases. So if you compute this for one 
+ image so you have let's suppose data 
+ point one image one. So you'll be given 
+ this delta w1 delta w2. So this will be 
+ telling you how how much to nudge these 
+ things but you cannot do it for every 
+ example because you have millions of 
+ examples. Okay suppose you have 1 
+ million examples. You have to give one 
+ one example and then you will compute 
+ this this w one correspond to one. So 
+ basically what I mean by this is how 
+ much to nudge based on this input image 
+ one. So input image one is telling to 
+ try okay this cat value should be 
+ higher. So input let's suppose second 
+ might be dog. So this might be telling 
+ you no no no you do parameters like 
+ this. So what you basically try to do 
+ you try to average it out try to take an 
+ average. So you give one input you 
+ compute these how much nudge. Okay. You 
+ give second example you again try to 
+ compute what should be the value how how 
+ should be this w12. So this is second 
+ image. Okay. When you give second get 
+ example. Similarly, when you give third 
+ example, so it will try tell you to it 
+ will try to tell you to change this W1 
+ by this third example because all of 
+ these examples will try to make their 
+ network learn themselves. Okay? So if 
+ I'm having one if we had just one 
+ output, you can just pass it again again 
+ again. Okay? And it will tell you okay 
+ change it will try to give all the 
+ probability to the cat. It'll it'll try 
+ to make the neural network sort of over 
+ represent this cat. So whatever example 
+ now it give it will say okay this is a 
+ cat because it will give high 
+ probability distribution to this cat. 
+ This was just one example. So why are 
+ you giving a lot more examples? Because 
+ it tries to compute all these gradient 
+ vectors. So these vectors will be called 
+ as gradient vectors. So they are all 
+ gradients. 
+ So one example will give one gradient 
+ vector. Second example will give second 
+ gradient vector. Third example will give 
+ third gradient vector. So what do you do 
+ after that? You take average of all of 
+ these. So you'll take this all these 
+ gradient vectors. Suppose this is wi and 
+ you sum them and you divide it by total 
+ examples. So how many examples did you 
+ take? So now if you see we have million 
+ examples. So now we have to perform 
+ forward pass 1 million times suppose and 
+ then for each of the example we'll get 
+ one gradient vector that will tell you 
+ how to change what change should be made 
+ the network. So a cat example is trying 
+ to uh tell you okay based on this image 
+ so you should get this distribution up 
+ you should get the this neuron so you 
+ should give it more value. Similarly 
+ when second value is given to the dog. 
+ So each of the example is telling to try 
+ trying to tell the neural network that 
+ you adjust these values according to 
+ this. But what do we do then? So we 
+ average it out. We not just listen to 
+ one example. We average it out. But the 
+ realistic problem is if you have 1 
+ million data points. 
+ So 1 million data points if you have 
+ then you have to perform forward pass 
+ and then you have to compute backward 
+ pass for each million point. It'll be a 
+ lot more computationally expensive. 
+ That's why we go to what's called as 
+ batching. We do mini batchs. 
+ So why do we take mini bags? So we'll 
+ shuffle the data. We have 1 million 
+ points. So you'll shuffle it. 
+ So once you shuffle it. 
+ So you'll let's suppose after shuffling 
+ you will take 32 examples randomly out 
+ of that. So once you take those 32 
+ example you'll just perform forward pass 
+ on those 32 examples. Now after that 
+ what will happen because of that thing 
+ so you will get some gradient and you'll 
+ average out on that and you are uh you 
+ you'll be getting some direction so as 
+ to nudge the parameters in but that 
+ won't be the exact that those are the 
+ parameters where you'll exactly get the 
+ better value for this loss function. But 
+ still because you took these randomly so 
+ but along the way you are thinking that 
+ if I just take these three examples so 
+ I'll get some direction which will be a 
+ little bit right direction. So it is 
+ basically trying to navigate that terine 
+ basically trying navigate that manifold. 
+ So if you are here it'll give you some 
+ wrong direction but that wrong direction 
+ won't be much. So it'll be like a 
+ drunkard person navigating the that 
+ terine. So if you understood this 
+ example why why won't why don't we do 
+ with one example and then update it one 
+ example then update it. So it'll be 
+ computationally very expensive if you 
+ just give it perform back propagation 
+ update one example perform back 
+ propagation update. So it'll be 
+ completely expensive. So in real uh one 
+ problem is or in real neural networks 
+ when you code it up. So what do we do? 
+ So you give some batch of this. So why 
+ you do this? So you might have heard 
+ about SGD 
+ such a costic gradient mini grad 
+ batching algorithm. So what so how is it 
+ happening? Because you give it probably 
+ you give it a real shuffle. So you have 
+ 1 million points you shuffle the whole 
+ data. So after that you took randomly 32 
+ points that's why this stoasticity came 
+ to the picture the probabilistic 
+ algorithm came into the picture and then 
+ you applied gradient descent on this you 
+ accumulate those gradients and average 
+ it out and after that you applied that 
+ to you applied those change to network 
+ otherwise you would have applied by each 
+ example and that is not computationally 
+ feasible or it might be but it's not 
+ practically done why is it not done 
+ because you don't have that much 
+ computation power to perform it on first 
+ point and second point and third point 
+ that's why you use rather use batch of 
+ this sort is it clear this is what back 
+ propagation is Okay. 
+ So all in all now what is back 
+ propagation trying to do if you see 
+ this. So back propagation is trying to 
+ give one data point. It is performing 
+ forward path and one data point is 
+ telling the network how to adjust these 
+ weights and biases because corresponding 
+ to each point you'll get a gradient 
+ vector. You'll get a vector of these 
+ gradients which we call as gradients. We 
+ get a gradient of rather than you'll get 
+ vector of these derivatives which you 
+ call gradient. So you'll get this 
+ gradient and after that you will say 
+ okay I made these adjustment in the 
+ network. So you don't do it immediately 
+ because you might have 1 million points. 
+ So what you do is you do it for one 
+ point. So that one point network okay 
+ adjust in this direction. Okay. And then 
+ you take it second point first point 
+ second point third point fourth point. 
+ You keep on calculating these gradients 
+ and after that what do you average it 
+ out otherwise there's a problem. If 
+ let's suppose one point told you okay do 
+ this and you made those changes and then 
+ you did a second time that second time 
+ can undo that change can undone those 
+ changes. So we want to do what is what 
+ should we do at average? So what should 
+ what should be done at average? 
+ This is what companies do. Let's suppose 
+ let's suppose if you're going to a 
+ company how much CTC are we giving at 
+ average to the candidate they won't just 
+ check okay one candidate we're giving 50 
+ lakhs second candidate 30 lakhs then 
+ third candidate comes give him 30 lakhs 
+ or no so on each they will they'll 
+ compute at average because we believe in 
+ probability we believe in large numbers 
+ that it will somehow stabilize after a 
+ while. Okay, that's what we do. Give one 
+ point, compute its gradient, second 
+ point, compute its gradient, third 
+ point, compute it gradient and then 
+ average out all the gradients and make 
+ the change in the network. But it's not 
+ feasible to do it on 1 million points 
+ altogether. So what do we do? We take 
+ mini batch in this. So we take mini 
+ batch. So many batch of 32 points, 128 
+ points. But it's it's very good if we 
+ can do it one 1 million points 
+ altogether because that will that will 
+ be giving you a better average. Okay? 
+ But rather than that you just shuffle 
+ the data. You shuffle data and you then 
+ randomly sample let's suppose some mini 
+ batch of size 32 64 128 something of 
+ this sort. Okay. After this based on 
+ these 128 points based on the 64 points 
+ so you compute this gradient you compute 
+ these derivatives and you compute a 
+ vector of these derivatives that's 
+ called gradient and then you do do those 
+ changes and then you apply gradient 
+ descent to this. That's why this is 
+ called as SGD stcastic gradient descent 
+ algorithm because you this is a 
+ probabilistic thing. You shuffle it and 
+ then you sample it again randomly out of 
+ that thing. And we just did a small 
+ calculation that that there are hiccups 
+ possible but the hiccup those 
+ probability of happening those hiccups 
+ is very less. This is what back 
+ propagation does in nutshell. Okay. And 
+ then if you got this intuition right 
+ we'll have to see the mathematics behind 
+ it. So can I assume that you people got 
+ the intuition right? 
+ So this lecture will start with just a 
+ revision of these notations. Okay. So if 
+ you see all of this, so this is my input 
+ layer. So where k is equal 0 and layer 
+ number is zero. And this is denoted by h 
+ of zero that is this x. If you can see 
+ over here, if I can zoom it a bit and 
+ you can see it over here. So this is my 
+ input layer that you can see. I have 
+ made a neural network over here. And 
+ these are two hidden layers. Okay. And 
+ each of this is denoted by and you know 
+ that here we have let's suppose if you 
+ see this I can write this is a1. 
+ Similarly I can have a2 a3 I will write 
+ a1 like this a in supererscript so that 
+ it corresponds to layer. So this will be 
+ a11 because we have pre-activation this 
+ a11 is a pre-activation after this you 
+ apply some activation function 
+ coordinate you get this h11. And 
+ similarly uh for this let's suppose 
+ after this this will be a2 and this will 
+ be h2. So this is your pre-activation 
+ and this is your activation. Okay. And 
+ all of these things are written over 
+ here. So do pause the video to see it. 
+ So you have weight matrix and you have 
+ this bias and each of this weight if I 
+ have to write this weight this will be 
+ w111. 
+ So it belongs to weight matrix 1 and it 
+ connects for first uh neuron first input 
+ with the first neuron or the first layer 
+ first hidden layer. So if I have to 
+ write this let's suppose what will be 
+ the weight of this will be w 21. So 
+ first input now gets connected to second 
+ neuron. So this is written as w21 the 
+ way I wrote it here. Okay. So I have 
+ written all the notations over here. So 
+ if you see this the key notations. So 
+ you have NK is the number of neurons in 
+ the layer K and this F is activation. AK 
+ is pre-activation values. HK is post 
+ activation. Okay. I hope that this is 
+ clear. So now this thing I can remove it 
+ from here and I can go back to my normal 
+ screen. 
+ Okay. Now if you see this so we have 
+ learned this. So we will have to apply 
+ back propagation on this. Previously I 
+ told you the essence of back 
+ propagation. Back propagation is an 
+ algorithm by the help of which you train 
+ a network. So I also told you what's the 
+ meaning of training. You have these 
+ parameters theta in which you have these 
+ weights and biases. You have weights and 
+ biases. So and you have to somehow 
+ you have these parameters theta 
+ in which you have these weights and 
+ biases which you try to adjust based on 
+ that you you try to actually you are 
+ navigating 
+ navigating an error surface an error 
+ surface 
+ and you want to reach that point where 
+ the value is minimum. So how to 
+ navigate? You saw that we have to 
+ navigate by using gradient descent. And 
+ now you should get a direction why to 
+ take steps and you saw that we have to 
+ compute gradients. Now we'll see how to 
+ compute those gradients and how to do 
+ this with with a real network. Okay. So 
+ you'll have your loss function. Okay. 
+ You have some loss function of L which 
+ takes some parameters. Let's suppose the 
+ parameters are these W's W1 W2 bias one 
+ bias 2 bias one bias 2 and so on. And it 
+ gives you certain value. Call that cost. 
+ Let's suppose it gives you some cost or 
+ some loss. So we call this as loss 
+ function. So based on this loss we have 
+ to optimize the parameters. So first 
+ thing you should know all these things 
+ about you should know all of these 
+ things in order to understand the back 
+ propagation algorithm. Okay, you have to 
+ somehow know all of these things. So I I 
+ hope that at least these things are 
+ clear for you. So in the first thing 
+ what do you do is we have also rehearsed 
+ a bit about calculus. So you saw that we 
+ saw how actually one thing is impacting 
+ other things. So we saw somewhere if you 
+ have x and if it has some dependency or 
+ this y has dependency or x. So how are 
+ these things depending if you want to 
+ optimize this what can you do you say 
+ that these things are connected by say 
+ about do y by do x ais how you calculate 
+ them and then we saw if we have x y z 
+ and z and we also saw that I think it's 
+ all covered in the previous lecture 
+ while we saw all of these things and now 
+ we'll today we'll see back propagation 
+ so in order to introduce back 
+ propagation now the mathematics behind 
+ the back propagation give me a second so 
+ we're discussing with this so in order 
+ to understand the back propagation okay 
+ you should know all these stuff you have 
+ to optimize loss somehow okay now before 
+ going to these things I we'll start with 
+ very basic stuff. So let's suppose you 
+ have an expression of this sort. You 
+ have say you have this L is equal A + B 
+ * C. Okay. So this is what we actually 
+ do in the neural net. If you see a 
+ neural network that is nothing but uh 
+ function of function there's a 
+ composition of function over here. So 
+ here let's consider these two these 
+ three things. So you have some parameter 
+ A, you have some parameter B and you 
+ have some parameter C and they are let's 
+ add we're adding a plus B and then give 
+ multiplying the C and then we're 
+ computing this loss. Okay. Now let's 
+ suppose suppose you can adjust these you 
+ can adjust these things in order to get 
+ the least value of this. So you can see 
+ that this is the function. So L takes 
+ values of a comma b comma c and they're 
+ relating related with this a plus b 
+ multiplied by c something of this sort. 
+ Okay and somewhere it'll take the least 
+ value. Okay here you can easily say you 
+ can give some negative positive values 
+ here and there and you can come up with 
+ the least value somewhere around there. 
+ So now if you see this I can make a 
+ graph out of this. I can say this you 
+ have this a and then you add it. You 
+ have a node A suppose okay and then you 
+ perform certain operation on this 
+ and then you have this node B these are 
+ values and it produces let's suppose 
+ something which I can call let's suppose 
+ E let's suppose some X or AB I can call 
+ it node AB okay and then this AB it gets 
+ n the node okay and we multiply these 
+ things together and you get let's 
+ suppose C 
+ and you get output as a * a a b and c i 
+ write this okay let's call this l the l 
+ that we have over here the thing that I 
+ made over here is called as a 
+ computational graph 
+ this is called as a computational graph 
+ okay this is what we'll be implementing 
+ once we implement these things in our uh 
+ library that we want to make the library 
+ for the neural networks so we'll we'll 
+ basically make these computation graphs 
+ so we have some nodes A and B Okay. And 
+ we have a node let's say plus node. So 
+ we add these things together and then 
+ they produce AB. Okay. And then we 
+ multiply it with C and it produce some 
+ loss. Now we'll have to see there is 
+ some value for this loss. Now I will see 
+ if I tweak let's suppose this value C or 
+ if I tweak this node. If I tweak nodes A 
+ how can I tweak nodes A? I have to tweak 
+ node A or B. So consider in setting of 
+ neural network. So you have loss 
+ function that is dependent on some 
+ activation function. That activation 
+ function is dependent on some 
+ aggregation. That aggregation is 
+ dependent on weights and biases. That's 
+ what is happening over here. So if you 
+ have to compute let's suppose how 
+ nudging this value will impact this. 
+ Okay. So what you'll do is you'll 
+ compute derivative of this. You'll see 
+ dl by da that's what you have to compute 
+ the partial because you know the l is 
+ you have an expression of this sort but 
+ in n it'll be huge expression. Now you 
+ have to compute this dl by da. So if you 
+ see this previously from the from the 
+ refresher of calculus you know that how 
+ to compute this. So this is being impact 
+ this l is being impacted by a from here. 
+ Here it goes till here it goes from 
+ here. So this is how it's it's being 
+ impacted. So you will now see okay this 
+ L is being impacted by this AB. Okay. So 
+ how is how is it impacting it? So we can 
+ say DL by DA DAB. So this is that node 
+ this is getting impacted by this. But 
+ this AB in turn is getting impacted by 
+ A. If you see this if you follow this by 
+ chain rule you'll write it like this. 
+ How is this AB being impacted by A. 
+ Okay. Then I can compute how is loss 
+ function or L being how is it it being 
+ affected by A. And similarly you can say 
+ how is this how is this B impacting this 
+ L you can say 
+ do L by D b so basically if I nudge this 
+ value B if I do slight change in this 
+ how what is the effect that L is having 
+ okay that that's what we want 
+ so I was talking about this so if I make 
+ slight change in B if I make some small 
+ change in what will be the impact that 
+ we'll see in L because we want to 
+ somehow get this loss function down if 
+ consider this L as your loss function 
+ you want to get it down so you can write 
+ it in calculus like this take partial 
+ derivative of this loss function with 
+ respect to B. So how to do that? You 
+ know that this B actually I cannot 
+ compute directly because it comes 
+ through accommodation graph. It comes 
+ through this because this L is being 
+ impacted by AB. Okay. And this AB in 
+ turn is impacted by B. Again we can use 
+ chain rule of calculus because we have 
+ seen that. So how to write that? So you 
+ can say this is equal to do L by D A. 
+ Okay. How is this L impacted by AB? But 
+ but in turn this AB is impacted by this 
+ AB is impacted by B. So how to do that? 
+ Then you multiply this by do a b divide 
+ by do b 
+ again for this parameter c. Let's 
+ suppose we have all these parameters. We 
+ can nudge these values a b and c. So how 
+ to compute? Now you can see this c has 
+ direct it can if you nudge this c it has 
+ direct impact on this l. So I can write 
+ do l by do c. Okay. What is if I make 
+ slight change in c what will be the 
+ impact on l. So I can say this do l by 
+ do c is like you can directly comput you 
+ you don't need to even apply chain rule. 
+ Okay. Okay, for this you can directly 
+ compute it this one. So now I got these 
+ three things I got 1 2 and three things. 
+ So if I collect all of these three 
+ things I call that gradient. So I get 
+ I'd get do l by do a d l by d b do d do 
+ l by do c. So I computed the derivatives 
+ and I collected them together. So this 
+ is what I call as gradient. And then you 
+ know what to do this because gradient 
+ gives you steepest ascent. It gives you 
+ like the where where you can if you go 
+ in a direction of gradient it will give 
+ you the direction where the function 
+ increases but you have to decrease the 
+ function you have to get the loss down. 
+ So that's why you go reverse then you 
+ apply gradient you apply gradient 
+ descent on this. So you apply gradient 
+ descent after computing these gradient 
+ after computing these derivative 
+ vectors. So you have a vector of 
+ derivatives which called as gradient. So 
+ then you apply gradient descent on this. 
+ Any questions still here? Now that you 
+ understood this after this we apply 
+ gradient descent and now we'll see how 
+ to perform this back propagation. You 
+ can you saw that we can perform it 
+ easily over here. If a had certain 
+ values, you'll get some gradient and 
+ you'll have you'll just remove these. 
+ You'll say a minus let's suppose if you 
+ have to update a so you'll have a new is 
+ equal a old let's suppose you had some 
+ old minus some ea some learning rate 
+ multiplied by you have created this. So 
+ you'll say dol by do a this is what this 
+ is how you apply gradient descent. Now 
+ we'll have to do the same thing over 
+ these neural networks. Okay consider 
+ this. Yeah, we'll take a small example 
+ and then we'll slowly go towards the 
+ whole neural network towards the back 
+ propagation and we'll understand the 
+ whole mathematics behind that. Suppose 
+ you have this X1. So X1 is the input 
+ that you have and then you have this 
+ A11. You have this pre uh activation or 
+ you can call it linear transformation 
+ transformation. You take X and you have 
+ this A11. After this you apply 
+ activation, you get H11. Okay. After 
+ this you'll again apply suppose it's a 
+ two-layer neural network. So this is X1 
+ A11 H11. then you'll get a21 then this 
+ will be again h21 you'll give it some 
+ activation and then at the end till you 
+ can keep on going and you'll say I have 
+ a huge network of this sort 
+ and let me bring it over here 
+ okay H21 after that you can have let's 
+ suppose some layers and you'll have some 
+ al1 okay layer you'll have 
+ pre-activation at earth layer and after 
+ that you'll have hl and finally you'll 
+ convert that into output so this will be 
+ converted into output. let's suppose 
+ some prediction y or you can directly 
+ use this as prediction and then after 
+ you have this so these the this thing 
+ along with the original y okay and there 
+ will be some divergence function which 
+ will give us loss this will be giving us 
+ the loss function if I just talk about 
+ and network I'm just taking one neuron 
+ out of that so I'm taking a single 
+ neuron now you see this is a 
+ computational graph the graph that I 
+ just made this x1 is our input feature 
+ then this a11 is linear combination 
+ weighted sum in the first layer this is 
+ the activation in the first layer first 
+ hidden layer this a21 is the linear 
+ combination second layer activation in 
+ the second layer. So this is uh linear 
+ combination in the Lith layer and this 
+ is the output output layer or HL we can 
+ call this as activation in the L layer 
+ and then you get out of this you will 
+ apply some activation again you'll get 
+ some output because of that so this 
+ output and the ground truth you'll have 
+ you apply divergence on that the loss 
+ function basically you'll get loss out 
+ of this and now suppose you have you 
+ have to perform computation on this so 
+ what you'll do you'll initially do 
+ forward pass 
+ so you'll do forward pass you know what 
+ forward pass 
+ Forward pass basically is you compute 
+ all of this stuff. You compute this a11 
+ h11 because you know what a11 is equal. 
+ If I if you have to compute that a11 is 
+ equal to w11. You take the first uh 
+ weight and that you take this weight if 
+ if I show you the network again the 
+ network that we had. So this weight over 
+ here this is not pretty visible but I 
+ think you can figure it out. So this 
+ weight w11 if you take this and you are 
+ having this x1. So I'm I'm talking about 
+ this layer. So you have you have this 
+ this line this will give you a11 then 
+ you have this h11 so you'll go here 
+ you'll go here so this is what I made 
+ okay till earth layer so I'm speaking 
+ about this one unit over here everybody 
+ should be clear on this point so I'm 
+ speaking about this path and going from 
+ this path to this path 
+ okay I hope this is clear for everybody 
+ okay let me move them 
+ now you have this x1 it goes through a11 
+ h11 okay so this is these are the values 
+ so this this is the first layer 
+ activation a11 and this 
+ And this is first layer 
+ activation. This is first layer fine 
+ transformation. Okay. Or linear 
+ transformation. So now forward pass. How 
+ will I calculate that? This a11 is equal 
+ to w11 from the first layer multiplied 
+ with the x1. Okay. This is how you can 
+ get it if if you have take the linear 
+ combination and then you can also speak 
+ about bias plus let's suppose you have 
+ this v11. So if I also connect these 
+ bias over here. So how can I connect 
+ bias? So usually bias is so a node is 
+ there which is given value one okay a 
+ node will be there which will be given 
+ value one this will be a smaller node 
+ let's suppose this will be constant one 
+ and all its connections will be given 
+ here here here so this is how bias is 
+ defined in the networks similarly for 
+ this network again one will be given 
+ suppose here one will be given here and 
+ then all of its connections will be 
+ connected like this so this will act as 
+ bias because you know you know those 
+ matrix multiplications that we have seen 
+ now We will do forward pass initially 
+ like this. So forward pass you have a11. 
+ So that will be you take the matrix take 
+ that w11 and one that is the weight. 
+ This is this is that weight multiply it 
+ with the x1 the input and this plus b11 
+ the bias corresponding to this. After 
+ this you this will be the linear 
+ combination or fine transformation the 
+ first step. Okay linear linear 
+ transformation or fine transformation. 
+ So in this case this is fine 
+ transformation because it has bias in 
+ it. Now after this we'll do activation. 
+ So how to perform activation? I'm 
+ showing you on the single step and then 
+ we'll go it over uh over the vector 
+ notation and now we'll have to compute 
+ h11. How to compute h11? You'll apply 
+ some function. Let's call that function 
+ reu in this case or sigmoid. Let's call 
+ that function f. So you'll apply f on 
+ this a11. Okay? And you'll get some 
+ value out of this. If you have value 
+ suppose you have this is zero this is 
+ suppose 0.5 this is 0 this suppose 2 
+ this value is 2. So this will be equal 
+ to 1.0. And after applying let's suppose 
+ you have relu. So du basically is max of 
+ 0 comma a11. If you apply relu or sigma 
+ depends on that you will get still a 
+ value of 1.0 over here. Okay. And then 
+ you'll have to perform second layer and 
+ you know how to perform the forward 
+ pass. So basically you store these 
+ values. You have a11 h11 h21. You have 
+ all these values. Now now this is in the 
+ forward pass. After you have this now 
+ what you have to do you have to compute 
+ gradients. So you have to compute 
+ gradient such that you nudge these 
+ values. You'll get based on the forward 
+ pass you'll compute loss. So after you 
+ have the forward pass you have a loss 
+ that's that will be a single number this 
+ will be a single number. 
+ So what will happen as a corresponding 
+ that you will see okay how is how good 
+ is my neural network. So if the number 
+ is very high you will say that I have 
+ very high loss that means my network is 
+ not learning very good I have to do 
+ something with it. Okay. Now let's see 
+ how to do this with a gradients. The 
+ general approach would be so use let's 
+ suppose do something of this sort. 
+ You'll take as we read in this. But if 
+ you have to perform the back propagation 
+ in the network okay the first thing you 
+ you'll do is you'll say I have to 
+ compute this dl by d theta. This is what 
+ I have to compute. Okay. So how to do 
+ that? So dl divid what was the output. 
+ Okay. And then multiply by what was the 
+ how was output dependent on these 
+ parameters. So that's what this is the 
+ general approach. So then suppose you 
+ have these parameters theta you'll say 
+ I'll take partial derivative of this L 
+ with respect to this output what 
+ whatever output I had and then partial 
+ output with respect to this theta and 
+ then you'll have to again use a chain 
+ rule consider this I'll take a small 
+ example I'll take example of this sort 
+ let's suppose you need to compute what 
+ is d do l by do111 the first weight 
+ suppose you have to do this you have to 
+ do this is everybody following me so far 
+ okay now this is the general threading 
+ so this is what we generally want to do 
+ in general this is what we want to We 
+ have we have a loss function and we want 
+ to compute the derivative with resp to 
+ all the parameters. So we'll do it step 
+ by step. So you have seen the forward 
+ pass. Okay. Let's do this. This 
+ algorithm can be seen from two 
+ perspectives. We can see it element wise 
+ and then in the vector notation. We'll 
+ see both the things in this in sync. 
+ Let's suppose you have this aig. Okay. 
+ This is how you perform forward pass. 
+ You have a i a iik. Can anybody tell me 
+ what this is? If I write a iik mahmud. 
+ Okay. The first thing that we will see 
+ over here is element wise. So now so far 
+ we have seen forward pass like this we 
+ have ak pre-activation on the fine 
+ transformation this is equal to w k this 
+ is a huge this is a whole matrix and 
+ then we have hk minus one and then we 
+ are writing plus bias so this was in 
+ vector form this is what we have seen so 
+ far how forward pass looks like and then 
+ we said okay after applying so we can 
+ apply this we can apply activation on 
+ this so we have hk hk is equal some 
+ activation function f applied on f k but 
+ here now we'll see element wise what is 
+ happening element wise. So how is this 
+ happening element wise? So each of this 
+ AK is a vector. So you know that so this 
+ AK is a vector of this sort. So you have 
+ AK1 AK2 depends on how many neurons are 
+ there. Okay. Similarly this H is a 
+ vector. So this WK is a matrix. Okay. 
+ And all of these things should be clear. 
+ This is a matrix of weights. Okay. 
+ Between K and K K minus one layer. And 
+ this is the activation after activation. 
+ And this is bias or all this is a 
+ vector. This is a vector. This is a 
+ matrix and this is a vector. And here 
+ when you apply this activation you do 
+ element wise you apply this on each 
+ element. So now we'll see we'll see 
+ single element of this A K. So if I 
+ write that so I can write A KI I element 
+ of this. So how to get that? So I'll 
+ basically query this vector. So I can 
+ query this matrix. So I have matrix W of 
+ this sort. Okay. If my I have a network 
+ of this sort. I have four neurons in the 
+ coming layer and in the present layer I 
+ have three neurons. So W matrix over 
+ here will be of size 4 + 3. 4 + 3. This 
+ is how the matrix would look like. If I 
+ if we have something of this sort if we 
+ have in the next layer we have n 
+ neurons. So n neurons in the next layer. 
+ In the previous layer if we have p 
+ neurons in the previous layer. So n 
+ cross p. So we write the dimension of n 
+ first and then p. That's how we adjust 
+ these weights. Now so in this we have 
+ weights. So now weights will look 
+ something of this. As I said you will 
+ see m cross n. m basically means next 
+ layer. Let me write n cross p. N means 
+ next and P means previous. Okay. So how 
+ to how to now write this? So if you see 
+ in this so you will have something of 
+ this sort. You'll have n values over 
+ here. N rows. You'll have n rows and p 
+ columns. In order to compute this so you 
+ have this whole matrix w and then you 
+ have a vector h. This h is a vector. You 
+ have to compute a. So you'll take i 
+ entry of this. You'll take i entry. 
+ Consider this is i entry. So you'll fix 
+ i value. So this value over here all 
+ these will be w i1 w i2 w i3 this how 
+ this is how we write it. So we'll write 
+ w i1 
+ w i2 w i2 w i3 something of this w i4 
+ until w i m. So this w i if you see so 
+ what is this I is the target node if we 
+ are talking in the neural network 
+ setting. So this let's if we talk about 
+ this neur if we talk about this neuron 
+ you have this neuron we are talking 
+ about this neuron. So this will be this 
+ multiplied let's say X1 multiplied by 
+ W11. Okay. Then X2 * W because it is now 
+ going to the first neuron W12. So one is 
+ fixed. So first I is fixed and then 
+ we're changing. And after this we'll 
+ write X3 multiplied by W13 because one 
+ is fixed. That's that's that's the 
+ reason we wrote this as flipped. So when 
+ I wrote the these weights I wrote it as 
+ Wig J. This I was from this was sync our 
+ target and this was our source. I think 
+ we have covered this in the previous 
+ lecture. So now this is some i this is 
+ some i weight vector okay it belong like 
+ all the these weights are basically all 
+ the weights that come towards a neuron. 
+ So I neuron here is fixed and now you'll 
+ have to come with come to this a i. So 
+ you'll do this you'll say take this 
+ weight matrix take this k weight matrix 
+ okay fix this i and take all the values 
+ let's suppose j. So j goes from let's 
+ say 1 to n something of this or how many 
+ values are there? So you have to see 
+ according to the value of n over here. 
+ So after you do this you'll multiply it 
+ with hk. Okay you have this hk. Now you 
+ have this whole matrix you have this 
+ whole value and you'll multiply this 
+ with hk over here. So hk how? You'll 
+ have to also have this point wise 
+ multiplication. You'll do hk of j. So 
+ this will be 1 2 3 4 that and in the 
+ bias. So in the bias if you see you'll 
+ get one value of this when you perform 
+ this and this this like this dot 
+ product. you'll get single value and 
+ then you'll have to just add bias. So in 
+ that bias also is the vector. So you 
+ have this vector bias vector what you 
+ will do in the bias vector you will just 
+ take e entry from that you have this bk 
+ and it has some i entry course. So you 
+ will take this i entry bk entry of this. 
+ Okay so this is the element wise forward 
+ pass. After you have this what will you 
+ do? So in order to get this in order to 
+ get activation of this you will write 
+ you'll write H K of J HK H KI basically 
+ activation so you'll perform this 
+ activation so H A I of K these two steps 
+ so this is applying activation so this 
+ is activation 
+ and this over here 
+ is fine transformation 
+ fine transformation for a point I just 
+ write fine transformation for a point 
+ And this should be clear by now. Any 
+ questions still here? 
+ I hope you understood this now. So if 
+ you understood this, so what we 
+ basically have? So after we get output. 
+ So let's h is our input and at the end 
+ we get hl. This is our y. So whole of 
+ this can be a vector. So this is a 
+ vector. This is a vector. How to write 
+ this? So this x could have been x11 x12. 
+ This can be a whole vector. And this 
+ prediction also could have been y11 y12. 
+ So this is all prediction. This could 
+ have been a this could be the all 
+ vector. And then what you do is you 
+ apply some divergence function which we 
+ call loss function. So divergence of so 
+ this prediction 
+ and the real value this is prediction is 
+ HL in our case and the and the ground 
+ true that's why and then this is your 
+ loss call this your loss and this loss 
+ you'll have to uh you you'll have to 
+ perform the back propagation on this so 
+ usually what we do we cache these AK and 
+ HK values so you have these vectors so 
+ that is why PyTorch is very efficient 
+ why because it does broadcasting it does 
+ multiplication on vectors and whole 
+ matrices in one go it doesn't do element 
+ wise okay We saw that in numpai as well. 
+ We saw that in maybe some other pandas 
+ as well. They perform what's called as 
+ broadcasting. They do broadcasting and 
+ they can do these things in one go. Not 
+ having these parallel threads.

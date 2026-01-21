@@ -1,0 +1,3044 @@
+Before going again we'll take one more 
+ detour because we are on a hunt to 
+ understand loss functions. So we have to 
+ understand loss functions in machine 
+ learning. Okay. So basically what I'm 
+ trying to give you is I'm not just 
+ trying to give you loss functions. Okay. 
+ This is a loss function. Use it. I'm not 
+ trying to just say this is mean square 
+ error. You can use it. Rather I'm 
+ showing you how to come up with loss 
+ functions. So I I can give you some 
+ intuition be because now you know what 
+ information is. I'm giving you all the 
+ background necessary to come up with 
+ your own loss functions. If you 
+ understand these uh if you understand 
+ this information and you can construct 
+ any sort of loss function on your own. 
+ Okay, that that is the goal of these 
+ classes on deep learning otherwise you 
+ could have just taken any deep learning 
+ course. So rather I'm giving you 
+ formulation of what a loss function 
+ basically means. So loss function should 
+ somehow quantify it should quantify how 
+ much of is your model. So if your model 
+ is trying to predict say this g of x was 
+ a ground truth and then we had this f of 
+ x it was parameterized with these 
+ parameters theta we called them w in the 
+ previous session. So f of x comm y. So 
+ we said that there should be a function 
+ which we call a divergence function. So 
+ this function should somehow tell me how 
+ much off is this. And then we said that 
+ we can integrate between two functions. 
+ I made graph of some sort. I said let's 
+ suppose this is a graph and this is the 
+ ground truth and this is what we are 
+ predicting. And then we use integral. We 
+ said that we had problems in that. And 
+ then we resorted to this. We had to do 
+ this empirical risk minimization. Okay 
+ everybody follows me till here. I'll 
+ write that empirical risk minimization 
+ formulation. What was that? 
+ Let me just write it exactly. So that 
+ was 
+ this. So you had you basically were 
+ computing expectation. You were saying 
+ that you have a probability distribution 
+ P of X Y. Okay. So you have data points 
+ and the label. So you are sampling X and 
+ Y from this. You are sampling X Y from 
+ this. And now you are saying that we 
+ have a divergence function expectation 
+ of this. So you're saying divergence 
+ function and then you are taking this f 
+ of x and w comma y because you are given 
+ outputs as well. Okay. Okay. And you are 
+ taking the expectation and this we call 
+ as R of W. So this is R of W. So this 
+ over here was called our empirical risk 
+ or empirical error. So this was 
+ empirical. What was the minimization? So 
+ you said R of W. This is 
+ so you have to find optimal W such W for 
+ which we'll get the minimum value. R min 
+ of W. So what is the meaning of this 
+ argument? Take such a value for which 
+ this expression becomes minimum. Okay. 
+ So this was our 
+ empirical risk minimization where we're 
+ dealing with this and basically we were 
+ trying to come up with this divergence 
+ function such a function so that we'll 
+ have to minimize that you should somehow 
+ cont one number. So usually we call this 
+ a loss function cost function or these 
+ things we name it differently. Okay 
+ let's again take one more detail to 
+ understand this. So information theory 
+ is over. Let me just uh before coming to 
+ this loss function, we should also know 
+ like uh the output functions that we use 
+ in the neural networks. 
+ Okay, just before the loss function. 
+ Okay, if you see if you remember a 
+ neural network. 
+ So neural network was something of this 
+ sort. So you had an input layer. 
+ Okay, and then you have some hidden 
+ layers in between 
+ something of this sort. 
+ You had hidden layers a lot of a lot of 
+ them. 
+ So these were our hidden layers. And 
+ then you had output layers. 
+ You had let's consider this to be output 
+ layer. 
+ So these were our output layers 
+ which was giving you the output. Okay. 
+ And now if you see we also used 
+ activation functions. We use what's 
+ called as uh first we used linear 
+ transformation. So which was called as 
+ fine transformation or linear 
+ transformation. Fine was a better word 
+ to use for that because fine line 
+ transformation also fine transformation. 
+ So we made a neuron like this. We said 
+ initially we do aggregation that was 
+ called as fine transformation. 
+ So we performed fine transformation and 
+ on the second we used activation 
+ function. 
+ So why did we use activation function? 
+ Because if we do not use activation 
+ function your network is nothing better 
+ than a linear classifier. It will it 
+ will not do anything but just linear 
+ classification. If you do not use an 
+ activation function, activation function 
+ is what makes it nonlinear. Okay. And we 
+ saw that if you just use one perceptron 
+ and if you do not use this, you can just 
+ come up with the linear distance 
+ boundary. Even with the ML multi 
+ perceptrons, if you not have activation 
+ function, it'll be nothing but a bunch 
+ of neurons making a linear decision 
+ boundary. What's the meaning of linear? 
+ You people are well versed with that. 
+ Okay. And this activation function is 
+ nonlinear. 
+ Okay. And this fine transformation, it's 
+ linear transformation. So why is it 
+ called fine? I told you that if you add 
+ the device you are shifting maybe it 
+ from you're shifting it from the origin 
+ that's why it's called fine. So now you 
+ see this activation functions that we 
+ were using. We're using sigmoid 
+ functions. We can use hello functions. 
+ We'll have a detailed discussion of this 
+ as well. We'll have a lot of discussion 
+ activation functions. There are at least 
+ tens of functions which I know of 
+ activation functions can be used and 
+ they have a lot of impact on how neural 
+ networks will learn. Okay. How far how 
+ efficient it will learn that we 
+ establish. If you just have one non 
+ activation function representing power 
+ of neural networks that will all learn 
+ it can learn any function. It can 
+ approximate any function but how 
+ efficiently it will learn depends on it 
+ activation function as well. So fine 
+ transformation is good enough. You are 
+ just aggregating it somehow and then 
+ you're applying some non some 
+ nonlinearity some activation function on 
+ that. So we'll have a separate 
+ discussion we mark it with star. Right 
+ now we are having this discussion 
+ because last layer activation function 
+ if you see this last if you let's 
+ suppose have this is this is the last 
+ layer or the output layer 
+ if you use the same activation function 
+ let's suppose whatever we used if we are 
+ using softmax everywhere and if we use 
+ soft max here also so because you know 
+ that softmax value is between 0 to one 
+ so the value of soft max lies between 0 
+ to 1 sometimes we might have a problem 
+ that we are expecting problem where the 
+ values the output values are 2,000 5,000 
+ It's some continuous problem. But if you 
+ also apply the same activation function 
+ on the last output layer, the problem 
+ will be that you would not get always 
+ you'll not get the numbers that you 
+ want. Okay, that is the problem. If you 
+ use the same activation number first, 
+ we'll see the problem. Why are we using 
+ different activation? Why to use why to 
+ use different activation 
+ and different output activation? 
+ The reason I told you that if you are 
+ solving a problem where you don't need 
+ just the value between 0 and one because 
+ if you are if you keep on applying the 
+ sigmoid value you'll see that they 
+ somehow taper off the values some if you 
+ sigmo it so you'll get values between 0 
+ and one but sometimes you want the 
+ output values to be 2,000 5,000 6,000 
+ something of that sort. So we should not 
+ then use the normal activation functions 
+ that we used in the hidden layer. Okay. 
+ And in terms of let's suppose 
+ classification you can still adapt these 
+ but somehow you should use some 
+ different activation function for the 
+ output. So as to do whatever whatever 
+ expected from network. So you're making 
+ a network of this sort. So whatever 
+ you're expecting at the output you 
+ should accordingly choose the activation 
+ function. So how to choose the 
+ activation function is basically so 
+ whatever problem you are solving. So 
+ I'll just write one line. So why I I 
+ think I answered the Y part. And now 
+ what to choose? 
+ Okay, do not consider that we'll be done 
+ with activations here. I'm just speaking 
+ about the output activation functions. 
+ We will take maybe separate two three 
+ lecture on activation functions. So what 
+ to choose depends on the problem. It 
+ depends 
+ on the problem. 
+ Many other problems are regression 
+ problems. Some are classification 
+ problem. There are special cases as 
+ well. So without an output function, the 
+ network will just produce the raw output 
+ which are called logits. Okay. So raw 
+ outputs from network 
+ outputs from network 
+ they're called as logits 
+ okay many of you will also see pytor 
+ code written that you'll see I'm 
+ applying this to logit so whatever you 
+ get here so when you aggregate it till 
+ here so whatever you are getting at this 
+ point what I'm marking over here because 
+ you are not applying activation of the 
+ output you're calling that as logic so 
+ that this is the raw output okay you're 
+ calling it as logic so logic is 
+ basically what we have before we apply 
+ the output activation function. That's 
+ the logic. So uh now we'll have to do 
+ something because depending on task 
+ we'll have to some of convert these 
+ logic. So these logs should be convert 
+ converted to something which we can 
+ proceed which we can make sense of. 
+ Suppose if it is a regression problem 
+ say if it's a regression problem. 
+ So what regression problem you can take 
+ any continuous tings. Okay. So what we 
+ can do is we cannot we can just use 
+ logits as it is. We cannot use any 
+ activation function suppose. Okay. So 
+ let's suppose if you if it gives values 
+ 2,000 initially but you know that by the 
+ help of loss function and by the help of 
+ adjusting those weights and biases it 
+ will adjust itself. So in terms of 
+ regression or you can use some something 
+ which will maybe if you have to get 
+ values between say 100 to 200. You can 
+ use something in which you will get 
+ values in this range for the regression 
+ problem. Let's suppose if you have a 
+ classification problem. Say if you have 
+ classification problem. 
+ So what you usually can do is you might 
+ want to you might want probability 
+ between 0 and one. Okay. So as I said in 
+ the regression the last thing will be 
+ you'll just take double transpose x plus 
+ b. You will not do anything. You will 
+ say as it is because it will give you 
+ answers from minus infinity to infinity. 
+ So that's what the value of is 
+ regression targets are usually unbounded 
+ because you don't have to bound them. So 
+ now if you let's suppose are doing 
+ classification task. So what you can do 
+ is you can use a sigmoid. Okay, you can 
+ use sigmoid in this because it will 
+ restrict the values between 0 to 1. So 
+ you can say 1 / 1 + e ^ minus z. So 
+ whatever you got values earlier, so 
+ you'll apply this. So say you say 
+ probability of y given the point x 
+ something of this probability of class 
+ one given probability is this. So you'll 
+ compute it after this. So you'll say 
+ probability of y is equal 0. The class 
+ label is zero given this probability x. 
+ So you'll at the end apply some sort of 
+ sigmoid. So it will give you value 
+ between 0 to 1. Say this is uh 0.5. So 
+ and this probability is 0.8. So 
+ whichever is higher you'll assign that 
+ to probability. So but you're using some 
+ other activation function. Okay. So this 
+ is with respect to the binary 
+ classification. So now if you have 
+ multiclassification problem okay if you 
+ have multiclass classification. Now here 
+ you can say just two here are two 
+ classes and I just predict the 
+ probability. So now if you have this 
+ multiclass 
+ classification 
+ so what what you can do is basically 
+ because you'll have to now have let's 
+ suppose 10 classes you have some 10 
+ classes you can have some probability 
+ over here and then you can directly 
+ convert this into probability 
+ distribution so you are given the values 
+ say we have some 10 classes so we'll 
+ have output 10 neurons at the output 
+ layer so now you will get some values in 
+ there you'll get values 200 500 logits 
+ basically some 100 some 30 something of 
+ this sort. Now you'll have to choose one 
+ class among them. So what you can do is 
+ you can convert whole of this into 
+ probability not individually. So what 
+ you can do is you can apply a function 
+ on this which called a soft max which 
+ we'll briefly see. So you can apply soft 
+ max function on this. So what softmax 
+ function does it will take all the 
+ neurons. It will take all these logits 
+ okay and it'll convert them into 
+ probabilities. 
+ Okay not just individually if you see 
+ the difference. So in this case when we 
+ were applying sigmoid so sigmoid was 
+ applied per neuron okay and it was given 
+ per neuron value from 0 to 1 and 0 to 
+ one and but if you sum up all the 
+ probabilities that can be greater than 
+ one because probability is between 0 to 
+ one for individual neurons but when 
+ you're applying the soft max you're 
+ applying it on the whole output layer so 
+ output layer in this case if it contains 
+ 10 neurons so but if you now apply the 
+ soft max function on that you will get 
+ certain probabilities on these but if 
+ you sum them all all these up so if you 
+ sum probabilities if you sum all these 
+ probabilities so you will get 
+ probability is equal to one. Okay, so 
+ all of this will be given probability 
+ greater than equal to zero. But when you 
+ sum all of these things up together, 
+ you'll get one probability. Okay, and 
+ then whatever is the highest 
+ probability. So in turn, you actually 
+ wanted something of this sort. So let's 
+ suppose you have a random variable X the 
+ multiclass classification problem where 
+ you are classifying images, you're 
+ classifying cat, you're classifying 
+ dogs, you're classifying lines, you're 
+ classifying bear, something of this 
+ sort. Say these are the four classes we 
+ have. This is the random variable. So 
+ now once you get this so each of the 
+ neuron is responsible for predicting so 
+ what the output should be. So now I'm on 
+ applying this soft max. So we'll get 
+ some probability distribution. Suppose 
+ you got the probability distribution 2 
+ 4.15 
+ maybe 0.25 I think this is equal to one. 
+ Now the class the label actually was say 
+ it was a cat. Suppose that was a cat. So 
+ what you ideally wanted is something of 
+ this sort 1 0 0 and 0. So this is the 
+ distribution that you wanted. But your 
+ network predicted something of this 
+ sort. It said that the catch with a 
+ probability of 02. But if you sum all 
+ these things up. So this will this will 
+ be equal to one. So now this encoding is 
+ called as one hot encoding 
+ because it's one at the class that we 
+ want and rest at the rest place it is 
+ zero and we can compare this. So we 
+ ideally wanted this but network actually 
+ picked a distribution. So in usually in 
+ multiclass classification case you will 
+ get a distribution. You will want to get 
+ a distribution. So that is why you apply 
+ the soft max function. So what is the 
+ softmax function? If you see, so you'll 
+ take all of these y's. So you have y1, 
+ y2, y3, y4, something of this sort. You 
+ have these four say you have this one, 
+ 2, 3 and four outputs, four output 
+ neurons. Consider this as y1, y2, y3 and 
+ y4. Now this is prediction. We can put a 
+ hat on this so that it is clearly 
+ mentioned. This is predicted wise. Now 
+ what you can do is you can apply soft 
+ max on this. How? You can say yi this is 
+ equal to uh you will take first the 
+ exponent of this e to the power zi okay 
+ because you know this how this how did 
+ we get this yi okay because we'll get 
+ this from zi okay after this what you 
+ can do is e to the power zi whatever you 
+ got zi from here so you're getting yi 
+ from that so you take exponent of this 
+ and you take exponent of all of these 
+ also so this is e to the power zi i goes 
+ from 1 to 4 you sum up all the values 
+ over here and then you take an exponent 
+ of this Okay. And you will get a 
+ probability distribution. You can take 
+ sum. But the sum had the problem. So 
+ let's suppose if you have values 10, 20, 
+ 30 and 40. If you want to convert this 
+ to probability distribution, you can sum 
+ all of these up. So this will be 70. 
+ This will be 100 I think. So this the 
+ total sum is 100. So you can divide 
+ everything by 100. So you'll get 10 
+ divid by 100. So you'll get 0.1 
+ 2.3 and 4. This is now a probability 
+ distribution. But why don't you use sum? 
+ Because uh as we know that we'll be we 
+ want a differentiable function and it 
+ should be somehow smooth. So this 
+ function is that. Let's have a let's 
+ have some discussion on this softmax 
+ function for a while. So you understand 
+ this. So this function over here that I 
+ defined is called as soft max. 
+ So you'll take all the values. Okay. 
+ You'll first take exponent of these z 
+ and then you'll sum them up. So this is 
+ the summation part. This is the 
+ normalizing factor. So you basically 
+ want normalization. 
+ So this is normalizing factor and then 
+ you want to normalize each of the 
+ values. So you're taking value for this 
+ e to you taking it to the exponent and 
+ then you are dividing that with the 
+ normalizing factor and you are getting 
+ values between 0 to 1 that this value 
+ will be always greater or equal to zero 
+ and the summation of all of this will be 
+ equal to one after after you apply this. 
+ So summation of y predicted y after 
+ applying soft max. So i goes from 1 to 
+ let's in this case four in general n. So 
+ this will be equal to when after the 
+ soft max function is applied. Let's 
+ consider this soft max as s. So s of 
+ this so s of z is equal yi. So s of zi. 
+ So you know that s of zi is equal to yi 
+ hat. And here s is equal soft max 
+ and we define we get the definition of 
+ soft max over here. Okay. Let me just 
+ share a graph with you so that you can 
+ visualize this function. Give me maybe a 
+ second or so. So this is soft max. So if 
+ you see I have four values in there. 
+ First I'll explain this graph. So you 
+ have this A red okay and then you have 
+ this B orange C green and then you have 
+ this D value that is uh blue and then 
+ you have shift S and then you have 
+ multiplication V. So if you see these 
+ are the four values consider that random 
+ variable to cats, dogs and stuff like 
+ that. So these are the four values which 
+ we take. Okay this 
+ so if we now take these values let me 
+ just remove this 
+ because we are taking it to e to the 
+ power. So this is the e to the^ x 
+ function. 
+ I should not use this multiplication. 
+ Give me a second. I'll fix it somewhere. 
+ Huh. Now if you see these values, so 
+ these are the values on the graph. So 
+ one value is shown over here. So this is 
+ the value if you can see my arrow. So 
+ these are the four values. So they have 
+ they having different values. So I can 
+ take values like this also. So I can 
+ shift these values. 
+ Okay. Now I'm making the value so that 
+ it is easy to visualize. This is the 
+ value and then I'm taking a little bit 
+ greater value for this B and a little 
+ greater value for C and D a little bit 
+ greater. Something of this sort. So if 
+ you see the values this is A, this is 
+ point B, this is C and this is D. If I 
+ again zoom it. So these are the values 
+ A, B, C and D. So I'm parally showing 
+ the graphs as well. Now if I apply E to 
+ the power X on this. So this is a 
+ function E to the power X. If you see 
+ this function over here is E to the 
+ power X. the function over here and now 
+ if I just take these values so these are 
+ the base values 
+ and now if I exponent them so you'll get 
+ these values so these are this is e ^ x 
+ so for this value for this value this is 
+ e to the power x if I again go back so 
+ this is e ^ x 
+ and now you can clearly see over here 
+ also now what I'm doing is I'll have to 
+ apply softmax on these functions so what 
+ softmax will do is it'll compress this 
+ so if you see the below graph okay below 
+ graph if you see so it is taking these 
+ values the sum of all these values val 
+ is summing up to one. Okay. So this is 
+ the unsquashed graph if you see this and 
+ this is the squashed graph. So in below 
+ because we're squashing it. Okay. If I 
+ we can remove this you can clearly see 
+ all these values are there. So now below 
+ part is when you apply apply the sigmoid 
+ function. Okay. This is the squashed bar 
+ graph and this is unsquashed graph. So 
+ above is the unsquashed graph where we 
+ have and below basically is when we 
+ apply the soft max. So here we applying 
+ the soft max. So above part is the 
+ logics. We can consider this as logic. 
+ So let me write it. So these are the 
+ logits the outputs that we get directly. 
+ So these are the logits. And when we 
+ apply this so when you apply softmax on 
+ these so what you can do is you you'll 
+ get this. So we can call this as uh 
+ logits and you can call this as output. 
+ So these are the real outputs then we 
+ have so if you see this these values now 
+ you can see the all the bars added so 
+ they add up to one. So if you see the 
+ value over here they add up to one and 
+ they have different. If I change this, 
+ you will see the graph also gets changed 
+ over here. But this will not get changed 
+ here. The the proportion will get 
+ changed depends on the values of these 
+ A, B, C and D. The different four 
+ classes you can see the proportions are 
+ getting changed. 
+ I can change them here and there you are 
+ seeing the proportion is getting changed 
+ but all over the total is equal to one 
+ because it's a probability uh 
+ distribution. So the total probability 
+ will be one for these are four events. 
+ So you have these four events and that 
+ this is unsquashed one the logits we are 
+ having and then we initially apply e to 
+ the power x. So initially e to the^ x 
+ was this. So when you apply this soft x 
+ you'll see this you'll see this over 
+ here and this is how it will behave and 
+ this each of the value is normalized 
+ value. So this is e ^ x divide by 
+ normalized constant e to the^ x divide 
+ by the normalization divided by sum of 
+ all e^x and then this is the total 
+ distribution that you can see over here 
+ and this is the bar graph of this. So 
+ how many of you got this softmax 
+ function? 
+ pretty standard stuff. Uh 
+ >> so why is the softmax important? So if 
+ you see we'll use it for many uh 
+ problems. They might not seem 
+ classification problem but we'll use 
+ softmax there. How? Let's suppose you 
+ are building a language model. So 
+ language model is nothing but a next 
+ word prediction machine. So you have 
+ some context and then you have to 
+ predict what comes after this context. 
+ Let's suppose cat 
+ sat on the dash. Okay, this is the 
+ context. So if you see for our language 
+ mode this is the context 
+ and now over here this is the next word 
+ that we want to predict based on this 
+ context. So how to predict this? So now 
+ what you can what you have is in the 
+ language models you have vocabulary 
+ vocabulary basically means the number of 
+ tokens you have total total tokens. So 
+ total tokens you can have that c let's 
+ suppose this is a word level tokenizer 
+ if you have words so you'll have whole 
+ of this dictionary basically. So you'll 
+ have all the words that are there in 
+ English. So suppose there are some 1 
+ million words in English. So you'll have 
+ this dimensional vocabulary. So this is 
+ the vocabulary size. So what you want to 
+ give is you want to give each of them a 
+ probability. Okay. How much given this 
+ context probability of next word 
+ given the context. 
+ So if I'm given this context, what's the 
+ probability of next word? Let's suppose 
+ here the word starts with a then starts 
+ with AB then starts with apple and then 
+ all of these words. So all of this will 
+ be converted into probability 
+ distribution. So if you see these 
+ language models at the output they will 
+ the output layer basically will consist 
+ of this. So there will be a network 
+ which will have the outputs equal to 
+ number of the number of tokens in the 
+ vocabulary is equal to the number of 
+ output neurons. So what you will do 
+ there is so initially you'll get some 
+ random values 100 200 500. So you'll 
+ apply soft max on this once you apply 
+ softmax. So after you apply the softmax 
+ what you will get is you'll basically 
+ get a probability distribution. You'll 
+ get some 0.001 you'll get some 0.2.00 
+ 0 something for all these words. Okay. 
+ Then the strategy comes into picture 
+ which which one to sample. So top K. So 
+ usually top K sampling is done. You can 
+ be greedy. You can just take one of 
+ them. Okay. You can take let's suppose 
+ the the topmost which has the highest 
+ probability of that. You'll sort them 
+ based on the probability and you will 
+ say this is the next the cat set on the 
+ mat. Okay. Now one more thing over 
+ there. So we can throw one more value 
+ called temperature. So you can just 
+ modify this softmax function which call 
+ as temperature. So we can modify it like 
+ this. I'll take your question just hold 
+ on for a second. This yi hat is equal to 
+ e to the power because you did zi. So 
+ you can divide it by t. So this factor 
+ is called temperature divide by 
+ summation of i goes from 1 to n. 
+ Whatever number of logits are there then 
+ e to the power z 
+ i or you should use j here because 
+ should not overload the symbols. J goes 
+ from 1 j / t. And this little number 
+ over here is called temperature. 
+ So it tells your model how to how much 
+ creative to be. So if you set the 
+ temperature to be highest it will be 
+ more creative. Basically it will give uh 
+ it will not distribute. So such you can 
+ you can check with this. I can show you 
+ the graph that this temperature has an 
+ effect. If you keep this temperature 
+ let's suppose this t is equal to 1. This 
+ becomes like soft max. 
+ Okay. So if you decrease the value it 
+ will become more creative. It will 
+ shuffle the problem here and there. But 
+ still this will have all the properties 
+ of the softmax function. That is it will 
+ be between giving value 0 to one. But 
+ this temperature one more term if you 
+ throw if it's equal to one you'll 
+ basically want it to be like soft max 
+ exactly behave like soft max. But if you 
+ just throw some temperature so when you 
+ have this value t you can give it value 
+ from let's suppose greater than zero 
+ because if the division you should not 
+ do division by zero. So and you can give 
+ it between one or you can give it more 
+ value as well. Okay. So as to control 
+ this factor all over. So that's why if 
+ you see language models if you have seen 
+ some playground or chat GPT if you have 
+ seen some Google development that there 
+ you can set the temperature. So this 
+ basically is having some control on this 
+ things. So it is 
+ basically controlling the probabilities 
+ that it can give to the last logits and 
+ it's converting uh them into it is 
+ giving some other distribution but still 
+ uh the distribution is controlled with t 
+ so that how much great your model can 
+ be. I think you have a question then we 
+ can start uh from here. Yes. So that's 
+ how temperature is. So usually this 
+ temperature will you you'll see this 
+ temperature in language models or maybe 
+ some other uh cases also where this 
+ temperature sort of controls creativity 
+ what I can call as creativity loosely 
+ speaking 
+ so it controls creativity. So this is 
+ the softmax version of softmax that is 
+ the less common function that we 
+ generally use. Okay so we can also use 
+ uh what are called as soft plus 
+ functions. You can use reo soft plus 
+ exponent a lot of other functions in the 
+ output but I wanted you to understand 
+ about softmax. I think that is clear 
+ now. Okay, the softmax function is going 
+ to be very important function which we 
+ usually use in terms of the distribution 
+ because we're talking about 
+ distributions p and q. So this is our 
+ distribution. Let's suppose the ground 
+ reality is some one hot encoding 
+ something of this sort which we earlier 
+ wrote that you have uh the image of cat 
+ and this is the actual distribution that 
+ you want. But whenever you run the 
+ network it will give you a probability 
+ distribution it will give you 0.2 0.3 
+ 0.4 something of this sort. So and 0.1 
+ okay but you wanted the whole mass to be 
+ concentrated on cat. Okay. And now you 
+ can uh you have two probability 
+ distributions P and Q. Okay, this is the 
+ ground reality. Okay, and this is the 
+ predicted one. And then now we can have 
+ discussion on this divergence. Consider 
+ you have this uh Q. This is the ground 
+ reality G of X. And this is what model 
+ predicted. 
+ Okay. Now we'll have apply 
+ this divergence function on this. 
+ Okay. Okay. And then we'll have to 
+ compute basically expectation of this 
+ and we'll have discussion on divergence 
+ next. Any questions till here? Because 
+ we wanted to understand this divergence 
+ function if you see. Okay. The first 
+ thing that we saw is we read about some 
+ information theory. We read about some 
+ output how functions can be. The the one 
+ concept that you will see always coming 
+ in this dial function is cross entropy. 
+ So we'll first see what cross entropy is 
+ and then we'll see what cross entropy 
+ loss is. Okay. Now if you have two 
+ probability distribution P of X and Q of 
+ X 
+ these are two probability distributions 
+ in our case you had some ground reality 
+ and you had what the model predicted you 
+ have what the model predictions are and 
+ the ground reality so these are two 
+ probability distributions as I said 
+ there's one will be a one hot encoding 
+ vector because you'll have all the 
+ probability mass uh concentrated on one 
+ class it's a multi-class classification 
+ problem and then others model prediction 
+ will be usually a probability 
+ distribution so consider this to be a 
+ true probability distribution for 
+ outcome X And this is the model 
+ prediction qi. So this is our model 
+ prediction. 
+ This is model prediction. 
+ And this is the true probability 
+ distribution. 
+ True distribution. 
+ This is model prediction distribution. 
+ And now you know that what is the code 
+ length. If I apply log of say I'll apply 
+ log of qi. 
+ Log of q of qi. So this so this will be 
+ code length basically information 
+ content in this. So information 
+ information content. Let me again see if 
+ I'm choosing this as right. So P of X is 
+ the true probability and Q of X is the 
+ model predictor and this log of Q of X 
+ is the information content based on what 
+ model is predicting. Okay. So now what 
+ you can do is usually you had entropy. 
+ Entropy was like this. So you had let's 
+ say P of X I 
+ if I used for this model what is the 
+ entropy of this model? You can say q of 
+ x i minus say log of q of x i. So this 
+ will be called as entropy of the model 
+ one from 1 to n suppose this. So this is 
+ the entropy. But what you can do is if 
+ you because for each points you will 
+ know this probability because you have 
+ the sample and you can just say this is 
+ the one hot and cold vector. So somehow 
+ you can just unveil for that particular 
+ point what is the true label for that. 
+ So you can replace this with pi. 
+ So if I say p of x i. So now you see 
+ that we are having two probabilities. So 
+ this is the original one you had oral 
+ entropy. So if I just use the Qi but in 
+ this case I use pi. So I use cross 
+ entropy. So I use this uh probability 
+ what actually it should have been. Then 
+ I use information content pricked by the 
+ model. So this information content by 
+ the model but you multiplying it the pro 
+ the expectation you're saying that 
+ probability I'm taking is from the 
+ actual probability distribution. So you 
+ are some crossing it. You're taking one 
+ term from this and one term from this. 
+ So somehow this is crossing in a way. So 
+ but still you are computing the entropy. 
+ So this is called as cross entropy. 
+ Okay. So what is basically cross entropy 
+ saying? So you you can start from an you 
+ can start from a distribution P. So you 
+ can just say what is the minimum 
+ expected code length. Okay. If you have 
+ actual if you have actual entropy. So it 
+ is minimum 
+ expected 
+ code length 
+ or minimum I can say that what is the 
+ information content there. But you know 
+ that this generally is gives the minimum 
+ when you compute the entropy. So this 
+ will give you the minimum number of 
+ this. So when you compute this cross 
+ entropy. So what cross entropy basically 
+ is telling you. So it is telling you now 
+ you are not computing it based on the 
+ original distribution or you are not 
+ having the same distribution both 
+ things. So you are taking one actual 
+ distribution and you are taking one what 
+ is predicted by the model. So you are 
+ saying that if I use models modeling if 
+ I use because I said that this is called 
+ as encoding. So if I use models 
+ encoding, 
+ if I use encoding from the model, 
+ see it from the information thetic 
+ perspective. If I use encoding from the 
+ model, my model is just an encoder. 
+ Okay. So how much information content is 
+ there then? So basically it will tell 
+ you how many bits to use. So if the 
+ model is very close to the actual thing. 
+ So this is the encoding scheme. So I'm 
+ using model as an encoder and it'll 
+ predict me number of bits. It'll tell me 
+ number of bits that are using. And if I 
+ had actual probability the real 
+ probability the the the least encoding 
+ if I had the access to the actual data 
+ all the actual data so I would get the 
+ least number of bits least number of 
+ bits but you know that model will be 
+ somehow off so you know that this value 
+ if it is greater if this value is a lot 
+ more so that means you are not getting 
+ the optimal code length okay that means 
+ model is off by something okay if you're 
+ getting the least one if you actually 
+ had this if you access to P of X I and 
+ you computed log of X I but this log if 
+ you if you actually had the probability 
+ P. So you will get the least value. You 
+ you'll compute the least value as you 
+ call 1 to n and you'll have the minimum 
+ code length. But you know that you do 
+ not have access to the probability 
+ probability distribution. Actually all 
+ you have is basically a sample. So you 
+ will use this from the model and you 
+ will use this from the sample whatever 
+ you have. Okay. You are saying based on 
+ if I use this model how much discrepancy 
+ is there? How much of my model is? So 
+ this is somehow if this is if this is 
+ more if this is not optimal if this is 
+ more. So this will tell you the higher 
+ value of this will tell you that model 
+ has more error. Model has more problems 
+ more error. That's why you use cross 
+ entropy. Why? Because if you had the 
+ real probability distribution with you, 
+ you could have used the entropy. Entropy 
+ will give you the least number of bits. 
+ But you know that now I am not having 
+ the real probability. I all I have is 
+ model. So I'll use model and for that 
+ particular point I'll use what is its 
+ real value and I'll compute the cross 
+ entropy of that not the exact entropy. 
+ So the cross entropy if it is higher 
+ value that means model is not optimal. 
+ So it's not giving me the optimal code 
+ length rather what is it giving me it is 
+ giving me a little higher than that okay 
+ I can give you examples as well let's 
+ consider this if P is equal Q if 
+ probability of P is equal Q then you 
+ know that cross entropy is equal to the 
+ entropy okay so with that it's basically 
+ a perfect match say P is equal 0.8 comma 
+ 0.2 2 and Q will also be equal to this 
+ because we are taking perfect match. So 
+ if you now compute this the minimum 
+ number of nets it will be 0 5 04. So 
+ this is the information content that 
+ average information content. So cross 
+ entropy is equal to entropy here. So 
+ this is the minimum this is the this is 
+ the encoding cost. Okay. So this is the 
+ minimum number of bits of ornats if I 
+ use natural log. So this is the minimum 
+ number of nets that I will use transmit 
+ information. Suppose if there is a 
+ mismatch. If there is a mismatch, I have 
+ probability P which is 0.5 comma 0.3 
+ comma 0.2 and I have probability Q. So 
+ this is my actual distribution and this 
+ is a predicted one. So I'm predicting 
+ something of this sort 0.4, 0.4, 0.2. It 
+ is little, it is odd by little. But if 
+ you compute this, if you compute H of P, 
+ Q. So this is cross entropy. 
+ This is cross entropy. 
+ Okay. So if you compute this, so this 
+ comes out to be 1.0549. 
+ Okay, this these many nats. So cross 
+ entropy is this much. So optimal value 
+ was this optimal value was 0504. 
+ But you are getting 1.5049. This so you 
+ you can see that this is higher value 
+ that means the model is not better. You 
+ can see that there is some mismatch. So 
+ this should have been 0.5 this is 0.4. 
+ This should have been 0.3 this is 0.4 
+ and this one is correct. But you still 
+ that you still can see that model is off 
+ by a bit. If model is off it is it is 
+ shown by the information content. So you 
+ are using encoding scheme from the model 
+ and you are using the probability 
+ distribution actual probability what you 
+ what you can observe what you can 
+ observe in the sample then you can see 
+ that you have greater number of nats. So 
+ if you have h of p this is called as 
+ entropy okay h of p comma q is called as 
+ cross entropy. Now you can see if you 
+ say h of p 
+ uh comma q and if you take cross entropy 
+ and you subtract entropy from it. So 
+ this is called as scale divergence. 
+ So how many of you are seeing it for the 
+ first time? This is scale divergence. So 
+ basically what scale divergence gives 
+ you? How much off are you? Okay, cross 
+ entropy can be directly used. You can 
+ still use scale divergence. 
+ So if you remember we were discussing 
+ about entropy. We went to entropy then 
+ we went to cross entropy and then we 
+ started introducing KL divergence. Okay. 
+ I said what is cross entropy now? So if 
+ you are using one distribution that's 
+ the model's distribution or predicted 
+ distribution by by the model and then 
+ you are using the ground reality and 
+ you're computing entropy based on that. 
+ So that's called as cross entropy. Okay. 
+ So this is the real distribution that 
+ you have and this is the model's 
+ prediction. If you use this this is 
+ called as cross entropy. So why was this 
+ useful? Because you are now trying to 
+ model you're trying to come up with a 
+ coding scheme optimal code by using the 
+ model and there is some real true there 
+ is some actual distribution. So if this 
+ model distribution if this prediction by 
+ the model is not good so you will have 
+ this deviation you'll have this 
+ divergence this metric which is called 
+ as cross entropy you'll have this more. 
+ So if this is more then you will not 
+ have it as the optimal code. So if this 
+ is optimal code then you will say that 
+ this is equal to entropy. So if that is 
+ equal to entropy the difference between 
+ entropy and cross entropy will give you 
+ the k divergence. That is what is 
+ written over here. So this over here is 
+ cross entropy 
+ I'll write C and this is entropy. 
+ Okay. So this is what is given by KL 
+ divergence. So there we took some 
+ examples also. Let's let's take some 
+ catastrophical case. Okay. Let's suppose 
+ if some probability distribution P is 
+ equal to 0a 1. So this is the 
+ probability distribution and your 
+ predicted model predicted this. So it 
+ did a catastrophe. So it's almost 
+ opposite what it should have predicted. 
+ Okay. Now you have to compute the cross 
+ entropy of the system. So what is cross 
+ entropy equal to? So you'll use 
+ summation of I goes from 1 to 2 in this 
+ case negative of. So this is probability 
+ X takes value X I log of 
+ let's suppose some probability is Q of X 
+ takes value X I something of this sort. 
+ So now if you see this so in this case 
+ it should be the answer will be one of 
+ if I use natural log instead of this log 
+ to the base e so I'll get something of 
+ this sort 
+ so if you evaluate this so this will 
+ tend to infinity 
+ okay because log 0 is infinity multiply 
+ 1 this is infinity and this will be this 
+ quantity will be equal to zero so when 
+ there this is this catastrophic result 
+ this is opposite results whatever we 
+ wanted if the distribution that we had 
+ is this so this p is our ground 
+ distribution or the ground truth and 
+ this is our prediction by the model. So 
+ when we use the cross entropy you saw 
+ that it went to infinity. So it said 
+ that you are infinitely wrong. Okay. 
+ What is now cross entropy giving you? So 
+ it is giving you like based on this if 
+ you are constructing your optimal code 
+ by using the model for the distribution 
+ that is the real distribution. If there 
+ is some discrepancy so that model will 
+ show you. So I said that so KL 
+ divergence can be now seen as seen like 
+ this. So how much is now that if you 
+ want to quantify that you can quantify 
+ that by KL divergence. So this cross 
+ entropy will only give you it'll give 
+ you basically the number okay you are 
+ off but how much off are you so you can 
+ compute that by using KL divergence. So 
+ KL divergence will be effectively equal 
+ to so if you have this cross entropy and 
+ you you subtract entropy from it. 
+ So this is basically telling tell 
+ telling you uh number of 
+ number of additional bits rather number 
+ of additional bits 
+ used 
+ for encoding 
+ when 
+ the coding scheme 
+ we used was from the model we used 
+ was 
+ from the model. So this is what you 
+ should remember. So that's how the these 
+ two things are related. So you had cross 
+ entropy. So this is your cross entropy 
+ and this is your entropy. So when you 
+ subtract these these two things. So what 
+ you'll get you'll basically get the 
+ additional number of bits. So this is 
+ your optimal code if you had the actual 
+ distribution with you. So this is what 
+ optimal scheme is. This will give you 
+ the minimum number of bits. the minimum 
+ number of bits that you should have to 
+ encode the information or to transmit 
+ the information. Now this will be some 
+ additional thing. So this will be your 
+ cross entropy number of bits maybe it 
+ will it should be more it will be more 
+ than this optimal. So when you subtract 
+ these two things so what you will get 
+ you will get the additional number of 
+ bits that you have to use in case you 
+ use this this model you use basically 
+ the printed the model by the neural 
+ network and you are printing that for 
+ the real for some real distribution. So 
+ you'll get this you'll get the number of 
+ additional bits in that. Okay, this will 
+ tell you the discrepancy. So this whole 
+ thing will tell you the discrepancy 
+ or this will tell you the difference 
+ between these two distribution. So this 
+ is called as K levels in terms of 
+ entropy. Everybody clear on this point. 
+ So uh three questions are addressed. The 
+ first question we addressed yesterday 
+ was that why do we apply the soft max if 
+ you had soft max? Because as I said that 
+ if you use softmax you are converting 
+ all these things into probability and 
+ now suddenly what will happen is that 
+ all the theory that has been developed 
+ by probability the framework of 
+ probability will apply to these problems 
+ okay so that's why you apply softmax on 
+ this so now you convert that output you 
+ convert the outputs into probability 
+ distribution so whatever you know about 
+ probability certainly applies to that 
+ and in this case because this cross 
+ entropy if you see it is from 
+ information theory and then probability 
+ and now if you apply softax in the last 
+ layer so you can now use cross entropy 
+ because this cross entropy it's uh root 
+ are in probability and information 
+ theory. Okay. Second question is what 
+ was the second question? If somebody can 
+ remind me second question by Muzafar. 
+ Okay. And why do we use like different 
+ versions of these things? You can still 
+ use because sometimes computationally 
+ one thing is easier to calculate. As I 
+ said you usually will resort to log 
+ functions. Why? Because if you can see 
+ if you perform multiplications in 
+ computers. Let's suppose you have two 
+ numbers P Q and maybe more than two 
+ numbers PQR something of that sort. So 
+ if these numbers let's suppose big. So 
+ let's suppose they are 10 ^ 5 10^ 6. If 
+ you keep on doing that you know that we 
+ have finite memory to store these 
+ things. So what will happen? So you will 
+ have a problem of overflow. So if these 
+ numbers are too small let's suppose they 
+ are around zero. So let's suppose this 
+ is 10 ^ -4. This is 10 ^ - 10 something 
+ of this sort. So these numbers are too 
+ small. So what will happen? So in this 
+ case overflow might happen because of 
+ finite memory. In this case underflow 
+ might happen because we have finite 
+ memory and due to precision errors we'll 
+ have this uh floating point funkiness. 
+ So because of this if we use log because 
+ you know properties of log so properties 
+ of log is that if you have 
+ multiplication so if you apply log on 
+ multiplication what will happen so you 
+ can convert that multiplication into 
+ addition so you can now store these 
+ results more precisely that's why 
+ computationally these things are 
+ feasible that's why you will majority 
+ times see that there is some log 
+ involved in the in the loss functions 
+ and all these functions let's suppose 
+ this cross entropy function or the 
+ functions that we saw earlier soft max 
+ when we apply those functions because we 
+ have to somehow minimize things we have 
+ to find optim al points. So for that we 
+ should have differentiability. Okay. So 
+ one reason I gave earlier is that uh so 
+ when we convert things into probability 
+ so framework of probability comes into 
+ picture and second important thing is 
+ differentiability. 
+ So if a function is differentiable so 
+ you can apply calculus on that then so 
+ you can differentiate the function and 
+ then you can find the optimal points. 
+ Okay. So because since cross entropy is 
+ differentiable so it works very well 
+ with gradient descent optimization 
+ methods or or maybe some other 
+ modifications of gradient descent. Okay 
+ it makes suit them suitable for these 
+ neural networks. I hope that I answered 
+ the question. So one more question was 
+ in this catastrophic case. So this is 
+ the catastrophic. So if I have the 
+ probability which is 01 and then Q is 
+ almost opposite not the exactly opposite 
+ of this. So the answer was infinity. So 
+ the analogy I gave this is the worst 
+ case scenario. So if the probability was 
+ predicted probability was let's suppose 
+ 0.99 and here it was 0.1 still it can be 
+ more wrong. So in this case it is wrong 
+ but it's not infinitely wrong. So what 
+ is infinity wrong? Basically the worst 
+ wrong that you can get. This is the 
+ worst wrong. You cannot you cannot do 
+ worse than this. You cannot do best than 
+ this also. So if you have zero and one 
+ though this is the best possible 
+ scenario. So what is the worst possible 
+ scenario? You do almost opposite of what 
+ is given. So because this cross entropy 
+ is telling you how much wrong are you. 
+ So in this case it is telling you that 
+ you are infinitely wrong. You cannot do 
+ worse than this. Okay. So these were the 
+ questions which were asked. 
+ Let's see different versions of this 
+ cross entropy that are used in trick 
+ deep learning. Okay. We'll just uh write 
+ the formulation first and then we'll do 
+ some probabistic treatment afterwards uh 
+ to reach those conclusions again. Okay. 
+ One uh uh one function that you'll use 
+ in terms of classification if you have 
+ classification problem. 
+ So what is classification problem? So 
+ because you know that many of these real 
+ world problems if you have to consider 
+ something some some problem where you 
+ have two classes okay that's binary 
+ classification and you can have 
+ multi-class classification problem let's 
+ first see binary classification 
+ binary classification 
+ I can also write it mathematically what 
+ a classification problem is so whatever 
+ labels you have they belong to these 
+ labels can take values 0 1 till some k 
+ they can take some discrete value in the 
+ classes and now binary classifications 
+ is where you can take two values 0 or 
+ one and multiclass classification is 
+ where you can take 0 to K some K classes 
+ are there. So this is multiclass 
+ classification. 
+ Okay. Now you might have heard about two 
+ types of cross entropy. So first cross 
+ entropy that you will be seeing is a 
+ binary class classification. So in that 
+ you have binary cross entropy BCE. You 
+ might have heard this short form a lot. 
+ So this is binary cross entropy. 
+ So now you know that how entropy is 
+ defined. So in this case I have two 
+ values in the binary classification 
+ case. There are two classes possible. If 
+ we can take a real world example you can 
+ have an example of two types of emails. 
+ Spam emails and non-spam emails and then 
+ you can have let's suppose uh happy sad 
+ some emotional classification. You can 
+ have whether a person will buy the 
+ product or not. Should I recommend the 
+ video or not? there will be a lot of 
+ problems which will be which can which 
+ which for which we can use this binary 
+ classification which will have two 
+ classes. So now for in that case we'll 
+ use binary classification. So now you 
+ know that we have only two classes in 
+ this zero or one. So how can you modify 
+ this loss function the generic loss 
+ function that we had. So you can say 
+ that we have this loss function L. You 
+ can use negative of Y log of prediction 
+ and then plus 1 - Y 
+ log of 1 - 
+ Y bar. So this over here is your binary 
+ cross entropy. Binary cross entropy loss 
+ BC which you generally use if you have 
+ coded in PyTorch or something directly 
+ you can use this binary cross entropy 
+ like this. So what is it doing? So this 
+ y over here is the actual thing the 
+ ground truth the actual uh value that 
+ the data point had. This y1 yhat is the 
+ prediction. 
+ Okay. Now what you can do is you can be 
+ either wrong or right. So there are 
+ there are four possibilities. So you can 
+ have something of this sort. So you'll 
+ have zero. So let's suppose your base 
+ truth is your base is zero or one. This 
+ is the ground truth. I can write GT. GT 
+ means ground truth. So prediction I can 
+ write it with PD. 
+ So the prediction could be zero and it 
+ could be this is one for this. So this 
+ is when the classification is right when 
+ you do not have an error. A ground truth 
+ could be 0 and one. So you could have 
+ mclassification. 
+ These are the four possibilities. Okay. 
+ So this is my ground truth. So ground 
+ truth is zero and the prediction is also 
+ zero. So you are right. So in this case 
+ this is correctly classified. So again 
+ in this case one and one correctly 
+ classified. Now you can have 
+ mclassifications. So if you can compute 
+ this loss in terms of all all these 
+ cases suppose you are using the first 
+ case because you are having y and y why 
+ why this? Because if you have so if you 
+ see this now so this will handle one 
+ class and this will handle another 
+ class. Why am I writing y and 1 minus y? 
+ Because it's in the probability. So if 
+ one has probability y other will have 
+ probability 1 - y because sum should be 
+ one. Similar case with this this is y 
+ and this is 1 - y prime. So if you have 
+ one neuron let's suppose at the end of 
+ the network. So if it gives you the 
+ probability of 04. So if you consider 
+ this 4 is the probability of event 
+ happening. Probability of a is equal to 
+ 04. Probability of let's suppose if 
+ there are only two events and either of 
+ two events will happen. Either it will 
+ event a will happen or event b will 
+ happen. So automatically you will say 
+ that pro probability of b is equal to 1 
+ - 0.4 that is 6. So this is the case in 
+ this case. So you have two classes 
+ either one or one is zero. So one of the 
+ two will happen either it will be zero 
+ or it will be one. So if you are giving 
+ probability y to one class then you will 
+ give probability one minus y to other 
+ class. Now if you use these four things 
+ the things that I write out here let's 
+ suppose you use right predictions for 
+ the first case. So ground truth suppose 
+ ground truth was zero in this case. So 
+ let's suppose if you take if you take 
+ this zero and y prime was also zero. So 
+ this this will handle the zerooth class 
+ zero class or zero class. Oops. 
+ So if you take zero class 
+ this will be handled by that. Why? 
+ Because if it is zero so let's suppose 
+ if it is zero so this will become this 
+ will like vanish. So this over here will 
+ vanish because anything multiplied with 
+ zero will become zero. So if it is zero 
+ so this will be going to this case and 
+ then we'll rather shift on this. So 
+ anything that is now predicted will be 
+ based on this. So we'll take the first 
+ case. So for zero so this will this will 
+ be vanished this one and we'll move to 
+ this class then. Okay. Let's suppose if 
+ if now you give value zero over there 
+ here. If you give value zero over here 
+ if this y was suppose if you consider 
+ this case now if this y was zero over 
+ here so this will become one. Okay. So 
+ this is rather reverse. So this class is 
+ specifically for zero and other is for 
+ one. So this is for one class because 
+ one is this is making the whole thing 
+ zero. So if you're considering zero now 
+ so see this. So this this class this 
+ term will be vanished if you have ground 
+ truth is zero. Suppose suppose the 
+ ground truth is zero. Okay. And this 
+ will be vanished. We are left with this 
+ term. So 1 - 0 is 1. Okay. Now log of 1 
+ - y prediction. So if the prediction was 
+ also good. See over here if prediction 
+ was good that means it can be prediction 
+ is one that is prediction is right. 
+ Suppose so prediction is zero in this 
+ case. So then it will be log of one. 
+ Okay you can clearly see over here. So 
+ you'll have loss of zero. So log of one 
+ is zero. So in terms of prediction is 
+ right when you are using zero class over 
+ here and the prediction is also zero 
+ over here. So you'll be left with one 
+ log one. So 1 log 1 basically is zero 
+ and this term was vanished. So loss is 
+ equal to zero. So you are correct in 
+ this case. Okay. So the first term zero. 
+ Let's suppose if you are wrong. Suppose 
+ if you are wrong in this case. So the 
+ ground reality was zero. So ground 
+ reality was this. But what happened? You 
+ did mclassification. You said it is one. 
+ So this will again go to infinity. So 
+ this is log of 1 - 1 that is log of 0. 
+ This will go to infinity. You are wrong. 
+ Entirely wrong. Okay. So if you see this 
+ term, so this term handles the zero 
+ class. So by the meaning of zero class I 
+ mean that if the ground reality is zero 
+ if the ground truth is zero so that this 
+ is handled by that now if you see one 
+ okay so if you have class one so this 
+ will this will 1 - 1 will be equal to 
+ zero so this term will be vanished now 
+ we'll go to this if you have this one 
+ one that is the uh the prediction is 
+ right and the ground result in the 
+ prediction is same so what you can do is 
+ if y is equal 1 so you'll have y equal 1 
+ now log of 1 is also equal to 0 so loss 
+ will be zero okay if it is reversed now 
+ if a mclassification ification case. 
+ This case mclassification 1 and 0. The 
+ ground reality was one but the 
+ prediction was zero. Now we can see that 
+ y is equal to 1 log of 0 is infinity. 
+ Again you the loss will be infinity. So 
+ you can see that in in mclassification 
+ this loss term this binary cross entropy 
+ loss will be it will be going to 
+ infinity. Okay in this case when it is 
+ right so this will be going to zero. 
+ Loss will be zero in this case and loss 
+ will be infinity in this case that you 
+ can clearly see from here. And I also 
+ justified why do we use y and 1 - y over 
+ here? Because these are probabilities 
+ and we have only two values. If one 
+ takes value, let's suppose some value a 
+ other will take one minus a because the 
+ sum of probability should be equal to 
+ one. Any questions on this binary cross 
+ entropy loss. 
+ Okay. Now the second case will be 
+ categorical cross entropy because we 
+ have categorical classification where 
+ you have categories. Now multi-class 
+ classification the first class was 
+ binary classification where you had two 
+ classes only. Now you will have 
+ multiclass classification. So there you 
+ will have some categories. So as I said 
+ that you have data point D that is equal 
+ to X I comma YI. So these are the 
+ features and this is our label. So Yi 
+ here belongs to one the categories. The 
+ categories can be 0 to K. So this is a 
+ multiclass classification problem or we 
+ can call it categorical classification 
+ where you assign one category to the 
+ problem. So for this we define what is 
+ called as categorical cross entropy. 
+ categorical 
+ cross entropy loss. 
+ Okay. So for this 
+ what you can do is so you'll again use 
+ the same formulation that we used 
+ earlier. So you have this cross entropy 
+ PH of P comma Q and you will have the 
+ formulation that we used earlier. So I 
+ is equal to 1 to C. You'll have C 
+ categories let's suppose. So probability 
+ PI and then you'll have log of Qi 
+ something of this sort. So now you can 
+ convert it into like this. So you have 
+ one hot end code. Let's suppose if you 
+ use one hot encoding. So you use 
+ something of this sort. Suppose we have 
+ four classes 1 0 0 0. Okay. So this is 
+ true distribution and you will also 
+ have some prediction. So the prediction 
+ will be a distribution of this sort. So 
+ this is 0.2.4 
+ 0.1 and 0.1 for the four classes. This 
+ is our prediction and this is a true 
+ distribution. This is suppose P and this 
+ is RQ. Now if you see all these things 
+ will go to zero. So if you expand this 
+ so 0 multiplied by let's say this is 
+ true pi will be zero pi will be zero for 
+ three these three cases and you'll be 
+ only left with the class that we have. 
+ So if you just uh take this cross 
+ entropy you will get this to be equal to 
+ log of Qi 
+ okay because for all other things you'll 
+ get zero let's in this case you left 
+ with only one point so this this is what 
+ you'll be left with so generally you 
+ will see only one thing written so 
+ because for pi it is either one or zero 
+ for one it will be left with qi let's in 
+ this case it be q1 and for all the other 
+ q's this pi will be zero and it'll 
+ multiply this zero with log of Qi and 
+ they will they'll be turning if I expand 
+ this rather I should expand it this will 
+ be pi P1 log of Q1 plus P2 log of Q2 
+ plus P2 log of P3 log of Q3 plus P 4 log 
+ Q4 
+ now if you see this so in this case P1 
+ is one rest is zero so this over here 
+ will be cancel this cancel this cancel 
+ they'll go to zero because P2 P3 P3 and 
+ P4 equal to Z only we'll be left with P1 
+ to log 1 but P1 is 1. So we'll be given 
+ P1 1 multiplied by this. So this is 
+ equal to log of Qi. So in this case log 
+ of Q1. So for a particular class so if 
+ you're asked what is the categorical 
+ cross entropy law you can just say log 
+ of Qi. I is the class I is the class 
+ which the data point belongs to the 
+ ground truth basically. So for that 
+ point we'll just optimize for that 
+ point. Yes please questions. 
+ Yes, good point. So it will be negative 
+ all all around. 
+ Okay, so here this is also negative 
+ sign. So I was missing that negative 
+ sign. So this will be minus log of Qi. 
+ Not just log of Qi, this will be minus. 
+ Okay, we can do some example also. So in 
+ that case you can clearly mention let's 
+ suppose a probability distribution. I'll 
+ just give you this. So once you watch 
+ the recording, so you'll do it by 
+ yourself. You have 0 1 0. So this is the 
+ ground reality when you sample data 
+ point. These are true class labels. And 
+ then you have the skew the prediction. 
+ Suppose the prediction is this because 
+ you know that once we apply soft max 
+ we'll get a distribution. So we'll get 
+ distribution in the output neurons. So 
+ you'll get something of this sort. Now 
+ you'll have to compute h p q. Now you 
+ know you have to only compute for this. 
+ So this will be actually the answer will 
+ be log 
+ 0.7. 
+ I think this will be the answer. 
+ So this will go to zero and this will go 
+ to zero. We'll be left with log of 0.7. 
+ I think log of 0.7 is roughly equal to 
+ 0.357. 
+ Okay. these many number of nets or 
+ whatever if it's log two. So it will 
+ based on that. Okay. And these are the 
+ two cross entropies which you will 
+ frequently see. You will see binary 
+ cross entropy loss or categorical cross 
+ entropy. 
+ Okay. Let me give you some real world 
+ examples to see why we will use this. 
+ Binary cross entropy is pretty clear. So 
+ why do we use this? So if you have 
+ emails like spam or ham emails or any 
+ classification problem suppose uh you 
+ have to predict if something uh is dog 
+ or a cat dog or not dog or dog or cat 
+ something of this sort or or something 
+ else. So in this categorical cross 
+ entropy law so it usually is used in 
+ language models. 
+ So you'll use this cross entropy laws 
+ there. Why? Because there you have a 
+ vocabulary. So you have a context given 
+ a context yesterday to do the example. 
+ So you are given a context. Let's 
+ suppose we are in a dash mean right away 
+ in the class. So this is our context. 
+ This thing is our context given this 
+ context. So you will actually apply the 
+ probability because as I said the last 
+ layer of that neural network the output 
+ layer will contain how many neurons? The 
+ number of neurons in last layer. 
+ The number of neurons or computition 
+ units rather uh in the last layer or in 
+ the output layer 
+ in the output layer. The number of 
+ neurons in the output layer 
+ is equal to 
+ cardality of vocabulary. 
+ Cardinality 
+ or vocabulary size. I can just say vocab 
+ size. 
+ Okay. Okay, you know that what is 
+ vocabulary? Vocabulary is the total 
+ number of tokens that that language 
+ model can predict. Okay, that is equal 
+ to that and then what you basically do 
+ is in that you'll apply soft max on 
+ this. So you'll apply softmax on these 
+ neurons. 
+ So once you apply softmax on this and if 
+ this problem as I previously also said 
+ this is called as self-supervised 
+ learning. So here uh this is a 
+ supervised training. So here you know 
+ that what is the word. So let's suppose 
+ the word is class and it will give the 
+ probability distribution to all the 
+ words in the vocabulary. whatever 
+ vocabulary you have 0.1 let's say 01 02 
+ because there will be maybe around 
+ roughly around thousands of words or 
+ thousands of tokens. So it will give the 
+ probability distribution to everything 
+ and then you will have to do the cross 
+ entropy loss. So what you will do is you 
+ will use this categorical cross entropy. 
+ You'll say that actual probability of 
+ this word should have been one. So the 
+ class should have been one because 
+ you'll have one hot and cold relative. 
+ The class has the probability one but it 
+ has given probability distribution to 
+ everything. So you'll try to optim 
+ you'll try to compute this. what was the 
+ uh probability that was given to class. 
+ If the class was given probability as a2 
+ so you will say log of 0.2 2 negative of 
+ this. So this is the cross loss for that 
+ particular example and you want to 
+ reduce that and next time when you are 
+ training on this. So you will again give 
+ it you will try to give the higher 
+ probability to the predicted one to the 
+ actual token which has been predicted 
+ given the context. Okay, this is one 
+ example where you use categorical cross 
+ entropy loss. Okay, in language model so 
+ I'll write it here in language model. 
+ This is where you use it. 
+ I hope you got uh this right. Any 
+ questions still here? 
+ Now you at least understood binary cross 
+ entropy loss and you understood 
+ categorical cross entropy loss and you 
+ saw different applications where they 
+ usually are used in the real world. 
+ Let's now move on again because we were 
+ discussing about KL divergences. You 
+ probably might be interested in some 
+ different way. So we'll have a generic 
+ concept which called as f divergence 
+ because we were trying to find that 
+ divergence function. If you have 
+ probability distribution P let's suppose 
+ P of theta and then you have other 
+ probability distrib P of X. Okay. And 
+ this may be your predictor one. This can 
+ be your ground truth. So this is your 
+ ground truth. This can be predicted one. 
+ So how can you tell me tell me a 
+ discrepancy? We said 
+ let's say this is f of x w and this is 
+ my prediction y. And then we said that 
+ we had divergence function of this sort 
+ which takes input as the two these two 
+ things 
+ and it can give me some value. It can 
+ give me some sense of how much off they 
+ are, how much different they are. Okay. 
+ Now we'll introduce the concept of 
+ what's called as f divergences. 
+ So what is this F divergence? So this F 
+ divergence basically it's a unifying 
+ framework. You might have just heard 
+ about KL divergences but there are more 
+ than KL divergences. So F divergence 
+ this represents a broad category of a 
+ broad category of this divergence. It's 
+ a it's a unifying the it's a unifying 
+ framework in information theory. So I 
+ can say unifying 
+ framework 
+ in information theory 
+ it 
+ by it I mean information theory. So it 
+ will give a generic template. It will 
+ give a generic template of these 
+ divergences. All of these divergence are 
+ all called F divergences. And then in 
+ that you just have to change this F 
+ function. Okay. Let's see what this F 
+ divergence is. So you have you are 
+ having this divergence function. 
+ Consider this as D of F. So DF and you 
+ have two distributions P and Q. So you 
+ write this as like this P and Q. What is 
+ the F divergence between P and Q. So P 
+ is one distribution and Q is another 
+ distribution. You may not know both of 
+ these distribution. You may know one of 
+ them. You may know both of them. And you 
+ just want to compute so how one 
+ distribution is different from other 
+ distribution. How much is the 
+ discrepancy or how much similar are 
+ they? Okay. And they are both are 
+ defined on state space X. Consider that. 
+ Okay. So you have this F divergence. So 
+ how do you now define that? By 
+ definition this is equal to Q of X and 
+ then F of P of X / Q of X DX. So this is 
+ if you have this P and Q these 
+ distributions are continuous. So if P 
+ and Q are continuous distributions 
+ because you know that distributions can 
+ be discrete distributions or it can be 
+ continuous distribution and we have 
+ written probability that if 
+ P and Q are discrete distributions so 
+ we'll change this into summation okay 
+ this thing will be changed into 
+ summation and rest will follow like that 
+ okay and this is called as f divergence 
+ as I wrote in the heading 
+ this is by definition and this term over 
+ here if you see P of X Q of X this is 
+ called as likelihood. 
+ So why why this term is there? If you 
+ have two distributions P of X P and you 
+ have other distribution Q you want to 
+ see how similar they are. Okay. So how 
+ you can compute them? You are computing 
+ some sort of ratio. You're saying that I 
+ can divide P by Q. If they're exactly 
+ equal I'll get ratio around one. Okay. 
+ If there is some discrepancy it will be 
+ it'll be less than greater than one 
+ house because difference will not be 
+ equal to one. So somehow you are 
+ computing this likelihood over here. And 
+ now you have given this chance this 
+ function. So you can you have a chance 
+ of choosing this function and this 
+ function should have certain properties. 
+ It should be what's called as absolute 
+ continuous with respect to Q. Okay. And 
+ there are other values as well. I won't 
+ go into the properties of this. And this 
+ f should be convex function. What is 
+ convex function? I would define it here. 
+ I think many of you might know this. So 
+ this function has certain properties 
+ that it should follow. And one of the 
+ functions that we have in our case. So 
+ we can use t log t. So if you have this 
+ function f of t. So this if this 
+ function f of t is equal t log t. So 
+ this over here is K k divergence. 
+ So we'll get kl divergence. 
+ So if this f of t. So here you have this 
+ f of p of x q of x. So in this case if I 
+ say f of x also f of x is x log x. So if 
+ you use this function 
+ okay so you will be getting the scale 
+ divergence. So now let's go to kale 
+ divergence and I can give you different 
+ functions. So if you have suppose this 
+ if you have now K divergence of P and Q 
+ distri if you have two given two 
+ distribution it can be for discrete case 
+ it can be for continuous case because 
+ these P and Q it can they can be 
+ discrete random variable or continuous 
+ random variable let's do it for the 
+ discrete case divergence is P of given Q 
+ now this change integral will change to 
+ summation so what I can write is I can 
+ say summation of I I basically is the 
+ sample space that it has P of X I and 
+ then this log of P X ID by Q of X I okay 
+ this is a function I have used over here 
+ so if you see this over here so this 
+ somehow looks like entropy the earlier 
+ one that we discussed and now you can 
+ use the you can use properties of log to 
+ expand this so how how can you expand 
+ this so you can expand it like this is 
+ summation of I keep on keep an eye if I 
+ do some algebraic mistake so this is 
+ probability of X I log of probability of 
+ X I okay I'm just multiplying this with 
+ this so this is division so this will be 
+ now subtraction this will be log of 
+ minus qi but this px is multiplication 
+ of both and the summation is what this 
+ and then minus 
+ this is qp of x i log of qi 
+ if I give summation separately to both 
+ of these so I can say summation of i p 
+ of x i log of p of x i minus 
+ P of X I log of Q of X I. So if you see 
+ this over here this term 
+ this should be also given summation of 
+ A. 
+ If you see this term over here this is 
+ entropy 
+ and if you see this term over here this 
+ is cross entropy. Can you see this? 
+ Everybody clear on this? So what I said 
+ is so in in our case so what we can do 
+ is we can say f of if f of x is x log x 
+ so we can just replace this so this was 
+ the given formulation and in this case 
+ we are considering that this is a 
+ discrete this is a continuous random 
+ variable if you take the discrete case 
+ we'll have to summation of this x so now 
+ after applying log of this so this is x 
+ log of x so what we can do is so once we 
+ expand this so you'll get entropy minus 
+ cost entropy that's what I call kl 
+ divergence when I was introducing 
+ entropy and cost entropy difference 
+ between cross entropy and entropy is 
+ scale divergence. Any questions on this? 
+ So I can write this as h of p minus h of 
+ p comma q something of this sort. 
+ I think it should be the other way 
+ around. So are we missing somewhere 
+ something 
+ that's why I told you give me have a 
+ look at my algebraic manipulations. 
+ There was there was a slight mistake 
+ over here. So this should be Q of X I 
+ because divergence F divergence if you 
+ see how it was defined. So this was 
+ defined like this. So it was defined 
+ like Q of X I then function of P of X I 
+ divided by Q of X I and this over here 
+ was called as likelihood. So this term 
+ was likelihood. 
+ So when I said that log of when I said f 
+ of x this function is equal to x log x. 
+ So if I insert this function so as I 
+ said there should be properties of these 
+ functions should have different 
+ properties. So now if you insert these 
+ values over here and it will have 
+ integral with it or summation with it 
+ depends on if you are doing it with 
+ continuous case or discrete case. So 
+ let's suppose we're doing it with 
+ discrete case. 
+ Now summation of q of x i and then this 
+ f of this will be multiplied by p of x i 
+ / q of x i and then log of this whole 
+ term p of x i / q of x i. Now you can 
+ see this and this will be cancelled. So 
+ you'll be left with summation of p of x 
+ i log of 
+ p of x iid 
+ of x i. So that's what is written over 
+ there. So here if you see q of x log of 
+ p of x. Now if you did the logarithm 
+ manipulation so you will be left with 
+ this. Now if you see this term over here 
+ so this is not cross entropy. So this is 
+ negative of cross entropy and then minus 
+ and this term over here. So this is 
+ minus of cross entropy. 
+ So this is our entropy only entropy. 
+ This is negative of entropy and this is 
+ negative of cross entropy. Now if you 
+ see now the thing that we'll get is 
+ we'll get KL divergence 
+ is equal to H of P comma Q that is the 
+ cross entropy minus the entropy. The 
+ entropy is H of P. So this is what K 
+ divergence is. Everybody clear so far? 
+ So we saw two things. So we saw it from 
+ the entropy perspective. We first 
+ defined what entropy is and then we said 
+ okay what is the difference between? We 
+ also defined cross entropy. Then so if 
+ we take a difference if we actually want 
+ to quantify this difference so that is 
+ given by the k divergence. Now we saw 
+ also saw that by f divergence what I 
+ said. So I said f divergence is a 
+ unifying framework in information 
+ theory. What does it unify? It unifies a 
+ lot of divergences. So you have this 
+ function f over here. You have you have 
+ uh liberty to take this function as it 
+ is but the function should have some 
+ properties. The the function should be 
+ convex. It should be non- negativity. It 
+ should have what's called as 
+ identifiability. It should have 
+ convexity and it should have symmetry. 
+ So this function should be there. But 
+ taking those things aside, I'm telling 
+ you that one function is log. Log is the 
+ one function. So if you take log of if 
+ you take f of x is equal to x log of x. 
+ So this will be equal to kl divergence. 
+ Okay. I'll just now name few of other 
+ divergences. 
+ So this is called as scale divergence 
+ forward method. So because scale 
+ divergence is asymmetric by that I mean 
+ so if you calculate kale divergence P 
+ and Q. So this will be different from K 
+ divergence of Q and P. So this is not 
+ equal. So it's asymmetric as asymmetric 
+ divergence. So if you now take f ofx is 
+ equal to let's suppose minus log of x. 
+ If you take this so this is called as 
+ reverse scale divergence. 
+ Reverse scale divergence. 
+ Now I'm just changing the functions. I 
+ told you what f divergence is. F 
+ divergence is a unifying framework. So 
+ what you can do is you can just change f 
+ and it will tell you how much difference 
+ is there in the distributions between 
+ distributions p and q. If you now have 
+ this function x log x and this will be k 
+ divergence forward. And if you have f of 
+ x is minus log of x you have kale 
+ divergence but in reverse. Why is it 
+ defined separately reverse and forward? 
+ As I said that this scale divergence is 
+ not symmetric at all. It's not 
+ symmetric. So this is not equal to this. 
+ So if you have k divergence between p 
+ and q this is not equal to k d between q 
+ and p. So now if you have let's suppose 
+ this f ofx is equal to x - 1 square. So 
+ this is called as pearson pearson's k 
+ square divergence. Okay. Then you have 
+ square helinger jensen shannon. So there 
+ are a lot of other functions which I can 
+ write over here. So this all comes under 
+ these divergence. But one of the 
+ interesting cases for us was the scale 
+ divergence. Any questions till here. Any 
+ questions? 
+ So if you now saw we I'll just summarize 
+ the things that we did so far. Okay. Be 
+ attentive here. So we first defined what 
+ an entropy is and then we said what 
+ cross entropy is and then we defined KL 
+ divergence. Okay. And then we said uh 
+ this was from the entropy perspective. 
+ Then we defined f divergence. F 
+ divergence over here and then from F 
+ divergence we again derived this scale 
+ divergence. It again had some link with 
+ K divergence and entropy. So K scale 
+ divergence had link with entropy again. 
+ So now we'll see a probabilistic 
+ perspective on this loss. So I'll give a 
+ heading probabilistic 
+ perspective on these loss functions. 
+ Okay. And I'll now tell you the scheme 
+ or the method or an algorithm to 
+ consider a loss function. Now you have 
+ enough background in information theory 
+ because you know what entropy is, you 
+ know what cross entropy is, scale 
+ divergence are. So now how can you 
+ construct loss functions? Okay. Now 
+ we'll see the probability problem lens 
+ and you'll see that now you know that we 
+ have a function f and x and this is a 
+ parameterized function. This is what a 
+ neural network is. So you are sort of 
+ giving an input x to that and you have 
+ some weights that you have that you can 
+ change. You have these parameters w and 
+ I can write theta or five to these but 
+ we have stick with the notation w. So 
+ this w basically a set of parameters. 
+ You can adjust these parameters to get a 
+ prediction of that. So basically what is 
+ it saying is it is saying that if we are 
+ having these pairs x y. So the our data 
+ looks like this. So data looks like x i 
+ y i. So you have these pairs. Now what 
+ is bas this basically tell this is 
+ telling you compute the probability of y 
+ given that you have this data point and 
+ you have these parameters for the model. 
+ You are given this input and you are 
+ given these weights for the model. So 
+ what is the probability? So this is what 
+ basically you are computing when you are 
+ giving this. So or in turn I can write 
+ you are computing probability given Y 
+ and given this model. 
+ Okay this is what you want you want to 
+ basically maximize. Now you want to do 
+ it for every point say so this this 
+ thing over here. So if I say probability 
+ of Y probability that label given that 
+ you have this data point X I you have a 
+ particular data point. So I can write 
+ probability of Yi. What is the 
+ probability of Yi? Given you are given 
+ this probability point X I and you are 
+ given certain parameters at a certain 
+ position. Let's suppose consider them as 
+ W or maybe you can also consider WI 
+ because we'll have family of these 
+ models depends on how W changes. Okay. 
+ So now this is what you have to 
+ basically maximize. So if 
+ so this is this thing over here that you 
+ see. So you have to maximize this for 
+ all the points. So this is for all the 
+ points I goes from one to let's suppose 
+ we have n data points over here. And 
+ you'll have to find such a W. You'll 
+ have to you'll have to find such optimal 
+ W for which this is maximized. So how 
+ can we write that? We'll say that 
+ optimal W or W star is equal to multiply 
+ all these things together and then 
+ probability Yi given you have X I and 
+ you have this W and this over here is 
+ called as maximum likelihood criteria 
+ maximum 
+ likelihood 
+ criterion. 
+ Okay. If you again if I again like say 
+ what we what we doing. So we had this 
+ function we had this neural network 
+ which was given some input and it had 
+ some weights. So now if you have to turn 
+ this into probabilistic if you have to 
+ see it from the probabilistic length. So 
+ I'm saying basically what are we doing? 
+ We're saying what is the probability of 
+ y given this point and these weights. So 
+ we'll compute it for everything. So 
+ we'll comput basically if we have two 
+ classes say we have y1 and y2 suppose. 
+ So I'll compute probability of y1 given 
+ this point x and these weights. 
+ probability of Y2 given this point X and 
+ W. Okay, I'll assign probability to both 
+ of these things if you see over here. So 
+ now I want to assign prob high 
+ probability to the right class. Suppose 
+ this point X belongs to class one 
+ suppose. So if this belongs to class 
+ one, if this belongs to this Y1 class, 
+ so I'll assign higher probability to 
+ this. Okay, I'll assign lower 
+ probability to this. Ideally, I should 
+ assign probability one to this and 
+ probability zero to this. Okay, that's 
+ what I have written over here. So what 
+ I'm trying to do is I'm trying to get 
+ the maximum probability and I'm 
+ multiplying these properties together. 
+ Okay. So I am doing arg max of this. So 
+ I should do arg max arg max or w I 
+ should adjust these w in such a way so 
+ that this wi given that x i for this I 
+ should get the maximum value for these 
+ things over here. So this thing as I 
+ said is called as maximum likelihood 
+ criteria. Okay. So that is what you want 
+ to maximize. So this is the optimization 
+ problem you have. But the assumption 
+ that we're taking two assumptions over 
+ here. So the first assumption is so 
+ we're taking two assumptions. 
+ two assumptions that we are trying to 
+ take here. The first assumption is that 
+ when you are taking these data points, 
+ they're identically distributed. So data 
+ points are identically distributed. 
+ Identically distributed. What is the 
+ meaning of that? So the meaning of that 
+ is distribution is not suddenly 
+ changing. So when you are having one 
+ point so you when you take the other 
+ point it's again also coming from that 
+ same distribution. So as I usually give 
+ the example when that Nokia phones were 
+ trained, they were trained on European 
+ people. Now they were tested on suppose 
+ African people. Now distribution is not 
+ same. So that's not identically 
+ distributed. So if you are training 
+ model on one distribution, you should 
+ also test model on the same 
+ distribution. So that's the first 
+ assumption here that your data points 
+ are identically distributed. That is so 
+ all the data points come from the same 
+ distribution that can be written in this 
+ if probability of Y given X. So this if 
+ the distribution so this should hold for 
+ all the point and second thing is that 
+ there these data points are sampled 
+ independently. Okay. So they are 
+ independent 
+ independent examples. So the outputs are 
+ conditioned they are conditionally 
+ independent given given given their 
+ inputs. If you are given an input and if 
+ you are given output they do not have 
+ any any dependence on each other. So how 
+ can I write it mathematically? So if you 
+ are given probability of yi given x i 
+ okay and then I'm saying that let's 
+ suppose consider the say this 
+ probability of x y1 comma y2 till yn 
+ given the points x1 x2 till xn suppose 
+ something of this sort. If I'm given 
+ this so I can I should write it by 
+ independence or probability I should 
+ write this as multiplication. I goes 
+ from 1 to say n probability of y i given 
+ x i. So this is the meaning of 
+ independence. If you if you have seen 
+ our property lectures you probably will 
+ understand that I think you all all have 
+ attended property lecture. So these are 
+ the two assumptions that we take. So 
+ this is what what we call as iid. 
+ So what is iid then? So iid basically 
+ mean this is independent and identically 
+ distributed. 
+ So independent 
+ and 
+ identically 
+ distributed. 
+ Okay. Again telling you the same problem 
+ the we had a model and then we said that 
+ this basically can be seen from a 
+ probability that probability for a class 
+ given you have a data point and the 
+ weights. So this can be also written 
+ like this. Now what we have to do is we 
+ have to maximize the probability for the 
+ right classes. So we are saying that so 
+ we'll find such a w for which the 
+ probability x i and y this should be 
+ maximum. So basically probability of y1 
+ given point x1. So this should be 
+ maximum. For other point x2 so y2 should 
+ be maximum. So for the probability of 
+ the right class should maximum as as in 
+ this case if x was from y1. Okay. And we 
+ had two classes y1 and y2. We wanted 
+ this to be maximum. And if we multiply 
+ all these probabilities together. So 
+ you'll get basically this. You'll get 
+ probability yi given x i and w. If you 
+ take all the points because we're 
+ assuming that these data points are 
+ identically distributed and the first 
+ thing is they're identically distributed 
+ and they're independent. So we can use 
+ independence we can say that if you 
+ multiply these two things together you 
+ want to maximize this you want to find 
+ such a w which will maximize this number 
+ okay for a particular x i to that y 
+ corresponding yi should be given the 
+ most probability all other if let's 
+ suppose this is y j that should be given 
+ less probability if I say probability of 
+ yj some other j given x i so this should 
+ be given less probability that's what I 
+ told over here everybody satisfied with 
+ this and this thing over here is called 
+ as maximum maximum likelihood criterion 
+ any questions on 
+ Okay. Now if you see that two 
+ assumptions we have these data points I 
+ now we have this what's called as 
+ maximum likelihood criterion. So now if 
+ you see again the problem here so we are 
+ having these probabilities will be less 
+ than one and they will be greater than 
+ zero. So these things over here if you 
+ see if you see this or that I wrote over 
+ here the arg max 
+ if you see these probabilities because 
+ you know probability are between 0 and 
+ one. So you know this and all these 
+ probability will be less than one and 
+ there are a number which which is less 
+ than one. So you have w star the ideal w 
+ star should be you should arg max of w 
+ the w should be addressed such that 
+ probability of probability of yi given a 
+ particular point x i and w 
+ for all the data points you should 
+ multiply this okay for all data points 1 
+ to n. So now the problem is that this 
+ quantity over here this will be less 
+ than one or at max this will be one. So 
+ if you keep on multiplying quantity 
+ which are less than one let's suppose 
+ 0.8 multiplied by 0.3 * 0.4 something of 
+ this this will again tend to zero. So 
+ this quantity keep on multiply. So this 
+ will be diminishing and again the 
+ problem you will have in computers 
+ because you have limited you have finite 
+ memory. So because of that this will 
+ approach to zero or this will even 
+ sometimes do underflow 
+ that is the problem. So we won't use 
+ this as it is. So we won't use this 
+ maximum likelihood criterion. So what 
+ we'll use is we'll apply log on that. So 
+ if we apply log onto this. So this 
+ multiplication will be converted into 
+ addition. So if you apply log on this. 
+ So you have maximum 
+ likelihood criterion. 
+ So now what you do is you apply log onto 
+ this. 
+ So this is called as log likelihood. You 
+ might have heard about log likelihood. 
+ Log maximum log likelihood. So because 
+ now you're applying log onto this. So 
+ what will happen is because log is a 
+ monotonic function. What is the meaning 
+ of monotonicity? So if let's suppose you 
+ are having a function you have you have 
+ this function if it is let's suppose 
+ increasing over here. So if you see log 
+ function that is something of this sort. 
+ So it it is always monotonic function. 
+ So if you apply log on to something if 
+ something is an increasing function and 
+ you apply log on to that it will still 
+ remain that function. Okay. So and you 
+ are interested in finding the max value. 
+ You are trying to find that value for 
+ which it will maximum. So maximum won't 
+ be changing. So it won't change the 
+ function. That is the meaning of 
+ monotonicity. The log is monotonic 
+ function. 
+ So by that I mean that if you apply this 
+ monotonic function onto some other 
+ function, it won't change its maximum or 
+ minimum values. It won't change its max 
+ values. So where the max value was 
+ initially if it was that suppose at x= 
+ 5, it'll still remain at x= 5 if you 
+ apply log on to that. That's why we can 
+ apply log. And we are interested here in 
+ finding the maximum value. So here the 
+ problem that we had maximum likelihood 
+ criterion that got converted into log 
+ likelihood. So we'll have this war star 
+ is equal to arg min r arg max 
+ did they write min somewhere arg max 
+ everywhere I suppose arg max is 
+ everywhere yes 
+ so arg max basically means give me that 
+ value for which the value is maximum arg 
+ max on w give me such a w so that this 
+ value gets maximum now I'm applying log 
+ onto this log of 
+ this product goes from 1 to n that's for 
+ all the samples probability of yi given 
+ this x i and this parameter is you. So 
+ this thing over here is called as log 
+ likelihood. 
+ Now in machine learning the problem is 
+ that we do not want to maximize we want 
+ to minimize things because loss usually 
+ we want to minimize you not you don't 
+ want to find likelihood you want to find 
+ loss okay if let's suppose if something 
+ function is f of x okay and if you want 
+ to find let's suppose some max value of 
+ it if you convert this function into f 
+ of x whatever the max was it will 
+ convert it will be converted into 
+ minimum value because you're inverting 
+ the function you're giving it negative 
+ value so now you had maximum likelihood 
+ function the problem there was it had a 
+ lot of multiplications and all the 
+ values were less than one. So now if you 
+ multiply all these things together what 
+ will happen? Underflow might happen 
+ because we have finite memory. So we 
+ said okay we can solve this. We can 
+ convert these multiplications into 
+ addition. How can you do that? You can 
+ apply log on to this and you can convert 
+ these multiply into addition. Good. Now 
+ the problem is usually in machine 
+ learning we want loss to be minimized. 
+ So here we are talking about likelihood. 
+ So what we should do is that we should 
+ not talk about likelihood in this term. 
+ We should negate the likelihood. Then 
+ we'll call it negative log likelihood. 
+ All of these terms you might have heard 
+ negative 
+ log likelihood 
+ and this thing over here if I apply 
+ negation sign on this if I now convert 
+ this optimal w star. So I want to find 
+ such a function for which this I want to 
+ find arg min of this. So minus 
+ arg min of w minus of log. So argument 
+ of minus log of 
+ y = 1 to n probability of y i given x i 
+ and w 
+ this over here is called as negative log 
+ likelihood. The function that I wrote 
+ over here this is called as negative log 
+ likelihood. This is the loss that we 
+ sometimes will again see. Okay. And I 
+ can now show you that this is equal to 
+ binary cross entropy loss in term in 
+ case of binary classification. This is 
+ equal to categorical cross entropy loss 
+ in terms of categorical or multiclass 
+ classification problem. So if you see 
+ this this is taking that shape. Okay. 
+ This will be getting converted to 
+ summation. Okay. Can you see that over 
+ here? Is everything clear so far? So we 
+ started with maximum likelihood 
+ criterion. So we started with maximum 
+ likelihood. Maximum likelihood and then 
+ we converted that into log likelihood. 
+ Log likelihood. 
+ Okay. This was converted into negative 
+ log likelihood. 
+ Negative log likelihood something of 
+ this sort. And then this is what we want 
+ to minimize. We'll minimize this because 
+ in machine learning we consider loss. So 
+ loss should be minimized. We should not 
+ maximize a thing. Okay. Here we had 
+ maximum likelihood should be maximized 
+ but loss should be minimized. So we are 
+ saying negative log likelihood though 
+ this is somewhat like loss. That's why 
+ it's named air loss. 
+ Can I assume that you people understood 
+ everything? So as I was telling you 
+ people that why do why are we covering 
+ this loss function in such a detail 
+ because we'll be back propagating 
+ through these loss functions. So because 
+ we want to minimize loss. 
+ So we want to minimize loss. So how to 
+ minimize loss. So because we'll be using 
+ this loss function and we'll be using 
+ calculus or in particular 
+ differentiation so that we can get the 
+ optimal values. In this particular case 
+ we will get this we'll take the first 
+ derivative so as to minimize the loss so 
+ as to reduce the loss in iterative way 
+ and we'll apply gradient descent on 
+ these things. So if you know what is 
+ this loss function if you know cross 
+ entropy binary cross entropy k 
+ divergences log like they have different 
+ names so you will have a different 
+ appreciation when you will do the back 
+ propagation algorithm when you will 
+ adjust these weights and bias and you 
+ will see that the loss is actually 
+ adjusting the loss is decreasing it is 
+ increasing if I do some adjustment the 
+ parameters then because you know the 
+ loss you know how it behaves you know 
+ the behavior of these loss you'll have a 
+ way different appreciation than the 
+ people who are just doing it 
+ mechanically they are given this is a 
+ loss function apply derivatives on this 
+ they still have some understanding but 
+ the people who know what loss functions 
+ are and how is this constructed why is 
+ this important why should I not use this 
+ loss function and why should I use this 
+ type of loss function in this case they 
+ have a different appreciation when they 
+ do this back propagation algorithm now 
+ how to inference now so now because you 
+ have found this so you have this you had 
+ r minimum of this so you are doing 
+ minimum you are doing minimization of 
+ log like negative log likelihood that's 
+ sometimes written as minus ll so this is 
+ negative log likelihood 
+ So once you have this negative like 
+ likelihood what how do you do the 
+ inference 
+ because your model is now predicting a 
+ distribution because I said at the end 
+ of the layer you usually if uh this is a 
+ classification problem or a multiclass 
+ you are giving output as a distribution 
+ so now you're giving output distribution 
+ something of this sort 0.2 0.5 0.1 0.4 
+ something of this sort. So now what is 
+ this yhat equal to? How to now if you 
+ have give what's called as point 
+ estimate if you have to just assign one 
+ label. Okay because it's a 
+ classification problem you have to give 
+ just one class. So what you do is you 
+ take ark max of this 
+ arg max what is the ark max ark max 
+ basically means maximum value of y. So 
+ if you have probability of y given this 
+ x and these parameters and these optimal 
+ parameters say w star. So this is our 
+ inference. This is our prediction 
+ prediction 
+ or inference. 
+ So when you infer these model so you 
+ basically see at what label is the 
+ probability highest. So that's why I'm 
+ saying that yhat that is prediction is 
+ equal to arg max of y on this 
+ probability. So as I said you will have 
+ classes let's suppose y1 y2 y3 and y4 
+ say you have these four classes and now 
+ this will give probability 0.1.4 4 0.1 
+ and then you'll have 0 suppose this is 
+ 0.2 2 and this is 0.3. So now if you 
+ take arg max of this so arg max is the 
+ operator. So when you apply this so this 
+ basically will give you such a y on 
+ which the value is maximum. So for this 
+ y2 value is maximum. So y hat in this 
+ case is equal to y2. 
+ So this is the inference step. So but 
+ how do you get it from? You get it from 
+ likelihood and you want to like decrease 
+ the loss. Basically you want to minimize 
+ this negative log likelihood. Likelihood 
+ is you want to increase that. But 
+ negative likelihood is the opposite of 
+ likelihood. That's why you want to 
+ minimize this. 
+ You might have seen me writing this arc 
+ max and arc min. Arg min basically is an 
+ operator which gives you that value for 
+ which the whole expression gets the 
+ minimum value and arc max is again 
+ operator for which arg max of y 
+ basically means such a y for which this 
+ whole expression gets the maximum value 
+ and ar if I write ar min of y that means 
+ such a y for which this expression gets 
+ the minimum value. So that's the 
+ difference. So we now saw that you 
+ started from likelihood and then you 
+ went to log likelihood because of 
+ underflow operation then you went to log 
+ likelihood because you have to give it 
+ some sense of loss it should not be you 
+ have to increase something in always in 
+ deep learning machine learning you'll be 
+ talking about loss okay and loss you 
+ have to decrease you don't have to 
+ increase that that's why we went to this 
+ log likelihood and I also told you how 
+ to do inference so what you do is you 
+ take the arg max of that y such a y for 
+ which the whole expression gets the 
+ maximum value okay so this is how you do 
+ the inference 
+ the score as point estimate also point 
+ estimate 
+ because you just want to give one class 
+ if you have to give multiple classes you 
+ maybe do some other things over there 
+ and now you have to find an algorithm or 
+ a recipe to construct a loss function 
+ how to construct a loss function now 
+ given this background how to 
+ construct a loss function 
+ so this is the question if you are given 
+ a problem now for that if you have to 
+ construct a loss what to do. The first 
+ thing is because we have spoken about 
+ probable distributions a lot. We have 
+ learned about discrete probability 
+ distributions like distributions. We 
+ have learned about uh uh let's suppose 
+ binomial distributions, polygon 
+ distribution are distributions that we 
+ have covered and in the continuous case 
+ we'll also cover gshian distributions a 
+ lot other distributions as well. The 
+ first step in here when you have to 
+ construct a loss function. So you have 
+ to choose a probability distribution. 
+ Okay, for step one select a suitable 
+ probability distribution. at a suitable 
+ probability 
+ distribution. 
+ Okay, this is the first case. So now 
+ what to select for which usually for 
+ real valued for real valued or 
+ regression problems. So for real valued 
+ outputs, so you use gshian gshian 
+ distribution. 
+ Okay, gshian distribution. And then if 
+ you have binary classification, 
+ if you have a binary classification, 
+ you will use Bernoli distribution. 
+ And if you have multiclass 
+ classification, you will use categorical 
+ distribution. If you have counts, you 
+ use poison distribution. If you have 
+ angles and directions, you use circular 
+ distributions. Okay? It depends on the 
+ problem at your hand. Okay? You have the 
+ first thing is you have to select a 
+ distribution. So why do we select 
+ distribution? because you believe that 
+ this choice encodes our assumption that 
+ data determines some form of this. So 
+ some form and then second thing is you 
+ have to parameterize that distribution 
+ using the model. So first thing is you 
+ selected a distribution because you are 
+ now modeling this process and you know 
+ that each distribution has some 
+ parameters. If you remember the lectures 
+ from probability you know that each 
+ distribution has some parameter. Let's 
+ suppose Bernoli distribution it has 
+ parameter P. Bin distribution has two 
+ parame n and p. Gshian distribution has 
+ parameter sigma and mu that is variance 
+ and mu. So I'll just write them. If you 
+ talk about Bernoli distribution, Bernol 
+ distribution had a parameter known as P 
+ probability. Binomial distribution has 
+ had two parameters N comma P. So it had 
+ number of trials and the probability in 
+ each trial. And we said that this 
+ binomial distribution is repeated 
+ Bernoli distribution and Bernal 
+ distribution you have it is some way you 
+ have two possibility has a tail. So we 
+ apply Bernal distribution success and 
+ failure. So success probability is P. 
+ Everybody so far everybody here with me? 
+ Okay. Okay. Now as I said that these 
+ distributions have some parameters. Now 
+ you have to find these parameters by by 
+ that model. That's what the second step 
+ is. You have to parameterize the 
+ distribution using model. You have to 
+ parameterize 
+ the distribution. 
+ Okay. Let me just write this somewhere 
+ else. 
+ Take it here. 
+ parameterize the distributions using 
+ your model because you are using a 
+ parameterized model a neural network. So 
+ how to do that? Because you have some 
+ parameters theta. So let's suppose you 
+ have and theta can be p in this case and 
+ np in binomial case in gshian 
+ distribution 
+ you have sigma and mu. Sigma square is 
+ variance and mu is mean there. Now theta 
+ in this case will be sum of these. So 
+ you have to parameterize this. So you 
+ are having this f of x and weights. You 
+ have these weights and biases. You have 
+ the model parameters and you're having X 
+ and you are estimating these these 
+ parameters the distribution parameters 
+ by using the model. Okay, this basically 
+ is equivalent to probability of now you 
+ after you estimate this after you find 
+ the after you adjust W to get these 
+ parameters. So you are trying to 
+ probability of Y given this theta given 
+ the parameters of this model this 
+ basically will be equivalent to 
+ probability of Y of F of X W or XW. 
+ This is what you want to find. This is 
+ the second second step. This again 
+ maximum like estimates some sort of 
+ things like that. So you want to 
+ estimate the parameters of the 
+ distribute either P, NP, P or P because 
+ you want to fit that distribution 
+ somehow and you'll find those parameters 
+ by using the model. Okay. And your model 
+ is parameterized by these W the model 
+ parameters. So these is these are model 
+ parameters. 
+ You might confuse between these 
+ parameter. I will explicitly write. And 
+ these are distribution parameters. 
+ These are distribution parameters. These 
+ are our model parameters and now you 
+ know that this thing and you have to 
+ basically find this probability for a y 
+ given given that theta and you have to 
+ come up with the this is the second 
+ step. Third step is define this negative 
+ log likelihood. So step three or third 
+ third step over here is define the loss 
+ as negative log likelihood. Define 
+ loss as negative log likelihood n. Okay. 
+ So now you have to compute the training 
+ object. So what should you do? So you 
+ should say that let's suppose I have 
+ this L of W. So L of W is a loss 
+ function. So you you want to find such a 
+ W optimal W and you want to see R min 
+ of W on this L of W. This is your 
+ optimization problem 
+ because now you want to do it with log 
+ likelihood. So how to do that? L of W is 
+ equal to minus summation of I is equal 1 
+ to let's suppose I or whatever. And then 
+ you want to see log of probability yi 
+ for particular x comma w. Okay. Now I'm 
+ converting that pi into this because 
+ after applying log I can convert them 
+ into I can convert all these 
+ multiplications by this addition. So 
+ this over here is applying that log like 
+ on the distribution. 
+ Okay. Let me write this box a better 
+ way. Okay. So this is that. So this is 
+ your negative log likel loss. So this is 
+ your loss which is negative log 
+ likelihood. 
+ And fourth thing is now you have to 
+ perform inference. Step four 
+ or fourth perform the inference. 
+ Perform inference basically means do the 
+ forward pass. Perform inference. 
+ Inference basically means you have to do 
+ point is called as maximum point 
+ estimate. MAP prediction. So return a 
+ point estimate. So how to do that? So y 
+ prediction is equal to r max. So you 
+ want to get the maximum value for a y 
+ such that this probability for a 
+ particular whatever the class is that 
+ you should get maximum value for that. 
+ Okay. I hope that you are clear with 
+ this now. And now let's let's take an 
+ example. We'll take example of binary 
+ classification. I'll tell you that we 
+ we'll land up at binary cross entropy 
+ loss by using the algorithm that I just 
+ laid out. So example is for binary 
+ classification. 
+ So before doing this let's again see the 
+ four steps. The first step is choose a 
+ distribution and second step is so once 
+ you choose the distribution so as I said 
+ for real valued output you can take 
+ gshian distribution for classification 
+ you can take bernoli distribution and 
+ for other distribution you according 
+ take some distributions at hand and 
+ second thing is you parameterize the 
+ distribution using your model some 
+ something of this sort you will estimate 
+ the parameters by using the model okay 
+ that's how you and then on on that you 
+ will define the loss function you'll 
+ define this loss function and after that 
+ you'll do the inference now let's 
+ suppose we have binary classification 
+ where we have two classes. Okay. So why 
+ belongs to zero or one label can be 
+ positive, negative, success, failure, 
+ something of this sort. So now binary 
+ classific as as you know most common 
+ task in machine learning. Now we have to 
+ choose probability distribution for 
+ this. As I said we will use Bernoli. 
+ This is the step one. Choose a 
+ distribution. I'm choosing Bernoli 
+ distribution. 
+ Bernoli distribution. 
+ And you know what Bernal distribution 
+ is? So Bernal distribution has let's 
+ suppose uh it's parameterized with W. So 
+ we have lambda gives 0 or one. So this 
+ is what it has. If I define this, if I 
+ define probability of y given lambda. So 
+ if you are given some lambda, we'll say 
+ that this is 1 minus lambda or p the 
+ probability because I don't want to 
+ confuse this p with some other things. 
+ So here I'm using lambda the standard 
+ notation probability y given lambda. So 
+ this lambda is the parameter and this is 
+ equal to when y is equal 0 and when y is 
+ equal 1. So this is the probability. So 
+ this is how we define the probability 
+ mass function of that. Okay. Or 
+ compactly we can write it like this 
+ probability of y given lambda. So this 
+ is equal to 1 - lambda 
+ * 1 - y and multiplied by lambda 
+ multiply y. I think this also you have 
+ seen previously in the probability 
+ classes. 
+ This is what I how I write it. So now I 
+ have select distribution. The problem 
+ was binary classification and binary 
+ classification problem. Once selected I 
+ said that now I have to choose a 
+ distribution. I chose the distribution 
+ bon distribution. I know that this 
+ lambda is the prob probability of 
+ success because you can have such 
+ failure and the parameter over here is 
+ probability of success. So probability 
+ of y given this lambda. So it is defined 
+ like this. So I can write probability 
+ mass function like this. Any doubts 
+ still here. 
+ So now we selected this. If you again 
+ see the steps the first step was uh to 
+ select at distribution. So because we 
+ had binary classification we selected 
+ bal distribution. And the second thing 
+ is you have to parameterize the 
+ distribution using your model. Okay. Now 
+ if you know if you see the model suppose 
+ we have this model. Now model gives the 
+ outputs. So if you see f of x, w so this 
+ will be our outputs or logits which we 
+ call. So we'll have these logs. So they 
+ can be from minus infinity to infinity. 
+ We'll have to apply some function onto 
+ them so as to give them some 
+ probabilistic meaning. Let's suppose if 
+ it's a binary class, we'll have just 
+ single neuron. Say at the end we'll have 
+ single neuron. So we we can apply 
+ logistic sigmoid function on this 
+ logistic 
+ sigmoid function. So what is that 
+ function? We have covered that in 
+ detail. I suppose you people will be 
+ understanding that. So sigma of let's 
+ suppose z if the z is uh this output 
+ function the logic and you apply sigma 
+ of z that is 1 / 1 + e minus this is the 
+ function that we usually apply so that 
+ it converts into probability 
+ distribution. So this will the value 
+ will be between 0 to 1. This is what the 
+ logistic function does. Okay. Once we 
+ have this now what we can do is we can 
+ say that this lambda the because we have 
+ to parameterize distribution parameter 
+ should be parameterized by the model 
+ parameter. So what to do that? So we can 
+ say this lambda is equal to sigma of f 
+ of x w. 
+ Okay. So this is how I can write this. 
+ Now step three is this was step two. 
+ Step this was step two. Step one was 
+ choose a distribution. Step two, I 
+ parameterize that with the model because 
+ I know that at the output of the model 
+ and use this I'm using this sigmoid so 
+ as to convert that into probability. 
+ Step three is now you have to write it 
+ into log likelihood. So what is log 
+ likelihood? You already know that. So 
+ now if I write probability of yi given x 
+ i and the model parameters because I 
+ have to write it for let's for a single 
+ training example. I'll just write for 
+ one training example x i which has 
+ corresponding yi label. 
+ So what is this equal to? So this will 
+ be equal to 1 minus sigmoid of 
+ f of x i 
+ comma w because I sigmoid and multiply 
+ this is basically lambda 1 - lambda if 
+ you see that's here 1 - lambda 1 by y so 
+ the probability I'm applying this 
+ probability so 1 - lambda 1 - y and 
+ lambda of y so this is multiplied 
+ so I'm saying 1 - sigma of f of x of y 
+ and then add this I'm writing 1 - yi and 
+ then multiplied by sigmoid of f of x i w 
+ yi so if you see this over here 
+ so if you see this over here so this is 
+ some s some of some of like this now you 
+ know that I if I apply this log 
+ likelihood on this if I now convert the 
+ step four is apply log likelihood step 
+ four convert this into log likelihood 
+ once I apply log onto this so this thing 
+ if I apply log onto this so this will be 
+ l of let's suppose w So this will be 
+ converted to x= i = 1 to i and minus of. 
+ So I'll apply log onto this. So this 
+ function will be applied. I will I'll 
+ apply log on this. So you'll get 1 minus 
+ y i. So I'm just copying the equation. 
+ But I hope you will do the calculation. 
+ Basically when I'm applying log on this. 
+ So I'm applying log on this. So once I 
+ apply log on this function, this 1 - i 
+ will go down. So this will come down 
+ over here and you will be left and again 
+ you'll apply this log on this. This yi 
+ will go down. So you'll be left with 
+ summation of this 
+ and then 1 - yi 
+ log of 
+ let me just see 1 - 1 - sigma of f of x 
+ i and w and plus 
+ this is with the whole braces plus 
+ second thing is yi because I also apply 
+ log on this this is negative log I'm 
+ applying negative log likel so yi again 
+ log 
+ this sigma will remain as it is sigma of 
+ f of x i w and this will be closed. So 
+ if you see this over here this is again 
+ binary cross entropy loss. This loss 
+ over here is binary cross entropy loss. 
+ So how many of you can recognize this 
+ binary cross entropy loss. 
+ So let's suppose this this is predicted 
+ yi. This is our prediction. So I can 
+ write it L of W is equal to minus sigma 
+ of I = 1 to I and then 1 - Y this is the 
+ ground truth and then log of 1 minus 
+ this is prediction by the network so Y - 
+ Yhat and then plus this is YI this is 
+ prediction of this this is log of 
+ prediction of network 
+ can you see that this again is binary 
+ cross how many of you appreciate this 
+ now we did the same four steps I again 
+ came up to binary cross entropy loss by 
+ using the maximum likelihood criterion. 
+ Okay. Now you saw an algorithm you saw 
+ loss function algorithm by which by the 
+ help of which you can construct loss. 
+ Again when that the first thing you are 
+ doing is you are selecting a suitable 
+ probability distribution. Okay. Whatever 
+ the problem is there will be some 
+ probability distribution which match it. 
+ So in our case in our case let's suppose 
+ where we took a classification problem 
+ because in classification you have class 
+ zero or class one. Consider this as 
+ class success. Consider this to be class 
+ success and this to be class failure. 
+ Okay. And then there will be some 
+ probability of success. So when you 
+ sample these images or let's suppose in 
+ these emails there'll be some 
+ probability of success. Consider that 
+ probability is lambda. That is the 
+ parameter we had. So if you see this 
+ this is the exact template that was 
+ there for Bernoli distribution. So what 
+ was Bernoli distribution? So Bernal 
+ distribution of lambda was if you have 
+ some experiments where there there is 
+ this template that you have success and 
+ failure. 
+ So when I was teaching you this I said 
+ in the real world there are a lot of 
+ problems which are like this where you 
+ have success failure. So we took example 
+ there head tail to just make the point 
+ through otherwise you could have taken 
+ any example. So in this binary 
+ classification case this exactly is like 
+ bernoli trials. So if you perform bol 
+ trials so basically you're just taking 
+ image if it is scatter dog you are 
+ saying that is a bernoli trial. You are 
+ taking let's suppose an email it is a 
+ bernoli trial. It can be ham it can be 
+ it can be normal email no spam or it can 
+ be spam emails or it can be ham emails. 
+ So some some of one of them it can be 
+ failure or a success. So you are now 
+ adjusting this you are saying that okay 
+ so this thing is like that distribution. 
+ Now if I model this with my probability 
+ distribution. So I'm saying that 
+ basically I have to find this lambda. 
+ That's what I said in the second step. 
+ The step first was choose a probability 
+ distribution and that should be chosen 
+ on the basis of problem. So as I said if 
+ you have binary classification you'll 
+ choose Bernoli distribution because you 
+ have learned about Bernoli distribution 
+ you see okay Bern distribution and this 
+ classification they are almost same 
+ problems abstraction of same problem. 
+ And now second thing is you have to 
+ parameterize. Now I told you you have 
+ distribution parameters and then you 
+ have these model parameters by using 
+ this model. You have to par you have to 
+ come up with these parameters. So in our 
+ case we had this lambda. If you see in 
+ this in in this case we had to par we 
+ had parameterized by lambda. You had to 
+ find that. So what I said this lambda in 
+ the step two is equal sigmoid. This 
+ you'll apply output on the sigmoid. So 
+ you parameterize by these models. So 
+ this is our distribution parameter 
+ distribution parameter and this w was 
+ our model parameter. Can you 
+ parameterize basically this distribution 
+ with the model? So that's what the 
+ second step was. Parameterize the model. 
+ Parameterize distribution using our 
+ model. Third step was define the loss. 
+ Now you have to define the loss. So how 
+ to define the loss. Now I said okay loss 
+ should be defined somehow like this. You 
+ have to you have certain example XY Y1 
+ is the example. So you're saying that 
+ probability why I given this X I and W. 
+ Okay. This should be defined like this. 
+ Whatever probability you have used over 
+ here. Okay. And you you got it from 
+ here. So you directly used it here. You 
+ defined loss in this way. 
+ Okay. Now you're using applying negative 
+ log likelihood. After applying negative 
+ log likelihood, you landed up at binary 
+ cross entropy law. So this is what we 
+ also saw when we were defining entropy. 
+ So the amazing thing that the thing that 
+ you should be amazed at is that we 
+ started with entropy. Okay, we start 
+ with basically information content 
+ entropy and we landed up at binary cross 
+ entropy and we landed up at let's 
+ suppose categorical cross entropy or in 
+ general cross entropy something of that 
+ sort and then we took care divergence. 
+ We again landed up at this entropy 
+ somehow it was related. Then we saw 
+ probability we again landed by this 
+ concept that we can come up with this 
+ binary cross entropy. If you again use 
+ this algorithm let's suppose for this 
+ categorical distribution 
+ if you use it for categorical 
+ this was classification where you have 
+ multi classification you'll use 
+ categorical distribution for that and 
+ that distribution is again some 
+ properties you again use the same thing 
+ you know you'll come to categorical 
+ cross entropy loss you'll find that I'm 
+ now bo everything is boiling down to 
+ categorical cross entropy loss if you 
+ use some regression problem if you have 
+ so here this categorical distribution 
+ was used in terms of multiclass 
+ classification 
+ multiclass 
+ classification 
+ and you land it up as categorical cross 
+ entropy loss. If you have a regression 
+ problem, if you have regression 
+ regression problem, 
+ so what you can do is you can use gshian 
+ distribution. 
+ So if you use gshian distribution and 
+ follow the four steps that I told you 
+ step one uh choose a distribution and 
+ after that model the parameters of this 
+ distribution by using the model. So you 
+ have to parameterize this by using the 
+ model parameters and you choose this go 
+ you know you will land at mean squared 
+ error loss. 
+ So this is what you will do. So after 
+ you choose the equation then you 
+ construct a loss function and then you 
+ apply negative log likelihood on that 
+ and you will come to all these loss 
+ functions by using these things. Okay, I 
+ hope that everything is clear. So I'll 
+ stop this recording now and I'll take 
+ your questions if you have any.

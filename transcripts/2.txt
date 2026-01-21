@@ -1,0 +1,2622 @@
+hello and welcome everyone so we'll 
+ again resume machine learning in this 
+ session if you remember from previous 
+ session so we introduced a lot of 
+ concepts of machine learning what 
+ supervised machine learning is and then 
+ what unsupervised learning is what is 
+ what is reinforcement learning what is 
+ semi supervised learning and lot other 
+ mode concept what what is the task what 
+ is the experience and what are different 
+ metrics so now today's session's goal 
+ will be to introduce a problem and to 
+ tell you all the terminology most of the 
+ terminology that we usually use in the 
+ machine learning okay so we'll just uh 
+ do it with a synthetic example we'll 
+ we'll do something with uh data and 
+ we'll maybe generate a synthetic data 
+ and then we'll try to introduce those 
+ terminologies it'll be easier that way 
+ okay so that's my goal now uh we have 
+ data let's suppose we have some data so 
+ data what it contain it contains 
+ information okay it has an information 
+ in it I won't go to mathematic datas 
+ right away so I first want you to have 
+ an your understanding so in the data we 
+ have the information we have all the 
+ assumptions that we have and we assume 
+ that this data comes from a certain 
+ distribution and from that distribution 
+ uh we want to learn it by Machine 
+ learning and that's an unknown 
+ distribution and now that information 
+ what it does actually it actually 
+ contains 
+ surprise okay I'll explain you what it 
+ means so let's suppose you observe some 
+ data if you are not surprised if you are 
+ not surprised that means it does it 
+ didn't have much information so what I 
+ mean by that if you just took a data 
+ point if it was a data point and you 
+ already knew a lot of things about it 
+ you expected it to be this way okay then 
+ it contains very less information okay 
+ that means if the surprise is very less 
+ the information is also very less if now 
+ you are more surprised okay let's 
+ suppose you did not know something when 
+ you saw the data point you came to know 
+ about that thing what happened that now 
+ now that thing contains more surprise 
+ that means it contains more information 
+ and we'll see all this in information 
+ the we'll see what entropy is and 
+ everything I'm just giving the in 
+ explanation so now we have data and you 
+ are seeing a data point if you came to 
+ know about a lot of things by seeing the 
+ data point that means the data point 
+ contains a lot of information okay so 
+ degree of knowing degree of how much you 
+ came to know degree of the Enlightenment 
+ is the degree of the information that 
+ data point contains okay that's what we 
+ want to reveal so this data basically 
+ comes from a 
+ distribution I'm again using Loosely 
+ those terms because we have not yet 
+ covered the probability part what 
+ actually we mean by this distribution 
+ mathematically so we have a distribution 
+ uh from which we assume this data comes 
+ and this distribution is unknown to 
+ us okay this is unknown okay that's the 
+ whole game of machine learning if the 
+ distribution is known then why are you 
+ doing machine learning so now what I 
+ said is this data contains information 
+ it contains something that we're 
+ interested interested in and what is 
+ information it is the amount of surprise 
+ how much surprised you are if you do not 
+ know something you just pick a data 
+ point and you say oh I got to know this 
+ this this this this it's somehow 
+ surprised you the amount of surprise um 
+ that was in data point that's how much 
+ information it captures if you are so 
+ much enlightened by that okay that's how 
+ much information we'll have now we can 
+ just have any type of data you can have 
+ data about image you can have data about 
+ uh uh audio you can have data in terms 
+ of text and all this data and many of 
+ the terminologies that we use in machine 
+ learning you'll see them uh almost 
+ coming in 199% of examples so here we'll 
+ use a synthetic data example and uh the 
+ references uh Bishop's book on deep 
+ learning it's a recent book uh I think 
+ published in November 2024 and I'll 
+ probably use the example from there so 
+ now we'll see that oh not moving at all 
+ give me a 
+ second now let's assume a problem so 
+ what we have is let's suppose we'll 
+ denote we'll have a variable X okay if 
+ you don't understand just raise your 
+ hand and then ask me the questions I'll 
+ be happy to clear the doubts if you have 
+ any so now what we'll have is so let's 
+ consider an input variable which we 
+ denote by X so this is our input 
+ variable so we'll keep a problem very 
+ simple so that you understand uh the 
+ concepts that I'll introduce and then 
+ we'll take the algorithms of machine 
+ learning and deep learning so you have 
+ this input variable let's denote this by 
+ X okay then we have a Target 
+ variable have Target let's call that t 
+ Okay so this input and this target so 
+ now from this you can know this is a 
+ supervis 
+ setting 
+ supervised setting or supervised 
+ learning because along with this data 
+ point along with the input you're also 
+ given the target okay and this x and t 
+ let's consider that both are continuous 
+ they they take continuous 
+ values they take continuous values what 
+ I mean by continuous as they can take a 
+ value from real number okay and this x 
+ comma T it belongs to these real 
+ numbers okay so that means it can take 
+ value of 1.5 x can be 1.5 let's suppose 
+ T can be 4.6 something like this it does 
+ not take discrete 
+ value okay a setting and now the thing 
+ is that we have a training set which 
+ contains n observations so we 
+ have a data set I can call data set or a 
+ training set data set which contains 
+ let's suppose capital N examples so what 
+ is that then because we have this x is a 
+ variable so here we'll have X1 X2 X3 
+ till let's suppose 
+ xn so this over here so if I call this 
+ capital x let's say this over here is my 
+ data set okay this is my dat set and 
+ these are my individual observations or 
+ individual features that I have okay and 
+ this is my one data point second data 
+ point third data point and four because 
+ I only one feature over here okay so 
+ this is the input 
+ variable 
+ input 
+ variables and now correspond to that 
+ I'll have targets I'll have targets like 
+ T this will be T1 T2 T3 till 
+ TN this is my target 
+ okay now the goal of this problem will 
+ be if you somehow can predict if you 
+ have these seen values okay then you 
+ have some unseen values also so this 
+ let's suppose the whole data set if if I 
+ just split the DAT set from X1 till 
+ let's suppose x nus 100 okay and from X 
+ xn uh minus 100 till 
+ xn okay and this I'll put it 
+ closed I think we know about what 
+ intervals are so let's suppose this is 
+ my seen data set which I can see and 
+ this is my 
+ unseen okay so I have seen data set on 
+ which I want to do something I want to 
+ learn so because this I assume contains 
+ information and this I assume that comes 
+ from a probability distribution okay and 
+ now I'll feed this into a machine 
+ learning deep learning what algorithm 
+ now my my goal will be to predict these 
+ T's because these Cen data will be it 
+ will have its uh let's suppose uh these 
+ corresponding targets X1 will be 
+ accompanied by T 1 X2 by T2 okay let's 
+ suppose for these things they do not 
+ exist for us okay let's suppose from t 
+ uh nus 100 to TN they don't not exist 
+ for us now the goal of the problem is 
+ that you have to predict this t for this 
+ unseen examples that's a goal that we we 
+ have okay so what's the 
+ goal 
+ predict 
+ Target for unseen 
+ data unseen data 
+ this is our goal now what we have is 
+ we'll first generate this data because 
+ now in order to uh show you how the data 
+ is actually captured in the real world 
+ so what I'll do is because I won't take 
+ a real data set directly okay so now 
+ let's suppose I know the distribution it 
+ comes from let me be let because God 
+ knows okay for the sake of Simplicity 
+ let me be the God for this example okay 
+ I will know that what distribution this 
+ data comes from so I'll generate the 
+ data so we'll have process of generation 
+ of data so we'll generate this 
+ data okay because when we gener we call 
+ it synthetic 
+ data okay so I'll generate this data so 
+ how how can I generate this data is I 
+ can use a lot of functions I can use a 
+ lot of functions by which I can generate 
+ data so in order to actually uh capture 
+ the real world sense of data so what 
+ I'll do is I'll use a simplistic 
+ function let's use a sign function I'll 
+ use a sign function s 
+ of 2 pi xn okay so this function I'll 
+ use and based on this I'll 
+ generate I'll generate the data 
+ okay now you can see that this is a 
+ deterministic process okay if I just 
+ give the value of x to it it will give 
+ me a Target okay and X I can form the 
+ pairs of x and t okay and and this is 
+ the function by which I I just plug in 
+ the value of x and I'll it will give me 
+ the value of the target so this is my f 
+ of x so FX is equal sin of 2 pix so this 
+ is how I generate data but if you see 
+ real world data does not only have 
+ pattern it also has some noise as it so 
+ I'll add noise to it also I'll add noise 
+ okay and in particular I'll hear add Gan 
+ noise this is how I'll generate my data 
+ set so what I say is so real world data 
+ it has some pattern that's what we want 
+ to learn because machine learning someh 
+ captures the pattern it captures that 
+ probability distribution and that 
+ probability distribution will be somehow 
+ well defined it won't be just any sort 
+ of thing okay otherwise it'll be very 
+ hard to learn from it so what we assume 
+ is that there is a function probably a 
+ very complicated one in real world data 
+ set but here we're making a simplistic 
+ assumption that let's suppose I'm the 
+ God for this example I know the 
+ distribution it comes from I know the 
+ function that is generating this data 
+ okay so let's suppose this is the 
+ function so in actual deeping there will 
+ be a lot complicated functions and that 
+ we won't have closed from closed from 
+ equations to for for the data so here 
+ let's assume that this is the function 
+ which is the data and in order to 
+ capture the real world sense of data so 
+ what we should do is we should add some 
+ noise because there is a pattern and 
+ there is a noise okay that's what makes 
+ real world data difficult and where this 
+ noise comes from it comes from internic 
+ Randomness okay there's certainty 
+ involved everywhere even if there was a 
+ pattern if there's a clear pattern but 
+ still you can see that somehow it 
+ deviates from that pattern why because 
+ there is an intrinsic Randomness and 
+ other other things can be there can be 
+ unobserved source of variability okay 
+ some environmental factors some other 
+ things which introduce this noise okay 
+ in order to mimic what happens in real 
+ how how does how do we assume that data 
+ is so there is a pattern okay now I said 
+ two things about the real world so when 
+ you have data so there's actually a 
+ pattern in that data but that pattern is 
+ not called visible directly why because 
+ it is somehow randomized by noise there 
+ is noise estated with that those samples 
+ because if you if you can if you just 
+ have a pure pattern data that's not real 
+ world data then okay because real world 
+ data has some uh has some noisy Noy 
+ noisy things in addition to the pattern 
+ why because I said let's suppose because 
+ of radioactivity decay if there is some 
+ inic if there are some factors something 
+ else this pattern is there and this 
+ noise is there and the goal our goal is 
+ this our goal is to capture this pattern 
+ this is our goal 
+ okay now what we want basically is we 
+ don't want to we basically want to learn 
+ this function we want to learn this 
+ function from the data if this data is 
+ given to us and we should learn the 
+ function that's our goal now okay now 
+ let's go to the code window and I'll 
+ show you 
+ that okay let 
+ me just go to the code window give me a 
+ second so now you understood that the 
+ process of generation so what I said is 
+ there is a pattern in data and in the 
+ real world data there is some noise as 
+ with it so now what we'll do is I will 
+ uh be the creator of this data for time 
+ being because I know the pattern where 
+ where the pattern comes from and also 
+ know where the noise comes from the goal 
+ will be to learn that pattern not the 
+ noise okay so what I'll do is I'll 
+ import n and M plotly because I'll also 
+ plot it so going here just hold on for a 
+ second once I do it and then you can ask 
+ me 
+ questions so this I have imported number 
+ and M plot lip and what I'll do is I'll 
+ I'll generate a function so in that I'll 
+ also generate a gion noise so I'll write 
+ a function so here you can see 
+ definition generate a synthetic function 
+ and I this is n number of samples I want 
+ to generate and noise standard deviation 
+ because in here if you know in gion uh 
+ distribution you have this mean and 
+ standard deviation and now I'll also 
+ give a random seed for the reproducible 
+ purpose if you want to do it yourself 
+ also what I'll say if random seed is not 
+ none so then assign this a seed so what 
+ I'll do is I'll say if random seed is 
+ not none then NP uh do random. seed is 
+ this random seed okay so that you can 
+ reproduce the results yourself and then 
+ I'll generate uniformly uh some values 
+ uh which are between this 0 and one okay 
+ because I want to generate values for 
+ this s of uh 2 pix so for this I need to 
+ generate this x values first this is 
+ what I do so I'm generating x equal np. 
+ l space 01 and number of points this 
+ should be n so what it does is it will 
+ generate uniformly spaced X values in 
+ the range of 0 to one okay after that 
+ what I'll do is I'll compute the target 
+ value because I know how to compute 
+ Target values so the target values will 
+ be computed like this X2 uh this T value 
+ Target value is NP sign of 2 pi of X 
+ okay that's what I said this is my 
+ actual value that I want to 
+ compute and then I'll add a noise to it 
+ I'll add a noise so what that I'll add 
+ that Gan noise with the mean 
+ zero okay now what I do is so this is my 
+ noise np. random. normal okay basically 
+ normal distribution is also called Gan 
+ distribution where the mean of zero and 
+ the deviation of this noise standard 
+ deviation and what's the size size of n 
+ so that's how many points should I 
+ create noise so here let's suppose if I 
+ create n number of points so this T will 
+ also be the size of this will be n and 
+ the noise also will be n now what I'll 
+ do is I'll just add this X and Noise 
+ Okay so that I get the final 
+ Point okay so if you see 
+ this so I actually I want to add the 
+ target so because I have this x value 
+ correspond to this I'll have to add this 
+ T2 and the noise because that is the uh 
+ last value the target value and for 
+ which I'm adding the noise so I'll do 
+ this I'll say the final point the final 
+ T is equal to T true and the 
+ Noise Okay this is my final value okay 
+ then I'll return this I'll return my my 
+ data this is the data that I have 
+ created I'm saying return this x and t 
+ that is return the origin this x so 
+ these are uh the input variables and 
+ these this is my Target and this target 
+ is noisy there's a pattern clear pattern 
+ this pattern is here okay and this is my 
+ noise that's that I'm adding and then if 
+ I want to plot it okay if I want to plot 
+ it I'll again write a plotting 
+ function okay so this is my data 
+ generation function data synthtic 
+ generation function so now I have this 
+ plot synth and I X value and T and I'll 
+ give a title also so I'll say if I want 
+ to save it also I can save it but by now 
+ you should be very much well wored with 
+ the code I write in Matt plot Li should 
+ not be very difficult for you people so 
+ now you can see it over here so I'm 
+ plotting the figure you can see it so 
+ here I'm calling this function if you 
+ see this is my X and this is my T so 
+ I'll call this function I'll first 
+ initially call this function so I just 
+ create generate the s data and then I'll 
+ call this function so I just to plot 
+ it okay what I'll do 
+ is so I want to create 10 points let's 
+ suppose n is equal 10 I'm saying n is 
+ equal 10 let me just take it 
+ here okay if you see this so n is equal 
+ 10 number of data points this is my 
+ noise standard deviation okay and this 
+ is my random seed if I want to reproduce 
+ the same thing so X comma T this is my 
+ input variable and this is my target 
+ variable I'm saying generate synthetic 
+ data okay n is equal n and noise is this 
+ much and this is the random SE and then 
+ I'm saying plot this also if I plot it 
+ so you can see it over here so this is 
+ my plot so this is my data point so just 
+ let's suppose if I increase number of 
+ points if I increase it to 100 can you 
+ should see a sydal pattern okay and with 
+ the m it's not clearly sydal okay there 
+ are some noisy also I wrote The Noisy 
+ observation over here but I just want it 
+ to uh be ploted with the 10 
+ points okay so I hope this is clear to 
+ any questions on this any 
+ questions now coming back to this so if 
+ you see this is how we generate data so 
+ what I said is there is a pattern so 
+ what is that pattern so that 
+ pattern is sin of 2 pix sin of 2 pix so 
+ this is the generating function and then 
+ there is a noise okay and this noise is 
+ normally distributed with some zero mean 
+ and some stand deviation of 0.1 okay so 
+ and we discussed at length what what I 
+ mean by noise basically anything that is 
+ unwanted for me and I won I I assume 
+ that is a noise because that disturb 
+ this pattern that I want to learn okay 
+ and this pattern is actually important 
+ to me this is how I generate this data 
+ now what we'll do is we have to predict 
+ these things the objective is to predict 
+ if I let's suppose this is these are my 
+ values if I know the values till here so 
+ okay I have this this this these points 
+ these are the points which I know the 
+ target values also so I have the input 
+ values and I have the target values as 
+ well so let's suppose somebody gave me 
+ some inputs like this somebody will give 
+ input like this so these are the input 
+ that that I I'll call as test input 
+ let's these red points or red dots okay 
+ so I have to test for these now in order 
+ to do this somehow I should find a 
+ function which is uh generating this 
+ data okay that I know but I should learn 
+ it somehow by by using algorithm so here 
+ I'll skip the algorithm part the 
+ objective is to use the Str to use these 
+ Blue Points okay to predict the target 
+ variable t for these new variables okay 
+ for these red variables the red 
+ variables I have here the objective 
+ again to rate is to use the trending set 
+ these Blue Points okay in order to 
+ predict the target value for these these 
+ value and here I can see I have the 
+ target values when I when I draw these 
+ points also but it they'll be just given 
+ as points to me they won't be given on 
+ the graph they'll be just given they'll 
+ be given X values because when I draw 
+ when I draw this point let's suppose 
+ this point so I give x value as well as 
+ T value so this is my T value this is my 
+ x value so but how these points will be 
+ given these points will be given to me 
+ like this so this is my x value I'll 
+ just is given x value so I'll be given 
+ this point I'll be given point like this 
+ I'll be given point like this okay I'll 
+ be G Point like this because I I I'll be 
+ given just one value that's x value and 
+ from this I'll have to get the target 
+ value so for example for this the target 
+ value will be lying somewhere around 
+ here okay somehow I should predict this 
+ so I'll be given so this over here if 
+ you see this so this is my test set or 
+ the Unseen data okay all these Blue 
+ Points over here these are my training 
+ data okay this is the objective from 
+ these Blue Points I should somehow learn 
+ a function I should capture the pattern 
+ and then these points which are given to 
+ me okay because they have this only x 
+ value I have to predict t value from 
+ there so okay once I somehow came up 
+ with the function that is generating 
+ this uh these observations I will easily 
+ be able to predict what is the T value 
+ for these X 
+ values now the challenge here is we have 
+ this finite data set 
+ okay I'll 
+ just so we have the finite points so if 
+ you see we have the finite data point 
+ finite data 
+ set okay so we have to we have this 
+ finite data set and from this we have to 
+ generalize okay and it is inherently 
+ very difficult because you don't know 
+ from the finite is it represent the 
+ whole population because data can be 
+ infinite and that infinite thing might 
+ represent the population might represent 
+ the actual probability distribution so 
+ what I say this problem is inherently 
+ difficult and why because of this finite 
+ data set okay because you have you have 
+ access to finite data so in the previous 
+ discussion also I told you that the more 
+ you increase data the high probability 
+ is that you are going close to the 
+ probability actual probability 
+ distribution okay so there's a 
+ probability distribution let's call that 
+ P okay the more points you sample from 
+ it the closer you go to this okay and 
+ how to quantify this then the 
+ probability Theory comes in probability 
+ Theory because there's uncertainty okay 
+ when you sample the point there's 
+ uncertainty so then probability gives us 
+ the mathematical framework so this 
+ probability it gives a mathematical 
+ framework to quantify this uncertainty 
+ you way you can quantify the uncertainty 
+ so what I said is the more points you 
+ have it someh approach the ex exact 
+ probability distribution and but we have 
+ this finite data set that's why I said 
+ it's inherently very difficult this 
+ problem is very difficult to solve 
+ because we have to generalize not to 
+ memorize okay and then once we have this 
+ uh mathematical notion to capture this 
+ uncertainty and to quantify this 
+ uncertainty then comes the decision 
+ Theory so what decision Theory does it 
+ helps to leverage these prob 
+ probabilistic representation to make an 
+ optimal prediction okay based on this we 
+ make prediction based on this we try to 
+ quantify this uncertainty because as I 
+ said this problem is in very difficult 
+ in order to get the problem we should 
+ have whole dat set and there will be 
+ there will be infinite values of there 
+ will be infinite uh points in the data 
+ set so but we have this finite data set 
+ from this we have to come up with this 
+ actual proper distribution what I said 
+ is the more we sample the closer we get 
+ to the probability distribution so now 
+ we cannot get the whole data set so 
+ there is uncertainty involved so that 
+ uncertainty is captured by probability 
+ okay that uncertainty is Quantified by 
+ probability so now once we quantify that 
+ probability once we quantify this 
+ uncertainty by using probability then we 
+ leverage this probability probabilistic 
+ representations to make some optimal 
+ predictions okay that is done in 
+ decision Theory okay so these are the 
+ two things where the mathematics chips 
+ in again so probability is used to 
+ quantify uncertainty so in order to we 
+ have now we have this probabil 
+ representations in order to make a 
+ optimal prediction based on that so we 
+ use decision Theory okay now that that's 
+ where this uh this probability andion 
+ Theory comes from so learning 
+ probability from the data it's a it's a 
+ core thing to machine learning okay uh 
+ and we'll explore these ideas once we go 
+ to these probability and once we maybe 
+ we'll also touch a bit of decision 
+ Theory okay and maybe information Theory 
+ as well okay so we have this finite data 
+ set now so now the point is what we'll 
+ do is we'll do a simple algorithm that's 
+ called as curve 
+ fitting okay what we'll do is we'll try 
+ to fit a curve we'll have Cur fitting 
+ algorithm okay now if you see the data 
+ that we had if I again uh bring up the 
+ code you can see it over 
+ here so this is my curve fitting so if 
+ you see this somehow I should fit a 
+ curve onto this okay and we have learned 
+ a lot about curves we have learned a lot 
+ about lines linear surfaces and then we 
+ can also have Parable let's suppose if I 
+ just have this uh if I want to draw a 
+ line so I'll say W plus W1 X1 is equal Z 
+ something like 
+ this okay so this will be a line okay 
+ and if I want uh let's suppose not a 
+ parabola a line will be there if I want 
+ a parabola like this I'll put just 
+ Square I'll put Square over here if I I 
+ can have curve like this okay I can have 
+ different sort of Curves and now I have 
+ to fit this curve I have to fit in these 
+ cures so I can take a combination of 
+ these curves this this this I can just 
+ keep on adding the power so what I'll do 
+ is so I'll write an expression of curve 
+ fitting this is what I want so to fit uh 
+ this curve onto this data so what I'll 
+ do is I'll write the expression of a 
+ curve so I have this y x comma W so this 
+ is my curve fitting this is how I'll fit 
+ the curve so I'll say W plus W1 X1 or W1 
+ X let say plus W2 x² because I have this 
+ x value only this there is there not 
+ multiple feat there just one feature 
+ plus W2 X cub and so 
+ on and then I have w m x ^ M or I can 
+ just write in short as summation of this 
+ WJ XJ J goes from 0 to 
+ M okay so this is my curve fitting so if 
+ you see this is an ndre polinomial so 
+ here I have sorry M de Pol here I have 
+ degree M the highest degree is M so I 
+ have to fit this so now if I just stop 
+ it here so I'll fit a line if I just 
+ stop it here I'll fit a parabola okay 
+ then I'll put a cubic polinomial and I 
+ I'll keep on increasing powers and the 
+ more Powers I give it the more degree of 
+ Freedom I'm giving it okay and many of 
+ you might know Tailor's expansion and 
+ things like that and we'll see how that 
+ relates once we go to the mathem part 
+ but here I assume that till here you 
+ know now if I increase one more power so 
+ this is x square so what I do is so I am 
+ making I'm trying to fit a parabola okay 
+ then here I'm trying to fit a cubic and 
+ you can see the rest most calculator and 
+ just give these and now if you see this 
+ function this is the function okay so 
+ this function is linear in these par in 
+ the parameters W so this is a linear 
+ function this is 
+ linear in terms of 
+ coefficients okay and this is what we 
+ want to learn this W1 w w i i want to 
+ learn this W this W W1 till let's 
+ suppose 
+ WM coming to asan's question this is 
+ what I mean by parameters these are my 
+ parameters that I want to 
+ learn okay so I have to fit a function 
+ so I have to fit a fit a function on 
+ this the data that I have so I have to 
+ fit a function onto that and this 
+ function is that so here what I will say 
+ is I have to make a lot of decision 
+ choices the first thing I have to make a 
+ decision is okay how much what degree of 
+ polom can I use can I use 3° 4 de 5 what 
+ degree can I use and I have to learn 
+ these W's what values should I assign to 
+ these W so I'll fit this polinomial 
+ curve so what I said is so if I just 
+ take this part okay so this is a this is 
+ my line so if I take this this Parabola 
+ line plus Parabola plus let's suppose 
+ something cubic polinomial and some 
+ higher order Pol so take all the 
+ combination of these and you can come up 
+ with this PO you can come up let's 
+ suppose with sign function you can 
+ approximate the sign function so sign 
+ function looks something like this let's 
+ say okay now if I want to approximate 
+ this so I have to combine this plus 
+ let's suppose Parabola plus third order 
+ third order is something like this 
+ fourth order is something like like this 
+ I don't know what orders how how the 
+ shapes that you can check so all these 
+ uh things will be combined in order to 
+ get this okay take a combination of this 
+ in order in order to come up this and 
+ there's approximation theorem also which 
+ says that you can approximate every 
+ function and you can expand this you can 
+ use Tor expansion to show that any 
+ function can be approximated like this 
+ okay now that's my goal now my goal is 
+ to fit this to fit this basically to fit 
+ this is my function and this will give 
+ me a 
+ curve any questions still here any 
+ questions 
+ yes yes question so this is the thing 
+ that I want uh basically to uh I want to 
+ fit the curve and by the help of this 
+ thing I want to help that I want to do 
+ that so this m basically is the order of 
+ polinomial the order of polinomial I'll 
+ just write it 
+ down okay this is again parameter and 
+ we'll see how how does it affect and 
+ then these wjs or this W w0 W1 W and 
+ this these are Coe 
+ coefficients of polinomial I just write 
+ it in short coefficients of the 
+ polinomial okay then I have this W 
+ Vector okay so this W Vector is 
+ combination of these coefficients and a 
+ vector that's collect to represents all 
+ of these so this W is this W comma W1 
+ till w 
+ m okay and then I have this x j x to 
+ the^ J so this actually is represents 
+ represents X is part of J so I think 
+ it's pretty much 
+ clear so now if you see uh there is the 
+ input actually the input it is non 
+ linear input but it's linear in uh in 
+ terms of coefficient and we want to find 
+ the coefficients 
+ okay now let's do that let's do this Cur 
+ fitting now let's say what we'll do is 
+ we'll again I'll bring up the code 
+ window and then I'll show you if I fit 
+ the curves okay let's suppose if I 
+ randomly do this if I let's suppose fit 
+ only a line if I put a line like this 
+ okay so you can see that there will be 
+ this this is not the and you can clearly 
+ see that this line is not actually 
+ giving the value that I want it's Mis 
+ this this prediction and this this there 
+ there are a lot of mispredictions over 
+ here okay so what I can do is if I just 
+ use a parabola okay if I just use a 
+ parabola so if I just use let Parabola 
+ Parabola down like this okay so 
+ something you can see that all these 
+ points will be missed out then okay some 
+ I have to use a combination now I have a 
+ cur fitting thing now my question is how 
+ can I see 
+ that how good this curve is okay I 
+ should quantify how good or bad this 
+ is okay how good or bad this is okay 
+ I'll give you an example in physical 
+ sense so that you understand this now I 
+ have an example I have 
+ data on this data I'm trying to fit in 
+ curve so I have a machine which I call 
+ as Cur fitter so curve fitter so what 
+ this has let's suppose I will use this 
+ equation now I have this uh W not W1 W2 
+ till WM so let's consider these are my 
+ knob 
+ okay I can twe and adjust them okay and 
+ this Curve will get adjusted accordingly 
+ okay so let's suppose if 
+ I have till a power M so once I adjust 
+ these things so this is my data or the 
+ data that I 
+ had so the moment I adjust these so this 
+ Cur gets adjust accordingly so it 
+ depends on the values of these knobs 
+ okay so if I start with let's suppose 
+ something like this so if I change the 
+ values okay if I TW the values it will 
+ get a bit smoother so I'll find the 
+ configuration which somehow does like 
+ this and now this is the data I have a 
+ cur fitter where I just Sak these knobs 
+ in order to fit this Cur and now how 
+ good is this Cur okay how good is this 
+ Cur in order to find that let's suppose 
+ I fitted this curve somehow I had a 
+ curve like this oops I had a cur like 
+ this okay now how good or bad this curve 
+ is good or bad so what I'll do is I'll 
+ fit this I'll give this Cur onto some 
+ other machine I'll give this Cur to so 
+ this Cur will be an input to this 
+ machine so this machine will quantify 
+ how good or bad and and it'll give us a 
+ metric so it'll give us a metric 
+ okay based on which we can decide that 
+ this is this this curve is bad and this 
+ curve is good so this is actually called 
+ as error function so this again is a 
+ function this is called as error 
+ function what we're doing is so this C 
+ fitting it's a function so we're trying 
+ to give it these things we're trying to 
+ give these parameters that we want to 
+ learn and it's giving us an output a 
+ function okay the basically the curve 
+ that we want to fit on the data but how 
+ good or bad is that curve so we again 
+ give all these things we give that curve 
+ to this function okay and this is that 
+ and we want to give to this function so 
+ this function is again a machine sort of 
+ thing so it tells you in a metric form 
+ okay how good or how bad this is so what 
+ is one metric that we can use and how 
+ can we uh uh come up with that function 
+ okay I'll just use a simple function 
+ that is Thum squared so if you see so 
+ our points were like something like this 
+ I bring the code over here so let's say 
+ so this is what I have let's suppose I 
+ use something like this or maybe let's 
+ say something a bit smoother okay so now 
+ what I'll do is in order to see how good 
+ this curve is okay so what I can do is 
+ give me a second again so I'll see this 
+ is the actual prediction okay for this 
+ point for this point this is the actual 
+ prediction okay but my co predicted this 
+ so now if you can see there's a 
+ disparity there's a disparity between 
+ these two this much disparity is there 
+ okay and for this this much disparity is 
+ there and you can clearly see 
+ that it is making some wrong things as 
+ well okay maybe for this it's the loss 
+ is very less okay the error rate the 
+ error is very less so error is how far 
+ it was and now in order to quantify the 
+ error what I can say is I'll say that 
+ I'll say y of X let's this is N Point 
+ comma W okay so this is what was what 
+ was predicted okay and this red line is 
+ the prediction okay and then this was 
+ the actual thing this T was the actual 
+ thing this was the nth point for nth 
+ point this is what my y- value predicted 
+ this is my prediction function okay the 
+ Cur fitting algorithm and now I have to 
+ quantify it to how good or how bad it is 
+ so I'm saying this is a prediction 
+ and this is my original thing so I will 
+ subtract them okay I'll subtract them 
+ I'll see how far is it from the actual 
+ thing how far is the prediction from 
+ actual thing but it can be negative and 
+ positive in order to make it positive 
+ I'll square this 
+ thing okay so once I Square this thing 
+ so I'll do it for all the points I'll do 
+ it for all the point I'll sum up for all 
+ the points I'll say since this n goes 
+ from one to Let's suppose we have some 
+ end points okay so for all the points 
+ I'll see how much is it deviating so 
+ actual value I wanted this but it is 
+ deviating this but in order to just 
+ negate that thing because I don't want 
+ because there will be negative positive 
+ values I want just positive error okay 
+ and at the end I just will put this 1 by 
+ two so this 1X two is put for the 
+ convenience because we have to 
+ differentiate this we'll get into 
+ mathematical details and then we'll see 
+ this 1 by two once we differentiate it 
+ this cancels out okay and you can 
+ otherwise there is no significance why 
+ do I put this 1 by two okay so this will 
+ give me an error this will give me a 
+ number so this thing over here I can 
+ call the error function it's a error 
+ function so what is it again taking 
+ value it is taking this uh whatever I 
+ fit I I have these W's okay so I have a 
+ cur fitting algorithm I I set and twe 
+ these knob so I get a cur I get a cur 
+ out of these W's okay now take these W's 
+ and fit these thing into that error okay 
+ what I'll give you so that thing will 
+ give you some error for each data point 
+ it will tell you how far is that data 
+ point from the actual prediction that we 
+ had this is our prediction this is the 
+ actual thing okay now we have to square 
+ we see how off is that and this will be 
+ a number so this will quantify if the 
+ number is high that means this is 
+ missing it by a lot if this number is 
+ low that means we have good fit so it 
+ will be a range let's suppose it can 
+ have a value zero when it have value 
+ zero if all these things Willl okay if 
+ the predictions if this thing minus this 
+ thing is zero okay that means this thing 
+ is equal to this thing when the 
+ prediction is equal to the actual value 
+ then we will have error of zero so we 
+ want error as less as possible okay but 
+ not on the cost of memorization okay how 
+ many of you are understanding this so we 
+ have two things now we have a curve 
+ fitting function you just have these W 
+ values you adjust these W values and out 
+ of that you get a curve on which which 
+ you can fit onto this but now in order 
+ to quantify how good this curve is what 
+ you do is you came up with an error 
+ function you said okay I have this Cur 
+ now let's fix this curve okay based on 
+ that I'll make prediction for all the 
+ points I made prediction and I'll see 
+ what are the predictions given by this 
+ given by the Cur that I selected okay 
+ and out of these lot of curs so I'll 
+ select the one which has the least error 
+ okay so I'll call that W star so once I 
+ am convinced that that this e of w is 
+ minimal for a particular I'll call that 
+ optimal W star basically this is the 
+ optimal W I'll call that W star so here 
+ I got the least error okay that that I 
+ wanted so is this clear any questions 
+ still 
+ here the question is that we want the 
+ least error possible okay now the 
+ question that Muer asked is that uh 
+ because I made a comment that that error 
+ should not be on the cost of overfitting 
+ so what I mean by that is so okay if you 
+ see that the test error is dropping you 
+ can see that the error that we are 
+ getting up from the test set it is very 
+ less but when you 
+ sorry when you are seeing that error on 
+ the train data set is is dropping and it 
+ is very less but when you test it 
+ actually that the error is very high 
+ okay that means it has not learned it 
+ has just memorized the it has learned 
+ what it has memorized what it saw so 
+ that will be our metric so we basically 
+ want to generalize 
+ okay we want to 
+ generalize okay so what I want I want 
+ error as less as possible but on the 
+ cost of generalization not on the cost 
+ of memorization by that I meant so then 
+ you have train set when you're are 
+ training you'll continuously see that 
+ error is dropping error is dropping okay 
+ and then if your error is leased now so 
+ you have to again test it so on the test 
+ set if the error is very high that means 
+ this has somewhat memorized data it has 
+ not learned the actual distribution it 
+ has memorized all these points and we'll 
+ see that memorization in a short while 
+ so here this will be our Matrix so we 
+ want uh the error to be leased but when 
+ we also test it on the test data set 
+ that it should somehow give a balanced 
+ answer it should not be giving a lot of 
+ error on test data set you can see that 
+ if if I make a graph if you see 
+ something like this on test it's on 
+ Trend it's dropping dropping dropping 
+ and it's almost going near to zero but 
+ on the train it was uh this was on the 
+ train so on the test it was dropping 
+ dropping and it spiked over here okay 
+ and this point over here you can say 
+ that okay I should I should take a value 
+ over here okay because after this I can 
+ see training is dropping because it's 
+ taking all these parameters so that it 
+ fits the whole data that I have given it 
+ it fits the data that is train in the 
+ training set but it is not respecting 
+ the test set also so but we should rest 
+ the test set that's why we check it for 
+ the test loss also how much is the error 
+ on the test set is that 
+ clear yes sir makes 
+ sense so here what you saw is that we 
+ are using error we said y of this xn n 
+ data point comma if you have this W okay 
+ and then what you say is and you 
+ subtract it from the actual value actual 
+ Target and this is the predicted Target 
+ and this is the actual Target and you 
+ squared it up and you sum it with all 
+ the points and this n goes from uh 1 to 
+ n and then you add this 1 by two okay so 
+ this is called as mean squared 
+ error mean squared error not exactly 
+ mean right now it's just squared error 
+ mean we'll call it when we divide by 1 
+ by n okay because we are not dividing by 
+ 1 by n right away so and we are not 
+ taking the average so right now it just 
+ squared error we're squaring the error 
+ okay then we're adding this multiplying 
+ this one by two over here again to 
+ retreat 
+ so we have two functions involved the 
+ first function that we have so when you 
+ TW these knobs when you have this W1 W2 
+ till let's suppose WM so you get a value 
+ you get a curve out of that so once you 
+ get the curve now you have to see how 
+ good that curve is so you feed that to 
+ this error function so this e of 
+ w okay this e of w is there so if you 
+ see this function so we had this y of x 
+ n comma W so this again is a function of 
+ w so this again is a function of w so 
+ this is this function we usually call as 
+ cost 
+ function okay sorry so we here over here 
+ so what I can do is I don't want to go 
+ into the cost function and that because 
+ otherwise it will okay so let's let's 
+ sort of settle on this discussion so 
+ this over here is my curve fitting so 
+ this is my curve 
+ fitting this cost function otherwise I 
+ have to teach you some more stuff so 
+ here this is my curve fitting and this 
+ is 
+ my this thing is my captioning error 
+ function so there are two functions 
+ involved so one function is that by the 
+ help of which I can find the Curve and 
+ then how good is that Kuru I have to 
+ come up with a new function okay I have 
+ to feed that thing now there are two 
+ machines one machine is telling you okay 
+ this is the K and second machine is 
+ telling you how good or bad is 
+ that and now if you see this the 
+ objective is to minimize this so that 
+ that's my 
+ objective the objective is to minimize 
+ this error okay so now we have some 
+ formulated the problem the problem was 
+ so you have some seene data you have to 
+ find a structure in the scene data you 
+ have to find a pattern in the scene data 
+ so once you learn that structure that 
+ pattern so you should somehow say 
+ something about the Unseen data you 
+ should say something about that uh 
+ Target value if you are given the input 
+ variable so what I did is I said okay 
+ I'll use a curve fitting algorithm I'll 
+ fit a curve onto this data okay because 
+ it seemed uh very trivial problem and I 
+ can see that curve fitting is quite a 
+ good match for it okay if I fit a curve 
+ onto that so what I did is so I said 
+ okay somehow can I formulate this 
+ problem like this so I have a curve 
+ fitting how good or bad is that so I 
+ formulating that problem like this so 
+ here you can see this function is also 
+ getting used used so this Cur fitting 
+ function is also getting used now how uh 
+ less error how can I get this less error 
+ so I have to minimize this function 
+ somehow that is the objective now the 
+ objective to find the value of this W so 
+ if I have to find the value of this W 
+ okay I should for that particular W 
+ because this W can take infinite many 
+ values and count by infinite values now 
+ the objective of the problem is to find 
+ that W which minimizes this error and 
+ again not on cost of overfitting on the 
+ cost of generalization so we should try 
+ to General 
+ it it can be leased for training so we 
+ should generalize this so we should 
+ minimize this error and try to 
+ generalize okay and that that we have a 
+ resulting polinom after that 
+ okay any questions on this yes so now 
+ you sol this equation if if you see this 
+ equation if you see this equation the 
+ one the first one this y x and W so we 
+ wrote it like this W plus uh W1 let's 
+ suppose X Plus W2 x² plus and so on X 
+ this w n or w m we wrote it w m XM so 
+ now we have to decide what this m should 
+ be okay I would I would love to show you 
+ a problem so that we'll see how once we 
+ change this m how does it see because I 
+ was making that picture if it's a linear 
+ line if it's a parabola if it's then 
+ what happens when we have third degree 
+ Pol I'll again go to the code window 
+ I'll show you that now after I'll take 
+ questions give me a 
+ second what can I do is I'll fit a 
+ polinomial again I'll use my friends M 
+ plot Li and numai so here this is M plot 
+ Li and NPI so I'll I say definition fit 
+ a polinomial okay definition fit 
+ polinomial this is my X and this is my T 
+ and this is my degree this is my input 
+ variable and this is my Target and this 
+ is my degree okay now I'll get this from 
+ in in in this nump I have a poly fit I 
+ can just have this polinomial fit 
+ algorithm so given this degree I can 
+ have this polinom so what I'll do is I 
+ I'll get the coefficients I'll say 
+ coefficients is equal NP poit have this 
+ X have this T and this degree so it will 
+ give me the coent it will give me these 
+ wly it give me directly these W's okay 
+ this basically the curve fitting so this 
+ is that curve f it will give me 
+ corresponding W W1 W2 something like 
+ that okay and then I'll get 
+ corresponding values to this I'll return 
+ this Lambda 
+ function okay this should work hopefully 
+ so this is what I'm returning after that 
+ so now let's call I'll fit four I'll fit 
+ four types of degrees I'll say when m is 
+ equal Z that is I have a I have a line 
+ okay and then I have this Parabola 
+ degree 3 degree 9 polinom so these are 
+ the things that I'll 
+ fit okay and I'll also plot 
+ it 
+ for Let's us generate some X continuous 
+ value and give me a second I'll just 
+ plot this with the 
+ same I have to adjust this code wait 
+ if you see this what I have done is so 
+ this is degree these are my degrees and 
+ then I have NP uh l space 01 the the X 
+ continuous values and 
+ uh then I'm fitting this polinomial 
+ again fit this polinomial so this is my 
+ function fit 
+ polinomial okay and then I have this AIS 
+ I so I have to create this AIS so what 
+ I'll do is I'll create figure and axis 
+ give me a 
+ second okay figure axis these many plots 
+ and I'll have this AIS okay now I'm 
+ having a pol fit polinomial this x data 
+ and the T okay this degree so I'm saying 
+ X is I give a scatter plot and Y fit is 
+ polinomial of this x continuous because 
+ I'm using a Lambda function over so you 
+ can see if I plot it let me just call 
+ this function and I'll have a function 
+ make 
+ prediction so PLT 
+ dot right and then I'll make predictions 
+ for these new values 
+ okay let us draw this yes you can see 
+ this so when M was zero so when M was 
+ Zero you can clearly see a line it just 
+ is passing through two points okay 
+ nothing man there's a lot of error in 
+ here and then when again when m m was 
+ one so it became a line and a little bit 
+ sloped and now after that you can see 
+ when M was three when we had a third 
+ degree polinomial okay it gave a sign 
+ when M was n you can see it gave error 
+ almost zero but it it is passing exactly 
+ through all the points okay it is 
+ overfitting so this over here is 
+ overfitting 
+ again iterate this so when M was equal Z 
+ so this is the thing that it found okay 
+ and this is by NP that poit and when M 
+ was equal one this is the line it found 
+ okay when M was equal 3 because we're 
+ adjusting those we're adjusting that 
+ value of M so what uh degree of polom do 
+ we want when M was equal to 3 this is 
+ what it uh gave us and then when M was 
+ equal to 99 and it it actually gave the 
+ error of zero but this is actually 
+ overfitting so if you see on the on 
+ these predictions you can see that uh 
+ then uh this uh once we once we have the 
+ values which are uh we just have these 
+ input values it will make a lot of a lot 
+ of 
+ mispredictions okay this is the effect 
+ of M okay so this uh we will see this 
+ model comp again so how many of you 
+ understood this so once I was uh 
+ changing the value of this m because I 
+ took how many degrees I took degree zero 
+ I took uh 1 3 and 9 if I can uh check 
+ with two Also let's suppose I have 
+ degree two as well let's suppose this is 
+ two and this is 
+ one so here you can see this graph 
+ changes so this is 
+ let's suppose degree 1 2 doesn't make 
+ much difference you can see degree 3 and 
+ degree 9 okay if you if you keep on 
+ increasing you are basically increasing 
+ the power of polinomial you were 
+ initially with W plus w1x okay then you 
+ were with W plus W1 X and then plus and 
+ then it x square and with the 
+ coefficients it coefficients and then 
+ this was a 9 degree polinomial okay it 
+ completely fit it and why because 90° 
+ polinomial had actually 10 parameters to 
+ learn and these 10 parameters learned 
+ each the data point that's why it 
+ perfectly fitted it okay and it passed 
+ through all of these points if you can 
+ see it over here okay it passed through 
+ all these points that's why it was able 
+ to actually uh pass through each and 
+ every point but the problem over here is 
+ it is not a good prediction the problem 
+ is that it overfit the it tried to 
+ memorize the data so here if you see m 
+ is equal three was bit better if you can 
+ see logically from here okay m isal 9 
+ gave error of zero but it was on the 
+ cost of Orit it's memorized data because 
+ it can tune the parameters all these W 
+ the parameters here where this W W1 W2 
+ till let's suppose w so all these 
+ parameters were tweaked such that it 
+ passes through all these points but we 
+ don't we don't want that we want 
+ generalization this m is equal 3 was a 
+ better generalization than this m 9 yes 
+ I think Aran has a question can somebody 
+ read it for 
+ me so what I have done over here is if 
+ you see in the code I have just used the 
+ numpy's 
+ polyfit okay so this polyfit because 
+ this error function you have to minimize 
+ the error function and this error 
+ function is in let's suppose the Power 
+ of Two okay it's a quadratic if you see 
+ it is quadratic when you differentiate 
+ it will become linear and you can get a 
+ close from equation out of that once you 
+ get close from equation you can get the 
+ direct values from these W's okay you 
+ can get these direct values of w that's 
+ what this NP uh this poit does so when 
+ you see this I have to get coefficients 
+ when you say NP poly fit it does not do 
+ it automatically it is basically done by 
+ numai so numai is implemented algorithm 
+ by the help of which it is Tred to fit 
+ it tries to find those coefficients and 
+ these coefficients are W W1 till till 
+ the degree of Pol whatever degree you 
+ have have used okay that's why I'm 
+ giving degree as well okay once I have 
+ that and after that I I'm trying to see 
+ okay if I increase the degree now okay 
+ in this basically I'm giving only one 
+ coefficient I'm giving two coefficients 
+ now I'm giving three coefficients okay 
+ even uh here I'm giving two coefficients 
+ I'm giving three coefficients so this is 
+ uh the one I'm giving here let me just 
+ see if it's visible so this over here so 
+ here I have to learn W not okay and uh 
+ then w1x okay this is linear so here I'm 
+ learning three coefficients w 
+ if I am correct so here I'm learning two 
+ coefficients I'm learning three and then 
+ going back here I'm learning four and 
+ I'm learning five 10 coefficient so this 
+ is uh this is let's suppose three I'm 
+ here I having three degree polinomial so 
+ I have four coefficients to learn so in 
+ the 10th 9th degree polinomial so I have 
+ uh 10 things to learn so 10 coefficients 
+ to learn so that's what this code is 
+ doing over here if you see it over 
+ here when when when I call this polyfit 
+ it learns those Co so in the first 
+ example we just had two coefficients 
+ learned W not and W1 so once we increase 
+ the degree so degree plus one number of 
+ coefficients are there to learn so what 
+ I said is the important point I made is 
+ what over here so when I add this n n9th 
+ degree polinom so it gave it a n degree 
+ of Freedom okay but what happened it 
+ tweaked these W not to W9 in such a that 
+ it it actually made them pass through 
+ all the points this is bad actually why 
+ is it bad because I tried to memorize 
+ this is called memorization or this is 
+ what is overfitting in data because I 
+ gave it so much degree of Freedom so 
+ that what happened basically is it tried 
+ to tweak the parameters tried to tweak 
+ this W not W until W9 such that 
+ everything every Point gets through that 
+ curve okay but it is not generalization 
+ because when you let's suppose give a 
+ point over here so if you give a point 
+ that's actually on the sign curve so 
+ this point let's suppose or the point 
+ which was following some because sign 
+ Curve will look something like this okay 
+ something like this so you can see all 
+ these points it will fail deduct but 
+ over here you see a much more sign like 
+ shape over here when M was equal three 
+ but there's a contradiction okay I'll 
+ leave you with a question the question 
+ is more the parameters so okay 
+ overfitting is happening so should I 
+ decrease parameters okay should I 
+ decrease parameter if I decrease the 
+ parameter doesn't it mean that I'm 
+ limiting the learning capability okay if 
+ I decrease the parameter does it mean 
+ I'm limiting limiting the capability 
+ okay if I limit the capability okay what 
+ if I if I don't want to limit the 
+ capability if I want to keep the 
+ parameters as high so what should I do 
+ after that okay so here I introduced 
+ many Concepts I introduced okay what how 
+ this how can we how can we think this 
+ distribution of because data can be 
+ thought of information and information 
+ can be that can be a pattern and there 
+ can be a noise that's what I introduced 
+ and then we said okay if we have to fit 
+ an algorithm it can be a simple curve 
+ fitting algorithm and then we should 
+ have a notion of how good is that alith 
+ how good result are we getting that's we 
+ inod error functions there and now I'm 
+ leaving with your question the question 
+ is once I'm increasing this number of 
+ parameters because I'm making the Cur 
+ more complex you can see that it is 
+ overfitting the data is it bad or good 
+ so if introducing more parameters is 
+ making it overit is making the algorithm 
+ to overit is making the alith data so it 
+ is good to reduce the parameters or 
+ should I keep the parameters same 
+ because if it gives me more learning 
+ capabilities and what should I do then 
+ okay is there can there be a solution 
+ okay you should not search it on the web 
+ otherwise you'll get it I'll leave you 
+ with this question I'll stop the 
+ recording over 
+ here hello and welcome so we have been 
+ discussing about machine 
+ learning okay so in machine learning 
+ what we have done is so we started with 
+ a synic example so in that what I said 
+ is I said if you have to create a data 
+ let's suppose in that uh we we generated 
+ our own data by using a function sin 2 
+ pix this is just the uh like high level 
+ summary what we have discussed in the 
+ previous lecture okay and this lecture 
+ will follow the previous lecture so in 
+ machine learning we we said okay 
+ everything works on data so now in order 
+ to understand the data so what we assume 
+ is that this data actually comes from a 
+ distribution so there is there is some 
+ generating function there is some 
+ generating 
+ function and this is this is the trend 
+ that we want to have this is the trend 
+ or this is the pattern I call the trend 
+ usually the pattern you have and with 
+ this pattern you have the noise in real 
+ world okay then what we did is we 
+ generate data by using sin 2 pix and 
+ then we added some noise with this we 
+ also wrote the code for that so we 
+ generated the data points so in that we 
+ had this x this was the input 
+ variable and then we had a Target 
+ variable t this was the target 
+ variable and then what we said is we 
+ said once we have this the goal is now 
+ if you have this data input variable so 
+ you you train a machine learning model 
+ you you find an algorithm so you will 
+ now have two types of uh sets of data so 
+ first you'll be having a training 
+ set then you'll be having a testing set 
+ test set let's suppose we had 10 points 
+ over here and we have let's suppose 100 
+ points or maybe let's Five Points I'll 
+ keep it realistic The Strain set you'll 
+ have to find algorithm so that you show 
+ this data the data that you have or the 
+ data you generated you want to learn 
+ this pattern you want to learn this 
+ pattern you want to learn this 
+ generating function the function or the 
+ distribution that this data came from 
+ you want to learn that and you have to 
+ train algorithm based on that but how 
+ that should be trained so that when you 
+ test it on the test set so somehow it 
+ should be generic enough to generalize 
+ on the test set so when you are testing 
+ it on the inputs for which the target is 
+ not given you should be able to come up 
+ with the target okay that was the goal 
+ we had okay to predict the T for the 
+ Unseen data so the goal you should keep 
+ in 
+ mind is to 
+ predict the Target that is 
+ T 
+ Target for unseen 
+ data and then I showed you the process 
+ how to generate this data and we should 
+ not sort of uh overit the data and we we 
+ saw a lot of these things we saw 
+ visualizations and then what we were 
+ were doing is we actually res to the 
+ curve fitting we said okay if this is if 
+ we have the data so we'll fit a curve on 
+ the data we res to curve fitting if you 
+ remember this I'll just show you the 
+ code window so that 
+ you so if you see it over 
+ here this was the code that we 
+ wrote this is the data that we generated 
+ so this is the generation of the data I 
+ showed you how we gener the data and 
+ after that we said okay now we want to 
+ fit the curve okay so after we fitting 
+ the curve I said what you can do is you 
+ have to choose this m okay because you 
+ are you are having the curve fitting 
+ algorithm and you have now different 
+ values of M so if I write the equations 
+ the equation that I think uh there was 
+ let 
+ me just hide this again so as the 
+ equation this curve fitting so we so 
+ there are two things now there is this 
+ Cur fitting you have this Y and you are 
+ given this x okay and what you have to 
+ find you have to find W so you have to 
+ find these W so the equation basically 
+ you you wanted is W plus plus then you 
+ had W1 X Plus W2 
+ x² plus and so on till w m XM okay this 
+ is what we want to find so I said this 
+ is sort of a linear combination you can 
+ have a line you can have a parabola you 
+ can have degree order 3 equation 
+ something like this let's say and you 
+ you somehow have the combination of all 
+ of these in order to find the curve so 
+ we are in a pursuit to find the sin 2 
+ pix so this is the pursuit that we 
+ wanted to to find okay so this is what 
+ we did for that so we say once you have 
+ to set this W now so even you can use 
+ the 0 de polinomial 1° 2 de 3° 
+ polinomial so that's where this m came 
+ from this is called as model selection 
+ so when you selecting the model that's 
+ why we set 
+ this so now you have the data so you 
+ have degrees you can start with degree 1 
+ degree 2 degree 3 and degre 9 so in this 
+ what you can see is this is degree 1 
+ this is let's suppose degree 2 and then 
+ we have equal 3 m is equal 9 so you saw 
+ this m is 3 is good so this is 
+ underfitting so we call this as 
+ overfitting okay and then we had we 
+ asked a lot of questions about this 
+ curve fitting and stuff like that so 
+ we'll take the things from here okay so 
+ I just uh so I revise all of this 
+ thing okay now what we have is we have 
+ two functions the first function was the 
+ function of curve fitting by the help of 
+ which we're fitting the curve so we have 
+ to adjust we have to find the W's find 
+ these W's okay in this so if you see the 
+ equation so this is our equation so in 
+ this uh this x is the data point that 
+ this x is the inut feature that we have 
+ and we have to find these W's let's so 
+ suppose if we use m isal 3 so by this I 
+ mean I'll use a cubic polinomial so what 
+ I'm doing is I'll say 
+ w+ 
+ w1x + W2 x² + W3 X Cub so this is what 
+ by by the help of which I want to 
+ approximate s of 2 
+ pix by using this so here if you see the 
+ x is are known so these things are known 
+ to 
+ us okay so what we have to find so we 
+ have to find W W1 W2 and W3 this is what 
+ we have to find okay we can write them 
+ in a vector form W W1 W2 and W3 so this 
+ we named as W okay so these were our 
+ parameters so this is our function so 
+ this was our Cur fitting function so we 
+ had two functions now we have Cur 
+ fitting function the second function 
+ that we discussed about is how good is 
+ this so if you found these W's now you 
+ want to evaluate how good is that so 
+ this was our curve 
+ fitting we are fitting a curve so the 
+ problem is fit the curve so that it 
+ approximates this sin 2 pix so now in 
+ order to see how better is this so we 
+ found an error 
+ function error 
+ function if I make a small flowchart 
+ okay so how the problem goes so you have 
+ a machine like this in which you feed 
+ the data you have the data okay this 
+ machine actually has knobs and eyes so 
+ it has this W not W1 W2 and so on 
+ parameter still let's suppose WM so 
+ these were the knobs okay so from this 
+ actually this will give you a this will 
+ give you a 
+ function or or approxim approximation 
+ function okay you are just giving data 
+ and based on this you're adjusting the 
+ knobs and dials so that you try to tune 
+ this whole function so that it 
+ represents your function that that that 
+ you have the generating function so now 
+ how good this is so what you basically 
+ do is you give this W's all of these W's 
+ are given to end under machine okay and 
+ function so function basically is like a 
+ machine so this over here is called as 
+ error 
+ function okay don't confuse between two 
+ functions the first function is there 
+ which is actually fitting the curve to 
+ the data and the second thing is saying 
+ how better is that curve okay it's it's 
+ trying to find the error so here eror it 
+ gives a 
+ number usually it gives a number so this 
+ number tells you how better 
+ approximation this is so that we checked 
+ with so when M was equal to Let's 
+ suppose 0 m was equal to 1 M was equal 
+ to let's say 2 or 3 m was equal to 9 we 
+ said we saw how better these things were 
+ now two functions again one is our curve 
+ fitting function and the second function 
+ is our error function so error function 
+ tells it quantifies how good your 
+ approximation is or how good these 
+ values of W's are okay so we boil down a 
+ problem to this so we said y of xn comma 
+ w 
+ okay so let's suppose this is our 
+ approximation given any input any input 
+ xn or x i so whatever you call it so 
+ this value minus then TN so this is the 
+ actual Target so this was the actual 
+ Target so you want to see how far this 
+ was so in order to make a diagram let's 
+ suppose because you want to approximate 
+ let's say this function okay now you 
+ have this function you come up with 
+ something function like this now if you 
+ see this if you see a point on this and 
+ if you see a point on this so this is 
+ how much it's off this is the distance 
+ actual thing should have been this but 
+ it's actually this so here here actual 
+ thing should have been this but it is 
+ this and actual thing in here should 
+ have been this but it is this so there 
+ is some 
+ discrepancy there is some error as said 
+ with this so that's why we want to 
+ quantify how how much that error is so 
+ what we said is this is my 
+ prediction okay and this is the actual 
+ value or the True Value so I'll just 
+ subtract them I'll see how far they are 
+ but you know that the distance can be 
+ negative positive in this case but I 
+ want to because I calculating error so I 
+ want to make it positive so what I'm 
+ doing is I'm squaring the term up once 
+ I'm squaring this up now I'm doing it 
+ for all the values so for that I added 
+ the summation summation of n goes from 1 
+ to n for all the data points okay then I 
+ said I'll just add this 1X two over here 
+ for the uh because this is a 
+ differentiable function and we have 
+ differentiated and if you know the 
+ differentiation a bit so that's why I 
+ want these twos to cancel okay this I 
+ called as squared 
+ error squ error 
+ function based on this I wanted to see 
+ okay given the given the values of 
+ particular W I want to see how how much 
+ error is there so for that we chose 
+ different values of oops so we chose the 
+ different values of uh these M's that's 
+ a code we have written in the previous 
+ session so if you see this this is m is 
+ equal 1 this is m is equal 2 m is equal 
+ 3 m is equal 9 okay this is what where 
+ we were at now what I said is I said 
+ this m is equal 9 was overfitting 
+ because because it was going exactly 
+ through all the points so it was 
+ actually capturing noise as well so so I 
+ said how to deal with this so there was 
+ a contradiction question so more the 
+ parameters so it's should learn actually 
+ more and the other question there are 
+ two paradoxes okay which at least when I 
+ was learning I could find these 
+ paradoxes the first Paradox was 
+ oops the first Paradox was because m is 
+ equal 9 if you remember this at M is 
+ equal 9 we called it overfitting why 
+ because it was tuning to data too much 
+ it was capturing noise as well it was 
+ not generalizing that's why we call it 
+ overfit the first problem was it has 
+ more parameters it 
+ has uh more parameters 
+ so doesn't it seem that if R if we 
+ reduce the parameter we are reducing the 
+ model complexity okay so if it has more 
+ parameters uh does it 
+ mean we should have less 
+ parameters okay this is the first 
+ question a natural question that should 
+ occur to you to you people that if it 
+ was it has more parameters so it was 
+ overfitting so does that mean I should 
+ come up with less parameter so that it 
+ does not overfit and it actually 
+ generalizes this was the first question 
+ I asked the second question was there 
+ doesn't it seem counterintuitive that 
+ you have a function you have a 
+ polinomial of degree 9 but don't you 
+ think that all the other degrees can be 
+ represent let's suppose if I have degree 
+ m is equal 3 which which we said it's 
+ the best fit this was a good curve in 
+ that so don't you think that this m is 
+ equal 9 is some somehow superet or 
+ somehow super encompassing this function 
+ also so it should it it looks contr to 
+ Total C having more parameters why is it 
+ not performing good okay that the second 
+ question we 
+ have let 
+ me this so what I said is the second 
+ question we had is 
+ so doesn't it seem counter 
+ intuitive 
+ intuition it doesn't it seem 
+ counterintuitive because this m is equal 
+ 9 should some 
+ engulf m is equal 3 why is it doing so 
+ why is the battery fit at M is equal 3 
+ and not m is equal 9 also 
+ okay so initially as this higher po if 
+ you see inherently include all these 
+ lower order polinomial okay and uh 
+ theoretically it should at least perform 
+ good at least perform as good as m is 
+ equal 3 okay how many of you you think 
+ that it seems counter intive because 
+ what I said is that this High degree 
+ polinomial m equal 9 is a high degree 
+ polinomial okay okay it includes all the 
+ all the others are somehow the special 
+ cases of it okay the lower degree 
+ polinomial so theoretically at least 
+ this should perform as good as m is 
+ equal 3 okay and this data was generated 
+ using the function sin 2 Pix One one 
+ more thing is there so we should expect 
+ that uh this predictor at least the the 
+ m isal 9 function should approximate it 
+ better so because if you know Taylor 
+ series so when you expand these things 
+ into these Powers so the better the more 
+ terms you have the better approximations 
+ you have okay so uh we'll see this 
+ expansion also I'm throwing too much 
+ maths at you right now but I hope 
+ someday 
+ you'll expansion so what I'm saying is 
+ the more degrees the more degree 
+ polinomial you have the better 
+ approximation you get so we'll see that 
+ in tailor 
+ series okay so it again seems contentive 
+ so now we'll examine why why is it so 
+ okay I told you guys to uh sort of 
+ ponder over it contemplate on these 
+ things okay I hope you you have done 
+ that okay let me give you the answers 
+ why why it happens why does it happen so 
+ now we'll examine the values of these 
+ W's we'll see so once we have these 
+ degree different degree polins what are 
+ the value of these W's okay let me just 
+ write some simple lines of code now 
+ we'll Resort we not go to this error we 
+ actually go to root mean square error so 
+ root mean RMS value so what is RMS so 
+ again you have predictor values y x 
+ comma W okay minus t of n so this is xn 
+ and you will Square it okay till here it 
+ was squared error okay now for all the 
+ points this is n is equal 1 to n for all 
+ now if I have take mean so I'll take 
+ mean by this I just divide it by the 
+ number of samples or number data points 
+ if I take root mean Square I'll apply a 
+ root okay again I I'm telling you 
+ mathematics is poetry you should read it 
+ like poetry okay so this yxn comma w 
+ means prediction you are giving the 
+ value xn you have certain W's and this 
+ is giving a value and this is the 
+ predicted value so when you're squaring 
+ it up that means you are trying to find 
+ the distance but it's a positive 
+ distance okay this is squared error okay 
+ now what you are doing is you are 
+ applying summation this is doing for all 
+ the points okay after that you want to 
+ find mean of that so for that you are 
+ dividing by n you dividing by total 
+ number of points now in order to have on 
+ the same scale because it will Square 
+ this up in order to have it on the same 
+ footage on the same scale so we are uh 
+ applying the square root so that the 
+ square gets canceled after we calculate 
+ this so you you are putting the under 
+ root so that if you are having a metric 
+ you know if you have meter and you apply 
+ Square you'll get meter Square something 
+ like this so now in order to sfy that 
+ effect you are putting this a root over 
+ here this is called as RMS root means 
+ Square so this is called as RMS e root 
+ mean squared error this is the first 
+ thing this is squared error and it was 
+ mean so this thing was squared 
+ error and because of this this is called 
+ as mean squared error and because of 
+ whole of this root it's called as root 
+ mean Square eror so squared error this 
+ terms from summation to here this is 
+ squared error and once I apply this 1 
+ byn this is called as mean squared error 
+ so once I apply this root this is now 
+ root mean squ 
+ error you can see mathematics is not 
+ difficult the notations if you if you 
+ get hang of notations quite easy okay 
+ and it's quite natural also so you know 
+ now the fundamentals why are we doing 
+ this okay now after we have this so now 
+ what we want to do is so we want to see 
+ the RMS value for different M for M is 
+ equal 0 m is equal 1 m is equal 1 m is 
+ equal 3 and M is equal 9 I think that's 
+ what we were 
+ doing so for all of this we want to find 
+ RMS 
+ okay and corresponding to that what we 
+ want to do is we want to find values of 
+ w okay what are the what are these 
+ coefficients what are the values of this 
+ coefficient because we have to answer 
+ these questions because this seems quite 
+ ctive so I asked you these questions the 
+ more parameters does it mean we should 
+ have less parameters then should we 
+ decrease the less should decrease the 
+ parameters if not so what should we do 
+ so this question still stands okay and 
+ here uh again the same thing so all of 
+ this High degree polinomial should 
+ somehow inherently contain this low 
+ degree polom then why is it not 
+ performing better okay so we'll answer 
+ these questions let me write the code to 
+ do this to find this RMC and uh to find 
+ the 
+ coefficients and then we'll see the 
+ training loss as 
+ well and now what we'll do is we have to 
+ find this rmsc value and we'll try to 
+ find this error I hope this screen is 
+ also visible so again I'll Resort back 
+ to numai M plot Li and skarn so if you 
+ see this I'm importing numai import M 
+ plot Li as this PLT and train train test 
+ split because I'll be having data set 
+ and I'll split that into train and test 
+ okay then I'm also importing this mean 
+ Square l i could have done it on my own 
+ I would have just uh implemented the 
+ function but it is already in escn so 
+ you don't need to implement it okay now 
+ what we have to do is we'll fit this 
+ polinomial we have been doing this since 
+ previous class so if you see this so we 
+ are saying definition fit this 
+ polinomial XT of this degree okay and 
+ then what we're saying is we are trying 
+ to find the coefficients 
+ so if you see 
+ this okay so this is the coefficients NP 
+ polyi it'll give me coefficients and I'm 
+ rning these coefficients as well so now 
+ I'll calculate RMS also okay so here I 
+ have a function to calculate RMS is 
+ quite easy otherwise I would 
+ have if you see this definition 
+ calculate rmsc this is y true y 
+ predicted so it is taking this mean 
+ squared and applying square root okay so 
+ I'm applying this mean squar error so on 
+ that I have to apply square root that 
+ will convert into RMS value so I'm 
+ taking this y True Value y predicted 
+ value so this y true basically is y x n 
+ comma W that value and this is y 
+ predicted value this is predicted Val 
+ the true value is actually true value 
+ and this is mean square and after that 
+ we apply square root onto this this will 
+ calculate the RMS now again I'll 
+ generate synthtic data okay that we have 
+ been doing I think since class 
+ one so this is random seeds for the 
+ reproducibility and then we have this 10 
+ points okay we are this is our main 
+ function sin 2 pix and this is 
+ the Some Noise some Gan noise with mean 
+ of zero and standard deviation of 0.1 
+ okay this is our Target and this is our 
+ input now I'll split the 
+ data I'll split it 
+ oops so how to split I'll use this train 
+ test split I can split it in any other 
+ fashion also because I can use nump I 
+ can use pandas andever I want but 
+ escalar gives me this test train split 
+ so I'm using it directly so I'm having X 
+ train X test T train and T Test this is 
+ y actually okay so I'm giving test train 
+ split this is a function so I'll give 
+ this x t and test size so test size 
+ basically is 0.3 and 0.7 will be if this 
+ is 10 points so three points among them 
+ will be test points and seven points 
+ will be the training points and random 
+ state is the 
+ seed what I'll do is I'll make a list of 
+ these degrees because I want to do it 
+ for degrees 0 1 3 and 9 okay that's what 
+ I want to do and now I'll create the 
+ plots as 
+ well uh let me create how many plots 
+ I'll create 2 x two plots 
+ so if you see figure and axis I'm 
+ creating plot suppl 2a2 figure size is 
+ this much you should be well versed with 
+ this I'm putting this for plotting the 
+ curve I'm also putting this continuous 
+ values of X continuous to generate 
+ smooth values for X for plotting 
+ continuous value now I'll store I'll 
+ store the train RMS I'll St test RMS and 
+ I I'll also store the coefficient list 
+ okay so what I'm doing is I'm having 
+ this train RS errors I'm also storing 
+ test RMS errors okay this is for the 
+ train root means Square errors and test 
+ root means square error and the 
+ coefficient list these W's W not W1 W2 
+ something like that now after that what 
+ I'll do is I'll run a loop for all the 
+ degrees IUN a loop because I have to do 
+ it with degree 0 degree 1 degree 3 and 
+ degree 9 so I'll run a loop for 
+ this this is for for our degree 
+ enumerate this degrees okay then I'll 
+ fit this 
+ curve because I have I have written this 
+ if you you see so here is my polom fit 
+ polinomial this is what I'm calling over 
+ here fit polinomial with this x train 
+ and T train and give the degrees so 
+ degree will be taken from this because 
+ where I'm running a loop onto this and 
+ then I'm getting a coefficient list 
+ which I'm appending to this coefficient 
+ okay and then I am calculating the 
+ prediction for training and test to make 
+ the 
+ predictions I add a comment here fit 
+ I'll say fit the C the Pol to the 
+ current degree and then what I'm saying 
+ is calculate predictions for training 
+ and test set so train prediction is 
+ polinomial so whatever polinomial we got 
+ give it X train and it will make the 
+ train predictions and now I'll calculate 
+ the RMS value I have again written the 
+ function for RMS so I'll just call that 
+ function so here I have calculate the 
+ RMS value so here it is calculate RMS so 
+ that's what I'm calling with this tree 
+ train Tre prediction it will give me the 
+ values now I have to append these values 
+ so this these values are to be kept in 
+ uh train and test train and test list 
+ this and this list that's what I'll be 
+ doing I'll be appending them to these 
+ two things 
+ okay so I'm appending them uh to this 
+ append this train RMS to this and append 
+ this to this and once I have that now 
+ I'll do I'll do the plotting okay 
+ and this plotting should be quite easy 
+ to 
+ understand okay so I'm doing the loop 
+ because I want all the plots if you see 
+ this I am plotting over here this is 
+ scatter plot for X train T train and 
+ then I'm saying this we have this y fit 
+ then I'm also fitting this and adding 
+ some horizontal line this and and then 
+ these are just some titles and legends 
+ and stuff like 
+ that okay then I'll at the end have this 
+ RMS comparison also I'll add a plot at 
+ the end this plotting code I'm not on 
+ purpose going through because you guys 
+ should be experts by now to read this 
+ because we have spent quite a lot of 
+ time to draw this plot so this is the 
+ code so now I'll run this 
+ code if you see this for equal Z okay 
+ this is the line that we got okay I'll 
+ Resort back here so if you see this so 
+ these points were our training points 
+ training data so these Blue Points this 
+ our train data so for m is equal Z this 
+ is a straight line okay that you can 
+ clearly see over here so now this is our 
+ test 
+ data okay and you saw clear there was an 
+ error so that's why it's showing test 
+ RMS train RMS is this and testing RMS is 
+ this okay and this is clear a line and 
+ it's it is a misfit it's not a good fit 
+ it's actually a very bad fit so now in 
+ order to go here this is equal to equal 
+ to one again the same thing so this is 
+ training data and test data we have only 
+ three points because we have generated 
+ 10 points and among them we kept 3% of 
+ the data is training test data three 
+ points and seven points as we could 
+ maybe increase points more in the next 
+ iteration if you see this this is m is 
+ equal one again you can see test RMS 
+ 3.14 a little bit less and train RMS 
+ also a little bit less okay now you saw 
+ that it is improving a bit so you see 
+ that RMS the error is getting lower and 
+ lower okay so we expected to 
+ monotonically increase so now if you see 
+ the other graphs so if you see 
+ RMS of three and this so you see n is 
+ equal 3 so here you saw Train RMS 0.063 
+ very good and train test RMS 0.18 and 
+ it's very good the error is very less so 
+ that is evident from the graph as well 
+ okay so this is actually what we call 
+ usually a best fit or a good fit I 
+ should not call best fit a good fit this 
+ is a good 
+ fit because we doing a curve fitting so 
+ now if you see this so I call this 
+ overfitting so now it tuned to all the 
+ data point it tuned to all these data 
+ okay this Cur passed through all these 
+ Blue Points it's covering through all 
+ the Blue Points that's why you see this 
+ train RMS being 0.005 and you see test 
+ RMS is quite High okay so this is what I 
+ call overfitting over here okay now we 
+ were we were in this Pursuit that we 
+ won't understand why is it happening 
+ okay let me answer that question why is 
+ it happening so that answer is basically 
+ in the 
+ coefficients so this is again training 
+ and test RMS difference because I just 
+ ploted the graph from this and now if 
+ you see this so see this details over 
+ here this is degree 0 degree 1 degree 3 
+ and degree 9 so what you can see is uh 
+ if you see coefficients this is w0 this 
+ is w0 and W1 this is w0 W1 W2 W3 w0 W1 
+ all the all the coents were here so once 
+ you increasing uh this polom degree of 
+ polinomial so you can see this 
+ coefficient the the value of coecient is 
+ increasing heavily so initially this was 
+ the coefficient value 0.125 then we have 
+ minus uh 1 something like this so after 
+ that it become 21 32 10 but if you see 
+ at degree 9 these values are quite 
+ High these values are very high except 
+ for a few these values are quite high so 
+ what this is telling you actually 
+ basically is so it is tning coefficient 
+ such that it is exactly capturing the 
+ points and at the adesive and if you if 
+ I can go back here if I if you can see 
+ over here this is trying so hard to go 
+ through this points and it has to make 
+ the coefficient value so high okay and 
+ then it's missing these terms actually 
+ so that this being reason so when you 
+ are having the value of coent very high 
+ so it is try very hard to go through the 
+ points okay once that is done so what 
+ will happen basically is so when you 
+ have to go through this point now it has 
+ tuned this W such that it passed through 
+ the point it passed through that point 
+ so giving very high vage to W so that 
+ you tune it to data it creates a problem 
+ for us okay so I hope you understand the 
+ point now the point basically is it is 
+ giving coefficient such an higher value 
+ so that if you see these edges if you 
+ see the edges for here I'll call these 
+ things as edges so it is trying so hard 
+ to go through them so it has to make the 
+ value of w so high so as to let this 
+ curve pass to the function and that's 
+ what is creating actually the war fiting 
+ somehow if we could control these W's 
+ some if we do not let them explode 
+ either on the negative side or on the 
+ positive side maybe we can we can cover 
+ this overfitting problem the question 
+ now is the question the first question 
+ was answered so if you see the first 
+ question the question that we had is 
+ this so it has more does it mean we 
+ should have less paramet what I said is 
+ I said if you somehow can manage with 
+ lower value vales of w if you do not try 
+ so hard to give them so high values so 
+ maybe you can even work with more 
+ parameters you don't need decrease 
+ parameters okay so why does it seem 
+ counter intutive because it seems 
+ counter intive now the value of M is 
+ getting changed drastically if the M 
+ were similar it would have angul to all 
+ those things it would have inherently 
+ shown the same pattern but here because 
+ it is trying so hard and the values are 
+ so extreme now either it's very high or 
+ it's very low value if I just remove the 
+ sign you can see very high values of 
+ very high positive vales and very high 
+ negative values so now we have to result 
+ this so even with same parameters what 
+ can we do can we do something so that it 
+ does not show this problem okay so for 
+ that what we have to do is we'll have to 
+ do something we'll have to add something 
+ we'll have to penalize it so do not 
+ increase W so much so we'll ask it we'll 
+ have to say it explicitly okay I I found 
+ the problem the problem is that again 
+ I'll show you the problem so the problem 
+ here if you 
+ see 
+ oops the problem that we found is that 
+ once we look at these coent initially 
+ they were good they were in a good range 
+ okay the Valu are not quite high but 
+ once you increases W it is overfitting 
+ because it's making these values quite 
+ high and because of the high values it 
+ is tuning to the noise also it is 
+ capturing the noise so now what I'm 
+ trying to do is I'm telling them okay do 
+ not increase this value so much because 
+ why otherwise you are learning the noise 
+ also I don't want you to learn the noise 
+ so how can I do that do not tune so much 
+ okay do not uh try so hard to go through 
+ the points because if you try so hard to 
+ go through the points you are uh 
+ increasing the values for these 
+ W's it is hugely positive or hugely 
+ negative okay you to sa it in from this 
+ so now what I have to do is I Som have 
+ to penalize it okay so this is the 
+ result so what I'm saying is I have to 
+ penalize 
+ it I'll take you questions maybe after I 
+ finish this so how should I do the 
+ penalizations now I have to tell it 
+ mathematically okay penalize it this was 
+ my equation now you have to penalize so 
+ what I'll do is let 
+ me this was the equation we had this if 
+ we again come to Let's suppose mean 
+ Square this squar error summation of n 
+ is equal to 1 to end points and we had 
+ prediction y of 
+ xn comma W and then minus t of 
+ n all square okay so this was this was 
+ my thing this was my error so error of w 
+ so I was getting error of zero so but 
+ what it was doing is it was changing 
+ these coefficients too much it was 
+ giving the very higher values so once 
+ you are giving them higher values it is 
+ tuning to this noise so what I actually 
+ wanted to I want to penalize it okay so 
+ once it gives more value to W okay 
+ somehow I should penalize I should say 
+ okay so there should tug of four now so 
+ tug of four in this if it is increasing 
+ W so I should do something to this so 
+ error increases so I should do something 
+ so the error increases so if it is 
+ increasing W's too much if it is gting 
+ this W's too much attention so what I 
+ should do is I should somehow add 
+ something somehow penalize it somehow so 
+ that one these increase too much so in 
+ the equation I should add something 
+ which will bring it down so I should add 
+ something if this W goes up okay if this 
+ W goes up so what I should do is I 
+ should I should keep on adding this 
+ error also okay so the natural thing is 
+ I'll take a norm of this W I'll say w 
+ Square what I'm doing is because I found 
+ the problem I found the problem was when 
+ we have we saw this when m is equal 9 
+ the coefficient value these W's they 
+ were getting very high values and 
+ because of that it was tuning to the 
+ noise also now the answer to this I said 
+ if it is making this W's larger so what 
+ I should do is I should penalize it 
+ because the point was it was trying very 
+ hard to get this e of w equal Z it was 
+ getting err equal Z because of this okay 
+ because of this equation it was trying 
+ to get error is equal zero but what I'm 
+ saying now is because you are increasing 
+ W that's how you can get this error is 
+ equal Zer but if you increase W too much 
+ I'll penalize you so what I'll do is 
+ I'll add the square root not Square 
+ sorry I'll add the square of w okay 
+ whatever W is you give me let's suppose 
+ it give 2008 so I'm squaring that up add 
+ plus so it is basically the dot product 
+ w dot WT W because we have Vector W like 
+ this this is W not W1 W2 and W3 okay so 
+ this is our W so we are saying W uh 
+ transpose W so this is a DOT product of 
+ these two and I'm this this is the dot 
+ this is called as Norm 
+ two okay so this is what I'm penalizing 
+ with does it make sense because I told 
+ you the problem is happening because it 
+ is increasing W is too much and it is 
+ getting this error function zero now I 
+ don't want you to increase W's so still 
+ what I want you to do I want keep the 
+ W's in check once you increase the W's 
+ now I have end the term now so this term 
+ will make sure that if it increase the W 
+ this error will also get increased so 
+ how for how many of you made this made 
+ sense 
+ again to get here this was the initial 
+ error function so this error function 
+ what was trying to do is if we were 
+ increasing the degree of the polinomial 
+ as in m is equal 9 it was trying so hard 
+ to get through all the points as a 
+ consequence to that it was increasing 
+ the value of these W's okay that's the 
+ problem we figured out once we printed 
+ the values of these coefficients so now 
+ what I have what I have done is I have 
+ added this penalty term so there's a tug 
+ of war going between these two things so 
+ if this increases okay this will 
+ decrease okay this this somehow is iners 
+ inversely proportional if you increase 
+ W's too much you getting the lower value 
+ of this but you're getting higher value 
+ of this if you decrease W's okay and if 
+ you take them nearly to zeros so this 
+ will become zero but this will be too 
+ high then okay this value is too high 
+ now you have to find a balance so this 
+ thing over here if you see this W2 and 
+ then we'll say how much do you want to 
+ impact it we won't just Square it we'll 
+ say let's have this Lambda by two also 
+ here okay Lambda basically is okay I 
+ want to give this only this much weight 
+ okay because this W square is too much 
+ so I'll give this Lambda some from 0 to 
+ one some value from here okay if it is 
+ zero so we're just removing this term if 
+ it is let's suppose 0.5 give half a vage 
+ to this so I'm just adding lamba by two 
+ something like this okay uh so now 
+ equation now the equation becomes e of w 
+ so error of w is equal so I'm taking the 
+ squared error so this is y xn comma W 
+ this is my prediction and this is the 
+ truth value the ground truth okay and 
+ I'm squaring this up and after this I am 
+ taking it for all the 
+ points and I'm adding this 1X two for 
+ for uh later convenience in the in in 
+ this numerical equation then in order in 
+ order to penalize it I'm penalizing it 
+ with w s now I don't want to give this 
+ equal to one so I'm adding one more term 
+ Lambda okay this Lambda what is 
+ basically how much weight should be 
+ given to this I'm just adding this 
+ Lambda by two okay so this thing what I 
+ did so far is called as a 
+ regularization okay so I have added this 
+ is called as L2 Norm okay Norm two this 
+ is what I have done so far so if you see 
+ this now it also depends on 
+ Lambda there are two things now the 
+ first thing was m and then we had 
+ Lambda okay you are minimizing the 
+ equation you have to minimize the errors 
+ but you have to minimize with respect to 
+ W's only okay you cannot minimize with 
+ respect to Lambda and and this uh M okay 
+ this Lambda and M they have to be fixed 
+ they have to be keep fix you should fix 
+ them fix before 
+ training you should fix them before 
+ training once you fix them and then you 
+ minimize this okay because you keeping 
+ this W and you want to find this W star 
+ W star is the values for w for for this 
+ for which this equation becomes minimum 
+ this equation gives a minimum value okay 
+ and these things Lambda and this m are 
+ called as hyper 
+ parameters okay so this is the 
+ function okay so this techniques is also 
+ so we this regulation actually sometimes 
+ because we can solve this equation in 
+ closed form so here in usually in 
+ machine Lear deepling we add the 
+ realization but we have close from 
+ methods in statistics we we have a 
+ special me which called a shrinkage we 
+ can shrink it okay which reduces the 
+ magnitude of these Cs and that 
+ suppresses overfitting okay but in 
+ neural network this is common to because 
+ there are all these weights are there 
+ these W's are weights this is called as 
+ weight 
+ Decay because you don't you don't want 
+ weight to stay very high values okay 
+ that's why you want to do you want to 
+ take this weight Decay so if let's 
+ suppose you take this Lambda is equal 0 
+ if you take Lambda is equ0 this whole 
+ term will vanish okay and this will 
+ become a normal loss function or normal 
+ error function sorry okay and you have 
+ to balance between this Lambda you have 
+ to choose this Lambda very wisely and 
+ how to do that you have to maybe uh do 
+ some uh searching or you have to do a 
+ hit and trial so that to find this 
+ Lambda and M why does it perform good so 
+ that's why in order to find this m and 
+ in order to find the good values for M 
+ and Lambda we do what's called as cross 
+ validation we'll see the details of all 
+ of these things but I just wanted to 
+ show you the what is this cross 
+ validation for so what basically we do 
+ is so we have this have parameters okay 
+ so we try to minimize this error 
+ function so we can't do it with jointly 
+ with w and Lambda why because W will 
+ always go to zero so it will let's 
+ suppose this is the error function so 
+ error function that we had I'll just 
+ copy this error 
+ function so this is the error function 
+ that we have if I jointly want to 
+ decrease if I jointly want to minimize 
+ this 
+ see the see the see the scenario over 
+ here the natural question for the 
+ mathematicians is why don't you jointly 
+ use this Lambda also with respect to 
+ Lambda also use this while you are 
+ minimizing the problem is this will also 
+ this will again put Lambda is equal zero 
+ because the whole goal of this is to 
+ make this error value as zero so it'll 
+ make this error value as zero it will 
+ give very high values of w and it will 
+ make this Lambda as zero okay so this 
+ will again overit okay so similarly when 
+ you have this m okay so it will tend 
+ overit the model so if you minimize this 
+ if you minimize this error function the 
+ error function that we wrote If we 
+ minimize this with respect to W and 
+ Lambda jointly with W jointly with this 
+ so we have now joint minimization with 
+ Lambda M and W's so what it'll do is 
+ it'll put Lambda is equal Z again it'll 
+ do or fitting it'll give very high 
+ values to this W's once you do it with M 
+ so you have to fix these two things 
+ that's why they are called as H 
+ parameters you have to fix this before 
+ training how many of you are able to see 
+ the problem there if I uh jointly do the 
+ minimization with Lambda and M so the 
+ problem will it'll take Lambda to zero 
+ that is not the thing we added Lambda 
+ for so if you give it if you get M okay 
+ learn M also from the data so it'll try 
+ to learn M as high as possible and it'll 
+ give W's as high as high value as 
+ possible and it'll try to workit because 
+ the whole goal of this equation is to 
+ make the error zero so if it has access 
+ to this Lambda as well as to this m so 
+ it will try to overit so it is better to 
+ have the control with the user okay you 
+ have this you just learn these W's okay 
+ that's why we call these h parameters 
+ okay so this optimization so for this 
+ what I what I said is in order to 
+ optimize in order to 
+ optimize values of Lambda and this m or 
+ hyper 
+ parameters so what we do is so we do 
+ validation okay so what we basically do 
+ is I just briefly cover it because we'll 
+ have detailed lectures coming on this so 
+ we have the whole data with us this is 
+ our whole data 
+ we are keeping this train data with us 
+ then we had this test data so what we 
+ basically do is we have a validation 
+ also then we'll have test so this thing 
+ is what will be used and this thing is 
+ totally unknown to the model unknown to 
+ model on this you'll 
+ train okay because you are fixing the H 
+ you give some M isal let's suppose m 
+ equal 2 and Lambda is equal 0.2 
+ something like like this if you gave 
+ this and now you have to test it you 
+ will not use it on test set you will use 
+ the validation set and you'll see how 
+ better it perform on validation so after 
+ that what you do is if you saw it's 
+ giving a lot of it is going train error 
+ was let's suppose good but validation 
+ accuracy validation error is not good so 
+ you'll change this you'll say m is equal 
+ 3 Lambda is equal .5 okay again train it 
+ again tested on validation set so once 
+ you are convinced once you have 
+ convinced okay now the train error or 
+ the train loss is good and the 
+ validation loss is good and at the last 
+ you are giving this test error okay okay 
+ so from this validation set you are 
+ tuning this 
+ parameters cost is increasing so there 
+ are lot of types of this cross 
+ validation okay so there can be S uh or 
+ kfold or S fold you call it s fold or 
+ kfold cross validation this is one of 
+ the techniques then there is leave one 
+ out leave one out cross validation l c 
+ one out so these are all the method of 
+ cross we'll see them we'll see all of 
+ these but the drawbacks are so you are 
+ increasing competition cost and then 
+ tuning multiple have have parameters 
+ that it can prohibit as the number of 
+ combinations go exponentially let's 
+ suppose if you have 10 half parameters 
+ to tune okay so then you see this is a 
+ Comal problem so it'll grow 
+ exponentially okay again there'll be a 
+ lot of resources used to use okay so 
+ you'll have to settle down on H the less 
+ the H parameters the easier it becomes 
+ because maybe sometimes you should and 
+ that's why again a primer over here or 
+ disclaimer so when you're reading any 
+ papers usually what I have seen good 
+ papers they give have parameters as well 
+ but the papers who uh don't give have 
+ parameters so it's very hard to 
+ reproduce them why because they not have 
+ parameters and they found certain of 
+ these results or all of these results on 
+ certain have parameters there are 
+ particular values for parameters so it 
+ is very hard to replicate them you're 
+ getting very bad results because you 
+ don't know have param let's Suppose 
+ there are only there are maybe let's 
+ suppose two or two to 10 have parameters 
+ so if you don't know value to these so 
+ it is very hard to reproduce these 
+ papers okay this is just a primary 
+ because sometimes you'll be uh banging 
+ your hand head on the wall if you are 
+ reproducing a paper and you are not 
+ getting exact results so you must look 
+ have they given the value to have 
+ parameters 
+ okay so now I'll show you the how this 
+ how this Lambda has an effect now we'll 
+ do the same with this same with m is 
+ equal 9 but now we'll use this 
+ regulation term okay that's what I'll 
+ show you 
+ now okay let me just copy the whole code 
+ so that I don't have to write all of 
+ this one by one so I hope that you'll 
+ understand it after that you'll pause 
+ the video and you'll read the code on 
+ your own 
+ now what what you see is here fit 
+ polinomial but with regularization so 
+ now I am adding this okay you don't have 
+ to understand this right now but uh 
+ probably we once we go to line algebra 
+ we'll understand this and then I'm 
+ evaluating this thing and but the degree 
+ over here is nine if you can see clearly 
+ degree is n now I'm adding these terms 
+ also this reation term so now if you see 
+ this so this is Lambda is equal - 
+ 18 okay the Lambda has 
+ huge effect so at Lambda is equal - 18 
+ so you have this value so the function 
+ is like this okay you saw still it 
+ approximated it right very nicely and in 
+ here if you see Lambda is equal 0 by 
+ Lambda is equal 0 basically no 
+ regularization use it so there was no 
+ regularization use so you see this curve 
+ is not good again okay this is very bad 
+ fitting okay but in here if you see so 
+ this is actually true function this is 
+ fitted function at Lambda is equal Z so 
+ this is data and true function and the 
+ fitted curve so you saw that regation 
+ has an effect you saw this actually 
+ tried to to approximate it quite 
+ nicely okay and if I want to show you uh 
+ one more function that is uh 
+ maybe the training 
+ loss and uh the test loss let me show 
+ you that 
+ also so this you can see it now there is 
+ no problem with this so this is the test 
+ error training error so initially what 
+ we had is the training error was 
+ decreasing but the test error was very 
+ high okay now you can see this so that 
+ problem also got somehow solved so here 
+ we have high train error again now and 
+ the test error is obviously same so 
+ initially what we had is this test error 
+ was almost hitting zero when this W was 
+ W was equal to 9 and M was equal to 9 
+ and the training error was hitting zero 
+ but the test error was going very high 
+ but here if you see when you added this 
+ optimal regularization so what happened 
+ is now the train error is also going 
+ high okay so that that you can clearly 
+ see and even with this uh with this 
+ adjacent Lambda so Lambda is equal Z 
+ basically means no regation m is equal 9 
+ okay and this is Lambda starting value 
+ from- 16 to this so you can see that 
+ Optimum values you get around here okay 
+ so I hope I covered some the basic 
+ concepts of ML and deep learning so 
+ we'll see these concept getting repeated 
+ everywhere okay so most of these concept 
+ we'll take one by one and thoroughly 
+ disect them but this example was there 
+ to Showcase a lot of things showcase uh 
+ uh how data is generated and what the 
+ physical phenomenon that might generated 
+ and there's a function uh beneath that 
+ and we have to approximate the function 
+ and there is noise we should not over 
+ fit we should not under fit and there 
+ are a lot of parameters to be tuned and 
+ a lot of terminology introduced so I 
+ hope that you so understood this example 
+ so I'm stopping the recording over here 
+ if you have any questions I'll take them

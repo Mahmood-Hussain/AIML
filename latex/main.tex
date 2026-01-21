@@ -1,0 +1,122 @@
+% ============================================================================
+% AI/ML LECTURE NOTES - MAIN DOCUMENT
+% Comprehensive notes on Machine Learning and Deep Learning
+% ============================================================================
+
+\input{preamble}
+
+\begin{document}
+
+% ============================================================================
+% TITLE PAGE
+% ============================================================================
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    
+    % EduCasheer Initiative
+    {\Large\scshape An EduCasheer Initiative\par}
+    \vspace{0.5cm}
+    
+    {\Huge\bfseries Machine Learning \& Deep Learning\par}
+    \vspace{0.5cm}
+    {\LARGE Comprehensive Lecture Notes\par}
+    
+    \vspace{1.5cm}
+    
+    \begin{tikzpicture}
+        % Neural network illustration
+        \foreach \i in {1,2,3,4} {
+            \node[circle, draw=blue!70, fill=blue!20, minimum size=0.8cm] (i\i) at (0, -\i*1.2+2.4) {};
+        }
+        \foreach \i in {1,2,3,4,5} {
+            \node[circle, draw=green!70!black, fill=green!20, minimum size=0.8cm] (h\i) at (3, -\i*1+2) {};
+        }
+        \foreach \i in {1,2,3} {
+            \node[circle, draw=red!70, fill=red!20, minimum size=0.8cm] (o\i) at (6, -\i*1.2+1.8) {};
+        }
+        
+        % Connections
+        \foreach \i in {1,2,3,4} {
+            \foreach \j in {1,2,3,4,5} {
+                \draw[gray!50, -] (i\i) -- (h\j);
+            }
+        }
+        \foreach \i in {1,2,3,4,5} {
+            \foreach \j in {1,2,3} {
+                \draw[gray!50, -] (h\i) -- (o\j);
+            }
+        }
+        
+        % Labels
+        \node[below=0.3cm of i4, blue!70] {\small Input};
+        \node[below=0.3cm of h5, green!70!black] {\small Hidden};
+        \node[below=0.3cm of o3, red!70] {\small Output};
+    \end{tikzpicture}
+    
+    \vspace{1.5cm}
+    
+    {\Large\itshape From Fundamentals to Implementation\par}
+    
+    \vfill
+    
+    % Instructor information
+    {\large\bfseries Instructor\par}
+    \vspace{0.3cm}
+    {\Large Musavir Khaliq\par}
+    
+    \vspace{1cm}
+    
+    {\large Covering:\par}
+    \vspace{0.5cm}
+    {\normalsize 
+    Machine Learning Fundamentals $\bullet$ Neural Networks $\bullet$ Perceptrons\\[3pt]
+    Gradient Descent $\bullet$ Loss Functions $\bullet$ Backpropagation\\[3pt]
+    Information Theory $\bullet$ Automatic Differentiation
+    \par}
+    
+    \vfill
+    
+    % YouTube playlist reference
+    {\small\itshape Video Lectures: \url{https://youtube.com/playlist?list=PLG2XU_l-TcR8yWh4nKmPYMX5k9r-1XyBM}\par}
+    
+    \vspace{0.5cm}
+    {\large \today\par}
+\end{titlepage}
+
+% ============================================================================
+% TABLE OF CONTENTS
+% ============================================================================
+
+\tableofcontents
+\newpage
+
+% ============================================================================
+% CHAPTERS
+% ============================================================================
+
+\input{chapters/01_introduction}
+\input{chapters/02_supervised_learning}
+\input{chapters/03_neurons}
+\input{chapters/04_activation_functions}
+\input{chapters/05_mlp}
+\input{chapters/06_gradient_descent}
+\input{chapters/07_backpropagation}
+\input{chapters/08_information_theory}
+\input{chapters/09_practical_dl}
+
+% ============================================================================
+% APPENDICES (Optional)
+% ============================================================================
+
+\appendix
+
+% \input{appendices/math_review}
+% \input{appendices/code_reference}
+
+% ============================================================================
+% END DOCUMENT
+% ============================================================================
+
+\end{document}

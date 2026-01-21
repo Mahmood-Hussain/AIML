@@ -1,0 +1,287 @@
+\contentsline {chapter}{\numberline {1}Introduction to Machine Learning}{8}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Chapter Overview}{8}{section.1.1}%
+\contentsline {section}{\numberline {1.2}The Dream of Intelligent Machines}{8}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Traditional Programming vs Machine Learning}{8}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}The Traditional Programming Paradigm}{8}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}The Machine Learning Paradigm}{9}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}When Traditional Programming Fails}{9}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.4}From Features to Representations}{10}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Hand-Crafted Features (Classical ML)}{10}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Representation Learning}{10}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}Deep Learning: Hierarchical Representations}{11}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}The Limitation of Single-Level Representations}{11}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}The Deep Learning Approach}{11}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Hierarchical Composition: The Image Example}{11}{subsection.1.5.3}%
+\contentsline {section}{\numberline {1.6}The AI Landscape: AI, ML, and Deep Learning}{12}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}The Relationship Between Terms}{12}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}A Summary Diagram}{12}{subsection.1.6.2}%
+\contentsline {section}{\numberline {1.7}The Formal Definition of Learning}{13}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Tom Mitchell's Definition}{13}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Example: Learning to Play Chess}{13}{subsection.1.7.2}%
+\contentsline {subsection}{\numberline {1.7.3}Example: Email Spam Classification}{13}{subsection.1.7.3}%
+\contentsline {section}{\numberline {1.8}Types of Machine Learning Tasks}{13}{section.1.8}%
+\contentsline {subsection}{\numberline {1.8.1}Classification}{13}{subsection.1.8.1}%
+\contentsline {subsection}{\numberline {1.8.2}Regression}{14}{subsection.1.8.2}%
+\contentsline {subsection}{\numberline {1.8.3}Other Important Tasks}{14}{subsection.1.8.3}%
+\contentsline {section}{\numberline {1.9}Performance Measures}{14}{section.1.9}%
+\contentsline {subsection}{\numberline {1.9.1}Common Metrics}{15}{subsection.1.9.1}%
+\contentsline {section}{\numberline {1.10}Learning Paradigms: The Experience}{15}{section.1.10}%
+\contentsline {subsection}{\numberline {1.10.1}Supervised Learning}{15}{subsection.1.10.1}%
+\contentsline {subsection}{\numberline {1.10.2}Unsupervised Learning}{15}{subsection.1.10.2}%
+\contentsline {subsection}{\numberline {1.10.3}Semi-Supervised Learning}{16}{subsection.1.10.3}%
+\contentsline {subsection}{\numberline {1.10.4}Reinforcement Learning}{16}{subsection.1.10.4}%
+\contentsline {section}{\numberline {1.11}The Machine Learning Pipeline}{16}{section.1.11}%
+\contentsline {subsection}{\numberline {1.11.1}Step 1: Problem Definition}{16}{subsection.1.11.1}%
+\contentsline {subsection}{\numberline {1.11.2}Step 2: Data Collection}{17}{subsection.1.11.2}%
+\contentsline {subsection}{\numberline {1.11.3}Step 3: Data Preprocessing}{17}{subsection.1.11.3}%
+\contentsline {subsection}{\numberline {1.11.4}Step 4: Model Selection/Design}{17}{subsection.1.11.4}%
+\contentsline {subsection}{\numberline {1.11.5}Step 5: Model Training}{17}{subsection.1.11.5}%
+\contentsline {subsection}{\numberline {1.11.6}Step 6: Model Evaluation}{17}{subsection.1.11.6}%
+\contentsline {subsection}{\numberline {1.11.7}Step 7: Model Testing}{17}{subsection.1.11.7}%
+\contentsline {subsection}{\numberline {1.11.8}Step 8: Deployment and Monitoring}{17}{subsection.1.11.8}%
+\contentsline {section}{\numberline {1.12}Why Machine Learning is Thriving Now}{18}{section.1.12}%
+\contentsline {subsection}{\numberline {1.12.1}The Three Pillars}{18}{subsection.1.12.1}%
+\contentsline {section}{\numberline {1.13}Chapter Summary}{19}{section.1.13}%
+\contentsline {chapter}{\numberline {2}Supervised Learning and Curve Fitting}{20}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Chapter Overview}{20}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Understanding Data: Patterns and Noise}{20}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Data as Information}{20}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}The Generating Process}{20}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Pattern vs. Noise}{21}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Synthetic Data Generation}{21}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}The Setup}{21}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Python Code for Data Generation}{21}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}The Supervised Learning Problem}{22}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Problem Formulation}{22}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Generalization: The Key Challenge}{23}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Curve Fitting: A Polynomial Approach}{23}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Polynomial Basis Functions}{23}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Choosing the Polynomial Degree}{23}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}The ``Curve Fitting Machine'' Analogy}{24}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}Error Functions: Quantifying Fit Quality}{24}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}The Need for an Error Metric}{24}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Squared Error}{24}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Geometric Interpretation}{25}{subsection.2.6.3}%
+\contentsline {subsection}{\numberline {2.6.4}Mean Squared Error (MSE) and RMSE}{25}{subsection.2.6.4}%
+\contentsline {section}{\numberline {2.7}Finding the Optimal Parameters}{25}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}The Optimization Problem}{25}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Closed-Form Solution for Polynomial Fitting}{25}{subsection.2.7.2}%
+\contentsline {section}{\numberline {2.8}Overfitting and Underfitting}{26}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}The Bias-Variance Tradeoff}{26}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Visual Comparison}{26}{subsection.2.8.2}%
+\contentsline {subsection}{\numberline {2.8.3}The Overfitting Paradox}{26}{subsection.2.8.3}%
+\contentsline {subsection}{\numberline {2.8.4}Coefficient Explosion: The Root Cause}{26}{subsection.2.8.4}%
+\contentsline {section}{\numberline {2.9}Regularization: Controlling Complexity}{27}{section.2.9}%
+\contentsline {subsection}{\numberline {2.9.1}The Key Insight}{27}{subsection.2.9.1}%
+\contentsline {subsection}{\numberline {2.9.2}Regularized Error Function}{27}{subsection.2.9.2}%
+\contentsline {subsection}{\numberline {2.9.3}The Tug-of-War}{27}{subsection.2.9.3}%
+\contentsline {subsection}{\numberline {2.9.4}Effect of Regularization}{27}{subsection.2.9.4}%
+\contentsline {section}{\numberline {2.10}Hyperparameters and Validation}{28}{section.2.10}%
+\contentsline {subsection}{\numberline {2.10.1}Parameters vs. Hyperparameters}{28}{subsection.2.10.1}%
+\contentsline {subsection}{\numberline {2.10.2}Why Not Optimize Hyperparameters Jointly?}{28}{subsection.2.10.2}%
+\contentsline {subsection}{\numberline {2.10.3}Train, Validation, and Test Sets}{28}{subsection.2.10.3}%
+\contentsline {subsection}{\numberline {2.10.4}The Validation Process}{28}{subsection.2.10.4}%
+\contentsline {subsection}{\numberline {2.10.5}Cross-Validation}{29}{subsection.2.10.5}%
+\contentsline {section}{\numberline {2.11}Chapter Summary}{29}{section.2.11}%
+\contentsline {chapter}{\numberline {3}From Biological to Artificial Neurons}{31}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Chapter Overview}{31}{section.3.1}%
+\contentsline {section}{\numberline {3.2}The Biological Neuron}{31}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}The Fundamental Unit of Neural Computation}{31}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Structure of a Biological Neuron}{31}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}The Artificial Neuron: Computational Analog}{32}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}From Biology to Computation}{32}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}General Structure of an Artificial Neuron}{32}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}The McCulloch-Pitts Neuron (1943)}{33}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}The First Computational Neuron Model}{33}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Thresholding Logic}{33}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Inhibitory and Excitatory Inputs}{33}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Implementing Logic Gates}{34}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}The Computational Foundation}{34}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}OR Gate}{34}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}AND Gate}{34}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}NOT Gate}{34}{subsection.3.5.4}%
+\contentsline {section}{\numberline {3.6}Geometric Interpretation: Linear Separability}{34}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Decision Boundaries}{34}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}The XOR Problem}{35}{subsection.3.6.2}%
+\contentsline {section}{\numberline {3.7}The Perceptron (1958)}{35}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Addressing MP Neuron Limitations}{35}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}Understanding the Bias Term}{36}{subsection.3.7.2}%
+\contentsline {subsection}{\numberline {3.7.3}Parameters: What the Perceptron Learns}{36}{subsection.3.7.3}%
+\contentsline {section}{\numberline {3.8}The Perceptron Learning Algorithm}{36}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Learning from Data}{36}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}The Algorithm}{36}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.8.3}Convergence Theorem}{37}{subsection.3.8.3}%
+\contentsline {section}{\numberline {3.9}Chapter Summary}{37}{section.3.9}%
+\contentsline {chapter}{\numberline {4}Activation Functions and Sigmoid Neurons}{39}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Chapter Overview}{39}{section.4.1}%
+\contentsline {section}{\numberline {4.2}From Step Functions to Smooth Activations}{39}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Problems with the Step Function}{39}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Desirable Properties of Activation Functions}{40}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}The Sigmoid Function}{40}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Definition}{40}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Properties of Sigmoid}{40}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Derivative of Sigmoid}{40}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Python Implementation}{41}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}The Sigmoid Neuron}{41}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Architecture}{41}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Interpreting Sigmoid Output}{42}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Loss Functions}{42}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Why Loss Functions?}{42}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Mean Squared Error (MSE)}{42}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Properties of MSE}{42}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.6}The Forward Pass}{43}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Definition}{43}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Example: Forward Pass by Hand}{43}{subsection.4.6.2}%
+\contentsline {section}{\numberline {4.7}Other Activation Functions}{43}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Tanh (Hyperbolic Tangent)}{43}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}ReLU (Rectified Linear Unit)}{43}{subsection.4.7.2}%
+\contentsline {subsection}{\numberline {4.7.3}Comparison}{44}{subsection.4.7.3}%
+\contentsline {section}{\numberline {4.8}Chapter Summary}{44}{section.4.8}%
+\contentsline {chapter}{\numberline {5}Multi-Layer Perceptrons}{45}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Chapter Overview}{45}{section.5.1}%
+\contentsline {section}{\numberline {5.2}The Need for Multiple Layers}{45}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}The XOR Revisited}{45}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.3}Neural Networks as Graphs}{46}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Directed Acyclic Graphs (DAGs)}{46}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Defining Depth}{46}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}What Makes a Network ``Deep''?}{46}{subsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.3.4}Defining Layers}{47}{subsection.5.3.4}%
+\contentsline {section}{\numberline {5.4}Standard Neural Network Notation}{47}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Network Structure}{47}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Weight Matrix Notation}{47}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Bias Vector Notation}{48}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Activation Notation}{48}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}Summary of Notation}{48}{subsection.5.4.5}%
+\contentsline {section}{\numberline {5.5}Forward Propagation in MLPs}{48}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}The Algorithm}{48}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Matrix Formulation}{49}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Python Implementation}{49}{subsection.5.5.3}%
+\contentsline {section}{\numberline {5.6}Representational Power}{49}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Universal Approximation Theorem}{49}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Why Depth Helps}{50}{subsection.5.6.2}%
+\contentsline {section}{\numberline {5.7}Chapter Summary}{50}{section.5.7}%
+\contentsline {chapter}{\numberline {6}Gradient Descent and Optimization}{52}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Chapter Overview}{52}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Formalizing the Learning Problem}{52}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}The True Goal}{52}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Two Fundamental Problems}{52}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}The Solution: Empirical Risk}{52}{subsection.6.2.3}%
+\contentsline {section}{\numberline {6.3}Divergence Functions and Losses}{53}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Properties of a Good Divergence}{53}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Common Loss Functions}{53}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Gradient Descent}{53}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}The Optimization Problem}{53}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}The Key Insight: Gradients Point Uphill}{54}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}The Update Rule}{54}{subsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.4.4}The Gradient Descent Algorithm}{54}{subsection.6.4.4}%
+\contentsline {section}{\numberline {6.5}The Learning Rate}{54}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Choosing the Learning Rate}{54}{subsection.6.5.1}%
+\contentsline {section}{\numberline {6.6}Variants of Gradient Descent}{55}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Batch Gradient Descent}{55}{subsection.6.6.1}%
+\contentsline {subsection}{\numberline {6.6.2}Stochastic Gradient Descent (SGD)}{55}{subsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.6.3}Mini-Batch Gradient Descent}{55}{subsection.6.6.3}%
+\contentsline {section}{\numberline {6.7}Computing Gradients}{55}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}The Challenge}{55}{subsection.6.7.1}%
+\contentsline {subsection}{\numberline {6.7.2}The Solution: Backpropagation}{55}{subsection.6.7.2}%
+\contentsline {section}{\numberline {6.8}Implementation}{56}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Chapter Summary}{57}{section.6.9}%
+\contentsline {chapter}{\numberline {7}Backpropagation}{58}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Motivation and Overview}{58}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Independent vs. Dependent Parameters}{58}{subsection.7.1.1}%
+\contentsline {section}{\numberline {7.2}Review of Calculus Fundamentals}{58}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}The Derivative as Rate of Change}{58}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Partial Derivatives and Multivariate Functions}{59}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}The Chain Rule}{59}{subsection.7.2.3}%
+\contentsline {subsection}{\numberline {7.2.4}Chain Rule with Multiple Paths}{59}{subsection.7.2.4}%
+\contentsline {section}{\numberline {7.3}Computational Graphs}{60}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Forward Pass: Notation and Review}{60}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Notation Summary}{60}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Forward Pass Equations}{61}{subsection.7.4.2}%
+\contentsline {section}{\numberline {7.5}The Error (Delta) Vector}{61}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Backpropagation Derivation}{61}{section.7.6}%
+\contentsline {subsection}{\numberline {7.6.1}Step 1: Error at the Output Layer}{61}{subsection.7.6.1}%
+\contentsline {subsubsection}{Common Loss Functions}{62}{subsubsection*.2}%
+\contentsline {subsection}{\numberline {7.6.2}Step 2: Backpropagating the Error}{62}{subsection.7.6.2}%
+\contentsline {subsection}{\numberline {7.6.3}Step 3: Gradients with Respect to Parameters}{63}{subsection.7.6.3}%
+\contentsline {section}{\numberline {7.7}Summary: The Backpropagation Algorithm}{64}{section.7.7}%
+\contentsline {section}{\numberline {7.8}Worked Example: Backpropagation by Hand}{64}{section.7.8}%
+\contentsline {subsection}{\numberline {7.8.1}Network Setup}{64}{subsection.7.8.1}%
+\contentsline {subsection}{\numberline {7.8.2}Forward Pass}{64}{subsection.7.8.2}%
+\contentsline {subsection}{\numberline {7.8.3}Backward Pass}{65}{subsection.7.8.3}%
+\contentsline {subsection}{\numberline {7.8.4}Parameter Gradients}{66}{subsection.7.8.4}%
+\contentsline {subsection}{\numberline {7.8.5}Gradient Descent Update}{66}{subsection.7.8.5}%
+\contentsline {section}{\numberline {7.9}Mini-batch Gradient Descent}{66}{section.7.9}%
+\contentsline {section}{\numberline {7.10}Why is it Called ``Backpropagation''?}{66}{section.7.10}%
+\contentsline {section}{\numberline {7.11}Sigmoid Derivative}{67}{section.7.11}%
+\contentsline {section}{\numberline {7.12}Key Takeaways}{67}{section.7.12}%
+\contentsline {chapter}{\numberline {8}Information Theory and Loss Functions}{69}{chapter.8}%
+\contentsline {section}{\numberline {8.1}The Learning Problem}{69}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Setup}{69}{subsection.8.1.1}%
+\contentsline {subsection}{\numberline {8.1.2}The Divergence Problem}{69}{subsection.8.1.2}%
+\contentsline {section}{\numberline {8.2}Information and Surprise}{69}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Intuition: Data as Surprise}{69}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Defining Information}{70}{subsection.8.2.2}%
+\contentsline {section}{\numberline {8.3}Entropy}{70}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Definition}{70}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Properties of Entropy}{70}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Examples}{71}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}Entropy Visualization}{71}{subsection.8.3.4}%
+\contentsline {section}{\numberline {8.4}Cross-Entropy}{71}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Motivation}{71}{subsection.8.4.1}%
+\contentsline {subsection}{\numberline {8.4.2}Key Insight}{72}{subsection.8.4.2}%
+\contentsline {section}{\numberline {8.5}KL Divergence}{72}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}Definition}{72}{subsection.8.5.1}%
+\contentsline {subsection}{\numberline {8.5.2}Properties}{72}{subsection.8.5.2}%
+\contentsline {subsection}{\numberline {8.5.3}Why Cross-Entropy for Loss?}{72}{subsection.8.5.3}%
+\contentsline {section}{\numberline {8.6}The Softmax Function}{73}{section.8.6}%
+\contentsline {subsection}{\numberline {8.6.1}Properties}{73}{subsection.8.6.1}%
+\contentsline {subsection}{\numberline {8.6.2}Example}{73}{subsection.8.6.2}%
+\contentsline {subsection}{\numberline {8.6.3}Softmax Temperature}{73}{subsection.8.6.3}%
+\contentsline {section}{\numberline {8.7}Cross-Entropy Loss for Classification}{73}{section.8.7}%
+\contentsline {subsection}{\numberline {8.7.1}Binary Classification: Binary Cross-Entropy (BCE)}{73}{subsection.8.7.1}%
+\contentsline {subsection}{\numberline {8.7.2}Multi-class Classification: Categorical Cross-Entropy (CCE)}{74}{subsection.8.7.2}%
+\contentsline {subsection}{\numberline {8.7.3}Example: Multi-class Classification}{74}{subsection.8.7.3}%
+\contentsline {section}{\numberline {8.8}Maximum Likelihood Estimation Perspective}{74}{section.8.8}%
+\contentsline {subsection}{\numberline {8.8.1}The Four-Step Recipe for Loss Construction}{74}{subsection.8.8.1}%
+\contentsline {subsection}{\numberline {8.8.2}Deriving Binary Cross-Entropy}{75}{subsection.8.8.2}%
+\contentsline {subsection}{\numberline {8.8.3}Deriving Categorical Cross-Entropy}{75}{subsection.8.8.3}%
+\contentsline {subsection}{\numberline {8.8.4}MSE from Gaussian Assumption}{75}{subsection.8.8.4}%
+\contentsline {section}{\numberline {8.9}Gradient of Cross-Entropy with Softmax}{76}{section.8.9}%
+\contentsline {section}{\numberline {8.10}Why Use Logarithms?}{76}{section.8.10}%
+\contentsline {section}{\numberline {8.11}Summary: Loss Function Selection}{76}{section.8.11}%
+\contentsline {section}{\numberline {8.12}Practical Considerations}{77}{section.8.12}%
+\contentsline {subsection}{\numberline {8.12.1}Label Smoothing}{77}{subsection.8.12.1}%
+\contentsline {subsection}{\numberline {8.12.2}Numerical Stability}{77}{subsection.8.12.2}%
+\contentsline {chapter}{\numberline {9}Practical Deep Learning}{78}{chapter.9}%
+\contentsline {section}{\numberline {9.1}From Theory to Implementation}{78}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Three Types of Differentiation}{78}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Numerical Differentiation Details}{78}{subsection.9.1.2}%
+\contentsline {section}{\numberline {9.2}Automatic Differentiation (Autograd)}{79}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}The Core Idea}{79}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}Forward Mode vs. Reverse Mode}{79}{subsection.9.2.2}%
+\contentsline {section}{\numberline {9.3}Building a Simple Autograd System}{79}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}The Value Class}{80}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}Using Our Autograd Engine}{81}{subsection.9.3.2}%
+\contentsline {section}{\numberline {9.4}Building a Neural Network from Scratch}{82}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Neuron Class}{82}{subsection.9.4.1}%
+\contentsline {subsection}{\numberline {9.4.2}Layer Class}{82}{subsection.9.4.2}%
+\contentsline {subsection}{\numberline {9.4.3}MLP Class}{82}{subsection.9.4.3}%
+\contentsline {section}{\numberline {9.5}The Training Loop}{83}{section.9.5}%
+\contentsline {section}{\numberline {9.6}The Complete Training Algorithm}{84}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Hyperparameters}{85}{section.9.7}%
+\contentsline {subsection}{\numberline {9.7.1}Key Hyperparameters}{85}{subsection.9.7.1}%
+\contentsline {subsection}{\numberline {9.7.2}Learning Rate}{85}{subsection.9.7.2}%
+\contentsline {section}{\numberline {9.8}Common Challenges}{85}{section.9.8}%
+\contentsline {subsection}{\numberline {9.8.1}Vanishing Gradients}{85}{subsection.9.8.1}%
+\contentsline {subsection}{\numberline {9.8.2}Exploding Gradients}{86}{subsection.9.8.2}%
+\contentsline {subsection}{\numberline {9.8.3}Overfitting}{86}{subsection.9.8.3}%
+\contentsline {subsection}{\numberline {9.8.4}Underfitting}{86}{subsection.9.8.4}%
+\contentsline {section}{\numberline {9.9}Weight Initialization}{86}{section.9.9}%
+\contentsline {subsection}{\numberline {9.9.1}Xavier/Glorot Initialization}{86}{subsection.9.9.1}%
+\contentsline {subsection}{\numberline {9.9.2}He Initialization}{87}{subsection.9.9.2}%
+\contentsline {section}{\numberline {9.10}Regularization Techniques}{87}{section.9.10}%
+\contentsline {subsection}{\numberline {9.10.1}L2 Regularization (Weight Decay)}{87}{subsection.9.10.1}%
+\contentsline {subsection}{\numberline {9.10.2}Dropout}{87}{subsection.9.10.2}%
+\contentsline {section}{\numberline {9.11}Tips for Success}{87}{section.9.11}%
+\contentsline {section}{\numberline {9.12}From Scratch to Frameworks}{88}{section.9.12}%
+\contentsline {section}{\numberline {9.13}Key Takeaways}{89}{section.9.13}%

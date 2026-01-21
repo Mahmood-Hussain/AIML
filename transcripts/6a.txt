@@ -1,0 +1,1572 @@
+So in the previous lecture we were 
+ discussing about sigmoid neurons. 
+ So what was the difference with the 
+ sigmoid neurons? So we saw that we 
+ didn't want a hard function that we had 
+ usually the activation function that we 
+ had. It was taking decision very harshly 
+ that we had a step function in that. So 
+ we wanted to replace the step function 
+ by the sigmoid function so that we had 
+ the smoothness something of this sort. 
+ Okay. So what were the advantage by 
+ using this uh sigmoid? The first thing 
+ which I wrote was smooth. It is smooth 
+ that is it is continuous. It has uh it 
+ does not have any jumps or cuts. And 
+ second thing was it is differentiable. 
+ And why we care about differentiability? 
+ Because we will be optimizing these 
+ functions. We'll be either taking 
+ minimum values or maximum minimum. We'll 
+ look for these optimal points. We'll so 
+ we have to somehow differentiate the 
+ function. So it is very uh good if we 
+ have a function which is differentiable. 
+ So these were the things that we have 
+ and 
+ now the point is if we have the sigmoid 
+ neuron okay now we have to somehow 
+ as we saw it in the neuron we had 
+ corporates neuron we have perceptron so 
+ we there saw perceptron learn algorithm 
+ then we there saw error surfaces so 
+ similarly I'll just remind the problem 
+ that we are actually doing in machine 
+ learning so the core idea in machine 
+ learning is b you have to learn things 
+ so we have data so which we have spoken 
+ in length in one of the previous 
+ lectures so data is like this x i Y I if 
+ it is supervised learning. So this X I 
+ is a bunch of features. So it can be X 
+ I1 X I2 something of this sort X I N 
+ again correspond to this there is this 
+ label. So these are the features 
+ and this is the label. So what we assume 
+ is that we assume data contains 
+ information and we have to learn from 
+ the information 
+ and that is a generating process. There 
+ is a generating process. 
+ Okay. And this generating process 
+ somehow can be captured and we can 
+ relate it with the functions. That's 
+ what we have seen in the previous 
+ lectures also. So let's suppose if 
+ something is there if you see images if 
+ you see faces of people or if you see 
+ let's suppose image of cats and dogs if 
+ you see videos if you see weather. So 
+ all of these things they have an underly 
+ generating process. Okay. And that 
+ generating process can be defined 
+ somehow by functions or in if we uh see 
+ through a probabistic lens. So we can 
+ say that there's a probability there's 
+ underlying probability distribution 
+ there is an underlying probability 
+ distribution. 
+ Okay. Now what we had is you have this 
+ features like this you had X and Y you 
+ have features and the corresponding 
+ labels. So now we know that these 
+ features are somehow related with these 
+ labels because because of that 
+ underlying process because of the 
+ underlying distribution that we have. 
+ Now let's suppose I can write this X 
+ consider X as all these features and now 
+ they are somehow related with this Y 
+ they are some related to this label. So 
+ we call that a function. Okay. So this 
+ is the underlying generating process. So 
+ yeah you know that with every function 
+ so if it is a nondeterministic process 
+ and if it contains the things which we 
+ are not certain about. So we use the 
+ concept of probability that we discuss 
+ in mathematics to deal with such things. 
+ Okay that's why we say that there's an 
+ distribution uh that can explain this 
+ process. Okay. So now we will have to 
+ see what do we mean by learning. So this 
+ is our data and then we have our model. 
+ So what is model? Now the first thing we 
+ saw is data. So I'll write these one by 
+ one. So data so it is something of this 
+ sort. So we have data from 1 to n. I'm 
+ writing it in super setting. So x i is 
+ the feature vector and yi is the 
+ corresponding label to it. And then what 
+ basically model is. So model tries to 
+ model ts to approximate this. So now we 
+ are not we don't want to come up with 
+ this exact function. We want to 
+ approximate this. 
+ So approximate the 
+ underlying function. 
+ So this is what we want. So we want to 
+ approximate the underlying function that 
+ has generated the data. Okay. So how do 
+ we do that? So in deep learning we do 
+ that by parameters. 
+ So we now have parameterized function. 
+ So how do we see now this in deep 
+ learning? So we have to model this. So 
+ model will be seen something of this 
+ sort because this this will be a 
+ composition of a lot of functions. So 
+ we'll have initially one function then 
+ composed to some other function. So in 
+ at the end we'll have some function 
+ which will be parameterized. So we'll 
+ get some input and there will be some 
+ parameters theta and this theta will be 
+ these weights and biases. 
+ Okay. And this is the function by the 
+ help of this predicate function and this 
+ is what we call our model. So once we 
+ find these thetas once we find this 
+ weights and biases so this will be our 
+ model. So I can call this as my model. 
+ Okay. And now we we know about these 
+ parameters and then we should have 
+ somehow a learning algorithm. We should 
+ have a learning algorithm. 
+ So before learning algorithm what we 
+ should know is we should know the 
+ objective also. So learning algorithm 
+ will work on some objective. So we have 
+ done detailed treatment of this all the 
+ all the steps in the pipeline. But here 
+ I'm just giving you again uh some 
+ revision and maybe so that you get 
+ remind so we have data which contains 
+ information and then we want to learn a 
+ model of it. So what is meaning of the 
+ model? The model basically is the 
+ underlying function that we want. So 
+ here I want that parameterized function 
+ and the parameters will be this theta. 
+ So this theta contains weights by these 
+ will be your parameters. 
+ So now we'll have to learn uh these 
+ parameters. We have to learn these 
+ weights and biases. So we'll have some 
+ learning algorithm but these learning 
+ algorithms will work on some objectives. 
+ So we'll have a function okay we have 
+ those loss functions which we want to 
+ minimize something of that sort. So 
+ we'll have an objective which you want 
+ to achieve anything that you do in life 
+ it must have an objective. Let's suppose 
+ we come in this class the objective is 
+ to grasp the concepts that I'll teach 
+ here. Okay. And the objective is to have 
+ a healthy discussion so that we increase 
+ the knowledge. Okay. Similarly, whenever 
+ you do a machine learning deep learning 
+ task there should be some objective. So 
+ in uh usually in the case is that you 
+ have to minimize the loss function. So 
+ you define a loss function based on the 
+ problem statement and this loss function 
+ is defined based on problem statement. 
+ So whatever problem you are you are 
+ solving. So you will have a problem 
+ statement corresponding to that you will 
+ construct a loss function and then you 
+ will try to minimize the loss function. 
+ Okay. So and then we have these learning 
+ algorithms. So learning algorithms will 
+ try to uh they'll try to achieve these 
+ object too. So what are learning 
+ algorithms? You have gradient descent. 
+ So and you have other a lot of things 
+ and you have these optimizers defined 
+ and there are a lot of things that uh 
+ that go in this. Okay. And now let's 
+ suppose if we take an example that is 
+ the running example. So in our movie 
+ case so we have this x i will be the 
+ features. So features of movies like 
+ gender actors star in that in the items 
+ case we were having two running 
+ examples. If we want to see if a 
+ customer will buy the product so that 
+ we'll have average time spent and all of 
+ these features should be there and then 
+ yi will be the feature one or zero. So 
+ this simply 1 0 1 0 in the movie 
+ recommendation case it will be a person 
+ will watch the movie should we recommend 
+ the movie or in the case of 
+ uh while we were saying that did we have 
+ to sell the product so there we will say 
+ that customer one means customer will 
+ buy the product and zero means it will 
+ not and similarly let's suppose model if 
+ we see so model here can be so we can 
+ define this model like this so we have y 
+ prediction can be 1 / 1 + 
+ something of this sort so we can use 
+ this sigmoid neuron to learn 
+ So we can use sigmoid neuron 
+ to learn it and then what will be our uh 
+ so now how to learn this. So the 
+ question becomes how to learn it. So in 
+ order to learn these things so let's 
+ suppose I'll take an example I'll take a 
+ pretty easy example. So initially what 
+ we can do is so let's suppose we take 
+ some example in maybe 2D. So we have two 
+ points. Suppose we have a point here and 
+ we have a point here. Now you want to 
+ learn this by using the sigmoid 
+ function. So what you have is you have 
+ your weights and you have your biases. 
+ That's that's what you have to learn. 
+ Okay. So how do you capture this? So you 
+ apply sigma of wrpose x + b and you want 
+ to adjust these weights and you want to 
+ adjust these biases so as to fit this. 
+ Now you know that this is a sigmoid. 
+ This is sigmoid neuron. So somehow we 
+ should get something of this sort 
+ something of this sort. Luckily I'm not 
+ able to make it correctly but I hope you 
+ get the point. 
+ Okay something of this sort. So what I 
+ want is that these two points should 
+ somehow lie on this. So they should lie 
+ on the uh sigmoid curve. So I when I 
+ construct this curve they should lie on 
+ this. And if I suppose have these two 
+ points if I now have one point is here 
+ and one point is here. Now you can see 
+ that sigmoid will be some some like this 
+ something of this sort. 
+ Okay. And you will see that sigmoid will 
+ shift here and there. Now what I'll do 
+ is so once we have this so I'll write a 
+ code for this so that I'll show you that 
+ we have these points and then uh what we 
+ can do initially is we can do the guess 
+ so we can do guess work 
+ and try so we'll attempt to adjust these 
+ weights and bass and then we'll see what 
+ is the sigma form and we'll see where is 
+ the can we get some optimal value can we 
+ can we somehow decrease the loss okay 
+ and everything will be construed by loss 
+ so we'll have to come with a loss 
+ function so in this case we have also 
+ discussed in the previous lectures we'll 
+ use mean square error loss. So mean 
+ square error. So how do we compute that? 
+ So we'll take sigma of this wrpose x 
+ plus bias and then this will be our 
+ predicted value and then there will be 
+ some actual value also. Consider this xy 
+ x i. So wrpose x i + bas minus y and 
+ we'll square it up. Okay. And we are now 
+ squaring up and this will happen for all 
+ the values from i= 1 to n and we'll 
+ divide we take an average of this. So 
+ this is called mean square that we have 
+ seen. So this is our prediction. 
+ And this over here is the actual value 
+ and this is we're taking mean of this. 
+ So this is mean square error. So we're 
+ taking the square of this. Okay. So this 
+ is what we will have and we have to 
+ define sigma also. If you have sigma of 
+ x, sigma of x is 1 / 1 + e ^ - x. So 
+ this is how we will define sigmoid. So 
+ now what we can do is we have these 
+ weights and bias here. So we have to 
+ adjust these these weights and biases 
+ that you see over here. This is the 
+ weight. These are the biases. So one 
+ algorithm could be so we could randomly 
+ do that. So what what is the meaning of 
+ random? So we'll adjust we'll put these 
+ weight and prices and compute this 
+ error. So we want this error to be 
+ minimum. 
+ Okay. And we want this error to manage 
+ error. These error functions if you see 
+ if you plot this this again is a 
+ surface. So we can call these things. We 
+ can have an error surface over here. 
+ Okay. So we'll have curve a sigmoid 
+ curve of this sort which we'll get once 
+ we give the value w and b we'll get 
+ curve of this sort okay and initially if 
+ you put these values randomly if you 
+ have these w and biases randomly so what 
+ will happen you will get some random 
+ curve so if we keep on doing it randomly 
+ if we keep on randomly doing that so 
+ once we in a hope that we'll see somehow 
+ we if we get the least loss let's 
+ suppose we do it for say thousand 
+ iterations so in thousand iteration 
+ there will be a varian biases which will 
+ give us the least error which will give 
+ us this error will be the least So we'll 
+ say that okay this is our optimal but 
+ here you understand that we're doing it 
+ by guess. So everything it is done it is 
+ done by randomization there is no 
+ algorithm. So I basically want you to 
+ take a gradient descent. Why is the need 
+ of gradient descent? Okay let me code 
+ that up first. I'll go step by step to 
+ do this 
+ and then we maybe we'll do it by hand 
+ before writing the code we'll do it by 
+ hand. Okay let's suppose we have the 
+ points say I have defined points over 
+ here. So I have three let's I have three 
+ data three points. 
+ So we have three points. Let's suppose 
+ the value of these points are 0.5 comma 
+ 1 and the other point is 2.0 
+ comma 1 comma 0 and third point is - 1.0 
+ comma 1. So you can see that these data 
+ was considered this as features. So this 
+ is our feature and this over here is 
+ class label. So this is the label that 
+ we have. Now we want to learn these 
+ things. We want to learn because this is 
+ the data. So this is our data. Now as I 
+ said that first we learn uh to apply 
+ machine learning and deep learning by 
+ hand and then we can use the computers 
+ to speed it up. Okay. Otherwise you 
+ should be able to uh do machine learning 
+ and deep learning by hand. The only 
+ advantage computers will provide you. 
+ They will crunch these numbers at uh at 
+ large scale. Okay. Now you have this 
+ data. Now what you have to compute is 
+ you'll have to compute the sigma of 
+ let's consider the Z. So what is our Z 
+ in this case? So in this case Z will be 
+ wrpose X plus bias. Okay. So I can write 
+ it 1 divid 1 + E ^ minus Z. So this is 
+ what we will compute. 
+ This is our model. 
+ So I encourage everybody to ask 
+ questions if you don't understand. So 
+ this is this is our model. 
+ Okay. And this is our data. 
+ This thing over here is our data. 
+ And I will have to come up with a loss 
+ function. So loss function as I earlier 
+ said it will be mean square error. Okay. 
+ So how to define that? So summation of I 
+ is equal 1 to 3 because we have three 
+ data points. So what we'll do is so 
+ we'll apply this sigma. We apply this 
+ model sigma. So what is the value? W X I 
+ + B and then we'll say what is the 
+ actual. So this is predicted this is 
+ actual and we'll square it up. 
+ Okay. So we'll square it and we'll take 
+ the average one. So this is this is mean 
+ square. So this over here is our 
+ objective or loss function. 
+ Okay. And our our job is to get as 
+ minimum value as possible. Okay. So this 
+ is the thing. So we will initially what 
+ we'll do is we'll randomly set these 
+ weights and biases. So this these are 
+ parameters. So over here if you see this 
+ W and this B these two things are our 
+ parameters. 
+ So we'll randomly set them initially and 
+ then we'll keep on iterating through 
+ this and we'll keep on randomly maybe 
+ going through thousand iterations and 
+ we'll see what is the least uh mean 
+ square that we get and we'll we'll plot 
+ two things. So one plot will be we'll 
+ plot this uh sigmoid basically the curve 
+ that we want to fit and we'll also plot 
+ the error surface. 
+ So because this thing if you see so this 
+ is also a function. So this also has a 
+ surface associated with it. So according 
+ to W and P so you'll also get the errors 
+ corresponding to those. So we'll also 
+ plot that. Okay. So this is the thing 
+ that we want to do and let's do it by 
+ hand. If you want to do it by hand say 
+ okay I have some calculations over here. 
+ So let's consider this w to be uh - 
+ 3.21. Okay. 
+ Calculations can be wrong but you can 
+ correct them at your home then. So let's 
+ suppose bias is equal 1.83. So this is 
+ what we want to do. So what will how how 
+ will the algorithm start? So now let's 
+ suppose these are the random weights and 
+ biases. So I'll just show you the one 
+ step and subsequent steps you can do 
+ accordingly. So now we'll do this linear 
+ combination. We'll compute Z1. So we'll 
+ see this Z1 is equal W X1. So Z1 
+ basically means for.1. So for.1.1 
+ has X1 is 0.5 and it corresponding Y1 is 
+ 1. So this is X1 feature and we have Y1. 
+ So now we'll compute this Z1 is equal 
+ WX1 plus bias. So if you compute this 
+ WX1 this will be minus 3.21. 
+ Okay. And then we know x1 is.5 and then 
+ plus 1.83 is the bias. So if you compute 
+ this this will come out to be I think 
+ some 0 
+ 2 55 225 something of this sort 
+ calculations can be here and there but I 
+ just want you to focus on the steps. So 
+ this is what happened for 0.1. 
+ Okay. Now for point 2 
+ and we can now this is the first step in 
+ this. So I can do it for first point 
+ then second point then third point. So 
+ this is step one. So what we did is we 
+ did that forward pass the forward pass 
+ that we spoke about in the last lecture 
+ we said that we have to perform this 
+ computation. So initially with this now 
+ we have to apply sigmoid on this. So 
+ this is the aggregation function that we 
+ did. So aggregation after aggregation 
+ we'll apply the sigmoid. So once we 
+ apply sigmoid so what is how to apply 
+ sigmoid? So you have to apply sigmoid y1 
+ prediction is equal sigmoid of 0.225. 
+ So what is the value of that? This is 
+ 1id 1 + e minus 0.225. 
+ So this is equal to 
+ uh I think this is equal to some 0.566 
+ 0.556 
+ something of this sort. Okay. And values 
+ can be wrong and you have to correct 
+ them. So what the first thing is we 
+ apply the aggregation function. So this 
+ was our aggregation function. 
+ Okay. And this was our activation 
+ function. So we apply activation. The 
+ second and third step is that in this so 
+ we had the step one then we had step 
+ two. So I'll write one over here. So 
+ step two. Step three is now we have to 
+ calculate the loss. What is the loss 
+ because of this? How to compute loss? So 
+ loss is printed by one minus divide 
+ minus actual and you have to square this 
+ and then you will sum all for all the 
+ points. So this is 0.19. So when you 
+ take this value and when you take the 
+ actual so this is the loss 0.197. So 
+ this is for 0.1. So similarly for point 
+ 2 how to how to do it for point 2. So 
+ for point 2 you know that x2 is equal to 
+ 0 uh 2.0 and y is equal 0. Okay. And now 
+ you'll do the same thing. You have again 
+ compute the line combination you compute 
+ Z2 
+ basically aggregate. So aggregation 
+ comes out to be W X2 + B and you know 
+ the values for W because we have set 
+ that you know values for X2 you know the 
+ value for bias. So this comes out to be 
+ min -4.59. 
+ Similarly this was step one. This is our 
+ aggregation. So I can write it over here 
+ aggregation. 
+ So after this we'll perform activation. 
+ So how to perform activation? So 
+ activation function in this case is 
+ sigmoid of Z2. So this is 1 / 1 + e ^ 
+ -4.59. 
+ So this if you compute I suppose I'll 
+ look at the values. So this came out to 
+ be 
+ uh 0.010. 
+ So this activation over here. So when 
+ you apply this activation so this is our 
+ predicted value. So this is y2 hat. So 
+ predicted y2. And now step three is 
+ calculation of loss. So loss 
+ calculation. So what is the calculation 
+ of loss? So you say y2 minus original 
+ y2. So you can square it up. So this 
+ comes out to be uh 0.00001 
+ something of this and you can again 
+ accordingly look for the third point and 
+ once you do the computation so then at 
+ the end you will compute mean square 
+ error. So initially here you are 
+ computing loss. So this is also this is 
+ just required loss. Then once you have 
+ to compute mean square error let's 
+ suppose we also do it for 3. So what 
+ we'll do is now we'll compute loss for 
+ this particular weight for this 
+ particular bias. So what will that be? 
+ So we'll have to add them up and take 
+ the average. So 1.0.19 0.19 + 0.1. For 
+ the third point, the loss came out to be 
+ 0.0036 
+ and then you'll have to divide it by 3. 
+ So this is MSE. 
+ So this thing over here is mean squared 
+ error. So this is equal to 0.0657 
+ roughly. So this is what we did. We did 
+ by hand. Okay. So and then what we can 
+ do in the second step. So this let's 
+ suppose we'll contain this. Okay. This 
+ is the weight. This is the loss 
+ corresponding to W and the B that we 
+ certainly see. What was the W that we 
+ said? W was - 3.21. 
+ This was - 3.21. And the bias correspond 
+ to this was 1.83. 
+ And then we'll again say we okay we'll 
+ say that we have got this loss 
+ correspond to this W and this B. Let's 
+ again randomly choose this W and B. I 
+ again comput the loss. Let's say let's 
+ do it for 100,000 iterations and we'll 
+ see the least loss and corresponding to 
+ least loss. We'll have this weight and 
+ biases. we'll say that okay this is the 
+ optimal weight and biases that we got in 
+ the uh thousand iterations. So how many 
+ of you understood this 
+ let's now see the code and we'll write 
+ this code. So initially we'll define 
+ sigma the way it is defined. So we'll 
+ import because we have to plot two 
+ things we have to plot uh the curve fit 
+ fitting function and we have to also 
+ plot the error surface the error that we 
+ are getting. So I'll just import this 
+ code over here. So if you see so these 
+ are the standard imports uh numpa and 
+ mattplot. So this is not plain text. So 
+ this is Python. 
+ Okay. So now what I'll do is I'll define 
+ a sigmoid function. So you know how to 
+ define sigmoid function. So you can 
+ either use it from number or you can 
+ define your own. So sigma of Z basically 
+ is return 1 / 1 + NP of exponent minus 
+ Z. Okay. And then I'll compute this loss 
+ function. So this is the mean squared 
+ loss. So this is the mean squ mean 
+ squared algorith. 
+ Okay. You apply this sigmoid of x to the 
+ v. This is basically forward pass. what 
+ is happening over here? So you're giving 
+ this x value, you are g the w and you 
+ are giving this b and you are applying 
+ sigma onto it and then you are doing the 
+ mean of this. Okay. And then what we can 
+ do is we can generate three points in 
+ 1D. 
+ Okay. Consider these three points. The 
+ three points that I showed you these the 
+ three points 0.5 2.0 1.0 1 0 and 1. 
+ These are the class labels. Okay. Now 
+ what I can do is I can do say 1 th000 
+ iterations. 
+ So consider this. So I'm saying n is 
+ equal to say 500. So I'll say thousand 
+ iterations. Okay. So best loss is 
+ infinity. I'll start with infinity and 
+ best w none so far. And best bias none 
+ so far. And we'll keep the history also. 
+ Okay. And we'll also keep the loss 
+ history. We'll keep the w history 
+ parameters of W. And these are the 
+ parameter. And we'll keep the loss 
+ history as well. So now what we have to 
+ do is I'll iterate through 
+ this for number of iterations. 
+ So if you see this so I'm going for I 
+ for dashing this range and iterations. 
+ So I'm randomly initializing W because 
+ we are doing random initialization. I'm 
+ randomly initializing bias also. Okay. 
+ Then I'm computing loss. Okay. If you 
+ see loss computation is happening over 
+ here and this is using sigmoid. So I'm 
+ doing the same steps that I told you and 
+ then I'm saying w history append append 
+ this W and append this B and also append 
+ the corresponding loss. So if the loss 
+ that I just computed if it is less than 
+ best loss because I have best loss here 
+ also. So if it is less than that so you 
+ update the best loss and accordingly 
+ update this best W and best P also okay 
+ pretty standard code and after after 
+ these thousand iterations I actually 
+ want to know the best weight and best 
+ bias. So I'll print those. So once this 
+ loop is over so what I can do is so I'll 
+ say that this is the best weight and 
+ best and then I I'll plot two figures. 
+ So the first figure that I want to plot 
+ is the sigmoid curve. Okay, I want to 
+ plot two curves. I want to show you 
+ those two curves. So this is plot 
+ scatter plot and pretty easy. 
+ And then the second plot that I want to 
+ create I want to plot is that's error 
+ surface. Let me plot this fully first 
+ and then we'll plot the error surface. 
+ Okay. Let me plot the error surface 
+ also. 
+ Okay. If you can see now, so I plotted 
+ the error surface over here and this is 
+ the code that plotted error surface and 
+ this is the code that plotted the data 
+ points and the sigmo curves and this is 
+ where actual thing is happening and this 
+ thing. So this is by randomly taking 
+ these W's and biases weights and biases 
+ and then seeing what's the best loss and 
+ I'm doing it for itation. So if I run 
+ this code let's suppose 
+ hopefully there is no error. So now you 
+ see this. So this thing over here that 
+ you see on your screen now. So this is 
+ the sigmoid curve and you can see that a 
+ lot of other curves are also shown here. 
+ Okay. And this is these are the 
+ different other sigmoid curves that was 
+ not the best fit. But if you see this 
+ black black curve this is the best fit. 
+ So here it passes through this point. 
+ Exactly. And there is some minor error 
+ over here and there is also some minor 
+ over at the bottom. There is some error 
+ but this is the least error that we 
+ have. And here the best weight was minus 
+ 4.14. best bias was 4.9 and the MSE best 
+ MSE was this 0.013 and you know how to 
+ compute MSE based on given weights and 
+ bias. Now if you see corresponding to uh 
+ this error function we have an error 
+ surface that we actually wanted to 
+ navigate. Okay. So we'll see that. So if 
+ you see this so this was the error 
+ surface that we wanted to navigate. 
+ Okay. So if you see this is we randomly 
+ initialized for all these red points by 
+ the random points that we checked. Okay. 
+ So we checked this point and we checked 
+ this point. We checked all of these 
+ points. We checked all around and we got 
+ lucky in thousand iterations. We got 
+ this. So this seems like 
+ the global or I also got local because 
+ we don't we have just plotted it for 
+ some limited weights and limited biases. 
+ But you see this so this over here the 
+ z-axis that you see is giving the error. 
+ So x-axis over here. So if you see this 
+ this is weight and this is bias like 
+ this. And then you see that this curve 
+ is a 2D curve if you see in that way. So 
+ this is the error. So you can see that 
+ the error is minimum over here at the 
+ surface error is minimum and we got 
+ lucky in the thousand iterations we're 
+ able to get the best fit. Okay, if I 
+ decrease the number of iterations by now 
+ what should happen naturally? We should 
+ not be uh getting the optimal value. 
+ Okay, let's check that. If we let's 
+ suppose do only maybe six 10 iterations 
+ or something of that sort. 
+ So here if I change this so this was 5 
+ iterations. If I change to 10 
+ iterations. So you see 
+ I think this still found in 10 
+ iterations and maybe let's let's 
+ consider two iterations. I don't know if 
+ it happens in two iterations. I just 
+ wanted to show you have to do more 
+ iterations. And now you see this is not 
+ the best parame. This is not the best 
+ fit. This curve is not the best fit. You 
+ can clearly see that it needs more 
+ iterations and sometimes you'll get 
+ lucky, sometimes you won't get lucky. So 
+ this is one of the ways you can find the 
+ weights and biases. But this is not 
+ optimal way to find the weight and 
+ biases because you are just throwing 
+ arrow in the air and you you are in the 
+ hope that it will land at the global or 
+ minimum at least local optimal value 
+ local minimum of this. So how many of 
+ you understood this? So what are we 
+ doing in this case? So we are taking 
+ these W's, taking these values, giving 
+ random values, computing loss and having 
+ this loss history. Why do we get the 
+ minimum loss and then we're keeping it 
+ we don't we are not following it and we 
+ are hoping here that we'll get lucky 
+ somehow. So we'll find among these 
+ thousand iterations or in this case two 
+ iterations. So let's suppose 10 
+ iterations if we got lucky so what will 
+ be happening? So we'll get this uh local 
+ min value of this error. So we'll get 
+ this surface okay in this case we got 
+ lucky but it is not always the case it 
+ only take iterations and if data is more 
+ complex with only three points in this 
+ case so we'll have more data points 
+ we'll have thousands and million data 
+ points then this approach will not be 
+ good just by guessing the weights and 
+ biases. So it will have to do a lot of 
+ things. So now it does the question is 
+ now can is there an algorithm can we 
+ somehow find an algorithm which will 
+ guide us through so any questions still 
+ here do you have any questions 
+ can I assume that you understood 
+ everything so far the question we 
+ received that why are we using this 
+ sigmoid curve only so in this case I 
+ said that on purpose there were only 
+ these three points taken because if we 
+ increase number of points so you'll 
+ clearly see that we will fit some 
+ sigmoid but that will not exactly fit 
+ there will be a lot of error correspond 
+ to that so once the points increase 
+ Let's suppose we have points over here. 
+ We have data points like this. So now 
+ we'll have bunch of sigmoids. So single 
+ sigmoid neuron won't be enough to model 
+ the problem exactly. So that's why we 
+ come up with a deep learning concept 
+ because we'll have deep layers of these 
+ deep sigmoid neurons. So we'll have 
+ layer of neuron and then we'll have some 
+ second layer third layer or something of 
+ that sort and then once we combine all 
+ of these because I said what is deep 
+ learning? Basically deep learning is the 
+ composition of functions. So it is a 
+ very complex function which is composed 
+ of many functions and if you only use 
+ sigmoid let's suppose if you use only 
+ sigmoid neurons. So what you see is you 
+ will see that it is composition of these 
+ sigmoid neurons and I'll prove to you 
+ that by universal approximation theorem. 
+ So you can take these uh sigmoid neurons 
+ and you can you can approximate any 
+ function. So what I said is here I don't 
+ want to find the exact solution. So my 
+ job is not to find exact solution. So I 
+ want to approximate. 
+ So what is the difference with 
+ approximation exact things? So here I am 
+ now allowing randomness to take place. 
+ So if I if there is an exact solution 
+ which in real world scenarios there is 
+ not because you can have same features 
+ and there will be something different. 
+ So let's suppose you have these features 
+ X I to say let's suppose X I want to say 
+ X I N and this is equal the all the 
+ features are same in some other J point 
+ J I to X JN. So these are two different 
+ data points data points. So you know 
+ what sometimes they'll behave similarly. 
+ Okay. And that's what randomness uh 
+ gives us. So sometimes you have same 
+ features but the labels you have let's 
+ suppose if it is something you have 
+ print output of that it will be maybe 
+ same it will be different. Okay that's 
+ how randomness 
+ that's how randomness plays a part in 
+ these things. So we cannot say with 
+ shortly that this will be like this. But 
+ that is a pattern that is a let's 
+ suppose this pattern the pattern will be 
+ followed say 90% of the time. So you 
+ follow those distributions. So they're 
+ not all there that we don't have direct 
+ but otherwise we'll have what we have we 
+ can have closed form solutions. So 
+ what's the meaning of closed form 
+ solution? If something is deterministic 
+ so if you know that after this this will 
+ happen after this this will happen after 
+ this this will happen. So if you know a 
+ deterministic path then you don't you 
+ don't need machine learning per se. Why 
+ would you need machine learning? Because 
+ the thing is you have you can you can 
+ find this closed form solution. So by 
+ closed form I mean you can just plug in 
+ the value and you'll get an answer. That 
+ is the difference between deep learning 
+ and programming. Okay. to just again 
+ uh tell you that so in programming you 
+ have a deterministic solution so in 
+ programming let's suppose if you want to 
+ add numbers if you want to do something 
+ so you have a determinism in that you 
+ know that if I have a I have plus b so 
+ this will be equal to some c let's 
+ suppose and you have deterministic 
+ solution but once you come into deep 
+ learning say so why do we need you in 
+ deep learning so if I write this so this 
+ is one so if I write this this is also 
+ one so if I write this this is also one 
+ so all of these are different so how is 
+ your visual cortex able to tell where 
+ all of these things are one once. So 
+ that they're quite different. Okay. 
+ Somehow there is some structure which is 
+ preserved. Okay. And this is because we 
+ have unpredictability here. We have 
+ uncertainty here. And that is what what 
+ deep learning does. So in deep learning 
+ we do not make deterministic rules like 
+ you have this this this. So this will be 
+ called one. So somehow what we are up to 
+ is that we want to give some way we want 
+ to have some way so that we can keep 
+ room for this unpredictability 
+ uncertainty. So that's what we have in 
+ this. So what I was telling you people 
+ is that if you have this sigma dur over 
+ here so one sigma dur won't be enough 
+ okay and then by composition of 
+ functions you want to get an approximate 
+ answer you don't want to get an exact 
+ answer because exact answer basically 
+ means there is a deterministic process 
+ which is always not the case okay and 
+ you don't leave any anything to 
+ randomness okay you don't leave any 
+ variable to randomness as I said that by 
+ random I mean that you will have data 
+ and sometimes you have exact same thing 
+ but they have exact different outputs 
+ okay why because of randomness So once 
+ they approximate by approximation gives 
+ you that that you now you now leave some 
+ room so that you handle this 
+ unpredictability. So deep learning what 
+ it does is it does not find the exact 
+ solution it will approximate this okay 
+ it will approximate the solution. Okay I 
+ hope I got the point and I'll prove to 
+ you that if you have this bunch of 
+ neurons if you make this layer of 
+ sigmoid neurons and then another layer 
+ of sigmoid neurons so you make this 
+ network deep network so you can model 
+ approximate any function. Okay, by 
+ approximate I'm not saying you can find 
+ exact values of all things but you can 
+ still approximate it as good degree by 
+ by that good degree you will probably 
+ have let's suppose error of 0.1% error 
+ something of that sort okay and by 
+ approximating you are saying that I'm 
+ still leaving room for 
+ unpredictabilities there will be 
+ unpredictability and why you leaving 
+ room for this because this is how real 
+ world is real world is not giving you 
+ exact answer so if you have all these 
+ parameters and if you know all these 
+ things you still have to model it 
+ probabistically because some things will 
+ be here and there so what probability 
+ gives you prob probability now gives you 
+ a model by which you can handle this or 
+ you can at least frame this 
+ unpredictability and come up with a 
+ maybe a logical solution. So this is the 
+ logical and it it'll also be wrong. So 
+ that's why we approximating it. Okay, 
+ did I get my point through 
+ okay now the question is that we are not 
+ well off with this uh random guessing. 
+ So this is not the optimal way to do the 
+ things. So now we should find some way 
+ find a way. 
+ So so what's the question? Basically the 
+ goal is to find a way so that once we 
+ update these parameters because we have 
+ to update these parameters somehow. So 
+ can we update these parameters somehow 
+ so that we can get to the actual 
+ solution. We should not take the random 
+ steps. The thing is basically it is like 
+ a drunken man. So if you uh see this 
+ error surface 
+ so this error surface is these surfaces 
+ are like these surface were like hills. 
+ Okay. So you have the something of this 
+ sort. So that you could imagine in 2D 3D 
+ you could imagine that and you are 
+ having these so they're called actually 
+ manifolds. 
+ So if you people some of you might be 
+ taking topology maybe in future so you 
+ will see that there are these things are 
+ called as manifold. So you have to 
+ somehow navigate these manifold. 
+ Consider this. So we have this is our 
+ surface. So we have this hills and 
+ valleys. So you have to navigate these 
+ hills and valleys. So let's suppose this 
+ is your say global optimal out. This is 
+ your global minimum value. So what you 
+ want? You want to reach this value. 
+ Suppose when you started randomly. So 
+ say you start at this point or let's 
+ suppose you started with this point 
+ suppose something of this sort and you 
+ want to reach here. So if you keep on 
+ doing if you keep on updating these 
+ weights and bes. So what will happen? 
+ You will maybe sometimes you'll go here 
+ sometimes you'll go here sometimes 
+ you'll go here sometimes you'll go here 
+ and maybe if you are lucky and you'll 
+ sometimes hit this and you're keeping 
+ the track of the mineral and maybe 
+ you'll get lucky and you'll hit this but 
+ we don't want to do this. So what we 
+ basically want is we want to have a 
+ procedure. We want to have a mechanism 
+ by the help of which we should somehow 
+ somehow get to this value in in a in a 
+ good fashion. It should not be that 
+ we're doing it randomly. We should have 
+ some direction. Okay. So we want to move 
+ in a directed way. So we want to move on 
+ this terine on this surface 
+ in some proper direction 
+ in some proper 
+ direction. Okay. So we don't want to 
+ move on the surface randomly. Sometimes 
+ we go here some then we jump we go here. 
+ So what we can do is so I'll tell you an 
+ idea how to do that and then we we'll 
+ try to mathematically model it. So now 
+ if you if you know this error surface 
+ and you will know the error surface 
+ because if you if you are given you you 
+ know the error function itself. So you 
+ know this error function. 
+ So you know the error function. So 
+ because of this error function now 
+ because it takes values this weights and 
+ biases parameters basically called theta 
+ and then you have this x. So based on 
+ this x and x and this theta. So what 
+ this function will do is it will give 
+ you the error. It will give you the loss 
+ that you have. Now you can construct the 
+ whole ter but you don't need to do that 
+ and in you can you can also visualize it 
+ in 1D 2D but you don't do that. So what 
+ you can do is what if you can test it in 
+ the vicinity suppose 
+ suppose you choose this point. Okay. And 
+ then you are not you don't want to find 
+ let's suppose global minimum you want to 
+ find local minima. Okay. The global 
+ minimum for example for this point is 
+ here. So I'll make this diagram maybe a 
+ bit cleaner. So you have something of 
+ this sort. 
+ an arrow surface like this. So here I'm 
+ considering this error surface is in 1D 
+ 2D. So I cannot go beyond this but 
+ mathematics can handle everything. So 
+ let's suppose now what you do is you 
+ selected this point randomly. So this 
+ was your initial guess. So now my idea 
+ is this. You don't need to navigate the 
+ surface. You don't have to again 
+ randomly do it and you you line up here. 
+ So can we somehow do this? So if you 
+ initially randomly initialize something. 
+ So can you now check the neighborhood? 
+ So if I if I can check the neighborhood. 
+ So if I if I check the neighborhood that 
+ is in the vicinity of the point which I 
+ have selected the random point I 
+ selected. So it will maybe guide me. It 
+ it can tell me either go up or go down. 
+ Go up or go down. Okay. I'll see. So 
+ where should I go? I should basically go 
+ to this minima. So it is something of 
+ this sort. Some you have a drunker 
+ person. The person is he has dragged in 
+ the throat. So now he wants to go to the 
+ valley. He wants to go to this wedding. 
+ So he's so he once he drank alcohol he 
+ consumes now he's high. So he slept and 
+ suddenly he got into his senses and but 
+ still he's no mom and he wants to reach 
+ to this rally. So now what he should do 
+ is and maybe consider this the guy 
+ cannot see anything. Now the guy is 
+ almost blind. So he has to make 
+ judgments. So what the person what a 
+ drunker person will do is he'll start 
+ from a random point and then maybe check 
+ the vicinity is it going down or is it 
+ going up? If the person feels that oh so 
+ if I take step in this direction I'm 
+ going up. If I take step in this 
+ direction I'm going down. So he'll 
+ slowly take this step and again check on 
+ the step. Oh is it good? So you might 
+ have seen it with yourself also. So in 
+ the night sometimes when there is uh no 
+ light there is only darkness. So if you 
+ want to go to certain places you check 
+ your vicinity. You keep on checking your 
+ vicinity. Okay is it am I going the 
+ right direction? Am I going in the right 
+ direction? But that is the principle we 
+ want to use there. So whatever point I'm 
+ choosing I want to check the 
+ neighborhood and I want to see based on 
+ the neighborhood I want to decide on the 
+ direction I want to go. How many of you 
+ understood the crux of the concept? 
+ So the question asked was uh so we can 
+ get stuck in these local minimals. So 
+ that is very true. 
+ So once you use this gradient descent 
+ because grad descent the crux of the 
+ concept is that you are choosing a point 
+ randomly and checking your vicinity 
+ checking your neighborhood. So which 
+ direction should I go now to find this 
+ local minima to find the local optimal 
+ point and it will not give you the 
+ global optimal it will always give the 
+ local optimal point and sometimes you 
+ can get stuck in here. So you can get 
+ stuck in here because you have no 
+ direction. It is like you you're blind 
+ and you you just have some senses 
+ working. You can just check it. It is 
+ not that you can just see the function 
+ you can zoom on this function and you 
+ can check okay and you can pinpoint okay 
+ this is the minimum you can do it in one 
+ shot. Okay you cannot do it in one shot 
+ because these terines or these manifolds 
+ the arrow surfaces which are called are 
+ very complex. So this arrow surface is 
+ just in 1D. The arrow surface can be in 
+ let's suppose it depends on how many 
+ parameters you have. So these many 
+ dimensional parame dimensional manifolds 
+ are there and then you have to check 
+ okay where to go now. Okay this is the 
+ goal. So the goal is to somehow navigate 
+ this surface in such a way so that we 
+ take steps in the right direction at 
+ least. Okay. And we should not take a 
+ lot of steps also. So what might happen? 
+ Let's suppose is so let's suppose you 
+ found this and you say okay this is the 
+ direction. If you go all the way let's 
+ suppose you went to here and let's 
+ suppose you went here and in and at this 
+ point you again took a bigger step say 
+ you went to this point now after taking 
+ the step and you went to this optimal so 
+ that you can also keep on fluctuating so 
+ that's why you have seen that in the 
+ descent we take smaller steps okay the 
+ the point there is you don't have to 
+ take a larger step because you can keep 
+ on fluctuating you can go from this to 
+ this directly if the direction let's 
+ suppose is telling you you have to go in 
+ this direction if you took a longer step 
+ so you'll reach here you'll not reach on 
+ the surface and this is not a step. So 
+ now you also understand the rational 
+ behind taking small steps. Okay. And 
+ because of these things now how to 
+ adjust these steps. So this is called 
+ learning rate. 
+ We have separate class of learning rate. 
+ So because of this learning rate you 
+ have different types of optimizers. 
+ Okay. And they adjust these learning 
+ rates. Okay. Now a lot of these training 
+ depends on learning. So initial learning 
+ rate should be high then you should 
+ decrease decrease slowly and then you 
+ know item optimiz optimizers are there. 
+ So basically many of these they adjust 
+ these learning. How they address this 
+ learning? There's a mathematics behind 
+ that. Should not take a large step. 
+ Okay. You should not take small step 
+ that much. Okay. And there are a lot of 
+ things that are doing that has been done 
+ in this learning rate because we should 
+ not keep on tugging here. We should not 
+ keep on going from here to here here to 
+ here. So we should take reasonable steps 
+ so that we reach this uh global we 
+ minimum and the I understand there's a 
+ problem that you won't be able to reach 
+ global minimum but this is not always 
+ the case. So you won't be able to reach 
+ by using grading disc. And second 
+ problem is with the learning rate. So 
+ what is basically learning? Learning 
+ rate basically is what is the step. So 
+ how much are you jumping? So that is 
+ called learning. We'll also see all of 
+ these terms in uh depth. But here I just 
+ want you to know the terms. So so here 
+ once you take this step. So actually we 
+ want to find the direction. 
+ Okay. Now let's let's have a 
+ mathematical treatment of direction. So 
+ what do we want to do? Okay. So 
+ initially once we have this parameter. 
+ So we have this theta. Theta is this 
+ weights and biases. So you have is this 
+ set of parameters. Now what we basically 
+ want the objective is to find the 
+ parameters. The objective is to find 
+ such parameters such w and such theta 
+ such w and such bi so that we get the 
+ minimum loss. And now we cannot do it in 
+ one shot. So we have to do iteratively. 
+ So we have to do it. So how how should 
+ the iteration work now? Each iteration 
+ we'll have to some update these. So 
+ we'll have to change this w. So we 
+ should be change of theta. So how much 
+ the objective is to find this update 
+ now. So update is how much you change 
+ this W and how much change this B. So 
+ this is the code 
+ and goal is to find such theta and now 
+ this theta new this theta new basically 
+ is this theta plus learning rate okay 
+ multiplied by delta theta delta of 
+ theta. So you have to find such delta 
+ theta so that if you compute the loss so 
+ you'll have loss function is dependent 
+ on loss of new and you have loss of 
+ initial loss the loss of new should be 
+ less than loss of this theta so initial 
+ the new loss the final loss should be 
+ less so this is this is the goal so 
+ mathematically what I wrote is so I 
+ should do this so initially I started 
+ with this this is my initial weight and 
+ bias so I have this initial weight I 
+ have initial bias so I have to change 
+ somehow I have to do this I have do 
+ updation. This is my update step. The uh 
+ delta w delta b is the updated. So what 
+ I have to do is I'll have to change this 
+ delta theta. So how I'm changing? I'm 
+ adding this thing. I'm adding this thing 
+ this delta theta. So when I whenever I 
+ find this I have to find this basically 
+ I have to find this so that I have to 
+ find this in such a way so that if I add 
+ these things if I add this w delta w and 
+ delta v to the initial theta so I'll get 
+ this delta new. So this delta new will 
+ have corresponding loss. So this loss 
+ should be less than loss of theta. So 
+ how many of you understood this? So this 
+ is my objective over here. So if I show 
+ you this basically what I here let's 
+ assume that this is our theta initially. 
+ This is why we started and now what I 
+ want is I basically want my w theta to 
+ be like this. I want my upgrades in such 
+ a way so that let's suppose I go to 
+ this. So this is my 
+ delta theta. 
+ Okay. Now I have this is once I compute 
+ this this is my delta theta and this is 
+ my theta and now once I add these things 
+ I'll get over here I'll get in this 
+ direction and this is this is what I 
+ want and now I will not take all the 
+ steps I'll not take all of this so I'll 
+ take maybe steps I'll take n of delta 
+ theta okay this is my theta new okay and 
+ this is once I apply the algorithm so 
+ this is my theta initial initial 
+ parameters and this is my change so once 
+ I change this so I have to go to this 
+ but I am not taking all the way I'm not 
+ saying that I'll go all the way to this 
+ so what I'll do I'll only take this much 
+ step. Okay, I'll only take uh uh this E 
+ of learning rate will be very less. So 
+ this learning rate usually is less than 
+ one greater than zero and less than one. 
+ So we keep it in very small steps. Okay, 
+ this is what we want. 
+ So and and why do we want this? So when 
+ we add this add these things so we have 
+ to somehow deal with theta. So again the 
+ same question arises. So we have done 
+ this question again. So now what should 
+ we do? Somehow we should decrease this 
+ angle. Now we should somehow do such a 
+ way so that once we have this so this 
+ loss the loss we have over here and the 
+ loss we have where they should have this 
+ relationship and now we'll again go to 
+ our cos beta because we'll perform a dot 
+ product and we'll see that angle should 
+ be between this and that and we'll do 
+ the detailed treatment actually how to 
+ do this now so before doing the 
+ treatment now the question is how to do 
+ this the question is how 
+ so I told you two things I told you that 
+ this is what we have to do we have to 
+ somehow find this delta theta so that we 
+ take the right steps now how to do that 
+ the crux was that you have to see error 
+ surface and then you have to see the 
+ neighborhood. Okay, in the uh in the 
+ error surface 
+ in the error surface you have to see the 
+ neighborhood. 
+ So once you see this neighborhood and 
+ then you will take a guess based on that 
+ and now how to find the neighborhood of 
+ a function you again have to approximate 
+ you have to you have to use something to 
+ approximate the neighborhood of a 
+ function and that will land us to Taylor 
+ series. 
+ The question lies in Taylor series. So 
+ what I'm telling you that my job here is 
+ I have to see how is the function 
+ looking in the neighborhood and how I 
+ can approximate an error function in the 
+ neighborhood. So I can approximate any 
+ function by Taylor series 
+ or would you call it Taylor's 
+ approximation? 
+ Okay, I hope that you people know a bit 
+ about approximation. I'll we'll talk 
+ about it in detail maybe. So I'll just 
+ tell you what Taylor approximation is 
+ and maybe we'll then cover the gra 
+ descent algorithm in the next section. 
+ So now what what is Taylor series? Now I 
+ know that the thing that I have to do is 
+ I should know I know the error surface 
+ and at a certain point I know I know I 
+ have to get to some neighborhood and the 
+ vicinity of that point so that I know 
+ what step to take. Okay. Now I'll use 
+ this Taylor series. So what is basically 
+ Taylor series? This concept basically is 
+ telling you that you can use polinomial 
+ polomial 
+ functions to approximate 
+ you can use polinomial functions to 
+ approximate any complex function. If you 
+ have a complex function 
+ okay what you can do is you can take a 
+ polinomal function and you can take 
+ combination of polinom functions to 
+ approximate it. So what are the polinom 
+ function? You can take a linear 
+ combination of these. So let's suppose 
+ we can take C X0 
+ plus C1 X1 plus C2 XQ plus C3 X to ^ 4 
+ and once you combine them so you have 
+ clearly combined you take a linear 
+ combination of these of n of n° 
+ polinomials by n I mean you can start 
+ from 0 1 2 3 and then you can 
+ approximate any function with this. This 
+ can approximate any function. So how 
+ many of you have seen this in calculus? 
+ Okay. So here I'll just define the 
+ approximation. So what is what is t 
+ approximation? Then if you have any 
+ complex function it can be sin of x it 
+ can be a composition of a lot of 
+ functions. So Taylor approximation says 
+ that you can take a linear combination 
+ you can take linear combination of n 
+ degree polinomials 
+ n degree polinomials 
+ and you can approximate it and the more 
+ terms you include and you will have a 
+ better approximation and this 
+ approximation is rather at rather a 
+ certain point. So a point it 
+ approximates near to one point and once 
+ you do it to end but once you do it to 
+ infinity that's why it's called series 
+ okay and this series can either even 
+ converge or diverge. So this can 
+ converge 
+ or diverge. 
+ So it is always the thing that for a 
+ point you you have you'll write Taylor 
+ series and then it'll approximate that. 
+ So if that approximation converts you 
+ probably will have a solution. If it 
+ diverts let's suppose in case of log it 
+ diverge. So you will not have let's 
+ suppose at certain points you will not 
+ have this tailor series approximating 
+ the exact thing. So what I want you to 
+ remember is that Taylor series is a way 
+ it takes linear combination of these 
+ native polinomials. It starts from let's 
+ suppose x ^0 x1 x to the^ cube x4 
+ something of this it takes a linear 
+ combination of those to approximate any 
+ function that you have and here error 
+ function is a function okay the error 
+ function the ter that you have okay the 
+ error surface that we just defined by a 
+ function and that function what we can 
+ do is we can approximate approximate any 
+ of these error functions by using this 
+ taylor series and once we do that so the 
+ basic thing is we we're up to this we 
+ want to find this we want to basically 
+ find how to how to update this so this 
+ is what we want to find we want to find 
+ this delta theta okay so what is the 
+ direction that I want y should move in 
+ okay and then this will tell me the long 
+ step that now the topics we will study 
+ is Taylor series 
+ and then we'll see how gradient descent 
+ gradient 
+ descent 
+ how gradient descent is 
+ derived from Taylor series 
+ is derived from Taylor this 
+ and then we'll apply this we'll apply 
+ gradient descent we'll apply gradient 
+ descent 
+ on the on the problem that we earlier 
+ did 
+ we'll apply the gradient algorithm on 
+ the problem that we did today so that 
+ the problem that we had we had three 
+ points and we're applying signal on that 
+ okay so we'll have to learn that we'll 
+ not now guess so what we'll do we'll try 
+ to find these weights and biases by 
+ using gradient descent and in that 
+ process we also have to compute 
+ gradients and how to compute gradients 
+ we'll do that by back propagation 
+ okay and this will be the plan and once 
+ we understand this theoretically so once 
+ we understand this and we'll code all of 
+ these things 
+ okay and then then we'll start our 
+ coding things so we'll code it and the 
+ code won't be optimized that code will 
+ probably terrible but it'll be just to 
+ showcase you and then that code has to 
+ be optimized 
+ okay and by taking this op the code and 
+ you optimize then you can create a 
+ library out of that 
+ and each of you people why am I telling 
+ you this so I'm teaching you cherry 
+ right now and then we'll go to code and 
+ you will have to optimize that and once 
+ you have that each of you will at least 
+ implement one or two algorithm all of 
+ you will implement b propagation on your 
+ own okay so all of you will implement b 
+ propagation and people among you some 
+ people will implement a different 
+ version of desense sgd and there are a 
+ lot of types of optimizers so you'll 
+ implement all of these and you'll also 
+ have to implement a lot of uh activation 
+ functions so to call it library we 
+ should at least have a lot of these 
+ functionality. We should have a lot of 
+ activation functions. We should have a 
+ lot of optimizers. We'll have optimized 
+ back propagation and what else can we do 
+ that will be that will come in the 
+ engineering problem. The first you have 
+ to bring the thing in existence and then 
+ you have to optimize it. Then second 
+ phases of the engineering problem that 
+ you will solve and by the end of the 
+ planning. So what you what you actually 
+ should do you should have a library that 
+ you that this class has built. This 
+ class would have built that propagation 
+ from scratch. They should have buend 
+ they should have built all of these 
+ concept from scratch and if time permit 
+ what whatever architectures we learn 
+ here so if you learn about our transform 
+ architecture if we learn about let's 
+ suppose convolution neural network so 
+ all of architectures also should be 
+ implemented this in this library so this 
+ is uh the goal of deep learn the the 
+ goal I'm setting you here is to come 
+ with the library which can be used uh by 
+ any person to learn if not it cannot 
+ replace pyarch because pytor people have 
+ a lot of resource and they have a lot of 
+ people working for that and they have uh 
+ very smart people and very high 
+ experienced people who are working for 
+ PyTorch. But in this book, I want you 
+ people to make a library so that this 
+ can be used for learning people can 
+ people can learn from this. So you can 
+ write step-by-step documentation how did 
+ we implement this algorithm and maybe 
+ after a while you will see that people 
+ making tutorials on those people making 
+ tutorials how to code back propagation 
+ and this will be a separate course on ML 
+ systems rather I will teach you ML 
+ systems because people here if you have 
+ a computer science if you want to code 
+ on your own you'll have to do these 
+ things and maybe I'll help you put 
+ together and you'll have to have a 
+ presentation on these ML systems because 
+ first thing is to to just write a code 
+ to bring it in existence and the second 
+ thing is to make it optimized to use the 
+ ingenuity of engineering and to use 
+ state methods. So how and exploit the 
+ architecture and then see how can we 
+ exploit the current architecture that we 
+ have in computers to perform the 
+ optimized operation so that these things 
+ seem fast. Okay. And what I want you is 
+ my goal for you people is to make a 
+ library that people should use for 
+ learning deep learning. Okay. Because I 
+ believe that deep learning uh the way it 
+ is taught right now people usually are 
+ teaching it is writing some theory 
+ import statement pytor and this and that 
+ that is not the way to learn deep 
+ learning that is just the consumer mind 
+ consuming stuff. So rather than come up 
+ with these big concepts come up come up 
+ with these concepts on your own and the 
+ second thing is we are just trying it 
+ this with sigmoid neurons we're trying 
+ this with let's suppose with the neurons 
+ that start from perceptron there are 
+ other ways of approximating functions as 
+ well okay there are 4 transforms there 
+ are other at least four five ways which 
+ I know of by which you can approximate 
+ these functions because the goal in deep 
+ learning is to approximate functions so 
+ you are given some uh input and you are 
+ given some parameters you have to 
+ approximate function you have to come up 
+ some function which will approximate 
+ other function and there are a lot of 
+ methods that can be used to approximate 
+ the functions. What I want you people to 
+ do is that you should find these methods 
+ and try to code them up. Try to code and 
+ try to first understand the theory 
+ behind them. So once you understand the 
+ theory and then you have to bring that 
+ thing into the code and that will make 
+ you a better thinker and that will in 
+ turn make you a better engineer, better 
+ software engineer or that will rather 
+ make you a better scientist. If you can 
+ think on those lines if you think okay 
+ I'll implement Kod transform my on my 
+ own. And I just read this theory because 
+ I know I have I went through a process. 
+ I saw how what neurons are and then I 
+ implemented them and then I implemented 
+ back propagation. Now I have a letter. 
+ Can I do something of this sort? So this 
+ is why you will at least jump the levels 
+ in the in that consumer letter which I 
+ was telling you that there is a ladder 
+ in that we are maybe in the middle of 
+ consumer. So you want to jump that 
+ ladder that is the goal and you will 
+ learn from a rediscovery point of view. 
+ It will be something that you have 
+ discovered for yourself. you just read 
+ the theory and sometimes some concept 
+ will hit you and it it'll be like oh can 
+ I train the network like this so if you 
+ will be able to train network like 
+ because still I believe the back 
+ propagation is not the optimal way to 
+ train networks okay you should come up 
+ with some different methods to train the 
+ networks but if you are at the point 
+ where you just import pytor backward dot 
+ optimizer then there is no chance of 
+ doing these things but if you do it from 
+ scratch I hope that some of you will hit 
+ an idea and if we have enough 
+ discussions these people will come with 
+ better ideas yeah than other people and 
+ maybe if If you code it up, it produce 
+ good results and it can be a great 
+ contribution.
