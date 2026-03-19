@@ -238,6 +238,41 @@ This is why cross-entropy is the natural loss function for classification.
 \end{important}
 
 % ------------------------------------------------------------------------------
+\section{The F-Divergence Framework}
+% ------------------------------------------------------------------------------
+
+KL Divergence is actually a specific instance of a much broader, unifying framework in information theory known as \textbf{f-divergence}. 
+
+\subsection{Definition}
+
+An f-divergence provides a generalized template for computing the difference between two probability distributions $P$ and $Q$. It measures the expected value of the \textit{likelihood ratio} scaled by a convex function $f$.
+
+\begin{definition}[f-Divergence]
+For two discrete probability distributions $P$ and $Q$, and a convex function $f$ such that $f(1) = 0$, the $f$-divergence is defined as:
+\[
+\boxed{D_f(P \| Q) = \sum_{x} Q(x) f\left(\frac{P(x)}{Q(x)}\right)}
+\]
+\end{definition}
+
+The term $\frac{P(x)}{Q(x)}$ is the likelihood ratio. If the distributions are identical, this ratio is 1, and since $f(1) = 0$, the overall divergence evaluates to 0.
+
+\subsection{Deriving KL Divergence from f-Divergence}
+
+What happens if we choose the specific convex function $f(t) = t \log t$? Let's plug it into the f-divergence formula:
+
+\begin{align*}
+D_f(P \| Q) &= \sum_{x} Q(x) \left[ \frac{P(x)}{Q(x)} \log \left( \frac{P(x)}{Q(x)} \right) \right] \\
+&= \sum_{x} P(x) \log \left( \frac{P(x)}{Q(x)} \right)
+\end{align*}
+
+This result matches our previous definition:
+\[
+D_f(P \| Q) = D_{KL}(P \| Q) \quad \text{when} \quad f(t) = t \log t
+\]
+
+This demonstrates that KL Divergence is not just an arbitrary formulation, but a principled mathematical construct derived from the foundational f-divergence family.
+
+% ------------------------------------------------------------------------------
 \section{The Softmax Function}
 % ------------------------------------------------------------------------------
 

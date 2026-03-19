@@ -1,0 +1,5878 @@
+00:01 Hello and welcome everyone. So in the
+00:03 
+
+00:03 previous session you know that we were
+00:04 
+
+00:04 discussing about representation power of
+00:07 
+
+00:07 representational power of
+00:11 
+
+00:11 of neural networks or we can call them
+00:13 
+
+00:13 multi-layer perceptrons.
+00:19 
+
+00:19 So in that what we discuss the first
+00:20 
+
+00:20 thing that we discussed is they are
+00:22 
+
+00:22 universal
+00:24 
+
+00:24 they can model universal boo functions.
+00:30 
+
+00:30 So if you take any boolean function you
+00:32 
+
+00:32 can make a multi-layer perceptron and
+00:33 
+
+00:33 then you can show that we can model any
+00:35 
+
+00:35 boolean function by using that
+00:36 
+
+00:36 multi-layer perceptron and then we also
+00:38 
+
+00:38 had discussion about depth versus width
+00:40 
+
+00:40 and we saw a lot of implications in that
+00:41 
+
+00:41 today we will see that these multi-layer
+00:44 
+
+00:44 perceptrons they're also universal
+00:46 
+
+00:46 decision boundary approximators or
+00:48 
+
+00:48 decision boundary moders okay so these
+00:51 
+
+00:51 are these can appro basically what I
+00:52 
+
+00:52 mean by that is that if you take any
+00:54 
+
+00:54 decision boundary and you have you can
+00:57 
+
+00:57 construct a multi-layer perceptron for
+00:59 
+
+00:59 that which can model that complex
+01:00 
+
+01:00 decision boundary. Okay. So let's go
+01:02 
+
+01:02 with that.
+01:04 
+
+01:04 So you have multi-layer perceptrons
+01:08 
+
+01:08 as
+01:10 
+
+01:10 decision boundary modeler as decision
+01:20 
+
+01:20 okay as I said by by this I mean that if
+01:21 
+
+01:21 you give any complex decision boundary
+01:24 
+
+01:24 uh to this multi-layer perceptron so it
+01:26 
+
+01:26 should be able to model it it should be
+01:28 
+
+01:28 able to come up with this boundary so
+01:30 
+
+01:30 now the first thing if you know if you
+01:31 
+
+01:31 have a single perceptron so this
+01:32 
+
+01:32 discussion we had earlier If we have a
+01:34 
+
+01:34 single perceptron.
+01:36 
+
+01:36 So with single perceptron what you can
+01:38 
+
+01:38 do is if you have a linear decision
+01:39 
+
+01:39 boundary you can model a linear decision
+01:41 
+
+01:41 boundary with this. So by singular
+01:42 
+
+01:42 perceptron you can model a linear
+01:44 
+
+01:44 decision boundary.
+01:49 
+
+01:49 So how is that possible? So we saw that
+01:51 
+
+01:51 it can you can draw a line of that sort.
+01:53 
+
+01:53 Let's suppose if you because you know
+01:55 
+
+01:55 the equation is w i x i + b is equal z
+01:59 
+
+01:59 or is so when this is greater than or
+02:01 
+
+02:01 equal to z. So you have class one and
+02:04 
+
+02:04 else you have class 0. So if you see if
+02:06 
+
+02:06 I make let's suppose in 2D coordinate
+02:08 
+
+02:08 system if I consider this to be a line.
+02:11 
+
+02:11 So I can draw some line like this. So
+02:13 
+
+02:13 one side so you have this side let's
+02:16 
+
+02:16 suppose. So this side will be one class
+02:18 
+
+02:18 one and this side will be class zero.
+02:22 
+
+02:22 So if you have some linear decision
+02:23 
+
+02:23 boundary so you can directly use this.
+02:24 
+
+02:24 So but you know the problem with that is
+02:27 
+
+02:27 if you have a non nonlinear decision
+02:29 
+
+02:29 boundary you cannot do that. So this
+02:30 
+
+02:30 applies to if I show you let's suppose
+02:32 
+
+02:32 XR. So XR was modeled like this. So this
+02:36 
+
+02:36 was 0 0 0
+02:40 
+
+02:40 1.
+02:43 
+
+02:43 Okay. And then we have 1 0 and 1 1. So
+02:47 
+
+02:47 these were the four points in which we
+02:48 
+
+02:48 were trying to model these gates. So if
+02:50 
+
+02:50 you let's suppose take and gate or or
+02:53 
+
+02:53 gate. So you simply can do if you take
+02:55 
+
+02:55 let's suppose here consider this to be
+02:58 
+
+02:58 zero. So this portion is zero and this
+03:01 
+
+03:01 portion is one. So you you have a clear
+03:03 
+
+03:03 decision boundary. So you we have seen
+03:04 
+
+03:04 seen this discussion. But let's take the
+03:06 
+
+03:06 example of XR. So XR is uh one in in
+03:10 
+
+03:10 this case in these two cases one and
+03:12 
+
+03:12 two. So now you cannot take any linear
+03:14 
+
+03:14 decision boundary. You cannot make
+03:15 
+
+03:15 linear decision boundary which can sort
+03:17 
+
+03:17 of model this problem. So how can we
+03:19 
+
+03:19 model this something of this sort. So
+03:21 
+
+03:21 you have this and all these things let's
+03:24 
+
+03:24 suppose have a different value. Now you
+03:26 
+
+03:26 can see clearly that this is a non
+03:28 
+
+03:28 linear decision boundary. So now you
+03:29 
+
+03:29 have to use these multi-layer
+03:30 
+
+03:30 perceptrons to map these nonlinear
+03:32 
+
+03:32 decision boundaries. So I'll start with
+03:34 
+
+03:34 a basic example how to now use these
+03:36 
+
+03:36 multi-layer perceptrons. You basically
+03:38 
+
+03:38 use combination of these perceptrons and
+03:40 
+
+03:40 then you can come up with the
+03:42 
+
+03:42 multi-layer you can come up with the
+03:43 
+
+03:43 distance boundary. Say we have to
+03:47 
+
+03:47 we have a decent boundary like this
+03:48 
+
+03:48 which is some pentagon.
+03:51 
+
+03:51 Okay something of this sort say this is
+03:52 
+
+03:52 the decision boundary and this is the
+03:54 
+
+03:54 axis we working on.
+03:56 
+
+03:56 So what we what we can do is so we can
+03:59 
+
+03:59 uh use multi-layer perceptrons. Let's
+04:00 
+
+04:00 suppose we can take first first neuron
+04:03 
+
+04:03 or first perceptron. So it will give us
+04:05 
+
+04:05 a line of this sort. So okay. So the
+04:07 
+
+04:07 line of this sort. So above this let's
+04:09 
+
+04:09 consider this is one and below this is
+04:11 
+
+04:11 zero. We'll keep a threshold. So this is
+04:13 
+
+04:13 the line which
+04:17 
+
+04:17 classifies this lines based on this line
+04:19 
+
+04:19 we have now two half spaces. So in the
+04:21 
+
+04:21 in the above side we have half space one
+04:24 
+
+04:24 and then we at the bottom side we have
+04:25 
+
+04:25 half space 0. Basically we have this wi
+04:28 
+
+04:28 x i plus bias is equal 0 1 linear
+04:30 
+
+04:30 decision boundary by the help of which
+04:31 
+
+04:31 we are we are dividing the whole
+04:33 
+
+04:33 coordinate system into two half spaces.
+04:35 
+
+04:35 So this can be done with one neuron
+04:36 
+
+04:36 because we know this is this is linear
+04:38 
+
+04:38 surface. So now I can have another line.
+04:40 
+
+04:40 Let's suppose I'll have this this line
+04:42 
+
+04:42 like this.
+04:45 
+
+04:45 Okay. So again on the let's suppose left
+04:47 
+
+04:47 side we have one and on the right side
+04:49 
+
+04:49 we have zero. So now this should be we
+04:50 
+
+04:50 can we can model this with and then
+04:52 
+
+04:52 neuron and similarly what I can do is I
+04:54 
+
+04:54 can do it with multiple lines. So now
+04:57 
+
+04:57 I'll draw some line like this and then a
+05:01 
+
+05:01 line like this and then a line like
+05:03 
+
+05:03 this.
+05:05 
+
+05:05 Pardon my drawing if this is not good
+05:07 
+
+05:07 but what you can see is you can clearly
+05:09 
+
+05:09 see a pattern there. Here I'll write
+05:10 
+
+05:10 some code to show you because my drawing
+05:12 
+
+05:12 is not good. So I'll show you this code.
+05:13 
+
+05:13 But all in all what you saw is that we
+05:15 
+
+05:15 can use five perceptrons 1 2 3 four and
+05:18 
+
+05:18 five. We can use five perceptrons in
+05:20 
+
+05:20 order to draw these five lines and all
+05:22 
+
+05:22 these lines are doing one thing that is
+05:24 
+
+05:24 on the on one side you have class one on
+05:26 
+
+05:26 the other side you have class and now
+05:28 
+
+05:28 you can see this this is dividing the
+05:30 
+
+05:30 whole space into multiple regions you
+05:31 
+
+05:31 have this region
+05:33 
+
+05:33 okay and then you have these closed
+05:35 
+
+05:35 regions let's suppose these closed
+05:37 
+
+05:37 regions while you have these triangles
+05:40 
+
+05:40 okay
+05:42 
+
+05:42 maybe I should draw it I should draw it
+05:43 
+
+05:43 by the code so that you clearly see it
+05:45 
+
+05:45 give me a second
+05:48 
+
+05:48 So now if you see this so we have a
+05:50 
+
+05:50 pentagon here. So in this case we have a
+05:51 
+
+05:51 pentagon this is 1 2 3 4 and five size.
+05:53 
+
+05:53 So what I said is I can use neurons a
+05:56 
+
+05:56 single neuron can make one decision
+05:58 
+
+05:58 surface. So if you see if you see this
+05:59 
+
+05:59 line consider this line let's suppose
+06:01 
+
+06:01 the line from here to here. If I draw a
+06:03 
+
+06:03 line from here to here pardon my drawing
+06:06 
+
+06:06 if it's not good
+06:09 
+
+06:09 this line. Okay. So you will have one
+06:11 
+
+06:11 neuron responsible for this. So what I
+06:14 
+
+06:14 said is that uh this neuron basically
+06:16 
+
+06:16 will divide this uh this whole space
+06:18 
+
+06:18 into two half spaces. One positive half
+06:20 
+
+06:20 space one negative half space. So here
+06:22 
+
+06:22 we can call this class one and class
+06:24 
+
+06:24 zero. And then what we can do is we can
+06:26 
+
+06:26 use some other neuron. Let's suppose
+06:27 
+
+06:27 this red color. So consider this line
+06:29 
+
+06:29 now. So from here so from here to let's
+06:33 
+
+06:33 say till here. Okay this is a curved
+06:36 
+
+06:36 line. I should rather draw a better
+06:38 
+
+06:38 line. Give me a second. So this becomes
+06:41 
+
+06:41 difficult on screen. Consider this. This
+06:44 
+
+06:44 is the second line. Okay. So this is the
+06:45 
+
+06:45 other neuron which can model this line.
+06:48 
+
+06:48 And similarly we can do it for all five.
+06:50 
+
+06:50 We can have all five lines. And this can
+06:51 
+
+06:51 be done by all five neurons. So 1 2 3 4
+06:58 
+
+06:58 and five neuron. Let's suppose this is
+06:59 
+
+06:59 the five neurons which can have these
+07:01 
+
+07:01 things. So now we have to have a
+07:03 
+
+07:03 threshold. Consider each of the output
+07:05 
+
+07:05 of these neurons. So output here we have
+07:06 
+
+07:06 this X1 and X2. So these are the inputs.
+07:09 
+
+07:09 Okay. So we have because this is in two
+07:11 
+
+07:11 two dimension space. So this is X and Y.
+07:13 
+
+07:13 Okay. Call this as X2 and this is X1.
+07:16 
+
+07:16 Okay. Or X and Y. So you have this input
+07:18 
+
+07:18 and each of this neuron is responsible
+07:20 
+
+07:20 for one line in the space. And what you
+07:22 
+
+07:22 can do is you have these outputs as Y1,
+07:25 
+
+07:25 Y2. So let's suppose output of this is
+07:26 
+
+07:26 Y1. Output of this is Y2.
+07:30 
+
+07:30 This is Y3, Y4 and Y5. So after this
+07:33 
+
+07:33 what we can do is we can sum them up
+07:35 
+
+07:35 here. Okay. So here we can sum all of
+07:37 
+
+07:37 these things up.
+07:40 
+
+07:40 And then you can take this y1 y2 y3 y4.
+07:42 
+
+07:42 So if this summation because now you can
+07:44 
+
+07:44 see clearly over here. So here you will
+07:46 
+
+07:46 be adding each neuron will go to this.
+07:48 
+
+07:48 Let's suppose you have to take this one.
+07:49 
+
+07:49 So now if you combine the whole network.
+07:51 
+
+07:51 So you know the five lines. So if the
+07:53 
+
+07:53 sum is greater than or equal to five. So
+07:55 
+
+07:55 here you will have sum greater than
+07:56 
+
+07:56 equal to five. So if that is equal to
+07:58 
+
+07:58 greater than or equal to five you can
+07:59 
+
+07:59 say that this is the region that we were
+08:01 
+
+08:01 interested in the decision boundary that
+08:03 
+
+08:03 we had. In this case we had pentagon. So
+08:05 
+
+08:05 pentagon is five. Here the sum will be
+08:07 
+
+08:07 four. Okay. Okay, in these pink regions
+08:09 
+
+08:09 the sum will be four. Then we will have
+08:12 
+
+08:12 sum is equal three over in these regions
+08:13 
+
+08:13 and then sum is two in these regions.
+08:15 
+
+08:15 Okay, so you can see that here I have
+08:17 
+
+08:17 also demarcated this color map sort of a
+08:20 
+
+08:20 thing where you can see that with five
+08:22 
+
+08:22 you have this boundary is demarcated by
+08:25 
+
+08:25 five and this bound by 4 to 1
+08:26 
+
+08:26 accordingly. Now what I can do is I can
+08:28 
+
+08:28 just say summation of i is equal to 1 to
+08:30 
+
+08:30 let's suppose here we have this n say we
+08:32 
+
+08:32 have five in this case. So y i if it is
+08:34 
+
+08:34 greater than equal to five so that's the
+08:35 
+
+08:35 distance boundary I want. So this is how
+08:37 
+
+08:37 I can model a pentagon. Is it clear? Can
+08:40 
+
+08:40 I assume that you people understood
+08:42 
+
+08:42 this? So this is how I can if I have a
+08:45 
+
+08:45 pentagon I can use this. Let's suppose
+08:47 
+
+08:47 if I have an hexagon then okay I I also
+08:50 
+
+08:50 want you to see its 3D picture. Okay. 3D
+08:52 
+
+08:52 picture will see something of this sort.
+08:54 
+
+08:54 So you can see 3D picture also printed
+08:55 
+
+08:55 over here.
+08:58 
+
+08:58 Okay. So this is for the pentagon. So if
+09:01 
+
+09:01 you see the pentagon is at the above. So
+09:03 
+
+09:03 the here we have threshold of five.
+09:05 
+
+09:05 Okay. Then below you see these
+09:07 
+
+09:07 triangles. You have four, then you have
+09:08 
+
+09:08 three, then you have two, and then you
+09:10 
+
+09:10 have one. And at the bottom you have
+09:11 
+
+09:11 zero. And we are interested in this. So
+09:12 
+
+09:12 we'll apply threshold at this spot. The
+09:15 
+
+09:15 threshold will be this. So we'll apply
+09:16 
+
+09:16 threshold over this spot. This is what
+09:18 
+
+09:18 we want. Now let's suppose if we want to
+09:21 
+
+09:21 have a surface which is say any any
+09:23 
+
+09:23 complex surface say I'll just make this
+09:27 
+
+09:27 invisible. So let's suppose you had this
+09:29 
+
+09:29 surface. Now you know uh you can use uh
+09:33 
+
+09:33 multi-layer perceptron by each line. You
+09:35 
+
+09:35 can do this. Say you have now suppose
+09:37 
+
+09:37 something of this sort. You have at the
+09:39 
+
+09:39 top
+09:41 
+
+09:41 you have another one. Now this is the
+09:43 
+
+09:43 decision boundary. Suppose this is the
+09:45 
+
+09:45 new decision boundary. So what you can
+09:46 
+
+09:46 do is you can have complex networks. You
+09:48 
+
+09:48 can have one network for this, one
+09:50 
+
+09:50 network for this. Then combine them
+09:51 
+
+09:51 together and you can have an output.
+09:53 
+
+09:53 Let's suppose for this network you can
+09:55 
+
+09:55 have 1 2 3 4 and five. And then for this
+09:59 
+
+09:59 network you have five. For this network
+10:01 
+
+10:01 you have and the five 1 2 3 4 and five.
+10:03 
+
+10:03 And then what you can do is you can
+10:05 
+
+10:05 combine all of these together. You can
+10:07 
+
+10:07 combine all of these together. Okay?
+10:10 
+
+10:10 Then you can combine these two things
+10:11 
+
+10:11 together. Okay? So here you know that
+10:15 
+
+10:15 this thing will be formed. So with this
+10:17 
+
+10:17 you have this red pentagon. With this
+10:20 
+
+10:20 let's suppose you have this orange
+10:22 
+
+10:22 pentagon. And then once you have this so
+10:24 
+
+10:24 you'll have these two pentagons. You'll
+10:25 
+
+10:25 have red and orange pentagon.
+10:31 
+
+10:31 Okay. So this is how you do it with a
+10:33 
+
+10:33 pendle and you can have any complex
+10:34 
+
+10:34 boundary. Let's suppose you have some
+10:36 
+
+10:36 human you have a human of this sort. Say
+10:39 
+
+10:39 this is the head. Okay. And say body is
+10:42 
+
+10:42 like this.
+10:44 
+
+10:44 You basically you can
+10:46 
+
+10:46 have any sort of surface. Okay. What you
+10:49 
+
+10:49 can do is you can keep on creating
+10:50 
+
+10:50 decision boundaries. So you can compose
+10:52 
+
+10:52 arbitrarily complex decision boundaries.
+10:53 
+
+10:53 So I'll write it can compose
+10:59 
+
+10:59 arbitrarily
+11:01 
+
+11:01 complex
+11:04 
+
+11:04 decision boundaries like this.
+11:08 
+
+11:08 So the only game if you see here is you
+11:10 
+
+11:10 have to sort of discretize it. So if you
+11:12 
+
+11:12 in order to discret what you can do is
+11:14 
+
+11:14 you have to take these polytopes. So we
+11:16 
+
+11:16 call each of these as polytopes. So you
+11:17 
+
+11:17 divide your figure into polytopes and
+11:19 
+
+11:19 then you compose these arbitrary
+11:20 
+
+11:20 functions. Okay, let's consider uh now
+11:23 
+
+11:23 we started with let's suppose this we
+11:24 
+
+11:24 started with pentagon we can start with
+11:27 
+
+11:27 say this because I want to I want to
+11:28 
+
+11:28 show you how many neurons can be should
+11:30 
+
+11:30 be used. So if I take this example again
+11:32 
+
+11:32 if I go to go back to my code window
+11:34 
+
+11:34 I'll show you one more interesting case.
+11:39 
+
+11:39 So here this was with a pentagon. So we
+11:41 
+
+11:41 can start with four. So let's suppose I
+11:44 
+
+11:44 have to model a square.
+11:47 
+
+11:47 This is how it looks.
+11:50 
+
+11:50 You'll have a decision boundary of this
+11:51 
+
+11:51 sort and then here the sum will be four
+11:54 
+
+11:54 and here it will be three and then it
+11:56 
+
+11:56 will be two over here if you see it. So
+11:58 
+
+11:58 this is also shown on this C map if you
+11:60 
+
+12:00 see it clearly over here. So when you
+12:01 
+
+12:01 put the threshold equal to four so it'll
+12:03 
+
+12:03 basically only consider this surface
+12:05 
+
+12:05 rest will not be considered in that
+12:06 
+
+12:06 class. Similarly now if you see it's
+12:09 
+
+12:09 three dimensional representation so this
+12:11 
+
+12:11 whole the same graph in 3D. So it will
+12:13 
+
+12:13 look something of this sort. Okay keep
+12:16 
+
+12:16 this remember this because this we're
+12:18 
+
+12:18 going to use again. So now again here
+12:20 
+
+12:20 you will see that this is four okay and
+12:22 
+
+12:22 then this is three and then two and then
+12:23 
+
+12:23 one you'll put threshold so you'll put
+12:25 
+
+12:25 let's say a threshold over this this
+12:26 
+
+12:26 place and you will say above than this
+12:28 
+
+12:28 the threshold is this and then we'll
+12:30 
+
+12:30 have this boundary and below that we
+12:32 
+
+12:32 don't care okay this is for this polyet
+12:36 
+
+12:36 so let's suppose now if we keep on
+12:37 
+
+12:37 increasing this if we keep on increasing
+12:39 
+
+12:39 n so initially n was put as four now I
+12:42 
+
+12:42 can increase it to five pentagon
+12:43 
+
+12:43 heptagon and you'll slowly see that the
+12:45 
+
+12:45 number of neurons will be increased so
+12:47 
+
+12:47 if I say five so you saw that for five
+12:49 
+
+12:49 we can start it with six
+12:53 
+
+12:53 okay you can get something of this sort
+12:56 
+
+12:56 okay so this we'll have we'll have six
+12:58 
+
+12:58 with here and then similarly we'll have
+13:00 
+
+13:00 let's suppose 7 8 9 so where are we
+13:02 
+
+13:02 going if you keep on increasing this if
+13:04 
+
+13:04 we let's suppose do some 32 so you'll
+13:07 
+
+13:07 see that basically what I'm up to is I
+13:09 
+
+13:09 want to construct a circle out of this
+13:11 
+
+13:11 okay because the more number of sides we
+13:13 
+
+13:13 increase so this will look more circular
+13:15 
+
+13:15 so this portion will look more circular
+13:17 
+
+13:17 so if I'm doing n is equal 32. You can
+13:20 
+
+13:20 see this is becoming something like
+13:21 
+
+13:21 this. So you see it's almost looking
+13:23 
+
+13:23 like a circle but you still know that it
+13:25 
+
+13:25 has got 32 sides. So this is a polygon
+13:28 
+
+13:28 with 32 sides. So it's looking like
+13:30 
+
+13:30 circle. The more we increase this so if
+13:32 
+
+13:32 I take n 10 t infinity if I say some
+13:34 
+
+13:34 thousand you'll see that it almost is a
+13:36 
+
+13:36 perfect circle
+13:44 
+
+13:44 taking a lot of time. Oh my god, I
+13:46 
+
+13:46 should interrupt.
+13:48 
+
+13:48 Okay, this is exceeding. So I will go
+13:50 
+
+13:50 with 64 only.
+13:54 
+
+13:54 So if you see this, so this is what is
+13:57 
+
+13:57 happening at 64.
+13:59 
+
+13:59 Okay, you can see that this boundary
+14:01 
+
+14:01 looks like a circle. So this over here
+14:03 
+
+14:03 looks like a circle and you know that
+14:04 
+
+14:04 here n was kept as 64 and this is
+14:07 
+
+14:07 actually a polygon which has 64 size.
+14:09 
+
+14:09 But these sides are so small that it
+14:10 
+
+14:10 looks exactly like a circle. And you
+14:12 
+
+14:12 know that here the sum will be 64 and
+14:14 
+
+14:14 then 63 and it'll go on. But if you see
+14:16 
+
+14:16 it in 3D the important case that is in
+14:19 
+
+14:19 3D. So you see this it drops
+14:21 
+
+14:21 exponentially. So if you see this graph
+14:23 
+
+14:23 so this graph somehow shows that it
+14:25 
+
+14:25 drops exponentially. So here this is 64
+14:27 
+
+14:27 and then slowly it goes down
+14:29 
+
+14:29 exponentially. Okay. And you what you
+14:31 
+
+14:31 can do is you can basically take the
+14:33 
+
+14:33 limit. You can say that this is my
+14:35 
+
+14:35 threshold at 64. This is what I want. So
+14:37 
+
+14:37 if I approximate it so I won't give the
+14:39 
+
+14:39 proof of that. So here you will see that
+14:41 
+
+14:41 n and then after that you will see n by2
+14:44 
+
+14:44 the threshold we have to set. So below
+14:46 
+
+14:46 this is so here you have to put n by2
+14:48 
+
+14:48 and roughly all others are nx2. So now
+14:51 
+
+14:51 if I have to compose this so I I have to
+14:53 
+
+14:53 use these n neurons. So I have to use n
+14:55 
+
+14:55 neurons so that I can let's suppose in
+14:56 
+
+14:56 this case I n= 64. So I'll use 64
+14:59 
+
+14:59 neurons and I'll put a 60 I'll put a
+15:00 
+
+15:00 threshold of this so I can approximate
+15:02 
+
+15:02 the circle. Okay. Now basically what
+15:04 
+
+15:04 this is this is actually a cylinder.
+15:05 
+
+15:05 Okay. This is a slender in 3D. So I can
+15:08 
+
+15:08 have a neuron like this one. Okay, I'll
+15:10 
+
+15:10 make it this side. So I'll have 1 2 till
+15:15 
+
+15:15 some n neurons. Okay. And what I'll do
+15:17 
+
+15:17 is so I'll after that perform an and
+15:19 
+
+15:19 operation of these. I'll combine all of
+15:21 
+
+15:21 these together. So and then I'll say the
+15:23 
+
+15:23 summation of y I goes from 1 to n if
+15:26 
+
+15:26 that is greater than equal to n. So that
+15:28 
+
+15:28 is the decision boundary I am I care
+15:30 
+
+15:30 about. So this is basically a circle. If
+15:31 
+
+15:31 you see we get a circle. Okay. How many
+15:34 
+
+15:34 of you agree that this is a circle if I
+15:36 
+
+15:36 put this fish? So if most of you agree
+15:37 
+
+15:37 that it's a circle and if the people who
+15:39 
+
+15:39 don't agree that it's a circle, they
+15:40 
+
+15:40 should rewatch it and to convince
+15:41 
+
+15:41 themselves that this is a circle if we
+15:43 
+
+15:43 do a thing of this. So now we can
+15:45 
+
+15:45 compose a circle. So how can we compose
+15:46 
+
+15:46 a circle? So you have if you take a
+15:48 
+
+15:48 polygon which has n sides. So you have
+15:50 
+
+15:50 to set a threshold at n. But I I told
+15:52 
+
+15:52 you that here this threshold is n and
+15:54 
+
+15:54 this is nx2. If I add in bias, so if I
+15:56 
+
+15:56 add a bias, so what I can do is I can
+15:58 
+
+15:58 say summation of yi minus nx2. So that
+16:01 
+
+16:01 here I I'll set a threshold n by2 over
+16:03 
+
+16:03 here and then this will be zero and this
+16:06 
+
+16:06 if it is greater or equal to zero and
+16:08 
+
+16:08 this is 1 is 1 to n suppose this is
+16:11 
+
+16:11 these are the neurons so this is what I
+16:12 
+
+16:12 write and this will compose our circle
+16:15 
+
+16:15 this will compose
+16:17 
+
+16:17 a circle okay n should be large enough n
+16:21 
+
+16:21 should be large enough
+16:27 
+
+16:27 okay if I have to make a dummy
+16:28 
+
+16:28 representation so this will look
+16:29 
+
+16:29 something of this sort So you have these
+16:31 
+
+16:31 n neurons and then you have one more
+16:33 
+
+16:33 neuron which add performs and of these
+16:36 
+
+16:36 okay and here is this composition
+16:38 
+
+16:38 function. So this is the function and
+16:40 
+
+16:40 here you'll give these values the values
+16:42 
+
+16:42 that you have x1 or x2 in this case. So
+16:44 
+
+16:44 now you you saw that we can have a
+16:46 
+
+16:46 circle. So if you now have a circle you
+16:48 
+
+16:48 can break down any of uh whatever you
+16:51 
+
+16:51 are given. Let's suppose you are given
+16:52 
+
+16:52 any complex any complex you can fill
+16:54 
+
+16:54 that with circles. So okay let me just
+16:56 
+
+16:56 hide this code.
+16:58 
+
+16:58 Okay, I hope this makes sense to you.
+16:60 
+
+16:60 Now, what I'm saying is let's suppose
+17:02 
+
+17:02 you have this thing. You have a complex
+17:04 
+
+17:04 shape. You have a shape of this sort.
+17:06 
+
+17:06 Say something of this. So, you have
+17:08 
+
+17:08 shape like this. Say some boundary of
+17:10 
+
+17:10 this sort.
+17:12 
+
+17:12 So, what you can do is you can have
+17:14 
+
+17:14 enough circles which will fill this. So,
+17:16 
+
+17:16 you can have circles of this sort.
+17:18 
+
+17:18 Okay? You'll keep on filling the
+17:20 
+
+17:20 circles.
+17:23 
+
+17:23 Okay? And you know how to construct this
+17:25 
+
+17:25 circle.
+17:26 
+
+17:26 Okay? If you have these circles because
+17:28 
+
+17:28 you have a network to compose one circle
+17:30 
+
+17:30 and now you only need this circle and
+17:31 
+
+17:31 you can compose a network for that. So
+17:33 
+
+17:33 if you have these circles you can
+17:35 
+
+17:35 basically come up with any decision
+17:36 
+
+17:36 surface
+17:38 
+
+17:38 come up with
+17:40 
+
+17:40 any decision
+17:43 
+
+17:43 surface
+17:45 
+
+17:45 with arbitrary precision. So what is the
+17:46 
+
+17:46 meaning of the arbitrary position? The
+17:48 
+
+17:48 the better circle you make the better
+17:49 
+
+17:49 approximation you can make over here. Is
+17:51 
+
+17:51 it clear? Is it clear for everyone? So
+17:53 
+
+17:53 now you have you saw that we can have a
+17:55 
+
+17:55 network which by the help of which we
+17:57 
+
+17:57 can compose a circle and circle can be
+17:59 
+
+17:59 used to almost make any decision
+18:02 
+
+18:02 boundary. Why I'm saying almost because
+18:04 
+
+18:04 you cannot be precise with 100%
+18:06 
+
+18:06 accuracy. So there will be some some
+18:08 
+
+18:08 epsilon some very small number which by
+18:12 
+
+18:12 the by which will be bit off than that
+18:14 
+
+18:14 decision boundary. Okay. Now let's
+18:15 
+
+18:15 suppose we have to see how many neurons
+18:18 
+
+18:18 can be used. Now you saw that each of
+18:19 
+
+18:19 this circle takes almost k is equal
+18:21 
+
+18:21 infinite neuron if you have to precisely
+18:22 
+
+18:22 do it. So in order to fit a decision
+18:24 
+
+18:24 boundary let's suppose consider the
+18:25 
+
+18:25 first example that we did the example
+18:26 
+
+18:26 was like this you had one decision
+18:28 
+
+18:28 boundary of this sort
+18:32 
+
+18:32 okay and on top of that you have another
+18:35 
+
+18:35 decision boundary like this.
+18:42 
+
+18:42 Now what you can do is you have to fill
+18:44 
+
+18:44 this with circles. So you have you can
+18:45 
+
+18:45 fill it with circle like this and for
+18:48 
+
+18:48 each circle you will have a hidden layer
+18:53 
+
+18:53 or a multi-layer perceptron
+18:56 
+
+18:56 I'll make it very rough. So now you see
+18:58 
+
+18:58 that for each of these circles you'll
+18:60 
+
+19:00 have let's suppose a network consider
+19:02 
+
+19:02 this is a network which composes a
+19:04 
+
+19:04 circle then you'll have such
+19:06 
+
+19:06 number of networks as the number of
+19:08 
+
+19:08 circles in here. So basically question
+19:10 
+
+19:10 was can we just have one hidden layer.
+19:12 
+
+19:12 So the question I'm answering is can we
+19:16 
+
+19:16 have one hidden layer
+19:19 
+
+19:19 one hidden layer to approximate
+19:25 
+
+19:25 any decision boundary any decision
+19:26 
+
+19:26 boundary so is there a possibility that
+19:29 
+
+19:29 I can just have one hidden layer in the
+19:31 
+
+19:31 in my network and I can approximate any
+19:32 
+
+19:32 boundary why am I interested in this
+19:34 
+
+19:34 because we saw the same with the boolean
+19:35 
+
+19:35 functions because we just had one hidden
+19:37 
+
+19:37 layer and in that case we could we saw
+19:40 
+
+19:40 that if we have enough if we have one
+19:42 
+
+19:42 hidden layer with enough neurons that is
+19:44 
+
+19:44 the depth was exponential. So in that
+19:46 
+
+19:46 case we could we could model any boolean
+19:49 
+
+19:49 function. So in this case if you have
+19:50 
+
+19:50 one hidden layer. So what is the number
+19:52 
+
+19:52 of neurons? So number of neurons in
+19:53 
+
+19:53 this. So let's suppose K and this K
+19:55 
+
+19:55 tends to infinity. For each of the
+19:56 
+
+19:56 circle you need infinite number of
+19:57 
+
+19:57 neurons. And then it depends how much
+19:59 
+
+19:59 precision do you want. As I said that K
+20:00 
+
+20:00 is equal 64. It looked like a circle.
+20:02 
+
+20:02 Okay. But it was like not exactly
+20:04 
+
+20:04 circle. So the amount of precision that
+20:05 
+
+20:05 you want you'll have to accordingly
+20:07 
+
+20:07 increase the width of this neuron. So we
+20:09 
+
+20:09 have defined width and depth in the
+20:11 
+
+20:11 previous session. So you have to
+20:12 
+
+20:12 increase the width of this neuron width
+20:14 
+
+20:14 of this network. So the more you
+20:16 
+
+20:16 basically one hidden layer can model any
+20:18 
+
+20:18 classification boundary that is the take
+20:19 
+
+20:19 away from this. So take away is
+20:23 
+
+20:23 so if you have just one hidden layer so
+20:24 
+
+20:24 you had these hidden layer and then
+20:25 
+
+20:25 you'll combine these things. You'll
+20:26 
+
+20:26 combine these things with one. So you'll
+20:29 
+
+20:29 combine them
+20:31 
+
+20:31 and then you'll get a surface of the
+20:33 
+
+20:33 sort that you wanted.
+20:36 
+
+20:36 This surface can be modeled by using
+20:38 
+
+20:38 this. So as I said takeaway is with only
+20:40 
+
+20:40 one hidden layer of multi-layer
+20:42 
+
+20:42 perceptron you can model any decision
+20:43 
+
+20:43 boundary. You can model
+20:47 
+
+20:47 any
+20:50 
+
+20:50 decision boundary
+20:53 
+
+20:53 with
+20:54 
+
+20:54 one hidden
+20:58 
+
+20:58 layer in an MLP.
+21:00 
+
+21:00 So in MLP if you just have one hidden
+21:02 
+
+21:02 layer. So what you can do is you can you
+21:05 
+
+21:05 can model any kind of boundary. So we
+21:07 
+
+21:07 now can make a conclusion that this MLP
+21:10 
+
+21:10 so this is basically universal
+21:12 
+
+21:12 classifier as well. So initially you
+21:13 
+
+21:13 said that you can model any boolean
+21:15 
+
+21:15 function. Okay. So now you can say that
+21:17 
+
+21:17 this is a universal classifier.
+21:20 
+
+21:20 Universal classifier.
+21:22 
+
+21:22 The second phase of the discussion. So
+21:25 
+
+21:25 in the previous session also we did
+21:27 
+
+21:27 this. So initially we established that
+21:28 
+
+21:28 using one single hidden layer of hidden
+21:32 
+
+21:32 layer of neurons. So we can model any
+21:33 
+
+21:33 type of boolean function. Then we said
+21:35 
+
+21:35 okay what is the trade-off? So can we
+21:36 
+
+21:36 somehow increase the depth so as to
+21:39 
+
+21:39 decrease the neuron. So we want to take
+21:40 
+
+21:40 this to exponent. Now you can see that
+21:41 
+
+21:41 clearly that this k equal infinity it
+21:43 
+
+21:43 tends like you have to use a lot of
+21:45 
+
+21:45 neurons. So here if this is n and when
+21:47 
+
+21:47 it tends to infinity then only you can
+21:48 
+
+21:48 model it precisely. Is it clear? The
+21:50 
+
+21:50 second half of discussion is that we
+21:52 
+
+21:52 will see that again width versus depth
+21:57 
+
+21:57 width versus depth in terms of
+21:58 
+
+21:58 classifiers. Previous session we saw it
+22:00 
+
+22:00 in the boolean functions. Now in this
+22:02 
+
+22:02 session we'll see it for the decision
+22:03 
+
+22:03 boundaries. Any questions still here? So
+22:05 
+
+22:05 now we have to do this treatment of how
+22:08 
+
+22:08 if we increase depth what is the thing
+22:09 
+
+22:09 that we get? If you remember previous
+22:11 
+
+22:11 session, we saw that on increasing depth
+22:13 
+
+22:13 of uh neural network what we got is we
+22:16 
+
+22:16 could decrease the number of computation
+22:18 
+
+22:18 units that is number of neurons. So why
+22:20 
+
+22:20 are we why do we want to decrease the
+22:22 
+
+22:22 number of neurons? Because each neuron
+22:23 
+
+22:23 is a comput unit and it needs resources
+22:25 
+
+22:25 to perform its computation. So we need
+22:27 
+
+22:27 to decrease the resources and that's why
+22:29 
+
+22:29 we see why not just have one hidden
+22:33 
+
+22:33 layer because it use K tends to infinity
+22:35 
+
+22:35 number of neurons and infinite number of
+22:36 
+
+22:36 computations as an inference of that.
+22:38 
+
+22:38 Now you want to decrease it. So what we
+22:40 
+
+22:40 can do is we can increase the depth.
+22:41 
+
+22:41 Okay, I'll take an example. So in the
+22:43 
+
+22:43 previous class we also did this with K
+22:45 
+
+22:45 maps and then we saw a boolean function
+22:46 
+
+22:46 and we made reducible form. So in this
+22:48 
+
+22:48 case if you against the same form now
+22:50 
+
+22:50 how complex can you make a decision
+22:51 
+
+22:51 boundary. So in the previous uh session
+22:53 
+
+22:53 we saw that if how complex can you make
+22:55 
+
+22:55 a boolean function. So there we saw that
+22:57 
+
+22:57 we should not be able to minimize that.
+22:59 
+
+22:59 So in the previous function we had
+23:00 
+
+23:00 distinction normal form. So we said how
+23:04 
+
+23:04 complex can this DNA be. So I said that
+23:06 
+
+23:06 this DNA form should be irreducible.
+23:09 
+
+23:09 So you should not be able to reduce it
+23:11 
+
+23:11 because we had a trick. So if you have a
+23:13 
+
+23:13 dig normal form and then you could use
+23:14 
+
+23:14 boolean algebra on that you could reduce
+23:16 
+
+23:16 that and if you reduce that then you can
+23:18 
+
+23:18 reduce the number of terms or the number
+23:19 
+
+23:19 of comp units in here. Similarly in this
+23:21 
+
+23:21 so how complex can a distance boundary
+23:23 
+
+23:23 be? So I'll make a decision boundary so
+23:25 
+
+23:25 complex that it engulfves everything. So
+23:27 
+
+23:27 what what I can do is I can make again
+23:28 
+
+23:28 the same. So there we made a checkered
+23:30 
+
+23:30 kap. So here in the similar fashion
+23:32 
+
+23:32 we'll make a checkered decision
+23:34 
+
+23:34 boundary. So how that checkered boundary
+23:36 
+
+23:36 would look like is something of this
+23:37 
+
+23:37 sort. So I'll have lines like this.
+23:43 
+
+23:43 Consider this as my 2D coordinate space.
+23:48 
+
+23:48 So I'm doing this treatment in 2D. This
+23:49 
+
+23:49 the same applies in any dimension. Okay,
+23:52 
+
+23:52 this distance surface can be in any
+23:54 
+
+23:54 dimension. It's not necessary that it'll
+23:55 
+
+23:55 only be in 2D but for the visualization
+23:57 
+
+23:57 purposes I'm making it in 2D and
+23:59 
+
+23:59 sometimes in 3D. So what I can do is I
+24:01 
+
+24:01 can make lines of this sort.
+24:04 
+
+24:04 So, one, two.
+24:09 
+
+24:09 Pretty bad at drawing.
+24:18 
+
+24:18 Okay, then I'll make more lines like
+24:20 
+
+24:20 this.
+24:31 
+
+24:31 Two lines. Maybe let's increase these
+24:33 
+
+24:33 lines. I can increase one more.
+24:40 
+
+24:40 And now what I'll do is I'll make a
+24:42 
+
+24:42 checkered board like this. Let's I'll
+24:43 
+
+24:43 start from here. So wherever I color
+24:46 
+
+24:46 that means you have to give this is the
+24:48 
+
+24:48 distance boundary and other side is not
+24:49 
+
+24:49 dist bonded. Wherever I color. So I'll
+24:52 
+
+24:52 color that with orange. So I because I
+24:53 
+
+24:53 want to make it checkered on purpose.
+24:56 
+
+24:56 And if you have seen previous session,
+24:57 
+
+24:57 you know why do we want to make
+24:58 
+
+24:58 checkered?
+25:09 
+
+25:09 Okay. Something like this. I hope you
+25:10 
+
+25:10 got the idea how I want it to be.
+25:20 
+
+25:20 Okay. So this is what I want. Now I have
+25:22 
+
+25:22 to make this decision boundary. If you
+25:23 
+
+25:23 have to see in this decision boundary
+25:25 
+
+25:25 what I can do is I can do this for let's
+25:27 
+
+25:27 suppose these where wherever you see
+25:28 
+
+25:28 colored regions. So I want to make a
+25:30 
+
+25:30 network which would map this. So we
+25:32 
+
+25:32 should model this. This is my problem
+25:34 
+
+25:34 what I want. So I want to have a network
+25:37 
+
+25:37 so that it it does this. So what I can
+25:39 
+
+25:39 do is I can take a lot of these. I can
+25:41 
+
+25:41 take K k tends to infinity. I can make a
+25:43 
+
+25:43 network like this with n approach. So I
+25:46 
+
+25:46 can have
+25:47 
+
+25:47 this a lot of neurons where let's
+25:49 
+
+25:49 suppose we have k number which tends to
+25:51 
+
+25:51 infinity and I can give this x1 x2 as an
+25:53 
+
+25:53 input and then I can club these together
+25:57 
+
+25:57 so as to make this decision now the
+25:59 
+
+25:59 question is can I somehow reduce it can
+26:02 
+
+26:02 I reduce it can I reduce the number of
+26:05 
+
+26:05 neurons I can use okay so again I'll use
+26:07 
+
+26:07 this I'll use the concept of optimal
+26:09 
+
+26:09 depth so how can we optimize this so now
+26:11 
+
+26:11 if you see this so now this is made up
+26:13 
+
+26:13 of lines if you See whole of this this
+26:16 
+
+26:16 is made up of lines. So what I can do is
+26:17 
+
+26:17 I can use multiple layer of network. So
+26:19 
+
+26:19 I have this input X1 and X2. So in this
+26:22 
+
+26:22 this will give me the input and then
+26:24 
+
+26:24 I'll model all these lines. Let's
+26:25 
+
+26:25 suppose this is a checkerboard of 8 + 8
+26:28 
+
+26:28 say 1 2 3 4 5. So you have 1 2 3 4 5. I
+26:31 
+
+26:31 have five 5 + 5. So that's how the
+26:32 
+
+26:32 checkerboard that's how we got this
+26:34 
+
+26:34 checkered board. Now in in in this case
+26:37 
+
+26:37 so consider this I have this n. So I can
+26:38 
+
+26:38 have two layer hidden network. Okay. So
+26:40 
+
+26:40 by two layer I mean we will have two
+26:42 
+
+26:42 hidden layers. So in the first what I
+26:44 
+
+26:44 can do is the first layer will be it
+26:45 
+
+26:45 will be modeling these lines. Okay it'll
+26:47 
+
+26:47 be modeling all the lines and then I'll
+26:49 
+
+26:49 take care of these checkered ones
+26:51 
+
+26:51 basically where I have to give the
+26:52 
+
+26:52 output as one. So this basically means
+26:54 
+
+26:54 active. So in this case this means
+26:56 
+
+26:56 active. We have to activate our neurons
+26:58 
+
+26:58 and this means inactive. So as I said
+27:01 
+
+27:01 that for these if you have this n cross
+27:02 
+
+27:02 n so I'll make these lines. So these
+27:04 
+
+27:04 many number of lines. So let's suppose
+27:05 
+
+27:05 we have this these 56 lines say. So then
+27:09 
+
+27:09 what we need we need a layer of we need
+27:11 
+
+27:11 two layer network. So we'll need two
+27:14 
+
+27:14 layer networks. So why two layer
+27:15 
+
+27:15 network? So because one layer will be
+27:19 
+
+27:19 used to sort of model each of these
+27:21 
+
+27:21 lines. So that first layer so let's
+27:23 
+
+27:23 suppose one hidden first hidden layer
+27:25 
+
+27:25 will be used to model the lines
+27:29 
+
+27:29 model the lines and second layer will be
+27:31 
+
+27:31 used to model the checkered pattern.
+27:37 
+
+27:37 If something is if you are not able to
+27:40 
+
+27:40 understand why this so you should watch
+27:42 
+
+27:42 this lecture in with the combination in
+27:44 
+
+27:44 combination with the first lecture that
+27:46 
+
+27:46 we I think had in the previous week. So
+27:48 
+
+27:48 then you'll understand the whole story.
+27:49 
+
+27:49 So okay so what I'm doing here is we
+27:51 
+
+27:51 have a surface like this which is
+27:52 
+
+27:52 checkered surface. So this is sort of
+27:54 
+
+27:54 that this is analogous to that
+27:56 
+
+27:56 irreducible DNF. So now what I'm saying
+27:58 
+
+27:58 is you you can have a two-layer hidden
+27:60 
+
+27:60 network. So in that two-layer hidden the
+28:01 
+
+28:01 first hidden layer will be able to model
+28:03 
+
+28:03 these line. Okay let's suppose these are
+28:05 
+
+28:05 n lines. So you will use let's suppose n
+28:07 
+
+28:07 neurons in the first layer n neurons
+28:13 
+
+28:13 okay in the first layer and in the
+28:14 
+
+28:14 second layer what you can do is how so
+28:16 
+
+28:16 many number of these active cells are
+28:18 
+
+28:18 there you'll use these many number of
+28:19 
+
+28:19 neurons in the second layer okay the
+28:21 
+
+28:21 first layer will have and number of
+28:23 
+
+28:23 lines so you'll have x1 as input x2 as
+28:25 
+
+28:25 input and then first layer so what will
+28:27 
+
+28:27 first layer contain number of lines
+28:30 
+
+28:30 so if you see this checker and the
+28:31 
+
+28:31 second this will contain the number of
+28:34 
+
+28:34 active active active cells. So by active
+28:37 
+
+28:37 cells I mean so wherever you see this
+28:38 
+
+28:38 pattern wherever you see this orange and
+28:40 
+
+28:40 then you can make it like this. Okay. So
+28:42 
+
+28:42 if you see this region over here. So if
+28:44 
+
+28:44 you see how many regions. So if you have
+28:46 
+
+28:46 say these many lines. So you have 1 2
+28:49 
+
+28:49 something of this or 1 2 3 4 5 6. You
+28:52 
+
+28:52 have all these regions. If you can break
+28:53 
+
+28:53 the cells you'll have if you have eight
+28:55 
+
+28:55 eight lines. If you have eight lines on
+28:57 
+
+28:57 this side eight 16 lines. So you you'll
+28:59 
+
+28:59 have to use 16 neurons. So if you have
+29:01 
+
+29:01 16
+29:03 
+
+29:03 16 lines that means eight horizontal
+29:05 
+
+29:05 lines, eight vertical lines. So you'll
+29:06 
+
+29:06 use 16 neurons. So from y1 to y 16. So
+29:11 
+
+29:11 you use these many neurons in order to
+29:13 
+
+29:13 map these lines. Now you have to do it
+29:15 
+
+29:15 with a checkered board. So you have this
+29:17 
+
+29:17 is x1 and this is x2. So you using y1 y2
+29:21 
+
+29:21 till y 16 because this is the number of
+29:22 
+
+29:22 units. I'm just taking a concrete
+29:24 
+
+29:24 example. So you had the 16 lines and now
+29:26 
+
+29:26 you have to use use it for checkers. Now
+29:28 
+
+29:28 within that you have 16 checkers.
+29:31 
+
+29:31 Okay. So with the 16 neurons in the
+29:34 
+
+29:34 first hidden layer and then in the
+29:36 
+
+29:36 second hidden layer let's suppose with
+29:37 
+
+29:37 this you can you have basically 40 cells
+29:39 
+
+29:39 which are active. So if you count the
+29:40 
+
+29:40 number of cells I have written it down
+29:42 
+
+29:42 here. So you'll have 40 cells basically
+29:43 
+
+29:43 which are active. So in the first layer
+29:45 
+
+29:45 you'll use 60 neurons. In the second
+29:46 
+
+29:46 layer you'll use 40 neurons. Call this
+29:49 
+
+29:49 N1 then N2 till 40.
+29:52 
+
+29:52 and 40 total number of neurons if you
+29:54 
+
+29:54 have a checkered board of this sort
+29:56 
+
+29:56 where you have eight lines like this
+29:58 
+
+29:58 eight lines like this and eight lines
+29:60 
+
+29:60 like this okay you have this there's
+30:01 
+
+30:01 there's eight lines of this or eight
+30:02 
+
+30:02 lines of this sort so what I said is in
+30:04 
+
+30:04 total you will have 16 lines so for the
+30:06 
+
+30:06 16 lines you'll need 16 neurons for the
+30:08 
+
+30:08 first layer and for the second layer
+30:09 
+
+30:09 because there will be because you're
+30:10 
+
+30:10 making these checkered board so it
+30:11 
+
+30:11 you'll have 40 of these active cells and
+30:13 
+
+30:13 then in the second layer you'll have 40
+30:14 
+
+30:14 neurons so this is my layer one
+30:17 
+
+30:17 layer one and this is my
+30:20 
+
+30:20 layer two and here we had 16 neurons and
+30:23 
+
+30:23 in this case we had 14 neurons. So for
+30:24 
+
+30:24 such a network what you use you will
+30:26 
+
+30:26 have 40 plus uh 16 neurons. Okay. And
+30:30 
+
+30:30 then one one one neuron to add. So you
+30:32 
+
+30:32 have in the output you have one more
+30:34 
+
+30:34 neurons. So add all of these things
+30:35 
+
+30:35 together. So you have one. So this is 57
+30:38 
+
+30:38 neurons in total. Okay. Including the
+30:39 
+
+30:39 output neuron. Okay. Now but you if you
+30:42 
+
+30:42 remember previous lecture this checker
+30:44 
+
+30:44 this checker board is something of an
+30:47 
+
+30:47 XR. So this is mapping like an XR. Okay.
+30:50 
+
+30:50 ASIP and Muzafur were in the class. So
+30:53 
+
+30:53 can you tell me what can we do? Can we
+30:55 
+
+30:55 reduce this layer again? Can we do the
+30:57 
+
+30:57 same treatment for this layer?
+30:60 
+
+30:60 Okay, just a side note as I said that
+31:02 
+
+31:02 this you are mapping it like XR. So the
+31:04 
+
+31:04 checkered board is like XR because K map
+31:06 
+
+31:06 is with the K map we consider for XR.
+31:09 
+
+31:09 The same thing applies to the checkered
+31:10 
+
+31:10 board. So now what I said is in the in
+31:12 
+
+31:12 the second layer so the hidden layer
+31:14 
+
+31:14 second. So I can again use the property
+31:16 
+
+31:16 of associative of XR because what I said
+31:18 
+
+31:18 is in the previous session if you see
+31:21 
+
+31:21 that
+31:23 
+
+31:23 you had checkered board like this. So
+31:24 
+
+31:24 let's suppose XR was mapped of this
+31:26 
+
+31:26 sort. So you had XR like this. Oops.
+31:30 
+
+31:30 So you had XR like this.
+31:38 
+
+31:38 So one X were this. So in if you use
+31:41 
+
+31:41 only a single hidden layer. So the
+31:43 
+
+31:43 number of neurons we were using was this
+31:45 
+
+31:45 many neurons. Okay. Then we said that
+31:47 
+
+31:47 okay if we can use depth of layers if we
+31:50 
+
+31:50 if I given liberty that you can use deep
+31:53 
+
+31:53 neural network. So there we saw that you
+31:54 
+
+31:54 can decrease the depth to 3 into n minus
+31:57 
+
+31:57 one and with this the number of layers
+31:59 
+
+31:59 was 2 log to the base 2 n. So this was
+32:02 
+
+32:02 the number of layers number of layers
+32:05 
+
+32:05 and this here was the number of neurons.
+32:07 
+
+32:07 So similar thing can be done in here. So
+32:09 
+
+32:09 now this second layer can be broken down
+32:11 
+
+32:11 because the first layer is for the
+32:12 
+
+32:12 lines. The second thing if you see is
+32:14 
+
+32:14 that the check that is checkered and it
+32:15 
+
+32:15 is XR operation can be applied and XR is
+32:18 
+
+32:18 associated operation. So these this
+32:20 
+
+32:20 thing can be break broken down and
+32:21 
+
+32:21 instead of 40 you can just use 3 into n
+32:23 
+
+32:23 minus one. So if you if you had to use
+32:26 
+
+32:26 let's suppose n neurons so you'll use
+32:27 
+
+32:27 these many neurons. Let's suppose if you
+32:29 
+
+32:29 have if you have to form a grid with 64
+32:31 
+
+32:31 lines. Okay we'll do this treatment. So
+32:33 
+
+32:33 grid with 64 lines. Now
+32:39 
+
+32:39 okay so if you have 64 and now you
+32:41 
+
+32:41 should have 64
+32:43 
+
+32:43 feature detectors. So what is the
+32:45 
+
+32:45 meaning of that? So that means you
+32:47 
+
+32:47 should have these many lines and after
+32:48 
+
+32:48 that you have these checkered you have
+32:50 
+
+32:50 the you have these checkered and how
+32:52 
+
+32:52 many checkered how many cells are active
+32:54 
+
+32:54 there how many checkered cells are there
+32:55 
+
+32:55 which are filled. So that will be 544
+32:58 
+
+32:58 544 checkered cells
+33:01 
+
+33:01 or active cells.
+33:04 
+
+33:04 So if you use just two two layer deep
+33:06 
+
+33:06 network. So here for this layer one you
+33:08 
+
+33:08 will need 64 neurons. So in this case
+33:09 
+
+33:09 you'll use 554 neuron. This is like an
+33:11 
+
+33:11 XR operation. The total number of
+33:13 
+
+33:13 neurons will be uh 64 + 544 + 1 I think
+33:18 
+
+33:18 that is 609. These many number of
+33:19 
+
+33:19 neurons will be used including the
+33:20 
+
+33:20 output neuron. So but what we can do is
+33:22 
+
+33:22 we can use two get XR operation for
+33:25 
+
+33:25 this. So we can do this on this. We can
+33:27 
+
+33:27 have the XR operation. So now we can
+33:30 
+
+33:30 reduce it to some more. So and you can
+33:32 
+
+33:32 do the calculation yourself and 544 how
+33:34 
+
+33:34 many number of neurons will be used and
+33:35 
+
+33:35 you have to see I think 512 is some 2 ^
+33:39 
+
+33:39 9 okay let's let's do the treatment on
+33:41 
+
+33:41 this so it is roughly of 10 neurons say
+33:43 
+
+33:43 n is equal 10 in this case suppose okay
+33:46 
+
+33:46 in this let's suppose this is 1024 not
+33:49 
+
+33:49 just 554 so initially it was using these
+33:51 
+
+33:51 many neurons so what we can do is now we
+33:53 
+
+33:53 can use 3 into uh 10 - 1 9 these number
+33:57 
+
+33:57 of neurons if we use the xr operation
+33:58 
+
+33:58 that is 327 so 27 plus 64 and that one
+34:03 
+
+34:03 neuron let's suppose one neuron and this
+34:05 
+
+34:05 will be roughly roughly in the order of
+34:07 
+
+34:07 say 100 in the order of 100 you can now
+34:09 
+
+34:09 you see the difference almost six times
+34:11 
+
+34:11 difference so when you made the network
+34:13 
+
+34:13 deep so now you can see that you are
+34:14 
+
+34:14 reducing it so all in all what you can
+34:16 
+
+34:16 do is in order in order to have a
+34:18 
+
+34:18 network so you should be aiming to make
+34:21 
+
+34:21 network a little bit deeper than the
+34:23 
+
+34:23 wider so in wider the problem is that
+34:26 
+
+34:26 you need exponential
+34:30 
+
+34:30 number of computational units
+34:33 
+
+34:33 computational units or neurons which we
+34:36 
+
+34:36 call it. So if if you are making this
+34:38 
+
+34:38 network deeper so maybe you are reducing
+34:41 
+
+34:41 it you are using less than this but
+34:43 
+
+34:43 still the problem is that in the worst
+34:45 
+
+34:45 case you still have to use exponential
+34:46 
+
+34:46 in order if you are given any decision
+34:48 
+
+34:48 boundary okay there's a separate theorem
+34:49 
+
+34:49 which I won't discuss here we had
+34:51 
+
+34:51 discussed Shannon's theorem in previous
+34:53 
+
+34:53 session where I said that you still need
+34:54 
+
+34:54 exponential number of neurons so and if
+34:56 
+
+34:56 you could prove that I can have a
+34:57 
+
+34:57 boolean function with n inputs and if I
+34:60 
+
+34:60 have to make a circuit I can make a
+35:02 
+
+35:02 circuit with only n competition units
+35:04 
+
+35:04 polinomial units you'll be able to prove
+35:05 
+
+35:05 n is equal
+35:07 
+
+35:07 NP. Okay. So that we did. So what is the
+35:10 
+
+35:10 summary so far? So summary basically is
+35:12 
+
+35:12 so deeper networks so deeper networks
+35:17 
+
+35:17 are more expressive.
+35:21 
+
+35:21 Okay. This we saw in two case scenarios.
+35:23 
+
+35:23 First we saw with the boolean function
+35:24 
+
+35:24 and second with the decision boundaries.
+35:26 
+
+35:26 Okay. And one more thing that we saw is
+35:27 
+
+35:27 that MLPS
+35:29 
+
+35:29 are universal
+35:33 
+
+35:33 boolean
+35:36 
+
+35:36 function moders. Okay, boolean function
+35:37 
+
+35:37 moders. I'll just write in the short and
+35:39 
+
+35:39 similar MLPS are universal decision
+35:42 
+
+35:42 boundary moders. Decision
+35:45 
+
+35:45 boundary moders. Okay. And the third
+35:48 
+
+35:48 cases and keep this these three points
+35:50 
+
+35:50 in the view. First deeper networks are
+35:52 
+
+35:52 more expressive because they can express
+35:53 
+
+35:53 more and it it reduces our number of com
+35:57 
+
+35:57 units the required number of com units
+35:58 
+
+35:58 from a exponential to polinomial here in
+36:01 
+
+36:01 this case from infinity to some
+36:02 
+
+36:02 polinomial but it's not always the case
+36:04 
+
+36:04 because I said that Shannon's theorem
+36:05 
+
+36:05 says that if you have an an input
+36:08 
+
+36:08 function so you so you sometimes still
+36:10 
+
+36:10 need exponential number of neurons okay
+36:13 
+
+36:13 now one more thing that we have to see
+36:14 
+
+36:14 is that multi-layer perceptrons they can
+36:17 
+
+36:17 be used as universal function
+36:19 
+
+36:19 approximators
+36:20 
+
+36:20 That's the that is the third thing in
+36:22 
+
+36:22 this case. So apart from this deeper
+36:24 
+
+36:24 thing, so you have multi-layer
+36:25 
+
+36:25 perceptrons as universal boolean
+36:27 
+
+36:27 function moders and then you have
+36:28 
+
+36:28 multi-layer perceptrons as universal
+36:31 
+
+36:31 boundary moders and now you have
+36:33 
+
+36:33 multi-layer perceptrons as universal
+36:35 
+
+36:35 function approximators. Multi-layer
+36:36 
+
+36:36 perceptrons
+36:38 
+
+36:38 as universal
+36:42 
+
+36:42 function
+36:45 
+
+36:45 approximator.
+36:48 
+
+36:48 Is it clear so far? Can I assume that
+36:50 
+
+36:50 you have understood almost now you
+36:52 
+
+36:52 understood two points at least first
+36:53 
+
+36:53 point was by using these multi-layer
+36:55 
+
+36:55 perceptrons I can model any type of
+36:57 
+
+36:57 boolean function okay and then you saw
+36:59 
+
+36:59 that there is
+37:02 
+
+37:02 practical use of deep by a network
+37:04 
+
+37:04 should be deep and now second thing that
+37:06 
+
+37:06 you saw is after this boolean function
+37:08 
+
+37:08 then you can say if I have any decision
+37:10 
+
+37:10 boundary with arbitrary precision I can
+37:12 
+
+37:12 model any decision fun decision boundary
+37:15 
+
+37:15 by the help of these MLP that's a third
+37:17 
+
+37:17 thing is these universal
+37:19 
+
+37:19 These MLPS are universal function
+37:21 
+
+37:21 approximators. So why is that? Okay,
+37:22 
+
+37:22 because you know what a function is. So
+37:24 
+
+37:24 anything that we do in deep learning, I
+37:25 
+
+37:25 said you are basically modeling a
+37:26 
+
+37:26 complex function. So there's a complex
+37:28 
+
+37:28 function associated with it and complex
+37:30 
+
+37:30 function is there which you are
+37:31 
+
+37:31 computing.
+37:33 
+
+37:33 Okay. And this over here is called as
+37:34 
+
+37:34 universal approximation theorem. So all
+37:36 
+
+37:36 of the these statements basically come
+37:37 
+
+37:37 under universal approximation theorem.
+37:42 
+
+37:42 Universal
+37:44 
+
+37:44 approximation theorem.
+37:46 
+
+37:46 And as I said this is called the
+37:48 
+
+37:48 representation power of neural networks.
+37:49 
+
+37:49 So by just giving some more capabilities
+37:52 
+
+37:52 I can show you that these universe these
+37:54 
+
+37:54 neural networks or multiple perceptrons
+37:55 
+
+37:55 they are we can consider them as like
+37:57 
+
+37:57 Turing machine they can act like Turing
+37:60 
+
+37:60 machines and you know anything that is
+38:02 
+
+38:02 computable can be computed by using
+38:03 
+
+38:03 Turing machine. So you have your own
+38:05 
+
+38:05 computer right now and it uses one
+38:07 
+
+38:07 architecture just a side note. So what
+38:09 
+
+38:09 I'm saying is in order any anything is
+38:10 
+
+38:10 computable you need a Turing machine to
+38:12 
+
+38:12 compute that. Okay. And if you know that
+38:14 
+
+38:14 this thing is computable. So can you
+38:15 
+
+38:15 construct a machine to compute that?
+38:17 
+
+38:17 Yes, we can. So what is that machine
+38:18 
+
+38:18 called? Turing machine. So Turing
+38:19 
+
+38:19 machine is a machine which can on which
+38:22 
+
+38:22 you can model any problem. So what I'm
+38:24 
+
+38:24 telling you that with some more
+38:25 
+
+38:25 assumptions with these neural networks
+38:27 
+
+38:27 you can show that these neural networks
+38:28 
+
+38:28 are twing that you like Ting machine
+38:30 
+
+38:30 they're all they're equivalent to
+38:32 
+
+38:32 machines. Okay with some more
+38:33 
+
+38:33 assumptions. But here we saw three
+38:34 
+
+38:34 things. So you saw that it is boolean
+38:36 
+
+38:36 approximator. You can model any decision
+38:38 
+
+38:38 boundary. And then the third thing that
+38:40 
+
+38:40 I'm saying is it can it can approximate
+38:42 
+
+38:42 any univer any function. you give it any
+38:44 
+
+38:44 function and it can approximate it. So
+38:46 
+
+38:46 why am I saying approximation? Because
+38:48 
+
+38:48 there will be some error. You'll have to
+38:49 
+
+38:49 have more number of neurons in order to
+38:50 
+
+38:50 go to the infinite precision. Okay, that
+38:52 
+
+38:52 we do not want. So now and all these
+38:54 
+
+38:54 things as I said fall under universal
+38:56 
+
+38:56 approximation theorem. So what is a
+38:57 
+
+38:57 function now? So as as I said the things
+38:60 
+
+38:60 that you do in the world everything is a
+39:01 
+
+39:01 function. Everything can be modeled as a
+39:02 
+
+39:02 function. Any machine learning algorithm
+39:04 
+
+39:04 is doing nothing but basically computing
+39:06 
+
+39:06 a function. So let's say you have some
+39:08 
+
+39:08 some thing is there. So you have a
+39:10 
+
+39:10 function f ofx which takes some input
+39:12 
+
+39:12 from rn and it goes to rm. So it does
+39:14 
+
+39:14 some transformation. What is a function?
+39:16 
+
+39:16 So function does some transformation. It
+39:17 
+
+39:17 gives some input and it performs some
+39:19 
+
+39:19 transformation and gives some output on
+39:20 
+
+39:20 that. Okay, that's what what a function
+39:22 
+
+39:22 is and it can be a complex function. It
+39:24 
+
+39:24 can be convex, non-convex, however
+39:26 
+
+39:26 complex function can be and you can
+39:27 
+
+39:27 still have a function mathematically. We
+39:29 
+
+39:29 can have a mathematical function to
+39:30 
+
+39:30 describe that process. Now what you want
+39:32 
+
+39:32 to do is you want to have a neural
+39:33 
+
+39:33 network which could approximate this.
+39:36 
+
+39:36 Given any complex function you want to
+39:37 
+
+39:37 have a neural network which could
+39:38 
+
+39:38 approximate what I mean by approximation
+39:40 
+
+39:40 you want to have a function G of X which
+39:42 
+
+39:42 is the same thing which takes an input
+39:43 
+
+39:43 Rn and goes to RM but now I you can you
+39:47 
+
+39:47 cannot tell me with short shot short
+39:49 
+
+39:49 that I can exactly come with the same
+39:51 
+
+39:51 function you can approximate it because
+39:52 
+
+39:52 as I said that you should then have
+39:53 
+
+39:53 infinite computational power but in
+39:55 
+
+39:55 reality we do not have in infinite
+39:56 
+
+39:56 computation power so what I will say by
+39:58 
+
+39:58 approximation is so if I take f of x and
+40:00 
+
+40:00 then this g of x so this g of x is
+40:03 
+
+40:03 modeled by this is binaural network so
+40:05 
+
+40:05 So this is bilateral network or by these
+40:07 
+
+40:07 multi-layer perceptrons and this is the
+40:09 
+
+40:09 real function the actual function that
+40:10 
+
+40:10 the underlying function is. Okay. Now if
+40:12 
+
+40:12 I subtract these two things together
+40:14 
+
+40:14 okay so I should not get error more than
+40:16 
+
+40:16 epsilon. So the error that I basically
+40:18 
+
+40:18 I'm computing error. So this should not
+40:20 
+
+40:20 be more than epsilon. So epsilon this is
+40:22 
+
+40:22 the this is the precision value. How
+40:24 
+
+40:24 much precise do you want it to be? Okay.
+40:26 
+
+40:26 So this is desired precision. I can
+40:27 
+
+40:27 write this is desired
+40:30 
+
+40:30 precision.
+40:32 
+
+40:32 This is what universal approximation
+40:33 
+
+40:33 theorem says. So it says that if if you
+40:36 
+
+40:36 have a function if you have a function f
+40:37 
+
+40:37 of x so which goes from some rn to rm.
+40:39 
+
+40:39 So this is its uh domain and this is its
+40:42 
+
+40:42 range. So it goes from here to here it
+40:43 
+
+40:43 does some transformation. So you can
+40:45 
+
+40:45 construct you can construct a neural
+40:46 
+
+40:46 network of this sort and if you if you
+40:49 
+
+40:49 take this if you take the difference if
+40:50 
+
+40:50 you take how much error will that neural
+40:52 
+
+40:52 you can bound that error. So you will
+40:54 
+
+40:54 have this desired precision. So this is
+40:55 
+
+40:55 precision. So this is what what
+40:57 
+
+40:57 universal approximation theorem says.
+40:59 
+
+40:59 Okay, there is a very involved proof
+41:00 
+
+41:00 which we can also do but I'll leave the
+41:02 
+
+41:02 proof and as an exercise to you people
+41:04 
+
+41:04 but still we can construct some sort of
+41:06 
+
+41:06 constructive proof is there where I can
+41:07 
+
+41:07 show you that how can you approximate
+41:09 
+
+41:09 these functions is the is this theorem
+41:11 
+
+41:11 clear is this at least this part these
+41:13 
+
+41:13 three equations clear which are on the
+41:14 
+
+41:14 right screen so if you understood this
+41:17 
+
+41:17 now what I'm saying by this is let's
+41:19 
+
+41:19 suppose I'm constructing any function so
+41:21 
+
+41:21 for the visualization I will make very
+41:22 
+
+41:22 simple function let's suppose this is a
+41:24 
+
+41:24 function which is a non-convex function
+41:25 
+
+41:25 so we'll define a non-convex function in
+41:27 
+
+41:27 in coming case
+41:29 
+
+41:29 function is of this sort. So this is my
+41:30 
+
+41:30 function f of x
+41:33 
+
+41:33 it takes an input and transform that
+41:35 
+
+41:35 into an output. So what I'm saying is
+41:36 
+
+41:36 now I can approximate this function.
+41:38 
+
+41:38 Okay, how can I approximate? If I come
+41:40 
+
+41:40 up with some function which call tower
+41:42 
+
+41:42 functions okay so if you come up with
+41:44 
+
+41:44 functions of this sort. So you'll make a
+41:45 
+
+41:45 tower like this.
+41:47 
+
+41:47 You suppose some tower like this and
+41:49 
+
+41:49 then you'll have end the tower like
+41:50 
+
+41:50 this. Then you'll have the tower like
+41:53 
+
+41:53 this.
+41:60 
+
+41:60 Okay, you see that I'm almost trying to
+42:01 
+
+42:01 approximate this function and you'll
+42:02 
+
+42:02 fill all of these things. I want to show
+42:03 
+
+42:03 you the visualization of this so as to
+42:06 
+
+42:06 make it more clear.
+42:09 
+
+42:09 So if you see this over here,
+42:12 
+
+42:12 so now I can show you the number of
+42:13 
+
+42:13 towers in this case is 11. If I increase
+42:15 
+
+42:15 the more number of towers, so what I can
+42:16 
+
+42:16 control is this these are these are my
+42:18 
+
+42:18 towers. So these are the towers I have.
+42:20 
+
+42:20 Okay, this is my function. Say this is
+42:21 
+
+42:21 this is the function I want to
+42:22 
+
+42:22 approximate. Okay. And these are the
+42:24 
+
+42:24 towers that I want to make. So in this
+42:26 
+
+42:26 case I have 11 towers. And now these
+42:29 
+
+42:29 towers the difference is that they have
+42:30 
+
+42:30 different difference in the height.
+42:32 
+
+42:32 Okay. They have difference in the height
+42:33 
+
+42:33 and and difference where they're placed.
+42:35 
+
+42:35 So if you see on x-axis these towers are
+42:37 
+
+42:37 placed at different positions and then
+42:38 
+
+42:38 they have different heights and they
+42:39 
+
+42:39 have different directions as well. Let's
+42:40 
+
+42:40 suppose this is in negative direction.
+42:41 
+
+42:41 This this tower is in positive
+42:42 
+
+42:42 direction. It's a little smaller. So if
+42:44 
+
+42:44 you talk about this tower, this tower is
+42:46 
+
+42:46 a little bigger. So now if you keep on
+42:48 
+
+42:48 increasing these towers, you will have
+42:49 
+
+42:49 better approximations. So if I increase
+42:51 
+
+42:51 this number of towers say I'm increasing
+42:53 
+
+42:53 this.
+42:54 
+
+42:54 So you are seeing this approximation is
+42:56 
+
+42:56 almost becoming almost accurate. So the
+42:59 
+
+42:59 number of towers the more number of
+43:00 
+
+43:00 towers you have uh the better
+43:02 
+
+43:02 approximation you have. Okay. So this is
+43:05 
+
+43:05 so basically what I now want is I want
+43:06 
+
+43:06 to construct this tower function
+43:08 
+
+43:08 somehow. So can I come up with a neural
+43:10 
+
+43:10 network which will give me access to
+43:11 
+
+43:11 this tower function. This is what I
+43:12 
+
+43:12 want.
+43:16 
+
+43:16 So this is my tower. Everybody clear on
+43:18 
+
+43:18 this point? So I showed you one
+43:20 
+
+43:20 construction. I showed you that if you
+43:21 
+
+43:21 have a function. So let's apply any
+43:22 
+
+43:22 function f of x. So if you can give me
+43:24 
+
+43:24 some towers of this sort which I can
+43:26 
+
+43:26 place at different positions on this
+43:27 
+
+43:27 x-axis and then I can control their uh
+43:30 
+
+43:30 length. I can control the height that
+43:32 
+
+43:32 they have. Okay. And then I'll place
+43:33 
+
+43:33 them at appropriate positions. I can
+43:35 
+
+43:35 approximate any function. So this was in
+43:37 
+
+43:37 case of R2. So I can similarly extend
+43:39 
+
+43:39 this same concept to any dimension.
+43:41 
+
+43:41 Okay. If you're clear on this then I can
+43:43 
+
+43:43 move on to the tower constructing
+43:44 
+
+43:44 function. Okay. Okay. So if you are
+43:46 
+
+43:46 clear with this now I need to basically
+43:47 
+
+43:47 make this tower function. So how I can
+43:49 
+
+43:49 make this tower function? So I know that
+43:51 
+
+43:51 so my single
+43:53 
+
+43:53 layer perceptron. So it is I can have an
+43:55 
+
+43:55 activation function. It can be sigmoid.
+43:57 
+
+43:57 It can be threshold function. So I can
+43:58 
+
+43:58 make something of this. So let's
+43:60 
+
+43:60 threshold function. I can make something
+44:01 
+
+44:01 of this sort. So threshold is something
+44:03 
+
+44:03 like this. It is zero and then after
+44:05 
+
+44:05 threshold it is one. This is my
+44:06 
+
+44:06 threshold function. You know if this
+44:08 
+
+44:08 neuron is the neuron which is sigmoid
+44:10 
+
+44:10 neuron. So you can have something of
+44:11 
+
+44:11 this sort. Okay. where you will have
+44:13 
+
+44:13 almost the same code but you want a
+44:15 
+
+44:15 smoothened version of this. So this was
+44:18 
+
+44:18 threshold neuron and this in case was
+44:20 
+
+44:20 sigmoid neuron in our case was sigmoid
+44:22 
+
+44:22 neuron because we want that
+44:25 
+
+44:25 smoothness in the curve. So in this it
+44:26 
+
+44:26 was an abrupt jump. So if I can use
+44:28 
+
+44:28 these neuron if I can use aggregation
+44:30 
+
+44:30 plus this activation and I can come up
+44:32 
+
+44:32 with this tower function. Basically I
+44:33 
+
+44:33 want a function of this sort. Okay. And
+44:35 
+
+44:35 then I can control its height then I'll
+44:37 
+
+44:37 be able to approximate any function.
+44:39 
+
+44:39 Let's go. Let's see how can we do that.
+44:41 
+
+44:41 Consider we can we can do it with both.
+44:42 
+
+44:42 We can do it with threshold as well as
+44:44 
+
+44:44 sigma. Consider with threshold let's
+44:45 
+
+44:45 suppose. So say you have this t1. So you
+44:48 
+
+44:48 have t1. This is one neuron. And then
+44:50 
+
+44:50 you have this t2. This and the neuron.
+44:52 
+
+44:52 And now you have this input x.
+44:55 
+
+44:55 This input is x. And let's suppose this
+44:57 
+
+44:57 input is one and one. Okay. Now what we
+44:59 
+
+44:59 can do is say we have the addition
+45:01 
+
+45:01 function over here something of this
+45:03 
+
+45:03 sort and you're adding these things up.
+45:05 
+
+45:05 Okay. Now you'll adjust that this is one
+45:07 
+
+45:07 and this is minus one. Okay. This is the
+45:09 
+
+45:09 construction of the network. So if you
+45:11 
+
+45:11 see how will this T1 behave
+45:14 
+
+45:14 okay because the threshold logic is
+45:15 
+
+45:15 this. So here you will multiply one. So
+45:18 
+
+45:18 once you give this one input because it
+45:19 
+
+45:19 is thresh it is thresholding. So you
+45:20 
+
+45:20 will see something of this sort. Okay
+45:23 
+
+45:23 after you after this T1 you have this T1
+45:26 
+
+45:26 and then T1 will give this one input and
+45:28 
+
+45:28 with this T2 T2 will be similar but with
+45:29 
+
+45:29 threshold this T2 will again look like
+45:31 
+
+45:31 the same. So you can make it with the
+45:32 
+
+45:32 sigmoid functions. So when you add these
+45:34 
+
+45:34 things up because here here you have one
+45:36 
+
+45:36 minus one you're basically subtracting
+45:37 
+
+45:37 one function from the other. So what you
+45:38 
+
+45:38 can see is that so before t1 everything
+45:42 
+
+45:42 was zero okay because no input and once
+45:44 
+
+45:44 you have once you start with t1 so
+45:46 
+
+45:46 you'll have threshold like this so
+45:48 
+
+45:48 between basically from this constraint
+45:50 
+
+45:50 what I'm saying is between t1 to t2
+45:52 
+
+45:52 you'll have output one and for the rest
+45:53 
+
+45:53 you'll have zero so this is my f of x so
+45:55 
+
+45:55 this is the construction this thing over
+45:57 
+
+45:57 here okay I'll make it more clear so I
+45:59 
+
+45:59 want you to know that we can have such a
+46:02 
+
+46:02 network so this is that network
+46:05 
+
+46:05 I can prove it to you by showing
+46:07 
+
+46:07 visualization so I I'll I'll make a
+46:08 
+
+46:08 neuron. So I'll make one neuron. Let's
+46:10 
+
+46:10 suppose T1. I'll make another neuron T2
+46:12 
+
+46:12 and I'll combine their input. How can I
+46:14 
+
+46:14 combine? I'll subtract them. So that's
+46:15 
+
+46:15 why I'm giving these weights. Okay. So
+46:17 
+
+46:17 what I can do is I can come up with this
+46:18 
+
+46:18 function which I will call tower
+46:19 
+
+46:19 function.
+46:21 
+
+46:21 Okay. I can do this with let's suppose
+46:23 
+
+46:23 sigmoid neuron with threshold whatever
+46:25 
+
+46:25 neuron. I'll show you a construction of
+46:26 
+
+46:26 this. So basically I'll have two
+46:28 
+
+46:28 functions and then I I'll adjust them in
+46:30 
+
+46:30 such a way so that it makes the star
+46:31 
+
+46:31 function. Give me a second. I'll show
+46:32 
+
+46:32 you the visualization.
+46:35 
+
+46:35 Okay. So this is the diagram. So here we
+46:36 
+
+46:36 have this X as an input. So this is my
+46:38 
+
+46:38 input X and I will replace this H11 and
+46:40 
+
+46:40 H12. The earlier one I showed as T1 and
+46:43 
+
+46:43 T2. Now I'll use actual neuron. So now
+46:45 
+
+46:45 you have weights and biases correspond
+46:46 
+
+46:46 to this and weights and back correspond
+46:48 
+
+46:48 to this. So you have W1 and B1. So you
+46:50 
+
+46:50 have W2 and B2. And then I'll combine
+46:52 
+
+46:52 these two things together. So I'll
+46:54 
+
+46:54 subtract these two. So H11 and H12. So
+46:57 
+
+46:57 what I can do is I can have then I can
+46:59 
+
+46:59 subtract these two things.
+47:02 
+
+47:02 So I can have a neuron over here. So
+47:04 
+
+47:04 what I can do is I can write one and
+47:06 
+
+47:06 minus one and then I'll give the output.
+47:07 
+
+47:07 This will be my output.
+47:10 
+
+47:10 Okay, you know that this H11 and this
+47:12 
+
+47:12 H12 these are sigmoid neurons. Okay,
+47:13 
+
+47:13 these are sigmoid. So I'll just remove
+47:15 
+
+47:15 these. These are my sigmoid neurons. So
+47:18 
+
+47:18 you know that how sigmoid behaves. So in
+47:19 
+
+47:19 this case I can control W1 B1 and I can
+47:22 
+
+47:22 show you H11 and again I can control W2
+47:24 
+
+47:24 B2 I can show you H12. Okay, let me let
+47:26 
+
+47:26 me do that. So let's suppose right now
+47:28 
+
+47:28 if you see everything is zero. So you
+47:30 
+
+47:30 seeing these things on top of each
+47:32 
+
+47:32 other. So let's suppose if I control
+47:33 
+
+47:33 this W1 you said you see the sigmoid can
+47:36 
+
+47:36 you see it and then similarly I can do
+47:38 
+
+47:38 with this W2. So this basically is
+47:40 
+
+47:40 controlling this. So what is bias
+47:41 
+
+47:41 basically I say that bias is shifting
+47:43 
+
+47:43 left or right. Okay. So this is
+47:45 
+
+47:45 controlling the curvature. This W1 is
+47:47 
+
+47:47 controlling the curvature. How much
+47:48 
+
+47:48 curvature you want? If I go W infinity
+47:50 
+
+47:50 you'll see it is almost like step
+47:52 
+
+47:52 function. Okay. Okay. This controls the
+47:54 
+
+47:54 smoothness. How much smooth function do
+47:56 
+
+47:56 I want? So if you see this this is the
+47:59 
+
+47:59 smoothness of the function. So if you go
+48:00 
+
+48:00 to W is infinity in this case W is 100
+48:03 
+
+48:03 you exactly see the step function. So
+48:04 
+
+48:04 now you I said I told you that bias B it
+48:06 
+
+48:06 controls basically uh the shift. So if I
+48:09 
+
+48:09 see B1 I I can show you that it shifts.
+48:11 
+
+48:11 So it'll go left or right. These are the
+48:14 
+
+48:14 two knobs or two dials which I can
+48:16 
+
+48:16 control in order to control this
+48:17 
+
+48:17 function. So let's suppose now this is
+48:18 
+
+48:18 the function. Similarly I can do it with
+48:20 
+
+48:20 B2. I can say this is the function and
+48:22 
+
+48:22 now B2 I can just shift it. I can
+48:24 
+
+48:24 basically control the width. I can
+48:26 
+
+48:26 control the width and height of this
+48:27 
+
+48:27 toggle. And now I have to show you this.
+48:30 
+
+48:30 So if I combine these two, so how can
+48:32 
+
+48:32 com I combine these two? H11 and H12. So
+48:35 
+
+48:35 it will give me H21. So this is equal to
+48:37 
+
+48:37 H11 minus H12. Okay. So I'll subtract
+48:41 
+
+48:41 these two things together. So then it
+48:43 
+
+48:43 will be something of this.
+48:46 
+
+48:46 Okay. Now if you see this blue curve, I
+48:49 
+
+48:49 think this is black. So the black one.
+48:51 
+
+48:51 So if you see the black one over here,
+48:52 
+
+48:52 so you can clearly see that. So this is
+48:54 
+
+48:54 the tower function that we wanted not
+48:56 
+
+48:56 with the exact precision. So but this is
+48:58 
+
+48:58 like a tower function. Okay. Again to
+48:59 
+
+48:59 show you I'll just remove other two
+49:01 
+
+49:01 curves. Let's suppose I'll click on
+49:03 
+
+49:03 these things.
+49:06 
+
+49:06 Okay. I think this is not hiding. But
+49:07 
+
+49:07 anyway you got the point. So let's
+49:08 
+
+49:08 suppose if I control this. So you can
+49:10 
+
+49:10 see I can control the tower making. I
+49:13 
+
+49:13 can make it negative. I can make it
+49:15 
+
+49:15 positive. I can make it small. I can
+49:16 
+
+49:16 make it big. Okay. I can control
+49:18 
+
+49:18 everything. I can control the width by
+49:20 
+
+49:20 using these dials and knobs.
+49:26 
+
+49:26 Okay,
+49:28 
+
+49:28 I hope you are able to see it.
+49:31 
+
+49:31 Are you people convinced that I can just
+49:33 
+
+49:33 have two of these sigmoid neurons to
+49:34 
+
+49:34 come up with this uh tower function?
+49:38 
+
+49:38 Okay, now what you saw basically is I
+49:40 
+
+49:40 saw that I had these two neurons. So I
+49:42 
+
+49:42 had neuron one and neuron 2 whichever
+49:44 
+
+49:44 neuron it has I had aggregation or
+49:47 
+
+49:47 nonlinear function then I have linear
+49:49 
+
+49:49 function and a nonlinear function. So
+49:50 
+
+49:50 which I I made usually neurons were made
+49:52 
+
+49:52 like this in the previous class. So this
+49:54 
+
+49:54 is our aggregation or linearity and this
+49:57 
+
+49:57 h was our hidden output or we called it
+49:59 
+
+49:59 nonlinearity. Okay. So this was the
+50:01 
+
+50:01 neurons like this. I said we have
+50:03 
+
+50:03 weights and biases w1 and b1. So you
+50:05 
+
+50:05 have uh w2 and b2. So this was the input
+50:08 
+
+50:08 given.
+50:10 
+
+50:10 Okay. And one and minus one. So I said
+50:12 
+
+50:12 that if you control these ws and biases
+50:14 
+
+50:14 so you can come up with this function.
+50:16 
+
+50:16 So what is this function giving us? If
+50:18 
+
+50:18 you give me any function in 2D now, so
+50:21 
+
+50:21 any function that you can give me. So I
+50:22 
+
+50:22 made that over here. So I can make these
+50:24 
+
+50:24 towers. So you because you have this
+50:26 
+
+50:26 tower function. Okay. Now you know the
+50:27 
+
+50:27 construction of this tower function. So
+50:28 
+
+50:28 if I have to approximate say a function
+50:31 
+
+50:31 like this. Okay, a function is something
+50:32 
+
+50:32 like this. So what I can do is I can
+50:35 
+
+50:35 come up with this tower. So I can say
+50:36 
+
+50:36 okay, first tower should be something
+50:38 
+
+50:38 like this and second tower should be
+50:39 
+
+50:39 something of this sort. Okay, these
+50:42 
+
+50:42 towers should look like this. And you
+50:44 
+
+50:44 know that I can I can come up with each
+50:46 
+
+50:46 of these towers.
+50:49 
+
+50:49 Okay, something like this. And you know
+50:51 
+
+50:51 each of this tower can be constructed
+50:53 
+
+50:53 can be
+50:56 
+
+50:56 constructed. Let's call that tower
+50:58 
+
+50:58 making function by tower making network
+51:01 
+
+51:01 by tower making network.
+51:07 
+
+51:07 Okay, this was over here. So this this
+51:08 
+
+51:08 is that tower making network. Let's
+51:10 
+
+51:10 suppose this is the output.
+51:14 
+
+51:14 Okay. And this
+51:16 
+
+51:16 is my
+51:18 
+
+51:18 tower making network.
+51:23 
+
+51:23 You saw this in Now you saw this thing
+51:26 
+
+51:26 in uh 2D. Now the same thing can be done
+51:28 
+
+51:28 in 3D. Okay. Same thing same thing can
+51:30 
+
+51:30 be done in 3D. So you can again have
+51:32 
+
+51:32 these neurons and then what you can do
+51:34 
+
+51:34 basically is you can have now the this
+51:36 
+
+51:36 sigmoid when you saw the sigmoid was
+51:37 
+
+51:37 something of this sort. So this sigmoid
+51:38 
+
+51:38 was in 2D. Now you know how how does the
+51:40 
+
+51:40 sigmoid in 3D look like. So okay you
+51:42 
+
+51:42 will see that that will be something of
+51:44 
+
+51:44 this sort. So if you if my artistic work
+51:48 
+
+51:48 is a little bit better I I hope that you
+51:50 
+
+51:50 got the point basically that you will
+51:51 
+
+51:51 see that sigmoid in this and you can
+51:52 
+
+51:52 construct this sigmoid again and you can
+51:54 
+
+51:54 have some other sigmoid of this sort
+51:56 
+
+51:56 okay some sigmoid like this
+51:59 
+
+51:59 and this will be a layer basically a
+52:01 
+
+52:01 layer I'll show you that in also if I
+52:03 
+
+52:03 found that visualization but here what
+52:05 
+
+52:05 I'm saying is that you will get a tower
+52:06 
+
+52:06 of this sort then you'll get tower like
+52:09 
+
+52:09 this okay but this tower will be in 3D
+52:13 
+
+52:13 okay something like this okay here and
+52:16 
+
+52:16 here okay but this is open on both the
+52:18 
+
+52:18 sides now you just don't need two
+52:20 
+
+52:20 sigmoids only you'll need four sigmoids
+52:22 
+
+52:22 so what I what you can do is again
+52:23 
+
+52:23 you'll have to have two sigmoids on this
+52:25 
+
+52:25 side also okay so you should get this
+52:27 
+
+52:27 point you should get a hang of this
+52:28 
+
+52:28 point so what I'm saying is when you
+52:29 
+
+52:29 have two sigmoids and then I'll show you
+52:30 
+
+52:30 the visualization so you have this
+52:32 
+
+52:32 sigmoid one and sigmoid 2 the output
+52:33 
+
+52:33 will be something of this sort so you'll
+52:35 
+
+52:35 have one sigmoid and other sigmoid so
+52:36 
+
+52:36 you can make output of this but this
+52:38 
+
+52:38 portion so okay the the portion that I'm
+52:41 
+
+52:41 seeing like in and out that portion will
+52:43 
+
+52:43 be hollow but I don't want to hollow I
+52:44 
+
+52:44 want the things to be covered all the
+52:46 
+
+52:46 side. Why? Because I will be
+52:48 
+
+52:48 constructing a function of this sort.
+52:49 
+
+52:49 Let's suppose I'll have a terine. So
+52:50 
+
+52:50 that terine will have values like this.
+52:53 
+
+52:53 Okay. So that will be having having
+52:54 
+
+52:54 values of this sort. Okay. Something of
+52:56 
+
+52:56 something like this. This will be a 3D
+52:58 
+
+52:58 terrain that I showed you once we were
+52:59 
+
+52:59 looking at the gradient descent. So you
+53:00 
+
+53:00 should be now able to visualize these
+53:02 
+
+53:02 things. I I have ter like this. Okay.
+53:05 
+
+53:05 And this is some 2D surface. Let's
+53:06 
+
+53:06 suppose. Okay. Now how I can how can I
+53:08 
+
+53:08 fill this? Now I I cannot fill this with
+53:10 
+
+53:10 this tower function. So now I need 3D
+53:11 
+
+53:11 tower function. Three towers will be
+53:13 
+
+53:13 something of this sort. So I can have 3D
+53:15 
+
+53:15 tower like this.
+53:17 
+
+53:17 Okay, I can have three towers like all
+53:19 
+
+53:19 over. I hope that you are visualizing
+53:20 
+
+53:20 the thing. So you have consider that you
+53:22 
+
+53:22 have a surface 2D surface. Now that
+53:23 
+
+53:23 surface is like hills the hills that you
+53:25 
+
+53:25 see. Okay, you have a 3D surface. You
+53:28 
+
+53:28 you have like a surface on 3D now that
+53:30 
+
+53:30 will look like hills and valleys. And
+53:32 
+
+53:32 now you have to approximate that. You
+53:33 
+
+53:33 won't use this 2D sort of tower. You
+53:35 
+
+53:35 will now use 3D tower. The tower will
+53:37 
+
+53:37 look like as I said it will look
+53:38 
+
+53:38 something like this. Okay. and you will
+53:40 
+
+53:40 fill this whole surface with these
+53:42 
+
+53:42 towers. Can you visualize these things?
+53:47 
+
+53:47 Yes. Yes. Give me a second. I'll take
+53:48 
+
+53:48 your question. So what I'm saying is
+53:49 
+
+53:49 consider this now this is a terrain now
+53:51 
+
+53:51 or the manifold which we spoke about. So
+53:53 
+
+53:53 when we were seeing that gradient
+53:54 
+
+53:54 descent okay every function if I have
+53:56 
+
+53:56 that function if I have to plot that in
+53:58 
+
+53:58 3D. So you will see some hills and
+53:59 
+
+53:59 valleys. Now how can I approximate this?
+54:02 
+
+54:02 I will have to have a tower in 3D. This
+54:03 
+
+54:03 tower will look like this. The tower
+54:05 
+
+54:05 will be something of this sort.
+54:08 
+
+54:08 Okay. This is this will be my tower. So
+54:09 
+
+54:09 initially in 2D I had tower like this.
+54:12 
+
+54:12 Okay. And I had approximate tower
+54:13 
+
+54:13 function. Now what I'm saying is the
+54:15 
+
+54:15 crux is that if you take these sigmoid
+54:17 
+
+54:17 functions you will have one sigmoid of
+54:18 
+
+54:18 this sort. You can have another sigmoid
+54:20 
+
+54:20 of this sort. When you combine these you
+54:21 
+
+54:21 will get something like this. Okay
+54:24 
+
+54:24 something of this sort but it'll be
+54:26 
+
+54:26 hollow from two side. It will be hollow
+54:27 
+
+54:27 from like from in and outside. So what I
+54:31 
+
+54:31 want is now I want more two sigma so
+54:33 
+
+54:33 that I can just cover them up. I can
+54:35 
+
+54:35 come up with this one more tower and
+54:37 
+
+54:37 then I can put them on top of each other
+54:38 
+
+54:38 to make this. Okay, let me show you the
+54:40 
+
+54:40 visualization to make it clear before
+54:41 
+
+54:41 that I'll take the question. Yes,
+54:42 
+
+54:42 please. So I hope you are able to see
+54:45 
+
+54:45 this picture. So in order to facilitate
+54:46 
+
+54:46 your visualization I'm consider this as
+54:48 
+
+54:48 two classes. Let's suppose you have this
+54:50 
+
+54:50 green class and you have this blue class
+54:52 
+
+54:52 over here. So now you want to separate
+54:54 
+
+54:54 them. So now if you see the surface
+54:55 
+
+54:55 surface will be something of this sort.
+54:57 
+
+54:57 So this is our manifold that you can
+54:59 
+
+54:59 clearly see over here. Okay. So
+55:00 
+
+55:00 everything that is under these values.
+55:03 
+
+55:03 So this will be categorized as this blue
+55:04 
+
+55:04 or what black what whatever color is
+55:06 
+
+55:06 this. So other that this green over
+55:08 
+
+55:08 here. So this is on the surface. So you
+55:09 
+
+55:09 see that this is the manifold. Okay. And
+55:11 
+
+55:11 I want to learn this. So how I can
+55:14 
+
+55:14 construct this function. So I said that
+55:16 
+
+55:16 let's come up with these cubites. So
+55:17 
+
+55:17 cuboides will be something of this sort.
+55:19 
+
+55:19 So I'll have cuboids like this. Okay.
+55:21 
+
+55:21 I'll fill this with cubites. Okay.
+55:23 
+
+55:23 Starting from let's suppose this portion
+55:25 
+
+55:25 over here. So you'll have cuboid like
+55:27 
+
+55:27 this. Okay. And then you'll have cuboid
+55:30 
+
+55:30 in this. So you'll fill of this with
+55:31 
+
+55:31 cuboids. Now this 2D to functions are
+55:34 
+
+55:34 they they won't suffice but with this
+55:36 
+
+55:36 you can have these cuboids and now you
+55:38 
+
+55:38 can sort of extrapolate this
+55:40 
+
+55:40 visualization in ND in any dimension but
+55:43 
+
+55:43 we can just visualize in 2D and 3D so
+55:45 
+
+55:45 here in this case if you saw we had a
+55:46 
+
+55:46 function in 2D like this so we had these
+55:48 
+
+55:48 functions and then in this case in 3D
+55:50 
+
+55:50 case so again could visualize we have
+55:52 
+
+55:52 cubits now after cubits you have nothing
+55:54 
+
+55:54 but you still should be able to sort of
+55:56 
+
+55:56 visualize I exact visualize so you still
+55:58 
+
+55:58 say if I take n dimension so what is
+55:60 
+
+55:60 actually happening actually there is a
+56:01 
+
+56:01 function And there are some other
+56:02 
+
+56:02 building blocks by the help of which I
+56:04 
+
+56:04 can approximate the function. I hope
+56:05 
+
+56:05 this is clear. Now if you see this, this
+56:07 
+
+56:07 was a 2D for our functions that we saw.
+56:09 
+
+56:09 Now I'm showing you this in desmos.
+56:11 
+
+56:11 Okay. And I can control this. Okay.
+56:12 
+
+56:12 These are all the functions that I had.
+56:14 
+
+56:14 So this was my function. So I can
+56:15 
+
+56:15 control this. I can control all of these
+56:17 
+
+56:17 things. Okay. If you see this y1 over
+56:19 
+
+56:19 here, that's clearly written as sigmoid.
+56:21 
+
+56:21 So this y1 is sigmoid. Okay. And this y2
+56:23 
+
+56:23 is again the sigmoid. And this is y1
+56:24 
+
+56:24 minus y2. The construction I showed you.
+56:26 
+
+56:26 This was the 2D case. Now in order to go
+56:28 
+
+56:28 to 3D case okay in order to go to 3D
+56:30 
+
+56:30 case I also have a 3D case written over
+56:32 
+
+56:32 here.
+56:34 
+
+56:34 So now this is my sigmoid. If you see
+56:36 
+
+56:36 this is one sigmoid.
+56:38 
+
+56:38 Okay I I'll show you this. I can rotate
+56:40 
+
+56:40 this. Good.
+56:43 
+
+56:43 Okay. What I can do is let's suppose in
+56:45 
+
+56:45 this case in this case I have I can I
+56:47 
+
+56:47 have three parameters w1 and w2. So now
+56:50 
+
+56:50 we'll see the effect of these
+56:51 
+
+56:51 parameters. So if you clearly see over
+56:53 
+
+56:53 here this I can put this w is zero and
+56:56 
+
+56:56 w1 is this. So W2 that you can see over
+56:58 
+
+56:58 here. So if you have oops I don't want
+57:01 
+
+57:01 to rotate it like this. This W nodes
+57:04 
+
+57:04 basically this bias. So bias will shift
+57:05 
+
+57:05 it. So if you see bias is able to shift
+57:08 
+
+57:08 it. This is how sigmoid in 3D will work.
+57:10 
+
+57:10 So it also did it in the same was
+57:13 
+
+57:13 happening when we had in 2D case. So we
+57:14 
+
+57:14 had this bias B. So it was shift helping
+57:16 
+
+57:16 it shift. Okay. Same case is here. We
+57:18 
+
+57:18 can shift these sigmoids by using this W
+57:20 
+
+57:20 knot. Okay. And then if you see this W1.
+57:22 
+
+57:22 So W1 right now is zero. So this will
+57:24 
+
+57:24 shift it like this. So you see like from
+57:26 
+
+57:26 in in to out. So can you see it? So it
+57:30 
+
+57:30 is helping it rotate on that XY plane.
+57:33 
+
+57:33 Okay. You see like this. Okay. I am
+57:36 
+
+57:36 increasing the values of W and you are
+57:37 
+
+57:37 seeing. So I'm putting it zero. So as to
+57:39 
+
+57:39 clearly see it. So here if I put it like
+57:41 
+
+57:41 zero. So this is looking like this. So
+57:43 
+
+57:43 you saw what is bias doing? Bias is
+57:45 
+
+57:45 shifting. How how is it shifting? It is
+57:46 
+
+57:46 shifting it on. Let's this is my y axis.
+57:48 
+
+57:48 So it is shifting it in y axis. So it's
+57:50 
+
+57:50 sh it is helping it to shift in y axis.
+57:52 
+
+57:52 That's what w is doing or bias is doing.
+57:54 
+
+57:54 So what is W1 doing? Okay, so W1
+57:57 
+
+57:57 basically it is trying to shift it on
+57:59 
+
+57:59 the XY plane. So it is rotating it like
+58:01 
+
+58:01 that. So if you now see this W2 okay so
+58:04 
+
+58:04 W2 will see how much smoother do you
+58:05 
+
+58:05 want it to be? That is what we were
+58:08 
+
+58:08 doing. Look. So how much smoothness do
+58:10 
+
+58:10 you want?
+58:12 
+
+58:12 Okay. You can have curve like this also.
+58:14 
+
+58:14 Okay. So if I take W this almost if I
+58:16 
+
+58:16 increase W2 to infinity it'll make it
+58:18 
+
+58:18 like a step function. Okay. W2 is trying
+58:20 
+
+58:20 to make it step function. So WY is
+58:22 
+
+58:22 controlling this axis. So if you see
+58:24 
+
+58:24 this axis I can make sigmoid like this.
+58:26 
+
+58:26 If I rotate you can see sigmoid is like
+58:28 
+
+58:28 this. So I need to increase w so that I
+58:30 
+
+58:30 can totally make it in let's suppose yx
+58:33 
+
+58:33 plane in some other quadrants.
+58:35 
+
+58:35 Okay but I want to keep it zero so that
+58:37 
+
+58:37 it is better visually
+58:41 
+
+58:41 this is oops pretty hard to control at
+58:44 
+
+58:44 zero. So this is how it looks. Okay. Now
+58:46 
+
+58:46 this is one sigmoid if I if I show you
+58:47 
+
+58:47 this is one sigmoid and and the thing is
+58:49 
+
+58:49 this is another sigmoid. Okay. Now I can
+58:51 
+
+58:51 do the same thing with that sigmoid
+58:53 
+
+58:53 also.
+58:56 
+
+58:56 Can you see it? I can do this thing with
+58:58 
+
+58:58 a sigmoid.
+58:60 
+
+58:60 Okay, I will put this w at zero.
+59:04 
+
+59:04 And if I combine these two things, you
+59:05 
+
+59:05 know, I'll get a tower. So how how will
+59:07 
+
+59:07 the tower be? So here I have not written
+59:09 
+
+59:09 that. Okay, you have one more graphing
+59:12 
+
+59:12 that's called I think uh geo desk or
+59:14 
+
+59:14 geographic or something. So there you
+59:16 
+
+59:16 can also clearly see that you can have a
+59:18 
+
+59:18 tower like this. So you can have this
+59:19 
+
+59:19 tower consider only this. So here don't
+59:21 
+
+59:21 consider these things. So you'll have
+59:24 
+
+59:24 tower like this. So you'll have tower of
+59:26 
+
+59:26 this sort.
+59:31 
+
+59:31 Okay. Something of this sort.
+59:34 
+
+59:34 How many of you can imagine this now? So
+59:36 
+
+59:36 now by using these weights biases you
+59:38 
+
+59:38 can control how my figure is looking
+59:39 
+
+59:39 like. But you saw that this is looking
+59:41 
+
+59:41 hollow. So if you see this is hollow. So
+59:43 
+
+59:43 inside this is hollow. So from here to
+59:46 
+
+59:46 here this is hollow. So for that I need
+59:48 
+
+59:48 more neurons. So I need more neurons for
+59:50 
+
+59:50 this. So I need more sigmoid neurons so
+59:52 
+
+59:52 that I can have something of this sort
+59:54 
+
+59:54 and something of this sort. So you know
+59:55 
+
+59:55 how will that look like? I told you once
+59:57 
+
+59:57 when this in today's lecture I I told
+59:58 
+
+59:58 you you have to remember one thing.
+60:00 
+
+60:00 Okay, you have to remember that picture.
+60:02 
+
+60:02 So I'll show that picture now again.
+60:04 
+
+60:04 I'll show you that picture. Give me a
+60:06 
+
+60:06 second. So if you see these are the two
+60:08 
+
+60:08 tower functions. Say if you consider
+60:10 
+
+60:10 this so from this one. So here here and
+60:14 
+
+60:14 here. So if you see that this is one
+60:15 
+
+60:15 tower function. Okay. But it is hollow
+60:17 
+
+60:17 inside. So you see from here and here
+60:18 
+
+60:18 this is hollow which I showed you on the
+60:20 
+
+60:20 visualization. Okay. Now the second
+60:22 
+
+60:22 tower function is this. So this is my
+60:23 
+
+60:23 second tower function. So from here here
+60:26 
+
+60:26 to here this is my second tower
+60:27 
+
+60:27 function. Okay. If I if you can imagine
+60:30 
+
+60:30 it in your brain if you can rotate it in
+60:31 
+
+60:31 your brain. So I am now combining these
+60:33 
+
+60:33 two tower functions. So how I'm making
+60:34 
+
+60:34 I'm using four sigmoid neurons. This is
+60:36 
+
+60:36 in 3D. So now you see different regions
+60:38 
+
+60:38 are getting formed. Okay. So how are
+60:39 
+
+60:39 these different regions getting formed?
+60:41 
+
+60:41 If you see so function over here. So
+60:43 
+
+60:43 here and here and then you have function
+60:45 
+
+60:45 of this sort again something of this
+60:47 
+
+60:47 sort you see here the value is in one
+60:49 
+
+60:49 and one so that's why it's adding up
+60:50 
+
+60:50 over here it's becoming two okay
+60:51 
+
+60:51 sometimes it's cancelelling on these
+60:53 
+
+60:53 portions it's becoming zero and in these
+60:55 
+
+60:55 portions it's becoming one
+60:58 
+
+60:58 so the threshold here so this is
+60:59 
+
+60:59 becoming say two and this is becoming I
+61:03 
+
+61:03 think one one this is this is one and
+61:04 
+
+61:04 this is zero okay don't go get on this
+61:07 
+
+61:07 demarcation okay I'm just showing in
+61:08 
+
+61:08 terms of neurons so if you can imagine
+61:10 
+
+61:10 that if you see this this this this this
+61:13 
+
+61:13 this if you see in the 3D this is one
+61:15 
+
+61:15 tower function okay this is one tower
+61:18 
+
+61:18 and but then if you see if you can
+61:19 
+
+61:19 imagine this so from this this this and
+61:22 
+
+61:22 then this like it'll be like this okay
+61:24 
+
+61:24 this and the tower so now you're
+61:25 
+
+61:25 combining them together so if you're
+61:27 
+
+61:27 adding these two towers together you're
+61:28 
+
+61:28 getting something of this sort okay and
+61:30 
+
+61:30 you are only interested in this portion
+61:32 
+
+61:32 because all the other portion you don't
+61:33 
+
+61:33 you're not interested you want this
+61:35 
+
+61:35 tower so you'll put threshold over here
+61:37 
+
+61:37 okay and because you are interested in
+61:38 
+
+61:38 this tower this is the tower that you
+61:40 
+
+61:40 interested in how many of you were able
+61:42 
+
+61:42 to visualize this. The question here was
+61:44 
+
+61:44 if we do something for smaller dimension
+61:46 
+
+61:46 can that also be applied to the high
+61:49 
+
+61:49 dimension. Okay. So generally what you
+61:50 
+
+61:50 do basically is when you do these
+61:52 
+
+61:52 problems so as I said if you have a
+61:53 
+
+61:53 linear surface of this sort okay so if
+61:55 
+
+61:55 you make a network which can map this
+61:57 
+
+61:57 linear surface it will not apply to a
+61:59 
+
+61:59 nonlinear decision boundary something of
+62:00 
+
+62:00 this sort okay you'll have to change the
+62:02 
+
+62:02 network weights and biases. So but
+62:04 
+
+62:04 usually when you have these networks
+62:05 
+
+62:05 you'll have billions and trillions of
+62:07 
+
+62:07 these weights and par biases. So you are
+62:09 
+
+62:09 mapping actually a function. Let's
+62:11 
+
+62:11 suppose if you have some 100 dimensional
+62:14 
+
+62:14 cost function which which which you have
+62:16 
+
+62:16 the inputs you have are in 100
+62:17 
+
+62:17 dimension. Okay. So you are mapping you
+62:19 
+
+62:19 are constructing a function which of 100
+62:20 
+
+62:20 dimension. So in 1D a function looks
+62:22 
+
+62:22 like this and you can map this function
+62:24 
+
+62:24 in in 2D I showed you it looks like
+62:26 
+
+62:26 these terines and these mountains valley
+62:28 
+
+62:28 something of that sort but 100 dimension
+62:30 
+
+62:30 can imagine but you still know that
+62:32 
+
+62:32 there is a function which roughly is in
+62:34 
+
+62:34 100 dimensions. Okay. Similarly in this
+62:36 
+
+62:36 case what I said is when I have to make
+62:37 
+
+62:37 this tower function. Okay. Coming back
+62:38 
+
+62:38 to this tower function, I used four
+62:40 
+
+62:40 sigmoids. I used four sigmoids. So each
+62:43 
+
+62:43 sigmoid was in lying in two lying in
+62:45 
+
+62:45 three. We had three sigmoid. So now if
+62:48 
+
+62:48 you have this sigmoid. So this this this
+62:49 
+
+62:49 this and this this is one sigmoid. Okay.
+62:52 
+
+62:52 So this is basically this tower is
+62:53 
+
+62:53 considered by two sigmoid. So one
+62:55 
+
+62:55 sigmoid is from here to here and then
+62:56 
+
+62:56 from here to here we have another
+62:58 
+
+62:58 sigmoid. Okay. So this is considered by
+62:59 
+
+62:59 two sigmoids and this tower is
+63:01 
+
+63:01 considered by two sigmoids. Now after
+63:02 
+
+63:02 overlapping these things so you can see
+63:04 
+
+63:04 that a figure of this sort will be we
+63:05 
+
+63:05 will get a figure of this sort. So here
+63:07 
+
+63:07 the sum will be two if the threshold is
+63:09 
+
+63:09 set at one. So two and this will be one
+63:11 
+
+63:11 and these will be zeros and then you
+63:13 
+
+63:13 will say I need this tower. You set a
+63:14 
+
+63:14 threshold like this if it is greater
+63:16 
+
+63:16 than or equal to two. So that means
+63:18 
+
+63:18 threshold will be this. So once you set
+63:19 
+
+63:19 the threshold at this place so you will
+63:21 
+
+63:21 say that I only need this this tower to
+63:23 
+
+63:23 approximate the function. Okay. I hope
+63:25 
+
+63:25 you got some clarity. So in this again
+63:27 
+
+63:27 remember that we need more sigmoids
+63:29 
+
+63:29 because we need two sigmoids to map this
+63:31 
+
+63:31 function to map this sort of a tower and
+63:34 
+
+63:34 then two to make this sort of tower and
+63:36 
+
+63:36 then when you combine these things
+63:37 
+
+63:37 together so you get a tower function and
+63:39 
+
+63:39 then you put a threshold over here so as
+63:40 
+
+63:40 to get this. Okay I'll make again a
+63:43 
+
+63:43 diagram. So what you do is so you have
+63:46 
+
+63:46 something of this sort. So you give
+63:48 
+
+63:48 inputs say x1 and x2. Initially you had
+63:52 
+
+63:52 just one input x. So now you have x1 and
+63:53 
+
+63:53 x2. So I'll remove this code window now.
+63:56 
+
+63:56 So what once you give this so this x1
+63:59 
+
+63:59 based on this you'll form one sigmoid.
+64:01 
+
+64:01 Okay based on let's suppose this x2
+64:03 
+
+64:03 you'll form another sigmoid. Similarly
+64:07 
+
+64:07 what you can do is you can again form
+64:09 
+
+64:09 more sigmoids like this and this will be
+64:11 
+
+64:11 more sigmoids
+64:13 
+
+64:13 and those these two sigmoids will give
+64:15 
+
+64:15 rise to like if you combine these two
+64:17 
+
+64:17 you subtract them and you subtract them
+64:19 
+
+64:19 over here. So they will come up with
+64:21 
+
+64:21 tower function in three like this.
+64:24 
+
+64:24 Okay, sum tower functions like this and
+64:25 
+
+64:25 then one you add these two things
+64:27 
+
+64:27 together. So you add these things to and
+64:29 
+
+64:29 then you get that tower function which
+64:31 
+
+64:31 is something of this sort and then you
+64:33 
+
+64:33 have this this and you basically just
+64:36 
+
+64:36 want
+64:38 
+
+64:38 you want this surface.
+64:40 
+
+64:40 Okay, the surface basically what I
+64:41 
+
+64:41 showed you. So you have this x1 and then
+64:44 
+
+64:44 you can draw these connections howsoever
+64:46 
+
+64:46 and you can also add the bias how
+64:47 
+
+64:47 howsoever bias you want. Okay, you can
+64:49 
+
+64:49 add these bias. But all in all, what you
+64:50 
+
+64:50 have, you have a 3D sigmoid like this
+64:53 
+
+64:53 and then you have another 3D sigmoid
+64:54 
+
+64:54 like this. So you subtract these two
+64:56 
+
+64:56 things and you get a tower function in
+64:58 
+
+64:58 3D. But that is hollow. Okay, from in
+65:01 
+
+65:01 out that's hollow which I showed you.
+65:02 
+
+65:02 And then again you do it with X1 and X2
+65:04 
+
+65:04 again. Okay, you get two more sigmoids.
+65:07 
+
+65:07 They have different weights and biases.
+65:08 
+
+65:08 So here the weights and bias are
+65:10 
+
+65:10 different. Okay, this is my weight. And
+65:11 
+
+65:11 then I can add one more. I can add bias
+65:13 
+
+65:13 with one. So here this will be my bias.
+65:15 
+
+65:15 Okay, similar this will be one sigmoid
+65:16 
+
+65:16 and then you will and the sigma again
+65:18 
+
+65:18 subtract you'll get some other hollow
+65:19 
+
+65:19 function of this sort and you'll
+65:20 
+
+65:20 superimpose them and you'll add them to
+65:22 
+
+65:22 add them together and then you'll get a
+65:24 
+
+65:24 function like this which I showed you
+65:25 
+
+65:25 and then you'll put a threshold over
+65:26 
+
+65:26 here okay and you'll say this is the
+65:29 
+
+65:29 tower I'm interested in okay you'll once
+65:31 
+
+65:31 you put threshold and you will
+65:32 
+
+65:32 approximate this similarly in case of 2D
+65:34 
+
+65:34 I had function only x I had x input only
+65:37 
+
+65:37 one input and I had two neurons so one
+65:39 
+
+65:39 sigmoid was like this and another
+65:41 
+
+65:41 sigmoid was like this so you had one
+65:42 
+
+65:42 sigmoid and you had this sigmoid
+65:45 
+
+65:45 Okay. So what you didn't do is you
+65:46 
+
+65:46 subtracted these things together. Okay.
+65:48 
+
+65:48 You subtracted and you got something of
+65:51 
+
+65:51 this sort and this was in 2D. This was
+65:53 
+
+65:53 my X. This was my X and I can also put a
+65:55 
+
+65:55 bias. This bias is this one. This is
+65:58 
+
+65:58 one. This is my weight and this is my
+65:59 
+
+65:59 bias. This is W1 B1. This is W2. Let's
+66:01 
+
+66:01 suppose B2
+66:04 
+
+66:04 W1 B1. And this is my final function.
+66:06 
+
+66:06 Okay. So here I showed you by
+66:08 
+
+66:08 construction that if you have any
+66:10 
+
+66:10 function if you have any function
+66:14 
+
+66:14 so you can approximate that by using
+66:15 
+
+66:15 those tower functions
+66:17 
+
+66:17 and tower functions and I showed you a
+66:19 
+
+66:19 neural network which can create towers
+66:22 
+
+66:22 tower creator. I showed you a
+66:24 
+
+66:24 construction of tower creator.
+66:28 
+
+66:28 Okay, this now shows you the
+66:29 
+
+66:29 representation power of neural networks.
+66:31 
+
+66:31 So how powerful are these neural
+66:33 
+
+66:33 networks? You can clearly see that you
+66:34 
+
+66:34 can have any boolean function and you
+66:37 
+
+66:37 can uh model that boolean function. You
+66:39 
+
+66:39 can have any decision boundary. You can
+66:40 
+
+66:40 model that decision boundary. Now you
+66:41 
+
+66:41 can have any function if you want to
+66:43 
+
+66:43 approximate that. Here focus on the word
+66:45 
+
+66:45 approximate. Okay. You won't be able to
+66:47 
+
+66:47 exactly show that. Okay. The better
+66:49 
+
+66:49 approximation you want you have to add
+66:51 
+
+66:51 more number of computation units. Okay.
+66:53 
+
+66:53 That's why here we'll will more think on
+66:56 
+
+66:56 approximation rather than exactly
+66:58 
+
+66:58 modeling because we want to give that
+66:59 
+
+66:59 epsilon precision. Okay. to that
+67:01 
+
+67:01 precision that if you take that f of x
+67:02 
+
+67:02 function and then if you subtract it
+67:04 
+
+67:04 with g of x okay if you take modulus the
+67:06 
+
+67:06 error basically that should be less than
+67:08 
+
+67:08 this epsilon this is called a desired
+67:09 
+
+67:09 precision we want this much precision so
+67:11 
+
+67:11 we we saw these three things that it can
+67:14 
+
+67:14 approximate any boolean function any
+67:16 
+
+67:16 boolean function any decision boundary
+67:20 
+
+67:20 any decision boundary
+67:23 
+
+67:23 and then it can approximate any function
+67:25 
+
+67:25 it can approximate
+67:27 
+
+67:27 any function
+67:30 
+
+67:30 any function then we again saw that we
+67:33 
+
+67:33 have a net a network can be wider and it
+67:36 
+
+67:36 can have more depth so we saw that this
+67:39 
+
+67:39 depth
+67:41 
+
+67:41 network the network contain more depth
+67:43 
+
+67:43 is more expressive
+67:47 
+
+67:47 okay so I'll stop recording over here
+67:49 
+
+67:49 and I'll take your questions if you have

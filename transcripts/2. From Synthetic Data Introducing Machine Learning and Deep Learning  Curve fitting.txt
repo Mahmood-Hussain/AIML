@@ -1,0 +1,7864 @@
+00:02 hello and welcome everyone so we'll
+00:03 
+
+00:03 again resume machine learning in this
+00:08 
+
+00:08 session if you remember from previous
+00:10 
+
+00:10 session so we introduced a lot of
+00:12 
+
+00:12 concepts of machine learning what
+00:13 
+
+00:13 supervised machine learning is and then
+00:15 
+
+00:15 what unsupervised learning is what is
+00:17 
+
+00:17 what is reinforcement learning what is
+00:18 
+
+00:18 semi supervised learning and lot other
+00:20 
+
+00:20 mode concept what what is the task what
+00:22 
+
+00:22 is the experience and what are different
+00:24 
+
+00:24 metrics so now today's session's goal
+00:27 
+
+00:27 will be to introduce a problem and to
+00:29 
+
+00:29 tell you all the terminology most of the
+00:31 
+
+00:31 terminology that we usually use in the
+00:32 
+
+00:32 machine learning okay so we'll just uh
+00:36 
+
+00:36 do it with a synthetic example we'll
+00:37 
+
+00:37 we'll do something with uh data and
+00:40 
+
+00:40 we'll maybe generate a synthetic data
+00:41 
+
+00:41 and then we'll try to introduce those
+00:42 
+
+00:42 terminologies it'll be easier that way
+00:44 
+
+00:44 okay so that's my goal now uh we have
+00:48 
+
+00:48 data let's suppose we have some data so
+00:51 
+
+00:51 data what it contain it contains
+00:53 
+
+00:53 information okay it has an information
+00:55 
+
+00:55 in it I won't go to mathematic datas
+00:57 
+
+00:57 right away so I first want you to have
+00:60 
+
+00:60 an your understanding so in the data we
+01:02 
+
+01:02 have the information we have all the
+01:03 
+
+01:03 assumptions that we have and we assume
+01:05 
+
+01:05 that this data comes from a certain
+01:06 
+
+01:06 distribution and from that distribution
+01:09 
+
+01:09 uh we want to learn it by Machine
+01:11 
+
+01:11 learning and that's an unknown
+01:12 
+
+01:12 distribution and now that information
+01:14 
+
+01:14 what it does actually it actually
+01:17 
+
+01:17 contains
+01:19 
+
+01:19 surprise okay I'll explain you what it
+01:21 
+
+01:21 means so let's suppose you observe some
+01:24 
+
+01:24 data if you are not surprised if you are
+01:27 
+
+01:27 not surprised that means it does it
+01:28 
+
+01:28 didn't have much information so what I
+01:30 
+
+01:30 mean by that if you just took a data
+01:32 
+
+01:32 point if it was a data point and you
+01:35 
+
+01:35 already knew a lot of things about it
+01:37 
+
+01:37 you expected it to be this way okay then
+01:39 
+
+01:39 it contains very less information okay
+01:41 
+
+01:41 that means if the surprise is very less
+01:44 
+
+01:44 the information is also very less if now
+01:47 
+
+01:47 you are more surprised okay let's
+01:48 
+
+01:48 suppose you did not know something when
+01:50 
+
+01:50 you saw the data point you came to know
+01:52 
+
+01:52 about that thing what happened that now
+01:54 
+
+01:54 now that thing contains more surprise
+01:56 
+
+01:56 that means it contains more information
+01:58 
+
+01:58 and we'll see all this in information
+01:60 
+
+01:60 the we'll see what entropy is and
+02:01 
+
+02:01 everything I'm just giving the in
+02:03 
+
+02:03 explanation so now we have data and you
+02:05 
+
+02:05 are seeing a data point if you came to
+02:07 
+
+02:07 know about a lot of things by seeing the
+02:08 
+
+02:08 data point that means the data point
+02:10 
+
+02:10 contains a lot of information okay so
+02:12 
+
+02:12 degree of knowing degree of how much you
+02:14 
+
+02:14 came to know degree of the Enlightenment
+02:16 
+
+02:16 is the degree of the information that
+02:18 
+
+02:18 data point contains okay that's what we
+02:20 
+
+02:20 want to reveal so this data basically
+02:23 
+
+02:23 comes from a
+02:24 
+
+02:24 distribution I'm again using Loosely
+02:26 
+
+02:26 those terms because we have not yet
+02:27 
+
+02:27 covered the probability part what
+02:29 
+
+02:29 actually we mean by this distribution
+02:30 
+
+02:30 mathematically so we have a distribution
+02:33 
+
+02:33 uh from which we assume this data comes
+02:35 
+
+02:35 and this distribution is unknown to
+02:38 
+
+02:38 us okay this is unknown okay that's the
+02:41 
+
+02:41 whole game of machine learning if the
+02:42 
+
+02:42 distribution is known then why are you
+02:44 
+
+02:44 doing machine learning so now what I
+02:45 
+
+02:45 said is this data contains information
+02:48 
+
+02:48 it contains something that we're
+02:49 
+
+02:49 interested interested in and what is
+02:52 
+
+02:52 information it is the amount of surprise
+02:54 
+
+02:54 how much surprised you are if you do not
+02:56 
+
+02:56 know something you just pick a data
+02:57 
+
+02:57 point and you say oh I got to know this
+02:59 
+
+02:59 this this this this it's somehow
+03:00 
+
+03:00 surprised you the amount of surprise um
+03:03 
+
+03:03 that was in data point that's how much
+03:05 
+
+03:05 information it captures if you are so
+03:06 
+
+03:06 much enlightened by that okay that's how
+03:08 
+
+03:08 much information we'll have now we can
+03:11 
+
+03:11 just have any type of data you can have
+03:12 
+
+03:12 data about image you can have data about
+03:14 
+
+03:14 uh uh audio you can have data in terms
+03:17 
+
+03:17 of text and all this data and many of
+03:19 
+
+03:19 the terminologies that we use in machine
+03:20 
+
+03:20 learning you'll see them uh almost
+03:23 
+
+03:23 coming in 199% of examples so here we'll
+03:26 
+
+03:26 use a synthetic data example and uh the
+03:29 
+
+03:29 references uh Bishop's book on deep
+03:31 
+
+03:31 learning it's a recent book uh I think
+03:33 
+
+03:33 published in November 2024 and I'll
+03:36 
+
+03:36 probably use the example from there so
+03:39 
+
+03:39 now we'll see that oh not moving at all
+03:42 
+
+03:42 give me a
+03:45 
+
+03:45 second now let's assume a problem so
+03:48 
+
+03:48 what we have is let's suppose we'll
+03:49 
+
+03:49 denote we'll have a variable X okay if
+03:51 
+
+03:51 you don't understand just raise your
+03:53 
+
+03:53 hand and then ask me the questions I'll
+03:54 
+
+03:54 be happy to clear the doubts if you have
+03:56 
+
+03:56 any so now what we'll have is so let's
+03:59 
+
+03:59 consider an input variable which we
+04:00 
+
+04:00 denote by X so this is our input
+04:02 
+
+04:02 variable so we'll keep a problem very
+04:04 
+
+04:04 simple so that you understand uh the
+04:06 
+
+04:06 concepts that I'll introduce and then
+04:07 
+
+04:07 we'll take the algorithms of machine
+04:09 
+
+04:09 learning and deep learning so you have
+04:10 
+
+04:10 this input variable let's denote this by
+04:12 
+
+04:12 X okay then we have a Target
+04:15 
+
+04:15 variable have Target let's call that t
+04:18 
+
+04:18 Okay so this input and this target so
+04:20 
+
+04:20 now from this you can know this is a
+04:21 
+
+04:21 supervis
+04:22 
+
+04:22 setting
+04:25 
+
+04:25 supervised setting or supervised
+04:28 
+
+04:28 learning because along with this data
+04:30 
+
+04:30 point along with the input you're also
+04:31 
+
+04:31 given the target okay and this x and t
+04:34 
+
+04:34 let's consider that both are continuous
+04:36 
+
+04:36 they they take continuous
+04:38 
+
+04:38 values they take continuous values what
+04:41 
+
+04:41 I mean by continuous as they can take a
+04:44 
+
+04:44 value from real number okay and this x
+04:47 
+
+04:47 comma T it belongs to these real
+04:49 
+
+04:49 numbers okay so that means it can take
+04:51 
+
+04:51 value of 1.5 x can be 1.5 let's suppose
+04:54 
+
+04:54 T can be 4.6 something like this it does
+04:56 
+
+04:56 not take discrete
+04:58 
+
+04:58 value okay a setting and now the thing
+05:00 
+
+05:00 is that we have a training set which
+05:03 
+
+05:03 contains n observations so we
+05:05 
+
+05:05 have a data set I can call data set or a
+05:08 
+
+05:08 training set data set which contains
+05:10 
+
+05:10 let's suppose capital N examples so what
+05:12 
+
+05:12 is that then because we have this x is a
+05:15 
+
+05:15 variable so here we'll have X1 X2 X3
+05:18 
+
+05:18 till let's suppose
+05:20 
+
+05:20 xn so this over here so if I call this
+05:25 
+
+05:25 capital x let's say this over here is my
+05:28 
+
+05:28 data set okay this is my dat set and
+05:31 
+
+05:31 these are my individual observations or
+05:33 
+
+05:33 individual features that I have okay and
+05:35 
+
+05:35 this is my one data point second data
+05:36 
+
+05:36 point third data point and four because
+05:37 
+
+05:37 I only one feature over here okay so
+05:40 
+
+05:40 this is the input
+05:43 
+
+05:43 variable
+05:45 
+
+05:45 input
+05:48 
+
+05:48 variables and now correspond to that
+05:50 
+
+05:50 I'll have targets I'll have targets like
+05:52 
+
+05:52 T this will be T1 T2 T3 till
+05:58 
+
+05:58 TN this is my target
+06:00 
+
+06:00 okay now the goal of this problem will
+06:03 
+
+06:03 be if you somehow can predict if you
+06:06 
+
+06:06 have these seen values okay then you
+06:08 
+
+06:08 have some unseen values also so this
+06:10 
+
+06:10 let's suppose the whole data set if if I
+06:12 
+
+06:12 just split the DAT set from X1 till
+06:14 
+
+06:14 let's suppose x nus 100 okay and from X
+06:19 
+
+06:19 xn uh minus 100 till
+06:24 
+
+06:24 xn okay and this I'll put it
+06:28 
+
+06:28 closed I think we know about what
+06:30 
+
+06:30 intervals are so let's suppose this is
+06:32 
+
+06:32 my seen data set which I can see and
+06:34 
+
+06:34 this is my
+06:36 
+
+06:36 unseen okay so I have seen data set on
+06:38 
+
+06:38 which I want to do something I want to
+06:40 
+
+06:40 learn so because this I assume contains
+06:41 
+
+06:41 information and this I assume that comes
+06:43 
+
+06:43 from a probability distribution okay and
+06:45 
+
+06:45 now I'll feed this into a machine
+06:47 
+
+06:47 learning deep learning what algorithm
+06:48 
+
+06:48 now my my goal will be to predict these
+06:51 
+
+06:51 T's because these Cen data will be it
+06:54 
+
+06:54 will have its uh let's suppose uh these
+06:56 
+
+06:56 corresponding targets X1 will be
+06:59 
+
+06:59 accompanied by T 1 X2 by T2 okay let's
+07:01 
+
+07:01 suppose for these things they do not
+07:03 
+
+07:03 exist for us okay let's suppose from t
+07:06 
+
+07:06 uh nus 100 to TN they don't not exist
+07:08 
+
+07:08 for us now the goal of the problem is
+07:10 
+
+07:10 that you have to predict this t for this
+07:13 
+
+07:13 unseen examples that's a goal that we we
+07:15 
+
+07:15 have okay so what's the
+07:18 
+
+07:18 goal
+07:20 
+
+07:20 predict
+07:23 
+
+07:23 Target for unseen
+07:27 
+
+07:27 data unseen data
+07:30 
+
+07:30 this is our goal now what we have is
+07:32 
+
+07:32 we'll first generate this data because
+07:34 
+
+07:34 now in order to uh show you how the data
+07:37 
+
+07:37 is actually captured in the real world
+07:38 
+
+07:38 so what I'll do is because I won't take
+07:40 
+
+07:40 a real data set directly okay so now
+07:42 
+
+07:42 let's suppose I know the distribution it
+07:43 
+
+07:43 comes from let me be let because God
+07:45 
+
+07:45 knows okay for the sake of Simplicity
+07:47 
+
+07:47 let me be the God for this example okay
+07:50 
+
+07:50 I will know that what distribution this
+07:51 
+
+07:51 data comes from so I'll generate the
+07:53 
+
+07:53 data so we'll have process of generation
+07:55 
+
+07:55 of data so we'll generate this
+07:58 
+
+07:58 data okay because when we gener we call
+08:01 
+
+08:01 it synthetic
+08:04 
+
+08:04 data okay so I'll generate this data so
+08:07 
+
+08:07 how how can I generate this data is I
+08:08 
+
+08:08 can use a lot of functions I can use a
+08:10 
+
+08:10 lot of functions by which I can generate
+08:11 
+
+08:11 data so in order to actually uh capture
+08:14 
+
+08:14 the real world sense of data so what
+08:15 
+
+08:15 I'll do is I'll use a simplistic
+08:17 
+
+08:17 function let's use a sign function I'll
+08:18 
+
+08:18 use a sign function s
+08:21 
+
+08:21 of 2 pi xn okay so this function I'll
+08:24 
+
+08:24 use and based on this I'll
+08:27 
+
+08:27 generate I'll generate the data
+08:31 
+
+08:31 okay now you can see that this is a
+08:32 
+
+08:32 deterministic process okay if I just
+08:34 
+
+08:34 give the value of x to it it will give
+08:36 
+
+08:36 me a Target okay and X I can form the
+08:38 
+
+08:38 pairs of x and t okay and and this is
+08:41 
+
+08:41 the function by which I I just plug in
+08:42 
+
+08:42 the value of x and I'll it will give me
+08:44 
+
+08:44 the value of the target so this is my f
+08:46 
+
+08:46 of x so FX is equal sin of 2 pix so this
+08:51 
+
+08:51 is how I generate data but if you see
+08:53 
+
+08:53 real world data does not only have
+08:55 
+
+08:55 pattern it also has some noise as it so
+08:57 
+
+08:57 I'll add noise to it also I'll add noise
+09:01 
+
+09:01 okay and in particular I'll hear add Gan
+09:07 
+
+09:07 noise this is how I'll generate my data
+09:09 
+
+09:09 set so what I say is so real world data
+09:11 
+
+09:11 it has some pattern that's what we want
+09:13 
+
+09:13 to learn because machine learning someh
+09:15 
+
+09:15 captures the pattern it captures that
+09:16 
+
+09:16 probability distribution and that
+09:17 
+
+09:17 probability distribution will be somehow
+09:19 
+
+09:19 well defined it won't be just any sort
+09:21 
+
+09:21 of thing okay otherwise it'll be very
+09:22 
+
+09:22 hard to learn from it so what we assume
+09:24 
+
+09:24 is that there is a function probably a
+09:26 
+
+09:26 very complicated one in real world data
+09:27 
+
+09:27 set but here we're making a simplistic
+09:29 
+
+09:29 assumption that let's suppose I'm the
+09:30 
+
+09:30 God for this example I know the
+09:32 
+
+09:32 distribution it comes from I know the
+09:33 
+
+09:33 function that is generating this data
+09:35 
+
+09:35 okay so let's suppose this is the
+09:36 
+
+09:36 function so in actual deeping there will
+09:37 
+
+09:37 be a lot complicated functions and that
+09:39 
+
+09:39 we won't have closed from closed from
+09:41 
+
+09:41 equations to for for the data so here
+09:44 
+
+09:44 let's assume that this is the function
+09:45 
+
+09:45 which is the data and in order to
+09:47 
+
+09:47 capture the real world sense of data so
+09:49 
+
+09:49 what we should do is we should add some
+09:50 
+
+09:50 noise because there is a pattern and
+09:52 
+
+09:52 there is a noise okay that's what makes
+09:54 
+
+09:54 real world data difficult and where this
+09:57 
+
+09:57 noise comes from it comes from internic
+09:58 
+
+09:58 Randomness okay there's certainty
+10:00 
+
+10:00 involved everywhere even if there was a
+10:02 
+
+10:02 pattern if there's a clear pattern but
+10:04 
+
+10:04 still you can see that somehow it
+10:05 
+
+10:05 deviates from that pattern why because
+10:07 
+
+10:07 there is an intrinsic Randomness and
+10:09 
+
+10:09 other other things can be there can be
+10:11 
+
+10:11 unobserved source of variability okay
+10:13 
+
+10:13 some environmental factors some other
+10:14 
+
+10:14 things which introduce this noise okay
+10:16 
+
+10:16 in order to mimic what happens in real
+10:17 
+
+10:17 how how does how do we assume that data
+10:19 
+
+10:19 is so there is a pattern okay now I said
+10:22 
+
+10:22 two things about the real world so when
+10:24 
+
+10:24 you have data so there's actually a
+10:26 
+
+10:26 pattern in that data but that pattern is
+10:29 
+
+10:29 not called visible directly why because
+10:31 
+
+10:31 it is somehow randomized by noise there
+10:34 
+
+10:34 is noise estated with that those samples
+10:36 
+
+10:36 because if you if you can if you just
+10:38 
+
+10:38 have a pure pattern data that's not real
+10:39 
+
+10:39 world data then okay because real world
+10:41 
+
+10:41 data has some uh has some noisy Noy
+10:45 
+
+10:45 noisy things in addition to the pattern
+10:47 
+
+10:47 why because I said let's suppose because
+10:49 
+
+10:49 of radioactivity decay if there is some
+10:50 
+
+10:50 inic if there are some factors something
+10:53 
+
+10:53 else this pattern is there and this
+10:55 
+
+10:55 noise is there and the goal our goal is
+10:57 
+
+10:57 this our goal is to capture this pattern
+11:00 
+
+11:00 this is our goal
+11:03 
+
+11:03 okay now what we want basically is we
+11:06 
+
+11:06 don't want to we basically want to learn
+11:07 
+
+11:07 this function we want to learn this
+11:09 
+
+11:09 function from the data if this data is
+11:10 
+
+11:10 given to us and we should learn the
+11:12 
+
+11:12 function that's our goal now okay now
+11:14 
+
+11:14 let's go to the code window and I'll
+11:16 
+
+11:16 show you
+11:19 
+
+11:19 that okay let
+11:22 
+
+11:22 me just go to the code window give me a
+11:25 
+
+11:25 second so now you understood that the
+11:28 
+
+11:28 process of generation so what I said is
+11:29 
+
+11:29 there is a pattern in data and in the
+11:30 
+
+11:30 real world data there is some noise as
+11:32 
+
+11:32 with it so now what we'll do is I will
+11:34 
+
+11:34 uh be the creator of this data for time
+11:36 
+
+11:36 being because I know the pattern where
+11:38 
+
+11:38 where the pattern comes from and also
+11:39 
+
+11:39 know where the noise comes from the goal
+11:41 
+
+11:41 will be to learn that pattern not the
+11:42 
+
+11:42 noise okay so what I'll do is I'll
+11:44 
+
+11:44 import n and M plotly because I'll also
+11:46 
+
+11:46 plot it so going here just hold on for a
+11:51 
+
+11:51 second once I do it and then you can ask
+11:53 
+
+11:53 me
+11:55 
+
+11:55 questions so this I have imported number
+11:57 
+
+11:57 and M plot lip and what I'll do is I'll
+11:59 
+
+11:59 I'll generate a function so in that I'll
+12:01 
+
+12:01 also generate a gion noise so I'll write
+12:03 
+
+12:03 a function so here you can see
+12:05 
+
+12:05 definition generate a synthetic function
+12:06 
+
+12:06 and I this is n number of samples I want
+12:08 
+
+12:08 to generate and noise standard deviation
+12:11 
+
+12:11 because in here if you know in gion uh
+12:13 
+
+12:13 distribution you have this mean and
+12:14 
+
+12:14 standard deviation and now I'll also
+12:16 
+
+12:16 give a random seed for the reproducible
+12:17 
+
+12:17 purpose if you want to do it yourself
+12:20 
+
+12:20 also what I'll say if random seed is not
+12:22 
+
+12:22 none so then assign this a seed so what
+12:26 
+
+12:26 I'll do is I'll say if random seed is
+12:28 
+
+12:28 not none then NP uh do random. seed is
+12:31 
+
+12:31 this random seed okay so that you can
+12:33 
+
+12:33 reproduce the results yourself and then
+12:35 
+
+12:35 I'll generate uniformly uh some values
+12:37 
+
+12:37 uh which are between this 0 and one okay
+12:39 
+
+12:39 because I want to generate values for
+12:41 
+
+12:41 this s of uh 2 pix so for this I need to
+12:44 
+
+12:44 generate this x values first this is
+12:47 
+
+12:47 what I do so I'm generating x equal np.
+12:49 
+
+12:49 l space 01 and number of points this
+12:52 
+
+12:52 should be n so what it does is it will
+12:53 
+
+12:53 generate uniformly spaced X values in
+12:56 
+
+12:56 the range of 0 to one okay after that
+12:58 
+
+12:58 what I'll do is I'll compute the target
+12:60 
+
+12:60 value because I know how to compute
+13:01 
+
+13:01 Target values so the target values will
+13:03 
+
+13:03 be computed like this X2 uh this T value
+13:05 
+
+13:05 Target value is NP sign of 2 pi of X
+13:09 
+
+13:09 okay that's what I said this is my
+13:11 
+
+13:11 actual value that I want to
+13:13 
+
+13:13 compute and then I'll add a noise to it
+13:16 
+
+13:16 I'll add a noise so what that I'll add
+13:17 
+
+13:17 that Gan noise with the mean
+13:20 
+
+13:20 zero okay now what I do is so this is my
+13:23 
+
+13:23 noise np. random. normal okay basically
+13:27 
+
+13:27 normal distribution is also called Gan
+13:28 
+
+13:28 distribution where the mean of zero and
+13:31 
+
+13:31 the deviation of this noise standard
+13:32 
+
+13:32 deviation and what's the size size of n
+13:34 
+
+13:34 so that's how many points should I
+13:36 
+
+13:36 create noise so here let's suppose if I
+13:37 
+
+13:37 create n number of points so this T will
+13:39 
+
+13:39 also be the size of this will be n and
+13:41 
+
+13:41 the noise also will be n now what I'll
+13:43 
+
+13:43 do is I'll just add this X and Noise
+13:45 
+
+13:45 Okay so that I get the final
+13:49 
+
+13:49 Point okay so if you see
+13:51 
+
+13:51 this so I actually I want to add the
+13:53 
+
+13:53 target so because I have this x value
+13:55 
+
+13:55 correspond to this I'll have to add this
+13:56 
+
+13:56 T2 and the noise because that is the uh
+13:58 
+
+13:58 last value the target value and for
+14:01 
+
+14:01 which I'm adding the noise so I'll do
+14:02 
+
+14:02 this I'll say the final point the final
+14:04 
+
+14:04 T is equal to T true and the
+14:07 
+
+14:07 Noise Okay this is my final value okay
+14:09 
+
+14:09 then I'll return this I'll return my my
+14:12 
+
+14:12 data this is the data that I have
+14:15 
+
+14:15 created I'm saying return this x and t
+14:18 
+
+14:18 that is return the origin this x so
+14:20 
+
+14:20 these are uh the input variables and
+14:22 
+
+14:22 these this is my Target and this target
+14:24 
+
+14:24 is noisy there's a pattern clear pattern
+14:26 
+
+14:26 this pattern is here okay and this is my
+14:28 
+
+14:28 noise that's that I'm adding and then if
+14:31 
+
+14:31 I want to plot it okay if I want to plot
+14:33 
+
+14:33 it I'll again write a plotting
+14:36 
+
+14:36 function okay so this is my data
+14:38 
+
+14:38 generation function data synthtic
+14:39 
+
+14:39 generation function so now I have this
+14:41 
+
+14:41 plot synth and I X value and T and I'll
+14:43 
+
+14:43 give a title also so I'll say if I want
+14:45 
+
+14:45 to save it also I can save it but by now
+14:47 
+
+14:47 you should be very much well wored with
+14:50 
+
+14:50 the code I write in Matt plot Li should
+14:52 
+
+14:52 not be very difficult for you people so
+14:54 
+
+14:54 now you can see it over here so I'm
+14:56 
+
+14:56 plotting the figure you can see it so
+14:57 
+
+14:57 here I'm calling this function if you
+14:59 
+
+14:59 see this is my X and this is my T so
+15:01 
+
+15:01 I'll call this function I'll first
+15:02 
+
+15:02 initially call this function so I just
+15:04 
+
+15:04 create generate the s data and then I'll
+15:06 
+
+15:06 call this function so I just to plot
+15:08 
+
+15:08 it okay what I'll do
+15:11 
+
+15:11 is so I want to create 10 points let's
+15:14 
+
+15:14 suppose n is equal 10 I'm saying n is
+15:17 
+
+15:17 equal 10 let me just take it
+15:21 
+
+15:21 here okay if you see this so n is equal
+15:23 
+
+15:23 10 number of data points this is my
+15:25 
+
+15:25 noise standard deviation okay and this
+15:27 
+
+15:27 is my random seed if I want to reproduce
+15:29 
+
+15:29 the same thing so X comma T this is my
+15:31 
+
+15:31 input variable and this is my target
+15:32 
+
+15:32 variable I'm saying generate synthetic
+15:34 
+
+15:34 data okay n is equal n and noise is this
+15:36 
+
+15:36 much and this is the random SE and then
+15:38 
+
+15:38 I'm saying plot this also if I plot it
+15:41 
+
+15:41 so you can see it over here so this is
+15:42 
+
+15:42 my plot so this is my data point so just
+15:45 
+
+15:45 let's suppose if I increase number of
+15:46 
+
+15:46 points if I increase it to 100 can you
+15:49 
+
+15:49 should see a sydal pattern okay and with
+15:51 
+
+15:51 the m it's not clearly sydal okay there
+15:53 
+
+15:53 are some noisy also I wrote The Noisy
+15:55 
+
+15:55 observation over here but I just want it
+15:57 
+
+15:57 to uh be ploted with the 10
+16:01 
+
+16:01 points okay so I hope this is clear to
+16:03 
+
+16:03 any questions on this any
+16:06 
+
+16:06 questions now coming back to this so if
+16:09 
+
+16:09 you see this is how we generate data so
+16:11 
+
+16:11 what I said is there is a pattern so
+16:12 
+
+16:12 what is that pattern so that
+16:16 
+
+16:16 pattern is sin of 2 pix sin of 2 pix so
+16:22 
+
+16:22 this is the generating function and then
+16:23 
+
+16:23 there is a noise okay and this noise is
+16:26 
+
+16:26 normally distributed with some zero mean
+16:28 
+
+16:28 and some stand deviation of 0.1 okay so
+16:31 
+
+16:31 and we discussed at length what what I
+16:33 
+
+16:33 mean by noise basically anything that is
+16:35 
+
+16:35 unwanted for me and I won I I assume
+16:38 
+
+16:38 that is a noise because that disturb
+16:39 
+
+16:39 this pattern that I want to learn okay
+16:41 
+
+16:41 and this pattern is actually important
+16:42 
+
+16:42 to me this is how I generate this data
+16:45 
+
+16:45 now what we'll do is we have to predict
+16:47 
+
+16:47 these things the objective is to predict
+16:49 
+
+16:49 if I let's suppose this is these are my
+16:52 
+
+16:52 values if I know the values till here so
+16:53 
+
+16:53 okay I have this this this these points
+16:56 
+
+16:56 these are the points which I know the
+16:57 
+
+16:57 target values also so I have the input
+16:59 
+
+16:59 values and I have the target values as
+17:00 
+
+17:00 well so let's suppose somebody gave me
+17:02 
+
+17:02 some inputs like this somebody will give
+17:04 
+
+17:04 input like this so these are the input
+17:05 
+
+17:05 that that I I'll call as test input
+17:07 
+
+17:07 let's these red points or red dots okay
+17:09 
+
+17:09 so I have to test for these now in order
+17:12 
+
+17:12 to do this somehow I should find a
+17:14 
+
+17:14 function which is uh generating this
+17:16 
+
+17:16 data okay that I know but I should learn
+17:18 
+
+17:18 it somehow by by using algorithm so here
+17:20 
+
+17:20 I'll skip the algorithm part the
+17:21 
+
+17:21 objective is to use the Str to use these
+17:24 
+
+17:24 Blue Points okay to predict the target
+17:26 
+
+17:26 variable t for these new variables okay
+17:28 
+
+17:28 for these red variables the red
+17:29 
+
+17:29 variables I have here the objective
+17:31 
+
+17:31 again to rate is to use the trending set
+17:34 
+
+17:34 these Blue Points okay in order to
+17:35 
+
+17:35 predict the target value for these these
+17:38 
+
+17:38 value and here I can see I have the
+17:39 
+
+17:39 target values when I when I draw these
+17:41 
+
+17:41 points also but it they'll be just given
+17:43 
+
+17:43 as points to me they won't be given on
+17:45 
+
+17:45 the graph they'll be just given they'll
+17:47 
+
+17:47 be given X values because when I draw
+17:48 
+
+17:48 when I draw this point let's suppose
+17:49 
+
+17:49 this point so I give x value as well as
+17:52 
+
+17:52 T value so this is my T value this is my
+17:54 
+
+17:54 x value so but how these points will be
+17:56 
+
+17:56 given these points will be given to me
+17:58 
+
+17:58 like this so this is my x value I'll
+17:59 
+
+17:59 just is given x value so I'll be given
+18:00 
+
+18:00 this point I'll be given point like this
+18:03 
+
+18:03 I'll be given point like this okay I'll
+18:05 
+
+18:05 be G Point like this because I I I'll be
+18:07 
+
+18:07 given just one value that's x value and
+18:09 
+
+18:09 from this I'll have to get the target
+18:11 
+
+18:11 value so for example for this the target
+18:13 
+
+18:13 value will be lying somewhere around
+18:14 
+
+18:14 here okay somehow I should predict this
+18:16 
+
+18:16 so I'll be given so this over here if
+18:18 
+
+18:18 you see this so this is my test set or
+18:22 
+
+18:22 the Unseen data okay all these Blue
+18:25 
+
+18:25 Points over here these are my training
+18:26 
+
+18:26 data okay this is the objective from
+18:28 
+
+18:28 these Blue Points I should somehow learn
+18:30 
+
+18:30 a function I should capture the pattern
+18:32 
+
+18:32 and then these points which are given to
+18:33 
+
+18:33 me okay because they have this only x
+18:35 
+
+18:35 value I have to predict t value from
+18:37 
+
+18:37 there so okay once I somehow came up
+18:40 
+
+18:40 with the function that is generating
+18:41 
+
+18:41 this uh these observations I will easily
+18:44 
+
+18:44 be able to predict what is the T value
+18:46 
+
+18:46 for these X
+18:47 
+
+18:47 values now the challenge here is we have
+18:50 
+
+18:50 this finite data set
+18:52 
+
+18:52 okay I'll
+18:55 
+
+18:55 just so we have the finite points so if
+18:57 
+
+18:57 you see we have the finite data point
+18:60 
+
+18:60 finite data
+19:03 
+
+19:03 set okay so we have to we have this
+19:05 
+
+19:05 finite data set and from this we have to
+19:08 
+
+19:08 generalize okay and it is inherently
+19:10 
+
+19:10 very difficult because you don't know
+19:11 
+
+19:11 from the finite is it represent the
+19:13 
+
+19:13 whole population because data can be
+19:14 
+
+19:14 infinite and that infinite thing might
+19:16 
+
+19:16 represent the population might represent
+19:18 
+
+19:18 the actual probability distribution so
+19:20 
+
+19:20 what I say this problem is inherently
+19:21 
+
+19:21 difficult and why because of this finite
+19:23 
+
+19:23 data set okay because you have you have
+19:25 
+
+19:25 access to finite data so in the previous
+19:27 
+
+19:27 discussion also I told you that the more
+19:28 
+
+19:28 you increase data the high probability
+19:30 
+
+19:30 is that you are going close to the
+19:31 
+
+19:31 probability actual probability
+19:32 
+
+19:32 distribution okay so there's a
+19:34 
+
+19:34 probability distribution let's call that
+19:36 
+
+19:36 P okay the more points you sample from
+19:38 
+
+19:38 it the closer you go to this okay and
+19:41 
+
+19:41 how to quantify this then the
+19:42 
+
+19:42 probability Theory comes in probability
+19:44 
+
+19:44 Theory because there's uncertainty okay
+19:46 
+
+19:46 when you sample the point there's
+19:47 
+
+19:47 uncertainty so then probability gives us
+19:48 
+
+19:48 the mathematical framework so this
+19:52 
+
+19:52 probability it gives a mathematical
+19:54 
+
+19:54 framework to quantify this uncertainty
+19:55 
+
+19:55 you way you can quantify the uncertainty
+19:57 
+
+19:57 so what I said is the more points you
+19:59 
+
+19:59 have it someh approach the ex exact
+20:01 
+
+20:01 probability distribution and but we have
+20:03 
+
+20:03 this finite data set that's why I said
+20:04 
+
+20:04 it's inherently very difficult this
+20:05 
+
+20:05 problem is very difficult to solve
+20:07 
+
+20:07 because we have to generalize not to
+20:08 
+
+20:08 memorize okay and then once we have this
+20:11 
+
+20:11 uh mathematical notion to capture this
+20:12 
+
+20:12 uncertainty and to quantify this
+20:14 
+
+20:14 uncertainty then comes the decision
+20:19 
+
+20:19 Theory so what decision Theory does it
+20:22 
+
+20:22 helps to leverage these prob
+20:23 
+
+20:23 probabilistic representation to make an
+20:25 
+
+20:25 optimal prediction okay based on this we
+20:27 
+
+20:27 make prediction based on this we try to
+20:29 
+
+20:29 quantify this uncertainty because as I
+20:30 
+
+20:30 said this problem is in very difficult
+20:32 
+
+20:32 in order to get the problem we should
+20:34 
+
+20:34 have whole dat set and there will be
+20:36 
+
+20:36 there will be infinite values of there
+20:38 
+
+20:38 will be infinite uh points in the data
+20:40 
+
+20:40 set so but we have this finite data set
+20:42 
+
+20:42 from this we have to come up with this
+20:43 
+
+20:43 actual proper distribution what I said
+20:45 
+
+20:45 is the more we sample the closer we get
+20:47 
+
+20:47 to the probability distribution so now
+20:49 
+
+20:49 we cannot get the whole data set so
+20:50 
+
+20:50 there is uncertainty involved so that
+20:53 
+
+20:53 uncertainty is captured by probability
+20:55 
+
+20:55 okay that uncertainty is Quantified by
+20:56 
+
+20:56 probability so now once we quantify that
+20:58 
+
+20:58 probability once we quantify this
+20:59 
+
+20:59 uncertainty by using probability then we
+21:02 
+
+21:02 leverage this probability probabilistic
+21:03 
+
+21:03 representations to make some optimal
+21:05 
+
+21:05 predictions okay that is done in
+21:06 
+
+21:06 decision Theory okay so these are the
+21:08 
+
+21:08 two things where the mathematics chips
+21:09 
+
+21:09 in again so probability is used to
+21:11 
+
+21:11 quantify uncertainty so in order to we
+21:13 
+
+21:13 have now we have this probabil
+21:14 
+
+21:14 representations in order to make a
+21:16 
+
+21:16 optimal prediction based on that so we
+21:17 
+
+21:17 use decision Theory okay now that that's
+21:21 
+
+21:21 where this uh this probability andion
+21:23 
+
+21:23 Theory comes from so learning
+21:24 
+
+21:24 probability from the data it's a it's a
+21:26 
+
+21:26 core thing to machine learning okay uh
+21:28 
+
+21:28 and we'll explore these ideas once we go
+21:30 
+
+21:30 to these probability and once we maybe
+21:32 
+
+21:32 we'll also touch a bit of decision
+21:33 
+
+21:33 Theory okay and maybe information Theory
+21:35 
+
+21:35 as well okay so we have this finite data
+21:37 
+
+21:37 set now so now the point is what we'll
+21:39 
+
+21:39 do is we'll do a simple algorithm that's
+21:40 
+
+21:40 called as curve
+21:41 
+
+21:41 fitting okay what we'll do is we'll try
+21:44 
+
+21:44 to fit a curve we'll have Cur fitting
+21:48 
+
+21:48 algorithm okay now if you see the data
+21:50 
+
+21:50 that we had if I again uh bring up the
+21:53 
+
+21:53 code you can see it over
+21:56 
+
+21:56 here so this is my curve fitting so if
+21:58 
+
+21:58 you see this somehow I should fit a
+21:60 
+
+21:60 curve onto this okay and we have learned
+22:02 
+
+22:02 a lot about curves we have learned a lot
+22:04 
+
+22:04 about lines linear surfaces and then we
+22:06 
+
+22:06 can also have Parable let's suppose if I
+22:08 
+
+22:08 just have this uh if I want to draw a
+22:10 
+
+22:10 line so I'll say W plus W1 X1 is equal Z
+22:14 
+
+22:14 something like
+22:16 
+
+22:16 this okay so this will be a line okay
+22:18 
+
+22:18 and if I want uh let's suppose not a
+22:20 
+
+22:20 parabola a line will be there if I want
+22:22 
+
+22:22 a parabola like this I'll put just
+22:23 
+
+22:23 Square I'll put Square over here if I I
+22:26 
+
+22:26 can have curve like this okay I can have
+22:27 
+
+22:27 different sort of Curves and now I have
+22:30 
+
+22:30 to fit this curve I have to fit in these
+22:31 
+
+22:31 cures so I can take a combination of
+22:33 
+
+22:33 these curves this this this I can just
+22:35 
+
+22:35 keep on adding the power so what I'll do
+22:37 
+
+22:37 is so I'll write an expression of curve
+22:40 
+
+22:40 fitting this is what I want so to fit uh
+22:43 
+
+22:43 this curve onto this data so what I'll
+22:44 
+
+22:44 do is I'll write the expression of a
+22:46 
+
+22:46 curve so I have this y x comma W so this
+22:51 
+
+22:51 is my curve fitting this is how I'll fit
+22:52 
+
+22:52 the curve so I'll say W plus W1 X1 or W1
+22:58 
+
+22:58 X let say plus W2 x² because I have this
+23:01 
+
+23:01 x value only this there is there not
+23:03 
+
+23:03 multiple feat there just one feature
+23:05 
+
+23:05 plus W2 X cub and so
+23:09 
+
+23:09 on and then I have w m x ^ M or I can
+23:14 
+
+23:14 just write in short as summation of this
+23:17 
+
+23:17 WJ XJ J goes from 0 to
+23:21 
+
+23:21 M okay so this is my curve fitting so if
+23:24 
+
+23:24 you see this is an ndre polinomial so
+23:27 
+
+23:27 here I have sorry M de Pol here I have
+23:29 
+
+23:29 degree M the highest degree is M so I
+23:31 
+
+23:31 have to fit this so now if I just stop
+23:33 
+
+23:33 it here so I'll fit a line if I just
+23:35 
+
+23:35 stop it here I'll fit a parabola okay
+23:37 
+
+23:37 then I'll put a cubic polinomial and I
+23:39 
+
+23:39 I'll keep on increasing powers and the
+23:41 
+
+23:41 more Powers I give it the more degree of
+23:42 
+
+23:42 Freedom I'm giving it okay and many of
+23:44 
+
+23:44 you might know Tailor's expansion and
+23:46 
+
+23:46 things like that and we'll see how that
+23:47 
+
+23:47 relates once we go to the mathem part
+23:49 
+
+23:49 but here I assume that till here you
+23:51 
+
+23:51 know now if I increase one more power so
+23:53 
+
+23:53 this is x square so what I do is so I am
+23:55 
+
+23:55 making I'm trying to fit a parabola okay
+23:57 
+
+23:57 then here I'm trying to fit a cubic and
+23:59 
+
+23:59 you can see the rest most calculator and
+24:01 
+
+24:01 just give these and now if you see this
+24:03 
+
+24:03 function this is the function okay so
+24:05 
+
+24:05 this function is linear in these par in
+24:08 
+
+24:08 the parameters W so this is a linear
+24:10 
+
+24:10 function this is
+24:14 
+
+24:14 linear in terms of
+24:20 
+
+24:20 coefficients okay and this is what we
+24:22 
+
+24:22 want to learn this W1 w w i i want to
+24:24 
+
+24:24 learn this W this W W1 till let's
+24:28 
+
+24:28 suppose
+24:29 
+
+24:29 WM coming to asan's question this is
+24:31 
+
+24:31 what I mean by parameters these are my
+24:33 
+
+24:33 parameters that I want to
+24:36 
+
+24:36 learn okay so I have to fit a function
+24:39 
+
+24:39 so I have to fit a fit a function on
+24:40 
+
+24:40 this the data that I have so I have to
+24:42 
+
+24:42 fit a function onto that and this
+24:44 
+
+24:44 function is that so here what I will say
+24:46 
+
+24:46 is I have to make a lot of decision
+24:47 
+
+24:47 choices the first thing I have to make a
+24:49 
+
+24:49 decision is okay how much what degree of
+24:51 
+
+24:51 polom can I use can I use 3° 4 de 5 what
+24:54 
+
+24:54 degree can I use and I have to learn
+24:55 
+
+24:55 these W's what values should I assign to
+24:57 
+
+24:57 these W so I'll fit this polinomial
+24:59 
+
+24:59 curve so what I said is so if I just
+25:01 
+
+25:01 take this part okay so this is a this is
+25:04 
+
+25:04 my line so if I take this this Parabola
+25:06 
+
+25:06 line plus Parabola plus let's suppose
+25:08 
+
+25:08 something cubic polinomial and some
+25:10 
+
+25:10 higher order Pol so take all the
+25:12 
+
+25:12 combination of these and you can come up
+25:14 
+
+25:14 with this PO you can come up let's
+25:15 
+
+25:15 suppose with sign function you can
+25:16 
+
+25:16 approximate the sign function so sign
+25:17 
+
+25:17 function looks something like this let's
+25:19 
+
+25:19 say okay now if I want to approximate
+25:21 
+
+25:21 this so I have to combine this plus
+25:23 
+
+25:23 let's suppose Parabola plus third order
+25:26 
+
+25:26 third order is something like this
+25:27 
+
+25:27 fourth order is something like like this
+25:29 
+
+25:29 I don't know what orders how how the
+25:30 
+
+25:30 shapes that you can check so all these
+25:33 
+
+25:33 uh things will be combined in order to
+25:35 
+
+25:35 get this okay take a combination of this
+25:37 
+
+25:37 in order in order to come up this and
+25:39 
+
+25:39 there's approximation theorem also which
+25:40 
+
+25:40 says that you can approximate every
+25:42 
+
+25:42 function and you can expand this you can
+25:43 
+
+25:43 use Tor expansion to show that any
+25:45 
+
+25:45 function can be approximated like this
+25:47 
+
+25:47 okay now that's my goal now my goal is
+25:50 
+
+25:50 to fit this to fit this basically to fit
+25:52 
+
+25:52 this is my function and this will give
+25:54 
+
+25:54 me a
+25:56 
+
+25:56 curve any questions still here any
+25:58 
+
+25:58 questions
+26:03 
+
+26:03 yes yes question so this is the thing
+26:06 
+
+26:06 that I want uh basically to uh I want to
+26:09 
+
+26:09 fit the curve and by the help of this
+26:11 
+
+26:11 thing I want to help that I want to do
+26:12 
+
+26:12 that so this m basically is the order of
+26:14 
+
+26:14 polinomial the order of polinomial I'll
+26:17 
+
+26:17 just write it
+26:19 
+
+26:19 down okay this is again parameter and
+26:22 
+
+26:22 we'll see how how does it affect and
+26:24 
+
+26:24 then these wjs or this W w0 W1 W and
+26:27 
+
+26:27 this these are Coe
+26:30 
+
+26:30 coefficients of polinomial I just write
+26:32 
+
+26:32 it in short coefficients of the
+26:37 
+
+26:37 polinomial okay then I have this W
+26:40 
+
+26:40 Vector okay so this W Vector is
+26:41 
+
+26:41 combination of these coefficients and a
+26:43 
+
+26:43 vector that's collect to represents all
+26:44 
+
+26:44 of these so this W is this W comma W1
+26:48 
+
+26:48 till w
+26:51 
+
+26:51 m okay and then I have this x j x to
+26:55 
+
+26:55 the^ J so this actually is represents
+26:60 
+
+26:60 represents X is part of J so I think
+27:03 
+
+27:03 it's pretty much
+27:04 
+
+27:04 clear so now if you see uh there is the
+27:07 
+
+27:07 input actually the input it is non
+27:09 
+
+27:09 linear input but it's linear in uh in
+27:11 
+
+27:11 terms of coefficient and we want to find
+27:12 
+
+27:12 the coefficients
+27:14 
+
+27:14 okay now let's do that let's do this Cur
+27:17 
+
+27:17 fitting now let's say what we'll do is
+27:20 
+
+27:20 we'll again I'll bring up the code
+27:22 
+
+27:22 window and then I'll show you if I fit
+27:24 
+
+27:24 the curves okay let's suppose if I
+27:26 
+
+27:26 randomly do this if I let's suppose fit
+27:27 
+
+27:27 only a line if I put a line like this
+27:30 
+
+27:30 okay so you can see that there will be
+27:31 
+
+27:31 this this is not the and you can clearly
+27:34 
+
+27:34 see that this line is not actually
+27:36 
+
+27:36 giving the value that I want it's Mis
+27:39 
+
+27:39 this this prediction and this this there
+27:40 
+
+27:40 there are a lot of mispredictions over
+27:42 
+
+27:42 here okay so what I can do is if I just
+27:44 
+
+27:44 use a parabola okay if I just use a
+27:46 
+
+27:46 parabola so if I just use let Parabola
+27:48 
+
+27:48 Parabola down like this okay so
+27:50 
+
+27:50 something you can see that all these
+27:51 
+
+27:51 points will be missed out then okay some
+27:53 
+
+27:53 I have to use a combination now I have a
+27:56 
+
+27:56 cur fitting thing now my question is how
+27:58 
+
+27:58 can I see
+27:59 
+
+27:59 that how good this curve is okay I
+28:00 
+
+28:00 should quantify how good or bad this
+28:04 
+
+28:04 is okay how good or bad this is okay
+28:06 
+
+28:06 I'll give you an example in physical
+28:08 
+
+28:08 sense so that you understand this now I
+28:10 
+
+28:10 have an example I have
+28:11 
+
+28:11 data on this data I'm trying to fit in
+28:14 
+
+28:14 curve so I have a machine which I call
+28:16 
+
+28:16 as Cur fitter so curve fitter so what
+28:20 
+
+28:20 this has let's suppose I will use this
+28:22 
+
+28:22 equation now I have this uh W not W1 W2
+28:26 
+
+28:26 till WM so let's consider these are my
+28:28 
+
+28:28 knob
+28:30 
+
+28:30 okay I can twe and adjust them okay and
+28:32 
+
+28:32 this Curve will get adjusted accordingly
+28:33 
+
+28:33 okay so let's suppose if
+28:35 
+
+28:35 I have till a power M so once I adjust
+28:39 
+
+28:39 these things so this is my data or the
+28:40 
+
+28:40 data that I
+28:42 
+
+28:42 had so the moment I adjust these so this
+28:44 
+
+28:44 Cur gets adjust accordingly so it
+28:46 
+
+28:46 depends on the values of these knobs
+28:48 
+
+28:48 okay so if I start with let's suppose
+28:50 
+
+28:50 something like this so if I change the
+28:52 
+
+28:52 values okay if I TW the values it will
+28:54 
+
+28:54 get a bit smoother so I'll find the
+28:55 
+
+28:55 configuration which somehow does like
+28:57 
+
+28:57 this and now this is the data I have a
+28:59 
+
+28:59 cur fitter where I just Sak these knobs
+29:02 
+
+29:02 in order to fit this Cur and now how
+29:04 
+
+29:04 good is this Cur okay how good is this
+29:06 
+
+29:06 Cur in order to find that let's suppose
+29:07 
+
+29:07 I fitted this curve somehow I had a
+29:09 
+
+29:09 curve like this oops I had a cur like
+29:11 
+
+29:11 this okay now how good or bad this curve
+29:13 
+
+29:13 is good or bad so what I'll do is I'll
+29:16 
+
+29:16 fit this I'll give this Cur onto some
+29:18 
+
+29:18 other machine I'll give this Cur to so
+29:20 
+
+29:20 this Cur will be an input to this
+29:22 
+
+29:22 machine so this machine will quantify
+29:24 
+
+29:24 how good or bad and and it'll give us a
+29:26 
+
+29:26 metric so it'll give us a metric
+29:29 
+
+29:29 okay based on which we can decide that
+29:30 
+
+29:30 this is this this curve is bad and this
+29:32 
+
+29:32 curve is good so this is actually called
+29:34 
+
+29:34 as error function so this again is a
+29:36 
+
+29:36 function this is called as error
+29:38 
+
+29:38 function what we're doing is so this C
+29:41 
+
+29:41 fitting it's a function so we're trying
+29:42 
+
+29:42 to give it these things we're trying to
+29:44 
+
+29:44 give these parameters that we want to
+29:45 
+
+29:45 learn and it's giving us an output a
+29:47 
+
+29:47 function okay the basically the curve
+29:49 
+
+29:49 that we want to fit on the data but how
+29:51 
+
+29:51 good or bad is that curve so we again
+29:53 
+
+29:53 give all these things we give that curve
+29:55 
+
+29:55 to this function okay and this is that
+29:57 
+
+29:57 and we want to give to this function so
+29:58 
+
+29:58 this function is again a machine sort of
+29:60 
+
+29:60 thing so it tells you in a metric form
+30:02 
+
+30:02 okay how good or how bad this is so what
+30:04 
+
+30:04 is one metric that we can use and how
+30:06 
+
+30:06 can we uh uh come up with that function
+30:08 
+
+30:08 okay I'll just use a simple function
+30:09 
+
+30:09 that is Thum squared so if you see so
+30:12 
+
+30:12 our points were like something like this
+30:14 
+
+30:14 I bring the code over here so let's say
+30:16 
+
+30:16 so this is what I have let's suppose I
+30:19 
+
+30:19 use something like this or maybe let's
+30:21 
+
+30:21 say something a bit smoother okay so now
+30:25 
+
+30:25 what I'll do is in order to see how good
+30:27 
+
+30:27 this curve is okay so what I can do is
+30:30 
+
+30:30 give me a second again so I'll see this
+30:33 
+
+30:33 is the actual prediction okay for this
+30:35 
+
+30:35 point for this point this is the actual
+30:37 
+
+30:37 prediction okay but my co predicted this
+30:40 
+
+30:40 so now if you can see there's a
+30:41 
+
+30:41 disparity there's a disparity between
+30:43 
+
+30:43 these two this much disparity is there
+30:46 
+
+30:46 okay and for this this much disparity is
+30:49 
+
+30:49 there and you can clearly see
+30:52 
+
+30:52 that it is making some wrong things as
+30:55 
+
+30:55 well okay maybe for this it's the loss
+30:57 
+
+30:57 is very less okay the error rate the
+30:58 
+
+30:58 error is very less so error is how far
+31:00 
+
+31:00 it was and now in order to quantify the
+31:02 
+
+31:02 error what I can say is I'll say that
+31:04 
+
+31:04 I'll say y of X let's this is N Point
+31:07 
+
+31:07 comma W okay so this is what was what
+31:10 
+
+31:10 was predicted okay and this red line is
+31:12 
+
+31:12 the prediction okay and then this was
+31:14 
+
+31:14 the actual thing this T was the actual
+31:16 
+
+31:16 thing this was the nth point for nth
+31:18 
+
+31:18 point this is what my y- value predicted
+31:20 
+
+31:20 this is my prediction function okay the
+31:22 
+
+31:22 Cur fitting algorithm and now I have to
+31:24 
+
+31:24 quantify it to how good or how bad it is
+31:26 
+
+31:26 so I'm saying this is a prediction
+31:30 
+
+31:30 and this is my original thing so I will
+31:32 
+
+31:32 subtract them okay I'll subtract them
+31:34 
+
+31:34 I'll see how far is it from the actual
+31:36 
+
+31:36 thing how far is the prediction from
+31:38 
+
+31:38 actual thing but it can be negative and
+31:40 
+
+31:40 positive in order to make it positive
+31:41 
+
+31:41 I'll square this
+31:43 
+
+31:43 thing okay so once I Square this thing
+31:46 
+
+31:46 so I'll do it for all the points I'll do
+31:47 
+
+31:47 it for all the point I'll sum up for all
+31:49 
+
+31:49 the points I'll say since this n goes
+31:51 
+
+31:51 from one to Let's suppose we have some
+31:53 
+
+31:53 end points okay so for all the points
+31:56 
+
+31:56 I'll see how much is it deviating so
+31:59 
+
+31:59 actual value I wanted this but it is
+32:00 
+
+32:00 deviating this but in order to just
+32:02 
+
+32:02 negate that thing because I don't want
+32:04 
+
+32:04 because there will be negative positive
+32:05 
+
+32:05 values I want just positive error okay
+32:07 
+
+32:07 and at the end I just will put this 1 by
+32:09 
+
+32:09 two so this 1X two is put for the
+32:11 
+
+32:11 convenience because we have to
+32:12 
+
+32:12 differentiate this we'll get into
+32:13 
+
+32:13 mathematical details and then we'll see
+32:15 
+
+32:15 this 1 by two once we differentiate it
+32:17 
+
+32:17 this cancels out okay and you can
+32:18 
+
+32:18 otherwise there is no significance why
+32:20 
+
+32:20 do I put this 1 by two okay so this will
+32:22 
+
+32:22 give me an error this will give me a
+32:24 
+
+32:24 number so this thing over here I can
+32:26 
+
+32:26 call the error function it's a error
+32:28 
+
+32:28 function so what is it again taking
+32:29 
+
+32:29 value it is taking this uh whatever I
+32:31 
+
+32:31 fit I I have these W's okay so I have a
+32:33 
+
+32:33 cur fitting algorithm I I set and twe
+32:35 
+
+32:35 these knob so I get a cur I get a cur
+32:37 
+
+32:37 out of these W's okay now take these W's
+32:40 
+
+32:40 and fit these thing into that error okay
+32:42 
+
+32:42 what I'll give you so that thing will
+32:44 
+
+32:44 give you some error for each data point
+32:45 
+
+32:45 it will tell you how far is that data
+32:47 
+
+32:47 point from the actual prediction that we
+32:48 
+
+32:48 had this is our prediction this is the
+32:50 
+
+32:50 actual thing okay now we have to square
+32:53 
+
+32:53 we see how off is that and this will be
+32:55 
+
+32:55 a number so this will quantify if the
+32:56 
+
+32:56 number is high that means this is
+32:58 
+
+32:58 missing it by a lot if this number is
+32:60 
+
+32:60 low that means we have good fit so it
+33:02 
+
+33:02 will be a range let's suppose it can
+33:03 
+
+33:03 have a value zero when it have value
+33:05 
+
+33:05 zero if all these things Willl okay if
+33:07 
+
+33:07 the predictions if this thing minus this
+33:09 
+
+33:09 thing is zero okay that means this thing
+33:11 
+
+33:11 is equal to this thing when the
+33:12 
+
+33:12 prediction is equal to the actual value
+33:14 
+
+33:14 then we will have error of zero so we
+33:16 
+
+33:16 want error as less as possible okay but
+33:19 
+
+33:19 not on the cost of memorization okay how
+33:21 
+
+33:21 many of you are understanding this so we
+33:22 
+
+33:22 have two things now we have a curve
+33:24 
+
+33:24 fitting function you just have these W
+33:26 
+
+33:26 values you adjust these W values and out
+33:28 
+
+33:28 of that you get a curve on which which
+33:31 
+
+33:31 you can fit onto this but now in order
+33:33 
+
+33:33 to quantify how good this curve is what
+33:34 
+
+33:34 you do is you came up with an error
+33:36 
+
+33:36 function you said okay I have this Cur
+33:37 
+
+33:37 now let's fix this curve okay based on
+33:39 
+
+33:39 that I'll make prediction for all the
+33:41 
+
+33:41 points I made prediction and I'll see
+33:44 
+
+33:44 what are the predictions given by this
+33:45 
+
+33:45 given by the Cur that I selected okay
+33:47 
+
+33:47 and out of these lot of curs so I'll
+33:50 
+
+33:50 select the one which has the least error
+33:52 
+
+33:52 okay so I'll call that W star so once I
+33:54 
+
+33:54 am convinced that that this e of w is
+33:57 
+
+33:57 minimal for a particular I'll call that
+33:58 
+
+33:58 optimal W star basically this is the
+34:00 
+
+34:00 optimal W I'll call that W star so here
+34:03 
+
+34:03 I got the least error okay that that I
+34:05 
+
+34:05 wanted so is this clear any questions
+34:06 
+
+34:06 still
+34:08 
+
+34:08 here the question is that we want the
+34:10 
+
+34:10 least error possible okay now the
+34:13 
+
+34:13 question that Muer asked is that uh
+34:15 
+
+34:15 because I made a comment that that error
+34:18 
+
+34:18 should not be on the cost of overfitting
+34:19 
+
+34:19 so what I mean by that is so okay if you
+34:21 
+
+34:21 see that the test error is dropping you
+34:23 
+
+34:23 can see that the error that we are
+34:25 
+
+34:25 getting up from the test set it is very
+34:27 
+
+34:27 less but when you
+34:28 
+
+34:28 sorry when you are seeing that error on
+34:30 
+
+34:30 the train data set is is dropping and it
+34:32 
+
+34:32 is very less but when you test it
+34:33 
+
+34:33 actually that the error is very high
+34:36 
+
+34:36 okay that means it has not learned it
+34:37 
+
+34:37 has just memorized the it has learned
+34:39 
+
+34:39 what it has memorized what it saw so
+34:41 
+
+34:41 that will be our metric so we basically
+34:42 
+
+34:42 want to generalize
+34:44 
+
+34:44 okay we want to
+34:50 
+
+34:50 generalize okay so what I want I want
+34:52 
+
+34:52 error as less as possible but on the
+34:54 
+
+34:54 cost of generalization not on the cost
+34:56 
+
+34:56 of memorization by that I meant so then
+34:58 
+
+34:58 you have train set when you're are
+34:60 
+
+34:60 training you'll continuously see that
+35:01 
+
+35:01 error is dropping error is dropping okay
+35:04 
+
+35:04 and then if your error is leased now so
+35:07 
+
+35:07 you have to again test it so on the test
+35:09 
+
+35:09 set if the error is very high that means
+35:11 
+
+35:11 this has somewhat memorized data it has
+35:13 
+
+35:13 not learned the actual distribution it
+35:15 
+
+35:15 has memorized all these points and we'll
+35:17 
+
+35:17 see that memorization in a short while
+35:19 
+
+35:19 so here this will be our Matrix so we
+35:20 
+
+35:20 want uh the error to be leased but when
+35:23 
+
+35:23 we also test it on the test data set
+35:26 
+
+35:26 that it should somehow give a balanced
+35:27 
+
+35:27 answer it should not be giving a lot of
+35:29 
+
+35:29 error on test data set you can see that
+35:31 
+
+35:31 if if I make a graph if you see
+35:32 
+
+35:32 something like this on test it's on
+35:34 
+
+35:34 Trend it's dropping dropping dropping
+35:36 
+
+35:36 and it's almost going near to zero but
+35:37 
+
+35:37 on the train it was uh this was on the
+35:40 
+
+35:40 train so on the test it was dropping
+35:41 
+
+35:41 dropping and it spiked over here okay
+35:43 
+
+35:43 and this point over here you can say
+35:45 
+
+35:45 that okay I should I should take a value
+35:46 
+
+35:46 over here okay because after this I can
+35:48 
+
+35:48 see training is dropping because it's
+35:50 
+
+35:50 taking all these parameters so that it
+35:52 
+
+35:52 fits the whole data that I have given it
+35:54 
+
+35:54 it fits the data that is train in the
+35:55 
+
+35:55 training set but it is not respecting
+35:57 
+
+35:57 the test set also so but we should rest
+35:59 
+
+35:59 the test set that's why we check it for
+36:02 
+
+36:02 the test loss also how much is the error
+36:03 
+
+36:03 on the test set is that
+36:08 
+
+36:08 clear yes sir makes
+36:12 
+
+36:12 sense so here what you saw is that we
+36:14 
+
+36:14 are using error we said y of this xn n
+36:18 
+
+36:18 data point comma if you have this W okay
+36:21 
+
+36:21 and then what you say is and you
+36:23 
+
+36:23 subtract it from the actual value actual
+36:25 
+
+36:25 Target and this is the predicted Target
+36:26 
+
+36:26 and this is the actual Target and you
+36:28 
+
+36:28 squared it up and you sum it with all
+36:30 
+
+36:30 the points and this n goes from uh 1 to
+36:33 
+
+36:33 n and then you add this 1 by two okay so
+36:36 
+
+36:36 this is called as mean squared
+36:38 
+
+36:38 error mean squared error not exactly
+36:43 
+
+36:43 mean right now it's just squared error
+36:45 
+
+36:45 mean we'll call it when we divide by 1
+36:46 
+
+36:46 by n okay because we are not dividing by
+36:48 
+
+36:48 1 by n right away so and we are not
+36:51 
+
+36:51 taking the average so right now it just
+36:52 
+
+36:52 squared error we're squaring the error
+36:54 
+
+36:54 okay then we're adding this multiplying
+36:55 
+
+36:55 this one by two over here again to
+36:57 
+
+36:57 retreat
+36:58 
+
+36:58 so we have two functions involved the
+36:60 
+
+36:60 first function that we have so when you
+37:02 
+
+37:02 TW these knobs when you have this W1 W2
+37:04 
+
+37:04 till let's suppose WM so you get a value
+37:06 
+
+37:06 you get a curve out of that so once you
+37:08 
+
+37:08 get the curve now you have to see how
+37:09 
+
+37:09 good that curve is so you feed that to
+37:13 
+
+37:13 this error function so this e of
+37:15 
+
+37:15 w okay this e of w is there so if you
+37:18 
+
+37:18 see this function so we had this y of x
+37:22 
+
+37:22 n comma W so this again is a function of
+37:24 
+
+37:24 w so this again is a function of w so
+37:26 
+
+37:26 this is this function we usually call as
+37:29 
+
+37:29 cost
+37:31 
+
+37:31 function okay sorry so we here over here
+37:34 
+
+37:34 so what I can do is I don't want to go
+37:35 
+
+37:35 into the cost function and that because
+37:36 
+
+37:36 otherwise it will okay so let's let's
+37:39 
+
+37:39 sort of settle on this discussion so
+37:40 
+
+37:40 this over here is my curve fitting so
+37:42 
+
+37:42 this is my curve
+37:44 
+
+37:44 fitting this cost function otherwise I
+37:46 
+
+37:46 have to teach you some more stuff so
+37:48 
+
+37:48 here this is my curve fitting and this
+37:49 
+
+37:49 is
+37:50 
+
+37:50 my this thing is my captioning error
+37:53 
+
+37:53 function so there are two functions
+37:54 
+
+37:54 involved so one function is that by the
+37:56 
+
+37:56 help of which I can find the Curve and
+37:58 
+
+37:58 then how good is that Kuru I have to
+37:59 
+
+37:59 come up with a new function okay I have
+38:01 
+
+38:01 to feed that thing now there are two
+38:03 
+
+38:03 machines one machine is telling you okay
+38:04 
+
+38:04 this is the K and second machine is
+38:05 
+
+38:05 telling you how good or bad is
+38:07 
+
+38:07 that and now if you see this the
+38:09 
+
+38:09 objective is to minimize this so that
+38:11 
+
+38:11 that's my
+38:13 
+
+38:13 objective the objective is to minimize
+38:15 
+
+38:15 this error okay so now we have some
+38:18 
+
+38:18 formulated the problem the problem was
+38:20 
+
+38:20 so you have some seene data you have to
+38:22 
+
+38:22 find a structure in the scene data you
+38:23 
+
+38:23 have to find a pattern in the scene data
+38:25 
+
+38:25 so once you learn that structure that
+38:27 
+
+38:27 pattern so you should somehow say
+38:28 
+
+38:28 something about the Unseen data you
+38:30 
+
+38:30 should say something about that uh
+38:32 
+
+38:32 Target value if you are given the input
+38:34 
+
+38:34 variable so what I did is I said okay
+38:36 
+
+38:36 I'll use a curve fitting algorithm I'll
+38:37 
+
+38:37 fit a curve onto this data okay because
+38:39 
+
+38:39 it seemed uh very trivial problem and I
+38:43 
+
+38:43 can see that curve fitting is quite a
+38:44 
+
+38:44 good match for it okay if I fit a curve
+38:46 
+
+38:46 onto that so what I did is so I said
+38:49 
+
+38:49 okay somehow can I formulate this
+38:51 
+
+38:51 problem like this so I have a curve
+38:52 
+
+38:52 fitting how good or bad is that so I
+38:54 
+
+38:54 formulating that problem like this so
+38:56 
+
+38:56 here you can see this function is also
+38:57 
+
+38:57 getting used used so this Cur fitting
+38:59 
+
+38:59 function is also getting used now how uh
+39:03 
+
+39:03 less error how can I get this less error
+39:05 
+
+39:05 so I have to minimize this function
+39:06 
+
+39:06 somehow that is the objective now the
+39:08 
+
+39:08 objective to find the value of this W so
+39:10 
+
+39:10 if I have to find the value of this W
+39:13 
+
+39:13 okay I should for that particular W
+39:15 
+
+39:15 because this W can take infinite many
+39:16 
+
+39:16 values and count by infinite values now
+39:18 
+
+39:18 the objective of the problem is to find
+39:21 
+
+39:21 that W which minimizes this error and
+39:23 
+
+39:23 again not on cost of overfitting on the
+39:25 
+
+39:25 cost of generalization so we should try
+39:27 
+
+39:27 to General
+39:28 
+
+39:28 it it can be leased for training so we
+39:30 
+
+39:30 should generalize this so we should
+39:31 
+
+39:31 minimize this error and try to
+39:36 
+
+39:36 generalize okay and that that we have a
+39:39 
+
+39:39 resulting polinom after that
+39:41 
+
+39:41 okay any questions on this yes so now
+39:45 
+
+39:45 you sol this equation if if you see this
+39:47 
+
+39:47 equation if you see this equation the
+39:49 
+
+39:49 one the first one this y x and W so we
+39:52 
+
+39:52 wrote it like this W plus uh W1 let's
+39:56 
+
+39:56 suppose X Plus W2 x² plus and so on X
+40:02 
+
+40:02 this w n or w m we wrote it w m XM so
+40:07 
+
+40:07 now we have to decide what this m should
+40:08 
+
+40:08 be okay I would I would love to show you
+40:10 
+
+40:10 a problem so that we'll see how once we
+40:12 
+
+40:12 change this m how does it see because I
+40:14 
+
+40:14 was making that picture if it's a linear
+40:16 
+
+40:16 line if it's a parabola if it's then
+40:18 
+
+40:18 what happens when we have third degree
+40:19 
+
+40:19 Pol I'll again go to the code window
+40:21 
+
+40:21 I'll show you that now after I'll take
+40:22 
+
+40:22 questions give me a
+40:26 
+
+40:26 second what can I do is I'll fit a
+40:29 
+
+40:29 polinomial again I'll use my friends M
+40:31 
+
+40:31 plot Li and numai so here this is M plot
+40:34 
+
+40:34 Li and NPI so I'll I say definition fit
+40:38 
+
+40:38 a polinomial okay definition fit
+40:40 
+
+40:40 polinomial this is my X and this is my T
+40:43 
+
+40:43 and this is my degree this is my input
+40:45 
+
+40:45 variable and this is my Target and this
+40:46 
+
+40:46 is my degree okay now I'll get this from
+40:50 
+
+40:50 in in in this nump I have a poly fit I
+40:52 
+
+40:52 can just have this polinomial fit
+40:54 
+
+40:54 algorithm so given this degree I can
+40:56 
+
+40:56 have this polinom so what I'll do is I
+40:58 
+
+40:58 I'll get the coefficients I'll say
+40:59 
+
+40:59 coefficients is equal NP poit have this
+41:01 
+
+41:01 X have this T and this degree so it will
+41:03 
+
+41:03 give me the coent it will give me these
+41:04 
+
+41:04 wly it give me directly these W's okay
+41:07 
+
+41:07 this basically the curve fitting so this
+41:08 
+
+41:08 is that curve f it will give me
+41:09 
+
+41:09 corresponding W W1 W2 something like
+41:11 
+
+41:11 that okay and then I'll get
+41:14 
+
+41:14 corresponding values to this I'll return
+41:15 
+
+41:15 this Lambda
+41:18 
+
+41:18 function okay this should work hopefully
+41:21 
+
+41:21 so this is what I'm returning after that
+41:23 
+
+41:23 so now let's call I'll fit four I'll fit
+41:25 
+
+41:25 four types of degrees I'll say when m is
+41:26 
+
+41:26 equal Z that is I have a I have a line
+41:29 
+
+41:29 okay and then I have this Parabola
+41:31 
+
+41:31 degree 3 degree 9 polinom so these are
+41:33 
+
+41:33 the things that I'll
+41:34 
+
+41:34 fit okay and I'll also plot
+41:39 
+
+41:39 it
+41:41 
+
+41:41 for Let's us generate some X continuous
+41:45 
+
+41:45 value and give me a second I'll just
+41:48 
+
+41:48 plot this with the
+41:50 
+
+41:50 same I have to adjust this code wait
+42:02 
+
+42:02 if you see this what I have done is so
+42:03 
+
+42:03 this is degree these are my degrees and
+42:05 
+
+42:05 then I have NP uh l space 01 the the X
+42:08 
+
+42:08 continuous values and
+42:10 
+
+42:10 uh then I'm fitting this polinomial
+42:12 
+
+42:12 again fit this polinomial so this is my
+42:14 
+
+42:14 function fit
+42:16 
+
+42:16 polinomial okay and then I have this AIS
+42:19 
+
+42:19 I so I have to create this AIS so what
+42:21 
+
+42:21 I'll do is I'll create figure and axis
+42:23 
+
+42:23 give me a
+42:25 
+
+42:25 second okay figure axis these many plots
+42:28 
+
+42:28 and I'll have this AIS okay now I'm
+42:31 
+
+42:31 having a pol fit polinomial this x data
+42:33 
+
+42:33 and the T okay this degree so I'm saying
+42:35 
+
+42:35 X is I give a scatter plot and Y fit is
+42:38 
+
+42:38 polinomial of this x continuous because
+42:40 
+
+42:40 I'm using a Lambda function over so you
+42:42 
+
+42:42 can see if I plot it let me just call
+42:44 
+
+42:44 this function and I'll have a function
+42:47 
+
+42:47 make
+42:48 
+
+42:48 prediction so PLT
+42:52 
+
+42:52 dot right and then I'll make predictions
+42:55 
+
+42:55 for these new values
+42:58 
+
+42:58 okay let us draw this yes you can see
+43:01 
+
+43:01 this so when M was zero so when M was
+43:03 
+
+43:03 Zero you can clearly see a line it just
+43:05 
+
+43:05 is passing through two points okay
+43:06 
+
+43:06 nothing man there's a lot of error in
+43:09 
+
+43:09 here and then when again when m m was
+43:11 
+
+43:11 one so it became a line and a little bit
+43:14 
+
+43:14 sloped and now after that you can see
+43:16 
+
+43:16 when M was three when we had a third
+43:17 
+
+43:17 degree polinomial okay it gave a sign
+43:19 
+
+43:19 when M was n you can see it gave error
+43:22 
+
+43:22 almost zero but it it is passing exactly
+43:24 
+
+43:24 through all the points okay it is
+43:25 
+
+43:25 overfitting so this over here is
+43:26 
+
+43:26 overfitting
+43:28 
+
+43:28 again iterate this so when M was equal Z
+43:31 
+
+43:31 so this is the thing that it found okay
+43:33 
+
+43:33 and this is by NP that poit and when M
+43:35 
+
+43:35 was equal one this is the line it found
+43:37 
+
+43:37 okay when M was equal 3 because we're
+43:38 
+
+43:38 adjusting those we're adjusting that
+43:40 
+
+43:40 value of M so what uh degree of polom do
+43:42 
+
+43:42 we want when M was equal to 3 this is
+43:44 
+
+43:44 what it uh gave us and then when M was
+43:47 
+
+43:47 equal to 99 and it it actually gave the
+43:49 
+
+43:49 error of zero but this is actually
+43:51 
+
+43:51 overfitting so if you see on the on
+43:53 
+
+43:53 these predictions you can see that uh
+43:55 
+
+43:55 then uh this uh once we once we have the
+43:58 
+
+43:58 values which are uh we just have these
+43:60 
+
+43:60 input values it will make a lot of a lot
+44:02 
+
+44:02 of
+44:02 
+
+44:02 mispredictions okay this is the effect
+44:04 
+
+44:04 of M okay so this uh we will see this
+44:07 
+
+44:07 model comp again so how many of you
+44:09 
+
+44:09 understood this so once I was uh
+44:11 
+
+44:11 changing the value of this m because I
+44:13 
+
+44:13 took how many degrees I took degree zero
+44:16 
+
+44:16 I took uh 1 3 and 9 if I can uh check
+44:19 
+
+44:19 with two Also let's suppose I have
+44:20 
+
+44:20 degree two as well let's suppose this is
+44:22 
+
+44:22 two and this is
+44:24 
+
+44:24 one so here you can see this graph
+44:27 
+
+44:27 changes so this is
+44:28 
+
+44:28 let's suppose degree 1 2 doesn't make
+44:30 
+
+44:30 much difference you can see degree 3 and
+44:32 
+
+44:32 degree 9 okay if you if you keep on
+44:34 
+
+44:34 increasing you are basically increasing
+44:35 
+
+44:35 the power of polinomial you were
+44:36 
+
+44:36 initially with W plus w1x okay then you
+44:40 
+
+44:40 were with W plus W1 X and then plus and
+44:44 
+
+44:44 then it x square and with the
+44:45 
+
+44:45 coefficients it coefficients and then
+44:47 
+
+44:47 this was a 9 degree polinomial okay it
+44:49 
+
+44:49 completely fit it and why because 90°
+44:52 
+
+44:52 polinomial had actually 10 parameters to
+44:54 
+
+44:54 learn and these 10 parameters learned
+44:56 
+
+44:56 each the data point that's why it
+44:57 
+
+44:57 perfectly fitted it okay and it passed
+44:59 
+
+44:59 through all of these points if you can
+45:01 
+
+45:01 see it over here okay it passed through
+45:03 
+
+45:03 all these points that's why it was able
+45:04 
+
+45:04 to actually uh pass through each and
+45:06 
+
+45:06 every point but the problem over here is
+45:08 
+
+45:08 it is not a good prediction the problem
+45:09 
+
+45:09 is that it overfit the it tried to
+45:11 
+
+45:11 memorize the data so here if you see m
+45:13 
+
+45:13 is equal three was bit better if you can
+45:15 
+
+45:15 see logically from here okay m isal 9
+45:17 
+
+45:17 gave error of zero but it was on the
+45:19 
+
+45:19 cost of Orit it's memorized data because
+45:21 
+
+45:21 it can tune the parameters all these W
+45:23 
+
+45:23 the parameters here where this W W1 W2
+45:26 
+
+45:26 till let's suppose w so all these
+45:28 
+
+45:28 parameters were tweaked such that it
+45:30 
+
+45:30 passes through all these points but we
+45:32 
+
+45:32 don't we don't want that we want
+45:33 
+
+45:33 generalization this m is equal 3 was a
+45:35 
+
+45:35 better generalization than this m 9 yes
+45:38 
+
+45:38 I think Aran has a question can somebody
+45:39 
+
+45:39 read it for
+45:44 
+
+45:44 me so what I have done over here is if
+45:46 
+
+45:46 you see in the code I have just used the
+45:47 
+
+45:47 numpy's
+45:48 
+
+45:48 polyfit okay so this polyfit because
+45:51 
+
+45:51 this error function you have to minimize
+45:53 
+
+45:53 the error function and this error
+45:54 
+
+45:54 function is in let's suppose the Power
+45:57 
+
+45:57 of Two okay it's a quadratic if you see
+45:59 
+
+45:59 it is quadratic when you differentiate
+45:60 
+
+45:60 it will become linear and you can get a
+46:02 
+
+46:02 close from equation out of that once you
+46:03 
+
+46:03 get close from equation you can get the
+46:05 
+
+46:05 direct values from these W's okay you
+46:07 
+
+46:07 can get these direct values of w that's
+46:09 
+
+46:09 what this NP uh this poit does so when
+46:12 
+
+46:12 you see this I have to get coefficients
+46:14 
+
+46:14 when you say NP poly fit it does not do
+46:16 
+
+46:16 it automatically it is basically done by
+46:18 
+
+46:18 numai so numai is implemented algorithm
+46:19 
+
+46:19 by the help of which it is Tred to fit
+46:21 
+
+46:21 it tries to find those coefficients and
+46:22 
+
+46:22 these coefficients are W W1 till till
+46:25 
+
+46:25 the degree of Pol whatever degree you
+46:27 
+
+46:27 have have used okay that's why I'm
+46:28 
+
+46:28 giving degree as well okay once I have
+46:31 
+
+46:31 that and after that I I'm trying to see
+46:33 
+
+46:33 okay if I increase the degree now okay
+46:34 
+
+46:34 in this basically I'm giving only one
+46:36 
+
+46:36 coefficient I'm giving two coefficients
+46:38 
+
+46:38 now I'm giving three coefficients okay
+46:39 
+
+46:39 even uh here I'm giving two coefficients
+46:42 
+
+46:42 I'm giving three coefficients so this is
+46:44 
+
+46:44 uh the one I'm giving here let me just
+46:47 
+
+46:47 see if it's visible so this over here so
+46:49 
+
+46:49 here I have to learn W not okay and uh
+46:52 
+
+46:52 then w1x okay this is linear so here I'm
+46:55 
+
+46:55 learning three coefficients w
+46:59 
+
+46:59 if I am correct so here I'm learning two
+47:01 
+
+47:01 coefficients I'm learning three and then
+47:03 
+
+47:03 going back here I'm learning four and
+47:05 
+
+47:05 I'm learning five 10 coefficient so this
+47:07 
+
+47:07 is uh this is let's suppose three I'm
+47:10 
+
+47:10 here I having three degree polinomial so
+47:12 
+
+47:12 I have four coefficients to learn so in
+47:14 
+
+47:14 the 10th 9th degree polinomial so I have
+47:16 
+
+47:16 uh 10 things to learn so 10 coefficients
+47:18 
+
+47:18 to learn so that's what this code is
+47:20 
+
+47:20 doing over here if you see it over
+47:23 
+
+47:23 here when when when I call this polyfit
+47:26 
+
+47:26 it learns those Co so in the first
+47:28 
+
+47:28 example we just had two coefficients
+47:29 
+
+47:29 learned W not and W1 so once we increase
+47:32 
+
+47:32 the degree so degree plus one number of
+47:33 
+
+47:33 coefficients are there to learn so what
+47:35 
+
+47:35 I said is the important point I made is
+47:37 
+
+47:37 what over here so when I add this n n9th
+47:40 
+
+47:40 degree polinom so it gave it a n degree
+47:42 
+
+47:42 of Freedom okay but what happened it
+47:44 
+
+47:44 tweaked these W not to W9 in such a that
+47:47 
+
+47:47 it it actually made them pass through
+47:49 
+
+47:49 all the points this is bad actually why
+47:51 
+
+47:51 is it bad because I tried to memorize
+47:53 
+
+47:53 this is called memorization or this is
+47:55 
+
+47:55 what is overfitting in data because I
+47:56 
+
+47:56 gave it so much degree of Freedom so
+47:58 
+
+47:58 that what happened basically is it tried
+47:60 
+
+48:00 to tweak the parameters tried to tweak
+48:02 
+
+48:02 this W not W until W9 such that
+48:04 
+
+48:04 everything every Point gets through that
+48:06 
+
+48:06 curve okay but it is not generalization
+48:09 
+
+48:09 because when you let's suppose give a
+48:10 
+
+48:10 point over here so if you give a point
+48:11 
+
+48:11 that's actually on the sign curve so
+48:13 
+
+48:13 this point let's suppose or the point
+48:15 
+
+48:15 which was following some because sign
+48:16 
+
+48:16 Curve will look something like this okay
+48:19 
+
+48:19 something like this so you can see all
+48:20 
+
+48:20 these points it will fail deduct but
+48:22 
+
+48:22 over here you see a much more sign like
+48:24 
+
+48:24 shape over here when M was equal three
+48:26 
+
+48:26 but there's a contradiction okay I'll
+48:27 
+
+48:27 leave you with a question the question
+48:30 
+
+48:30 is more the parameters so okay
+48:32 
+
+48:32 overfitting is happening so should I
+48:33 
+
+48:33 decrease parameters okay should I
+48:35 
+
+48:35 decrease parameter if I decrease the
+48:36 
+
+48:36 parameter doesn't it mean that I'm
+48:38 
+
+48:38 limiting the learning capability okay if
+48:41 
+
+48:41 I decrease the parameter does it mean
+48:42 
+
+48:42 I'm limiting limiting the capability
+48:44 
+
+48:44 okay if I limit the capability okay what
+48:46 
+
+48:46 if I if I don't want to limit the
+48:47 
+
+48:47 capability if I want to keep the
+48:48 
+
+48:48 parameters as high so what should I do
+48:50 
+
+48:50 after that okay so here I introduced
+48:52 
+
+48:52 many Concepts I introduced okay what how
+48:55 
+
+48:55 this how can we how can we think this
+48:57 
+
+48:57 distribution of because data can be
+48:58 
+
+48:58 thought of information and information
+48:59 
+
+48:59 can be that can be a pattern and there
+49:01 
+
+49:01 can be a noise that's what I introduced
+49:03 
+
+49:03 and then we said okay if we have to fit
+49:04 
+
+49:04 an algorithm it can be a simple curve
+49:06 
+
+49:06 fitting algorithm and then we should
+49:07 
+
+49:07 have a notion of how good is that alith
+49:09 
+
+49:09 how good result are we getting that's we
+49:11 
+
+49:11 inod error functions there and now I'm
+49:13 
+
+49:13 leaving with your question the question
+49:14 
+
+49:14 is once I'm increasing this number of
+49:16 
+
+49:16 parameters because I'm making the Cur
+49:17 
+
+49:17 more complex you can see that it is
+49:19 
+
+49:19 overfitting the data is it bad or good
+49:21 
+
+49:21 so if introducing more parameters is
+49:23 
+
+49:23 making it overit is making the algorithm
+49:25 
+
+49:25 to overit is making the alith data so it
+49:28 
+
+49:28 is good to reduce the parameters or
+49:30 
+
+49:30 should I keep the parameters same
+49:31 
+
+49:31 because if it gives me more learning
+49:33 
+
+49:33 capabilities and what should I do then
+49:36 
+
+49:36 okay is there can there be a solution
+49:38 
+
+49:38 okay you should not search it on the web
+49:39 
+
+49:39 otherwise you'll get it I'll leave you
+49:40 
+
+49:40 with this question I'll stop the
+49:41 
+
+49:41 recording over
+49:49 
+
+49:49 here hello and welcome so we have been
+49:52 
+
+49:52 discussing about machine
+49:53 
+
+49:53 learning okay so in machine learning
+49:56 
+
+49:56 what we have done is so we started with
+49:58 
+
+49:58 a synic example so in that what I said
+49:60 
+
+49:60 is I said if you have to create a data
+50:02 
+
+50:02 let's suppose in that uh we we generated
+50:05 
+
+50:05 our own data by using a function sin 2
+50:07 
+
+50:07 pix this is just the uh like high level
+50:11 
+
+50:11 summary what we have discussed in the
+50:13 
+
+50:13 previous lecture okay and this lecture
+50:15 
+
+50:15 will follow the previous lecture so in
+50:16 
+
+50:16 machine learning we we said okay
+50:18 
+
+50:18 everything works on data so now in order
+50:19 
+
+50:19 to understand the data so what we assume
+50:21 
+
+50:21 is that this data actually comes from a
+50:22 
+
+50:22 distribution so there is there is some
+50:24 
+
+50:24 generating function there is some
+50:27 
+
+50:27 generating
+50:31 
+
+50:31 function and this is this is the trend
+50:33 
+
+50:33 that we want to have this is the trend
+50:34 
+
+50:34 or this is the pattern I call the trend
+50:37 
+
+50:37 usually the pattern you have and with
+50:39 
+
+50:39 this pattern you have the noise in real
+50:41 
+
+50:41 world okay then what we did is we
+50:43 
+
+50:43 generate data by using sin 2 pix and
+50:45 
+
+50:45 then we added some noise with this we
+50:47 
+
+50:47 also wrote the code for that so we
+50:49 
+
+50:49 generated the data points so in that we
+50:51 
+
+50:51 had this x this was the input
+50:54 
+
+50:54 variable and then we had a Target
+50:56 
+
+50:56 variable t this was the target
+51:02 
+
+51:02 variable and then what we said is we
+51:04 
+
+51:04 said once we have this the goal is now
+51:06 
+
+51:06 if you have this data input variable so
+51:08 
+
+51:08 you you train a machine learning model
+51:09 
+
+51:09 you you find an algorithm so you will
+51:12 
+
+51:12 now have two types of uh sets of data so
+51:14 
+
+51:14 first you'll be having a training
+51:16 
+
+51:16 set then you'll be having a testing set
+51:18 
+
+51:18 test set let's suppose we had 10 points
+51:21 
+
+51:21 over here and we have let's suppose 100
+51:22 
+
+51:22 points or maybe let's Five Points I'll
+51:24 
+
+51:24 keep it realistic The Strain set you'll
+51:26 
+
+51:26 have to find algorithm so that you show
+51:28 
+
+51:28 this data the data that you have or the
+51:30 
+
+51:30 data you generated you want to learn
+51:32 
+
+51:32 this pattern you want to learn this
+51:33 
+
+51:33 pattern you want to learn this
+51:34 
+
+51:34 generating function the function or the
+51:36 
+
+51:36 distribution that this data came from
+51:37 
+
+51:37 you want to learn that and you have to
+51:39 
+
+51:39 train algorithm based on that but how
+51:41 
+
+51:41 that should be trained so that when you
+51:43 
+
+51:43 test it on the test set so somehow it
+51:44 
+
+51:44 should be generic enough to generalize
+51:46 
+
+51:46 on the test set so when you are testing
+51:48 
+
+51:48 it on the inputs for which the target is
+51:50 
+
+51:50 not given you should be able to come up
+51:52 
+
+51:52 with the target okay that was the goal
+51:53 
+
+51:53 we had okay to predict the T for the
+51:56 
+
+51:56 Unseen data so the goal you should keep
+51:58 
+
+51:58 in
+51:59 
+
+51:59 mind is to
+52:01 
+
+52:01 predict the Target that is
+52:05 
+
+52:05 T
+52:08 
+
+52:08 Target for unseen
+52:14 
+
+52:14 data and then I showed you the process
+52:16 
+
+52:16 how to generate this data and we should
+52:19 
+
+52:19 not sort of uh overit the data and we we
+52:22 
+
+52:22 saw a lot of these things we saw
+52:23 
+
+52:23 visualizations and then what we were
+52:25 
+
+52:25 were doing is we actually res to the
+52:27 
+
+52:27 curve fitting we said okay if this is if
+52:29 
+
+52:29 we have the data so we'll fit a curve on
+52:32 
+
+52:32 the data we res to curve fitting if you
+52:35 
+
+52:35 remember this I'll just show you the
+52:37 
+
+52:37 code window so that
+52:40 
+
+52:40 you so if you see it over
+52:43 
+
+52:43 here this was the code that we
+52:46 
+
+52:46 wrote this is the data that we generated
+52:48 
+
+52:48 so this is the generation of the data I
+52:49 
+
+52:49 showed you how we gener the data and
+52:51 
+
+52:51 after that we said okay now we want to
+52:53 
+
+52:53 fit the curve okay so after we fitting
+52:56 
+
+52:56 the curve I said what you can do is you
+52:58 
+
+52:58 have to choose this m okay because you
+52:60 
+
+52:60 are you are having the curve fitting
+53:01 
+
+53:01 algorithm and you have now different
+53:03 
+
+53:03 values of M so if I write the equations
+53:05 
+
+53:05 the equation that I think uh there was
+53:08 
+
+53:08 let
+53:09 
+
+53:09 me just hide this again so as the
+53:13 
+
+53:13 equation this curve fitting so we so
+53:14 
+
+53:14 there are two things now there is this
+53:16 
+
+53:16 Cur fitting you have this Y and you are
+53:18 
+
+53:18 given this x okay and what you have to
+53:20 
+
+53:20 find you have to find W so you have to
+53:22 
+
+53:22 find these W so the equation basically
+53:25 
+
+53:25 you you wanted is W plus plus then you
+53:28 
+
+53:28 had W1 X Plus W2
+53:31 
+
+53:31 x² plus and so on till w m XM okay this
+53:36 
+
+53:36 is what we want to find so I said this
+53:38 
+
+53:38 is sort of a linear combination you can
+53:40 
+
+53:40 have a line you can have a parabola you
+53:42 
+
+53:42 can have degree order 3 equation
+53:44 
+
+53:44 something like this let's say and you
+53:46 
+
+53:46 you somehow have the combination of all
+53:49 
+
+53:49 of these in order to find the curve so
+53:50 
+
+53:50 we are in a pursuit to find the sin 2
+53:54 
+
+53:54 pix so this is the pursuit that we
+53:56 
+
+53:56 wanted to to find okay so this is what
+53:59 
+
+53:59 we did for that so we say once you have
+54:01 
+
+54:01 to set this W now so even you can use
+54:04 
+
+54:04 the 0 de polinomial 1° 2 de 3°
+54:07 
+
+54:07 polinomial so that's where this m came
+54:09 
+
+54:09 from this is called as model selection
+54:10 
+
+54:10 so when you selecting the model that's
+54:12 
+
+54:12 why we set
+54:14 
+
+54:14 this so now you have the data so you
+54:17 
+
+54:17 have degrees you can start with degree 1
+54:19 
+
+54:19 degree 2 degree 3 and degre 9 so in this
+54:22 
+
+54:22 what you can see is this is degree 1
+54:24 
+
+54:24 this is let's suppose degree 2 and then
+54:26 
+
+54:26 we have equal 3 m is equal 9 so you saw
+54:28 
+
+54:28 this m is 3 is good so this is
+54:30 
+
+54:30 underfitting so we call this as
+54:31 
+
+54:31 overfitting okay and then we had we
+54:33 
+
+54:33 asked a lot of questions about this
+54:35 
+
+54:35 curve fitting and stuff like that so
+54:37 
+
+54:37 we'll take the things from here okay so
+54:40 
+
+54:40 I just uh so I revise all of this
+54:43 
+
+54:43 thing okay now what we have is we have
+54:46 
+
+54:46 two functions the first function was the
+54:48 
+
+54:48 function of curve fitting by the help of
+54:50 
+
+54:50 which we're fitting the curve so we have
+54:51 
+
+54:51 to adjust we have to find the W's find
+54:53 
+
+54:53 these W's okay in this so if you see the
+54:56 
+
+54:56 equation so this is our equation so in
+54:57 
+
+54:57 this uh this x is the data point that
+54:60 
+
+54:60 this x is the inut feature that we have
+55:02 
+
+55:02 and we have to find these W's let's so
+55:04 
+
+55:04 suppose if we use m isal 3 so by this I
+55:07 
+
+55:07 mean I'll use a cubic polinomial so what
+55:09 
+
+55:09 I'm doing is I'll say
+55:10 
+
+55:10 w+
+55:12 
+
+55:12 w1x + W2 x² + W3 X Cub so this is what
+55:19 
+
+55:19 by by the help of which I want to
+55:20 
+
+55:20 approximate s of 2
+55:23 
+
+55:23 pix by using this so here if you see the
+55:27 
+
+55:27 x is are known so these things are known
+55:29 
+
+55:29 to
+55:29 
+
+55:29 us okay so what we have to find so we
+55:32 
+
+55:32 have to find W W1 W2 and W3 this is what
+55:37 
+
+55:37 we have to find okay we can write them
+55:38 
+
+55:38 in a vector form W W1 W2 and W3 so this
+55:44 
+
+55:44 we named as W okay so these were our
+55:50 
+
+55:50 parameters so this is our function so
+55:52 
+
+55:52 this was our Cur fitting function so we
+55:54 
+
+55:54 had two functions now we have Cur
+55:56 
+
+55:56 fitting function the second function
+55:57 
+
+55:57 that we discussed about is how good is
+55:59 
+
+55:59 this so if you found these W's now you
+56:01 
+
+56:01 want to evaluate how good is that so
+56:03 
+
+56:03 this was our curve
+56:05 
+
+56:05 fitting we are fitting a curve so the
+56:08 
+
+56:08 problem is fit the curve so that it
+56:10 
+
+56:10 approximates this sin 2 pix so now in
+56:12 
+
+56:12 order to see how better is this so we
+56:14 
+
+56:14 found an error
+56:16 
+
+56:16 function error
+56:18 
+
+56:18 function if I make a small flowchart
+56:21 
+
+56:21 okay so how the problem goes so you have
+56:23 
+
+56:23 a machine like this in which you feed
+56:26 
+
+56:26 the data you have the data okay this
+56:28 
+
+56:28 machine actually has knobs and eyes so
+56:30 
+
+56:30 it has this W not W1 W2 and so on
+56:34 
+
+56:34 parameter still let's suppose WM so
+56:36 
+
+56:36 these were the knobs okay so from this
+56:38 
+
+56:38 actually this will give you a this will
+56:40 
+
+56:40 give you a
+56:41 
+
+56:41 function or or approxim approximation
+56:44 
+
+56:44 function okay you are just giving data
+56:46 
+
+56:46 and based on this you're adjusting the
+56:48 
+
+56:48 knobs and dials so that you try to tune
+56:50 
+
+56:50 this whole function so that it
+56:52 
+
+56:52 represents your function that that that
+56:53 
+
+56:53 you have the generating function so now
+56:55 
+
+56:55 how good this is so what you basically
+56:57 
+
+56:57 do is you give this W's all of these W's
+56:60 
+
+56:60 are given to end under machine okay and
+57:03 
+
+57:03 function so function basically is like a
+57:05 
+
+57:05 machine so this over here is called as
+57:08 
+
+57:08 error
+57:09 
+
+57:09 function okay don't confuse between two
+57:11 
+
+57:11 functions the first function is there
+57:13 
+
+57:13 which is actually fitting the curve to
+57:15 
+
+57:15 the data and the second thing is saying
+57:16 
+
+57:16 how better is that curve okay it's it's
+57:18 
+
+57:18 trying to find the error so here eror it
+57:20 
+
+57:20 gives a
+57:22 
+
+57:22 number usually it gives a number so this
+57:24 
+
+57:24 number tells you how better
+57:25 
+
+57:25 approximation this is so that we checked
+57:27 
+
+57:27 with so when M was equal to Let's
+57:29 
+
+57:29 suppose 0 m was equal to 1 M was equal
+57:32 
+
+57:32 to let's say 2 or 3 m was equal to 9 we
+57:36 
+
+57:36 said we saw how better these things were
+57:39 
+
+57:39 now two functions again one is our curve
+57:41 
+
+57:41 fitting function and the second function
+57:43 
+
+57:43 is our error function so error function
+57:44 
+
+57:44 tells it quantifies how good your
+57:46 
+
+57:46 approximation is or how good these
+57:48 
+
+57:48 values of W's are okay so we boil down a
+57:51 
+
+57:51 problem to this so we said y of xn comma
+57:54 
+
+57:54 w
+57:56 
+
+57:56 okay so let's suppose this is our
+57:57 
+
+57:57 approximation given any input any input
+57:60 
+
+57:60 xn or x i so whatever you call it so
+58:03 
+
+58:03 this value minus then TN so this is the
+58:05 
+
+58:05 actual Target so this was the actual
+58:07 
+
+58:07 Target so you want to see how far this
+58:09 
+
+58:09 was so in order to make a diagram let's
+58:10 
+
+58:10 suppose because you want to approximate
+58:12 
+
+58:12 let's say this function okay now you
+58:15 
+
+58:15 have this function you come up with
+58:16 
+
+58:16 something function like this now if you
+58:17 
+
+58:17 see this if you see a point on this and
+58:20 
+
+58:20 if you see a point on this so this is
+58:21 
+
+58:21 how much it's off this is the distance
+58:23 
+
+58:23 actual thing should have been this but
+58:25 
+
+58:25 it's actually this so here here actual
+58:27 
+
+58:27 thing should have been this but it is
+58:28 
+
+58:28 this and actual thing in here should
+58:30 
+
+58:30 have been this but it is this so there
+58:31 
+
+58:31 is some
+58:33 
+
+58:33 discrepancy there is some error as said
+58:35 
+
+58:35 with this so that's why we want to
+58:37 
+
+58:37 quantify how how much that error is so
+58:39 
+
+58:39 what we said is this is my
+58:41 
+
+58:41 prediction okay and this is the actual
+58:43 
+
+58:43 value or the True Value so I'll just
+58:45 
+
+58:45 subtract them I'll see how far they are
+58:47 
+
+58:47 but you know that the distance can be
+58:48 
+
+58:48 negative positive in this case but I
+58:50 
+
+58:50 want to because I calculating error so I
+58:52 
+
+58:52 want to make it positive so what I'm
+58:53 
+
+58:53 doing is I'm squaring the term up once
+58:56 
+
+58:56 I'm squaring this up now I'm doing it
+58:58 
+
+58:58 for all the values so for that I added
+58:60 
+
+59:00 the summation summation of n goes from 1
+59:02 
+
+59:02 to n for all the data points okay then I
+59:05 
+
+59:05 said I'll just add this 1X two over here
+59:07 
+
+59:07 for the uh because this is a
+59:10 
+
+59:10 differentiable function and we have
+59:11 
+
+59:11 differentiated and if you know the
+59:12 
+
+59:12 differentiation a bit so that's why I
+59:13 
+
+59:13 want these twos to cancel okay this I
+59:15 
+
+59:15 called as squared
+59:17 
+
+59:17 error squ error
+59:21 
+
+59:21 function based on this I wanted to see
+59:23 
+
+59:23 okay given the given the values of
+59:25 
+
+59:25 particular W I want to see how how much
+59:26 
+
+59:26 error is there so for that we chose
+59:29 
+
+59:29 different values of oops so we chose the
+59:31 
+
+59:31 different values of uh these M's that's
+59:34 
+
+59:34 a code we have written in the previous
+59:36 
+
+59:36 session so if you see this this is m is
+59:38 
+
+59:38 equal 1 this is m is equal 2 m is equal
+59:39 
+
+59:39 3 m is equal 9 okay this is what where
+59:42 
+
+59:42 we were at now what I said is I said
+59:44 
+
+59:44 this m is equal 9 was overfitting
+59:47 
+
+59:47 because because it was going exactly
+59:48 
+
+59:48 through all the points so it was
+59:49 
+
+59:49 actually capturing noise as well so so I
+59:52 
+
+59:52 said how to deal with this so there was
+59:54 
+
+59:54 a contradiction question so more the
+59:55 
+
+59:55 parameters so it's should learn actually
+59:57 
+
+59:57 more and the other question there are
+59:58 
+
+59:58 two paradoxes okay which at least when I
+60:00 
+
+60:00 was learning I could find these
+60:02 
+
+60:02 paradoxes the first Paradox was
+60:06 
+
+60:06 oops the first Paradox was because m is
+60:10 
+
+60:10 equal 9 if you remember this at M is
+60:11 
+
+60:11 equal 9 we called it overfitting why
+60:13 
+
+60:13 because it was tuning to data too much
+60:16 
+
+60:16 it was capturing noise as well it was
+60:18 
+
+60:18 not generalizing that's why we call it
+60:20 
+
+60:20 overfit the first problem was it has
+60:22 
+
+60:22 more parameters it
+60:24 
+
+60:24 has uh more parameters
+60:29 
+
+60:29 so doesn't it seem that if R if we
+60:31 
+
+60:31 reduce the parameter we are reducing the
+60:33 
+
+60:33 model complexity okay so if it has more
+60:37 
+
+60:37 parameters uh does it
+60:40 
+
+60:40 mean we should have less
+60:46 
+
+60:46 parameters okay this is the first
+60:48 
+
+60:48 question a natural question that should
+60:49 
+
+60:49 occur to you to you people that if it
+60:52 
+
+60:52 was it has more parameters so it was
+60:54 
+
+60:54 overfitting so does that mean I should
+60:56 
+
+60:56 come up with less parameter so that it
+60:57 
+
+60:57 does not overfit and it actually
+61:00 
+
+61:00 generalizes this was the first question
+61:01 
+
+61:01 I asked the second question was there
+61:04 
+
+61:04 doesn't it seem counterintuitive that
+61:07 
+
+61:07 you have a function you have a
+61:09 
+
+61:09 polinomial of degree 9 but don't you
+61:11 
+
+61:11 think that all the other degrees can be
+61:12 
+
+61:12 represent let's suppose if I have degree
+61:15 
+
+61:15 m is equal 3 which which we said it's
+61:17 
+
+61:17 the best fit this was a good curve in
+61:19 
+
+61:19 that so don't you think that this m is
+61:21 
+
+61:21 equal 9 is some somehow superet or
+61:23 
+
+61:23 somehow super encompassing this function
+61:25 
+
+61:25 also so it should it it looks contr to
+61:27 
+
+61:27 Total C having more parameters why is it
+61:30 
+
+61:30 not performing good okay that the second
+61:31 
+
+61:31 question we
+61:34 
+
+61:34 have let
+61:36 
+
+61:36 me this so what I said is the second
+61:38 
+
+61:38 question we had is
+61:40 
+
+61:40 so doesn't it seem counter
+61:49 
+
+61:49 intuitive
+61:51 
+
+61:51 intuition it doesn't it seem
+61:53 
+
+61:53 counterintuitive because this m is equal
+61:55 
+
+61:55 9 should some
+61:57 
+
+61:57 engulf m is equal 3 why is it doing so
+62:00 
+
+62:00 why is the battery fit at M is equal 3
+62:04 
+
+62:04 and not m is equal 9 also
+62:07 
+
+62:07 okay so initially as this higher po if
+62:11 
+
+62:11 you see inherently include all these
+62:12 
+
+62:12 lower order polinomial okay and uh
+62:15 
+
+62:15 theoretically it should at least perform
+62:17 
+
+62:17 good at least perform as good as m is
+62:18 
+
+62:18 equal 3 okay how many of you you think
+62:20 
+
+62:20 that it seems counter intive because
+62:22 
+
+62:22 what I said is that this High degree
+62:24 
+
+62:24 polinomial m equal 9 is a high degree
+62:25 
+
+62:25 polinomial okay okay it includes all the
+62:28 
+
+62:28 all the others are somehow the special
+62:30 
+
+62:30 cases of it okay the lower degree
+62:32 
+
+62:32 polinomial so theoretically at least
+62:34 
+
+62:34 this should perform as good as m is
+62:36 
+
+62:36 equal 3 okay and this data was generated
+62:38 
+
+62:38 using the function sin 2 Pix One one
+62:40 
+
+62:40 more thing is there so we should expect
+62:42 
+
+62:42 that uh this predictor at least the the
+62:46 
+
+62:46 m isal 9 function should approximate it
+62:48 
+
+62:48 better so because if you know Taylor
+62:49 
+
+62:49 series so when you expand these things
+62:51 
+
+62:51 into these Powers so the better the more
+62:53 
+
+62:53 terms you have the better approximations
+62:55 
+
+62:55 you have okay so uh we'll see this
+62:58 
+
+62:58 expansion also I'm throwing too much
+62:60 
+
+62:60 maths at you right now but I hope
+63:02 
+
+63:02 someday
+63:04 
+
+63:04 you'll expansion so what I'm saying is
+63:07 
+
+63:07 the more degrees the more degree
+63:09 
+
+63:09 polinomial you have the better
+63:10 
+
+63:10 approximation you get so we'll see that
+63:11 
+
+63:11 in tailor
+63:14 
+
+63:14 series okay so it again seems contentive
+63:17 
+
+63:17 so now we'll examine why why is it so
+63:19 
+
+63:19 okay I told you guys to uh sort of
+63:22 
+
+63:22 ponder over it contemplate on these
+63:23 
+
+63:23 things okay I hope you you have done
+63:25 
+
+63:25 that okay let me give you the answers
+63:27 
+
+63:27 why why it happens why does it happen so
+63:29 
+
+63:29 now we'll examine the values of these
+63:31 
+
+63:31 W's we'll see so once we have these
+63:34 
+
+63:34 degree different degree polins what are
+63:35 
+
+63:35 the value of these W's okay let me just
+63:39 
+
+63:39 write some simple lines of code now
+63:41 
+
+63:41 we'll Resort we not go to this error we
+63:43 
+
+63:43 actually go to root mean square error so
+63:45 
+
+63:45 root mean RMS value so what is RMS so
+63:47 
+
+63:47 again you have predictor values y x
+63:49 
+
+63:49 comma W okay minus t of n so this is xn
+63:52 
+
+63:52 and you will Square it okay till here it
+63:54 
+
+63:54 was squared error okay now for all the
+63:58 
+
+63:58 points this is n is equal 1 to n for all
+64:02 
+
+64:02 now if I have take mean so I'll take
+64:05 
+
+64:05 mean by this I just divide it by the
+64:07 
+
+64:07 number of samples or number data points
+64:09 
+
+64:09 if I take root mean Square I'll apply a
+64:11 
+
+64:11 root okay again I I'm telling you
+64:14 
+
+64:14 mathematics is poetry you should read it
+64:15 
+
+64:15 like poetry okay so this yxn comma w
+64:19 
+
+64:19 means prediction you are giving the
+64:20 
+
+64:20 value xn you have certain W's and this
+64:22 
+
+64:22 is giving a value and this is the
+64:23 
+
+64:23 predicted value so when you're squaring
+64:25 
+
+64:25 it up that means you are trying to find
+64:26 
+
+64:26 the distance but it's a positive
+64:28 
+
+64:28 distance okay this is squared error okay
+64:30 
+
+64:30 now what you are doing is you are
+64:31 
+
+64:31 applying summation this is doing for all
+64:33 
+
+64:33 the points okay after that you want to
+64:35 
+
+64:35 find mean of that so for that you are
+64:37 
+
+64:37 dividing by n you dividing by total
+64:38 
+
+64:38 number of points now in order to have on
+64:40 
+
+64:40 the same scale because it will Square
+64:42 
+
+64:42 this up in order to have it on the same
+64:43 
+
+64:43 footage on the same scale so we are uh
+64:46 
+
+64:46 applying the square root so that the
+64:47 
+
+64:47 square gets canceled after we calculate
+64:49 
+
+64:49 this so you you are putting the under
+64:51 
+
+64:51 root so that if you are having a metric
+64:53 
+
+64:53 you know if you have meter and you apply
+64:54 
+
+64:54 Square you'll get meter Square something
+64:55 
+
+64:55 like this so now in order to sfy that
+64:58 
+
+64:58 effect you are putting this a root over
+64:60 
+
+64:60 here this is called as RMS root means
+65:01 
+
+65:01 Square so this is called as RMS e root
+65:04 
+
+65:04 mean squared error this is the first
+65:06 
+
+65:06 thing this is squared error and it was
+65:07 
+
+65:07 mean so this thing was squared
+65:10 
+
+65:10 error and because of this this is called
+65:13 
+
+65:13 as mean squared error and because of
+65:14 
+
+65:14 whole of this root it's called as root
+65:16 
+
+65:16 mean Square eror so squared error this
+65:19 
+
+65:19 terms from summation to here this is
+65:21 
+
+65:21 squared error and once I apply this 1
+65:23 
+
+65:23 byn this is called as mean squared error
+65:26 
+
+65:26 so once I apply this root this is now
+65:27 
+
+65:27 root mean squ
+65:30 
+
+65:30 error you can see mathematics is not
+65:32 
+
+65:32 difficult the notations if you if you
+65:33 
+
+65:33 get hang of notations quite easy okay
+65:35 
+
+65:35 and it's quite natural also so you know
+65:37 
+
+65:37 now the fundamentals why are we doing
+65:39 
+
+65:39 this okay now after we have this so now
+65:41 
+
+65:41 what we want to do is so we want to see
+65:43 
+
+65:43 the RMS value for different M for M is
+65:45 
+
+65:45 equal 0 m is equal 1 m is equal 1 m is
+65:50 
+
+65:50 equal 3 and M is equal 9 I think that's
+65:52 
+
+65:52 what we were
+65:53 
+
+65:53 doing so for all of this we want to find
+65:55 
+
+65:55 RMS
+65:57 
+
+65:57 okay and corresponding to that what we
+65:58 
+
+65:58 want to do is we want to find values of
+65:60 
+
+65:60 w okay what are the what are these
+66:02 
+
+66:02 coefficients what are the values of this
+66:03 
+
+66:03 coefficient because we have to answer
+66:04 
+
+66:04 these questions because this seems quite
+66:06 
+
+66:06 ctive so I asked you these questions the
+66:08 
+
+66:08 more parameters does it mean we should
+66:10 
+
+66:10 have less parameters then should we
+66:12 
+
+66:12 decrease the less should decrease the
+66:13 
+
+66:13 parameters if not so what should we do
+66:16 
+
+66:16 so this question still stands okay and
+66:19 
+
+66:19 here uh again the same thing so all of
+66:22 
+
+66:22 this High degree polinomial should
+66:23 
+
+66:23 somehow inherently contain this low
+66:25 
+
+66:25 degree polom then why is it not
+66:26 
+
+66:26 performing better okay so we'll answer
+66:28 
+
+66:28 these questions let me write the code to
+66:31 
+
+66:31 do this to find this RMC and uh to find
+66:34 
+
+66:34 the
+66:35 
+
+66:35 coefficients and then we'll see the
+66:37 
+
+66:37 training loss as
+66:40 
+
+66:40 well and now what we'll do is we have to
+66:43 
+
+66:43 find this rmsc value and we'll try to
+66:46 
+
+66:46 find this error I hope this screen is
+66:47 
+
+66:47 also visible so again I'll Resort back
+66:49 
+
+66:49 to numai M plot Li and skarn so if you
+66:53 
+
+66:53 see this I'm importing numai import M
+66:56 
+
+66:56 plot Li as this PLT and train train test
+66:58 
+
+66:58 split because I'll be having data set
+66:60 
+
+67:00 and I'll split that into train and test
+67:02 
+
+67:02 okay then I'm also importing this mean
+67:03 
+
+67:03 Square l i could have done it on my own
+67:06 
+
+67:06 I would have just uh implemented the
+67:07 
+
+67:07 function but it is already in escn so
+67:09 
+
+67:09 you don't need to implement it okay now
+67:11 
+
+67:11 what we have to do is we'll fit this
+67:12 
+
+67:12 polinomial we have been doing this since
+67:14 
+
+67:14 previous class so if you see this so we
+67:17 
+
+67:17 are saying definition fit this
+67:18 
+
+67:18 polinomial XT of this degree okay and
+67:22 
+
+67:22 then what we're saying is we are trying
+67:23 
+
+67:23 to find the coefficients
+67:26 
+
+67:26 so if you see
+67:31 
+
+67:31 this okay so this is the coefficients NP
+67:33 
+
+67:33 polyi it'll give me coefficients and I'm
+67:35 
+
+67:35 rning these coefficients as well so now
+67:36 
+
+67:36 I'll calculate RMS also okay so here I
+67:39 
+
+67:39 have a function to calculate RMS is
+67:41 
+
+67:41 quite easy otherwise I would
+67:43 
+
+67:43 have if you see this definition
+67:45 
+
+67:45 calculate rmsc this is y true y
+67:47 
+
+67:47 predicted so it is taking this mean
+67:48 
+
+67:48 squared and applying square root okay so
+67:51 
+
+67:51 I'm applying this mean squar error so on
+67:53 
+
+67:53 that I have to apply square root that
+67:54 
+
+67:54 will convert into RMS value so I'm
+67:56 
+
+67:56 taking this y True Value y predicted
+67:58 
+
+67:58 value so this y true basically is y x n
+68:00 
+
+68:00 comma W that value and this is y
+68:02 
+
+68:02 predicted value this is predicted Val
+68:04 
+
+68:04 the true value is actually true value
+68:05 
+
+68:05 and this is mean square and after that
+68:07 
+
+68:07 we apply square root onto this this will
+68:09 
+
+68:09 calculate the RMS now again I'll
+68:11 
+
+68:11 generate synthtic data okay that we have
+68:13 
+
+68:13 been doing I think since class
+68:17 
+
+68:17 one so this is random seeds for the
+68:19 
+
+68:19 reproducibility and then we have this 10
+68:21 
+
+68:21 points okay we are this is our main
+68:23 
+
+68:23 function sin 2 pix and this is
+68:26 
+
+68:26 the Some Noise some Gan noise with mean
+68:29 
+
+68:29 of zero and standard deviation of 0.1
+68:31 
+
+68:31 okay this is our Target and this is our
+68:32 
+
+68:32 input now I'll split the
+68:35 
+
+68:35 data I'll split it
+68:37 
+
+68:37 oops so how to split I'll use this train
+68:40 
+
+68:40 test split I can split it in any other
+68:43 
+
+68:43 fashion also because I can use nump I
+68:45 
+
+68:45 can use pandas andever I want but
+68:46 
+
+68:46 escalar gives me this test train split
+68:48 
+
+68:48 so I'm using it directly so I'm having X
+68:50 
+
+68:50 train X test T train and T Test this is
+68:53 
+
+68:53 y actually okay so I'm giving test train
+68:55 
+
+68:55 split this is a function so I'll give
+68:57 
+
+68:57 this x t and test size so test size
+68:59 
+
+68:59 basically is 0.3 and 0.7 will be if this
+69:01 
+
+69:01 is 10 points so three points among them
+69:03 
+
+69:03 will be test points and seven points
+69:05 
+
+69:05 will be the training points and random
+69:06 
+
+69:06 state is the
+69:08 
+
+69:08 seed what I'll do is I'll make a list of
+69:12 
+
+69:12 these degrees because I want to do it
+69:14 
+
+69:14 for degrees 0 1 3 and 9 okay that's what
+69:17 
+
+69:17 I want to do and now I'll create the
+69:18 
+
+69:18 plots as
+69:20 
+
+69:20 well uh let me create how many plots
+69:23 
+
+69:23 I'll create 2 x two plots
+69:27 
+
+69:27 so if you see figure and axis I'm
+69:28 
+
+69:28 creating plot suppl 2a2 figure size is
+69:30 
+
+69:30 this much you should be well versed with
+69:38 
+
+69:38 this I'm putting this for plotting the
+69:41 
+
+69:41 curve I'm also putting this continuous
+69:43 
+
+69:43 values of X continuous to generate
+69:45 
+
+69:45 smooth values for X for plotting
+69:46 
+
+69:46 continuous value now I'll store I'll
+69:48 
+
+69:48 store the train RMS I'll St test RMS and
+69:50 
+
+69:50 I I'll also store the coefficient list
+69:54 
+
+69:54 okay so what I'm doing is I'm having
+69:55 
+
+69:55 this train RS errors I'm also storing
+69:57 
+
+69:57 test RMS errors okay this is for the
+69:59 
+
+69:59 train root means Square errors and test
+70:01 
+
+70:01 root means square error and the
+70:02 
+
+70:02 coefficient list these W's W not W1 W2
+70:04 
+
+70:04 something like that now after that what
+70:06 
+
+70:06 I'll do is I'll run a loop for all the
+70:09 
+
+70:09 degrees IUN a loop because I have to do
+70:11 
+
+70:11 it with degree 0 degree 1 degree 3 and
+70:13 
+
+70:13 degree 9 so I'll run a loop for
+70:16 
+
+70:16 this this is for for our degree
+70:18 
+
+70:18 enumerate this degrees okay then I'll
+70:20 
+
+70:20 fit this
+70:22 
+
+70:22 curve because I have I have written this
+70:25 
+
+70:25 if you you see so here is my polom fit
+70:27 
+
+70:27 polinomial this is what I'm calling over
+70:29 
+
+70:29 here fit polinomial with this x train
+70:31 
+
+70:31 and T train and give the degrees so
+70:33 
+
+70:33 degree will be taken from this because
+70:34 
+
+70:34 where I'm running a loop onto this and
+70:35 
+
+70:35 then I'm getting a coefficient list
+70:37 
+
+70:37 which I'm appending to this coefficient
+70:38 
+
+70:38 okay and then I am calculating the
+70:41 
+
+70:41 prediction for training and test to make
+70:44 
+
+70:44 the
+70:45 
+
+70:45 predictions I add a comment here fit
+70:47 
+
+70:47 I'll say fit the C the Pol to the
+70:49 
+
+70:49 current degree and then what I'm saying
+70:51 
+
+70:51 is calculate predictions for training
+70:53 
+
+70:53 and test set so train prediction is
+70:55 
+
+70:55 polinomial so whatever polinomial we got
+70:56 
+
+70:56 give it X train and it will make the
+70:58 
+
+70:58 train predictions and now I'll calculate
+71:00 
+
+71:00 the RMS value I have again written the
+71:02 
+
+71:02 function for RMS so I'll just call that
+71:04 
+
+71:04 function so here I have calculate the
+71:06 
+
+71:06 RMS value so here it is calculate RMS so
+71:10 
+
+71:10 that's what I'm calling with this tree
+71:11 
+
+71:11 train Tre prediction it will give me the
+71:13 
+
+71:13 values now I have to append these values
+71:15 
+
+71:15 so this these values are to be kept in
+71:17 
+
+71:17 uh train and test train and test list
+71:19 
+
+71:19 this and this list that's what I'll be
+71:21 
+
+71:21 doing I'll be appending them to these
+71:23 
+
+71:23 two things
+71:27 
+
+71:27 okay so I'm appending them uh to this
+71:30 
+
+71:30 append this train RMS to this and append
+71:32 
+
+71:32 this to this and once I have that now
+71:34 
+
+71:34 I'll do I'll do the plotting okay
+71:37 
+
+71:37 and this plotting should be quite easy
+71:40 
+
+71:40 to
+71:42 
+
+71:42 understand okay so I'm doing the loop
+71:45 
+
+71:45 because I want all the plots if you see
+71:48 
+
+71:48 this I am plotting over here this is
+71:50 
+
+71:50 scatter plot for X train T train and
+71:52 
+
+71:52 then I'm saying this we have this y fit
+71:54 
+
+71:54 then I'm also fitting this and adding
+71:58 
+
+71:58 some horizontal line this and and then
+71:59 
+
+71:59 these are just some titles and legends
+72:02 
+
+72:02 and stuff like
+72:07 
+
+72:07 that okay then I'll at the end have this
+72:10 
+
+72:10 RMS comparison also I'll add a plot at
+72:12 
+
+72:12 the end this plotting code I'm not on
+72:15 
+
+72:15 purpose going through because you guys
+72:16 
+
+72:16 should be experts by now to read this
+72:18 
+
+72:18 because we have spent quite a lot of
+72:19 
+
+72:19 time to draw this plot so this is the
+72:21 
+
+72:21 code so now I'll run this
+72:23 
+
+72:23 code if you see this for equal Z okay
+72:27 
+
+72:27 this is the line that we got okay I'll
+72:29 
+
+72:29 Resort back here so if you see this so
+72:31 
+
+72:31 these points were our training points
+72:32 
+
+72:32 training data so these Blue Points this
+72:34 
+
+72:34 our train data so for m is equal Z this
+72:36 
+
+72:36 is a straight line okay that you can
+72:37 
+
+72:37 clearly see over here so now this is our
+72:41 
+
+72:41 test
+72:42 
+
+72:42 data okay and you saw clear there was an
+72:44 
+
+72:44 error so that's why it's showing test
+72:45 
+
+72:45 RMS train RMS is this and testing RMS is
+72:48 
+
+72:48 this okay and this is clear a line and
+72:50 
+
+72:50 it's it is a misfit it's not a good fit
+72:52 
+
+72:52 it's actually a very bad fit so now in
+72:54 
+
+72:54 order to go here this is equal to equal
+72:55 
+
+72:55 to one again the same thing so this is
+72:57 
+
+72:57 training data and test data we have only
+72:58 
+
+72:58 three points because we have generated
+72:59 
+
+72:59 10 points and among them we kept 3% of
+73:02 
+
+73:02 the data is training test data three
+73:04 
+
+73:04 points and seven points as we could
+73:06 
+
+73:06 maybe increase points more in the next
+73:07 
+
+73:07 iteration if you see this this is m is
+73:09 
+
+73:09 equal one again you can see test RMS
+73:11 
+
+73:11 3.14 a little bit less and train RMS
+73:14 
+
+73:14 also a little bit less okay now you saw
+73:16 
+
+73:16 that it is improving a bit so you see
+73:18 
+
+73:18 that RMS the error is getting lower and
+73:20 
+
+73:20 lower okay so we expected to
+73:22 
+
+73:22 monotonically increase so now if you see
+73:23 
+
+73:23 the other graphs so if you see
+73:26 
+
+73:26 RMS of three and this so you see n is
+73:31 
+
+73:31 equal 3 so here you saw Train RMS 0.063
+73:33 
+
+73:33 very good and train test RMS 0.18 and
+73:37 
+
+73:37 it's very good the error is very less so
+73:38 
+
+73:38 that is evident from the graph as well
+73:41 
+
+73:41 okay so this is actually what we call
+73:43 
+
+73:43 usually a best fit or a good fit I
+73:44 
+
+73:44 should not call best fit a good fit this
+73:46 
+
+73:46 is a good
+73:47 
+
+73:47 fit because we doing a curve fitting so
+73:49 
+
+73:49 now if you see this so I call this
+73:51 
+
+73:51 overfitting so now it tuned to all the
+73:53 
+
+73:53 data point it tuned to all these data
+73:55 
+
+73:55 okay this Cur passed through all these
+73:57 
+
+73:57 Blue Points it's covering through all
+74:00 
+
+74:00 the Blue Points that's why you see this
+74:02 
+
+74:02 train RMS being 0.005 and you see test
+74:05 
+
+74:05 RMS is quite High okay so this is what I
+74:08 
+
+74:08 call overfitting over here okay now we
+74:10 
+
+74:10 were we were in this Pursuit that we
+74:12 
+
+74:12 won't understand why is it happening
+74:14 
+
+74:14 okay let me answer that question why is
+74:15 
+
+74:15 it happening so that answer is basically
+74:17 
+
+74:17 in the
+74:18 
+
+74:18 coefficients so this is again training
+74:20 
+
+74:20 and test RMS difference because I just
+74:23 
+
+74:23 ploted the graph from this and now if
+74:24 
+
+74:24 you see this so see this details over
+74:27 
+
+74:27 here this is degree 0 degree 1 degree 3
+74:29 
+
+74:29 and degree 9 so what you can see is uh
+74:32 
+
+74:32 if you see coefficients this is w0 this
+74:34 
+
+74:34 is w0 and W1 this is w0 W1 W2 W3 w0 W1
+74:39 
+
+74:39 all the all the coents were here so once
+74:42 
+
+74:42 you increasing uh this polom degree of
+74:44 
+
+74:44 polinomial so you can see this
+74:45 
+
+74:45 coefficient the the value of coecient is
+74:47 
+
+74:47 increasing heavily so initially this was
+74:49 
+
+74:49 the coefficient value 0.125 then we have
+74:51 
+
+74:51 minus uh 1 something like this so after
+74:54 
+
+74:54 that it become 21 32 10 but if you see
+74:57 
+
+74:57 at degree 9 these values are quite
+74:59 
+
+74:59 High these values are very high except
+75:02 
+
+75:02 for a few these values are quite high so
+75:04 
+
+75:04 what this is telling you actually
+75:05 
+
+75:05 basically is so it is tning coefficient
+75:07 
+
+75:07 such that it is exactly capturing the
+75:09 
+
+75:09 points and at the adesive and if you if
+75:11 
+
+75:11 I can go back here if I if you can see
+75:13 
+
+75:13 over here this is trying so hard to go
+75:16 
+
+75:16 through this points and it has to make
+75:17 
+
+75:17 the coefficient value so high okay and
+75:19 
+
+75:19 then it's missing these terms actually
+75:21 
+
+75:21 so that this being reason so when you
+75:23 
+
+75:23 are having the value of coent very high
+75:25 
+
+75:25 so it is try very hard to go through the
+75:26 
+
+75:26 points okay once that is done so what
+75:29 
+
+75:29 will happen basically is so when you
+75:31 
+
+75:31 have to go through this point now it has
+75:32 
+
+75:32 tuned this W such that it passed through
+75:35 
+
+75:35 the point it passed through that point
+75:36 
+
+75:36 so giving very high vage to W so that
+75:39 
+
+75:39 you tune it to data it creates a problem
+75:41 
+
+75:41 for us okay so I hope you understand the
+75:43 
+
+75:43 point now the point basically is it is
+75:45 
+
+75:45 giving coefficient such an higher value
+75:46 
+
+75:46 so that if you see these edges if you
+75:48 
+
+75:48 see the edges for here I'll call these
+75:51 
+
+75:51 things as edges so it is trying so hard
+75:53 
+
+75:53 to go through them so it has to make the
+75:55 
+
+75:55 value of w so high so as to let this
+75:58 
+
+75:58 curve pass to the function and that's
+75:60 
+
+75:60 what is creating actually the war fiting
+76:01 
+
+76:01 somehow if we could control these W's
+76:04 
+
+76:04 some if we do not let them explode
+76:05 
+
+76:05 either on the negative side or on the
+76:06 
+
+76:06 positive side maybe we can we can cover
+76:09 
+
+76:09 this overfitting problem the question
+76:10 
+
+76:10 now is the question the first question
+76:12 
+
+76:12 was answered so if you see the first
+76:16 
+
+76:16 question the question that we had is
+76:18 
+
+76:18 this so it has more does it mean we
+76:21 
+
+76:21 should have less paramet what I said is
+76:22 
+
+76:22 I said if you somehow can manage with
+76:24 
+
+76:24 lower value vales of w if you do not try
+76:26 
+
+76:26 so hard to give them so high values so
+76:28 
+
+76:28 maybe you can even work with more
+76:30 
+
+76:30 parameters you don't need decrease
+76:31 
+
+76:31 parameters okay so why does it seem
+76:34 
+
+76:34 counter intutive because it seems
+76:35 
+
+76:35 counter intive now the value of M is
+76:37 
+
+76:37 getting changed drastically if the M
+76:39 
+
+76:39 were similar it would have angul to all
+76:40 
+
+76:40 those things it would have inherently
+76:42 
+
+76:42 shown the same pattern but here because
+76:44 
+
+76:44 it is trying so hard and the values are
+76:45 
+
+76:45 so extreme now either it's very high or
+76:47 
+
+76:47 it's very low value if I just remove the
+76:49 
+
+76:49 sign you can see very high values of
+76:51 
+
+76:51 very high positive vales and very high
+76:53 
+
+76:53 negative values so now we have to result
+76:55 
+
+76:55 this so even with same parameters what
+76:57 
+
+76:57 can we do can we do something so that it
+76:59 
+
+76:59 does not show this problem okay so for
+77:01 
+
+77:01 that what we have to do is we'll have to
+77:03 
+
+77:03 do something we'll have to add something
+77:04 
+
+77:04 we'll have to penalize it so do not
+77:06 
+
+77:06 increase W so much so we'll ask it we'll
+77:08 
+
+77:08 have to say it explicitly okay I I found
+77:11 
+
+77:11 the problem the problem is that again
+77:13 
+
+77:13 I'll show you the problem so the problem
+77:14 
+
+77:14 here if you
+77:15 
+
+77:15 see
+77:18 
+
+77:18 oops the problem that we found is that
+77:21 
+
+77:21 once we look at these coent initially
+77:23 
+
+77:23 they were good they were in a good range
+77:24 
+
+77:24 okay the Valu are not quite high but
+77:26 
+
+77:26 once you increases W it is overfitting
+77:28 
+
+77:28 because it's making these values quite
+77:30 
+
+77:30 high and because of the high values it
+77:31 
+
+77:31 is tuning to the noise also it is
+77:33 
+
+77:33 capturing the noise so now what I'm
+77:35 
+
+77:35 trying to do is I'm telling them okay do
+77:37 
+
+77:37 not increase this value so much because
+77:38 
+
+77:38 why otherwise you are learning the noise
+77:40 
+
+77:40 also I don't want you to learn the noise
+77:42 
+
+77:42 so how can I do that do not tune so much
+77:44 
+
+77:44 okay do not uh try so hard to go through
+77:46 
+
+77:46 the points because if you try so hard to
+77:48 
+
+77:48 go through the points you are uh
+77:50 
+
+77:50 increasing the values for these
+77:52 
+
+77:52 W's it is hugely positive or hugely
+77:54 
+
+77:54 negative okay you to sa it in from this
+77:57 
+
+77:57 so now what I have to do is I Som have
+77:59 
+
+77:59 to penalize it okay so this is the
+78:01 
+
+78:01 result so what I'm saying is I have to
+78:03 
+
+78:03 penalize
+78:06 
+
+78:06 it I'll take you questions maybe after I
+78:09 
+
+78:09 finish this so how should I do the
+78:10 
+
+78:10 penalizations now I have to tell it
+78:12 
+
+78:12 mathematically okay penalize it this was
+78:14 
+
+78:14 my equation now you have to penalize so
+78:15 
+
+78:15 what I'll do is let
+78:18 
+
+78:18 me this was the equation we had this if
+78:21 
+
+78:21 we again come to Let's suppose mean
+78:23 
+
+78:23 Square this squar error summation of n
+78:25 
+
+78:25 is equal to 1 to end points and we had
+78:28 
+
+78:28 prediction y of
+78:30 
+
+78:30 xn comma W and then minus t of
+78:34 
+
+78:34 n all square okay so this was this was
+78:37 
+
+78:37 my thing this was my error so error of w
+78:39 
+
+78:39 so I was getting error of zero so but
+78:41 
+
+78:41 what it was doing is it was changing
+78:42 
+
+78:42 these coefficients too much it was
+78:44 
+
+78:44 giving the very higher values so once
+78:45 
+
+78:45 you are giving them higher values it is
+78:46 
+
+78:46 tuning to this noise so what I actually
+78:48 
+
+78:48 wanted to I want to penalize it okay so
+78:51 
+
+78:51 once it gives more value to W okay
+78:53 
+
+78:53 somehow I should penalize I should say
+78:55 
+
+78:55 okay so there should tug of four now so
+78:57 
+
+78:57 tug of four in this if it is increasing
+78:59 
+
+78:59 W so I should do something to this so
+79:01 
+
+79:01 error increases so I should do something
+79:02 
+
+79:02 so the error increases so if it is
+79:04 
+
+79:04 increasing W's too much if it is gting
+79:06 
+
+79:06 this W's too much attention so what I
+79:08 
+
+79:08 should do is I should somehow add
+79:10 
+
+79:10 something somehow penalize it somehow so
+79:12 
+
+79:12 that one these increase too much so in
+79:14 
+
+79:14 the equation I should add something
+79:16 
+
+79:16 which will bring it down so I should add
+79:18 
+
+79:18 something if this W goes up okay if this
+79:21 
+
+79:21 W goes up so what I should do is I
+79:22 
+
+79:22 should I should keep on adding this
+79:24 
+
+79:24 error also okay so the natural thing is
+79:26 
+
+79:26 I'll take a norm of this W I'll say w
+79:29 
+
+79:29 Square what I'm doing is because I found
+79:31 
+
+79:31 the problem I found the problem was when
+79:34 
+
+79:34 we have we saw this when m is equal 9
+79:36 
+
+79:36 the coefficient value these W's they
+79:38 
+
+79:38 were getting very high values and
+79:39 
+
+79:39 because of that it was tuning to the
+79:41 
+
+79:41 noise also now the answer to this I said
+79:44 
+
+79:44 if it is making this W's larger so what
+79:46 
+
+79:46 I should do is I should penalize it
+79:47 
+
+79:47 because the point was it was trying very
+79:49 
+
+79:49 hard to get this e of w equal Z it was
+79:52 
+
+79:52 getting err equal Z because of this okay
+79:55 
+
+79:55 because of this equation it was trying
+79:56 
+
+79:56 to get error is equal zero but what I'm
+79:58 
+
+79:58 saying now is because you are increasing
+79:60 
+
+79:60 W that's how you can get this error is
+80:02 
+
+80:02 equal Zer but if you increase W too much
+80:03 
+
+80:03 I'll penalize you so what I'll do is
+80:05 
+
+80:05 I'll add the square root not Square
+80:07 
+
+80:07 sorry I'll add the square of w okay
+80:09 
+
+80:09 whatever W is you give me let's suppose
+80:10 
+
+80:10 it give 2008 so I'm squaring that up add
+80:13 
+
+80:13 plus so it is basically the dot product
+80:15 
+
+80:15 w dot WT W because we have Vector W like
+80:18 
+
+80:18 this this is W not W1 W2 and W3 okay so
+80:22 
+
+80:22 this is our W so we are saying W uh
+80:24 
+
+80:24 transpose W so this is a DOT product of
+80:26 
+
+80:26 these two and I'm this this is the dot
+80:28 
+
+80:28 this is called as Norm
+80:30 
+
+80:30 two okay so this is what I'm penalizing
+80:32 
+
+80:32 with does it make sense because I told
+80:34 
+
+80:34 you the problem is happening because it
+80:36 
+
+80:36 is increasing W is too much and it is
+80:38 
+
+80:38 getting this error function zero now I
+80:40 
+
+80:40 don't want you to increase W's so still
+80:42 
+
+80:42 what I want you to do I want keep the
+80:44 
+
+80:44 W's in check once you increase the W's
+80:46 
+
+80:46 now I have end the term now so this term
+80:48 
+
+80:48 will make sure that if it increase the W
+80:50 
+
+80:50 this error will also get increased so
+80:52 
+
+80:52 how for how many of you made this made
+80:53 
+
+80:53 sense
+80:56 
+
+80:56 again to get here this was the initial
+80:58 
+
+80:58 error function so this error function
+80:60 
+
+80:60 what was trying to do is if we were
+81:01 
+
+81:01 increasing the degree of the polinomial
+81:03 
+
+81:03 as in m is equal 9 it was trying so hard
+81:06 
+
+81:06 to get through all the points as a
+81:07 
+
+81:07 consequence to that it was increasing
+81:09 
+
+81:09 the value of these W's okay that's the
+81:11 
+
+81:11 problem we figured out once we printed
+81:12 
+
+81:12 the values of these coefficients so now
+81:14 
+
+81:14 what I have what I have done is I have
+81:16 
+
+81:16 added this penalty term so there's a tug
+81:18 
+
+81:18 of war going between these two things so
+81:20 
+
+81:20 if this increases okay this will
+81:22 
+
+81:22 decrease okay this this somehow is iners
+81:25 
+
+81:25 inversely proportional if you increase
+81:27 
+
+81:27 W's too much you getting the lower value
+81:29 
+
+81:29 of this but you're getting higher value
+81:30 
+
+81:30 of this if you decrease W's okay and if
+81:32 
+
+81:32 you take them nearly to zeros so this
+81:34 
+
+81:34 will become zero but this will be too
+81:35 
+
+81:35 high then okay this value is too high
+81:37 
+
+81:37 now you have to find a balance so this
+81:39 
+
+81:39 thing over here if you see this W2 and
+81:41 
+
+81:41 then we'll say how much do you want to
+81:43 
+
+81:43 impact it we won't just Square it we'll
+81:44 
+
+81:44 say let's have this Lambda by two also
+81:47 
+
+81:47 here okay Lambda basically is okay I
+81:49 
+
+81:49 want to give this only this much weight
+81:51 
+
+81:51 okay because this W square is too much
+81:53 
+
+81:53 so I'll give this Lambda some from 0 to
+81:55 
+
+81:55 one some value from here okay if it is
+81:57 
+
+81:57 zero so we're just removing this term if
+81:59 
+
+81:59 it is let's suppose 0.5 give half a vage
+82:01 
+
+82:01 to this so I'm just adding lamba by two
+82:03 
+
+82:03 something like this okay uh so now
+82:05 
+
+82:05 equation now the equation becomes e of w
+82:08 
+
+82:08 so error of w is equal so I'm taking the
+82:10 
+
+82:10 squared error so this is y xn comma W
+82:13 
+
+82:13 this is my prediction and this is the
+82:15 
+
+82:15 truth value the ground truth okay and
+82:17 
+
+82:17 I'm squaring this up and after this I am
+82:20 
+
+82:20 taking it for all the
+82:22 
+
+82:22 points and I'm adding this 1X two for
+82:25 
+
+82:25 for uh later convenience in the in in
+82:28 
+
+82:28 this numerical equation then in order in
+82:30 
+
+82:30 order to penalize it I'm penalizing it
+82:32 
+
+82:32 with w s now I don't want to give this
+82:35 
+
+82:35 equal to one so I'm adding one more term
+82:37 
+
+82:37 Lambda okay this Lambda what is
+82:38 
+
+82:38 basically how much weight should be
+82:40 
+
+82:40 given to this I'm just adding this
+82:41 
+
+82:41 Lambda by two okay so this thing what I
+82:44 
+
+82:44 did so far is called as a
+82:49 
+
+82:49 regularization okay so I have added this
+82:52 
+
+82:52 is called as L2 Norm okay Norm two this
+82:55 
+
+82:55 is what I have done so far so if you see
+82:56 
+
+82:56 this now it also depends on
+82:58 
+
+82:58 Lambda there are two things now the
+83:00 
+
+83:00 first thing was m and then we had
+83:04 
+
+83:04 Lambda okay you are minimizing the
+83:06 
+
+83:06 equation you have to minimize the errors
+83:08 
+
+83:08 but you have to minimize with respect to
+83:10 
+
+83:10 W's only okay you cannot minimize with
+83:12 
+
+83:12 respect to Lambda and and this uh M okay
+83:15 
+
+83:15 this Lambda and M they have to be fixed
+83:17 
+
+83:17 they have to be keep fix you should fix
+83:19 
+
+83:19 them fix before
+83:22 
+
+83:22 training you should fix them before
+83:24 
+
+83:24 training once you fix them and then you
+83:26 
+
+83:26 minimize this okay because you keeping
+83:29 
+
+83:29 this W and you want to find this W star
+83:31 
+
+83:31 W star is the values for w for for this
+83:34 
+
+83:34 for which this equation becomes minimum
+83:36 
+
+83:36 this equation gives a minimum value okay
+83:38 
+
+83:38 and these things Lambda and this m are
+83:40 
+
+83:40 called as hyper
+83:46 
+
+83:46 parameters okay so this is the
+83:53 
+
+83:53 function okay so this techniques is also
+83:55 
+
+83:55 so we this regulation actually sometimes
+83:58 
+
+83:58 because we can solve this equation in
+83:59 
+
+83:59 closed form so here in usually in
+84:01 
+
+84:01 machine Lear deepling we add the
+84:03 
+
+84:03 realization but we have close from
+84:05 
+
+84:05 methods in statistics we we have a
+84:07 
+
+84:07 special me which called a shrinkage we
+84:08 
+
+84:08 can shrink it okay which reduces the
+84:10 
+
+84:10 magnitude of these Cs and that
+84:11 
+
+84:11 suppresses overfitting okay but in
+84:13 
+
+84:13 neural network this is common to because
+84:16 
+
+84:16 there are all these weights are there
+84:17 
+
+84:17 these W's are weights this is called as
+84:19 
+
+84:19 weight
+84:21 
+
+84:21 Decay because you don't you don't want
+84:23 
+
+84:23 weight to stay very high values okay
+84:26 
+
+84:26 that's why you want to do you want to
+84:27 
+
+84:27 take this weight Decay so if let's
+84:29 
+
+84:29 suppose you take this Lambda is equal 0
+84:31 
+
+84:31 if you take Lambda is equ0 this whole
+84:32 
+
+84:32 term will vanish okay and this will
+84:34 
+
+84:34 become a normal loss function or normal
+84:35 
+
+84:35 error function sorry okay and you have
+84:37 
+
+84:37 to balance between this Lambda you have
+84:38 
+
+84:38 to choose this Lambda very wisely and
+84:40 
+
+84:40 how to do that you have to maybe uh do
+84:44 
+
+84:44 some uh searching or you have to do a
+84:45 
+
+84:45 hit and trial so that to find this
+84:47 
+
+84:47 Lambda and M why does it perform good so
+84:49 
+
+84:49 that's why in order to find this m and
+84:51 
+
+84:51 in order to find the good values for M
+84:53 
+
+84:53 and Lambda we do what's called as cross
+84:57 
+
+84:57 validation we'll see the details of all
+84:59 
+
+84:59 of these things but I just wanted to
+85:00 
+
+85:00 show you the what is this cross
+85:02 
+
+85:02 validation for so what basically we do
+85:04 
+
+85:04 is so we have this have parameters okay
+85:06 
+
+85:06 so we try to minimize this error
+85:07 
+
+85:07 function so we can't do it with jointly
+85:09 
+
+85:09 with w and Lambda why because W will
+85:11 
+
+85:11 always go to zero so it will let's
+85:13 
+
+85:13 suppose this is the error function so
+85:14 
+
+85:14 error function that we had I'll just
+85:15 
+
+85:15 copy this error
+85:16 
+
+85:16 function so this is the error function
+85:18 
+
+85:18 that we have if I jointly want to
+85:21 
+
+85:21 decrease if I jointly want to minimize
+85:22 
+
+85:22 this
+85:25 
+
+85:25 see the see the see the scenario over
+85:27 
+
+85:27 here the natural question for the
+85:28 
+
+85:28 mathematicians is why don't you jointly
+85:31 
+
+85:31 use this Lambda also with respect to
+85:33 
+
+85:33 Lambda also use this while you are
+85:36 
+
+85:36 minimizing the problem is this will also
+85:38 
+
+85:38 this will again put Lambda is equal zero
+85:40 
+
+85:40 because the whole goal of this is to
+85:42 
+
+85:42 make this error value as zero so it'll
+85:44 
+
+85:44 make this error value as zero it will
+85:46 
+
+85:46 give very high values of w and it will
+85:47 
+
+85:47 make this Lambda as zero okay so this
+85:49 
+
+85:49 will again overit okay so similarly when
+85:51 
+
+85:51 you have this m okay so it will tend
+85:54 
+
+85:54 overit the model so if you minimize this
+85:57 
+
+85:57 if you minimize this error function the
+85:58 
+
+85:58 error function that we wrote If we
+85:60 
+
+85:60 minimize this with respect to W and
+86:03 
+
+86:03 Lambda jointly with W jointly with this
+86:05 
+
+86:05 so we have now joint minimization with
+86:06 
+
+86:06 Lambda M and W's so what it'll do is
+86:09 
+
+86:09 it'll put Lambda is equal Z again it'll
+86:11 
+
+86:11 do or fitting it'll give very high
+86:13 
+
+86:13 values to this W's once you do it with M
+86:15 
+
+86:15 so you have to fix these two things
+86:17 
+
+86:17 that's why they are called as H
+86:18 
+
+86:18 parameters you have to fix this before
+86:20 
+
+86:20 training how many of you are able to see
+86:23 
+
+86:23 the problem there if I uh jointly do the
+86:25 
+
+86:25 minimization with Lambda and M so the
+86:27 
+
+86:27 problem will it'll take Lambda to zero
+86:29 
+
+86:29 that is not the thing we added Lambda
+86:31 
+
+86:31 for so if you give it if you get M okay
+86:33 
+
+86:33 learn M also from the data so it'll try
+86:35 
+
+86:35 to learn M as high as possible and it'll
+86:37 
+
+86:37 give W's as high as high value as
+86:39 
+
+86:39 possible and it'll try to workit because
+86:41 
+
+86:41 the whole goal of this equation is to
+86:43 
+
+86:43 make the error zero so if it has access
+86:45 
+
+86:45 to this Lambda as well as to this m so
+86:47 
+
+86:47 it will try to overit so it is better to
+86:49 
+
+86:49 have the control with the user okay you
+86:51 
+
+86:51 have this you just learn these W's okay
+86:53 
+
+86:53 that's why we call these h parameters
+86:55 
+
+86:55 okay so this optimization so for this
+86:57 
+
+86:57 what I what I said is in order to
+86:59 
+
+86:59 optimize in order to
+87:02 
+
+87:02 optimize values of Lambda and this m or
+87:07 
+
+87:07 hyper
+87:10 
+
+87:10 parameters so what we do is so we do
+87:16 
+
+87:16 validation okay so what we basically do
+87:18 
+
+87:18 is I just briefly cover it because we'll
+87:20 
+
+87:20 have detailed lectures coming on this so
+87:22 
+
+87:22 we have the whole data with us this is
+87:24 
+
+87:24 our whole data
+87:26 
+
+87:26 we are keeping this train data with us
+87:28 
+
+87:28 then we had this test data so what we
+87:30 
+
+87:30 basically do is we have a validation
+87:31 
+
+87:31 also then we'll have test so this thing
+87:34 
+
+87:34 is what will be used and this thing is
+87:37 
+
+87:37 totally unknown to the model unknown to
+87:45 
+
+87:45 model on this you'll
+87:47 
+
+87:47 train okay because you are fixing the H
+87:50 
+
+87:50 you give some M isal let's suppose m
+87:52 
+
+87:52 equal 2 and Lambda is equal 0.2
+87:54 
+
+87:54 something like like this if you gave
+87:55 
+
+87:55 this and now you have to test it you
+87:57 
+
+87:57 will not use it on test set you will use
+87:58 
+
+87:58 the validation set and you'll see how
+87:60 
+
+88:00 better it perform on validation so after
+88:02 
+
+88:02 that what you do is if you saw it's
+88:03 
+
+88:03 giving a lot of it is going train error
+88:05 
+
+88:05 was let's suppose good but validation
+88:07 
+
+88:07 accuracy validation error is not good so
+88:09 
+
+88:09 you'll change this you'll say m is equal
+88:10 
+
+88:10 3 Lambda is equal .5 okay again train it
+88:14 
+
+88:14 again tested on validation set so once
+88:16 
+
+88:16 you are convinced once you have
+88:17 
+
+88:17 convinced okay now the train error or
+88:20 
+
+88:20 the train loss is good and the
+88:21 
+
+88:21 validation loss is good and at the last
+88:23 
+
+88:23 you are giving this test error okay okay
+88:24 
+
+88:24 so from this validation set you are
+88:27 
+
+88:27 tuning this
+88:28 
+
+88:28 parameters cost is increasing so there
+88:30 
+
+88:30 are lot of types of this cross
+88:32 
+
+88:32 validation okay so there can be S uh or
+88:35 
+
+88:35 kfold or S fold you call it s fold or
+88:37 
+
+88:37 kfold cross validation this is one of
+88:39 
+
+88:39 the techniques then there is leave one
+88:41 
+
+88:41 out leave one out cross validation l c
+88:45 
+
+88:45 one out so these are all the method of
+88:46 
+
+88:46 cross we'll see them we'll see all of
+88:47 
+
+88:47 these but the drawbacks are so you are
+88:50 
+
+88:50 increasing competition cost and then
+88:52 
+
+88:52 tuning multiple have have parameters
+88:54 
+
+88:54 that it can prohibit as the number of
+88:55 
+
+88:55 combinations go exponentially let's
+88:56 
+
+88:56 suppose if you have 10 half parameters
+88:58 
+
+88:58 to tune okay so then you see this is a
+89:01 
+
+89:01 Comal problem so it'll grow
+89:02 
+
+89:02 exponentially okay again there'll be a
+89:04 
+
+89:04 lot of resources used to use okay so
+89:06 
+
+89:06 you'll have to settle down on H the less
+89:08 
+
+89:08 the H parameters the easier it becomes
+89:10 
+
+89:10 because maybe sometimes you should and
+89:11 
+
+89:11 that's why again a primer over here or
+89:14 
+
+89:14 disclaimer so when you're reading any
+89:16 
+
+89:16 papers usually what I have seen good
+89:17 
+
+89:17 papers they give have parameters as well
+89:19 
+
+89:19 but the papers who uh don't give have
+89:22 
+
+89:22 parameters so it's very hard to
+89:23 
+
+89:23 reproduce them why because they not have
+89:25 
+
+89:25 parameters and they found certain of
+89:28 
+
+89:28 these results or all of these results on
+89:29 
+
+89:29 certain have parameters there are
+89:30 
+
+89:30 particular values for parameters so it
+89:32 
+
+89:32 is very hard to replicate them you're
+89:33 
+
+89:33 getting very bad results because you
+89:35 
+
+89:35 don't know have param let's Suppose
+89:36 
+
+89:36 there are only there are maybe let's
+89:37 
+
+89:37 suppose two or two to 10 have parameters
+89:40 
+
+89:40 so if you don't know value to these so
+89:42 
+
+89:42 it is very hard to reproduce these
+89:43 
+
+89:43 papers okay this is just a primary
+89:45 
+
+89:45 because sometimes you'll be uh banging
+89:47 
+
+89:47 your hand head on the wall if you are
+89:48 
+
+89:48 reproducing a paper and you are not
+89:50 
+
+89:50 getting exact results so you must look
+89:52 
+
+89:52 have they given the value to have
+89:53 
+
+89:53 parameters
+89:57 
+
+89:57 okay so now I'll show you the how this
+89:59 
+
+89:59 how this Lambda has an effect now we'll
+90:01 
+
+90:01 do the same with this same with m is
+90:03 
+
+90:03 equal 9 but now we'll use this
+90:04 
+
+90:04 regulation term okay that's what I'll
+90:06 
+
+90:06 show you
+90:12 
+
+90:12 now okay let me just copy the whole code
+90:15 
+
+90:15 so that I don't have to write all of
+90:16 
+
+90:16 this one by one so I hope that you'll
+90:18 
+
+90:18 understand it after that you'll pause
+90:19 
+
+90:19 the video and you'll read the code on
+90:21 
+
+90:21 your own
+90:24 
+
+90:24 now what what you see is here fit
+90:26 
+
+90:26 polinomial but with regularization so
+90:28 
+
+90:28 now I am adding this okay you don't have
+90:30 
+
+90:30 to understand this right now but uh
+90:33 
+
+90:33 probably we once we go to line algebra
+90:35 
+
+90:35 we'll understand this and then I'm
+90:37 
+
+90:37 evaluating this thing and but the degree
+90:39 
+
+90:39 over here is nine if you can see clearly
+90:41 
+
+90:41 degree is n now I'm adding these terms
+90:43 
+
+90:43 also this reation term so now if you see
+90:49 
+
+90:49 this so this is Lambda is equal -
+90:52 
+
+90:52 18 okay the Lambda has
+90:55 
+
+90:55 huge effect so at Lambda is equal - 18
+90:58 
+
+90:58 so you have this value so the function
+90:60 
+
+90:60 is like this okay you saw still it
+91:02 
+
+91:02 approximated it right very nicely and in
+91:04 
+
+91:04 here if you see Lambda is equal 0 by
+91:06 
+
+91:06 Lambda is equal 0 basically no
+91:07 
+
+91:07 regularization use it so there was no
+91:08 
+
+91:08 regularization use so you see this curve
+91:10 
+
+91:10 is not good again okay this is very bad
+91:13 
+
+91:13 fitting okay but in here if you see so
+91:15 
+
+91:15 this is actually true function this is
+91:16 
+
+91:16 fitted function at Lambda is equal Z so
+91:18 
+
+91:18 this is data and true function and the
+91:20 
+
+91:20 fitted curve so you saw that regation
+91:22 
+
+91:22 has an effect you saw this actually
+91:24 
+
+91:24 tried to to approximate it quite
+91:26 
+
+91:26 nicely okay and if I want to show you uh
+91:29 
+
+91:29 one more function that is uh
+91:32 
+
+91:32 maybe the training
+91:34 
+
+91:34 loss and uh the test loss let me show
+91:37 
+
+91:37 you that
+91:43 
+
+91:43 also so this you can see it now there is
+91:46 
+
+91:46 no problem with this so this is the test
+91:48 
+
+91:48 error training error so initially what
+91:49 
+
+91:49 we had is the training error was
+91:51 
+
+91:51 decreasing but the test error was very
+91:52 
+
+91:52 high okay now you can see this so that
+91:54 
+
+91:54 problem also got somehow solved so here
+91:56 
+
+91:56 we have high train error again now and
+91:58 
+
+91:58 the test error is obviously same so
+91:60 
+
+91:60 initially what we had is this test error
+92:02 
+
+92:02 was almost hitting zero when this W was
+92:06 
+
+92:06 W was equal to 9 and M was equal to 9
+92:09 
+
+92:09 and the training error was hitting zero
+92:10 
+
+92:10 but the test error was going very high
+92:11 
+
+92:11 but here if you see when you added this
+92:14 
+
+92:14 optimal regularization so what happened
+92:15 
+
+92:15 is now the train error is also going
+92:17 
+
+92:17 high okay so that that you can clearly
+92:19 
+
+92:19 see and even with this uh with this
+92:21 
+
+92:21 adjacent Lambda so Lambda is equal Z
+92:23 
+
+92:23 basically means no regation m is equal 9
+92:26 
+
+92:26 okay and this is Lambda starting value
+92:28 
+
+92:28 from- 16 to this so you can see that
+92:30 
+
+92:30 Optimum values you get around here okay
+92:33 
+
+92:33 so I hope I covered some the basic
+92:35 
+
+92:35 concepts of ML and deep learning so
+92:38 
+
+92:38 we'll see these concept getting repeated
+92:39 
+
+92:39 everywhere okay so most of these concept
+92:42 
+
+92:42 we'll take one by one and thoroughly
+92:44 
+
+92:44 disect them but this example was there
+92:46 
+
+92:46 to Showcase a lot of things showcase uh
+92:48 
+
+92:48 uh how data is generated and what the
+92:50 
+
+92:50 physical phenomenon that might generated
+92:52 
+
+92:52 and there's a function uh beneath that
+92:54 
+
+92:54 and we have to approximate the function
+92:55 
+
+92:55 and there is noise we should not over
+92:57 
+
+92:57 fit we should not under fit and there
+92:58 
+
+92:58 are a lot of parameters to be tuned and
+92:59 
+
+92:59 a lot of terminology introduced so I
+93:01 
+
+93:01 hope that you so understood this example
+93:03 
+
+93:03 so I'm stopping the recording over here
+93:05 
+
+93:05 if you have any questions I'll take them

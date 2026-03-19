@@ -393,15 +393,19 @@
 \newcommand{\argmin}{\mathop{\mathrm{arg\,min}}}
 \newcommand{\argmax}{\mathop{\mathrm{arg\,max}}}
 
-% ============================================================================
-% PAGE STYLE AND HEADERS
-% ============================================================================
-
 \pagestyle{fancy}
 \fancyhf{}
+
+% Custom command to set the current lecture tracking
+\newcommand{\setlecture}[1]{%
+    \def\currentlecture{Lecture #1}%
+}
+% Default value if not set
+\def\currentlecture{}
+
 \fancyhead[LE,RO]{\thepage}
-\fancyhead[LO]{\nouppercase{\rightmark}}
-\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark} \ifx\currentlecture\empty\else\quad|\quad \textbf{\currentlecture}\fi}
+\fancyhead[RE]{\nouppercase{\leftmark} \ifx\currentlecture\empty\else\textbf{\currentlecture} \quad|\quad \fi}
 \renewcommand{\headrulewidth}{0.4pt}
 
 % ---- Chapter Title Formatting ----

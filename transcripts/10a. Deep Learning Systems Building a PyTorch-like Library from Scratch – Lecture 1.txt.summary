@@ -1,0 +1,21 @@
+Here is a summary and a timeline of the unique topics discussed in the lecture:
+
+### **Summary**
+This lecture kicks off a new series focused on deep learning systems, with the ultimate goal of building a "mini PyTorch" from scratch to understand what happens under the hood when training neural networks. The instructor begins by reviewing the standard machine learning framework and explaining why calculating derivatives (gradients) is fundamental for optimization. The lecture then transitions into live Python coding, demonstrating how to compute numerical derivatives and partial derivatives using limits. 
+
+The core of the session focuses on object-oriented programming to create a custom `Params` class (analogous to a PyTorch Tensor). This class is designed to store numerical values, labels, gradients, operational history, and child nodes, which are necessary to track mathematical expressions. Finally, the instructor writes a graph-tracing algorithm and uses the Graphviz library to visually map out the computation graph of a mathematical expression, setting the foundation for implementing automatic differentiation (backpropagation) in the next lecture.
+
+### **Topics and Timestamps**
+
+*   **00:00 - 04:05 | Introduction to Deep Learning Systems & Optimization.** 
+    Overview of the new lecture series aimed at coding a minimal PyTorch library. Recap of the machine learning framework (data, hypothesis class, loss function, optimization) and the vital role of calculus and derivatives in model optimization.
+*   **04:05 - 13:10 | Implementing Numerical Differentiation.** 
+    Coding a quadratic function in Python and plotting it using Matplotlib. Demonstrating how to compute instantaneous rates of change using the limit definition of a derivative ($f(x+h) - f(x)/h$) and comparing the numerical approximation to the exact analytical derivative.
+*   **13:10 - 19:10 | Computing Numerical Partial Derivatives.** 
+    Applying numerical differentiation to multi-variable functions (e.g., $a \cdot b + c$). Writing code to perturb one variable at a time while holding others constant to calculate partial derivatives, and visualizing the results.
+*   **19:10 - 26:45 | Computation Graphs & Gradient Checking.** 
+    Explaining how mathematical expressions in neural networks act as computation graphs with nodes (weights, biases) and edges (operations). Introduction to the central difference method (two-point difference) for more accurate numerical gradient calculations and checking autograd implementations.
+*   **26:45 - 46:12 | Building the Custom `Params` Class.** 
+    Using Python's Object-Oriented Programming (OOP) to build the data structure for the mini PyTorch library. Implementing the constructor and Python dunder/magic methods (`__add__`, `__sub__`, `__mul__`, `__repr__`) to track a parameter's data, label, operational history, children, and gradients.
+*   **46:12 - 64:07 | Tracing and Visualizing the Computation Graph.** 
+    Writing a Depth-First Search (DFS) algorithm to recursively trace through the custom `Params` objects and collect a set of unique nodes and directed edges. Using the Graphviz library to automatically draw and visualize the topological layout of the computation graph, preparing for future backpropagation implementation.

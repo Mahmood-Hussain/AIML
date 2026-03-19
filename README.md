@@ -2,7 +2,7 @@
 
 > **An [EduCasheer](https://educasheer.in) Initiative**
 
-Comprehensive LaTeX notes covering Machine Learning and Deep Learning fundamentals.
+Comprehensive LaTeX notes covering Lectures 1 through 10 of the Machine Learning and Deep Learning fundamentals course. Generated from lecture transcripts to provide textbook-style theoretical foundations and practical implementations from scratch.
 
 ## 👨‍🏫 Course Information
 
@@ -76,10 +76,16 @@ AIMLNotes/
 │   ├── main.tex          # Main document
 │   ├── preamble.tex      # Packages & settings
 │   └── chapters/         # Individual chapters
-│       ├── 01_introduction.tex
-│       ├── 02_supervised_learning.tex
-│       └── ...
-├── transcripts/          # Lecture transcripts (1.txt, 2.txt, ...)
+│       ├── lec01_introduction.tex
+│       ├── lec02_supervised_learning.tex
+│       ├── lec04_neurons.tex
+│       ├── lec05_mlp.tex
+│       ├── lec06_gradient_descent.tex
+│       ├── lec07_universal_approximation.tex
+│       ├── lec08_information_theory.tex
+│       ├── lec09_backpropagation.tex
+│       └── lec10_dl_systems.tex
+├── transcripts/          # Source lecture transcripts (Lecture 1 to 10c)
 └── README.md
 ```
 
