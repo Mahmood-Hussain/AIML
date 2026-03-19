@@ -1,0 +1,26 @@
+**Summary**
+
+This video tutorial provides a comprehensive, step-by-step guide to building a custom automatic differentiation engine (similar to PyTorch's `autograd`) and a Multi-Layer Perceptron (MLP) entirely from scratch in Python. The session begins with a review of computational graphs and the mathematical rules for manual backpropagation across addition and multiplication nodes. The instructor then transitions into automating this process using topological sorting to create a `.backward()` method within a custom `Params` data structure. 
+
+With the automatic differentiation foundation established, the tutorial scales up by constructing a `Neuron` class, a `Layer` class (grouping multiple neurons), and finally an `MLP` class (stacking multiple layers). The instructor demonstrates how to implement a full training loop—covering forward passes, Mean Squared Error (MSE) loss computation, backward passes, and gradient descent. The custom framework's capabilities are put to the test by successfully training it to solve the XOR problem, as well as classifying more complex, non-linear datasets like Scikit-Learn's "Make Moons" and "Iris" datasets using mini-batching. Throughout the video, the custom implementation's accuracy and API design are continuously compared against PyTorch, highlighting the inner workings of modern deep learning libraries while noting the speed and optimization advantages of production-grade frameworks.
+
+---
+
+**Topics Discussed**
+
+- **00:01 - 05:54**: Review of computational graphs and manual backpropagation rules (addition, multiplication, and chained gradients).
+- **05:54 - 09:16**: Code review of the custom `Params` class, which holds data, gradients, operations, and children nodes.
+- **09:16 - 25:46**: Performing a forward pass and manual backpropagation on a single mathematical neuron.
+- **25:46 - 30:37**: Verifying the manual backpropagation calculations by comparing them with PyTorch's tensor operations.
+- **30:37 - 34:36**: Introduction to topological sorting and its importance in resolving node dependencies for automated backpropagation.
+- **34:36 - 45:51**: Coding the automated automatic differentiation engine (`autograd`) and integrating the `.backward()` method.
+- **45:51 - 61:50**: Overview of the standard neural network training cycle (Forward Pass $\rightarrow$ Loss $\rightarrow$ Backward Pass $\rightarrow$ Gradient Descent $\rightarrow$ Reset Gradients).
+- **61:50 - 75:50**: Building the `Neuron` class, defining weights, biases, and a `tanh` activation function.
+- **75:50 - 80:44**: Building the `Layer` class to group a list of independent neurons.
+- **80:44 - 88:32**: Constructing the `MLP` (Multi-Layer Perceptron) class by stacking multiple sequential layers.
+- **88:32 - 91:47**: Introducing the XOR problem dataset to test the custom MLP's capabilities.
+- **91:47 - 96:27**: Adding a `.parameters()` method to retrieve all learnable weights and biases across the network.
+- **96:27 - 104:39**: Implementing MSE loss and extending the `Params` class to support division and power operations for calculus calculations.
+- **104:39 - 115:35**: Writing and executing the full training loop (gradient descent) to successfully model the XOR function.
+- **115:35 - 128:44**: Adapting the training loop for mini-batch stochastic gradient descent (SGD) and training on the "Make Moons" and "Iris" datasets, followed by visualizing decision boundaries.
+- **128:44 - 137:12**: Replicating the training process using PyTorch's `nn.Linear` modules, comparing API design, accuracy, and execution speed.

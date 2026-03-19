@@ -1,0 +1,5140 @@
+00:00 So if you remember from the previous
+00:01 
+
+00:01 session we were at the end of this. So
+00:03 
+
+00:03 we were making this computational graph.
+00:06 
+
+00:06 So and this if we had an expression let
+00:07 
+
+00:07 me just remind you a bit what we're
+00:09 
+
+00:09 trying to do. Okay we'll take an
+00:11 
+
+00:11 example. Suppose I have written over
+00:13 
+
+00:13 here that this example is there. So let
+00:15 
+
+00:15 me just copy and paste the example and
+00:17 
+
+00:17 then we'll make competition graph for
+00:20 
+
+00:20 that. Just give me a second. So let's
+00:22 
+
+00:22 suppose if you see the expression over
+00:25 
+
+00:25 here this expression.
+00:28 
+
+00:28 Now we can use the same expression. Say
+00:29 
+
+00:29 we have this a
+00:31 
+
+00:31 b and c are the parameters and we can
+00:33 
+
+00:33 make a little bit complex with this. So
+00:36 
+
+00:36 let's consider this a b and c. Let me
+00:38 
+
+00:38 see also so that I don't deviate much
+00:39 
+
+00:39 from the code. I would like to copy the
+00:41 
+
+00:41 values from here. So let's suppose we
+00:44 
+
+00:44 have a we have b we have c and we have
+00:46 
+
+00:46 let's suppose e. Okay. I don't know this
+00:48 
+
+00:48 this is some new input which I inserted.
+00:50 
+
+00:50 So if you see this d is equal to a
+00:52 
+
+00:52 multiplied by b. Okay. And this is the
+00:55 
+
+00:55 value. And then we have f is equal d +
+00:57 
+
+00:57 c. The final expression that if you see
+00:59 
+
+00:59 is this this is the final expression a
+01:01 
+
+01:01 mult* b plus c and whole multiply by e.
+01:04 
+
+01:04 So if I show you this so this is the
+01:06 
+
+01:06 expression. So now if you want to see
+01:07 
+
+01:07 the computation graph of it the only
+01:08 
+
+01:08 thing you need to give it is the root.
+01:10 
+
+01:10 So if I see draw dot this is what we
+01:13 
+
+01:13 have the code that we wrote in the
+01:15 
+
+01:15 previous session. So you'll have to only
+01:17 
+
+01:17 give the last node the root node. The
+01:19 
+
+01:19 root node over here is g I suppose. So
+01:20 
+
+01:20 if you give this g
+01:24 
+
+01:24 okay so if you print this so you'll see
+01:25 
+
+01:25 the computation graph this is like this
+01:27 
+
+01:27 so you have a multiplied by b and then
+01:30 
+
+01:30 you have plus the c and then you have
+01:33 
+
+01:33 whole multiplied by this function and
+01:35 
+
+01:35 then you're getting this output okay I
+01:38 
+
+01:38 hope this is clear for everyone this is
+01:40 
+
+01:40 what we were doing and now in order to
+01:42 
+
+01:42 first do the back propagation I told you
+01:43 
+
+01:43 we'll do back propagation manually so
+01:45 
+
+01:45 we'll do it step by step so each of
+01:46 
+
+01:46 these nodes if you can clearly see over
+01:49 
+
+01:49 here so it has a label That's what we
+01:50 
+
+01:50 wanted to print and then it has data the
+01:52 
+
+01:52 data that is inside the node and then we
+01:54 
+
+01:54 have the gradient corresponding to that
+01:56 
+
+01:56 node and considering that each of this
+01:59 
+
+01:59 is having the gradient and by that I
+02:01 
+
+02:01 mean so if we have the loss function at
+02:03 
+
+02:03 L so let's suppose this is last loss
+02:05 
+
+02:05 function if we have this okay so
+02:07 
+
+02:07 consider this one over here I could have
+02:10 
+
+02:10 given these nodes also some names let's
+02:11 
+
+02:11 suppose this is the loss function and
+02:13 
+
+02:13 this loss function has some value okay
+02:15 
+
+02:15 that data is the value and this is
+02:16 
+
+02:16 computed by all of the nodes that came
+02:18 
+
+02:18 previously and if I if define gradient
+02:20 
+
+02:20 for something that means that thing will
+02:22 
+
+02:22 be considered for the loss computation.
+02:24 
+
+02:24 So that will impact loss somehow. So if
+02:25 
+
+02:25 I do not consider gradient for a
+02:28 
+
+02:28 particular thing so consider that I'm
+02:29 
+
+02:29 not taking that particular node in the
+02:31 
+
+02:31 picture of the loss. So I'm saying this
+02:33 
+
+02:33 is not affecting the loss. Okay. Usually
+02:34 
+
+02:34 suppose all of these right now are
+02:36 
+
+02:36 affecting the loss. But when we making
+02:37 
+
+02:37 the real network in that input will not
+02:39 
+
+02:39 be affecting the loss. Why? Because
+02:40 
+
+02:40 input will be fixed. I don't have to
+02:42 
+
+02:42 assign gradient to inputs. In this case,
+02:44 
+
+02:44 I'm assigning gradient to all these
+02:45 
+
+02:45 nodes because I want all these nodes to
+02:48 
+
+02:48 somehow contribute and I should be able
+02:50 
+
+02:50 to nudge these values and see how what's
+02:52 
+
+02:52 the impact on the loss function. Okay,
+02:54 
+
+02:54 with this this being said and before
+02:57 
+
+02:57 doing the manual back propagation, I'll
+02:58 
+
+02:58 first tell you the methods because we
+03:01 
+
+03:01 have seen some methods of computing the
+03:04 
+
+03:04 gradients. So one among them you saw was
+03:06 
+
+03:06 the the numerical method in which we do
+03:08 
+
+03:08 the definition and by the help of that
+03:11 
+
+03:11 we compute the gradients. We compute the
+03:12 
+
+03:12 derivatives and bunch of derivatives is
+03:14 
+
+03:14 called the gradient. And then the second
+03:16 
+
+03:16 thing is which called symbolic
+03:18 
+
+03:18 differentiation. Okay you can also use
+03:20 
+
+03:20 symbolic differentiation but it's again
+03:21 
+
+03:21 we're not using it in the computers but
+03:23 
+
+03:23 you can use it on the pen and paper. So
+03:25 
+
+03:25 how does that look like? Let me show
+03:26 
+
+03:26 you. So if you now see this so we can
+03:29 
+
+03:29 have symbolic differentiation. So what
+03:30 
+
+03:30 is symbolic differentiation?
+03:37 
+
+03:37 So whatever you studied in the class of
+03:39 
+
+03:39 calculus that was covered previously. So
+03:41 
+
+03:41 what basically that was was symbolic
+03:43 
+
+03:43 differentiation in which you have rules.
+03:45 
+
+03:45 So you'll have some product chain rule
+03:46 
+
+03:46 you'll have some rule. Okay you'll have
+03:49 
+
+03:49 product rule
+03:51 
+
+03:51 you have when you have composite
+03:53 
+
+03:53 functions you'll use chain rule.
+03:56 
+
+03:56 So all these rules were used in that. So
+03:58 
+
+03:58 you do the differentiation symbolically.
+03:59 
+
+03:59 If you have a if you have let's suppose
+04:01 
+
+04:01 a function f of theta okay and then this
+04:03 
+
+04:03 function is equal to suppose pi i goes
+04:05 
+
+04:05 from 1 to suppose some k you have theta
+04:08 
+
+04:08 i and you you are asked to find the
+04:11 
+
+04:11 derivative with resp to particular theta
+04:12 
+
+04:12 of this function. So what you'll do is
+04:15 
+
+04:15 you'll use the product rule in this
+04:16 
+
+04:16 case. Okay. So let's suppose if this is
+04:19 
+
+04:19 with so you'll say the answer is I is
+04:21 
+
+04:21 equal uh let's suppose
+04:24 
+
+04:24 we'll say j is equal 1 to k and j is not
+04:28 
+
+04:28 equal to i something of this or and this
+04:30 
+
+04:30 is theta of j. So you you consider this
+04:32 
+
+04:32 is like that. But what you have done
+04:33 
+
+04:33 over here is because you consider all
+04:35 
+
+04:35 other terms as constant and only this i
+04:38 
+
+04:38 i term theta i was taken derivative with
+04:41 
+
+04:41 respect to this. So this is what it came
+04:43 
+
+04:43 up with. So again if you're using
+04:45 
+
+04:45 expression you can use sum rule product
+04:46 
+
+04:46 rule or chain rule and you will do the
+04:48 
+
+04:48 difference symbolically and we will not
+04:50 
+
+04:50 usually use this again because this is
+04:51 
+
+04:51 costly. So if you see for each of this
+04:53 
+
+04:53 you will take some n minus2 operations
+04:55 
+
+04:55 and you'll have to do it for say n n n n
+04:57 
+
+04:57 n n n n n n n n n n n n n n n n n. So
+04:57 
+
+04:57 what will happen is so you'll take n
+04:58 
+
+04:58 into n minus this goes to quadratic. So
+05:00 
+
+05:00 we won't use this. So instead of this
+05:02 
+
+05:02 the the third method that we first
+05:04 
+
+05:04 method we saw is the numerical method of
+05:05 
+
+05:05 differentiation. you'll use the
+05:06 
+
+05:06 definition of uh differentiation or
+05:08 
+
+05:08 definition of uh taking the
+05:10 
+
+05:10 instantaneous rate of change and then
+05:11 
+
+05:11 you'll use that and based on that you'll
+05:12 
+
+05:12 compute the derivative. The second rule
+05:15 
+
+05:15 is the rule that we have been seeing
+05:16 
+
+05:16 calculus. We'll use rules of calculus in
+05:19 
+
+05:19 order to get to that. Again I told you
+05:20 
+
+05:20 there's again a problem. Uh it's not
+05:22 
+
+05:22 computational. The third thing that
+05:24 
+
+05:24 we'll do that is the concern of today's
+05:27 
+
+05:27 lecture is called as automatic
+05:29 
+
+05:29 differentiation.
+05:36 
+
+05:36 So what is this automatic
+05:37 
+
+05:37 differentiation now? Okay. So now in
+05:39 
+
+05:39 this we compute the computational graph
+05:41 
+
+05:41 and then we see we try to see in this in
+05:43 
+
+05:43 our computing systems in our hardware
+05:45 
+
+05:45 that we have can we somehow implement it
+05:48 
+
+05:48 in such a way so that many of the things
+05:50 
+
+05:50 are done automatically so there is a way
+05:51 
+
+05:51 to automate this that's why it's called
+05:52 
+
+05:52 automatic differentiation okay you just
+05:54 
+
+05:54 apply this from a particular node and it
+05:56 
+
+05:56 should compute the things on its own and
+05:58 
+
+05:58 in that one important concept is
+05:60 
+
+05:60 computation graph that I have spoken at
+06:02 
+
+06:02 length in previous lectures as well so
+06:04 
+
+06:04 computational graphs are made first and
+06:06 
+
+06:06 whatever we we made so far in code. So
+06:09 
+
+06:09 that's actually a competition graph. If
+06:10 
+
+06:10 you see we made that graph sort of
+06:12 
+
+06:12 thing. We have node A, node B and then
+06:13 
+
+06:13 it multiplies. We we make some other
+06:15 
+
+06:15 node based on that and we had gradients
+06:17 
+
+06:17 values as that. So that's a competition
+06:19 
+
+06:19 graph in that. Okay. So taking a
+06:20 
+
+06:20 standard example from some slides from
+06:23 
+
+06:23 Carnegie Melon University. So I'll make
+06:26 
+
+06:26 computational graph. So you have a graph
+06:27 
+
+06:27 like this. Suppose you have X1 and X2.
+06:31 
+
+06:31 And then consider this as node V1.
+06:34 
+
+06:34 And I'll first write the expression. The
+06:36 
+
+06:36 expression goes like this. y is equal f
+06:38 
+
+06:38 of x1 x2. It takes two inputs and this
+06:41 
+
+06:41 expression is equal to log of x1 + x1 *
+06:46 
+
+06:46 x2 minus sin of x2. So this is the
+06:49 
+
+06:49 expression and we want to draw a
+06:50 
+
+06:50 computational graph for uh this
+06:52 
+
+06:52 expression. Okay. So let me draw it with
+06:55 
+
+06:55 some other color so that it's visible.
+06:57 
+
+06:57 So this is the expression.
+06:60 
+
+06:60 So now how to do this? This is x1 x2 and
+07:02 
+
+07:02 you have
+07:04 
+
+07:04 v_sub_1 and this is v_sub_2. Basically
+07:07 
+
+07:07 we start with v_sub1 and v2. We directly
+07:09 
+
+07:09 give them the values x1 and x2 and then
+07:11 
+
+07:11 we'll apply log on this. So once we
+07:12 
+
+07:12 apply log on this. So let's suppose
+07:13 
+
+07:13 we'll get v3. Okay. So this is the first
+07:16 
+
+07:16 function. So then we have to do x1
+07:18 
+
+07:18 multiplied by x2. So we'll multiply
+07:20 
+
+07:20 this. Okay. So we'll multiply this
+07:23 
+
+07:23 x1 * x2.
+07:29 
+
+07:29 Okay. So you're multiplying this and you
+07:30 
+
+07:30 are getting some node. Let me make these
+07:33 
+
+07:33 nodes better.
+07:38 
+
+07:38 Okay. So you are getting uh this node.
+07:40 
+
+07:40 Let's call this as V4. Okay. After this
+07:42 
+
+07:42 once you you have this term now you have
+07:44 
+
+07:44 this term and you add them up. So you
+07:46 
+
+07:46 have to add these things. You'll do this
+07:48 
+
+07:48 and this you'll do addition. So here you
+07:50 
+
+07:50 did multiplication. In this you did
+07:51 
+
+07:51 addition. So now you'll get one more
+07:53 
+
+07:53 node. Let's call that V6. Okay. And
+07:56 
+
+07:56 after that what you are doing is you are
+07:57 
+
+07:57 sentencing minus of sin X. So you'll
+07:59 
+
+07:59 apply sign on this x x2. So apply sign
+08:02 
+
+08:02 on this. So you'll get some v5. You're
+08:05 
+
+08:05 applying sine on this.
+08:08 
+
+08:08 Okay? And then you are subtracting these
+08:10 
+
+08:10 two things. So you're subtracting these
+08:12 
+
+08:12 two things. You're getting v7 and you're
+08:15 
+
+08:15 subtracting this over here. So this over
+08:17 
+
+08:17 here what I made is a competition graph.
+08:19 
+
+08:19 So if I write the same expression uh in
+08:21 
+
+08:21 whatever we did, whatever we have
+08:22 
+
+08:22 written the code for. So you'll get a
+08:23 
+
+08:23 graph of this sort. Okay? Something like
+08:25 
+
+08:25 this. So now the first thing is if you
+08:26 
+
+08:26 have to evaluate it you know we have to
+08:28 
+
+08:28 do the forward pass. So how to do
+08:29 
+
+08:29 forward pass? So if I take the values so
+08:31 
+
+08:31 the values that are given here is x1 is
+08:34 
+
+08:34 2 x1 the value of x1 is equal to 2 and
+08:38 
+
+08:38 the value of x2 is equal. Okay these are
+08:40 
+
+08:40 the values. So the first thing that we
+08:42 
+
+08:42 have to do is we'll do the for forward
+08:43 
+
+08:43 evaluation trace. Okay. So we are doing
+08:46 
+
+08:46 forward pass.
+08:48 
+
+08:48 This is what we'll be doing. So how can
+08:51 
+
+08:51 we do that? We'll we'll start with these
+08:53 
+
+08:53 notations only. So this is just not
+08:55 
+
+08:55 syntactic sugar. This is nothing else.
+08:56 
+
+08:56 It will pretty easy. I I'll just write
+08:58 
+
+08:58 it for the sake of completion. So we
+08:59 
+
+08:59 have v_sub1 is equal x1. So v_sub_1 is
+09:02 
+
+09:02 equal to x1 that is equal to 0.5. Okay.
+09:05 
+
+09:05 And similarly we have v_sub_2 is equal
+09:07 
+
+09:07 to x2 that is equal to 5. So if you if
+09:10 
+
+09:10 you see x2 not 0.5 this is two. So if
+09:14 
+
+09:14 you see this is x1 this is x2 and I'm
+09:16 
+
+09:16 just filling these values. V1 v2 v3 v4
+09:18 
+
+09:18 v5 v6. I'm just filling them out. Okay.
+09:20 
+
+09:20 So v_sub_1 is equal x1 that is 2. V2 is
+09:22 
+
+09:22 equal X2 that is 5 and then if I see V3
+09:25 
+
+09:25 so how how did we get V3 so V V3 was we
+09:27 
+
+09:27 applied log on this V_sub_1 so this is
+09:29 
+
+09:29 equal to roughly equal to 0 693
+09:34 
+
+09:34 and then we'll get V4 so what how is V4
+09:36 
+
+09:36 how did we get V4 X1 X2 that is V_sub1 *
+09:39 
+
+09:39 V_sub_2 so this is equal to 10 2 * 5 is
+09:42 
+
+09:42 10 and then we have V5 how did we get V5
+09:46 
+
+09:46 so V5 was sin of this so if you see V5
+09:48 
+
+09:48 over here so this was s of x2 so sin of
+09:52 
+
+09:52 V2 and the sign of V_sub_2 once we apply
+09:55 
+
+09:55 that so this is roughly equal to minus
+09:57 
+
+09:57 0.9589
+10:01 
+
+10:01 and then similarly we have V6 so this V6
+10:03 
+
+10:03 was equal to V3 plus V4 okay these two
+10:07 
+
+10:07 these two terms if you see from this
+10:08 
+
+10:08 expression log term plus this X1 X2 so
+10:11 
+
+10:11 if you evaluate these two things now so
+10:13 
+
+10:13 you have values of V3 with you have
+10:15 
+
+10:15 values of V4 you have to come with this
+10:17 
+
+10:17 I think this would be 10693
+10:19 
+
+10:19 roughly equal to this and then V7 V6 7
+10:22 
+
+10:22 is a subtraction. So you subtract this.
+10:24 
+
+10:24 So this is equal to 11.652.
+10:28 
+
+10:28 This is how we perform the forward pass.
+10:30 
+
+10:30 Okay, pretty easy. And now in this if
+10:32 
+
+10:32 you see each node here stores an
+10:35 
+
+10:35 intermediate information. So now we are
+10:36 
+
+10:36 not just taking this we taking each of
+10:38 
+
+10:38 this node. So if you take the V3 the V3
+10:39 
+
+10:39 was not originally in this expression
+10:41 
+
+10:41 but we made it somehow. So this is
+10:42 
+
+10:42 called V3. Okay. And if you see let's
+10:44 
+
+10:44 suppose this is a separate node and
+10:46 
+
+10:46 these two together are a separate node.
+10:48 
+
+10:48 Okay. So each thing is an intermediate
+10:49 
+
+10:49 computation. So each node holds some
+10:51 
+
+10:51 intermediate computation. So I want you
+10:53 
+
+10:53 to know these things. So the first
+10:54 
+
+10:54 method of auto autograders or auto
+10:56 
+
+10:56 differentiation automatic
+10:58 
+
+10:58 differentiation is called as forward
+10:60 
+
+10:60 mode of auto differentiation. So this is
+11:01 
+
+11:01 called as
+11:03 
+
+11:03 forward
+11:05 
+
+11:05 mode
+11:09 
+
+11:09 automatic
+11:12 
+
+11:12 differentiation.
+11:17 
+
+11:17 Okay. So we we'll see how how to apply
+11:19 
+
+11:19 this again it the same rules. So if you
+11:20 
+
+11:20 have let's suppose addition you have a
+11:23 
+
+11:23 plus let's suppose b and you have to
+11:24 
+
+11:24 form suppose this. So you'll take
+11:26 
+
+11:26 gradient of this and take derivative of
+11:28 
+
+11:28 this and this same rules. So whatever
+11:30 
+
+11:30 rules we have learned in the symbolic
+11:31 
+
+11:31 all these rules will apply over here.
+11:33 
+
+11:33 Okay. So let's now go to the forward
+11:35 
+
+11:35 trace. So we'll write forward
+11:38 
+
+11:38 automatic differentiation trace.
+11:42 
+
+11:42 Okay. Starting with initially. So what
+11:44 
+
+11:44 we have to do is if we want to find so
+11:46 
+
+11:46 we'll find we'll find something like
+11:47 
+
+11:47 this. So we want to find so if we have
+11:49 
+
+11:49 some vi so let's suppose we have vi so
+11:51 
+
+11:51 in in these case we have v_sub1 v_sub2
+11:52 
+
+11:52 we have these nodes if we want to find
+11:54 
+
+11:54 the derivative let's call that with this
+11:55 
+
+11:55 dot so vi dot basically will be defined
+11:58 
+
+11:58 like this this is derivative of vi by
+12:01 
+
+12:01 with respect to x x1 suppose in this
+12:04 
+
+12:04 case I just want to write x1 okay so
+12:07 
+
+12:07 this is what we'll define it as remember
+12:09 
+
+12:09 this definition so if you take a
+12:10 
+
+12:10 derivative of any node with respect to
+12:12 
+
+12:12 input x1 so this is how we'll derive it
+12:15 
+
+12:15 so this is actually these are called as
+12:16 
+
+12:16 dual numbers So each vi so they have
+12:18 
+
+12:18 this called primal and they have dual
+12:20 
+
+12:20 numbers. So here I don't want to get the
+12:21 
+
+12:21 terminology I just want you to remember
+12:23 
+
+12:23 this. So you have vi and when you take
+12:25 
+
+12:25 take derivative of vi with respect to
+12:27 
+
+12:27 x1. So this is how we'll represent it.
+12:29 
+
+12:29 Okay. Now starting with this graph if
+12:30 
+
+12:30 you if you see this graph. So now this
+12:32 
+
+12:32 graph I can copy and paste everywhere
+12:34 
+
+12:34 wherever I want it. So this is my graph.
+12:36 
+
+12:36 So I'll copy it from here and I'll paste
+12:40 
+
+12:40 it over here.
+12:43 
+
+12:43 Okay. So if I paste it over here and I
+12:45 
+
+12:45 have to do forward automatic
+12:48 
+
+12:48 differentiation trace. So the first
+12:50 
+
+12:50 thing I'll do v_sub1 dash. So basically
+12:51 
+
+12:51 I'll do v1 dot. So basically I want to
+12:54 
+
+12:54 find this. I want to find derivative of
+12:56 
+
+12:56 v_sub_1 with respect to x1. So I'm
+12:58 
+
+12:58 starting with this node with this
+12:59 
+
+12:59 particular node that you see over here.
+13:01 
+
+13:01 So how to do that? Pretty easy. If you
+13:03 
+
+13:03 want with respect to it is x1. Okay.
+13:05 
+
+13:05 V_sub1 is equal to x1. So if you take
+13:07 
+
+13:07 partial derivative of v_sub_1 with
+13:09 
+
+13:09 respect to x1. So that's equal to
+13:11 
+
+13:11 partial d x1 with respect to x1. So this
+13:13 
+
+13:13 is equal to one. Okay, I think it's
+13:15 
+
+13:15 pretty clear so far. And then let's see
+13:18 
+
+13:18 we'll see v_sub_2 dot. So we want to
+13:21 
+
+13:21 find the derivative of v_sub_2 with
+13:23 
+
+13:23 respect to x1. So how to do that? Now if
+13:25 
+
+13:25 you see this, if you see v2, it's equal
+13:27 
+
+13:27 x2. If you take derivative of x2 with
+13:29 
+
+13:29 respect to x1, that is equal to zero.
+13:32 
+
+13:32 If you take partial derivative of this,
+13:33 
+
+13:33 okay, I'll write arrows over here. So
+13:36 
+
+13:36 keep a trace of this. So we have an v3
+13:38 
+
+13:38 dot. So how to compute this? So this is
+13:40 
+
+13:40 derivative of v3 with respect to x1. So
+13:43 
+
+13:43 derivative of this with respect to x1.
+13:45 
+
+13:45 So how to compute this? So if you see
+13:47 
+
+13:47 this so how did we get to v3? So v3 was
+13:50 
+
+13:50 equal to so we have to compute
+13:52 
+
+13:52 derivative of v3 with respect to x1. So
+13:54 
+
+13:54 we can use definition of v3. So
+13:56 
+
+13:56 derivative of v3 was log of x1. Okay.
+14:00 
+
+14:00 Divided by or not divided by so by x1.
+14:03 
+
+14:03 So what you can do is so after applying
+14:05 
+
+14:05 this so you'll say rather than rather
+14:08 
+
+14:08 than writing the whole definition I can
+14:09 
+
+14:09 say this was equal to v_sub1 derative of
+14:11 
+
+14:11 v1 cuz I have v1 with me. So once I take
+14:14 
+
+14:14 derivative of v1 with respect to x1 so
+14:16 
+
+14:16 that's already what I have over here. So
+14:18 
+
+14:18 I can say this is equal to say one
+14:22 
+
+14:22 I can write in the in the log v_sub1 and
+14:25 
+
+14:25 then derivative of this v1. So
+14:26 
+
+14:26 derivative of v1 is vdash. Okay I hope
+14:28 
+
+14:28 you got the clear you got this point. So
+14:30 
+
+14:30 because v1 it is equal to log of x1 and
+14:33 
+
+14:33 x1 is equal v1. So I can write that
+14:34 
+
+14:34 differentiation of that is equal to 1id
+14:36 
+
+14:36 v1 and then multiply by derivative of
+14:38 
+
+14:38 this v1. derivative of v1 I can write it
+14:40 
+
+14:40 like this v1 dot. Similarly if I want to
+14:43 
+
+14:43 find v4
+14:46 
+
+14:46 yes we have a question over here. Yes
+14:48 
+
+14:48 please. So here there was a minor
+14:50 
+
+14:50 mistake. It is log of v1 not just
+14:52 
+
+14:52 v_sub1. So it's not just v_sub_1. So it
+14:54 
+
+14:54 was log of v1. So that's how we got. So
+14:56 
+
+14:56 we applied log on this. So this was
+14:58 
+
+14:58 equal to 1 / v_sub_1 and then by chain
+15:01 
+
+15:01 rule so this should be derivative of
+15:04 
+
+15:04 whole of this expression again v_sub1
+15:05 
+
+15:05 divided by x1. So this can be written as
+15:09 
+
+15:09 v1 dot and I wrote it like this.
+15:13 
+
+15:13 Okay. Now seeing v4 so how this v4 is so
+15:16 
+
+15:16 if you see v4 how did you arrive at v4?
+15:19 
+
+15:19 So v4 was v_sub1 multiplied by v_sub_2.
+15:21 
+
+15:21 So you can use product there. So if I
+15:23 
+
+15:23 directly write that so what that will be
+15:25 
+
+15:25 equal to you can do the computation
+15:27 
+
+15:27 easily now. So v_ub4 dot this will be
+15:29 
+
+15:29 equal to v_sub_1 v_sub_2 + v_sub_2
+15:34 
+
+15:34 v_sub_1 and then I'll use it like this
+15:36 
+
+15:36 and I I'll keep on substituting the
+15:38 
+
+15:38 values also here. So if you substitute
+15:39 
+
+15:39 these values so this will be equal to 1
+15:42 
+
+15:42 divid by 2 that is 0.5.
+15:44 
+
+15:44 Okay. And this thing over here if you
+15:46 
+
+15:46 substitute the values this is equal to
+15:49 
+
+15:49 uh 1 * 5 + 0 * 2 this is equal to 5 okay
+15:53 
+
+15:53 v4 is equal to 5 and then v5 similarly
+15:56 
+
+15:56 if you have to compute v5
+15:58 
+
+15:58 dot so what we'll do is so with this v5
+16:00 
+
+16:00 you'll say v_sub_2 dot cos of v_sub_2
+16:04 
+
+16:04 again use the same thing so how we came
+16:05 
+
+16:05 up with v5 so v5 was sine of v_sub_2
+16:08 
+
+16:08 okay so sine of v2 is this so you take
+16:10 
+
+16:10 derivative of sin that is cos of v_sub_2
+16:12 
+
+16:12 and then you multiply with derivative of
+16:14 
+
+16:14 v_sub_2 with with respect to x1. So
+16:17 
+
+16:17 you're left with this and you substitute
+16:19 
+
+16:19 the values. So after substituting the
+16:20 
+
+16:20 values uh the answer is equal to 0
+16:22 
+
+16:22 multiplied by cos of whatever this is
+16:25 
+
+16:25 equal to zero. Similarly for v6 and for
+16:29 
+
+16:29 v7
+16:30 
+
+16:30 okay so I'll write the values directly
+16:32 
+
+16:32 and I know you people can use these
+16:35 
+
+16:35 three rules product rule sum rule and
+16:37 
+
+16:37 the chain rule uh in order to find that.
+16:39 
+
+16:39 So this v6 is equal to v3 plus v4. So
+16:43 
+
+16:43 this is equal to 0.5 + 5 this is 5.5.
+16:48 
+
+16:48 Okay. Similarly for this V7. So this was
+16:50 
+
+16:50 just subtraction.
+16:53 
+
+16:53 Okay. And you can use subtraction. So
+16:54 
+
+16:54 this is equal to 5.5
+16:58 
+
+16:58 minus of 0. So this is again equal to
+16:60 
+
+16:60 5.5. Okay. So now if I have to compute
+17:04 
+
+17:04 with respect to x1. So this is actually
+17:07 
+
+17:07 equal to derivative of v7. So this will
+17:09 
+
+17:09 be equal to 5.5. If I take derivative of
+17:12 
+
+17:12 y basically the last x with last y
+17:14 
+
+17:14 because y how did we get that? So y
+17:16 
+
+17:16 actually is equal to v7. So we take
+17:17 
+
+17:17 derivative of this. So v7 by vn that's
+17:19 
+
+17:19 equal to 5.5. Okay. So this is how we
+17:21 
+
+17:21 took the trace of this. Okay. So we can
+17:24 
+
+17:24 repeat it again for if we have to
+17:26 
+
+17:26 compute this for let's say x2 we can
+17:28 
+
+17:28 repeat the same procedure. So repeat. So
+17:31 
+
+17:31 whatever the graph was you you saw over
+17:33 
+
+17:33 here. So you can take this as y. Okay.
+17:35 
+
+17:35 And you can compute the same thing with
+17:36 
+
+17:36 this. So now if you see if you can you
+17:38 
+
+17:38 can again do the same thing for we did
+17:40 
+
+17:40 for x1 x2 you can now take say v3 v4 and
+17:43 
+
+17:43 you can compute with respect to y okay
+17:45 
+
+17:45 so now if you see for each of this value
+17:47 
+
+17:47 for each of x1 for each of x2 you have
+17:50 
+
+17:50 to perform the whole pass once okay you
+17:52 
+
+17:52 have to do this so what I'm trying to
+17:54 
+
+17:54 tell you if you have a function f which
+17:55 
+
+17:55 goes from r of n to rf k so this is the
+17:58 
+
+17:58 function so it'll need n passes then so
+18:01 
+
+18:01 it'll require you n passes so because
+18:03 
+
+18:03 you have these n inputs and it'll
+18:04 
+
+18:04 require you n passes to do that so each
+18:06 
+
+18:06 one of these So usually in in our
+18:08 
+
+18:08 machine learning so this n will be
+18:09 
+
+18:09 greater greater than k okay because
+18:11 
+
+18:11 whatever inputs we have we will have a
+18:13 
+
+18:13 large number of inputs and if you know
+18:15 
+
+18:15 that we'll have these thousands of these
+18:16 
+
+18:16 and this k is relatively small. So
+18:18 
+
+18:18 usually for this k it will be a mult
+18:19 
+
+18:19 class class we can say 10 classes
+18:21 
+
+18:21 sometimes may binary class sometimes a
+18:23 
+
+18:23 single number so this n is way greater
+18:25 
+
+18:25 than k. So in that the problem will be
+18:27 
+
+18:27 so we'll have to perform a lot of these
+18:28 
+
+18:28 passes as we did this. So for this x1
+18:31 
+
+18:31 we'll perform one pass for x2 we'll
+18:32 
+
+18:32 perform again another pass. So we'll
+18:34 
+
+18:34 have to do it n number of times and n is
+18:36 
+
+18:36 a huge number. So that's the problem
+18:38 
+
+18:38 with this the forward case. Okay. And
+18:40 
+
+18:40 there is one more case now because we
+18:42 
+
+18:42 saw that there is a limitation of this
+18:44 
+
+18:44 case as well. So the same procedure will
+18:46 
+
+18:46 be used but we'll use this in the
+18:47 
+
+18:47 reverse. So that is called as reverse
+18:49 
+
+18:49 mode of auto automatic differentiation.
+18:51 
+
+18:51 So we'll do this thing in the reverse
+18:52 
+
+18:52 now. So we'll do reverse mode of
+18:54 
+
+18:54 automatic differentiation.
+18:58 
+
+18:58 reverse mode
+18:60 
+
+19:00 automatic
+19:03 
+
+19:03 differentiation. So okay in this
+19:05 
+
+19:05 whatever the limitations we had with the
+19:06 
+
+19:06 forward pass because we have to do n
+19:08 
+
+19:08 passes if we have the input length to be
+19:10 
+
+19:10 n and that will reduce over here. So
+19:13 
+
+19:13 what how to do that in this we'll define
+19:15 
+
+19:15 a term what's called adjint. So this
+19:18 
+
+19:18 adjint
+19:19 
+
+19:19 of v_sub1 so we'll define it like this
+19:21 
+
+19:21 v1 bar. So this will be equal to
+19:23 
+
+19:23 derivative of y with respect to v vi.
+19:27 
+
+19:27 This is how we'll define it. This this
+19:29 
+
+19:29 will be called an adjint.
+19:32 
+
+19:32 Okay. I hope this is clear. I get the
+19:34 
+
+19:34 same. So local rules will be same. So if
+19:36 
+
+19:36 you have let's suppose if you have a and
+19:38 
+
+19:38 you have b you can you can use the same
+19:40 
+
+19:40 rules a plus b a multiply by b. Okay.
+19:42 
+
+19:42 All these things will be same. Let's now
+19:44 
+
+19:44 take the reverse trace. Okay. We'll see
+19:47 
+
+19:47 reverse automatic differentiation trace.
+19:51 
+
+19:51 I want to compute all of this. I want to
+19:53 
+
+19:53 compute v_sub_1 dash v2 dash because I
+19:55 
+
+19:55 want to compute this derivative of y
+19:56 
+
+19:56 with respect to that's what we want to
+19:58 
+
+19:58 do in the dual network. So you have a
+19:59 
+
+19:59 whole network you have a computation
+19:60 
+
+19:60 graph of this sort that I am making over
+20:02 
+
+20:02 here and you want to take the derivative
+20:04 
+
+20:04 of this with respect to all of these
+20:05 
+
+20:05 intermediate nodes. Okay, that's why I'm
+20:07 
+
+20:07 resorting to uh the backward path. I'm
+20:09 
+
+20:09 resorting to this automatic uh
+20:11 
+
+20:11 differentiation but in the reverse mode.
+20:13 
+
+20:13 So how to do that now? So you have v7
+20:16 
+
+20:16 bar first. So v7 is actually equal to y.
+20:18 
+
+20:18 So this is equal to dy or I can say curl
+20:22 
+
+20:22 y by curl v7 or d y by d7 partial
+20:26 
+
+20:26 derivative of y with respect to 7
+20:28 
+
+20:28 because y is equal to v7. So this is
+20:29 
+
+20:29 equal obviously equal to 1. Okay. And
+20:32 
+
+20:32 now going to v6.
+20:35 
+
+20:35 Now v6 again if you see how did we
+20:37 
+
+20:37 arrive at v6. So this is the v6. So this
+20:40 
+
+20:40 over here is v6. Okay. Now we'll not go
+20:42 
+
+20:42 see initially what we're doing is we're
+20:44 
+
+20:44 saying v6 by x1 and then we're seeing
+20:46 
+
+20:46 how did we came over here. So we'll see
+20:48 
+
+20:48 okay we'll go in the backward way now
+20:50 
+
+20:50 okay and we'll use a chain rule again so
+20:53 
+
+20:53 this is equal to so this V6 is equal V7
+20:57 
+
+20:57 bar multiplied by 1 okay so if you see
+21:00 
+
+21:00 why is it so because V7 we took it from
+21:03 
+
+21:03 here so V6 bar I should write it okay I
+21:06 
+
+21:06 should not mess up the values also so a
+21:08 
+
+21:08 V7 bar multiplied one why because I I
+21:11 
+
+21:11 I'll start it like this because D of V6
+21:14 
+
+21:14 of Y with respect to V6 X
+21:18 
+
+21:18 okay how can I write it I can write it
+21:19 
+
+21:19 because it goes through that because we
+21:20 
+
+21:20 have done enough of chain rule so I'll
+21:22 
+
+21:22 say DV of V7 multiplied by V7 with
+21:27 
+
+21:27 respect to V6 okay this is how I can
+21:30 
+
+21:30 write it by chain root that's what I did
+21:33 
+
+21:33 here so if you see I said V7 so this is
+21:36 
+
+21:36 equal to V7 so this portion over here is
+21:38 
+
+21:38 equal to this and
+21:41 
+
+21:41 this is equal to one sorry so this is
+21:42 
+
+21:42 equal to 1 so this over here the first
+21:45 
+
+21:45 term that you see over here. So this is
+21:47 
+
+21:47 equal to one. And the second term that
+21:49 
+
+21:49 you see over here. So this is directly
+21:50 
+
+21:50 written like this because this is by
+21:52 
+
+21:52 definition. Okay. So when I wrote V6 bar
+21:54 
+
+21:54 is equal to V7 bar by 1. So this is by
+21:56 
+
+21:56 the definition of chain rule. Again if I
+21:59 
+
+21:59 do it for V5. So V5 again we can use the
+22:03 
+
+22:03 same chain rule. We can expand it. So
+22:04 
+
+22:04 you'll get this. So V5 is equal V7
+22:08 
+
+22:08 bar mult* minus 1. So again showing you
+22:11 
+
+22:11 this one more times. So if you have
+22:13 
+
+22:13 partial derivative of y with respect to
+22:16 
+
+22:16 v5. So this will be equal to partial
+22:17 
+
+22:17 derivative of y with respect to because
+22:21 
+
+22:21 you have to see the graph again. So this
+22:24 
+
+22:24 is the v5. This this is with respect to
+22:26 
+
+22:26 v7 again. So partial derivative of this
+22:29 
+
+22:29 with respect to
+22:32 
+
+22:32 with respect to v7.
+22:34 
+
+22:34 So this is equal to v7 multiplied by
+22:37 
+
+22:37 partial derivative of v7 by partial
+22:40 
+
+22:40 derivative of
+22:42 
+
+22:42 v5. Okay. So how did you get this minus
+22:45 
+
+22:45 one over here? Because you know that
+22:46 
+
+22:46 this is the minus times. This is not
+22:48 
+
+22:48 just y7 this is minus times of y7. Okay.
+22:51 
+
+22:51 So over here which I wrote this is minus
+22:53 
+
+22:53 * of v7
+22:56 
+
+22:56 that's why you got this minus one over
+22:57 
+
+22:57 here. So if you take derivative of this
+22:60 
+
+22:60 so you will get let's suppose one.
+23:03 
+
+23:03 Okay. So in this case I think dy and if
+23:05 
+
+23:05 you see this so you'll take the
+23:07 
+
+23:07 derivative of this it will be minus one
+23:08 
+
+23:08 because of this minus sign and you have
+23:10 
+
+23:10 this dy and by definition I think this
+23:14 
+
+23:14 over here should be I can take this
+23:16 
+
+23:16 minus over here because it's the
+23:17 
+
+23:17 multiplication.
+23:19 
+
+23:19 So from this I can say minus1 is from
+23:22 
+
+23:22 this and the v7 bar is from this. That's
+23:24 
+
+23:24 how I wrote this. Now coming back to v4.
+23:27 
+
+23:27 So v4 bar is equal v6 * 1. You can again
+23:32 
+
+23:32 see the same same things will you'll
+23:35 
+
+23:35 keep on doing same things because it it
+23:36 
+
+23:36 came from the plus. So here if you see
+23:39 
+
+23:39 so this is a plus operator here I think
+23:41 
+
+23:41 this V4. So V4 it came from plus
+23:43 
+
+23:43 operator. So this is the plus operator
+23:45 
+
+23:45 that you see. So how do if if you want
+23:47 
+
+23:47 to expand it. So how can you expand it?
+23:49 
+
+23:49 So you have V4 that's equal to this. So
+23:52 
+
+23:52 let me write it. So this is taking
+23:54 
+
+23:54 derivative of Y with respect to V4. I
+23:58 
+
+23:58 want your attention here. And then this
+24:00 
+
+24:00 is V4 by
+24:03 
+
+24:03 so again if you see over here how did we
+24:05 
+
+24:05 arrive at this result? So uh this this
+24:08 
+
+24:08 over here so this was addition so we'll
+24:10 
+
+24:10 take this basically we got a derivative
+24:12 
+
+24:12 of this and it was as a result of this.
+24:15 
+
+24:15 So we got this V6. So if you take V6 and
+24:17 
+
+24:17 V6 was V4 plus V3 if I write this if I
+24:20 
+
+24:20 write this V6. So this is V4 plus
+24:24 
+
+24:24 V3. This is equal to V6. So when you
+24:26 
+
+24:26 take derivative of this so when you take
+24:28 
+
+24:28 derivative of v6 so one of these terms
+24:30 
+
+24:30 will vanish. So only one term will only
+24:31 
+
+24:31 one term will be there. So that's what
+24:33 
+
+24:33 I'm trying I think we have done this
+24:35 
+
+24:35 exercise previously also. So I think you
+24:37 
+
+24:37 people can easily if you if you sort of
+24:40 
+
+24:40 expand these chain rule and you will get
+24:42 
+
+24:42 these results. So you will have this v6
+24:44 
+
+24:44 bar and one. Similarly for the nodes
+24:47 
+
+24:47 where we have multiple of these things.
+24:48 
+
+24:48 So for this nodes let's suppose if there
+24:50 
+
+24:50 is a node which is involved in the
+24:52 
+
+24:52 multiple one you'll have summation for
+24:54 
+
+24:54 for those terms. Let's suppose if I take
+24:56 
+
+24:56 I think V3 V4 V3 can be done in the
+24:58 
+
+24:58 similar fashion. You will have to expand
+24:59 
+
+24:59 this. I don't want to go through the
+25:01 
+
+25:01 same exercise because we have done that
+25:02 
+
+25:02 in one of the previous lectures. And if
+25:04 
+
+25:04 you now take V_sub_2
+25:06 
+
+25:06 or maybe yes V2 so V2 bar so I'll just
+25:10 
+
+25:10 give you the answer and you can figure
+25:11 
+
+25:11 it out because we have discussed these
+25:13 
+
+25:13 things at length also. So if you have a
+25:14 
+
+25:14 node like this and if it is uh dependent
+25:18 
+
+25:18 on some other nodes of this sort okay
+25:20 
+
+25:20 and then you have something of this sort
+25:22 
+
+25:22 and if you want to compute the gradient
+25:24 
+
+25:24 of this so you add all of these things
+25:26 
+
+25:26 together we have seen this also so in
+25:28 
+
+25:28 this v2 node if you see so this v_sub_2
+25:30 
+
+25:30 in the computation graph v_sub_2 so if
+25:32 
+
+25:32 you see the gradient goes from here it
+25:34 
+
+25:34 goes also to here similarly for this
+25:35 
+
+25:35 v_sub_1 it goes to here and it goes to
+25:37 
+
+25:37 this so there are multiple nodes
+25:38 
+
+25:38 involved so you'll have to compute all
+25:40 
+
+25:40 of these things and then add these
+25:41 
+
+25:41 things together okay we have seen this
+25:43 
+
+25:43 in the previous one of the sessions. So
+25:44 
+
+25:44 if I if I now write V2 bar so I can
+25:46 
+
+25:46 directly write it as V5 bar multiply cos
+25:50 
+
+25:50 of V_sub_2. So I want you to pause the
+25:52 
+
+25:52 video at this point when you are
+25:53 
+
+25:53 watching the recording and try to derive
+25:54 
+
+25:54 this. I would have derived it but it'll
+25:56 
+
+25:56 take me more time here. So why? Because
+25:57 
+
+25:57 I'll first do it with with respect to
+25:59 
+
+25:59 one node and then second node. Similarly
+26:01 
+
+26:01 for this V1 bar so for V1 bar I'll again
+26:03 
+
+26:03 have V4 bar multiplied by V_sub_2 plus
+26:07 
+
+26:07 V3 bar multiplied by 1 by V1 something
+26:10 
+
+26:10 of this sort. and then you can
+26:11 
+
+26:11 substitute the values the values that we
+26:13 
+
+26:13 have okay I just wanted to show you like
+26:15 
+
+26:15 how it's done in this so again coming to
+26:17 
+
+26:17 this graph so what we did what we do is
+26:19 
+
+26:19 so we had this y okay and this y was
+26:22 
+
+26:22 over here v7 so we said we defined a
+26:24 
+
+26:24 term adjint so we said dy with respect
+26:27 
+
+26:27 to some uh sum vi
+26:30 
+
+26:30 so cur of y by vi so this was called
+26:33 
+
+26:33 adjint so but I wanted you to just
+26:35 
+
+26:35 revise this procedure again so we have
+26:37 
+
+26:37 seen this procedure in in multiple times
+26:40 
+
+26:40 in previous lecture this okay and now
+26:42 
+
+26:42 we'll do the same thing with our graph
+26:44 
+
+26:44 completion graph that we have okay so
+26:46 
+
+26:46 this is the this is the autograd method
+26:49 
+
+26:49 that we have also discussed in detail
+26:50 
+
+26:50 when we were deriving the back
+26:51 
+
+26:51 propagation I just wanted you to see how
+26:53 
+
+26:53 it's applied and I want you people when
+26:55 
+
+26:55 you are watching these videos to pause
+26:56 
+
+26:56 it at least at maybe some places how did
+26:59 
+
+26:59 we compute v5 how did we compute v4 v3
+27:02 
+
+27:02 v2 and v_sub1 and just make these
+27:03 
+
+27:03 calculations in order to see if you
+27:05 
+
+27:05 understood these correctly okay now
+27:06 
+
+27:06 we'll do the same thing with the code
+27:07 
+
+27:07 okay give me some time I'll bring you
+27:09 
+
+27:09 the code screen and then we'll do it in
+27:11 
+
+27:11 the code. Let's suppose now what we can
+27:13 
+
+27:13 do is we will
+27:16 
+
+27:16 define let's suppose these parameters
+27:18 
+
+27:18 the parameters that we defined okay if
+27:21 
+
+27:21 you have any questions you can ask me
+27:22 
+
+27:22 because now I'll be doing the same
+27:23 
+
+27:23 procedure in code that's why I didn't
+27:26 
+
+27:26 explain much the things over here
+27:27 
+
+27:27 because I know I have to repeat these
+27:28 
+
+27:28 things so I'll repeatedly use these
+27:30 
+
+27:30 things I'll do these back propagation
+27:32 
+
+27:32 I'll have to update these gradients so
+27:34 
+
+27:34 these gradients will be updated now
+27:35 
+
+27:35 manually okay I'll not use any back
+27:37 
+
+27:37 propagation so whatever I have shown you
+27:39 
+
+27:39 on the screen so I'll do the same steps
+27:41 
+
+27:41 but now in the code and Can I explain
+27:42 
+
+27:42 you wherever the explanation are needed?
+27:44 
+
+27:44 Okay, just give me a second. I'll start
+27:45 
+
+27:45 from here. So now if you see should I
+27:48 
+
+27:48 name these things also because I I don't
+27:51 
+
+27:51 I have no names of these. Okay, let me
+27:53 
+
+27:53 let me write the names also.
+27:56 
+
+27:56 Okay, for this so this is the
+27:58 
+
+27:58 intermediate node call that D.
+28:01 
+
+28:01 So we have D.T label is equal to D.
+28:07 
+
+28:07 assuming that you have understood the
+28:08 
+
+28:08 previous code the code that we wrote in
+28:11 
+
+28:11 the in the previous lecture. So now we
+28:13 
+
+28:13 have this f dot label.
+28:17 
+
+28:17 So this is equal to f. Please
+28:19 
+
+28:19 concentrate over here. If you're not
+28:21 
+
+28:21 concentrating so far, it's all right.
+28:22 
+
+28:22 But now because I'm writing the code,
+28:23 
+
+28:23 we'll do the same exercise again. G dot
+28:26 
+
+28:26 label
+28:28 
+
+28:28 this is equal to G. Now if I run this,
+28:32 
+
+28:32 okay, if I show you now all these labels
+28:34 
+
+28:34 will be here. Okay, this is my
+28:36 
+
+28:36 expression. If you see the expression,
+28:37 
+
+28:37 so this expression is over here. So I
+28:39 
+
+28:39 can write the expression over here also.
+28:41 
+
+28:41 So this is the expression. G is equal to
+28:43 
+
+28:43 A * B. Okay, I'm multiplying this and
+28:46 
+
+28:46 then I'm doing addition of C. Okay, and
+28:49 
+
+28:49 then I am doing this multiplication with
+28:52 
+
+28:52 E. This is the expression that I have.
+28:54 
+
+28:54 So before this I have shown you some
+28:55 
+
+28:55 expression and I show you the manually
+28:56 
+
+28:56 how do we do it. I showed you some
+28:58 
+
+28:58 complex expression like log of x1 + x1
+29:01 
+
+29:01 multiply x2 minus some sin of x2 or
+29:04 
+
+29:04 something like that and we put them
+29:05 
+
+29:05 together. Now I have expression like
+29:06 
+
+29:06 this a mult* b plus c m* e and now this
+29:09 
+
+29:09 is the graph of that and I'll have to do
+29:11 
+
+29:11 the backward pass. Basically I'll have
+29:12 
+
+29:12 to update these gradients. So grad right
+29:15 
+
+29:15 now is zero for everything and I'll have
+29:16 
+
+29:16 to update gradients for this. Okay
+29:18 
+
+29:18 starting with this g. So what is the
+29:21 
+
+29:21 gradient of g so basically the loss
+29:24 
+
+29:24 function. So this is if I have to
+29:26 
+
+29:26 compute d g by uh so this is with
+29:29 
+
+29:29 respect to g itself because this is y if
+29:31 
+
+29:31 I have to compute dy by dg and because
+29:34 
+
+29:34 you know that y is equal to g so this is
+29:35 
+
+29:35 equal to 1. I think everybody will agree
+29:37 
+
+29:37 with me on this point. Okay dy by dg is
+29:39 
+
+29:39 equal to 1. So what I can do is I can
+29:41 
+
+29:41 write g.grad
+29:44 
+
+29:44 is equal to 1. Okay. So if I
+29:48 
+
+29:48 just write this one. Okay. And I can I
+29:51 
+
+29:51 can also verify the gradient because I
+29:52 
+
+29:52 have told you we can use numerical
+29:54 
+
+29:54 method of gradu numerical method in
+29:56 
+
+29:56 order to verify the gradient. So we have
+29:58 
+
+29:58 a numerical method. So where is that? So
+29:60 
+
+29:60 if you see this is our numerical
+30:04 
+
+30:04 gradient. Okay. So what we can do is we
+30:07 
+
+30:07 can just give it some function and then
+30:08 
+
+30:08 it will take the derivative of that.
+30:13 
+
+30:13 Okay. Let's make some area where I can
+30:15 
+
+30:15 say I'll say check.
+30:18 
+
+30:18 Okay, I will show you this. So this is
+30:20 
+
+30:20 gradient check.
+30:27 
+
+30:27 I have this function over here. I'll
+30:28 
+
+30:28 just comment it. So this is my gradient
+30:30 
+
+30:30 check.
+30:32 
+
+30:32 Okay. And I will give a function over
+30:34 
+
+30:34 here. So this is my fun. Let's suppose
+30:35 
+
+30:35 if I have a function quadratic function
+30:36 
+
+30:36 which I was which I have defined
+30:38 
+
+30:38 previously. So I just want to see if it
+30:40 
+
+30:40 is working. Yes, it is working over
+30:41 
+
+30:41 here. So similarly now for this this
+30:43 
+
+30:43 this is your g. So you have you have
+30:45 
+
+30:45 this expression. Let's write the
+30:47 
+
+30:47 expression. Now instead of this
+30:48 
+
+30:48 quadratic function I'll write the
+30:50 
+
+30:50 expression that we have. So we'll write
+30:53 
+
+30:53 the expression. Maybe we'll write it in
+30:55 
+
+30:55 this cell itself.
+30:57 
+
+30:57 Okay. Say this is my function. We'll
+31:01 
+
+31:01 write it as function
+31:04 
+
+31:04 and then we'll name it as let's suppose
+31:06 
+
+31:06 f some function. Okay. If you see in the
+31:09 
+
+31:09 coordinate what was taking. So right now
+31:11 
+
+31:11 it was taking x value. Now here you'll
+31:13 
+
+31:13 have four values. It'll take four values
+31:15 
+
+31:15 a, b, c and d.
+31:17 
+
+31:17 So if you see the coordinate function
+31:19 
+
+31:19 that we wrote.
+31:22 
+
+31:22 So this was the function. I think it was
+31:25 
+
+31:25 somewhere around this. So we had linear
+31:27 
+
+31:27 combination. We have this was our linear
+31:29 
+
+31:29 combination function. Let's take this
+31:31 
+
+31:31 and we said return and it was getting a,
+31:33 
+
+31:33 b and c. We'll give the same inputs and
+31:37 
+
+31:37 we can go over here now use the same
+31:39 
+
+31:39 format. So now it is having four inputs.
+31:41 
+
+31:41 So the inputs that you see is A, B, C
+31:43 
+
+31:43 and E. Okay. Actually I have written it
+31:45 
+
+31:45 as D but anyway a comma B comma C comma
+31:47 
+
+31:47 E by sheer luck. It was written like
+31:50 
+
+31:50 this. And now what we'll return? So
+31:52 
+
+31:52 we'll return and this expression. So
+31:55 
+
+31:55 this is the expression that I'll return
+31:58 
+
+31:58 G basically. So we'll return this good
+32:01 
+
+32:01 that I have written it over here. If you
+32:02 
+
+32:02 have any confusions do ask me. Okay.
+32:04 
+
+32:04 Right now I'm constructing this. This is
+32:05 
+
+32:05 my function. So now this is my numerical
+32:07 
+
+32:07 G checking. So what I'll give is I'll
+32:08 
+
+32:08 give the function I'll give the
+32:10 
+
+32:10 corresponding
+32:11 
+
+32:11 I think this is for the derivative. Now
+32:13 
+
+32:13 I should use this for univariate case I
+32:15 
+
+32:15 should use the multivaried case
+32:17 
+
+32:17 basically the partial derivative. I
+32:19 
+
+32:19 should not use this one. I should use
+32:21 
+
+32:21 the other function that we wrote. I
+32:23 
+
+32:23 think this is that function.
+32:27 
+
+32:27 Great.
+32:29 
+
+32:29 Now what can I do is I can copy paste
+32:31 
+
+32:31 this because these things were explained
+32:32 
+
+32:32 in the previous session. So I will take
+32:34 
+
+32:34 this case over here. Gra check. Okay.
+32:37 
+
+32:37 And now what I can do is I can say
+32:39 
+
+32:39 function and if I give some particular
+32:40 
+
+32:40 value this is a, b, c and e. Okay. This
+32:42 
+
+32:42 is my function and I'll give this as
+32:44 
+
+32:44 input and then variable index. This is
+32:45 
+
+32:45 the index at which the partial data with
+32:47 
+
+32:47 respect to what? With respect to this.
+32:49 
+
+32:49 Okay. And I'll give these inputs also.
+32:51 
+
+32:51 Okay. As in this case if you again see
+32:52 
+
+32:52 the same thing. Okay. I want you to have
+32:54 
+
+32:54 a look at this.
+32:56 
+
+32:56 Okay. So in this case we were giving a
+32:58 
+
+32:58 not b c not. So in our case we'll give a
+33:00 
+
+33:00 not b c not and e not. Okay. And then
+33:03 
+
+33:03 we'll give this h value the smaller
+33:04 
+
+33:04 value.
+33:05 
+
+33:05 Let's take the whole of this and we'll
+33:08 
+
+33:08 paste it there to use the same code.
+33:10 
+
+33:10 Reuse the code that we get instead of
+33:12 
+
+33:12 this. We should have this. Okay. Now
+33:15 
+
+33:15 we'll use this fc function. So this f
+33:17 
+
+33:17 and c function will be used instead of
+33:19 
+
+33:19 this linear combination. Okay. And now
+33:21 
+
+33:21 we'll have to define the values. Okay.
+33:23 
+
+33:23 Let me define the values for you. I
+33:24 
+
+33:24 think we have these values are defined
+33:26 
+
+33:26 for us. So these values are defined. I
+33:28 
+
+33:28 suppose this is a b and c and this is 2
+33:32 
+
+33:32 - 3 10 1.5. Can somebody just tell me
+33:34 
+
+33:34 the values? So what I can say this is a
+33:36 
+
+33:36 kn b c comma e kn.
+33:40 
+
+33:40 So I'll write these values. So this will
+33:42 
+
+33:42 be a kn comma b comma c comma e not.
+33:48 
+
+33:48 Okay. And this values if I take so this
+33:50 
+
+33:50 was 2.0 comma uh - 3.0 comma 10.0
+33:58 
+
+33:58 comma 1.5. Okay. So these are the
+34:01 
+
+34:01 values. Now if I need to take partial
+34:03 
+
+34:03 derivative let's suppose partial
+34:04 
+
+34:04 derivative of the function this is the
+34:07 
+
+34:07 function with respect to let's suppose
+34:09 
+
+34:09 some with respect to e in this case this
+34:11 
+
+34:11 is e basically this is this is the value
+34:14 
+
+34:14 over here so if you have this so this g
+34:16 
+
+34:16 was g we got this g by multiplying this
+34:18 
+
+34:18 f and e okay we multiply this is the
+34:21 
+
+34:21 value of f and this is the multiple of e
+34:23 
+
+34:23 and whole of this expression if you see
+34:25 
+
+34:25 so whole of this expression
+34:27 
+
+34:27 so are we missing some brackets I
+34:29 
+
+34:29 suppose we are No, we're not. Okay. So,
+34:33 
+
+34:33 this is Yes. Good. This is good. So, we
+34:35 
+
+34:35 have this function over here. If it is
+34:37 
+
+34:37 not visible clearly, so I just zoom it a
+34:39 
+
+34:39 bit. So, this is the function that we
+34:41 
+
+34:41 defined. We said we have a multiply b +
+34:43 
+
+34:43 c and multiply by e. So, this whole
+34:45 
+
+34:45 function is equal g. So, if I take
+34:46 
+
+34:46 derivative with respect to the whole
+34:48 
+
+34:48 function itself. So, that's equal to
+34:49 
+
+34:49 one. So, there is no point of doing
+34:50 
+
+34:50 that. But you can still do that. Okay.
+34:52 
+
+34:52 So, what you can do is you can nudge the
+34:53 
+
+34:53 value of whole of this function. You can
+34:54 
+
+34:54 put up the value. Why? Why do you want
+34:56 
+
+34:56 to put up? You're put uping the whole
+34:57 
+
+34:57 function itself. So, that will be equal
+34:59 
+
+34:59 to one. So, this is pretty obvious. The
+35:00 
+
+35:00 first case is pretty obvious. So what I
+35:02 
+
+35:02 can do is if I run this again now. So
+35:04 
+
+35:04 you'll see
+35:06 
+
+35:06 gradient checking is not needed for
+35:08 
+
+35:08 first thing. So I think this is pretty
+35:09 
+
+35:09 clear. So we got gradient is 1.0.
+35:12 
+
+35:12 Okay. This was dy by dg. So with respect
+35:15 
+
+35:15 this okay now uh now we'll start the
+35:17 
+
+35:17 important cases. So whatever we have
+35:18 
+
+35:18 seen uh in the writings now we'll do it
+35:21 
+
+35:21 in the code. Now we'll have to compute
+35:23 
+
+35:23 dy with respect to this e. Okay. Or we
+35:25 
+
+35:25 can call this dg or loss function. Okay.
+35:27 
+
+35:27 So let's call this should we call this
+35:29 
+
+35:29 loss function anyway take G is our loss
+35:32 
+
+35:32 function. So now we'll have to compute
+35:35 
+
+35:35 DG with respect to say D with respect to
+35:40 
+
+35:40 E. So we'll have to compute this this
+35:42 
+
+35:42 over here. So now if you see how do we
+35:44 
+
+35:44 arrive at that so we have two things to
+35:45 
+
+35:45 compute here. So DG by once we have to
+35:49 
+
+35:49 compute this DG by D. So it you see this
+35:51 
+
+35:51 this is the this we got because we
+35:53 
+
+35:53 multiplied it. So we multiplied E
+35:55 
+
+35:55 multiplied by G. So we had this F. Okay.
+35:57 
+
+35:57 And we had this f multiplied by e and
+35:59 
+
+35:59 that's how we got this g. So we are now
+36:00 
+
+36:00 taking derivative of g. Okay. Let me
+36:02 
+
+36:02 write it somewhere. Take it over here.
+36:06 
+
+36:06 So what I'm trying to tell you over here
+36:08 
+
+36:08 is this. So if you have take derivative
+36:10 
+
+36:10 of g with respect to e. So how do we get
+36:13 
+
+36:13 this g? So this is basically equivalent
+36:14 
+
+36:14 taking derivative of f multiplied by e.
+36:18 
+
+36:18 Okay. With respect to e. Okay. And these
+36:22 
+
+36:22 are two things in in case of
+36:23 
+
+36:23 multiplication. So you have this
+36:24 
+
+36:24 multiplication. When you have this
+36:25 
+
+36:25 multiplication, what you basically can
+36:27 
+
+36:27 do is so this your this is your constant
+36:29 
+
+36:29 and this is the derivative and you can
+36:30 
+
+36:30 directly say this is equal to f this is
+36:32 
+
+36:32 equal to f. So whatever is the data of f
+36:34 
+
+36:34 over here so that should be the gradient
+36:36 
+
+36:36 of this. Is that clear on this?
+36:41 
+
+36:41 Now if you see this so we have to
+36:43 
+
+36:43 compute dg by d. So this is equal to f.
+36:45 
+
+36:45 So what I can do is I can just calculate
+36:47 
+
+36:47 the gradient. Again coming back to the
+36:48 
+
+36:48 code window. So what I can do is so this
+36:50 
+
+36:50 dg by d is directly equal to f dot data.
+36:53 
+
+36:53 So whatever the value of f is actually
+36:55 
+
+36:55 so I showed you the derivation by this
+36:57 
+
+36:57 okay if you see so this is f dot data so
+36:59 
+
+36:59 whatever is the data over here I can
+37:00 
+
+37:00 assign this again so e dotgrad is equal
+37:03 
+
+37:03 to f dot data
+37:06 
+
+37:06 okay so if I take this and if I again
+37:10 
+
+37:10 run this one so you'll clearly see over
+37:12 
+
+37:12 here the gradient with respect to this
+37:15 
+
+37:15 got changed to e okay let's do the
+37:16 
+
+37:16 manual check we should check it now okay
+37:18 
+
+37:18 we have to compute the gradient this is
+37:20 
+
+37:20 the gradient function g and this was We
+37:22 
+
+37:22 have to take it with respect to E. With
+37:24 
+
+37:24 respect to E. So E has what is the index
+37:26 
+
+37:26 of E? 0 1 2 and 3. So we can check it.
+37:29 
+
+37:29 So what we can do is so this is the
+37:31 
+
+37:31 index at index three. Okay. We'll take
+37:33 
+
+37:33 partial derivative of uh whatever this
+37:36 
+
+37:36 function is exact at
+37:39 
+
+37:39 and we'll have to see at at what
+37:41 
+
+37:41 particular place. So this is okay let me
+37:44 
+
+37:44 just see this numerical gradient I'm
+37:45 
+
+37:45 taking at position three. This is a kn
+37:47 
+
+37:47 this is b and this is c not. So I'm
+37:50 
+
+37:50 taking partial of a. I have to check
+37:52 
+
+37:52 partial of a. So if I run this
+37:56 
+
+37:56 okay I think this you can get it. I
+37:58 
+
+37:58 think exact I should remove this exact
+38:00 
+
+38:00 value over here. This is not needed
+38:04 
+
+38:04 because previously we're computing some
+38:05 
+
+38:05 exact gradient that I don't need.
+38:09 
+
+38:09 Now if you see this the partial gradient
+38:11 
+
+38:11 derivative of this d or the loss
+38:14 
+
+38:14 function. So this is not d even. So in
+38:15 
+
+38:15 this in our case this is g this is equal
+38:18 
+
+38:18 to by a is equal to 3.99. So there is
+38:20 
+
+38:20 floating point problems. Okay. And now
+38:22 
+
+38:22 you can see that we wrote it again
+38:24 
+
+38:24 similar over here four. So that's why
+38:25 
+
+38:25 I'm doing gradient check. I'm doing
+38:27 
+
+38:27 autograd and then doing the gradient
+38:28 
+
+38:28 check over here. Okay. So that's what I
+38:30 
+
+38:30 wrote this function is gradient check.
+38:31 
+
+38:31 So we have this function over here. So
+38:32 
+
+38:32 I'm doing the checking. So I think this
+38:34 
+
+38:34 is clear for this. And now similarly for
+38:36 
+
+38:36 this if you have to compute if you have
+38:38 
+
+38:38 to do the same thing for this. So I'll
+38:39 
+
+38:39 just remove this. So if you have to
+38:41 
+
+38:41 compute now gradient of this g or the
+38:44 
+
+38:44 loss with respect to f. So how to do
+38:46 
+
+38:46 now? Again you know we have to take this
+38:48 
+
+38:48 data. So you have to take this data and
+38:50 
+
+38:50 fill this gradient over here. Okay. And
+38:52 
+
+38:52 we can check it also. Okay. Now what we
+38:54 
+
+38:54 can do is so again the same thing. So
+38:56 
+
+38:56 call this f.trad. F.grad is equal e dot
+39:00 
+
+39:00 data.
+39:02 
+
+39:02 If I run this so whatever it was. So if
+39:05 
+
+39:05 I run this again. So this over here if
+39:07 
+
+39:07 you see f the gradient is 1.5. Now let's
+39:10 
+
+39:10 start with this. So we have this is our
+39:11 
+
+39:11 graph. So what we did so far is so we
+39:14 
+
+39:14 performed with this. So this was equal
+39:16 
+
+39:16 to one pretty easy case. And now that
+39:18 
+
+39:18 then we saw how plus how this multiply
+39:20 
+
+39:20 behaves. So how this multiply behaves it
+39:22 
+
+39:22 distributes the gradient somehow if you
+39:24 
+
+39:24 see. So how did it do? So you had this
+39:27 
+
+39:27 you had let's suppose this data it went
+39:29 
+
+39:29 to this case. Okay it went to this and
+39:32 
+
+39:32 you have this data of this it went to
+39:34 
+
+39:34 this. So whenever you see multiplication
+39:35 
+
+39:35 okay you see multiplication of two nodes
+39:37 
+
+39:37 being done. So you have a multiplier b
+39:39 
+
+39:39 and you have to take gradient. So what
+39:40 
+
+39:40 you have to do is you have to swap.
+39:41 
+
+39:41 That's why I wrote fan out. So if you
+39:43 
+
+39:43 see previously what I said is so you
+39:44 
+
+39:44 have this is supposed to take gradient
+39:46 
+
+39:46 and then you fan it out again I'll take
+39:48 
+
+39:48 the interesting node and then you'll
+39:49 
+
+39:49 understand it more thoroughly. So now
+39:51 
+
+39:51 we'll take this so we have substitute
+39:54 
+
+39:54 the gradient. So we'll take this case
+39:55 
+
+39:55 now. So we'll take this C and D. Okay
+39:57 
+
+39:57 starting with D.
+39:60 
+
+39:60 Okay. Now let's start with D. So this is
+40:02 
+
+40:02 what we have to do. We have to compute
+40:06 
+
+40:06 derivative of derivative of G with
+40:09 
+
+40:09 respect to D. Okay. Now we know how to
+40:12 
+
+40:12 do that because this is dependent on
+40:14 
+
+40:14 what? So this d actually is uh we got it
+40:17 
+
+40:17 from like somehow from f and then we so
+40:19 
+
+40:19 if you see the whole graph again if you
+40:21 
+
+40:21 see if I show you the whole graph so
+40:22 
+
+40:22 keeping this d in the view so this is
+40:24 
+
+40:24 the graph. So you have
+40:27 
+
+40:27 I should write it above. So d g by d
+40:33 
+
+40:33 something of this d let's write it d. So
+40:35 
+
+40:35 if you see this d okay this will get its
+40:38 
+
+40:38 things from this f. So this f in turn we
+40:40 
+
+40:40 got it from g. So we'll again use chain
+40:42 
+
+40:42 rule. Okay. Now if you see this so till
+40:44 
+
+40:44 here we have everything. So if I have to
+40:46 
+
+40:46 compute this. So if I have to compute
+40:48 
+
+40:48 this I'll write dg by df or derivative
+40:51 
+
+40:51 of g with respect to this f. Okay. And
+40:53 
+
+40:53 multiplied by derivative of f with
+40:56 
+
+40:56 respect to dd for this d. If you see
+40:60 
+
+40:60 this particular d if you see this
+41:01 
+
+41:01 particular d. So how do we get here?
+41:03 
+
+41:03 Because we are in involving this f over
+41:04 
+
+41:04 here. So how did we get how did we get
+41:06 
+
+41:06 with this f? So this f was c plus d. If
+41:08 
+
+41:08 you write this so this you already know
+41:11 
+
+41:11 this particular you already know you
+41:13 
+
+41:13 have computed this so this you have
+41:14 
+
+41:14 computed already computed I'll write it
+41:15 
+
+41:15 tick okay and now this is this is local
+41:18 
+
+41:18 gradient so I can call this local
+41:19 
+
+41:19 gradient how because let's suppose
+41:20 
+
+41:20 consider this huge graph consider the
+41:22 
+
+41:22 huge neural network so you have one node
+41:24 
+
+41:24 and this node was having some other
+41:26 
+
+41:26 nodes in following so what you can do is
+41:28 
+
+41:28 so this is my local gradient I can know
+41:30 
+
+41:30 I only know that I let's d so I'll be
+41:33 
+
+41:33 asking like what I do I said okay I just
+41:36 
+
+41:36 did something which produced f okay so
+41:38 
+
+41:38 If I nudge myself, I know what will
+41:40 
+
+41:40 happen to F. If I'm thinking as per the
+41:42 
+
+41:42 D node, so D node will think like this.
+41:44 
+
+41:44 D node will say okay, so I'm D. So what
+41:46 
+
+41:46 I did is I this plus operation was made
+41:48 
+
+41:48 with the C. I produced F. So my
+41:50 
+
+41:50 contribution is only in producing F. And
+41:53 
+
+41:53 I can give you the gradient with respect
+41:54 
+
+41:54 to F and I don't know anything else. So
+41:56 
+
+41:56 that's why I'm calling it local
+41:57 
+
+41:57 gradient. So why is this local gradient?
+41:59 
+
+41:59 Because so this D is only responsible
+42:01 
+
+42:01 for F and then F knows the whole story.
+42:03 
+
+42:03 F says okay, I'll take care of the rest
+42:04 
+
+42:04 of the story. The rest of the story is
+42:06 
+
+42:06 this. So you have to compute DG by DF
+42:08 
+
+42:08 that we already computed. Okay. So in in
+42:10 
+
+42:10 this particular case, so you can compute
+42:11 
+
+42:11 this. Okay. If you compute this, you
+42:13 
+
+42:13 already know this. Okay. So that's what
+42:14 
+
+42:14 initially if you see me writing these
+42:16 
+
+42:16 formulas which I didn't write like
+42:18 
+
+42:18 fully. So basically that's the story.
+42:19 
+
+42:19 The story was this. If you have a if you
+42:21 
+
+42:21 have in addition so you have these
+42:23 
+
+42:23 addition now. So what can you do is so
+42:25 
+
+42:25 you'll say I can compute my local
+42:27 
+
+42:27 gradient. So this I'll assume you know.
+42:29 
+
+42:29 So this I'll assume. So this part I'll
+42:31 
+
+42:31 assume you know because you have
+42:32 
+
+42:32 computed it came from some other node
+42:34 
+
+42:34 which I'm not directly involved in I'm
+42:36 
+
+42:36 indirectly involved in but and now I can
+42:38 
+
+42:38 compute this. So this this part over
+42:40 
+
+42:40 here I'll compute it here.
+42:43 
+
+42:43 So this df by d. So this is equal to how
+42:48 
+
+42:48 did we get that this f? So this was
+42:49 
+
+42:49 equal to c plus d. So this is equal to c
+42:51 
+
+42:51 plus d do by d. And now you know how to
+42:54 
+
+42:54 do this. So this c will be treated as
+42:56 
+
+42:56 constant and then with respect to this
+42:58 
+
+42:58 d. So if you see this this over here so
+43:01 
+
+43:01 this will be treated as constant and
+43:03 
+
+43:03 this will be treated as variable. So if
+43:04 
+
+43:04 you have to perform this so treat this
+43:06 
+
+43:06 as constant this will be zero and this
+43:08 
+
+43:08 this will one this will be equal to one.
+43:10 
+
+43:10 So if you see this is equal to one.
+43:12 
+
+43:12 Everybody agrees me agrees with me on
+43:14 
+
+43:14 this. So what will happen now? So in
+43:17 
+
+43:17 case of plus so when you have this plus
+43:18 
+
+43:18 node over here so what will happen? The
+43:20 
+
+43:20 gradient will generally transform
+43:21 
+
+43:21 whatever f you see over here. So
+43:23 
+
+43:23 whatever value the data that you see
+43:25 
+
+43:25 will be transferred directly over here.
+43:27 
+
+43:27 Did you get me at this point? So what
+43:28 
+
+43:28 I'm trying to tell you if you have plus
+43:29 
+
+43:29 node okay and you have to take d and
+43:32 
+
+43:32 then you do some plus operation and then
+43:34 
+
+43:34 you produce f node. So what I'm trying
+43:36 
+
+43:36 to tell you here is this that d is
+43:39 
+
+43:39 saying I don't know what what what f is
+43:41 
+
+43:41 involved into but I can tell you if I
+43:43 
+
+43:43 nudge myself so how will f be impacted
+43:45 
+
+43:45 because I am producing just f. So okay
+43:48 
+
+43:48 so can you I can give you the local
+43:49 
+
+43:49 gradient so in computing gradient if it
+43:51 
+
+43:51 is plus involved so you will see that do
+43:53 
+
+43:53 c plus d. So if I'm taking c plus d
+43:55 
+
+43:55 because that's what f f is equal to. So
+43:57 
+
+43:57 what I will do is I'll treat this as
+43:58 
+
+43:58 constant and rest and this is variable
+44:01 
+
+44:01 this dl variable so that this will be
+44:02 
+
+44:02 equal to one. So what I'm trying to tell
+44:04 
+
+44:04 you over here is so you'll directly get
+44:05 
+
+44:05 this value and then you will directly
+44:07 
+
+44:07 transfer it over here and the similar
+44:08 
+
+44:08 thing will happen for the C case. So how
+44:11 
+
+44:11 many of you people agree with me on this
+44:13 
+
+44:13 point
+44:15 
+
+44:15 so if you see this what is the local
+44:16 
+
+44:16 gradient? So we computed local gradient
+44:18 
+
+44:18 towards local gradient is equal one. So
+44:20 
+
+44:20 it will whatever gradient was there in
+44:23 
+
+44:23 the in the node which was in front of it
+44:25 
+
+44:25 it will just pass it on. It'll say okay
+44:27 
+
+44:27 I am a plus node I don't care. So
+44:29 
+
+44:29 whatever is the gradient was before me.
+44:32 
+
+44:32 So I I I'll just transfer that. Okay
+44:34 
+
+44:34 we'll do that. Let me just erase these
+44:37 
+
+44:37 diagrams now in order to
+44:40 
+
+44:40 I'll make it a little cleaner. So now
+44:42 
+
+44:42 here if you see so I was computing
+44:47 
+
+44:47 so I was computing this. So I was
+44:50 
+
+44:50 computing for this node particular node
+44:53 
+
+44:53 DG
+44:55 
+
+44:55 DG by DD. So this is what I was
+44:58 
+
+44:58 computing. So I said okay what is this
+44:59 
+
+44:59 equal to? So this is equal to DG by DF
+45:02 
+
+45:02 because it knows about F and multiplied
+45:04 
+
+45:04 by DF by
+45:07 
+
+45:07 D.
+45:09 
+
+45:09 Okay. So this I called it as local
+45:11 
+
+45:11 gradient and this was global gradient.
+45:13 
+
+45:13 So this over here I can call it global
+45:14 
+
+45:14 gradient. So this I know. Okay. So this
+45:16 
+
+45:16 is equal to this is equal to this I know
+45:19 
+
+45:19 already. So dg by df if you see
+45:23 
+
+45:23 dg by df. So basically gradient of this.
+45:26 
+
+45:26 So that is so if you see fgrad so this
+45:28 
+
+45:28 is equal this is equal to f.grad. So I
+45:30 
+
+45:30 can write it f.grad
+45:33 
+
+45:33 and multiplied by so what I did is then
+45:35 
+
+45:35 I said this is multiplied by one. Why
+45:37 
+
+45:37 one by one? Because the local gradient
+45:39 
+
+45:39 when I computed so it is equal to one.
+45:40 
+
+45:40 So what effectively this plus node is
+45:42 
+
+45:42 doing whatever gradient was in front of
+45:44 
+
+45:44 it it is just transferring it. It's
+45:45 
+
+45:45 saying okay if I'm a plus node what a
+45:48 
+
+45:48 gradient is in front of me I'll just
+45:49 
+
+45:49 transfer it. So what I can write over
+45:51 
+
+45:51 here is then so I can say
+45:54 
+
+45:54 d.grad because I'm doing the gradient of
+45:57 
+
+45:57 this is equal to whatever is the
+45:58 
+
+45:58 app.grad app.tgrad. Okay. So if you run
+46:02 
+
+46:02 this so if you again run this
+46:05 
+
+46:05 so I'll run this dot. So you can see
+46:08 
+
+46:08 this d.grad got the gradient whatever is
+46:11 
+
+46:11 the f.grad. Okay f.grad was 1.5. Okay.
+46:14 
+
+46:14 Now if I have to check it again, if I
+46:16 
+
+46:16 have to check it, see how to how to
+46:18 
+
+46:18 perform the checking. So now this node
+46:20 
+
+46:20 over here. So if you see,
+46:23 
+
+46:23 so for this node, I think this checking
+46:25 
+
+46:25 is for this node again. The same thing
+46:26 
+
+46:26 will be over here. So because we have
+46:28 
+
+46:28 this 1.5 same whole procedure, the same
+46:31 
+
+46:31 procedure was applies to this which we
+46:34 
+
+46:34 did again. So here I am doing this. So
+46:36 
+
+46:36 I'm making nudge. So I have this whole G
+46:38 
+
+46:38 function. So this is my whole G
+46:40 
+
+46:40 function.
+46:41 
+
+46:41 Okay. And if I if I want to nudge some
+46:43 
+
+46:43 value, I'm saying okay nudge with a
+46:45 
+
+46:45 particular value of this. So with
+46:47 
+
+46:47 respect to this let's suppose D. So how
+46:49 
+
+46:49 did we get D? So D was we got it from F.
+46:51 
+
+46:51 So we can check it with this gradient. I
+46:53 
+
+46:53 think this gradient checking is now
+46:55 
+
+46:55 pretty obvious if you see it. So I think
+46:57 
+
+46:57 this is the case. And now for the other
+46:60 
+
+46:60 case let's suppose we have this uh D G
+47:04 
+
+47:04 by TG by D and then other thing was C.
+47:10 
+
+47:10 Okay, this again will be equal to d g by
+47:14 
+
+47:14 so we'll start with what we'll start
+47:15 
+
+47:15 with f again df multiplied by okay this
+47:19 
+
+47:19 is the global gradient and multiply by
+47:21 
+
+47:21 local so how what is the local so df by
+47:24 
+
+47:24 dc because c will tell me okay I know
+47:26 
+
+47:26 what I did with f so if I nudge myself
+47:28 
+
+47:28 I'll tell you what will happen to f so I
+47:30 
+
+47:30 can tell you the local thing okay and
+47:32 
+
+47:32 then you will have to ask f okay and we
+47:35 
+
+47:35 have computed that we have premputed
+47:36 
+
+47:36 that so now you know that this thing
+47:38 
+
+47:38 over here if again calculate this local
+47:40 
+
+47:40 gradient is one. So this will be equal
+47:42 
+
+47:42 to G.GRAD
+47:45 
+
+47:45 not G do.grad. So this will be equal to
+47:48 
+
+47:48 F.GRAD again.
+47:51 
+
+47:51 So if you see this so this F gradient so
+47:53 
+
+47:53 plus node actually just transfers the
+47:54 
+
+47:54 gradient. This will be F.Grad.
+47:57 
+
+47:57 Okay. If I just put this C dot grad is
+48:02 
+
+48:02 equal to F.grad.
+48:05 
+
+48:05 I run this again. If I draw this, you
+48:09 
+
+48:09 can clear the C over here. Now the C are
+48:11 
+
+48:11 gradient F and E and G. And now we're at
+48:14 
+
+48:14 most interesting A and B. Okay. Now most
+48:16 
+
+48:16 interesting because we have if you
+48:18 
+
+48:18 understood the C and D, you understood
+48:19 
+
+48:19 everything. You understood the whole
+48:20 
+
+48:20 back propagation. That's what you do.
+48:22 
+
+48:22 You just take the derivative of what
+48:23 
+
+48:23 came what came before it like in the in
+48:25 
+
+48:25 the backward pass and then you multiply
+48:27 
+
+48:27 the local gradient. Okay. Now again for
+48:29 
+
+48:29 this we'll take it for a also a and b.
+48:32 
+
+48:32 So now what we have to compute is this.
+48:34 
+
+48:34 So you'll have derivative of the Z with
+48:38 
+
+48:38 respect to A okay and derivative of G
+48:41 
+
+48:41 with respect to B and these are the two
+48:44 
+
+48:44 things that we compute but you see over
+48:45 
+
+48:45 here so multiplication is involved so if
+48:47 
+
+48:47 I ask B okay if I nudge you how is G
+48:48 
+
+48:48 impact it will say oh I don't know I
+48:51 
+
+48:51 have nothing to do with G so what okay
+48:52 
+
+48:52 then how have you impact the graph it
+48:54 
+
+48:54 will say okay so if you ask me if I ask
+48:56 
+
+48:56 this A so what have you done with G I
+48:58 
+
+48:58 don't know I have done something to D if
+48:60 
+
+49:00 I nudge myself I know how D will get
+49:02 
+
+49:02 impacted okay tell me that so I'll tell
+49:04 
+
+49:04 you this I'll tell you the local
+49:05 
+
+49:05 gradient. So g by I know with respect to
+49:09 
+
+49:09 this particular d and then multiplied by
+49:13 
+
+49:13 partial derivative of d with respect to
+49:16 
+
+49:16 this a. So this part a knows if I ask a
+49:19 
+
+49:19 this question a says I know this part.
+49:21 
+
+49:21 Okay this is the part I know but this is
+49:24 
+
+49:24 the part I don't know. You ask this to g
+49:26 
+
+49:26 and you know you we have calculated
+49:27 
+
+49:27 this. So we just calculated if you see
+49:30 
+
+49:30 dg by dd and dg by uh DC we calculated
+49:34 
+
+49:34 right here. So these two things are
+49:36 
+
+49:36 calculated dg by dc and dg by dd by
+49:39 
+
+49:39 calculated whatever is in the previous
+49:41 
+
+49:41 node. So what we can do over here is if
+49:42 
+
+49:42 you see this you have to only compute
+49:44 
+
+49:44 the local gradient. So how to compute
+49:45 
+
+49:45 local in terms of multiplication if you
+49:46 
+
+49:46 have multiplication. Okay. So now let's
+49:48 
+
+49:48 this is checked we know this already.
+49:50 
+
+49:50 Okay. So I'll just keep check on this.
+49:52 
+
+49:52 So now we have to compute
+49:55 
+
+49:55 gradient of this with respect to a. So
+49:57 
+
+49:57 how did we form this? So how did we form
+49:59 
+
+49:59 this d? So it will say I did a
+50:01 
+
+50:01 multiplied by b. Okay, I did a multiply
+50:04 
+
+50:04 b and then you have take derivative of
+50:05 
+
+50:05 this with respect to a. And now this a
+50:07 
+
+50:07 is a variable and b is constant. So what
+50:10 
+
+50:10 is the if you directly use this? This
+50:12 
+
+50:12 will be equal to b.
+50:14 
+
+50:14 So if you know this now you have this
+50:16 
+
+50:16 value equal to b. This is the value of b
+50:18 
+
+50:18 not the gradient of b. So you see this
+50:19 
+
+50:19 is the value over here. So you take this
+50:21 
+
+50:21 B okay you have this value of B so
+50:24 
+
+50:24 because you are taking A multiply B so
+50:26 
+
+50:26 you take you when you apply partial
+50:28 
+
+50:28 derivative on A B with respect to A so
+50:31 
+
+50:31 you'll get just B so if I in order to
+50:32 
+
+50:32 compute this so this whole expression
+50:34 
+
+50:34 will be a and you you should take the
+50:36 
+
+50:36 value from this so consider this to be
+50:38 
+
+50:38 out so this is the whatever was the
+50:40 
+
+50:40 whatever was the output and this is the
+50:41 
+
+50:41 local gradient so you have a multiplied
+50:43 
+
+50:43 by whatever gradient was passed to it
+50:45 
+
+50:45 okay now let's do this again the code
+50:49 
+
+50:49 I'll hide this.
+50:52 
+
+50:52 So I have to compute now
+50:55 
+
+50:55 I have to compute
+50:58 
+
+50:58 DG
+50:59 
+
+50:59 with respect to A and DG first we'll do
+51:02 
+
+51:02 this. So this is DG with respect to A.
+51:04 
+
+51:04 So I'm telling you so this is DG by D.
+51:08 
+
+51:08 So what it impacted DG by DD
+51:12 
+
+51:12 okay and multiply by the local gradient.
+51:14 
+
+51:14 So local gradient is DD by DA and this
+51:16 
+
+51:16 is my local gradient. So on on seeing
+51:18 
+
+51:18 this you know that this is equal to B.
+51:19 
+
+51:19 So this was equal to B dot data
+51:21 
+
+51:21 actually. Okay. So this was equal to B.
+51:23 
+
+51:23 So this portion if you see over here if
+51:25 
+
+51:25 you have expanded so D was equal to A
+51:27 
+
+51:27 multiplied by So this was A multiplied
+51:29 
+
+51:29 by B. Okay. And then we can take the
+51:31 
+
+51:31 value of this and directly see this. So
+51:34 
+
+51:34 we have this over here. So this will be
+51:37 
+
+51:37 DG we already know it. So this DG by DD.
+51:40 
+
+51:40 This DG by DD is D dot grad. So we'll
+51:42 
+
+51:42 take this DG grad because we already
+51:45 
+
+51:45 computed multiplied by. So what to
+51:47 
+
+51:47 multiply it with? So we'll multiply it
+51:49 
+
+51:49 with uh this this particular dd by da.
+51:52 
+
+51:52 So this d
+51:55 
+
+51:55 by da or
+51:58 
+
+51:58 this is partial derivative of d with
+51:60 
+
+51:60 respect to a. So how did we get that? So
+52:01 
+
+52:01 that's equal to b. So that is equal to
+52:03 
+
+52:03 b. So we'll take b dot value or b dot
+52:06 
+
+52:06 data I think. So b dot data in this
+52:08 
+
+52:08 case. So if I have to take this. So I'll
+52:11 
+
+52:11 say
+52:12 
+
+52:12 b.trad or a do.trad. A do.grad
+52:16 
+
+52:16 is equal to this.
+52:18 
+
+52:18 Okay. So this is B dot data.
+52:21 
+
+52:21 And now if I set this, if I again run
+52:24 
+
+52:24 this,
+52:26 
+
+52:26 so you are seeing over here. So I'm
+52:27 
+
+52:27 putting a gradient is - 4.5. Okay, I
+52:30 
+
+52:30 hope you're getting this. And similarly
+52:33 
+
+52:33 now if I do it for this B, so similar
+52:35 
+
+52:35 thing will happen. So I'll say this
+52:38 
+
+52:38 whole expression,
+52:40 
+
+52:40 this whole expression with respect to B.
+52:44 
+
+52:44 Okay, with respect to B. So this is
+52:46 
+
+52:46 equal to DG by uh DD multiplied by this
+52:51 
+
+52:51 by DB. Okay. And this now if you expand
+52:54 
+
+52:54 you'll be remaining with a dot data.
+52:56 
+
+52:56 Okay. Because you have take a dot data
+52:58 
+
+52:58 because this will remain and uh this
+53:00 
+
+53:00 will be taken to one. So if you now take
+53:02 
+
+53:02 this dgtrad and a dot data so this will
+53:05 
+
+53:05 be equal to
+53:08 
+
+53:08 b.trad.
+53:12 
+
+53:12 Okay. So now effectively what is
+53:13 
+
+53:13 happening? If you have plus it is just
+53:15 
+
+53:15 transferring whatever gradient was there
+53:17 
+
+53:17 in the node that that is in the
+53:18 
+
+53:18 composition graph after it. So it'll
+53:20 
+
+53:20 just take the gradient but if it is a
+53:21 
+
+53:21 multiplication node what it does is
+53:22 
+
+53:22 it'll take the gradient whatever it was
+53:24 
+
+53:24 it'll multiply it with let's suppose it
+53:26 
+
+53:26 was a multiply b and it was a multiplied
+53:28 
+
+53:28 by b suppose okay so if you are
+53:31 
+
+53:31 computing gradient for this so what you
+53:32 
+
+53:32 will do is you'll take value of this
+53:33 
+
+53:33 node okay and you will multiply it with
+53:35 
+
+53:35 the gradient of the of the neuron or the
+53:38 
+
+53:38 load which came after it in explation
+53:40 
+
+53:40 graph okay and in the compression graph
+53:41 
+
+53:41 similarly for this b you will take the
+53:43 
+
+53:43 value of this a you will take value of a
+53:45 
+
+53:45 whatever the value a was there and you
+53:46 
+
+53:46 will multiply it with the gradient of
+53:48 
+
+53:48 load that came after it. Okay, if I just
+53:52 
+
+53:52 multiply it with this,
+53:54 
+
+53:54 so you'll now see
+53:57 
+
+53:57 if I show you this draw. B. So you are
+53:59 
+
+53:59 seeing that this is equal to
+54:03 
+
+54:03 3.0. So what actually happened? So this
+54:05 
+
+54:05 was the data that we took as similar.
+54:07 
+
+54:07 Yes. Okay. Now we have computed all the
+54:09 
+
+54:09 gradient. So whatever nodes we had, we
+54:11 
+
+54:11 have computed gradient. So what
+54:12 
+
+54:12 effectively should happen is we want
+54:14 
+
+54:14 this G to be less. Okay. Let's this G is
+54:16 
+
+54:16 a loss function. This G is a loss
+54:17 
+
+54:17 function at the end. And right now the
+54:19 
+
+54:19 value if you see is six. So by the help
+54:22 
+
+54:22 of gradient descent if I take all these
+54:23 
+
+54:23 gradients. So I have computed all the
+54:25 
+
+54:25 gradients. If I take these nodes and if
+54:27 
+
+54:27 I nudge these values a little bit except
+54:29 
+
+54:29 G let's leave the G aside. If I take F E
+54:32 
+
+54:32 C D A and B. So if I use gradient
+54:35 
+
+54:35 descent if I take these values whatever
+54:36 
+
+54:36 the gradient of these values are. So
+54:38 
+
+54:38 I'll just apply some learning rate. Okay
+54:40 
+
+54:40 let's do that. Let's do that. So here if
+54:42 
+
+54:42 you see this I'll do that updation here.
+54:44 
+
+54:44 That is the thing that Jupiter gives me.
+54:46 
+
+54:46 So I'll do updations and I'll see if I
+54:48 
+
+54:48 can get less loss
+54:50 
+
+54:50 updations. So what I'm now trying to
+54:52 
+
+54:52 tell trying to do is because I have
+54:54 
+
+54:54 graded for every node now. So I'll say
+54:57 
+
+54:57 uh starting from f okay starting from f
+54:60 
+
+54:60 F dot data. So whatever data it has this
+55:04 
+
+55:04 is equal to I can say f dot data and
+55:07 
+
+55:07 then subtract some learning rate 0.01
+55:11 
+
+55:11 multiplied by whatever is the f.grad
+55:14 
+
+55:14 f.grad. Okay, I suppose you got this. So
+55:16 
+
+55:16 now this is applying the gradient
+55:18 
+
+55:18 descent on this. So we have E. Now we
+55:21 
+
+55:21 have this E. Okay, and we'll say E
+55:25 
+
+55:25 and we'll say this E. Okay. And now we
+55:28 
+
+55:28 have C D A and B. Okay. So what I should
+55:32 
+
+55:32 do is I should write minus equal to
+55:35 
+
+55:35 anyway. This is this is all right. So
+55:37 
+
+55:37 you have
+55:39 
+
+55:39 C.
+55:41 
+
+55:41 Okay. I'm wring it slow on purpose so
+55:43 
+
+55:43 that you get the time to grasp it. Now
+55:47 
+
+55:47 we have D till I just change this.
+55:50 
+
+55:50 Understand the things that I'm saying.
+55:51 
+
+55:51 So what I was telling you people is that
+55:53 
+
+55:53 you have the gradient now you have the
+55:54 
+
+55:54 data also. Now you know that if I have
+55:56 
+
+55:56 the gradient it is in the steepest
+55:58 
+
+55:58 ascent and you have to descent it and
+55:59 
+
+55:59 I'm using that learning rate over here.
+56:01 
+
+56:01 So now this is D dot data and now we
+56:03 
+
+56:03 again can use this is F cde E and we
+56:06 
+
+56:06 have A and B. So we can use A.
+56:09 
+
+56:09 we can use A
+56:12 
+
+56:12 and let's say we can use B also
+56:15 
+
+56:15 and we should use B also because all
+56:16 
+
+56:16 these are the parameters of the model
+56:21 
+
+56:21 okay so right now if you see the value
+56:22 
+
+56:22 if I draw this dot so I am drawing this
+56:25 
+
+56:25 so you you are seeing the value to be
+56:27 
+
+56:27 6.0 zero. Okay, I'll have to also
+56:29 
+
+56:29 perform the forward pass. So why I'm
+56:31 
+
+56:31 performing the forward pass? So this is
+56:32 
+
+56:32 where the forward pass is happening.
+56:34 
+
+56:34 This is my forward pass. So if you see
+56:36 
+
+56:36 this value over here, so this is forward
+56:37 
+
+56:37 pass. This value over here is my forward
+56:40 
+
+56:40 pass. I'll take this out. Okay, I'll say
+56:44 
+
+56:44 this is over this. I'll say this is my
+56:47 
+
+56:47 forward pass. So when I'm running this,
+56:50 
+
+56:50 okay, and these are my updations. So I'm
+56:52 
+
+56:52 doing updations over here. I'll take all
+56:53 
+
+56:53 of these values. So I'll paste it over
+56:56 
+
+56:56 here.
+56:57 
+
+56:57 I'll take these values also
+56:60 
+
+56:60 paste it over here. So this is basically
+57:03 
+
+57:03 my manual back propagation. So what I'm
+57:05 
+
+57:05 first trying to do I'm applying the
+57:06 
+
+57:06 forward pass. So this is my forward
+57:08 
+
+57:08 pass. See? So this over here
+57:12 
+
+57:12 is my forward pass. So this is my
+57:14 
+
+57:14 forward pass.
+57:16 
+
+57:16 Okay. Then what I'm trying to do is I'm
+57:18 
+
+57:18 trying to apply the gradient. So okay
+57:19 
+
+57:19 I'm trying to do manual back prop. So
+57:21 
+
+57:21 this is my manual back prop.
+57:24 
+
+57:24 So that is what I have written over
+57:25 
+
+57:25 here. This is my manual back prop and
+57:28 
+
+57:28 then this is the uptation or this this
+57:30 
+
+57:30 is my gradient descent. This is my
+57:33 
+
+57:33 gradient descent.
+57:36 
+
+57:36 Please carefully look at this. So I'm
+57:38 
+
+57:38 applying forward pass. Okay. So I'm
+57:40 
+
+57:40 applying forward pass over here. So I'm
+57:42 
+
+57:42 running this. I'm showing you just draw
+57:45 
+
+57:45 G.
+57:47 
+
+57:47 Okay. I should draw it after this. So
+57:49 
+
+57:49 I'll draw it after this
+57:51 
+
+57:51 because after forward pass I'll draw
+57:53 
+
+57:53 this. So run the forward pass
+57:57 
+
+57:57 draw this G. So gradient is still
+57:59 
+
+57:59 preserved. So I'll just for the sake of
+58:01 
+
+58:01 completion the gradient. So now you see
+58:03 
+
+58:03 this is this these are my gradients and
+58:05 
+
+58:05 I have performed the first thing is this
+58:06 
+
+58:06 was my forward pass and then I showed
+58:08 
+
+58:08 you how this looks after forward pass
+58:09 
+
+58:09 and then I am applying gradient and I
+58:11 
+
+58:11 showed you the gradient and then I'll
+58:12 
+
+58:12 update these things okay because I want
+58:14 
+
+58:14 this G value to be less okay let's let
+58:17 
+
+58:17 me apply one the step of this. So I am
+58:20 
+
+58:20 applying gradient.
+58:22 
+
+58:22 Okay. So this applied the gradient. So
+58:24 
+
+58:24 it actually update the data. So after
+58:26 
+
+58:26 this I'll apply forward pass once more.
+58:28 
+
+58:28 I'll apply forward pass. And now if I
+58:31 
+
+58:31 show you this if I again draw this. So
+58:33 
+
+58:33 you can clearly see over here if I see
+58:35 
+
+58:35 the data got changed. This G went to
+58:36 
+
+58:36 5.5. Okay. Initially it was six. It now
+58:39 
+
+58:39 came to 5.5. Again do the manual back
+58:41 
+
+58:41 propagation. Okay. Okay. Again do the
+58:44 
+
+58:44 gradient descent. If I come back again
+58:47 
+
+58:47 forward pass. Oops.
+58:50 
+
+58:50 If I do the forward pass. It was 5.5
+58:52 
+
+58:52 remember that. So if you do it again
+58:56 
+
+58:56 you're seeing loss goes to 5.08. Okay
+58:59 
+
+58:59 let's do it one for one more step to
+59:00 
+
+59:00 show you at least to feel this to feel
+59:02 
+
+59:02 satisfied that we're doing it right. So
+59:04 
+
+59:04 now we again do the manual back
+59:06 
+
+59:06 propagation. Okay we'll do the
+59:07 
+
+59:07 updations. So then run the forward pass
+59:11 
+
+59:11 and then run it again. So now if you see
+59:15 
+
+59:15 this is going to be 4.6 and we want it
+59:17 
+
+59:17 to be zero and it will take iterations.
+59:19 
+
+59:19 you will keep on basically right now
+59:20 
+
+59:20 what we're trying to do is again if you
+59:21 
+
+59:21 see this so four steps involved the
+59:23 
+
+59:23 first step was forward pass the forward
+59:25 
+
+59:25 pass is the main step that because we
+59:26 
+
+59:26 have to do the forward computation so
+59:27 
+
+59:27 once we perform that and then we drove
+59:29 
+
+59:29 the graph so once we draw this graph so
+59:31 
+
+59:31 what happened it gave me the gradients
+59:32 
+
+59:32 and if you see the gradients are going
+59:33 
+
+59:33 to zero so these gradients are going to
+59:35 
+
+59:35 zero and now you see the gradient so
+59:36 
+
+59:36 this is called vanishing gradient
+59:38 
+
+59:38 problem so we'll handle this separately
+59:40 
+
+59:40 and then we are doing the backward pass
+59:41 
+
+59:41 forward pass backward pass updation
+59:43 
+
+59:43 forward pass backward pass updation we
+59:45 
+
+59:45 keep on doing this loop this is called
+59:46 
+
+59:46 training so if somebody tells you what
+59:48 
+
+59:48 is training So in training you perform
+59:49 
+
+59:49 forward pass okay then you perform
+59:51 
+
+59:51 backward pass okay so after that what
+59:53 
+
+59:53 you do is so so once you have that so
+59:56 
+
+59:56 you again do the updations and then you
+59:59 
+
+59:59 keep on rolling this forward pass
+60:01 
+
+60:01 backward update forward backward update
+60:03 
+
+60:03 you keep on doing this and uh this again
+60:07 
+
+60:07 if I show you this one more time to see
+60:09 
+
+60:09 if it is again reducing
+60:11 
+
+60:11 so draw this so this value is 4.6 six do
+60:15 
+
+60:15 the manual back propagation do the
+60:17 
+
+60:17 updation
+60:19 
+
+60:19 do the forward pass and draw this so
+60:22 
+
+60:22 this was 4.6 this is 4.2 two I think
+60:25 
+
+60:25 this is working. So how many of you
+60:27 
+
+60:27 understood whole other thing that I said
+60:28 
+
+60:28 so far?
+60:31 
+
+60:31 So so whatever we did uh previously
+60:35 
+
+60:35 since like 9 10 11 lectures. So this was
+60:37 
+
+60:37 actually for this. Okay. So when you
+60:39 
+
+60:39 write the code the most important thing
+60:40 
+
+60:40 will happen. You will get the clarity.
+60:42 
+
+60:42 So there is a famous code. If you cannot
+60:44 
+
+60:44 produce it or if you cannot make it you
+60:46 
+
+60:46 don't understand it. So here what I have
+60:48 
+
+60:48 shown you is how to train a neural
+60:50 
+
+60:50 network. So you do forward pass then you
+60:52 
+
+60:52 do backward pass and then you updation
+60:54 
+
+60:54 again. You do the same loop. You keep on
+60:55 
+
+60:55 doing this. So this is called training.
+60:56 
+
+60:56 So in this if you understood this so
+60:58 
+
+60:58 while watching these lectures you pause
+60:60 
+
+60:60 and then you think about it okay what is
+61:02 
+
+61:02 happening underneath and in this lecture
+61:04 
+
+61:04 I have given you one example on the sign
+61:06 
+
+61:06 cost. So you should do the same
+61:07 
+
+61:07 procedure what we did on this example a
+61:09 
+
+61:09 multiplied by b plus c and whole
+61:11 
+
+61:11 multiplied by e something of that sort.
+61:12 
+
+61:12 So you should do the same thing with
+61:14 
+
+61:14 that. That's a little bit tedious
+61:15 
+
+61:15 example and I left some calculations
+61:17 
+
+61:17 there on purpose so that whenever you
+61:18 
+
+61:18 watch the lecture so you'll just reason
+61:20 
+
+61:20 about it. You'll say v5 so how to
+61:22 
+
+61:22 compute that how to compute that on
+61:23 
+
+61:23 paper. So once you do that on paper and
+61:25 
+
+61:25 then you'll use this computational
+61:26 
+
+61:26 method of differentiation which is
+61:28 
+
+61:28 called as reverse mode of automatic
+61:30 
+
+61:30 differentiation. I hope you understood
+61:32 
+
+61:32 some things of this in the next session
+61:33 
+
+61:33 we'll take some more complicated
+61:35 
+
+61:35 example. So we'll take a neuron and then
+61:37 
+
+61:37 we'll do for a single neuron we'll try
+61:39 
+
+61:39 to train a single neuron and then we'll
+61:41 
+
+61:41 from that single neuron we'll make a
+61:42 
+
+61:42 stack of neuron that's a layer of
+61:43 
+
+61:43 neurons and then we'll put these layers
+61:45 
+
+61:45 together we'll connect them together and
+61:46 
+
+61:46 then we'll form a network of neurons.
+61:48 
+
+61:48 But if you understood this part you have
+61:50 
+
+61:50 understood heart of deep learning. There
+61:51 
+
+61:51 is nothing to learn more conceptually.
+61:53 
+
+61:53 You don't have to learn anything. And
+61:55 
+
+61:55 the problem that we're left with now is
+61:56 
+
+61:56 engineering problem. You have to perform
+61:58 
+
+61:58 this efficiently. You have to write the
+62:00 
+
+62:00 course that people understand it. But if
+62:02 
+
+62:02 you understood this far, I think you are
+62:04 
+
+62:04 done with deep learning. Like most for
+62:06 
+
+62:06 for most the time people have this like
+62:08 
+
+62:08 how is back propagation being done? How
+62:09 
+
+62:09 is this being done? How is that being
+62:10 
+
+62:10 done? You you should not have these
+62:12 
+
+62:12 questions. Rest the things are just for
+62:14 
+
+62:14 the efficiency purpose and they're just
+62:15 
+
+62:15 engineing aspects of

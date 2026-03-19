@@ -226,6 +226,51 @@ c.grad = 1.0
 \end{verbatim}
 
 % ------------------------------------------------------------------------------
+\subsection{Visualizing the Computation Graph}
+% ------------------------------------------------------------------------------
+
+As expressions become complex, visualizing the underlying DAG is incredibly useful. We can write a topological tracing function and use the \texttt{graphviz} library to render the graph.
+
+\begin{lstlisting}[language=Python, caption={Tracing and Rendering with Graphviz}]
+from graphviz import Digraph
+
+def trace(root):
+    # Builds a set of all nodes and edges in a graph
+    nodes, edges = set(), set()
+    def build(v):
+        if v not in nodes:
+            nodes.add(v)
+            for child in v._prev:
+                edges.add((child, v))
+                build(child)
+    build(root)
+    return nodes, edges
+
+def draw_dot(root):
+    dot = Digraph(format='svg', graph_attr={'rankdir': 'LR'}) # Left to Right
+    
+    nodes, edges = trace(root)
+    for n in nodes:
+        uid = str(id(n))
+        # Create a rectangular record node for the value
+        dot.node(name=uid, label=f"{{ data {n.data:.4f} | grad {n.grad:.4f} }}", shape='record')
+        if n._op:
+            # If this value is a result of some operation, create an op node for it
+            dot.node(name=uid + n._op, label=n._op)
+            # and connect this node to it
+            dot.edge(uid + n._op, uid)
+    
+    for n1, n2 in edges:
+        # Connect n1 to the op node of n2
+        dot.edge(str(id(n1)), str(id(n2)) + n2._op)
+        
+    return dot
+
+# Visualize the graph
+# draw_dot(d)  # Renders the SVG graph
+\end{lstlisting}
+
+% ------------------------------------------------------------------------------
 \section{Building a Neural Network from Scratch}
 % ------------------------------------------------------------------------------
 
@@ -368,6 +413,62 @@ Final predictions:
   Input: [0.5, 1.0, 1.0] -> Pred: -0.985, Target: -1.0
   Input: [1.0, 1.0, -1.0] -> Pred: 0.991, Target: 1.0
 \end{verbatim}
+
+% ------------------------------------------------------------------------------
+\section{Training on Complex Datasets}
+% ------------------------------------------------------------------------------
+
+While XOR is a fundamental nonlinear problem, real-world data is far messier. We can test our custom framework on classic machine learning datasets using \textbf{mini-batch Stochastic Gradient Descent (SGD)}.
+
+\subsection{The Make Moons Dataset}
+
+The ``Make Moons'' dataset from \texttt{scikit-learn} generates two interleaving half circles, perfect for testing non-linear classification.
+
+\begin{lstlisting}[language=Python, caption={Training on Make Moons with Mini-batches}]
+from sklearn.datasets import make_moons
+import numpy as np
+
+# Generate dataset
+X, y = make_moons(n_samples=100, noise=0.1)
+y = y*2 - 1 # Convert labels 0, 1 to -1, 1 for our tanh output
+
+# Initialize model (2 inputs -> 16 hidden -> 16 hidden -> 1 output)
+model = MLP(2, [16, 16, 1])
+
+# Mini-batch Training Loop
+batch_size = 32
+epochs = 100
+learning_rate = 0.05
+
+for epoch in range(epochs):
+    # Shuffle indices for SGD
+    indices = np.random.permutation(len(X))
+    
+    for i in range(0, len(X), batch_size):
+        batch_idx = indices[i:i+batch_size]
+        X_batch, y_batch = X[batch_idx], y[batch_idx]
+        
+        # Forward pass
+        preds = [model(x.tolist()) for x in X_batch]
+        
+        # Mean Squared Error Loss
+        loss = sum((pred - target)**2 for pred, target in zip(preds, y_batch)) 
+        loss = loss * (1.0/len(y_batch))
+        
+        # L2 Regularization
+        reg_loss = 1e-4 * sum((p*p for p in model.parameters()))
+        total_loss = loss + reg_loss
+        
+        # Backward pass
+        model.zero_grad()
+        total_loss.backward()
+        
+        # Update
+        for p in model.parameters():
+            p.data -= learning_rate * p.grad
+\end{lstlisting}
+
+By swapping the dataset generation to \texttt{make\_circles} or using the \textbf{Iris dataset}, the exact same engine can model a variety of complex feature spaces, proving that our from-scratch code functions equivalently to industrial frameworks.
 
 % ------------------------------------------------------------------------------
 \section{The Complete Training Algorithm}

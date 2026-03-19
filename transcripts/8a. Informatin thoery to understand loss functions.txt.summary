@@ -1,0 +1,36 @@
+Here is a summary and a detailed list of the unique topics discussed in the transcript, complete with timestamps.
+
+### **Lecture Summary**
+This lecture bridges the conceptual gap between basic machine learning models and the mathematical formulation of objective (loss) functions. The instructor begins by defining the core goal of an objective function: quantifying the difference (divergence) between a true, unknown data-generating function and the parameterized function a machine learning model is trying to learn. 
+
+Because the true function is unknown and real-world data contains random noise, the instructor explains that we cannot calculate exact mathematical integrals to find this error. Instead, we must rely on probability distributions, sampling, and expected values. This leads to the formal definition of **Empirical Risk Minimization (ERM)**, which is the actual objective optimized in machine learning. 
+
+To help students understand how specific loss functions (like Cross-Entropy and KL Divergence) are constructed for ERM, the lecture takes a deep dive into **Information Theory**. The instructor defines "information" mathematically as the "degree of surprise"—events with lower probabilities yield higher information when they occur, which is calculated using logarithms. This concept is then expanded to define **Entropy** as the "expected surprise" or average information content of a probability distribution. The lecture concludes with practical examples of calculating entropy, explaining why information is measured in "bits," and demonstrating how concepts like optimal encoding (e.g., Huffman coding) relate to finding the minimum bits required to represent a distribution.
+
+---
+
+### **Topics Discussed with Timestamps**
+
+**00:01 - 03:01 | Recap & Introduction to Objective Functions**
+A review of previous sessions covering data, model parameters (weights and biases), and gradient descent. The instructor introduces the need for an objective/cost/loss function to measure how well the model is learning. 
+
+**03:01 - 08:45 | Defining Error and Divergence Functions**
+The instructor uses a graph to visualize the difference between the true underlying function $g(x)$ and the model's parameterized function $f(x, w)$. The concept of a "divergence function" is introduced to quantify this error, establishing that the divergence should equal zero if the functions match perfectly, and be greater than zero if they do not.
+
+**08:45 - 13:57 | The Reality of ML: Unknown Functions and Probabilities**
+Two major real-world problems are introduced: 1) We do not know the true function $g(x)$, we only have data samples. 2) Outputs/labels can be random due to noise (one data point might yield multiple labels). Because of this, calculating exact mathematical integrals for error is impossible. The instructor demonstrates how to shift from integrals to using probability distributions and mathematical *expectations*.
+
+**13:57 - 16:41 | Empirical Risk Minimization (ERM)**
+The instructor formalizes the previous concepts into the ultimate mathematical objective for machine learning: Empirical Risk Minimization. This is the process of minimizing the expected error based on empirical data (samples) rather than the theoretical true function. 
+
+**16:41 - 23:40 | Information Theory: Quantifying "Surprise"**
+To understand specific divergence/loss functions, the lecture pivots to Information Theory. The instructor defines "information" conceptually as the "degree of surprisal." Mathematically, information is inversely proportional to an event's probability. The formula for information content is derived: $I(x) = -\log(P(x))$.
+
+**23:40 - 32:50 | Defining Entropy in Computer Science**
+Building on individual information content, the concept of Entropy is introduced as the "expected surprise" or average information content across a whole probability distribution. The mathematical formula for Entropy is formalized as the expected value of the logarithmic information content.
+
+**32:50 - 40:04 | Units of Entropy and Practical Calculations**
+The instructor explains that entropy is measured in "bits" (if using log base 2) or "nats" (if using natural log base $e$). Practical examples are worked through, including calculating the entropy of tossing two coins and calculating the entropy of an 8-state uniform distribution, proving that in a uniform distribution, the average entropy equals the information content of a single event.
+
+**40:04 - 49:01 | Optimal Encoding, Compression, and Maximum Entropy**
+A discussion on why information is tied to file size and "bits," using the conceptual example of Huffman encoding (lossless compression). The instructor proves mathematically that a uniform distribution yields the maximum possible entropy. Finally, an example of a skewed (non-uniform) distribution is calculated to show how optimal encoding allows us to use fewer bits on average by assigning shorter codes to more probable events.

@@ -97,6 +97,31 @@ A divergence function $D(p, q)$ measures how different two distributions or func
 We will explore these in detail when we discuss information theory.
 
 % ============================================================================
+% MOTIVATING OPTIMIZATION
+% ============================================================================
+
+\section{The Need for Optimization: Random Guessing}
+
+\subsection{A 3-Data-Point Example}
+
+Consider a simple dataset with just three points representing a binary classification task:
+\begin{itemize}
+    \item $\vect{x}_1 = [0.5, 1.0]^\top, \quad y_1 = 1$
+    \item $\vect{x}_2 = [2.0, 0.0]^\top, \quad y_2 = 0$
+    \item $\vect{x}_3 = [-1.0, 1.0]^\top, \quad y_3 = 1$
+\end{itemize}
+
+Using a simple sigmoid neuron model $f(\vect{x}; \vect{w}, b) = \sigma(\vect{w}^\top \vect{x} + b)$ and Mean Squared Error (MSE), we can manually compute the loss for any given weights. Suppose we randomly initialize our weights to $\vect{w} = [-3.21, \dots]^\top$ and $b = 1.83$. Computing the forward pass and MSE loss for these points gives us a concrete error value (e.g., $R(\vect{w}) = 0.067$). 
+
+\subsection{The Inefficiency of Random Guessing}
+
+To minimize this loss, a naive approach might be \textbf{Random Guessing}: repeatedly select random combinations of weights and biases, compute the loss for each combination, and save the parameters that yield the lowest error. 
+
+Visualizing the loss as a surface (a manifold of hills and valleys), random guessing is akin to a drunken walk. You leap arbitrarily from point to point on the error surface, hoping to accidentally land in a global minimum. While you may occasionally find a decent set of weights for a trivially small model (like our 3-data-point example), this approach completely breaks down for deep neural networks with millions of parameters. The search space is infinitely large.
+
+We require a \textbf{directed search mechanism}---a way to intelligently update our parameters so that each step consistently moves us downhill on the error surface toward the optimal solution.
+
+% ============================================================================
 % GRADIENT DESCENT
 % ============================================================================
 
@@ -132,6 +157,30 @@ The \textbf{gradient} $\nabla_{\vect{w}} R(\vect{w})$ points in the direction of
     \draw[->] (-2, -0.5) -- (-2, 2);
 \end{tikzpicture}
 \end{center}
+
+\subsection{Deriving the Descent Direction via Taylor Series}
+
+Why do we step in the direction of the negative gradient? We can formally justify this using a first-order \textbf{Taylor Series expansion}. 
+
+A Taylor series allows us to approximate the value of a function at a point near $\vect{w}$ by using its derivatives. For a very small parameter update $\Delta \vect{w}$, the new loss can be approximated as:
+\[
+R(\vect{w} + \Delta \vect{w}) \approx R(\vect{w}) + (\nabla_{\vect{w}} R(\vect{w}))^\top \Delta \vect{w}
+\]
+
+Our objective is to ensure that the new loss is strictly less than the old loss:
+\[
+R(\vect{w} + \Delta \vect{w}) < R(\vect{w}) \implies (\nabla_{\vect{w}} R(\vect{w}))^\top \Delta \vect{w} < 0
+\]
+
+For the dot product of two vectors to be negative, the angle between them must be greater than $90^\circ$. The most negative value is achieved when the vectors point in exactly opposite directions. Therefore, to decrease the loss as quickly as possible, we should choose our step $\Delta \vect{w}$ to be anti-parallel to the gradient:
+\[
+\Delta \vect{w} = -\eta \nabla_{\vect{w}} R(\vect{w})
+\]
+where $\eta > 0$ is a small scalar known as the \textbf{learning rate}. Substituting this back into the approximation gives:
+\[
+R(\vect{w} - \eta \nabla_{\vect{w}} R(\vect{w})) \approx R(\vect{w}) - \eta \|\nabla_{\vect{w}} R(\vect{w})\|^2 < R(\vect{w})
+\]
+This mathematically proves that taking a small step in the direction of the negative gradient is guaranteed to decrease the loss!
 
 \subsection{The Update Rule}
 

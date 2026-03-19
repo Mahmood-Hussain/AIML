@@ -551,6 +551,109 @@ This is both good and bad news:
 \end{itemize}
 
 % ============================================================================
+% PYTHON IMPLEMENTATION
+% ============================================================================
+
+\section{Python Implementation of the Perceptron}
+
+Now that we have established the theoretical foundation of the perceptron learning algorithm, let us implement it from scratch in Python.
+
+\subsection{Visualizing Error Surfaces}
+
+During training, we are trying to find the optimal weights $\vect{w}$ and bias $b$ that minimize our classification error. We can visualize this as searching for the lowest point on an \textbf{error surface}. Every point on this surface corresponds to a specific combination of weights and bias, and the height represents the number of misclassified points (the error).
+
+\subsection{The Code}
+
+\begin{lstlisting}[language=Python, caption={Perceptron Training Algorithm}]
+import numpy as np
+
+def train_perceptron(X, y, max_iters=1000):
+    """
+    Trains a perceptron using the perceptron learning algorithm.
+    X: Inputs (N x d) setup for the linearly separable problem
+    y: Labels (N), where 1 is positive class, 0 is negative class
+    """
+    n_samples, n_features = X.shape
+    
+    # Step 1: Initialize weights randomly
+    w = np.random.randn(n_features)
+    
+    for step in range(max_iters):
+        misclassified = False
+        
+        # Step 2: Loop through data points randomly
+        # Permute points to avoid cyclic toggling
+        indices = np.random.permutation(n_samples)
+        
+        for i in indices:
+            xi = X[i]
+            label = y[i]
+            
+            # Predict
+            dot_product = np.dot(w, xi)
+            prediction = 1 if dot_product >= 0 else 0
+            
+            # Step 3: Check for misclassification and update weights
+            if prediction != label:
+                misclassified = True
+                
+                # Rule: w = w + (2y - 1) * xi
+                # If label is 1, pred is 0 -> add xi
+                # If label is 0, pred is 1 -> subtract xi
+                w += (2 * label - 1) * xi
+                
+        # Step 4: Check if converged
+        if not misclassified:
+            print(f"Converged at step {step}")
+            break
+            
+    return w
+\end{lstlisting}
+
+In this algorithm, the `misclassified` flag checks whether any point was wrongly labeled during an epoch. If the data is linearly separable, the algorithm finishes in a finite number of iterations when `misclassified` remains \texttt{False} for the entire loop.
+
+% ============================================================================
+% MULTICLASS CLASSIFICATION
+% ============================================================================
+
+\section{Multiclass Classification}
+
+The perceptron, as developed by Rosenblatt, is intrinsically a \textbf{binary classifier}. It draws a single hyperplane dividing the $n$-dimensional space into two half-spaces (e.g., $y=1$ and $y=0$). What do we do when our dataset contains more than two classes (e.g., distinguishing between 10 different digits)?
+
+To adapt a binary classifier for a multiclass problem, we use the \textbf{One-Versus-All} (or One-Versus-Rest) technique. 
+
+\begin{enumerate}
+    \item Assume we have $K$ classes (e.g., 1 to 10).
+    \item We train $K$ separate binary perceptrons. 
+    \item The first perceptron is trained to distinguish Class 1 against all other classes (Classes 2 through 10).
+    \item The second perceptron distinguishes Class 2 against the rest.
+    \item This process is repeated until we have a distinct binary classifier trained for each unique class.
+\end{enumerate}
+
+During prediction, when given a new input point, we pass it through all $K$ perceptrons. The final predicted class is the one associated with the perceptron that fires with the greatest confidence.
+
+% ============================================================================
+% PERCEPTRON CONVERGENCE THEOREM FORMULATION
+% ============================================================================
+
+\section{Formulating the Proof of Convergence}
+
+We stated earlier that if the dataset is linearly separable, the perceptron is guaranteed to converge. But without a mathematical proof, there is a risk that the algorithm could toggle endlessly. For instance, adjusting weights to fix an error on point $A$ might inadvertently misclassify point $B$, and adjusting to fix point $B$ misclassifies point $A$ again.
+
+To formally prevent this toggling concern, we must formulate the theorem mathematically. We define the premise as follows:
+
+\begin{theorembox}[Premise for Convergence Proof]
+Let $\mathcal{P}, \mathcal{N} \subset \R^n$ be two finite sets of points defining our positive and negative classes. Assume $\mathcal{P}$ and $\mathcal{N}$ are \textbf{linearly separable}, meaning there exists some optimal weight vector $\vect{w}^*$ such that:
+\begin{align*}
+    (\vect{w}^*)^\top \vect{x} &> 0 \quad \text{for all } \vect{x} \in \mathcal{P} \\
+    (\vect{w}^*)^\top \vect{x} &< 0 \quad \text{for all } \vect{x} \in \mathcal{N}
+\end{align*}
+Under this premise, the perceptron learning algorithm converges in a finite number of update steps.
+\end{theorembox}
+
+The rigorous proof of this theorem requires demonstrating that each update step inevitably brings the current weight vector $\vect{w}$ closer to the optimal solution $\vect{w}^*$, by monitoring their cosine angle (the dot product relative to their magnitudes). This proof mechanism establishes confidence that simple perceptron learning functions without entering infinite loops.
+
+% ============================================================================
 % SUMMARY
 % ============================================================================
 

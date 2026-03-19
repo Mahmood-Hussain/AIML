@@ -1,0 +1,4069 @@
+00:01 So in the previous sessions we have
+00:03 
+
+00:03 discussed about back propagation and we
+00:04 
+
+00:04 saw the derivation how do we derive back
+00:06 
+
+00:06 propagation. So now in order to
+00:07 
+
+00:07 understand that back propagation fully
+00:09 
+
+00:09 what we should do we'll take a small
+00:10 
+
+00:10 network and we'll do back propagation by
+00:12 
+
+00:12 hand. Okay. So what I can do is I can
+00:14 
+
+00:14 write over here back propagation by
+00:17 
+
+00:17 hand.
+00:19 
+
+00:19 Back prop by hand.
+00:27 
+
+00:27 So today's lecture is going to be very
+00:28 
+
+00:28 important because if you understand this
+00:29 
+
+00:29 you understand the heart of deep
+00:31 
+
+00:31 learning. Okay. And as I said deep
+00:33 
+
+00:33 learning is nothing but you are putting
+00:35 
+
+00:35 computation on probably on steroids. You
+00:36 
+
+00:36 do this computations really fast then
+00:38 
+
+00:38 and otherwise you could have done it by
+00:40 
+
+00:40 hand. Okay. Now we'll do that how to do
+00:41 
+
+00:41 it by hand. For that first we'll define
+00:43 
+
+00:43 a network. Okay. We'll define a tiny
+00:44 
+
+00:44 network. So in that tiny network we will
+00:46 
+
+00:46 have two inputs and we'll have hidden
+00:48 
+
+00:48 layer one hidden layer two different
+00:50 
+
+00:50 neurons. So what we can do is we'll have
+00:51 
+
+00:51 two inputs. Call that x1 and x2. Suppose
+00:53 
+
+00:53 we this is our input. And once we have
+00:56 
+
+00:56 these inputs then what we can do is we
+00:57 
+
+00:57 can define hidden layers without giving
+00:60 
+
+00:60 the names first because I might use
+01:01 
+
+01:01 different names first. So let's consider
+01:03 
+
+01:03 this to be input and then we have hidden
+01:05 
+
+01:05 layers. Consider this to be hidden
+01:07 
+
+01:07 layers two hidden layers and then we
+01:10 
+
+01:10 have an output. Let's suppose we have
+01:11 
+
+01:11 two outputs as well. So like let's
+01:12 
+
+01:12 suppose this is our network. I'm making
+01:14 
+
+01:14 this network pretty symmetric. I could
+01:15 
+
+01:15 have done anything. And this is the
+01:16 
+
+01:16 fully connected network. So if you see
+01:18 
+
+01:18 so this input will go here and this
+01:20 
+
+01:20 input would go here. And now
+01:23 
+
+01:23 you have something of this sort.
+01:28 
+
+01:28 Okay. So this is your fully connected
+01:29 
+
+01:29 layer. So now we can name them as per
+01:31 
+
+01:31 the convention. We can do the same
+01:32 
+
+01:32 things and then call this we have now
+01:35 
+
+01:35 h0. And you know by definition how we
+01:38 
+
+01:38 have given those symbols and stuff like
+01:39 
+
+01:39 that. You should probably knowing them
+01:41 
+
+01:41 by now you should know them very better.
+01:42 
+
+01:42 So we have this h0. So h0 will be we
+01:44 
+
+01:44 will call that as an input. Suppose that
+01:46 
+
+01:46 input is x and x we can define it as
+01:48 
+
+01:48 suppose 1 0. I'll take exact values that
+01:50 
+
+01:50 I have written over here. So the
+01:51 
+
+01:51 calculation becomes easy. So we have it
+01:53 
+
+01:53 y target basically the one the thing
+01:55 
+
+01:55 that we want to get. So we have target
+01:56 
+
+01:56 01. Suppose this is our target. Okay. So
+01:59 
+
+01:59 this is our input and this is our
+01:60 
+
+02:00 output. And now we know we have to
+02:02 
+
+02:02 initialize weights and biases. So how
+02:03 
+
+02:03 many matrices will be associated with
+02:04 
+
+02:04 this? So this is the this is your input.
+02:06 
+
+02:06 Okay. And this is your hidden layer.
+02:08 
+
+02:08 Third layer first hidden layer second
+02:09 
+
+02:09 and this is your output layer. So now if
+02:10 
+
+02:10 you see we'll have matrices w1, w2 and
+02:13 
+
+02:13 w3. So we'll have matrices W1, W2 and
+02:18 
+
+02:18 W3. So these will be our three matrices.
+02:20 
+
+02:20 And now you know that each of these will
+02:22 
+
+02:22 be a 2 +2 matrix. Why? Why? Because we
+02:24 
+
+02:24 have these two cross two neurons over
+02:25 
+
+02:25 here. We have two neurons input, two
+02:27 
+
+02:27 neurons output. Similarly over here. So
+02:28 
+
+02:28 we'll have this W1, W2 and W3. So how to
+02:32 
+
+02:32 define that? I can give you some values
+02:33 
+
+02:33 over here. 0.1. Please have pen and
+02:36 
+
+02:36 paper with you. If you don't have, you
+02:38 
+
+02:38 can still grab the papers till I write
+02:39 
+
+02:39 down the problem and then you'll have to
+02:41 
+
+02:41 do calculations with me. So 0.3 and then
+02:44 
+
+02:44 this is 0.4. This is my W1. The weight
+02:47 
+
+02:47 matrix one in between layer 1 and layer
+02:50 
+
+02:50 2. And then we have this W2. W2 over
+02:53 
+
+02:53 here that I have written is 0.5, 0.6,
+02:57 
+
+02:57 0.7 and 0.8.
+02:60 
+
+02:60 And then we have this W3. It is 0.9 1.0
+03:04 
+
+03:04 1.1 and 1.2. This is how it is defined.
+03:07 
+
+03:07 And then we also have to define bi
+03:08 
+
+03:08 vector. So again you have 3 W1 W2 W3.
+03:11 
+
+03:11 You have w m ve matrices matrices and
+03:13 
+
+03:13 then you should have vectors bias one
+03:15 
+
+03:15 okay bias 2 and bias 3 we'll give them
+03:18 
+
+03:18 pretty standard values so that you can
+03:20 
+
+03:20 also so bias we can keep constant.1
+03:23 
+
+03:23 similarly over here.1 to make the
+03:25 
+
+03:25 calculations easy this is 0.1 and.1
+03:29 
+
+03:29 okay this is what how our bias looks and
+03:31 
+
+03:31 now you have k your k is equal 1 is the
+03:33 
+
+03:33 hidden layer first that if if I write k
+03:35 
+
+03:35 is equal 1 that means hidden layer first
+03:36 
+
+03:36 when I write k is equal 2 that means
+03:37 
+
+03:37 hidden layer second okay and if I write
+03:39 
+
+03:39 let's suppose k is equal 3 That mean
+03:41 
+
+03:41 third output. If I write K is equal 3
+03:43 
+
+03:43 that is your third layer or output
+03:45 
+
+03:45 layer. So in this case it won't be
+03:47 
+
+03:47 hidden it will be the output layer. So
+03:48 
+
+03:48 all of these matrix if you see WK so
+03:50 
+
+03:50 what is this WK they belong to R 2 +2.
+03:53 
+
+03:53 So there are 2 +2 matrices and biases by
+03:56 
+
+03:56 VK and AK. AK will be R3 activation. So
+03:59 
+
+03:59 basically when you have this now when
+04:00 
+
+04:00 you apply this fine transformation or
+04:02 
+
+04:02 linear transformation. So all these
+04:04 
+
+04:04 things and HK also. So if you see BK HK
+04:07 
+
+04:07 these all will be vectors. Okay, at each
+04:09 
+
+04:09 there will be vectors and how they'll
+04:11 
+
+04:11 belong to R2. Basically, there will be a
+04:13 
+
+04:13 2 + 1 vector. So, this is the problem
+04:15 
+
+04:15 setup. And now we'll have to numerically
+04:19 
+
+04:19 so we'll do one pass of G. We will do
+04:21 
+
+04:21 one pass of app propagation. For that we
+04:23 
+
+04:23 first we'll have to do forward pass.
+04:24 
+
+04:24 Okay, help me in this.
+04:27 
+
+04:27 Can somebody help me in the forward
+04:28 
+
+04:28 pass? Give me a second. I will set up
+04:29 
+
+04:29 the table tab accordingly.
+04:35 
+
+04:35 Now once you understood this the first
+04:37 
+
+04:37 thing that we have to do is our forward
+04:38 
+
+04:38 path. We have to apply forward path. The
+04:40 
+
+04:40 setup that I showed you is like this. We
+04:42 
+
+04:42 have to basically compute AK first. AK
+04:44 
+
+04:44 this is a fine transformation and we
+04:47 
+
+04:47 have to compute HK. We can do it in two
+04:49 
+
+04:49 ways. In order for the understanding
+04:51 
+
+04:51 purposes we can do it element wise. You
+04:52 
+
+04:52 can take because as you know this is the
+04:53 
+
+04:53 whole vector. This AK this is a vector
+04:55 
+
+04:55 that you can know it's a 2 + 1 vector.
+04:59 
+
+04:59 This HK again is a 2 + 1 vector. So what
+05:00 
+
+05:00 you should do now do is you can do it
+05:02 
+
+05:02 suppose we'll do it element wise first
+05:05 
+
+05:05 let me just write that down. So what it
+05:07 
+
+05:07 has to be it has to be taken as linear
+05:08 
+
+05:08 sum. So if I have to compute suppose a i
+05:11 
+
+05:11 of a. So you know that we have this
+05:13 
+
+05:13 matrix w k and wk is 2 +2 matrix. So
+05:15 
+
+05:15 we'll take the wk and in order to do
+05:17 
+
+05:17 that computation for a single point for
+05:19 
+
+05:19 for for a single element. So what we
+05:21 
+
+05:21 should do is we'll fix the value of i.
+05:23 
+
+05:23 We'll fix one row. If this is the matrix
+05:25 
+
+05:25 and it is like something of this or 2
+05:26 
+
+05:26 +2. So we'll fix this i. we'll fix one
+05:29 
+
+05:29 of the rows if it is I1 or I2. It
+05:31 
+
+05:31 depends what we can fix. Okay. And then
+05:33 
+
+05:33 based on this we can iterate over the
+05:35 
+
+05:35 columns. So we can iterate over the
+05:36 
+
+05:36 columns that means we can write
+05:38 
+
+05:38 summation J goes from 1 to why because
+05:41 
+
+05:41 only two columns we have to iterate on
+05:43 
+
+05:43 only two columns. So W I and J. Okay.
+05:45 
+
+05:45 And this will give us one row and this
+05:47 
+
+05:47 one row should be multiplied with HK. So
+05:49 
+
+05:49 how how should we take that HK minus
+05:51 
+
+05:51 one. Okay. And we have to only multiply
+05:53 
+
+05:53 with that with let's suppose J entry. So
+05:55 
+
+05:55 if we if we have to have J entry because
+05:57 
+
+05:57 now this will be HK and you have to
+05:59 
+
+05:59 iterate over the J entry. So HK will be
+06:01 
+
+06:01 something of this. This will be J1 this
+06:03 
+
+06:03 will be J2. Okay this will be HK minus
+06:04 
+
+06:04 one. The previous layers HK minus one.
+06:07 
+
+06:07 Then plus you'll have to also add bias.
+06:08 
+
+06:08 So BK is the whole vector. You just want
+06:10 
+
+06:10 a single point out of that. So based on
+06:12 
+
+06:12 these two things this will be a dot
+06:13 
+
+06:13 product. So this you can perform over
+06:15 
+
+06:15 here. So this will give you one number.
+06:16 
+
+06:16 So this BK and then this J or because
+06:19 
+
+06:19 here in this case it will be I because
+06:20 
+
+06:20 we're computing the I point. So I point.
+06:22 
+
+06:22 So this will be your fine transformation
+06:26 
+
+06:26 or the linear transformation and you
+06:28 
+
+06:28 have to apply you have to apply some
+06:30 
+
+06:30 side sort of uh activation function on
+06:32 
+
+06:32 this. So here in this case we'll apply
+06:33 
+
+06:33 sigmoid function. So let's call this at
+06:35 
+
+06:35 h i of k. So how to how to get this
+06:38 
+
+06:38 value? So apply sigmoid function on
+06:40 
+
+06:40 this. Call that as sigmoid like this
+06:41 
+
+06:41 sigma of a i of k. So what is that equal
+06:44 
+
+06:44 to? That's equal to 1 / 1 + e minus a i
+06:48 
+
+06:48 k. Okay. This is your forward pass.
+06:51 
+
+06:51 Now take take these values okay take
+06:53 
+
+06:53 these values these values are pretty
+06:56 
+
+06:56 easy W1 W2 W3 and this is point starting
+06:58 
+
+06:58 from 0.1 to 1.2 2 and bias one bas three
+07:01 
+
+07:01 are all similar and you have to do this
+07:03 
+
+07:03 for all the layers. You have to compute
+07:05 
+
+07:05 these two values. I'll give you maybe 2
+07:07 
+
+07:07 minutes to compute this.
+07:10 
+
+07:10 So one more thing before going ahead we
+07:12 
+
+07:12 can also write in the vector form. So
+07:13 
+
+07:13 this was element wise form. So we'll
+07:14 
+
+07:14 write in vector form. So how can we
+07:16 
+
+07:16 write this in vector form? So again the
+07:18 
+
+07:18 same thing you have to compute ak. So
+07:19 
+
+07:19 what will be ak equal to? So this will
+07:20 
+
+07:20 be wk. Take the whole matrix and
+07:22 
+
+07:22 multiply it with hk minus one and then
+07:24 
+
+07:24 plus bk. Pretty easy. You don't have to
+07:26 
+
+07:26 do element wise. So you actually you
+07:28 
+
+07:28 will use this for the computation and
+07:30 
+
+07:30 then once you have computed this you
+07:31 
+
+07:31 have to now compute h of k. So that will
+07:33 
+
+07:33 be sigmoid of a k and how is sigmoid
+07:36 
+
+07:36 applied it's applied element wise. Okay
+07:38 
+
+07:38 I hope that you got the point use this
+07:39 
+
+07:39 formulation to come up with the values
+07:41 
+
+07:41 of these things. So now if you
+07:44 
+
+07:44 understand the problem setup and you
+07:45 
+
+07:45 might have been trying please now focus
+07:47 
+
+07:47 here and I'll do the calculations for
+07:49 
+
+07:49 you people and you might have to keep an
+07:51 
+
+07:51 eye on the calculations. I have tendency
+07:52 
+
+07:52 to do wrong calculations. So what we'll
+07:54 
+
+07:54 do is we'll do for each layer. So we
+07:55 
+
+07:55 have to basically compute a1 and then h1
+07:58 
+
+07:58 okay a2 and then h2 a3 and then h3 and
+08:02 
+
+08:02 these will be all vectors they'll belong
+08:04 
+
+08:04 to r2 + 1 so they belong basically here
+08:06 
+
+08:06 so when you apply this so this layer
+08:08 
+
+08:08 basically will have a1 so this is
+08:11 
+
+08:11 pre-activation okay and then we'll have
+08:13 
+
+08:13 h1 so this is hidden layer 1 so output
+08:16 
+
+08:16 of hidden layer 1 so okay this will
+08:17 
+
+08:17 belong to 2+2 because you can clear 2 +
+08:19 
+
+08:19 1 because clearly you can see that there
+08:20 
+
+08:20 are two neurons over here again here it
+08:22 
+
+08:22 will be a2 and h2 over here and there it
+08:24 
+
+08:24 will be A3 and H3 H3 or HL that we
+08:27 
+
+08:27 called. Okay, these things we have to
+08:28 
+
+08:28 compute. Again we can do it element wise
+08:30 
+
+08:30 and we can do it vector by vector. How
+08:32 
+
+08:32 to do it element wise? So we have to
+08:33 
+
+08:33 compute A11
+08:35 
+
+08:35 A12. So this is the first A1 the A1 that
+08:38 
+
+08:38 we called and similarly we have H11 H12
+08:44 
+
+08:44 this is related to H1.
+08:46 
+
+08:46 So we have to compute all these values.
+08:48 
+
+08:48 Let's start with A11.
+08:50 
+
+08:50 So let's start with A11 computation. So
+08:52 
+
+08:52 how can we compute that? So we have to
+08:54 
+
+08:54 take the whole weighted sum. So if you
+08:56 
+
+08:56 do that so you will basically take 0.1
+08:59 
+
+08:59 okay multiplied by 0.1 okay because we
+09:02 
+
+09:02 start with 0.1 if you see this matrix
+09:05 
+
+09:05 okay if you see this matrix we are
+09:06 
+
+09:06 fixing this we are fixing one row so we
+09:09 
+
+09:09 are fixing this row over here okay and
+09:11 
+
+09:11 then multiplying with 0.1 okay so now
+09:14 
+
+09:14 the calculation over here that is
+09:15 
+
+09:15 written 0.1 multiplied by one okay so
+09:18 
+
+09:18 you have that whole w and you multiply
+09:20 
+
+09:20 that by x + 0.2 2 and then you multiply
+09:23 
+
+09:23 it with again you multiply with zero
+09:25 
+
+09:25 because second entry in that is 0 and
+09:27 
+
+09:27 then plus you have bias so bias is 0.1
+09:29 
+
+09:29 okay this is your w and this was your
+09:32 
+
+09:32 first and this is your first element
+09:34 
+
+09:34 okay so in that if you see that whole
+09:36 
+
+09:36 matrix whole matrix you take this entry
+09:37 
+
+09:37 and this entry and then you multiply it
+09:39 
+
+09:39 with x you had the x vector you multiply
+09:41 
+
+09:41 with this and this basically this is the
+09:42 
+
+09:42 multiplication that's what this is these
+09:44 
+
+09:44 two things and these two things okay and
+09:46 
+
+09:46 then this is your bias
+09:48 
+
+09:48 you can you can write the names also so
+09:51 
+
+09:51 But here a11 is equal to so this is
+09:53 
+
+09:53 equal to 0.2
+09:55 
+
+09:55 okay 0.1 and 0.1 and this goes to zero
+09:58 
+
+09:58 this is 0.2 again we can compute a12
+10:02 
+
+10:02 similar now we'll go to second row of
+10:04 
+
+10:04 that if you have this w you'll basically
+10:06 
+
+10:06 go to this entry over here okay and
+10:08 
+
+10:08 you'll compute that again similarly that
+10:10 
+
+10:10 value is 0.3 * 1 okay plus 0.4 * 0 plus
+10:16 
+
+10:16 again the bias is same so this value
+10:17 
+
+10:17 comes out to be 0.4 four. Okay, this is
+10:20 
+
+10:20 the second entry of this. So this is
+10:22 
+
+10:22 this entry and you're multiplying it
+10:25 
+
+10:25 with this and then this entry multiply
+10:26 
+
+10:26 with this. If you can imagine those
+10:28 
+
+10:28 matrices and now with this A1 is done.
+10:31 
+
+10:31 And now we can compute H11 H12.
+10:35 
+
+10:35 Okay, how to compute this? Just apply
+10:37 
+
+10:37 the soft max. So after applying soft max
+10:38 
+
+10:38 of this, you can do that 0.2 soft max
+10:41 
+
+10:41 and 0.4 soft max of this. So this
+10:44 
+
+10:44 roughly comes out to be this is equal to
+10:46 
+
+10:46 0.54 and this is roughly equal to 0.59.
+10:50 
+
+10:50 These are the values. Okay. In order to
+10:51 
+
+10:51 do it in vectors. So how can I write in
+10:53 
+
+10:53 vectors? Now a1 directly is equal to
+10:55 
+
+10:55 this is equal to 0.2 and 0.4. So if I
+10:58 
+
+10:58 have to write h1. So h1 is equal to 0.54
+11:02 
+
+11:02 and 0.59 and some other values are here.
+11:05 
+
+11:05 So I'll just write these things. So we
+11:08 
+
+11:08 we are done with the first layer. Okay.
+11:11 
+
+11:11 Now can you people do it for layer two?
+11:13 
+
+11:13 Take the lay two matrices again the same
+11:15 
+
+11:15 thing you'll have to go to previous
+11:16 
+
+11:16 values because you have to store these
+11:17 
+
+11:17 values now that's why I was telling you
+11:19 
+
+11:19 people you have to catch these AK and HK
+11:22 
+
+11:22 values you have to catch these values
+11:24 
+
+11:24 okay so if you if you can because once
+11:26 
+
+11:26 you do the computation you'll use
+11:27 
+
+11:27 previous computations of some sort okay
+11:28 
+
+11:28 can you do this on your own so now if
+11:31 
+
+11:31 you see this so what we have done is so
+11:33 
+
+11:33 I told you to do this calculation so we
+11:35 
+
+11:35 are first computing the each element of
+11:37 
+
+11:37 the vector so we have to compute a1 and
+11:39 
+
+11:39 h1 so in that a1 we have to compute a11
+11:41 
+
+11:41 and a12 And similarly for h1 we have to
+11:44 
+
+11:44 compute a h11 and h12. So a11 is equal
+11:47 
+
+11:47 to you have to fix this w this basically
+11:49 
+
+11:49 this is w1 this is w2 okay and then you
+11:52 
+
+11:52 can say this is w11 this is w 21
+11:55 
+
+11:55 something of this so w12. So what you
+11:56 
+
+11:56 can do is you can take this whole row
+11:58 
+
+11:58 and multiply with this. So you will get
+11:60 
+
+11:60 this value and and what you can get
+12:03 
+
+12:03 you'll get this whole value this element
+12:04 
+
+12:04 into this is this but this element
+12:06 
+
+12:06 multiplied by this is this and then this
+12:08 
+
+12:08 is plus bias and we got this value and
+12:09 
+
+12:09 after applying activation we got this
+12:11 
+
+12:11 and we can do it for the second layer
+12:12 
+
+12:12 again. So for this we have to compute A2
+12:15 
+
+12:15 and H H2. For this we have to compute
+12:17 
+
+12:17 A21 A22 H21 and H22
+12:21 
+
+12:21 H21 and H22. Again do the same
+12:24 
+
+12:24 calculation. Now you'll have to take W2.
+12:26 
+
+12:26 So that bigger matrix. So if you see
+12:27 
+
+12:27 this W2 this is that.
+12:30 
+
+12:30 So you have 0.5 to 0.8 and you know the
+12:32 
+
+12:32 bias. So how how can we compute this? So
+12:35 
+
+12:35 now let me do the calculation for layer.
+12:36 
+
+12:36 This is for layer 2. So we have to
+12:38 
+
+12:38 compute A to 1. So this this is
+12:40 
+
+12:40 pre-activation of the second layer. So
+12:42 
+
+12:42 now this is equal to 0.5 multiplied by
+12:44 
+
+12:44 whatever we got from the previous layer.
+12:46 
+
+12:46 So we got 0.54 something okay plus and
+12:48 
+
+12:48 then 0.6 multiplied by whatever the
+12:50 
+
+12:50 second element in that basically HK
+12:52 
+
+12:52 minus one. So in this case it is H1
+12:54 
+
+12:54 because we are doing H2 and now this is
+12:57 
+
+12:57 multiplied by whatever value we got we
+12:58 
+
+12:58 got 0.59 there plus.1. So this roughly
+13:01 
+
+13:01 comes out to be 0.73
+13:04 
+
+13:04 okay if I don't remove all those points.
+13:06 
+
+13:06 So this is that value. So h a22 is equal
+13:10 
+
+13:10 to this is 0.7 * 0.54 + 0.8
+13:15 
+
+13:15 * 0.59 plus 0.1 and this roughly comes
+13:19 
+
+13:19 out to be 0.96.
+13:22 
+
+13:22 Okay. And then you have to apply
+13:23 
+
+13:23 activations of this. This is H21 and
+13:25 
+
+13:25 H22. So these two things come out to be
+13:28 
+
+13:28 after applying the activation this is
+13:30 
+
+13:30 basically activation of 0.73 and this is
+13:33 
+
+13:33 activation of 0.96.
+13:35 
+
+13:35 Okay. And you have to apply sigma
+13:37 
+
+13:37 activation. Sigma basically is 1 + 1 e
+13:39 
+
+13:39 to the power minus of this value. Okay.
+13:41 
+
+13:41 So these values can be written now. So
+13:43 
+
+13:43 the values that we get over here is 0.67
+13:46 
+
+13:46 and this is 0.72.
+13:48 
+
+13:48 This is all approximate values. Okay.
+13:52 
+
+13:52 Another vector that we got is a2 and h2.
+13:56 
+
+13:56 So a2 is the pre-activation and this is
+13:58 
+
+13:58 after activation. So this is 0.73
+14:01 
+
+14:01 some values and then 0 96 and some other
+14:05 
+
+14:05 values and after activation we got is
+14:07 
+
+14:07 0.67 and 0.72.
+14:11 
+
+14:11 This is for the second layer and now
+14:12 
+
+14:12 similar calculation for layer three. So
+14:15 
+
+14:15 what we have to do take this W3. So W3
+14:17 
+
+14:17 will be a matrix of this sort in which
+14:18 
+
+14:18 we have four elements. We don't consider
+14:20 
+
+14:20 them as zero. So these are four
+14:21 
+
+14:21 elements. Okay. And then we have this
+14:23 
+
+14:23 value H2. We have to compute H2 that we
+14:25 
+
+14:25 just computed. We just computed H2. So
+14:27 
+
+14:27 these two values are here and here. So
+14:28 
+
+14:28 in the first go if I have to compute A3
+14:31 
+
+14:31 and we have to compute H3. So A3
+14:34 
+
+14:34 contains two elements A31, A32.
+14:38 
+
+14:38 And similarly for H3 it contains H31 and
+14:41 
+
+14:41 H32. Okay. So how to compute this A31?
+14:46 
+
+14:46 So I'll fix this. I'll fix this row.
+14:48 
+
+14:48 Once I fix this row, I'll multiply with
+14:49 
+
+14:49 this. So I can multiply then afterwards
+14:51 
+
+14:51 with this H2. This is my H2. Take this
+14:53 
+
+14:53 element, multiply with this. Take this,
+14:54 
+
+14:54 multiply with this. So if I do that so
+14:56 
+
+14:56 I'll get a a3's value. So this is the if
+14:59 
+
+14:59 you see that matrix so that matrix
+15:00 
+
+15:00 starts from 0.9. So 0.9 multiplied by
+15:03 
+
+15:03 whatever the value we got here. So that
+15:04 
+
+15:04 is 0.73 0.67 0.67 plus 1.0 multiplied by
+15:10 
+
+15:10 then the second value that we got in H2
+15:12 
+
+15:12 that was 0.96
+15:14 
+
+15:14 0.96
+15:16 
+
+15:16 after applied activation we got 0.72 and
+15:19 
+
+15:19 then we add bias. So this roughly comes
+15:21 
+
+15:21 out to be 1.4.
+15:23 
+
+15:23 Okay. So I can write over here A3
+15:27 
+
+15:27 and H3. So this is 1.4. And similarly
+15:31 
+
+15:31 you can compute the second value A32. Do
+15:33 
+
+15:33 the same calculation. And now you can
+15:35 
+
+15:35 take this row of W3 matrix and multiply
+15:37 
+
+15:37 it with H2 and then add the bias at the
+15:39 
+
+15:39 end. So you will get this to be 7.71.
+15:42 
+
+15:42 So 1.4 and 1.71. This is A3. And we'll
+15:46 
+
+15:46 have to get output and we have to apply
+15:47 
+
+15:47 activation on this. So once we apply
+15:49 
+
+15:49 activations on this, this will be 0.80
+15:52 
+
+15:52 and 0.84. 84 something of this sort.
+15:55 
+
+15:55 Okay. Now you have applied forward pass
+15:56 
+
+15:56 and you got all the things that you
+15:57 
+
+15:57 want. The vectors that we wanted was AK
+16:01 
+
+16:01 and HK for all the layers. Okay. We got
+16:03 
+
+16:03 this because these were our so once we
+16:06 
+
+16:06 had these parameters we had these W's
+16:07 
+
+16:07 and B parameters and these were our
+16:09 
+
+16:09 hidden inputs. Basically these are HK
+16:11 
+
+16:11 hidden inputs after activation and this
+16:13 
+
+16:13 was our hidden input before activation
+16:15 
+
+16:15 or generally we call just these as
+16:16 
+
+16:16 hidden inputs and these are fine
+16:18 
+
+16:18 transformations. So once we have this
+16:20 
+
+16:20 now the first thing that we have to do
+16:21 
+
+16:21 is we have to compute loss.
+16:23 
+
+16:23 So in this case we use simple loss we'll
+16:25 
+
+16:25 use mean square error loss okay so that
+16:28 
+
+16:28 we can compute derivatives easily. So we
+16:29 
+
+16:29 have this mean square error loss. Now
+16:31 
+
+16:31 based on this we made some prediction.
+16:32 
+
+16:32 Okay. So if you see this is our
+16:34 
+
+16:34 prediction suppose 0.8 and 0.84.
+16:36 
+
+16:36 Consider this a prediction if we don't
+16:37 
+
+16:37 apply any output function. So now if you
+16:39 
+
+16:39 see MSC loss so how we can compute loss.
+16:41 
+
+16:41 The loss function over here is equal to
+16:43 
+
+16:43 1 / 2 and then summation of i goes from
+16:46 
+
+16:46 1 to 2 and we'll take these values.
+16:48 
+
+16:48 We'll take h i of 3 whatever value is
+16:52 
+
+16:52 there and then minus y i of 3.
+16:56 
+
+16:56 Okay. And if it is just yi we don't and
+16:58 
+
+16:58 then we'll square it up. Okay that's
+16:60 
+
+16:60 what our value is. So you're basically
+17:01 
+
+17:01 taking that particular value and you're
+17:03 
+
+17:03 comparing because we have two output
+17:04 
+
+17:04 neurons. So if you see our input so our
+17:06 
+
+17:06 input was two inputs and two outputs.
+17:08 
+
+17:08 That's how we construct the network. So
+17:10 
+
+17:10 input if you can clearly see this was
+17:12 
+
+17:12 our input and this was our output. So
+17:14 
+
+17:14 once we give this input and we expected
+17:16 
+
+17:16 this output okay and now we connected
+17:18 
+
+17:18 neuron like this. So this is our input
+17:19 
+
+17:19 layer based on what input we are giving
+17:21 
+
+17:21 and this is our output layer based on
+17:22 
+
+17:22 what output we are expecting. And now as
+17:24 
+
+17:24 we know we have calculate loss like
+17:25 
+
+17:25 this. So this loss is element wise loss
+17:28 
+
+17:28 if you see. So we computing for each
+17:29 
+
+17:29 element. Okay. And then what we can do
+17:31 
+
+17:31 is we can add them up. We can see how
+17:33 
+
+17:33 much off they are. So how we can compute
+17:34 
+
+17:34 that? So we'll compute 1 divid by two.
+17:36 
+
+17:36 The first entry that we got we got 0.80
+17:39 
+
+17:39 0.8 8 then we subtract because the value
+17:41 
+
+17:41 in that was 0. So we had vector 01 we
+17:43 
+
+17:43 have to predict this okay so we got this
+17:45 
+
+17:45 the actual prediction should have been
+17:47 
+
+17:47 zero okay and when we have to square it
+17:49 
+
+17:49 out plus and what we should do is the
+17:51 
+
+17:51 second we got is84 and then this should
+17:53 
+
+17:53 be subtracted from one we should have
+17:55 
+
+17:55 got one we got this value and then we
+17:56 
+
+17:56 should square it out okay and this 1x2
+17:59 
+
+17:59 is for both the values so if you see
+18:02 
+
+18:02 this is our loss computed for both of
+18:04 
+
+18:04 both of these points in the vector so if
+18:05 
+
+18:05 you see this loss the loss is 0.337491
+18:10 
+
+18:10 something of that that sort and when we
+18:11 
+
+18:11 perform this calculation first. So if I
+18:13 
+
+18:13 if I can write the loss. So what we
+18:14 
+
+18:14 basically try to do is we did this. So
+18:16 
+
+18:16 we did 1x2
+18:18 
+
+18:18 value of H3 take that whole and
+18:21 
+
+18:21 subtracted by Y take the nom. Bas this
+18:23 
+
+18:23 is called nom 2. Okay. And that was
+18:25 
+
+18:25 equal to 0.3374.
+18:28 
+
+18:28 I told you loss is a single number. So
+18:29 
+
+18:29 here you can see this is a single
+18:31 
+
+18:31 number. This is your loss. Now your goal
+18:34 
+
+18:34 is to decrease the loss. The goal is
+18:36 
+
+18:36 that this entry so you have two entries.
+18:38 
+
+18:38 You have H31 and H32 and your output
+18:42 
+
+18:42 basically is Y1 and Y2. Okay, Y1 and Y2.
+18:45 
+
+18:45 This is these are your entries and this
+18:48 
+
+18:48 entry Y2 is this is zero and this is
+18:50 
+
+18:50 one. So you want you want this entry to
+18:53 
+
+18:53 be as close as possible to zero and you
+18:55 
+
+18:55 want this entry to be as close as
+18:57 
+
+18:57 possible to one. And how can you do
+18:59 
+
+18:59 that? You have to adjust these weights
+19:00 
+
+19:00 and backs. You have to adjust weights
+19:02 
+
+19:02 one, weights two, weights three, H1, H2
+19:06 
+
+19:06 and H3. You have to adjust those things
+19:08 
+
+19:08 so that you get these values. And now
+19:09 
+
+19:09 how to adjust this? You have to apply
+19:11 
+
+19:11 back propagation. You have some values
+19:12 
+
+19:12 and you know all the values in W1, W2
+19:14 
+
+19:14 and W3. You know all the values in H1,
+19:16 
+
+19:16 H2 and H3. And you know how to perform
+19:18 
+
+19:18 back propagation. Now we'll perform back
+19:20 
+
+19:20 propagation by hand. We'll just do one
+19:22 
+
+19:22 iteration. Okay? We'll do one iteration
+19:23 
+
+19:23 of back propagation and then we can
+19:24 
+
+19:24 adjust values by using the gradient
+19:26 
+
+19:26 descent. So I will be clear on this
+19:28 
+
+19:28 part. Just a cautionary as I was telling
+19:30 
+
+19:30 you, we will not just do it for one
+19:31 
+
+19:31 point in real world. So we'll have a
+19:33 
+
+19:33 batch of points. Let's suppose we have
+19:34 
+
+19:34 64 points. So we'll do this forward pass
+19:36 
+
+19:36 for all 64 points and what we can do
+19:38 
+
+19:38 that and then we'll get for each point
+19:40 
+
+19:40 we'll get one loss and we'll keep on
+19:42 
+
+19:42 adding these losses and we'll find
+19:43 
+
+19:43 average loss okay when you when you
+19:45 
+
+19:45 compute a loss in the network you're not
+19:46 
+
+19:46 just doing it for one point you're
+19:47 
+
+19:47 probably doing it for one batch okay and
+19:49 
+
+19:49 you are not also doing it for whole
+19:50 
+
+19:50 points you might be having one million
+19:52 
+
+19:52 points that's why you're doing multiple
+19:53 
+
+19:53 epochs or you do multiple iteration
+19:55 
+
+19:55 through the whole data set and now in
+19:56 
+
+19:56 order to tune this widths and biases in
+19:59 
+
+19:59 order to nudge these values in order to
+20:01 
+
+20:01 get the network into the right direction
+20:02 
+
+20:02 so we'll use back propagation so in the
+20:04 
+
+20:04 back propagation the first thing was we
+20:07 
+
+20:07 if you remember the previous lecture in
+20:08 
+
+20:08 that what we did is we first compute
+20:10 
+
+20:10 what's called an error vector so we call
+20:12 
+
+20:12 that as delta k so this was error vector
+20:15 
+
+20:15 now from here I'll apply backdrop so
+20:17 
+
+20:17 this is our backdrop
+20:19 
+
+20:19 so in that if you remember we can
+20:21 
+
+20:21 compute delta k so what was this delta k
+20:23 
+
+20:23 this was error vector or if we take this
+20:25 
+
+20:25 delta k again is a vector which is
+20:26 
+
+20:26 computed at each layer so we have a k hk
+20:29 
+
+20:29 so this was our pre-activation and this
+20:31 
+
+20:31 was our after activation and this is an
+20:33 
+
+20:33 error vector so how much error because
+20:34 
+
+20:34 this is propagating. So we defined it so
+20:36 
+
+20:36 that we can simplify the calculations in
+20:38 
+
+20:38 back propagation. So how do we define
+20:39 
+
+20:39 it? We said delta k basically is defined
+20:41 
+
+20:41 as dol take the loss function and take
+20:44 
+
+20:44 it derivative with respect to ak take it
+20:46 
+
+20:46 dative with respect to the activation.
+20:48 
+
+20:48 Okay. This is how the error was defined.
+20:50 
+
+20:50 Okay. So if I have take one element so
+20:51 
+
+20:51 delta k of i. So this was equal to take
+20:53 
+
+20:53 this loss function and take the
+20:55 
+
+20:55 derivative with respect to the i element
+20:57 
+
+20:57 of this. Okay. I hope this is clear for
+20:59 
+
+20:59 everybody. So this was and in this case
+21:01 
+
+21:01 this delta K if you see this also will
+21:03 
+
+21:03 belong to R2. Okay this error vector
+21:05 
+
+21:05 also this will be a gradient. This will
+21:07 
+
+21:07 be will have derivative of vectors and
+21:09 
+
+21:09 in that we'll have two derivatives and
+21:11 
+
+21:11 we can call this a gradient. And now
+21:13 
+
+21:13 what we can do is what is the intuition
+21:14 
+
+21:14 behind this? So this delta K basically
+21:16 
+
+21:16 this is this is blame for each neuron.
+21:18 
+
+21:18 So if I take delta K this is for the
+21:20 
+
+21:20 blame for each layer. I'm saying that
+21:22 
+
+21:22 this is the problem that you had. You
+21:23 
+
+21:23 have to do some adjustment into your
+21:25 
+
+21:25 weights so that I can get this error
+21:27 
+
+21:27 less at each layer. So that's why we
+21:28 
+
+21:28 define it as error. So why? Because this
+21:30 
+
+21:30 term over here is telling you how better
+21:32 
+
+21:32 your how better this error should have
+21:35 
+
+21:35 been. So you contribute towards least
+21:36 
+
+21:36 loss. So this is that's what this delta
+21:37 
+
+21:37 k is telling you. This actually we can
+21:39 
+
+21:39 call it blame factor or error. So delta
+21:41 
+
+21:41 k blames now it blames each neuron. So
+21:43 
+
+21:43 it blames each neuron for its loss
+21:44 
+
+21:44 because it has loss and because it got
+21:46 
+
+21:46 computed because of this. So it got
+21:48 
+
+21:48 computed because of this AK and AK got
+21:49 
+
+21:49 computed because of weights and bi. So
+21:51 
+
+21:51 it'll blame each neuron for its weights
+21:52 
+
+21:52 and bi. So it'll say I have this loss
+21:55 
+
+21:55 because of these weights and bi. So I'll
+21:56 
+
+21:56 have to adjust that. Okay. Now how to do
+21:58 
+
+21:58 that back propagation? We know that we
+21:59 
+
+21:59 have to start it from last layer layer
+22:01 
+
+22:01 three. So we'll compute delta 3.
+22:04 
+
+22:04 So delta 3. Now in this delta 3
+22:06 
+
+22:06 basically will be equal to delta 3 1 and
+22:08 
+
+22:08 delta 3 2 something of this. So this
+22:10 
+
+22:10 will be error at the last layer. So
+22:12 
+
+22:12 okay. Now how to compute this? So if I
+22:13 
+
+22:13 compute this delta 3 of I. So what will
+22:15 
+
+22:15 this be equal to? So this will will be
+22:17 
+
+22:17 equal to partial derivative of loss with
+22:19 
+
+22:19 respect to delta a and we have to go to
+22:21 
+
+22:21 this edge and then we have to go with
+22:23 
+
+22:23 this. So basically we have to compute
+22:25 
+
+22:25 this a I of whatever the three is but
+22:27 
+
+22:27 you know that this comes from this value
+22:29 
+
+22:29 actually comes from h. So we can use
+22:30 
+
+22:30 chain rule. So what the chain rule say?
+22:32 
+
+22:32 So dl loss take the loss function and
+22:34 
+
+22:34 take this h value and h here in this
+22:36 
+
+22:36 case is three. So h3 of i. Okay. So if
+22:40 
+
+22:40 you see the neuron over here you can see
+22:41 
+
+22:41 this. So this is my last layer. If you
+22:44 
+
+22:44 understand this part it will be easy for
+22:45 
+
+22:45 you people to understand this. So now
+22:47 
+
+22:47 you had this layer. So I wanted to
+22:49 
+
+22:49 compute loss with respect to this a3
+22:50 
+
+22:50 with respect to whole of that vector.
+22:52 
+
+22:52 Now I'm taking A31. So in order to
+22:54 
+
+22:54 compute that error vector. So I actually
+22:56 
+
+22:56 came from so this is my loss. How did I
+22:58 
+
+22:58 compute loss? So computed loss was
+22:59 
+
+22:59 computed from this H and then original Y
+23:02 
+
+23:02 and I got this loss and I have to
+23:04 
+
+23:04 compute how can I nudge this value A3 so
+23:06 
+
+23:06 that this loss is less. So it goes to H3
+23:09 
+
+23:09 and then towards A3. So that's what I'm
+23:11 
+
+23:11 trying to do. I have to compute delta
+23:15 
+
+23:15 3 delta 3 of I. So in order to compute
+23:17 
+
+23:17 that I'll take dol by do hi3 and
+23:21 
+
+23:21 multiply it by and again I'll use that
+23:23 
+
+23:23 now in order because this h i3 we got it
+23:25 
+
+23:25 from activation function. So I'll just
+23:27 
+
+23:27 write activation function fdash. So
+23:29 
+
+23:29 because we have to take derative of that
+23:30 
+
+23:30 because of chain rule and that will be
+23:31 
+
+23:31 equal to a i of 3. Okay the activation
+23:34 
+
+23:34 function was applied on hk because I had
+23:36 
+
+23:36 basically I had to compute this. I'll
+23:37 
+
+23:37 again write it. So I had to compute dol
+23:40 
+
+23:40 by do a i3. This is what I had to
+23:43 
+
+23:43 compute. But you know I have to expand
+23:44 
+
+23:44 this. So how can I expand this this do l
+23:47 
+
+23:47 by do h
+23:50 
+
+23:50 3 i but and you have to apply this do h
+23:53 
+
+23:53 i3 divid by do a i3 something of this
+23:57 
+
+23:57 but you know this thing we got because
+23:60 
+
+23:60 of activation so we applied activation
+24:01 
+
+24:01 on this so if I can expand this again so
+24:04 
+
+24:04 if I can expand this so this is equal to
+24:06 
+
+24:06 this is equal to do l by do h i3
+24:10 
+
+24:10 multiplied by do how did we get this h3
+24:13 
+
+24:13 so we got it A I3 okay divide by A I3.
+24:20 
+
+24:20 Now this is equal to do L by do H I3 and
+24:23 
+
+24:23 this is multiplied by take the
+24:25 
+
+24:25 derivative of because this function is
+24:26 
+
+24:26 our function that we activate that we
+24:29 
+
+24:29 activated by friction function. So this
+24:30 
+
+24:30 is value is equal to this. Is it clear
+24:32 
+
+24:32 for everyone? This should be pretty
+24:34 
+
+24:34 basic for you now.
+24:38 
+
+24:38 >> So now how to compute this? So if you
+24:39 
+
+24:39 see you have to compute this H3 I. So
+24:42 
+
+24:42 you have to compute H31.
+24:44 
+
+24:44 So now because you know that this is an
+24:45 
+
+24:45 MSE loss. So this loss we have to
+24:48 
+
+24:48 compute do L divide by do H I should not
+24:51 
+
+24:51 write it. I should not divide by. So
+24:53 
+
+24:53 this is D L by D H and this is what I
+24:58 
+
+24:58 have to compute over here. If you see
+24:59 
+
+24:59 this one this one over here. So this is
+25:01 
+
+25:01 what we have to compute this value. So
+25:04 
+
+25:04 do L by D H I HIP and this is a value
+25:08 
+
+25:08 that you can get easily from the sigmoid
+25:10 
+
+25:10 function. So I have to compute this. So
+25:11 
+
+25:11 how to compute this? So because I know
+25:13 
+
+25:13 this is cross this is mean square error.
+25:15 
+
+25:15 So for mean square error if you take
+25:17 
+
+25:17 derivative it will be equal to hi3 minus
+25:19 
+
+25:19 yi that I have clarified in the previous
+25:21 
+
+25:21 session. I said just pause and come up
+25:23 
+
+25:23 with this derivative. If you have to
+25:24 
+
+25:24 take a loss function with respect to
+25:25 
+
+25:25 this and you know you have to take
+25:27 
+
+25:27 derivative of mean square error function
+25:28 
+
+25:28 and you'll get to this. Okay. Now I'll
+25:30 
+
+25:30 compute del 3 del 31 and del 32. So I
+25:33 
+
+25:33 have to compute del 31 and del 32. I
+25:36 
+
+25:36 have to basically compute error vector
+25:37 
+
+25:37 that blame vector. So it blames on
+25:39 
+
+25:39 neurons. Okay. So now this is equal to
+25:41 
+
+25:41 so what is this equal to take this h13
+25:43 
+
+25:43 and minus y okay so and we know that we
+25:45 
+
+25:45 know what is the value of this the value
+25:46 
+
+25:46 that we had over here is 0.80 minus what
+25:49 
+
+25:49 is the actual value the actual value was
+25:51 
+
+25:51 zero okay and then multiplied by you
+25:54 
+
+25:54 have to take derivative you have again
+25:56 
+
+25:56 take derivative of the activation
+25:57 
+
+25:57 function of the value over there was 1.4
+25:59 
+
+25:59 if you see that value the value that we
+26:01 
+
+26:01 have over here this a a i3 this is 1.4
+26:04 
+
+26:04 you have to take again derivative of
+26:05 
+
+26:05 that and that activation function. So if
+26:08 
+
+26:08 you compute these things if you if you
+26:09 
+
+26:09 take the derivative of sigmoid function
+26:11 
+
+26:11 and if you apply this value on that
+26:12 
+
+26:12 point you get d and comput d at this
+26:14 
+
+26:14 point 1.4 and you multiply with this so
+26:16 
+
+26:16 you'll get the value the value is equal
+26:18 
+
+26:18 to 0.87 so this is roughly equal to
+26:21 
+
+26:21 0.807 807 something of the and now you
+26:24 
+
+26:24 have to compute again same thing so this
+26:26 
+
+26:26 should be H3 this was H31 minus Y1 now
+26:30 
+
+26:30 you have two so you have H32 you know
+26:31 
+
+26:31 that value is equal to 0.84
+26:34 
+
+26:34 I think I suppose to yeah this is 0.84
+26:37 
+
+26:37 84 I have to see uh the right
+26:39 
+
+26:39 calculation and then I have to subtract
+26:42 
+
+26:42 it because I'm computing the second
+26:43 
+
+26:43 thing. So I have to compute this is
+26:45 
+
+26:45 minus1
+26:47 
+
+26:47 okay and then multiplied by fdash of
+26:50 
+
+26:50 whatever value that was. So that value
+26:51 
+
+26:51 was 1.71 something okay 1.711 and if you
+26:55 
+
+26:55 compute this so this roughly comes out
+26:56 
+
+26:56 to be minus0.152
+26:59 
+
+26:59 something of this sort okay so this is
+27:01 
+
+27:01 the value so if you see this is that
+27:04 
+
+27:04 value 0.1529
+27:07 
+
+27:07 okay so I'm carefully seeing the values
+27:09 
+
+27:09 let me so we compute this value and one
+27:11 
+
+27:11 thing that is missing over here so we
+27:12 
+
+27:12 are computing we have just computed this
+27:15 
+
+27:15 okay so this is equal to let's suppose
+27:16 
+
+27:16 this and once we have we have these
+27:18 
+
+27:18 values so we have to multiply them with
+27:20 
+
+27:20 this so this
+27:21 
+
+27:21 0.807
+27:23 
+
+27:23 and then this is multiplied by 1 - 0 87
+27:29 
+
+27:29 to end the whole value. So this actually
+27:31 
+
+27:31 comes out to be 0.12. So this is the
+27:34 
+
+27:34 value that we want that we're interested
+27:36 
+
+27:36 in. Similarly doing the same thing for
+27:38 
+
+27:38 this delta 3. So this over here if you
+27:40 
+
+27:40 see this is 0.8 take this 0.84 and then
+27:43 
+
+27:43 you take 1 minus 0.84 this. So this is
+27:46 
+
+27:46 equal to 0.019.
+27:49 
+
+27:49 Okay. So similarly if I now write delta
+27:51 
+
+27:51 3 in vector form. So delta 3 is equal to
+27:53 
+
+27:53 h3 minus y and then you have to take
+27:56 
+
+27:56 this hard product basically that element
+27:58 
+
+27:58 wise one thing and then you have to take
+27:60 
+
+27:60 fdash of a3. So how to take that? So
+28:04 
+
+28:04 this delta 3 is equal to take the whole
+28:06 
+
+28:06 vector h3. So this 0.80 and then this is
+28:10 
+
+28:10 minus 0.15. So whatever the values we
+28:13 
+
+28:13 got and then had hard product with 0.15
+28:17 
+
+28:17 and 0.12. So this comes out to be 0.125
+28:21 
+
+28:21 and this is minus0.01 and calculations
+28:24 
+
+28:24 can be here and there but I just am
+28:26 
+
+28:26 showing you the method. Okay. So what is
+28:27 
+
+28:27 this saying? So negative we are getting
+28:29 
+
+28:29 some positive and negative errors. So
+28:30 
+
+28:30 they are saying underprediction and over
+28:32 
+
+28:32 prediction. We have to adjust these
+28:33 
+
+28:33 values somehow. Okay. Now we have to
+28:35 
+
+28:35 back propagate these errors. Okay. So in
+28:37 
+
+28:37 order to do that this is for last layer.
+28:38 
+
+28:38 So we have to do the same thing for K is
+28:40 
+
+28:40 equal this was for K equal 3. We have to
+28:42 
+
+28:42 do the same thing for K is equal 2 and K
+28:43 
+
+28:43 is equal 1. That's what we have to do.
+28:45 
+
+28:45 So far what we have done is so we have
+28:46 
+
+28:46 computed these things for this layer
+28:50 
+
+28:50 for the last layer.
+28:52 
+
+28:52 Okay. So we have computing for this
+28:54 
+
+28:54 layer for at this point particular we
+28:56 
+
+28:56 have to compute this and this and then
+28:57 
+
+28:57 we'll adjust these values accordingly.
+28:60 
+
+28:60 Now these values will be used and now
+29:01 
+
+29:01 we'll cach these values again. We'll c
+29:03 
+
+29:03 the values we'll we'll have to c these
+29:05 
+
+29:05 values. We'll have to catch delta 3 a3
+29:08 
+
+29:08 and h3. These values have to be cached.
+29:10 
+
+29:10 Okay. Okay. So once we have this now
+29:11 
+
+29:11 we'll have to compute delta of two for
+29:14 
+
+29:14 the second layer. Again the same thing.
+29:17 
+
+29:17 So we'll do it element wise. So you know
+29:18 
+
+29:18 we have to run the loop. So what was the
+29:20 
+
+29:20 value of that loop? If you have to
+29:21 
+
+29:21 compute from k is equal this was
+29:22 
+
+29:22 backwards k is equal to l minus one. L
+29:25 
+
+29:25 minus 1 till 1. So if you remember that
+29:27 
+
+29:27 so what we try to do is we try to
+29:29 
+
+29:29 compute delta k. So we can do it element
+29:30 
+
+29:30 wise delta k of i. So what was that
+29:32 
+
+29:32 equal to? So that was equal to f dash of
+29:35 
+
+29:35 a i k take dative of this and then
+29:38 
+
+29:38 multiplied by summation of l goes from 1
+29:41 
+
+29:41 to 2. So in this case this w l is fixed.
+29:44 
+
+29:44 So we have this i is fixed and this will
+29:46 
+
+29:46 take k + 1 and then we have this delta
+29:48 
+
+29:48 of l k + 1. Okay, this is how do we
+29:51 
+
+29:51 compute in element wise. I think
+29:53 
+
+29:53 previous we explained this formula
+29:55 
+
+29:55 directly for all the layers. Okay, I
+29:56 
+
+29:56 explained this thoroughly in that class.
+29:58 
+
+29:58 If you don't remember that please go
+29:60 
+
+29:60 through that. So if I you have to
+30:01 
+
+30:01 compute any error for now the k layer.
+30:03 
+
+30:03 So you'll use the error that was that
+30:05 
+
+30:05 came after it the basically error that
+30:06 
+
+30:06 we computed before but in the in the
+30:08 
+
+30:08 whole network that error comes after
+30:09 
+
+30:09 that. So this is the layer that we
+30:11 
+
+30:11 computed. Okay. This is the layer that
+30:12 
+
+30:12 we're interested in. So this layer will
+30:14 
+
+30:14 get computed first and then we can
+30:15 
+
+30:15 compute this. That's why it's called
+30:16 
+
+30:16 back propagation. You're computing
+30:17 
+
+30:17 backwards. Now for layer two and in the
+30:19 
+
+30:19 vector form so delta k is equal to w k +
+30:23 
+
+30:23 1 transpose
+30:25 
+
+30:25 and this delta k + 1 and dot fdash of a
+30:30 
+
+30:30 k this is what you have to do this is in
+30:32 
+
+30:32 vector form and this in scalar form so
+30:34 
+
+30:34 now we have to compute for the layer two
+30:35 
+
+30:35 I'll do for layer two and for layer one
+30:37 
+
+30:37 you can easily do and once we get the
+30:38 
+
+30:38 values and you have subtracted these
+30:39 
+
+30:39 values so for layer two let's suppose
+30:41 
+
+30:41 for layer two basically where k is equal
+30:43 
+
+30:43 to by layer two I mean k is equal to two
+30:46 
+
+30:46 now what we should do is so we'll Now we
+30:48 
+
+30:48 have to compute these values. You have
+30:49 
+
+30:49 to compute the value. So how how can you
+30:51 
+
+30:51 compute the value? So you have to
+30:52 
+
+30:52 compute delta 2 of 1 and delta 2 of 2.
+30:55 
+
+30:55 Something of this sort. So now computing
+30:57 
+
+30:57 this value. So you'll take W L1 and
+31:00 
+
+31:00 you'll take this third matrix. Okay? And
+31:02 
+
+31:02 you'll take uh uh delta of this delta L
+31:07 
+
+31:07 of 3. So once you perform these
+31:09 
+
+31:09 computations, perform sigma of this. So
+31:11 
+
+31:11 you'll get it to be 0.9
+31:14 
+
+31:14 0.9 * 0.112 + 1.1 * minus 0.01. I'm just
+31:21 
+
+31:21 writing the calculations here. So this
+31:22 
+
+31:22 will roughly come out to be 0.104. You
+31:24 
+
+31:24 computing the summation part. After that
+31:26 
+
+31:26 you have to also compute the derivative
+31:27 
+
+31:27 the thing that I wrote here. So once you
+31:29 
+
+31:29 compute this part you also have to
+31:30 
+
+31:30 compute this part and multiply them
+31:31 
+
+31:31 together. So once you do that so delta
+31:34 
+
+31:34 12 so plus the other part. So whatever
+31:36 
+
+31:36 that was and this comes out to be 0.0199
+31:42 
+
+31:42 something of this sort. Okay. Again you
+31:44 
+
+31:44 have to compute this. So once you
+31:46 
+
+31:46 compute this so this value is 0.02357.
+31:50 
+
+31:50 So again seeing this. So you first have
+31:52 
+
+31:52 to take this summation and take the W
+31:54 
+
+31:54 matrix K + 1 matrix because you are
+31:56 
+
+31:56 computing this W of K. Take this matrix
+31:59 
+
+31:59 and then take the error matrix and sum
+32:02 
+
+32:02 that up and then whatever activation it
+32:04 
+
+32:04 was used compute the derivative of that
+32:06 
+
+32:06 and multiply these things together and
+32:07 
+
+32:07 this you should be well versed with from
+32:09 
+
+32:09 previous lecture and once you do these
+32:11 
+
+32:11 computations you'll get value you'll get
+32:13 
+
+32:13 value of this error you'll basically get
+32:14 
+
+32:14 delta 2 and similar you'll have to
+32:16 
+
+32:16 compute delta 1 okay so delta 2 if I
+32:19 
+
+32:19 write values directly or if I write in
+32:21 
+
+32:21 vector form for you people I write in
+32:23 
+
+32:23 vector form so this delta vector is
+32:25 
+
+32:25 equal so this is w3 transpose so first
+32:27 
+
+32:27 we have root transpose and then we have
+32:29 
+
+32:29 to multiply it with this and then we
+32:31 
+
+32:31 have to add bias towards we have to we
+32:33 
+
+32:33 have to multiply this with that. So if
+32:36 
+
+32:36 you had multiplication with this vector
+32:38 
+
+32:38 so fdash of a k fdash of ak in this case
+32:42 
+
+32:42 fdash of ak
+32:44 
+
+32:44 so a two in this case so once once you
+32:47 
+
+32:47 compute this so if you take this w3
+32:49 
+
+32:49 matrix and transpose it and then
+32:51 
+
+32:51 multiply it if you compute these two
+32:53 
+
+32:53 values so the values that we are getting
+32:54 
+
+32:54 over here is 0.10 and 0.10 1 01 this is
+32:58 
+
+32:58 1.00 0 0 and some other values. Okay.
+33:01 
+
+33:01 And then once you apply this fdash of a2
+33:03 
+
+33:03 if you compute this and you will get the
+33:06 
+
+33:06 value as 0.19
+33:08 
+
+33:08 and 0 uh 20 something of 0 0.199 and
+33:12 
+
+33:12 0.195 some values of this sort. So again
+33:15 
+
+33:15 telling you so take this w3 matrix
+33:17 
+
+33:17 transpose it multiply with the vector
+33:18 
+
+33:18 that you already error vector you
+33:20 
+
+33:20 computed and this is the activation that
+33:21 
+
+33:21 you applied on this and you will get
+33:23 
+
+33:23 some values for this and you'll get some
+33:24 
+
+33:24 values for this. So once you get these
+33:26 
+
+33:26 two values and you will element wise
+33:28 
+
+33:28 multiply them okay and you'll get this
+33:30 
+
+33:30 delta 2 because the value of delta 2
+33:32 
+
+33:32 over here is now equal to 0.01
+33:35 
+
+33:35 999 and 0.0203 0 2 0 3 some very close
+33:39 
+
+33:39 though. Okay. Is it clear for everybody?
+33:40 
+
+33:40 Is delta 2 clear for everybody? And now
+33:43 
+
+33:43 similarly you have to do that. Now you
+33:44 
+
+33:44 have computed delta 2. You have to now
+33:46 
+
+33:46 compute delta 1. So what is delta 1
+33:48 
+
+33:48 equal to? Again take this take the whole
+33:50 
+
+33:50 matrix and then apply that. So in that
+33:52 
+
+33:52 vector form this is w2 transpose. You
+33:54 
+
+33:54 apply transpose on this and multiply
+33:55 
+
+33:55 this with delta 2 and then apply you
+33:58 
+
+33:58 have to perform hadama dot product with
+33:59 
+
+33:59 the activation of a1. So now you have
+34:02 
+
+34:02 this ve you have this matrix with you.
+34:04 
+
+34:04 You have this vector with you. Okay. and
+34:06 
+
+34:06 you have this activation as well with
+34:07 
+
+34:07 you. Okay. So what we can do is so on
+34:09 
+
+34:09 performing the computation this vector
+34:10 
+
+34:10 comes out to be 0.6.
+34:14 
+
+34:14 This is 62
+34:16 
+
+34:16 62 and this comes out to be 06796.
+34:21 
+
+34:21 Okay. Again what is this telling you? So
+34:23 
+
+34:23 arrows are diluted as they propagate
+34:24 
+
+34:24 backwards. So this is what it's telling
+34:26 
+
+34:26 you. So now we have to update these
+34:28 
+
+34:28 parameters. So we have to do this
+34:29 
+
+34:29 element where you can update. And now
+34:31 
+
+34:31 with this we have all these delta Ks.
+34:33 
+
+34:33 Okay. All these things are gradients
+34:35 
+
+34:35 basically. So once we have the so what
+34:37 
+
+34:37 we can do is we can do element wise with
+34:39 
+
+34:39 this weight. So you have delta k. So now
+34:41 
+
+34:41 what to do is so you have this basically
+34:44 
+
+34:44 you have to compute this. So actually
+34:46 
+
+34:46 the computation actually was to be done
+34:47 
+
+34:47 was this wig of of some particular k you
+34:52 
+
+34:52 have to compute the loss with respect to
+34:54 
+
+34:54 some weight. Now you have these delta k
+34:56 
+
+34:56 you have all the deltas you have this
+34:57 
+
+34:57 delta 1 you have this delta 2 and
+34:59 
+
+34:59 similarly you have this delta 3 over
+35:01 
+
+35:01 here. So once you have this delta 1,
+35:04 
+
+35:04 delta 2 and delta 3. So the these are
+35:06 
+
+35:06 values. So now basically the task was to
+35:08 
+
+35:08 find how how can we nudge these weights
+35:11 
+
+35:11 and biases so that we'll see that how
+35:13 
+
+35:13 the loss function impacted. So here so
+35:15 
+
+35:15 if you have this delta now so based on
+35:17 
+
+35:17 this you have to compute this and you
+35:19 
+
+35:19 have to compute this bi of k this is
+35:21 
+
+35:21 what you have to compute and you know
+35:23 
+
+35:23 what is this equal to previously we also
+35:24 
+
+35:24 seen this. So this over here is equal to
+35:26 
+
+35:26 delta K of I multiplied by H J K minus
+35:30 
+
+35:30 one. Okay. K this is what it is equal to
+35:33 
+
+35:33 as per element wise. Okay. So again
+35:35 
+
+35:35 similarly for this if you have bias so
+35:37 
+
+35:37 what is this directly equal to delta I
+35:39 
+
+35:39 of K and we have again seen this in the
+35:41 
+
+35:41 previous lecture. How do we arrive at
+35:42 
+
+35:42 these results? So in order to see back
+35:43 
+
+35:43 propagation again. So what do we do is
+35:45 
+
+35:45 we computed delta K basically the error
+35:47 
+
+35:47 vector and then we use those error
+35:49 
+
+35:49 vectors to compute other delta K. So
+35:50 
+
+35:50 once we have these data case then we the
+35:53 
+
+35:53 need that we had is we have to compute
+35:54 
+
+35:54 what is the derivative of loss function
+35:56 
+
+35:56 with respect to the weights and with
+35:57 
+
+35:57 respect to bias and then we use that
+35:59 
+
+35:59 error vector and multiply with this and
+36:01 
+
+36:01 we know how how did we get over here
+36:03 
+
+36:03 from the previous discussion. similar if
+36:05 
+
+36:05 you have to write in vector form delta k
+36:08 
+
+36:08 loss function divided by of this k
+36:10 
+
+36:10 vector k matrices and what we can do is
+36:12 
+
+36:12 we can directly write it is this is
+36:14 
+
+36:14 equal to delta of k hkus 1 transpose
+36:18 
+
+36:18 okay and similarly for do l by do bk if
+36:22 
+
+36:22 you have to take derivative of loss
+36:23 
+
+36:23 function with respect to the whole
+36:25 
+
+36:25 vector bk so you'll get this delta k
+36:28 
+
+36:28 directly so this also this belongs to r2
+36:30 
+
+36:30 and this belongs to r2 +2 we did the
+36:32 
+
+36:32 dimension check also if you remember we
+36:34 
+
+36:34 did the dimension check. Okay. Now we
+36:36 
+
+36:36 have to compute these values. How to
+36:37 
+
+36:37 compute? Again layer three. We'll start
+36:39 
+
+36:39 from layer three. Okay. Basically
+36:42 
+
+36:42 compute these values. So for layer three
+36:43 
+
+36:43 we have to compute these values. What is
+36:45 
+
+36:45 the derivative? The actual derivative
+36:46 
+
+36:46 that we want to subtract. Okay. So for
+36:48 
+
+36:48 layer three this should be 2 +2. So if
+36:50 
+
+36:50 you compute this if you take all of
+36:52 
+
+36:52 these things if you take this vector and
+36:54 
+
+36:54 you multiply with this vector you
+36:55 
+
+36:55 transpose that you'll get this. Okay. So
+36:57 
+
+36:57 how to do that? You know that you know
+36:58 
+
+36:58 the value of this you know the value of
+36:60 
+
+36:60 this. So on multiplication what you will
+37:02 
+
+37:02 get is so the I'll write the values. So
+37:04 
+
+37:04 if I write values so we have to compute
+37:06 
+
+37:06 dol by do w3. This is what I have to
+37:09 
+
+37:09 compute.
+37:10 
+
+37:10 Okay this these values come out to be so
+37:12 
+
+37:12 you'll basically take this vector. This
+37:13 
+
+37:13 this is a 2 +2 vector. This is a 2 +2
+37:15 
+
+37:15 vector. So we'll get 4 + 4 vector. So
+37:17 
+
+37:17 this is 2 +2 0 uh 12 57 something. So
+37:22 
+
+37:22 this is -0.019.
+37:24 
+
+37:24 And then you have to multiply it with
+37:26 
+
+37:26 again uh this is 2 + 1 1 + 2 vector. So
+37:29 
+
+37:29 this is 2 + 1. This is 1 + 22. You'll
+37:31 
+
+37:31 get 2 +2. So this is 0.657
+37:34 
+
+37:34 and this is 0.72. So once you multiply
+37:36 
+
+37:36 these two things together, you'll get 2
+37:38 
+
+37:38 +2 matrix. So this is 0.084
+37:41 
+
+37:41 0.09.
+37:43 
+
+37:43 This is -0.01.
+37:45 
+
+37:45 This is -0. 04
+37:49 
+
+37:49 something of this sort. So these are the
+37:52 
+
+37:52 gradients. So this over here is a single
+37:54 
+
+37:54 derivative with respect to that
+37:55 
+
+37:55 particular element. Second element,
+37:56 
+
+37:56 third and fourth. And now you'll use
+37:58 
+
+37:58 these what what will these things give
+37:60 
+
+37:60 you? So these things basically give you
+38:01 
+
+38:01 the steepest ascent and you have to
+38:03 
+
+38:03 descent. Okay, you'll use these values
+38:04 
+
+38:04 for each. So you'll take the original
+38:06 
+
+38:06 W3. So this will be W3 now and you'll
+38:09 
+
+38:09 subtract this. You'll say whatever was
+38:11 
+
+38:11 the original W3 and minus some EA times
+38:13 
+
+38:13 some learning rate times this matrix
+38:15 
+
+38:15 that you computed this.
+38:20 
+
+38:20 Okay, this you'll use this and again
+38:21 
+
+38:21 similarly for this do l by do b3
+38:26 
+
+38:26 you'll similarly do this calculation as
+38:28 
+
+38:28 per the formula and you know how how did
+38:29 
+
+38:29 we get to this formula you have directly
+38:31 
+
+38:31 used this delta k okay the values you
+38:33 
+
+38:33 already know again for layer 2 now this
+38:35 
+
+38:35 is for layer three so for layer two what
+38:36 
+
+38:36 we have to compute so for layer 2 we
+38:39 
+
+38:39 have to compute dol by do w2 and you can
+38:42 
+
+38:42 do it element wise as well as vector now
+38:44 
+
+38:44 I am doing vector notation but whenever
+38:46 
+
+38:46 you get time at your home so what you
+38:48 
+
+38:48 should do is you should do it element
+38:49 
+
+38:49 wise first and Then you can take the
+38:50 
+
+38:50 whole matrix and you can do it in the
+38:52 
+
+38:52 vector form. So this is equal to again
+38:55 
+
+38:55 you can take do L. I would have done it
+38:58 
+
+38:58 element wise but here I would like to do
+38:59 
+
+38:59 it directly. So you'll take the whole
+39:01 
+
+39:01 vector first. So that is 0.6 and then
+39:04 
+
+39:04 this is 0.67.
+39:06 
+
+39:06 This is 0.060 multiplied by 1 0. Okay.
+39:10 
+
+39:10 And this is for layer 1. Sorry I'm
+39:13 
+
+39:13 pasting the value for layer 1 because
+39:15 
+
+39:15 that's how I got this input X. So I
+39:18 
+
+39:18 should take the value 0 0.019 and this
+39:21 
+
+39:21 this value is 0.02 02 this is 0.54 0.59
+39:27 
+
+39:27 once you multiply them you'll get a 2 +2
+39:29 
+
+39:29 matrix of some values over here and then
+39:31 
+
+39:31 what you can do is and then you have to
+39:33 
+
+39:33 do D do L by do B of 2 and you will get
+39:37 
+
+39:37 directly do two and on doing this then
+39:40 
+
+39:40 you will have to compute for layer for
+39:43 
+
+39:43 layer second okay for layer one so for
+39:45 
+
+39:45 layer 1 what you will have is you'll
+39:47 
+
+39:47 have do L by do W1 and you'll get all
+39:50 
+
+39:50 these values so basically what you are
+39:51 
+
+39:51 trying to you are You are getting these
+39:54 
+
+39:54 six types of values. You're getting this
+39:56 
+
+39:56 value, this value,
+39:60 
+
+39:60 this value.
+40:02 
+
+40:02 Okay? And all of these will belong to R2
+40:04 
+
+40:04 +2 matrix. Okay? So these will be your
+40:06 
+
+40:06 gradients. Okay? And then you'll also
+40:08 
+
+40:08 get this
+40:10 
+
+40:10 loss with respect to B1, loss with
+40:13 
+
+40:13 respect to B2, loss with respect to B3.
+40:16 
+
+40:16 All of this will belong to R 2 + 1, R2.
+40:19 
+
+40:19 Because we'll have two values. And now
+40:21 
+
+40:21 these things will tell you what I told
+40:23 
+
+40:23 you. So these things what they can tell
+40:25 
+
+40:25 you is they can tell you steepest
+40:27 
+
+40:27 ascent. So these tell you steepest
+40:29 
+
+40:29 ascent. But what you are up to you want
+40:31 
+
+40:31 to see the descent. So that's why you
+40:33 
+
+40:33 take negative value of all these values
+40:35 
+
+40:35 all these derivatives. So you take
+40:36 
+
+40:36 negative value of this and subtract it
+40:38 
+
+40:38 from the original matrix that we had.
+40:39 
+
+40:39 Okay. So when m is equal to 1. So if you
+40:42 
+
+40:42 take single point, so when you have you
+40:43 
+
+40:43 do this for single point and in this
+40:45 
+
+40:45 case I just showed you for single point.
+40:46 
+
+40:46 The point that we had is x is equal I
+40:48 
+
+40:48 think 1 0 and it prediction was y that
+40:50 
+
+40:50 was equal to 01. So we did it for single
+40:52 
+
+40:52 point and then in general we'll do it
+40:54 
+
+40:54 for batches. We'll take some m batches m
+40:56 
+
+40:56 is equal some let's suppos 64. So we'll
+40:58 
+
+40:58 do it for 64 values. So we'll get such
+41:00 
+
+41:00 64 matrices for this 64 m 64 and we'll
+41:04 
+
+41:04 take average of all of these. So we'll
+41:05 
+
+41:05 take average for this average for this
+41:06 
+
+41:06 average for this. Similarly average for
+41:08 
+
+41:08 this this and this. Okay. So we'll
+41:10 
+
+41:10 basically take one by m. So if you write
+41:12 
+
+41:12 that so you'll write the summation of
+41:13 
+
+41:13 curl L by W 1. So this will be W1 for
+41:17 
+
+41:17 first point W1 for second point and sum
+41:19 
+
+41:19 them up for all the M points and take
+41:21 
+
+41:21 average of these values. Okay. And this
+41:23 
+
+41:23 W if I take this is I value. So what how
+41:25 
+
+41:25 we can write it? So W1 let's consider I
+41:27 
+
+41:27 over here. So this will be for one point
+41:29 
+
+41:29 second point third point we'll take that
+41:31 
+
+41:31 matrix and we'll add these things
+41:32 
+
+41:32 together. So once we add them up this
+41:33 
+
+41:33 again will still belong to R 2 +2 in
+41:36 
+
+41:36 this case. So we have matrix with
+41:38 
+
+41:38 respect to let's say we take one data
+41:39 
+
+41:39 point. So you'll compute uh this dol by
+41:42 
+
+41:42 dow w1. Then again for second point
+41:44 
+
+41:44 you'll compute this d l by do w2 with
+41:46 
+
+41:46 respect to second point. Then third
+41:47 
+
+41:47 point fourth point and all of these. So
+41:49 
+
+41:49 once you have m points so you'll take
+41:50 
+
+41:50 all the sum of these. So you'll have
+41:52 
+
+41:52 this m w1 matrices now m derivative m
+41:56 
+
+41:56 gradients. So once you sum them up and
+41:58 
+
+41:58 then you can take average all these
+41:60 
+
+41:60 points so that you take average gradient
+42:01 
+
+42:01 and that is what you will subtract and
+42:03 
+
+42:03 after this you'll use gradient descent.
+42:11 
+
+42:11 So what I did here I skipped some
+42:12 
+
+42:12 calculations but I suppose that here if
+42:15 
+
+42:15 you understood how to perform forward
+42:16 
+
+42:16 pass. So we perform forward pass length
+42:18 
+
+42:18 and if you know the formulation for
+42:20 
+
+42:20 backward pass that we discussed in
+42:21 
+
+42:21 detail in the previous lecture and you
+42:23 
+
+42:23 should be now able to do it in element
+42:25 
+
+42:25 wise in vector form and then you can
+42:26 
+
+42:26 write the code for it. Is it clear for
+42:28 
+
+42:28 everyone? So the method of
+42:30 
+
+42:30 differentiation that you saw over here
+42:31 
+
+42:31 this is the method that we generally
+42:33 
+
+42:33 call symbolic differentiation because
+42:34 
+
+42:34 you use the values and you compute the
+42:36 
+
+42:36 exact derivatives and then you
+42:37 
+
+42:37 substitute the values exact points and
+42:39 
+
+42:39 you get some values but we will not
+42:40 
+
+42:40 generally use in our autograde engine.
+42:42 
+
+42:42 So okay when we will develop our
+42:44 
+
+42:44 autograde library let's suppose
+42:45 
+
+42:45 something like pytor in that we have to
+42:47 
+
+42:47 perform this back propagation but this
+42:49 
+
+42:49 is very inefficient. So in that what we
+42:51 
+
+42:51 can do is we'll use autograd.
+42:54 
+
+42:54 So in order to perform this autograph
+42:55 
+
+42:55 the concept that we have learned will be
+42:57 
+
+42:57 similar. Okay. But how do we implement
+42:59 
+
+42:59 this in computers will be different.
+43:00 
+
+43:00 Okay. As I was giving you the example,
+43:02 
+
+43:02 if you are learning optimization and you
+43:04 
+
+43:04 know how to optimize a thing, how to you
+43:06 
+
+43:06 are given a function and you know how to
+43:07 
+
+43:07 optimize a function. But when you are
+43:09 
+
+43:09 implementing that in your computers
+43:10 
+
+43:10 because you have different hardware, you
+43:12 
+
+43:12 have different architectures and based
+43:14 
+
+43:14 on that based on all that information
+43:16 
+
+43:16 that you know about computers you have
+43:18 
+
+43:18 to bring this problem into your
+43:19 
+
+43:19 computational world and to see how can I
+43:22 
+
+43:22 efficiently use my resources, how can I
+43:24 
+
+43:24 efficiently use the hardware that I
+43:25 
+
+43:25 currently have in order to optimize this
+43:26 
+
+43:26 thing. So that's why you might have
+43:28 
+
+43:28 heard about computational methods
+43:29 
+
+43:29 optimization. Your optimized methods are
+43:31 
+
+43:31 there but you might be learning separate
+43:33 
+
+43:33 computational methods optimization.
+43:34 
+
+43:34 Similarly you saw this back propagation
+43:36 
+
+43:36 that we did symbolically that we did by
+43:38 
+
+43:38 using symbols. But what we'll do next
+43:41 
+
+43:41 we'll use numerical differentiation.
+43:42 
+
+43:42 Numerical differentiation is basically
+43:44 
+
+43:44 but you can use direct values of
+43:45 
+
+43:45 differentiation f of x let's suppose
+43:47 
+
+43:47 plus theta or plus some epsilon and then
+43:51 
+
+43:51 minus f of x / epon something of this s.
+43:53 
+
+43:53 So this we can compute numerically. But
+43:55 
+
+43:55 again this numerical differentiation one
+43:57 
+
+43:57 is symbolic the one that we saw over
+43:58 
+
+43:58 here this is symbolic differentiation we
+43:59 
+
+43:59 use symbols and directly use the
+44:01 
+
+44:01 mathematical formulations to come with
+44:02 
+
+44:02 the values and then substitute the
+44:03 
+
+44:03 values and numerical value if you see
+44:05 
+
+44:05 this so you can directly use numeric
+44:07 
+
+44:07 methods the by definition this is what
+44:09 
+
+44:09 derivative means so this again is
+44:10 
+
+44:10 inefficient this is not efficient at all
+44:12 
+
+44:12 so what we can use then is we'll use
+44:15 
+
+44:15 autograd so in that autograd we have two
+44:16 
+
+44:16 methods we have what's called as forward
+44:18 
+
+44:18 method and we have what's called as
+44:20 
+
+44:20 backward method and this backward method
+44:21 
+
+44:21 is called as backward propagation okay
+44:23 
+
+44:23 and there the concept of competition
+44:25 
+
+44:25 graphs will be very important. The graph
+44:26 
+
+44:26 competition graphs that we studied
+44:27 
+
+44:27 properly in some of the lecture. So that
+44:29 
+
+44:29 will become very important. So just one
+44:31 
+
+44:31 takeaway lesson in this last 5 minute
+44:33 
+
+44:33 discussion is that whatever you learn in
+44:35 
+
+44:35 theory is not necessarily that what you
+44:37 
+
+44:37 what you will implement. The concept
+44:38 
+
+44:38 will remain similar but the
+44:39 
+
+44:39 implementation will differ. Why? Depends
+44:41 
+
+44:41 on the efficient way depends on the
+44:43 
+
+44:43 method and depends how can you
+44:45 
+
+44:45 efficiently use hardware and the
+44:46 
+
+44:46 architecture of the computer. So that
+44:48 
+
+44:48 you should this you should engage in
+44:49 
+
+44:49 your head. So if somebody knows computer
+44:51 
+
+44:51 science at a theoretical level doesn't
+44:52 
+
+44:52 mean he can code it well. So okay now it
+44:55 
+
+44:55 becomes an engineering problem that's
+44:56 
+
+44:56 what I said now this problem is an
+44:58 
+
+44:58 engineering problem because you know the
+44:59 
+
+44:59 theory you know theory behind back
+45:01 
+
+45:01 propagation now in order to implement
+45:02 
+
+45:02 you have to optimize you have to bring
+45:03 
+
+45:03 the efficiency into the picture okay so
+45:05 
+
+45:05 how to do that you have to perform this
+45:07 
+
+45:07 autograde you have to learn about
+45:08 
+
+45:08 autograde you have to learn to somehow
+45:10 
+
+45:10 efficiently implement this these
+45:12 
+
+45:12 operations but result should be similar
+45:13 
+
+45:13 not that you'll give different results
+45:15 
+
+45:15 you'll get the same results but somehow
+45:17 
+
+45:17 you have to use the hardware of the
+45:19 
+
+45:19 computers very effectively because
+45:20 
+
+45:20 computer works on certain hardware it
+45:22 
+
+45:22 works on certain instructions And you
+45:24 
+
+45:24 have to use that architect computer in
+45:25 
+
+45:25 effective way so that your algorithm
+45:27 
+
+45:27 performs efficiently. So we brought a
+45:28 
+
+45:28 problem we had a problem in real world
+45:30 
+
+45:30 neural networks. So we brought that into
+45:32 
+
+45:32 some algorithmic world. Algorithmic
+45:33 
+
+45:33 world was we come up with back
+45:34 
+
+45:34 propagation and now we have to bring
+45:36 
+
+45:36 that into we also brought that into the
+45:37 
+
+45:37 mathematical world. We also wrote some
+45:39 
+
+45:39 maths wrote some symbols around that and
+45:41 
+
+45:41 then we also have to bring it into the
+45:42 
+
+45:42 computational world in in which we
+45:44 
+
+45:44 perform computation. Okay that we will
+45:46 
+
+45:46 probably discuss in the second lecture
+45:48 
+
+45:48 of this second series of lectures in
+45:49 
+
+45:49 which we'll discuss about MLC. So in
+45:51 
+
+45:51 that in the that lecture series what we
+45:53 
+
+45:53 will do is we'll first read autograph
+45:55 
+
+45:55 and once we are done with autograd and
+45:56 
+
+45:56 then we'll code the autograph. So we'll
+45:58 
+
+45:58 start a code like this. Okay I'll just
+45:59 
+
+45:59 give a high level overview. So we'll
+46:00 
+
+46:00 first have to define let's suppose
+46:02 
+
+46:02 something we'll perform this operations
+46:03 
+
+46:03 on. So if you see we have these neurons.
+46:06 
+
+46:06 So we'll have to construct these
+46:06 
+
+46:06 artificial neuron. Okay. In which we
+46:08 
+
+46:08 have this each neuron will be associated
+46:10 
+
+46:10 with weights and biases and we can
+46:11 
+
+46:11 perform certain operation on these. We
+46:12 
+
+46:12 have to perform addition, subtraction,
+46:14 
+
+46:14 multiplication, exponentiation or some
+46:16 
+
+46:16 other values on this and this also will
+46:18 
+
+46:18 have some gradients. Now we have this BW
+46:20 
+
+46:20 W we have this bias or they'll be having
+46:21 
+
+46:21 corresponding gradients uh with respect
+46:23 
+
+46:23 to that okay and once we apply this so
+46:25 
+
+46:25 we'll write let's suppose something of
+46:27 
+
+46:27 this sort we'll write a dot forward okay
+46:29 
+
+46:29 or some network so we have network we'll
+46:31 
+
+46:31 write some network loss dot forward so
+46:32 
+
+46:32 it should it should apply whole forward
+46:34 
+
+46:34 pass on that network and then we'll
+46:36 
+
+46:36 write something let's suppose a lo
+46:38 
+
+46:38 backward or L dot loss pass okay so
+46:40 
+
+46:40 we'll compute loss function and we'll do
+46:42 
+
+46:42 then L dot backward so basically this
+46:44 
+
+46:44 will compute the backward pass and
+46:46 
+
+46:46 update the gradients and then we based
+46:47 
+
+46:47 on this we'll update this So you perform
+46:49 
+
+46:49 the forward pass. Okay. Then you'll
+46:51 
+
+46:51 compute the loss based on that. And then
+46:52 
+
+46:52 based on the loss, you'll do the
+46:54 
+
+46:54 backward pass. Okay. Based on the
+46:55 
+
+46:55 backward pass, you'll get variance which
+46:57 
+
+46:57 you will use to perform gradient
+46:58 
+
+46:58 descent. Okay. The next lectures will be
+47:00 
+
+47:00 specially focused on this autograph. If
+47:02 
+
+47:02 you have any questions, I'd take them

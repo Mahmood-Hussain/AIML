@@ -1,0 +1,7069 @@
+00:01 Hello and welcome everyone.
+00:03 
+
+00:03 So now we were discussing about loss
+00:05 
+
+00:05 functions in the previous lectures. So
+00:06 
+
+00:06 now we sort of wrapped up about loss
+00:10 
+
+00:10 functions. We said that this is a
+00:12 
+
+00:12 function which quantifies how much
+00:14 
+
+00:14 better or how much good your model is.
+00:17 
+
+00:17 Now we'll have to perform back
+00:18 
+
+00:18 propagation. So that will be the title
+00:19 
+
+00:19 of the lecture back propagation. But
+00:21 
+
+00:21 I'll just give you the big picture. So
+00:23 
+
+00:23 we had data that we haven't learned much
+00:26 
+
+00:26 about. So because we need to encode data
+00:27 
+
+00:27 and there is a lot to learn about data.
+00:29 
+
+00:29 You will have to see how can we encode
+00:31 
+
+00:31 textual data, how can we encode speech
+00:33 
+
+00:33 data, how can we encode images. So there
+00:34 
+
+00:34 is a lot to learn in this. After this we
+00:37 
+
+00:37 had model. So in this model we are now
+00:39 
+
+00:39 in in the model we selected is neural
+00:41 
+
+00:41 network and we'll change different
+00:42 
+
+00:42 architectures of this and I gave you a
+00:44 
+
+00:44 brief summary of what a neural network
+00:46 
+
+00:46 looks like. Okay, not just maybe more
+00:48 
+
+00:48 than a brief summary and then we were in
+00:50 
+
+00:50 the learning learning thing. So in this
+00:52 
+
+00:52 learning we said we'll use gradient
+00:54 
+
+00:54 descent to learn.
+00:57 
+
+00:57 So this will be the learning algorithm.
+00:59 
+
+00:59 Okay, gradient descent. We have to
+01:01 
+
+01:01 compute gradients of something and then
+01:02 
+
+01:02 we'll have to move in a certain
+01:03 
+
+01:03 direction and we'll use this gradient
+01:05 
+
+01:05 descent to update our parameters. Now
+01:06 
+
+01:06 we'll have to see how to find these
+01:08 
+
+01:08 gradients.
+01:10 
+
+01:10 So these gradients are to be found
+01:11 
+
+01:11 somehow. So if we are given a network
+01:13 
+
+01:13 and then you know that I'll perform
+01:15 
+
+01:15 something and then I have to adjust
+01:16 
+
+01:16 these parameters. I have to adjust these
+01:18 
+
+01:18 weights and biases. So how to adjust
+01:20 
+
+01:20 now? So we have to find gradient for
+01:21 
+
+01:21 that and how to find this gradient
+01:23 
+
+01:23 that's why we'll come to backward prop
+01:25 
+
+01:25 backward pass our back propagation
+01:33 
+
+01:33 this is going to be one of the important
+01:35 
+
+01:35 lectures in whole the deep learning if
+01:37 
+
+01:37 you understand back propagation you
+01:39 
+
+01:39 understanding heart of deep learning
+01:40 
+
+01:40 okay this I can consider the heart of
+01:42 
+
+01:42 deep learning back propagation if you
+01:43 
+
+01:43 understand this because because of this
+01:45 
+
+01:45 back propagation algorithm that's why
+01:46 
+
+01:46 deep learning took the turn it is uh it
+01:49 
+
+01:49 took
+01:50 
+
+01:50 maybe 20 years back or 15 years back and
+01:52 
+
+01:52 you are seeing it in some state today.
+01:54 
+
+01:54 This was because of back propagation. It
+01:56 
+
+01:56 was discovered way earlier but we didn't
+01:59 
+
+01:59 have any method to any sort of good
+02:02 
+
+02:02 hardware to implement it uh at scale. So
+02:05 
+
+02:05 that this was made possible by back
+02:06 
+
+02:06 propagation. Okay, let's now see let's
+02:09 
+
+02:09 again do a bit of revision about how the
+02:11 
+
+02:11 network was. So we had neural network in
+02:14 
+
+02:14 which we had some input layer and then
+02:15 
+
+02:15 we had some hidden layers and after that
+02:17 
+
+02:17 we had an output layer. Okay, I hate to
+02:18 
+
+02:18 make this again and again again but no
+02:21 
+
+02:21 choice.
+02:23 
+
+02:23 Okay, so let's suppose this is our input
+02:25 
+
+02:25 layer and let's suppose now we have some
+02:26 
+
+02:26 hidden layers over here.
+02:29 
+
+02:29 I can use this throughout the class.
+02:31 
+
+02:31 This
+02:35 
+
+02:35 these are some more hidden layers.
+02:41 
+
+02:41 Okay. And suppose we can have more head
+02:44 
+
+02:44 layers like this. and we'll have an
+02:45 
+
+02:45 output layer from which we'll get an
+02:48 
+
+02:48 output.
+02:50 
+
+02:50 Okay, if somebody of you remember the
+02:51 
+
+02:51 notation, so what we did is we said
+02:53 
+
+02:53 we'll
+02:55 
+
+02:55 represent these WQ matrices. These WK
+02:57 
+
+02:57 matrices will be the matrices that will
+02:59 
+
+02:59 be in the middle of these layers because
+03:00 
+
+03:00 this is uh we have connections between
+03:03 
+
+03:03 these layers. So that for each of the
+03:05 
+
+03:05 layer we have this WQ mat WK matrix and
+03:07 
+
+03:07 for this each of this will be by weight
+03:10 
+
+03:10 something of this or W K I and J. Okay,
+03:14 
+
+03:14 we have matrix of this sort. I think if
+03:15 
+
+03:15 you see some previous lecture, you will
+03:17 
+
+03:17 find that notation. You'll find those
+03:18 
+
+03:18 notations and then we also have biases.
+03:20 
+
+03:20 So bias will be something represent like
+03:22 
+
+03:22 this B of K of I let's suppose. So this
+03:25 
+
+03:25 will be telling you the I bias and then
+03:27 
+
+03:27 in the middle we said before this we had
+03:29 
+
+03:29 pre-activation.
+03:31 
+
+03:31 So you had aggregation or activation
+03:32 
+
+03:32 function. So we wrote it something like
+03:33 
+
+03:33 this. So this aggregation function was
+03:36 
+
+03:36 represented by a and then after you
+03:38 
+
+03:38 activate something it was represented by
+03:39 
+
+03:39 h. Okay. So this is what this is the
+03:42 
+
+03:42 notation that we had. So I'll just write
+03:43 
+
+03:43 them down. So this is these were your
+03:45 
+
+03:45 weights
+03:47 
+
+03:47 and these are your biases.
+03:51 
+
+03:51 And then we had
+03:53 
+
+03:53 AK. AK was the pre-activation values.
+03:57 
+
+03:57 Pre-activation values.
+04:01 
+
+04:01 And then we had HK. HK were hidden
+04:05 
+
+04:05 activations.
+04:11 
+
+04:11 So these were like we had linear layers
+04:14 
+
+04:14 because we did a finite transformation
+04:15 
+
+04:15 and then we have to activate these
+04:16 
+
+04:16 things and then that's how we wrote H
+04:18 
+
+04:18 and K and H of zero was our input. So
+04:21 
+
+04:21 this was our input.
+04:23 
+
+04:23 Okay. And output was written by H of L.
+04:25 
+
+04:25 This was output. So this is just
+04:27 
+
+04:27 summarize notations that we earlier
+04:29 
+
+04:29 covered in one of the lectures. Again to
+04:31 
+
+04:31 tell you these will be notations we'll
+04:32 
+
+04:32 be using throughout. So math might look
+04:34 
+
+04:34 a little messy. That's why I am
+04:36 
+
+04:36 refocusing on these notations much. So
+04:38 
+
+04:38 this WK will be the M weight matrix. So
+04:41 
+
+04:41 what is this K? So this is the layer
+04:42 
+
+04:42 which will be connecting K minus one and
+04:44 
+
+04:44 K layer. Okay. And if I write I J. So I
+04:47 
+
+04:47 this will be the source neuron and this
+04:50 
+
+04:50 will be destination. This is source and
+04:52 
+
+04:52 destination or source sync. And we start
+04:55 
+
+04:55 we usually do it in reverse. And then we
+04:56 
+
+04:56 have this B of again this K uh this is a
+04:59 
+
+04:59 K layer the bias for the neuron I in the
+05:01 
+
+05:01 K layer. And then we have this AK. So AK
+05:03 
+
+05:03 is a pre-activation layer and HK is the
+05:06 
+
+05:06 hidden activation layer. And now we'll
+05:08 
+
+05:08 do how is the forward pass done. Okay, I
+05:10 
+
+05:10 just write the forward pass. Now based
+05:12 
+
+05:12 on how can we do forward pass? The only
+05:15 
+
+05:15 difference can lie in the last layer
+05:17 
+
+05:17 where we apply this last activation
+05:19 
+
+05:19 functions. Okay. So I have given you the
+05:21 
+
+05:21 rational behind that. So if I let's
+05:23 
+
+05:23 suppose take any layer K. K can be 1 2 3
+05:26 
+
+05:26 let's suppose till L if we have L layers
+05:28 
+
+05:28 in our network. So if I take AK
+05:30 
+
+05:30 activation of a layer AK. So this is our
+05:32 
+
+05:32 aggregation. So this nonlinear rather so
+05:34 
+
+05:34 I find transformation you'll take wk
+05:37 
+
+05:37 you'll take the matrix correspond to
+05:38 
+
+05:38 that and hk minus one okay and then
+05:41 
+
+05:41 you'll add the bias k towards it. This
+05:43 
+
+05:43 is what this is the equation we also
+05:45 
+
+05:45 wrote in the previous session somewhere.
+05:46 
+
+05:46 So this is the aggregation function that
+05:48 
+
+05:48 you do or
+05:51 
+
+05:51 this is the linear transformation or
+05:54 
+
+05:54 fine transformation.
+05:58 
+
+05:58 This is the first step in the forward
+05:59 
+
+05:59 pass. So you will be given let's suppose
+06:00 
+
+06:00 something if you have to calculate AK of
+06:02 
+
+06:02 this. So you will take weight matrix
+06:04 
+
+06:04 correspond to the K layer basically the
+06:06 
+
+06:06 layer which is which K minus one and K.
+06:08 
+
+06:08 So it will be between that and then you
+06:10 
+
+06:10 will have this hidden layer HK minus and
+06:11 
+
+06:11 you'll add bias to this and then after
+06:13 
+
+06:13 you have this you'll have to apply
+06:15 
+
+06:15 activation. Consider this is activation.
+06:16 
+
+06:16 F of K is the activation.
+06:18 
+
+06:18 Let me also write that over here. So
+06:20 
+
+06:20 consider this F of K. So this is
+06:22 
+
+06:22 activation function or of layer K and K
+06:26 
+
+06:26 minus one where we apply this
+06:27 
+
+06:27 activation. So I can write this f of k
+06:29 
+
+06:29 like this f of k and then I'll this will
+06:31 
+
+06:31 take input a k and this will give you
+06:34 
+
+06:34 the hidden output.
+06:36 
+
+06:36 So this should be giving you the hidden
+06:38 
+
+06:38 output. So h of k. So I am writing k
+06:40 
+
+06:40 rather. So h of k is f of k and a of k.
+06:44 
+
+06:44 So this over here is application of
+06:46 
+
+06:46 nonlinearity.
+06:48 
+
+06:48 So nonlinear activation.
+06:53 
+
+06:53 Okay. So this is how you do the forward
+06:55 
+
+06:55 pass. So if you have to let's suppose do
+06:57 
+
+06:57 it for one step. So previously I have
+06:59 
+
+06:59 not told I have just given these
+06:60 
+
+06:60 equations. So this over here is your
+07:01 
+
+07:01 forward pass
+07:03 
+
+07:03 these two things happen. So at each of
+07:06 
+
+07:06 the layer so you take this W K you
+07:08 
+
+07:08 multiply it with what was the what was
+07:10 
+
+07:10 previously there and then you add bias
+07:12 
+
+07:12 to it you'll get the aggregation
+07:13 
+
+07:13 basically an F transformation. Then on
+07:15 
+
+07:15 the Fine transform because that is a
+07:16 
+
+07:16 linear that is transformation linear
+07:18 
+
+07:18 fine. So you have to apply an activation
+07:19 
+
+07:19 function on that so as to get
+07:21 
+
+07:21 nonlinearity. So this is what you will
+07:22 
+
+07:22 do. So let's suppose you have input like
+07:24 
+
+07:24 this. So you have input H not that is
+07:25 
+
+07:25 equal to X1 X2. This is how usually
+07:29 
+
+07:29 input if we have input which has let's
+07:31 
+
+07:31 suppose two data points. And now second
+07:33 
+
+07:33 thing is we have to have some hidden
+07:34 
+
+07:34 layers. Consider we have an hidden layer
+07:36 
+
+07:36 A1. Now I won't be making this network
+07:38 
+
+07:38 again and again. You will have to like
+07:39 
+
+07:39 this network is just for the visual
+07:41 
+
+07:41 representation. But in practice this is
+07:43 
+
+07:43 how you will write this. You'll write
+07:44 
+
+07:44 the code in this. This is how the
+07:45 
+
+07:45 mathematics also represent it. So the
+07:48 
+
+07:48 better picture is to get a very good
+07:49 
+
+07:49 hold of these things. H not is equal X1
+07:51 
+
+07:51 and X2. And now at A1. So A1 as you know
+07:55 
+
+07:55 now that so this is the pre-activation
+07:57 
+
+07:57 pre-activation between the input and the
+07:59 
+
+07:59 first hidden layer. So how to do that?
+08:01 
+
+08:01 So you'll have one matrix assocated with
+08:03 
+
+08:03 this because from the inputs you will
+08:04 
+
+08:04 these inputs will be fed into this
+08:06 
+
+08:06 network. So this W1 H of 0 plus bias. So
+08:10 
+
+08:10 this is what will happen in the first
+08:11 
+
+08:11 let's consider W1 to be like this. Say
+08:13 
+
+08:13 W1 is something of this sort
+08:17 
+
+08:17 because if you have very good grip of
+08:18 
+
+08:18 this it won't be difficult to code the
+08:20 
+
+08:20 back propagation algorithm otherwise
+08:21 
+
+08:21 you'll find some difficulty. So you have
+08:23 
+
+08:23 W11
+08:25 
+
+08:25 W12
+08:27 
+
+08:27 1 and W211
+08:29 
+
+08:29 W 221. So this is how the matrix let's
+08:32 
+
+08:32 also write the bias matrix or bias
+08:34 
+
+08:34 vector rather. So B1. So here we'll
+08:35 
+
+08:35 write B11 B12.
+08:39 
+
+08:39 So this is corresponding to the first
+08:41 
+
+08:41 layer. basically what is in between uh
+08:43 
+
+08:43 these layers. So when you when you give
+08:44 
+
+08:44 this input so this is for the first
+08:46 
+
+08:46 hidden layer. So now after this you'll
+08:48 
+
+08:48 have to compute this h of one after
+08:51 
+
+08:51 you'll have to activate these things.
+08:52 
+
+08:52 Consider this activation function to be
+08:54 
+
+08:54 boop function. You can consider as a
+08:56 
+
+08:56 sigmoid function whatever you have and
+08:58 
+
+08:58 the definition should be given. So you
+08:59 
+
+08:59 this will be f of a of one. So this is
+09:02 
+
+09:02 how I wrote over here. So f of a1 and if
+09:06 
+
+09:06 it is suppose a rel function so relu
+09:08 
+
+09:08 function is defined something of this
+09:09 
+
+09:09 sort max of a z of a1 whichever is max
+09:12 
+
+09:12 so you'll take that value so this is the
+09:14 
+
+09:14 definition of relu function rectified
+09:17 
+
+09:17 linear function okay so this is how we
+09:19 
+
+09:19 do it and then let's suppose now there
+09:21 
+
+09:21 is an output layer so this was our step
+09:22 
+
+09:22 one so step one was our input so this
+09:24 
+
+09:24 was our data
+09:28 
+
+09:28 okay and this was our step two what I
+09:30 
+
+09:30 wrote in between this this is our step
+09:32 
+
+09:32 two or the first hidden layer. So this
+09:34 
+
+09:34 is step
+09:36 
+
+09:36 one. So this is step two. And you can
+09:38 
+
+09:38 you can keep you can add a lot of these
+09:40 
+
+09:40 step two. You can add more hidden layers
+09:42 
+
+09:42 so that you get some output. Let's
+09:44 
+
+09:44 suppose now we have an output layer.
+09:47 
+
+09:47 So output in output layer what you can
+09:48 
+
+09:48 do is you'll have to have some separate
+09:50 
+
+09:50 activation function. If the task is a
+09:52 
+
+09:52 regression it can be classification. So
+09:54 
+
+09:54 how to do that? Now you'll compute A2
+09:55 
+
+09:55 basically. So A2 will be again W2. It
+09:58 
+
+09:58 will be a matrix W2 and then you will
+09:60 
+
+09:60 multiply at H1. So what came previously
+10:02 
+
+10:02 and then this bias two and again this H2
+10:06 
+
+10:06 will be equal to activation of two. You
+10:09 
+
+10:09 can keep it like this if it is
+10:10 
+
+10:10 regression
+10:13 
+
+10:13 because in regression you will just use
+10:15 
+
+10:15 the trans f transformation you will not
+10:16 
+
+10:16 apply any activation function or if it's
+10:19 
+
+10:19 a classification task so you can use
+10:20 
+
+10:20 soft max things like that. So this is
+10:22 
+
+10:22 one of the examples is is it clear
+10:24 
+
+10:24 everybody?
+10:27 
+
+10:27 Let's take second example where we'll
+10:29 
+
+10:29 have some input. Say we have input. So
+10:32 
+
+10:32 input will be like this. So this is the
+10:33 
+
+10:33 abstraction of the thing. So whatever
+10:35 
+
+10:35 you have to think from now onwards about
+10:37 
+
+10:37 learning this is how you should think.
+10:38 
+
+10:38 So first thing you should have some
+10:40 
+
+10:40 input. So input will be X that will be
+10:42 
+
+10:42 of some dimension. Let's consider this
+10:44 
+
+10:44 as three dimensional input. So usually
+10:45 
+
+10:45 in suppose in natural language
+10:47 
+
+10:47 processing the input will be very high
+10:48 
+
+10:48 dimensional input say maybe thousands or
+10:51 
+
+10:51 hundreds of dimensions of input and this
+10:53 
+
+10:53 why might be input. Then you'll have to
+10:54 
+
+10:54 think about the architecture. So how
+10:56 
+
+10:56 should our architecture be? So depending
+10:58 
+
+10:58 on that you'll derive an architect. So
+10:59 
+
+10:59 here I'll keep the again simple. So I
+11:01 
+
+11:01 let's suppose I have hidden layer 1,
+11:02 
+
+11:02 hidden layer two. I'll have hidden layer
+11:03 
+
+11:03 one,
+11:05 
+
+11:05 hidden layer one and hidden layer two.
+11:07 
+
+11:07 The second thing I have to decide is so
+11:09 
+
+11:09 how many number of neurons should be
+11:10 
+
+11:10 there. Okay. So what I can do is I can
+11:13 
+
+11:13 say the hidden number of layers suppose
+11:15 
+
+11:15 is one is to four neurons.
+11:18 
+
+11:18 Okay. From one will go to go to four and
+11:20 
+
+11:20 then let's suppose here we'll have two
+11:22 
+
+11:22 is to three something of this sort. You
+11:23 
+
+11:23 can you can control these neuron
+11:25 
+
+11:25 hyperparameters. So here these are
+11:26 
+
+11:26 hyperparameters I should not give any
+11:28 
+
+11:28 number because I don't know in the
+11:30 
+
+11:30 example what is coming parameters so
+11:33 
+
+11:33 you'll have decide on these things
+11:34 
+
+11:34 because input will be given to you and
+11:36 
+
+11:36 this also is your parameter how many
+11:38 
+
+11:38 number of hidden layers okay number of
+11:40 
+
+11:40 hidden layers this is again h parameter
+11:41 
+
+11:41 you have to choose this so this all
+11:42 
+
+11:42 comes in the architecture so you have
+11:44 
+
+11:44 hidden layer one hidden layer two so
+11:45 
+
+11:45 suppose here you again have to make
+11:47 
+
+11:47 decision so in this hidden layer one so
+11:49 
+
+11:49 what is the activation you can use
+11:50 
+
+11:50 because you can use different
+11:51 
+
+11:51 activations for different layers so
+11:53 
+
+11:53 let's suppose you decide you will use
+11:54 
+
+11:54 yellow here you decide you use sigmoid
+11:56 
+
+11:56 here or sometimes usually you decide
+11:59 
+
+11:59 that in the whole network we'll only use
+12:01 
+
+12:01 sigmoid layers but it's not you you're
+12:03 
+
+12:03 not being constrained by just one
+12:05 
+
+12:05 function you can just make separate
+12:06 
+
+12:06 networks and decide what functions to
+12:07 
+
+12:07 use it's all all up to you okay let's
+12:09 
+
+12:09 consider this you have input and then
+12:11 
+
+12:11 there are parameters to adjust how many
+12:13 
+
+12:13 input neurons how many output neurons
+12:15 
+
+12:15 should be there and let's suppose you
+12:17 
+
+12:17 are also having at the end an output
+12:19 
+
+12:19 layer
+12:20 
+
+12:20 so output layer is also there okay and
+12:22 
+
+12:22 if it is two if it's a classification
+12:24 
+
+12:24 problem. Let's suppose you can have just
+12:26 
+
+12:26 one neuron. It can be high or low. If it
+12:28 
+
+12:28 is some say regression problem, you can
+12:31 
+
+12:31 again have say one neuron. It will just
+12:33 
+
+12:33 give you one output. If it's some sort
+12:35 
+
+12:35 of distribution, so you can have those
+12:37 
+
+12:37 many number of neurons as in terms of
+12:39 
+
+12:39 natural language processing. We saw that
+12:41 
+
+12:41 it can there can be a lot of neurons and
+12:43 
+
+12:43 then we apply soft max function on this.
+12:44 
+
+12:44 This again is a this is problem
+12:46 
+
+12:46 dependent. So how to decide on output
+12:49 
+
+12:49 layer? So this is problem dependent
+12:52 
+
+12:52 and then you also have to see what
+12:55 
+
+12:55 activation to use, what output
+12:56 
+
+12:56 activation to use. Let's suppose now in
+12:58 
+
+12:58 this input if input looks like this. So
+12:59 
+
+12:59 h of zero always will represent the
+13:01 
+
+13:01 input like this. So input will be x1 x2
+13:05 
+
+13:05 x3. Consider this as an input example.
+13:07 
+
+13:07 Okay. So this belongs to R3 in this
+13:09 
+
+13:09 case. So each input example will
+13:10 
+
+13:10 something look like this. And then what
+13:12 
+
+13:12 will be happening at the head layer
+13:14 
+
+13:14 first? So you'll compute A1. A1 is W1 H0
+13:18 
+
+13:18 plus bias. Okay. So you are free to set
+13:20 
+
+13:20 this weight and bias because that's how
+13:22 
+
+13:22 you will learn and after this you'll
+13:24 
+
+13:24 apply an activation function. Now if you
+13:26 
+
+13:26 see W1 matrix so W1 matrix will be
+13:29 
+
+13:29 suppose uh if you have these if you have
+13:32 
+
+13:32 some certain examples if you had say if
+13:34 
+
+13:34 you write W1 of this sort
+13:37 
+
+13:37 so you had four examples suppose you can
+13:39 
+
+13:39 but though it depends how do you decide
+13:41 
+
+13:41 on this because the problem is sometimes
+13:43 
+
+13:43 people write and W doesn't matter.
+13:45 
+
+13:45 Sometimes people write E data point like
+13:46 
+
+13:46 this. this. So let's suppose we have
+13:47 
+
+13:47 data point this X1. So they'll write X11
+13:50 
+
+13:50 X12 X13 something of this sort or they
+13:53 
+
+13:53 can write data from this like this X11
+13:55 
+
+13:55 X12 X13. Okay. So it depends how do you
+13:59 
+
+13:59 choose the notation. Okay. So depending
+14:01 
+
+14:01 on that you can also have different
+14:02 
+
+14:02 dimension. So if let's suppose you have
+14:05 
+
+14:05 this in hidden layer you use four
+14:07 
+
+14:07 neurons. Say suppose you use four
+14:08 
+
+14:08 neurons and you use three neurons over
+14:10 
+
+14:10 here. So now based on this you'll have
+14:12 
+
+14:12 these W matrices W and W1 W2 matrix will
+14:15 
+
+14:15 have values according to that. Let me
+14:17 
+
+14:17 show you that. [snorts] So let's suppose
+14:19 
+
+14:19 if we chose values in such a way so that
+14:21 
+
+14:21 this W1 matrix this weight matrix has
+14:25 
+
+14:25 dimensions 4 + 3 because if you each
+14:27 
+
+14:27 point has now each of each of this point
+14:29 
+
+14:29 if you see is written like because it
+14:31 
+
+14:31 has three columns now so it has 1 2
+14:34 
+
+14:34 three columns of this sort. So because
+14:36 
+
+14:36 we had three features so each of this
+14:38 
+
+14:38 data point is written like this. This is
+14:40 
+
+14:40 data point one. So data point one and
+14:43 
+
+14:43 then you have data point two and then
+14:45 
+
+14:45 you have data point 3 and then you have
+14:48 
+
+14:48 data point 4 something of this sort.
+14:49 
+
+14:49 Each of this is now a feature because
+14:51 
+
+14:51 each data point might belong to here it
+14:54 
+
+14:54 belongs to three dimension. So we have
+14:57 
+
+14:57 the columns representing data. So the
+14:59 
+
+14:59 representation will be if you are given
+14:60 
+
+14:60 data points suppose our data points are
+15:02 
+
+15:02 uh maybe x1 x2 and x3. Okay. Okay, I'm
+15:05 
+
+15:05 using supercript subscripts here. If you
+15:08 
+
+15:08 see these were the features which I just
+15:09 
+
+15:09 mentioned over here. So it can be
+15:10 
+
+15:10 something of this sort. X11
+15:13 
+
+15:13 X1 2 1 X13
+15:16 
+
+15:16 maybe I can write it like this.
+15:21 
+
+15:21 This is the first data point. For the
+15:23 
+
+15:23 second data point suppose we have four
+15:24 
+
+15:24 data points and then we'll write it X
+15:28 
+
+15:28 2 X2 X2 2 X2 3 and so on. So this is how
+15:34 
+
+15:34 I'll get a matrix. So I'll get matrix of
+15:35 
+
+15:35 this sort. Okay. So that matrix I I can
+15:37 
+
+15:37 call like input matrix I can call data
+15:39 
+
+15:39 matrix. Okay. I can call that as a data
+15:41 
+
+15:41 matrix. And now if I have to construct
+15:44 
+
+15:44 uh this might this might be my data
+15:45 
+
+15:45 matrix. So if I have to this is my data
+15:47 
+
+15:47 matrix.
+15:50 
+
+15:50 After this I'll have to give this input
+15:52 
+
+15:52 to this rather this W1 should not this
+15:54 
+
+15:54 is not that this is the matrix which is
+15:56 
+
+15:56 before the first layer between the input
+15:58 
+
+15:58 and this. So this is our data matrix and
+15:60 
+
+15:60 then we'll go to this W1. This W1 is
+16:02 
+
+16:02 this is not this matrix. So this is data
+16:03 
+
+16:03 matrix once we construct data. So now
+16:05 
+
+16:05 let's suppose this W1 belongs to say R R
+16:09 
+
+16:09 3 + 4 4 + 3. So how how will this be
+16:12 
+
+16:12 computed? So this will be computed based
+16:14 
+
+16:14 on this.
+16:16 
+
+16:16 So if you have some neurons over here
+16:18 
+
+16:18 and if you have some neurons over here.
+16:19 
+
+16:19 So the matrix in between you can compute
+16:21 
+
+16:21 based on this. Okay. It usually is the
+16:23 
+
+16:23 reverse of this. How do you represent?
+16:24 
+
+16:24 It depends how do you represent these
+16:25 
+
+16:25 numbers. So how do you represent this?
+16:27 
+
+16:27 So you'll again give the dimensions
+16:28 
+
+16:28 according to that. Okay. After that
+16:30 
+
+16:30 you'll have to apply this. So you
+16:31 
+
+16:31 compute A1 based on whatever matrix you
+16:33 
+
+16:33 had, whatever inputs you were given.
+16:35 
+
+16:35 Okay, you can give even a matrix of
+16:37 
+
+16:37 inputs also and then plus uh then you
+16:41 
+
+16:41 will have the bias also and after this
+16:42 
+
+16:42 you can apply activation on this. So
+16:44 
+
+16:44 you'll have H1. So that will apply let's
+16:46 
+
+16:46 say re of this. So you'll have rel of a
+16:49 
+
+16:49 of one. But do keep an eye on these W's
+16:53 
+
+16:53 and maybe on these X because if one if
+16:56 
+
+16:56 you do some problem in let's suppose
+16:58 
+
+16:58 hidden layers or you had some problems
+16:60 
+
+16:60 with weight you have some problem by
+17:01 
+
+17:01 that will propagate throughout. So
+17:03 
+
+17:03 that's why you have to be very careful
+17:04 
+
+17:04 with this. Okay. And similar this is
+17:06 
+
+17:06 this again will happen with this. So if
+17:08 
+
+17:08 I give you an I would not do this now.
+17:10 
+
+17:10 So at your home what you can do is let's
+17:12 
+
+17:12 suppose if I give 10 neurons over here.
+17:15 
+
+17:15 If I give say five neurons over here. If
+17:17 
+
+17:17 I give let's suppose some four neurons
+17:19 
+
+17:19 over here. So you have to compute in
+17:21 
+
+17:21 this you have to compute W1 W2 uh and
+17:26 
+
+17:26 let's suppose output also what are the
+17:27 
+
+17:27 dimensions. So you can lay out the whole
+17:29 
+
+17:29 network here. It will take me a little
+17:31 
+
+17:31 bit of time. So it is better you do it
+17:32 
+
+17:32 on your spare time and I believe that
+17:35 
+
+17:35 you you should be able to do it to just
+17:37 
+
+17:37 construct W1 W2 H1 A1 something of that
+17:40 
+
+17:40 sort and then see output. And let's
+17:41 
+
+17:41 suppose if you now decide you can use
+17:44 
+
+17:44 here you use this soft max activation
+17:46 
+
+17:46 you here you use softmax activation
+17:48 
+
+17:48 let's say here you'll also use softmax
+17:50 
+
+17:50 suppose so can you sketch out the whole
+17:52 
+
+17:52 thing can you can you do it on paper not
+17:55 
+
+17:55 just creating some network because in
+17:56 
+
+17:56 pytorch you'll just write some code then
+17:58 
+
+17:58 import torch and do this this this and
+18:00 
+
+18:00 you can easily get how many parameters
+18:02 
+
+18:02 and this how many par the best exercise
+18:03 
+
+18:03 would be to do it one by one to start it
+18:06 
+
+18:06 from input and see I have data matrix of
+18:08 
+
+18:08 this sort here let's suppose I had four
+18:10 
+
+18:10 examples
+18:11 
+
+18:11 Okay, I had four example n example or m
+18:14 
+
+18:14 n m n m n m n m n m n m n m n m n m n m
+18:14 
+
+18:14 n d d d d d d d d d d d d d d d d d d d
+18:14 
+
+18:14 d d d d d d d d d d d d d d d d d d d d
+18:14 
+
+18:14 da so m d d d d d d d d d d d d d d d d
+18:15 
+
+18:15 d d d d data points were there and each
+18:16 
+
+18:16 had three features. So how will my data
+18:19 
+
+18:19 matrix look like? So it will be X1 three
+18:22 
+
+18:22 and this is M cross three data points.
+18:23 
+
+18:23 So each of the row will be and then you
+18:25 
+
+18:25 have to construct this W1 based on so
+18:27 
+
+18:27 the these two things will be based on
+18:29 
+
+18:29 the number of hidden neurons here. Okay.
+18:31 
+
+18:31 And uh you tell the you have to you can
+18:33 
+
+18:33 even even do it by hand there forward
+18:34 
+
+18:34 pass. You can assign some random values
+18:36 
+
+18:36 to these W's and after this do the
+18:38 
+
+18:38 multiplication and go with this. So this
+18:41 
+
+18:41 is your H knot. So this thing over here
+18:43 
+
+18:43 is your H not this is the data matrix
+18:45 
+
+18:45 initially the matrix that you have and
+18:46 
+
+18:46 then you perform the multiplication with
+18:48 
+
+18:48 W1 the matrix which is in between the
+18:50 
+
+18:50 input layer and the first head layer.
+18:51 
+
+18:51 And then you will have a bias vector
+18:52 
+
+18:52 which you can again which you can again
+18:54 
+
+18:54 initialize and it'll also have
+18:55 
+
+18:55 dimensions. So play with these
+18:56 
+
+18:56 dimensions highly recommended. So okay
+18:58 
+
+18:58 suggestion over here. So whoever will be
+18:60 
+
+18:60 watching this video so in the interest
+19:02 
+
+19:02 of time I won't do the whole sketch
+19:03 
+
+19:03 myself. So what you can do is you can
+19:04 
+
+19:04 stop the video over here and you can
+19:06 
+
+19:06 compute W1. You can compute this W2
+19:09 
+
+19:09 because we have two hidden layers here
+19:10 
+
+19:10 and then you can also compute H1. You
+19:12 
+
+19:12 can also compute uh H2 and then
+19:15 
+
+19:15 activations also. Before this you have
+19:18 
+
+19:18 to have pre
+19:20 
+
+19:20 this you have to have this nonlinear
+19:22 
+
+19:22 fine transformations uh and then you can
+19:25 
+
+19:25 rather linear app transformation. So
+19:27 
+
+19:27 then you can apply H1 and H2 then also
+19:28 
+
+19:28 you have to compute output basically HL
+19:31 
+
+19:31 in this case. So keep in the view that
+19:33 
+
+19:33 you also have to compute dimensions of
+19:34 
+
+19:34 everything. So also have in the view
+19:37 
+
+19:37 that I'll compute dimensions of all
+19:38 
+
+19:38 these matrix so as to see if the numbers
+19:40 
+
+19:40 are matching up and then you can also
+19:41 
+
+19:41 apply soft max on this or maybe take a
+19:43 
+
+19:43 small example than this. Start with
+19:44 
+
+19:44 small example and see if you can do the
+19:46 
+
+19:46 forward pass by hand. If I give you
+19:47 
+
+19:47 example of this sort say I'll give
+19:49 
+
+19:49 example like this. I have data point X.
+19:52 
+
+19:52 So X1 is my first data point. X2 is my
+19:55 
+
+19:55 second data point. X3 is my third point.
+19:56 
+
+19:56 If I give you numbers like this 0.1.4
+19:59 
+
+19:59 0.8 8. Okay. 0.2 0.3 0.6
+20:05 
+
+20:05 0.4 0.3 0.1 Suppose it's a
+20:09 
+
+20:09 classification problem. Say this is 1 0
+20:11 
+
+20:11 and one something of this sort. It's a
+20:12 
+
+20:12 binary classification problem. So if you
+20:14 
+
+20:14 are given these labels and these are
+20:16 
+
+20:16 your inputs and if you are asked that
+20:20 
+
+20:20 you are hidden you have two hidden
+20:22 
+
+20:22 layers.
+20:24 
+
+20:24 Okay. So after the input so you can
+20:27 
+
+20:27 decide on these hidden layers and then
+20:28 
+
+20:28 do this exercise and apply soft max
+20:30 
+
+20:30 function on this. So so that you can
+20:31 
+
+20:31 perform the forward pass by hand. Here
+20:33 
+
+20:33 if I perform by it will take me maybe
+20:35 
+
+20:35 more than half an hour to do that. Any
+20:38 
+
+20:38 questions on this? Till here is
+20:40 
+
+20:40 everything clear. This should be crystal
+20:41 
+
+20:41 clear. Why? Because this is the notation
+20:43 
+
+20:43 we'll be using throughout and probably
+20:45 
+
+20:45 this will be the notation which we will
+20:47 
+
+20:47 be using while we are coding these
+20:50 
+
+20:50 we coding these algorithms so as to
+20:52 
+
+20:52 implement neural network from scratch by
+20:54 
+
+20:54 just using maybe numpy or we can use we
+20:58 
+
+20:58 can even use list we can just truncate
+20:59 
+
+20:59 numpy as well. Any questions? So once
+21:01 
+
+21:01 you are done with this once you know
+21:02 
+
+21:02 that how to perform forward pass and
+21:04 
+
+21:04 then you will have to do loss
+21:05 
+
+21:05 computation. This is where the story
+21:06 
+
+21:06 gets interesting now.
+21:08 
+
+21:08 So you have to compute loss.
+21:11 
+
+21:11 So if you're not paying attention till
+21:13 
+
+21:13 now, it's all right. Maybe you can
+21:14 
+
+21:14 revise it a bit because that there you
+21:16 
+
+21:16 just had to take care of these
+21:18 
+
+21:18 dimensions and notations. Now this is
+21:20 
+
+21:20 the real D. You have to compute loss.
+21:22 
+
+21:22 Now and we had a huge discussion about
+21:24 
+
+21:24 we had I think couple of lectures on
+21:26 
+
+21:26 just loss loss functions and now how to
+21:28 
+
+21:28 compute loss. So based on this you have
+21:30 
+
+21:30 to have a divergence function. So if it
+21:32 
+
+21:32 is a regression problem you will select
+21:34 
+
+21:34 your loss function or divergence
+21:35 
+
+21:35 function accordingly. If it is a
+21:36 
+
+21:36 classification problem, you'll again
+21:38 
+
+21:38 select your divergence function
+21:39 
+
+21:39 something of x sort. But last, let's
+21:41 
+
+21:41 suppose consider that we call that as yt
+21:44 
+
+21:44 okay or uh we can call it y t something
+21:48 
+
+21:48 of this sort or yi however you like it
+21:50 
+
+21:50 to be. So I'll use yt over here and then
+21:52 
+
+21:52 this yt is a prediction of that. So this
+21:54 
+
+21:54 is our ground truth and this is a
+21:55 
+
+21:55 prediction. Okay. And this is your again
+21:58 
+
+21:58 have parameter that way you decide. It's
+21:59 
+
+21:59 not a parameter actually. So this thing
+22:01 
+
+22:01 is your choice. So what function should
+22:04 
+
+22:04 you use? So now you have to compute loss
+22:06 
+
+22:06 for one thing. So you'll compute it for
+22:07 
+
+22:07 all the points. So I'm labeling it here
+22:09 
+
+22:09 T. So I can sum it over all the points.
+22:12 
+
+22:12 So this T goes from one to let's suppose
+22:14 
+
+22:14 some capital T points are there. And
+22:15 
+
+22:15 you'll compute loss for this. This is
+22:18 
+
+22:18 how you'll compute loss. And this T over
+22:20 
+
+22:20 here is total training examples. Okay.
+22:22 
+
+22:22 And this divergence function is the
+22:24 
+
+22:24 desired. So this is the desired function
+22:27 
+
+22:27 or the loss function you chose chosen
+22:28 
+
+22:28 loss function.
+22:31 
+
+22:31 And it depends on the problem that you
+22:33 
+
+22:33 are doing. So this is ground truth. This
+22:34 
+
+22:34 is your prediction value and this is
+22:36 
+
+22:36 what what is this doing. So this is
+22:37 
+
+22:37 summing it all and we can take average.
+22:39 
+
+22:39 So usually people take average of this.
+22:40 
+
+22:40 They don't just sum it up. So they'll
+22:42 
+
+22:42 take average. So this over here is
+22:44 
+
+22:44 taking average.
+22:46 
+
+22:46 Okay. I hope this loss is pretty clear.
+22:47 
+
+22:47 So there's uh nothing no problem with
+22:50 
+
+22:50 this. Now the problem is we have to find
+22:52 
+
+22:52 we have to find if this loss is more so
+22:55 
+
+22:55 is there is there a way we can decrease
+22:57 
+
+22:57 this loss. So that's what our the main
+22:59 
+
+22:59 task is to somehow decrease this loss.
+23:01 
+
+23:01 So that's our job. The goal is the goal
+23:04 
+
+23:04 is decrease the loss. That's why we need
+23:05 
+
+23:05 loss computation once you compute the
+23:07 
+
+23:07 loss. Now you are seeing oh so you have
+23:09 
+
+23:09 our loss is this much. So can we
+23:10 
+
+23:10 decrease this loss? If we can decrease
+23:12 
+
+23:12 the loss and we can show that our sort
+23:14 
+
+23:14 of model is learning something. Now how
+23:17 
+
+23:17 to how to learn that how to sort of find
+23:19 
+
+23:19 the ways in which we can learn that in
+23:21 
+
+23:21 which we can decrease this loss. Now for
+23:24 
+
+23:24 that you should you should know a bit of
+23:25 
+
+23:25 calculus because you know that calculus
+23:28 
+
+23:28 is the tool by which you can if you are
+23:29 
+
+23:29 given some function you can perform you
+23:32 
+
+23:32 can apply derivative onto that and you
+23:33 
+
+23:33 can get let's suppose some local min and
+23:35 
+
+23:35 you can equate to zero and then you can
+23:36 
+
+23:36 see if I nudge something by this okay
+23:38 
+
+23:38 let me just go a bit towards
+23:42 
+
+23:42 uh this calculus so I'll give you the
+23:44 
+
+23:44 refresher to think about these things
+23:46 
+
+23:46 and how can you how can we basically
+23:47 
+
+23:47 find these values so as to see how can
+23:50 
+
+23:50 we do the back propagation in f2 suppose
+23:53 
+
+23:53 you this function you have a function y
+23:54 
+
+23:54 which is equal to f ofx okay so this is
+23:57 
+
+23:57 the function so in the neural network
+23:58 
+
+23:58 term this function won't be just a
+23:59 
+
+23:59 single variable function it'll be a
+24:00 
+
+24:00 multivaried function you'll have a lot
+24:02 
+
+24:02 of variables so we'll start it here and
+24:04 
+
+24:04 then we'll slowly go to a multivaried
+24:06 
+
+24:06 function also so consider this so if I'm
+24:08 
+
+24:08 telling you this if I'm making some
+24:09 
+
+24:09 slides so x is somehow related to y many
+24:12 
+
+24:12 of you people might know this so I'll
+24:14 
+
+24:14 just give a different perspective of
+24:15 
+
+24:15 looking at this so that whenever you see
+24:17 
+
+24:17 these things this is the picture that
+24:18 
+
+24:18 pops into your head okay we'll make
+24:20 
+
+24:20 competition graphs from this so this is
+24:21 
+
+24:21 x and this is y and Y here if you see f
+24:24 
+
+24:24 of x if you give some value to x and
+24:26 
+
+24:26 this will give some value to y so if I
+24:28 
+
+24:28 make some change in x so delta x so it
+24:30 
+
+24:30 will some change will be made in y so I
+24:34 
+
+24:34 can write it something of this so wx is
+24:36 
+
+24:36 somehow proportional to wy it can be
+24:38 
+
+24:38 inversely proportional direct it will
+24:40 
+
+24:40 depend we can change that and if I can
+24:41 
+
+24:41 change this to a constant I'll say w x
+24:45 
+
+24:45 say if I write some value over here some
+24:47 
+
+24:47 maybe if I can write x x of x doesn't
+24:52 
+
+24:52 look maybe Z of delta Y something of
+24:54 
+
+24:54 this sort. So this Z term over here is
+24:56 
+
+24:56 derivative.
+24:58 
+
+24:58 This is how how derivative is defined.
+25:00 
+
+25:00 So we have seen a lot of perspective on
+25:02 
+
+25:02 derivatives. So this is how you can
+25:03 
+
+25:03 write it. So you can say delta x is
+25:06 
+
+25:06 equal to if I write dative now by dy by
+25:08 
+
+25:08 dx multiplied by this is delta y. So if
+25:12 
+
+25:12 if there is some change made in x so
+25:14 
+
+25:14 there will be something happening to y.
+25:16 
+
+25:16 So which quantity will tell you that? So
+25:17 
+
+25:17 this derivative will tell you that. So
+25:19 
+
+25:19 you have to somehow look it from look it
+25:21 
+
+25:21 from this perspective now. So small
+25:22 
+
+25:22 change in x will perform some small
+25:25 
+
+25:25 change in y. Okay. So if you
+25:28 
+
+25:28 this is rather delta y not delta x. So I
+25:31 
+
+25:31 should be writing delta y over here and
+25:33 
+
+25:33 delta x over here. Okay. So if you make
+25:35 
+
+25:35 some nudge in x so something will happen
+25:37 
+
+25:37 to y. Okay. So again this should be
+25:40 
+
+25:40 reverse over here. So this is delta y
+25:42 
+
+25:42 because we are we are computing change
+25:44 
+
+25:44 of delta y. So how much will delta y
+25:46 
+
+25:46 change?
+25:48 
+
+25:48 Okay. So this picture is right. So some
+25:51 
+
+25:51 something will be done here. Some change
+25:53 
+
+25:53 will happen over here. So what change
+25:55 
+
+25:55 will be happening? So if you are doing
+25:56 
+
+25:56 something of this sort. So something
+25:57 
+
+25:57 will be multiply divide whatever. So
+25:59 
+
+25:59 this quantity will be there. It will
+26:00 
+
+26:00 give you the value of delta y. Okay. So
+26:02 
+
+26:02 I called that quantity as derative and
+26:04 
+
+26:04 we represent that with by dy by dx and
+26:06 
+
+26:06 we had a proper course on calculus. But
+26:09 
+
+26:09 here I just wanted to see you this
+26:10 
+
+26:10 notion. So if you make a small change in
+26:12 
+
+26:12 here so this is what will happen because
+26:14 
+
+26:14 of that. And now we'll have these are
+26:15 
+
+26:15 called as influence diagrams. So I'll be
+26:17 
+
+26:17 making diagrams of this sort. So these
+26:18 
+
+26:18 diagrams are called as influence
+26:20 
+
+26:20 diagrams.
+26:24 
+
+26:24 Consider this as let's suppose one
+26:25 
+
+26:25 neuron. You have one neuron and one
+26:28 
+
+26:28 neuron will have an impact on other
+26:30 
+
+26:30 neuron. So that neuron will look
+26:31 
+
+26:31 something of this sort. Say this is
+26:32 
+
+26:32 neuron n1. This is some neuron n12 and
+26:35 
+
+26:35 this is some neuron let's n1 suppose
+26:37 
+
+26:37 something of this sort. So one one
+26:39 
+
+26:39 neuron is influencing other. So there
+26:40 
+
+26:40 will be a lot of things will be
+26:41 
+
+26:41 happening. So we will keep on these
+26:43 
+
+26:43 pictures. That's why I'm giving a
+26:44 
+
+26:44 different perspective on on looking at
+26:46 
+
+26:46 uh looking towards these derivatives.
+26:48 
+
+26:48 Okay. So these influence diagram keep
+26:50 
+
+26:50 them in in your mind. So I'll just make
+26:52 
+
+26:52 them as nodes so that we'll just
+26:55 
+
+26:55 extrapolate to the neural networks.
+26:58 
+
+26:58 Now I'll take this example. So I'll take
+27:00 
+
+27:00 a multivaried case. If I have a function
+27:02 
+
+27:02 so initially I had just one function. I
+27:04 
+
+27:04 had function which was univariate. So in
+27:06 
+
+27:06 that I had fal f ofx. Now what I can
+27:08 
+
+27:08 tell is I can take multivariate case.
+27:10 
+
+27:10 I'll say this y is equal to f of x1 x2
+27:15 
+
+27:15 comma and so on until x of m. So these
+27:18 
+
+27:18 many values are there. So how to do this
+27:20 
+
+27:20 now? So we cannot now compute just a
+27:22 
+
+27:22 change. So if I make a diagram of this,
+27:24 
+
+27:24 if I make inflence diagram, how to make
+27:25 
+
+27:25 inflence diagram? So I'll say x1 x2 till
+27:29 
+
+27:29 xm. So if I change these things, so
+27:31 
+
+27:31 they'll have some impact on this y.
+27:34 
+
+27:34 This is how I can make this diagram.
+27:39 
+
+27:39 Okay. So if I write this so if I change
+27:41 
+
+27:41 this x1 so it'll have some impact on y.
+27:43 
+
+27:43 If I change this x2 it'll have some
+27:45 
+
+27:45 impact on y and we also learned about
+27:47 
+
+27:47 partial derivative. So if you are having
+27:49 
+
+27:49 a multivaried case there we don't take
+27:50 
+
+27:50 just derivative we'll take partial
+27:52 
+
+27:52 derivative because we'll keep all of
+27:53 
+
+27:53 those constant and we'll take derivative
+27:54 
+
+27:54 with respect to one thing. So if I just
+27:56 
+
+27:56 relate these two things. So if I say
+27:58 
+
+27:58 delta y is equal some derivative and
+28:02 
+
+28:02 this delta x1. Okay. I can compute
+28:05 
+
+28:05 partial derative. I can say delta y is
+28:07 
+
+28:07 partial derivative of this. As we said
+28:08 
+
+28:08 dy by dx. So here we will write dy by dx
+28:12 
+
+28:12 dy by dx. This how it's read delta x1.
+28:15 
+
+28:15 Okay. Similarly this delta y also is
+28:18 
+
+28:18 related to delta x2. Change in x2 will
+28:21 
+
+28:21 some impact delta y. So we can again
+28:22 
+
+28:22 write partial derivative of this s dy by
+28:26 
+
+28:26 dx2. Okay. And so on. So in order to
+28:29 
+
+28:29 make this influence diagram I'll just
+28:31 
+
+28:31 write these things above above these. So
+28:33 
+
+28:33 this will be dy by dx1
+28:36 
+
+28:36 dy by dx2 and this will be dy by dxm
+28:42 
+
+28:42 any question equation is still here. So
+28:43 
+
+28:43 now if I change this to delta m. So I
+28:44 
+
+28:44 can write it like this. So delta x1 if I
+28:47 
+
+28:47 change something of this sort so it will
+28:49 
+
+28:49 have an impact on delta y. And similarly
+28:51 
+
+28:51 delta x2 this will have some impact on
+28:53 
+
+28:53 this. This is delta x m this will have
+28:56 
+
+28:56 some impact on this. And now how to
+28:59 
+
+28:59 compute the total? How to compute this
+29:03 
+
+29:03 uh total basically change in these
+29:04 
+
+29:04 because I I have the ability I can
+29:06 
+
+29:06 because this is a multivaried function I
+29:08 
+
+29:08 have ability to change a lot of these I
+29:09 
+
+29:09 can nudge a lot of these values a lot of
+29:11 
+
+29:11 input values so what I can do is I can
+29:12 
+
+29:12 apply summation rule over here because
+29:14 
+
+29:14 this is going towards the whole same
+29:15 
+
+29:15 input so I can write something of this
+29:17 
+
+29:17 sort so this dy by dx
+29:21 
+
+29:21 let me just exactly see the value so I
+29:23 
+
+29:23 can actually write this delta x1 and
+29:26 
+
+29:26 then this is
+29:28 
+
+29:28 dy by dx x1 plus delta x2
+29:34 
+
+29:34 dy by dx2
+29:37 
+
+29:37 plus and so on delta xm dy by dxm.
+29:44 
+
+29:44 This is how I can write the total
+29:45 
+
+29:45 change. So this is total change
+29:49 
+
+29:49 in y if I change x by a little delta x1
+29:53 
+
+29:53 by a little x2 by a little and xm by if
+29:55 
+
+29:55 I nudge all the parent this this is the
+29:56 
+
+29:56 total change that will happen. Any
+29:58 
+
+29:58 questions still here?
+29:60 
+
+29:60 Now the first thing is we took a
+30:01 
+
+30:01 univaried case. We had y is equal f ofx.
+30:03 
+
+30:03 So there we nudged x and we got y.
+30:05 
+
+30:05 Second case was multivaried case. We had
+30:07 
+
+30:07 inputs which we have we had multiple of
+30:09 
+
+30:09 them. And if we nudge any of these or
+30:11 
+
+30:11 maybe all of these some of these so we
+30:13 
+
+30:13 can compute what's the total change.
+30:14 
+
+30:14 Similarly if you have a nested function
+30:16 
+
+30:16 you have something of this or y is equal
+30:18 
+
+30:18 f of g of x.
+30:20 
+
+30:20 So what do you do in this case? Okay so
+30:22 
+
+30:22 you have something of this or x is
+30:24 
+
+30:24 dependent on g. This is dependent on y.
+30:26 
+
+30:26 So you want to see if I nudge something.
+30:28 
+
+30:28 So if I nudge delta x, so how will this
+30:30 
+
+30:30 delta g be impacted and how will this
+30:32 
+
+30:32 delta y be impacted? This is what you
+30:34 
+
+30:34 want. Now we know this. So if you change
+30:37 
+
+30:37 suppose if you change delta g and then
+30:41 
+
+30:41 uh you'll go to you you'll do something
+30:43 
+
+30:43 with delta y. So how are these two
+30:44 
+
+30:44 quantities related? So these quantities
+30:46 
+
+30:46 are related by dy by dg. This is how
+30:49 
+
+30:49 these quantities are related. So how how
+30:52 
+
+30:52 can I write it? d y delta y is equal dy
+30:55 
+
+30:55 by dg * delta g. This is how these
+30:58 
+
+30:58 quantities are related. Okay. Similarly,
+31:02 
+
+31:02 how are these two quantity related? If I
+31:03 
+
+31:03 made some change in x, if I made some
+31:05 
+
+31:05 change in x and how will the g be
+31:06 
+
+31:06 impacted? So, how are they related? So,
+31:08 
+
+31:08 they are related by this. So, this is dg
+31:10 
+
+31:10 by dx. Okay. So, in this case or we can
+31:13 
+
+31:13 write partial derivatives if it is a
+31:14 
+
+31:14 multivaried function. So, here I'm just
+31:16 
+
+31:16 taking a uni function but it is uh this
+31:18 
+
+31:18 is composion of functions. These
+31:20 
+
+31:20 functions are nested functions or we can
+31:21 
+
+31:21 write as composition. So they are nested
+31:23 
+
+31:23 or composite functions.
+31:28 
+
+31:28 Okay. So this is where the back
+31:29 
+
+31:29 propagation lies. So you'll be having
+31:31 
+
+31:31 something of this sort. You'll be having
+31:32 
+
+31:32 some input which will be impacting
+31:34 
+
+31:34 something. So that will be impacting
+31:35 
+
+31:35 your loss function. It will be a chain
+31:36 
+
+31:36 of your functions. So that's why here if
+31:39 
+
+31:39 you see this delta x is related to this
+31:40 
+
+31:40 delta g. How? So they related by this.
+31:42 
+
+31:42 So this delta g is related to this delta
+31:44 
+
+31:44 y. So how are they related? They're
+31:46 
+
+31:46 related by this dy by dg. So if I have
+31:49 
+
+31:49 to compute total change delta y. So how
+31:52 
+
+31:52 can you take now compute total change?
+31:53 
+
+31:53 So we'll compute total change something
+31:55 
+
+31:55 of this sort. You'll see we'll first
+31:56 
+
+31:56 relate these two terms. You see okay if
+31:59 
+
+31:59 I relate this if I say dy by dg of this
+32:06 
+
+32:06 uh delta of g. Now you know you can
+32:09 
+
+32:09 compute this delta g from these two
+32:11 
+
+32:11 things. Okay. So you'll compute. So if I
+32:13 
+
+32:13 write one equation of this sort. So
+32:15 
+
+32:15 let's suppose one equation is this. So
+32:17 
+
+32:17 how is delta y and delta j related? So
+32:18 
+
+32:18 I'm basically writing this equation over
+32:20 
+
+32:20 here. So if I write second equation to
+32:22 
+
+32:22 make it more clearer I can write
+32:24 
+
+32:24 something of this delta y
+32:27 
+
+32:27 or delta x rather here in this case this
+32:29 
+
+32:29 delta g this is equal to dg by dx delta
+32:33 
+
+32:33 [snorts] x.
+32:37 
+
+32:37 Okay. So what I'm doing is I'm taking
+32:39 
+
+32:39 this portion over here. So I can relate
+32:41 
+
+32:41 it with this. Consider this is not
+32:42 
+
+32:42 there. Okay. If I can just mask it, I'll
+32:44 
+
+32:44 have delta G is having some effect on
+32:46 
+
+32:46 delta Y. So how how I can quantify that?
+32:48 
+
+32:48 So delta Y is equal DY by DG multiplied
+32:50 
+
+32:50 by delta G. And now if I can just
+32:52 
+
+32:52 truncate this portion, I know how are
+32:54 
+
+32:54 these two things related. So delta G is
+32:56 
+
+32:56 equal to this. So if in this case this
+32:58 
+
+32:58 is equation one, this is equation two.
+33:01 
+
+33:01 If in equation one, if I substitute the
+33:02 
+
+33:02 value of delta G, so what will you get?
+33:05 
+
+33:05 So delta Y is equal to DY by DG. And
+33:09 
+
+33:09 then you are substituting these values.
+33:11 
+
+33:11 So you'll get dg by dx delta x.
+33:17 
+
+33:17 Okay. And this over here is the
+33:20 
+
+33:20 derivative. So if I now write how how is
+33:22 
+
+33:22 how is how are these things related? So
+33:24 
+
+33:24 how is uh dy by
+33:29 
+
+33:29 dxel related. So I can write so this
+33:30 
+
+33:30 they are related by this. So this is
+33:32 
+
+33:32 this basically is showing me how is this
+33:34 
+
+33:34 delta y related to dy. So this is
+33:36 
+
+33:36 related by this. So I can write directly
+33:37 
+
+33:37 like this. dy by dg and dg by dx. So
+33:42 
+
+33:42 this over here is chain rule which you
+33:44 
+
+33:44 people have seen earlier also. So this
+33:46 
+
+33:46 is chain rule.
+33:48 
+
+33:48 Any questions still here? Isn't it very
+33:50 
+
+33:50 nice to see it like this? The third and
+33:52 
+
+33:52 very important case basically is if now
+33:54 
+
+33:54 your function is such that it takes uh
+33:57 
+
+33:57 it takes input as functions itself and
+33:58 
+
+33:58 those functions take input as input
+34:01 
+
+34:01 variables. Suppose you have this f and
+34:03 
+
+34:03 you have this z1 comma z2 and so on
+34:05 
+
+34:05 until zm. But here I can define the ZI.
+34:08 
+
+34:08 So this ZI is G of IX. So these are
+34:11 
+
+34:11 different functions. So if I have to
+34:13 
+
+34:13 make inference diagram for this, how can
+34:15 
+
+34:15 I make inference diagram for this? So
+34:16 
+
+34:16 now you have functions, you have
+34:18 
+
+34:18 variables, you have a lot of things
+34:19 
+
+34:19 going on. So you have this X first. So
+34:23 
+
+34:23 this X goes to this all these functions.
+34:25 
+
+34:25 So it goes to GI of this. So it also
+34:28 
+
+34:28 goes to say G1. It also goes to G2.
+34:33 
+
+34:33 It goes to G3 of this and so on. and
+34:36 
+
+34:36 let's suppose GM
+34:40 
+
+34:40 GM of this. So now these things
+34:42 
+
+34:42 aggregate these things then are
+34:44 
+
+34:44 transformed by this f again a function
+34:45 
+
+34:45 is applied so as
+34:49 
+
+34:49 on this so as to give us this value y
+34:51 
+
+34:51 this is how this x is related to y. Now
+34:53 
+
+34:53 you can see this exact looks like neural
+34:55 
+
+34:55 networks. So if you take a neuron okay
+34:57 
+
+34:57 and there will be a lot of outputs going
+34:58 
+
+34:58 to different neurons and somehow if you
+35:00 
+
+35:00 add more of these things in between
+35:01 
+
+35:01 you'll have a last loss function somehow
+35:03 
+
+35:03 like this. So this will be loss. So this
+35:05 
+
+35:05 is our input and these might be our
+35:06 
+
+35:06 hidden layers in between. So but general
+35:08 
+
+35:08 this is how this is the template you
+35:10 
+
+35:10 will see. So now we'll deal with this
+35:11 
+
+35:11 portion. So we'll deal with this portion
+35:13 
+
+35:13 first. If you have this Z1, this is your
+35:16 
+
+35:16 Z2. Let me write this in brackets. This
+35:18 
+
+35:18 is Z1. This is your Z2. And this is your
+35:21 
+
+35:21 Z3 and this is your ZM. So if I have to
+35:24 
+
+35:24 relate these Z's with this Y. So if I
+35:27 
+
+35:27 change something in Z's, if I do some
+35:28 
+
+35:28 nudge in this Z1, so how what will be
+35:31 
+
+35:31 the effect on this Y? So I can relate
+35:32 
+
+35:32 this delta Y and this delta Z. Uh this
+35:37 
+
+35:37 delta Y and these delta Z's. Okay. Okay,
+35:40 
+
+35:40 if I just look for one one thing. Okay,
+35:42 
+
+35:42 because we did earlier. So this will be
+35:43 
+
+35:43 summation later on. So we'll do it for
+35:44 
+
+35:44 just one. This was Z1. So here how will
+35:46 
+
+35:46 these two be related? So delta ZI and
+35:49 
+
+35:49 delta Z1 and delta Y will be related by
+35:51 
+
+35:51 suppose do Z by DY. Okay, something of
+35:55 
+
+35:55 this. So I can write do Z by D Y. So for
+35:59 
+
+35:59 one example this will be Z1 Z2 and if I
+36:01 
+
+36:01 write it general so this will be Z. So
+36:03 
+
+36:03 now I have to sum them all all these
+36:04 
+
+36:04 things. So if I sum them up, so this
+36:06 
+
+36:06 will be summation of I goes from 1 to m.
+36:12 
+
+36:12 Keep this as equation one. This is going
+36:14 
+
+36:14 from here to here. Now I have to see how
+36:17 
+
+36:17 these how this x is related to all these
+36:19 
+
+36:19 function. So if I say how this delta zi
+36:22 
+
+36:22 so if I take one function now delta zi
+36:26 
+
+36:26 how is this related with to this delta
+36:27 
+
+36:27 x? If I make some change in x so how
+36:29 
+
+36:29 will this delta zi be? How will be zi
+36:31 
+
+36:31 impacted? So how I can do that? So I'll
+36:33 
+
+36:33 say this will be equal to do z by dox.
+36:37 
+
+36:37 Okay because x here is constant. So I
+36:39 
+
+36:39 can write this as equation two.
+36:42 
+
+36:42 And now we can again substitute the
+36:44 
+
+36:44 values. So you can see substitute this
+36:46 
+
+36:46 value delta zi into this. So what you
+36:48 
+
+36:48 will get? You'll get the total loss. So
+36:49 
+
+36:49 you'll see total change rather not loss.
+36:52 
+
+36:52 This will be equal to summation of i
+36:55 
+
+36:55 goes from 1 to m. So this is do zi by do
+36:60 
+
+36:60 y and then multiplied by so this is
+37:03 
+
+37:03 delta z y i delta z i is equal to do zi.
+37:08 
+
+37:08 So this should be i over here.
+37:11 
+
+37:11 So delta z do zi by do x and this is
+37:16 
+
+37:16 delta x.
+37:18 
+
+37:18 If you have understood this so this is
+37:20 
+
+37:20 what will be happening in the back
+37:21 
+
+37:21 propagation. Okay. Is it clear so far?
+37:25 
+
+37:25 Okay. If this is clear to most of you,
+37:27 
+
+37:27 so what you can expand this over you,
+37:28 
+
+37:28 you can you can form a big equation of
+37:30 
+
+37:30 this sort and then you can again add
+37:31 
+
+37:31 more hidden layers in between and then
+37:33 
+
+37:33 you will calculate how how is one
+37:35 
+
+37:35 content related to other. So that that
+37:36 
+
+37:36 is the what I can say we said heart of
+37:39 
+
+37:39 deep learning is back propagation. Heart
+37:41 
+
+37:41 of back propagation is chain rule and we
+37:42 
+
+37:42 saw how to apply this chain rule.
+37:45 
+
+37:45 Okay. Now you should not forget this. So
+37:47 
+
+37:47 usually people try to memorize chain
+37:48 
+
+37:48 rule. If I give if I let's suppose have
+37:50 
+
+37:50 to compute dy by dx. So you introduce a
+37:53 
+
+37:53 variable dy by dz multiply by dz by dx
+37:56 
+
+37:56 something of this sort. Okay you need
+37:58 
+
+37:58 not to memorize this this way. Okay. So
+37:60 
+
+37:60 rather you should now internalize it.
+38:01 
+
+38:01 You should be saying okay I I can make
+38:03 
+
+38:03 these influence diagrams. So influence
+38:04 
+
+38:04 diagram why are they called influence
+38:05 
+
+38:05 diagrams? Because input somehow uh
+38:08 
+
+38:08 influences some other thing that
+38:09 
+
+38:09 influence some other thing that
+38:10 
+
+38:10 influence some other thing and at the
+38:12 
+
+38:12 end the loss is influenced by something.
+38:13 
+
+38:13 So if I just take one weight okay in
+38:15 
+
+38:15 order to first give intuition of back
+38:17 
+
+38:17 propagation then we'll do the
+38:19 
+
+38:19 mathematics of that. So what is back
+38:20 
+
+38:20 propagation doing? Okay. So you have
+38:22 
+
+38:22 this network. Suppose you have a
+38:23 
+
+38:23 network. So I'll just make network like
+38:25 
+
+38:25 this now. Or I have some somewhere I can
+38:27 
+
+38:27 copy that network.
+38:33 
+
+38:33 Here is my network. So if I take this
+38:39 
+
+38:39 if I copy this network.
+38:47 
+
+38:47 Okay. This is my network. Suppose
+38:51 
+
+38:51 I'm giving some input. Say I'm giving
+38:53 
+
+38:53 some input to this. So this is my x1,
+38:55 
+
+38:55 x2, x3, something of this. So if I'm
+38:57 
+
+38:57 giving a input and this is doing the
+38:59 
+
+38:59 forward pass and you know how the
+38:60 
+
+38:60 forward pass is done now.
+39:03 
+
+39:03 So once the forward pass is done and
+39:04 
+
+39:04 then I'm computing some loss. So when
+39:06 
+
+39:06 I'm computing the loss, let's suppose I
+39:08 
+
+39:08 am up by some error. I'm getting loss
+39:09 
+
+39:09 very high. Okay. So when I'm getting
+39:11 
+
+39:11 this loss is very high. So the only
+39:13 
+
+39:13 thing is I can see okay why what is
+39:14 
+
+39:14 wrong? What is happening inside this
+39:16 
+
+39:16 network? So why am I doing something
+39:17 
+
+39:17 wrong? Where is the scope of
+39:18 
+
+39:18 improvement? So if there is the scope of
+39:20 
+
+39:20 improvement, I can change that. If I can
+39:21 
+
+39:21 change that somehow so that I can reach
+39:24 
+
+39:24 some loss, I can reach some value where
+39:26 
+
+39:26 the losses are less. So let's suppose if
+39:28 
+
+39:28 you see this loss function over here. So
+39:30 
+
+39:30 this will be output. Okay. So output
+39:32 
+
+39:32 will be HL.
+39:34 
+
+39:34 If I go on the hunt, where is the
+39:36 
+
+39:36 problem line? So I can say okay, there
+39:37 
+
+39:37 is something wrong with this HL. But
+39:39 
+
+39:39 this HL in turn is somehow we got it
+39:42 
+
+39:42 from an activation function called that
+39:43 
+
+39:43 f. So we got it some from some output
+39:45 
+
+39:45 activation function and that activation
+39:47 
+
+39:47 I got from let's suppose A okay
+39:50 
+
+39:50 basically the linear fine transformation
+39:53 
+
+39:53 of the last layer okay so from this last
+39:56 
+
+39:56 year because I have to change the values
+39:57 
+
+39:57 if I say okay I have to do some
+39:58 
+
+39:58 adjustment to this HL this HL is not a
+40:01 
+
+40:01 dep is not independent so actually I got
+40:03 
+
+40:03 this value from these functions okay
+40:04 
+
+40:04 when I dissect it more so I said okay so
+40:07 
+
+40:07 I got this HL from function of AL so I
+40:10 
+
+40:10 this AL I got from let's suppose W
+40:12 
+
+40:12 because you So this a L is equal to WL
+40:17 
+
+40:17 HL -1 + B L. So this is how what this is
+40:20 
+
+40:20 equal to if you understood the forward
+40:21 
+
+40:21 pass before this. So I can say this is
+40:23 
+
+40:23 equal to WL H L -1 + B L this is what it
+40:29 
+
+40:29 is equal to this A.
+40:33 
+
+40:33 Now if I ask okay why can I change so I
+40:35 
+
+40:35 can change this way I can change this I
+40:37 
+
+40:37 can make change into this because this
+40:38 
+
+40:38 where I have the control and I can
+40:40 
+
+40:40 change this. Okay, so these two things
+40:42 
+
+40:42 which I am now writing in red this WL
+40:44 
+
+40:44 and BL this is why I can make changes
+40:47 
+
+40:47 okay because I was on a hunt why is why
+40:49 
+
+40:49 is my loss more so I was inspecting the
+40:51 
+
+40:51 network I was saying oh there is
+40:52 
+
+40:52 something wrong with this loss function
+40:54 
+
+40:54 HL the last output so I'm saying can I
+40:56 
+
+40:56 do something with this HL this HL was a
+40:58 
+
+40:58 product of AL applied we applying some
+41:00 
+
+41:00 activation function on this I cannot do
+41:02 
+
+41:02 anything with activation function I can
+41:04 
+
+41:04 rather change it but I can't do much
+41:05 
+
+41:05 with that so I said okay can I dissect
+41:07 
+
+41:07 this AL more yes I can do WL HL minus 1
+41:10 
+
+41:10 plus B So what can I change? What do I
+41:12 
+
+41:12 have control over? I have control over
+41:13 
+
+41:13 this W and biases. Okay, I can control
+41:15 
+
+41:15 this. Okay. So can I change WHL? No,
+41:18 
+
+41:18 it'll again go something of this sort.
+41:19 
+
+41:19 So I'll have to again this HL minus one.
+41:22 
+
+41:22 So this HL minus one will be equal to
+41:24 
+
+41:24 some function call that let's suppose
+41:26 
+
+41:26 this was F say L. So this was this is F
+41:29 
+
+41:29 L minus one some other activation
+41:30 
+
+41:30 function or let's consider this only F.
+41:32 
+
+41:32 So now I have to compute this as L minus
+41:35 
+
+41:35 one. So this was equal to I had some
+41:37 
+
+41:37 activation function on L minus one. So
+41:40 
+
+41:40 can I change a a L minus one? No, I
+41:41 
+
+41:41 cannot. Can I change H L minus one? I
+41:43 
+
+41:43 cannot directly. So what should I do? I
+41:44 
+
+41:44 should again dissect this. I should say
+41:46 
+
+41:46 F. What was this equal? This was equal W
+41:48 
+
+41:48 L minus one H L -2 plus B L minus one.
+41:53 
+
+41:53 Okay. Again I have only control over do
+41:55 
+
+41:55 these two things. I can change this
+41:56 
+
+41:56 weight and I can change these biases. So
+41:58 
+
+41:58 what I'm writing it in the pink is what
+42:00 
+
+42:00 I have control over.
+42:03 
+
+42:03 Okay. Now if you constantly see on
+42:05 
+
+42:05 inspecting the network, you can only
+42:06 
+
+42:06 change two things. You can change these
+42:08 
+
+42:08 weights and you can change the biases.
+42:10 
+
+42:10 You can you can rather change these soft
+42:13 
+
+42:13 activation functions. But if you have to
+42:15 
+
+42:15 make network do something with the loss,
+42:17 
+
+42:17 if you can nudge some values, the only
+42:19 
+
+42:19 values that you can nudge are these
+42:20 
+
+42:20 weights and biases. So this is the core
+42:22 
+
+42:22 thing that you should get out of this
+42:23 
+
+42:23 because there are a lot of functions in
+42:24 
+
+42:24 the picture. So what you can do? You can
+42:25 
+
+42:25 probably change this weights and you can
+42:27 
+
+42:27 change the bias if you keep on going. So
+42:29 
+
+42:29 at the end you will get h0. So h0 using
+42:33 
+
+42:33 your input and the input is fixed. You
+42:34 
+
+42:34 cannot change this. So all in all what
+42:36 
+
+42:36 you are changing? You are changing all
+42:37 
+
+42:37 these. You are changing from WL WL -1
+42:41 
+
+42:41 till W1. You can change this. You can
+42:43 
+
+42:43 change BL BL minus one till let's
+42:46 
+
+42:46 suppose B1. You can change weights and
+42:47 
+
+42:47 biases
+42:49 
+
+42:49 because these are the culprits which are
+42:51 
+
+42:51 which are giving either a good loss or
+42:52 
+
+42:52 the bad loss. So these are weights and
+42:54 
+
+42:54 these are our biases. This is what you
+42:56 
+
+42:56 can change. So on inspect the network we
+42:58 
+
+42:58 cannot do anything with the functions
+42:59 
+
+42:59 because they are just this H is getting
+43:01 
+
+43:01 an output of activation of something.
+43:02 
+
+43:02 Okay, activation of linear
+43:04 
+
+43:04 transformation or a finite
+43:05 
+
+43:05 transformation. So and that fine
+43:07 
+
+43:07 transformation we got it from weights
+43:09 
+
+43:09 and biases. So we can change weights and
+43:10 
+
+43:10 biases. Is this clear? Is this picture
+43:12 
+
+43:12 clear right now?
+43:15 
+
+43:15 So here if I categorize this in two
+43:17 
+
+43:17 things. So I had input as my input is
+43:18 
+
+43:18 fixed. I cannot do anything with input.
+43:20 
+
+43:20 Input is fixed.
+43:23 
+
+43:23 Okay. And then I had something which I
+43:25 
+
+43:25 can call as dependent functions or
+43:26 
+
+43:26 dependent parameters.
+43:29 
+
+43:29 Dependent parameters. So what are these
+43:30 
+
+43:30 dependent parameters? So these are the
+43:32 
+
+43:32 parameters which are just the causation.
+43:35 
+
+43:35 Okay. which just happened. They happened
+43:36 
+
+43:36 because something happened. They
+43:37 
+
+43:37 happened as as something happened before
+43:39 
+
+43:39 them. So what are the dependent
+43:40 
+
+43:40 parameters? These are those activation
+43:42 
+
+43:42 functions. This activation when you
+43:44 
+
+43:44 apply the activation function basically
+43:46 
+
+43:46 the hidden output the hidden outputs
+43:49 
+
+43:49 the hidden outputs comma the
+43:51 
+
+43:51 aggregation.
+43:54 
+
+43:54 So these also can be like tuned. So we
+43:56 
+
+43:56 can see that okay if I if we change
+43:57 
+
+43:57 these we can have but they're dependent
+43:58 
+
+43:58 parameters. They're dependent output. So
+44:01 
+
+44:01 what are the dependent or there are
+44:02 
+
+44:02 something which we call can call as
+44:04 
+
+44:04 independent parameters.
+44:10 
+
+44:10 So what are these independent
+44:11 
+
+44:11 parameters? There are only two types in
+44:13 
+
+44:13 in neural networks. We have these
+44:14 
+
+44:14 weights and biases.
+44:16 
+
+44:16 You have weights, bias. Okay. This
+44:20 
+
+44:20 this will usually change. This is what
+44:22 
+
+44:22 we have control over. So you have
+44:23 
+
+44:23 control over these and this these things
+44:26 
+
+44:26 happen or these things take value as a
+44:28 
+
+44:28 consequence of this. So there is some
+44:29 
+
+44:29 cause and there is some effect. So these
+44:31 
+
+44:31 things show an effect because this
+44:33 
+
+44:33 caused something. Okay. So this is where
+44:35 
+
+44:35 we have the control. So independent
+44:36 
+
+44:36 parameters the parameters that we can
+44:38 
+
+44:38 nudge that we can adjust so as to
+44:40 
+
+44:40 decrease or increase the loss. They
+44:41 
+
+44:41 should be very clear in into your head.
+44:44 
+
+44:44 Why? Because sometimes you might have
+44:45 
+
+44:45 this question that we have weights and
+44:47 
+
+44:47 biases and then we have a lot of
+44:48 
+
+44:48 functions in also. Can't we change these
+44:50 
+
+44:50 things? Okay. There there's a proper
+44:51 
+
+44:51 categorization. What? So independent
+44:53 
+
+44:53 parameters are the ones which we can
+44:55 
+
+44:55 change by hand which you can change by
+44:57 
+
+44:57 back propagation. But these dependent
+44:58 
+
+44:58 parameters or these dependent values
+44:60 
+
+44:60 which we'll get. So they'll be as an
+45:02 
+
+45:02 effect of this cause. So these things
+45:04 
+
+45:04 produce the cause. So these are the
+45:05 
+
+45:05 causes. These are the cause and this is
+45:06 
+
+45:06 the effect that we get. Okay. And we
+45:09 
+
+45:09 usually do not worry about the effect.
+45:11 
+
+45:11 We see what was the cause. Why did it
+45:12 
+
+45:12 come from? So if we can somehow do
+45:14 
+
+45:14 something to these weights and biases.
+45:15 
+
+45:15 Maybe this dependent parameters will
+45:17 
+
+45:17 change their behavior. Okay. Because
+45:18 
+
+45:18 that's why that's why we called them as
+45:20 
+
+45:20 dependent parameters because independent
+45:22 
+
+45:22 parameters were the one which we had
+45:24 
+
+45:24 control over. And these dependent
+45:26 
+
+45:26 parameters were giving us the values
+45:29 
+
+45:29 because of the causation of these init
+45:30 
+
+45:30 parameters. Any questions still here.
+45:33 
+
+45:33 Now if you understood this.
+45:36 
+
+45:36 So second thing that I want you to know
+45:38 
+
+45:38 about this back propagation algorithm
+45:40 
+
+45:40 and from these weights and biases is
+45:41 
+
+45:41 this. So how to intuitively understand
+45:43 
+
+45:43 this? What is happening actually? So
+45:44 
+
+45:44 what is happening is you have a lot of
+45:46 
+
+45:46 parameters. Consider that you have a
+45:47 
+
+45:47 vector of parameters. So you have this
+45:49 
+
+45:49 cost function C or J or L. You have some
+45:51 
+
+45:51 loss function of this L of theta. So
+45:52 
+
+45:52 this is L. It takes value some weights
+45:55 
+
+45:55 w1 w2 something of this sort and then
+45:57 
+
+45:57 bias one bias 2 something of this sort.
+45:59 
+
+45:59 So what will happen it we can consider
+46:01 
+
+46:01 consider this as a vector if you flatten
+46:02 
+
+46:02 this out. So you can consider this as a
+46:04 
+
+46:04 vector. So let's let's consider just one
+46:05 
+
+46:05 neuron. So you have one neuron over
+46:07 
+
+46:07 here.
+46:09 
+
+46:09 Okay.
+46:10 
+
+46:10 And then what you can do is you have a
+46:12 
+
+46:12 lot of output layers. Let's suppose we
+46:14 
+
+46:14 are doing amnest classification or you
+46:16 
+
+46:16 are doing cat dog let's suppose man
+46:18 
+
+46:18 woman some example image classification.
+46:20 
+
+46:20 Suppose you have in output you have four
+46:21 
+
+46:21 neurons. Okay. And you have to adjust
+46:23 
+
+46:23 these weights. If you see this,
+46:27 
+
+46:27 if you see this sort of thing. So you
+46:28 
+
+46:28 have to adjust these you know and these
+46:30 
+
+46:30 things will have certain values. So
+46:31 
+
+46:31 these weights why are they even called
+46:32 
+
+46:32 weights? Because there is strength
+46:34 
+
+46:34 associated with this. So there is some
+46:35 
+
+46:35 strength.
+46:37 
+
+46:37 So suppose the value that we got we gave
+46:39 
+
+46:39 a picture to this whole unit. I'm just
+46:40 
+
+46:40 talking about now one neuron and the
+46:42 
+
+46:42 output layer. There are a lot of things
+46:44 
+
+46:44 happening outside. I just want to
+46:45 
+
+46:45 isolate this thing to make you
+46:46 
+
+46:46 understand what is actually happening.
+46:48 
+
+46:48 So what is happening there is you had
+46:50 
+
+46:50 let's suppose this was cat and this was
+46:51 
+
+46:51 dog this was say man this was woman so
+46:55 
+
+46:55 this this is the classification that you
+46:56 
+
+46:56 are doing it a multi-class
+46:57 
+
+46:57 classification where these are the
+46:58 
+
+46:58 images so now your network predicted
+47:00 
+
+47:00 something of this sort it predicted 0.1
+47:04 
+
+47:04 okay and now this is say 0.4
+47:08 
+
+47:08 and this is 0.2 two.
+47:11 
+
+47:11 But now the actual thing that the image
+47:13 
+
+47:13 actual the image that you gave suppose
+47:14 
+
+47:14 this was the image and this was image of
+47:16 
+
+47:16 a cat. Say this was image of a cat. So
+47:18 
+
+47:18 when this was given to the network and
+47:20 
+
+47:20 at the output we got this. So it the
+47:22 
+
+47:22 vector should have been something of
+47:23 
+
+47:23 this sort 1 0 0 0 one hot encoder one
+47:26 
+
+47:26 hot encoded vector but you got something
+47:28 
+
+47:28 of this sort. So what is this basically
+47:30 
+
+47:30 telling? So you have to do something in
+47:32 
+
+47:32 the network so that this cat goes up.
+47:34 
+
+47:34 This this cat goes up by huge. Okay. And
+47:37 
+
+47:37 this dog comes down and this this comes
+47:40 
+
+47:40 down a lot more than dog and this comes
+47:42 
+
+47:42 down a lot less than dog. A little less
+47:44 
+
+47:44 than dog. So but this cat should go up
+47:46 
+
+47:46 by by a huge by a huge thing. So so that
+47:48 
+
+47:48 you'll have you'll have vector of
+47:50 
+
+47:50 something and you'll have to have these
+47:51 
+
+47:51 weights. You'll have these weights over
+47:52 
+
+47:52 here. You'll have some weight over here.
+47:53 
+
+47:53 You'll have some weight. So this weight
+47:55 
+
+47:55 will have some strength. So this weight
+47:58 
+
+47:58 and this weight let's suppose this
+47:59 
+
+47:59 weight has some strength three. This
+47:60 
+
+48:00 weight has some strength one. This has
+48:02 
+
+48:02 some two, this has four. So that
+48:03 
+
+48:03 basically means whatever thing that you
+48:06 
+
+48:06 do to this and if if you do it to this.
+48:08 
+
+48:08 So there is some relation with this. So
+48:10 
+
+48:10 if you do some changes with this, okay,
+48:12 
+
+48:12 so it will have four times impact of
+48:13 
+
+48:13 this. Why you have just one that's why
+48:16 
+
+48:16 they're called weights. You might be
+48:17 
+
+48:17 having a question why they called
+48:18 
+
+48:18 weights. That's why they called weights
+48:19 
+
+48:19 because they have strain associated with
+48:21 
+
+48:21 them. So whatever change you made to
+48:22 
+
+48:22 this. So let's suppose you have this
+48:23 
+
+48:23 one. You made some slight change in
+48:25 
+
+48:25 this. So if you made the same change in
+48:26 
+
+48:26 this, if you made this slight change
+48:28 
+
+48:28 because this thing has four times impact
+48:30 
+
+48:30 in this roughly speaking okay that's
+48:31 
+
+48:31 what you should get out of this. So if
+48:33 
+
+48:33 this weight was one, this was two, this
+48:34 
+
+48:34 was three and this was four. If you made
+48:36 
+
+48:36 some change in this suppose in this okay
+48:39 
+
+48:39 and you made the same change in this,
+48:41 
+
+48:41 whatever change you made here and
+48:42 
+
+48:42 whatever the same change you made here,
+48:43 
+
+48:43 this thing will have three times the
+48:45 
+
+48:45 impact than this. Okay, that's why
+48:47 
+
+48:47 they're called they're called weights
+48:48 
+
+48:48 and why because there is some strength
+48:50 
+
+48:50 associated with this. So that there is a
+48:52 
+
+48:52 theory which he theory which we also
+48:54 
+
+48:54 discussed briefly in the history. So
+48:55 
+
+48:55 neurons that fire together they wire
+48:57 
+
+48:57 together. Okay, so this is that thing.
+48:59 
+
+48:59 So if you somehow make some change over
+49:01 
+
+49:01 here. So this will give you maybe less
+49:02 
+
+49:02 output and this will give you more
+49:04 
+
+49:04 output because this these things and how
+49:05 
+
+49:05 is this coming probably this might be
+49:07 
+
+49:07 come from some other things. So this
+49:08 
+
+49:08 weight is more important weight than
+49:10 
+
+49:10 this weight. Okay you might have heard
+49:11 
+
+49:11 about dropouts and things like that. So
+49:13 
+
+49:13 you should see back propagation like
+49:14 
+
+49:14 this. What back propagation is basically
+49:16 
+
+49:16 trying to do is it is trying to see okay
+49:18 
+
+49:18 what change will give you more more
+49:20 
+
+49:20 better outputs. What what what change
+49:22 
+
+49:22 matter more? So if I made slight change
+49:24 
+
+49:24 in this so what will happen? So as I
+49:25 
+
+49:25 said if you made some change in here and
+49:27 
+
+49:27 if you made same change in here so this
+49:29 
+
+49:29 neuron seems to be producing the thigh
+49:30 
+
+49:30 effect of that. Okay, but depending on
+49:32 
+
+49:32 should we get it up or should we should
+49:34 
+
+49:34 we bring it down because you know that
+49:35 
+
+49:35 it's a combination of all these things
+49:36 
+
+49:36 up. Did you get the intuition what is
+49:39 
+
+49:39 why are they called weights and what is
+49:41 
+
+49:41 back propagation? What is the goal of
+49:42 
+
+49:42 back propagation basically? So how in
+49:44 
+
+49:44 actuality how it is happening now? So
+49:45 
+
+49:45 we'll see that now. So before going into
+49:46 
+
+49:46 the math I want you people to understand
+49:48 
+
+49:48 the intuition behind that and what is
+49:50 
+
+49:50 happening underneath the hood. So I'm
+49:52 
+
+49:52 saying now you have to change all of
+49:53 
+
+49:53 these things. So what is happening you
+49:54 
+
+49:54 give one example and you are computing
+49:56 
+
+49:56 this vector. You're computing a vector
+49:58 
+
+49:58 which which is telling you okay you
+49:60 
+
+50:00 adjust these weights and biases. So this
+50:01 
+
+50:01 will be a lot of a lot of network will
+50:03 
+
+50:03 be so the huge network will be there. So
+50:04 
+
+50:04 there will be a lot of these weights and
+50:05 
+
+50:05 biases. So if you compute this for one
+50:07 
+
+50:07 image so you have let's suppose data
+50:09 
+
+50:09 point one image one. So you'll be given
+50:10 
+
+50:10 this delta w1 delta w2. So this will be
+50:13 
+
+50:13 telling you how how much to nudge these
+50:15 
+
+50:15 things but you cannot do it for every
+50:16 
+
+50:16 example because you have millions of
+50:17 
+
+50:17 examples. Okay suppose you have 1
+50:19 
+
+50:19 million examples. You have to give one
+50:21 
+
+50:21 one example and then you will compute
+50:22 
+
+50:22 this this w one correspond to one. So
+50:26 
+
+50:26 basically what I mean by this is how
+50:27 
+
+50:27 much to nudge based on this input image
+50:29 
+
+50:29 one. So input image one is telling to
+50:31 
+
+50:31 try okay this cat value should be
+50:33 
+
+50:33 higher. So input let's suppose second
+50:35 
+
+50:35 might be dog. So this might be telling
+50:36 
+
+50:36 you no no no you do parameters like
+50:38 
+
+50:38 this. So what you basically try to do
+50:40 
+
+50:40 you try to average it out try to take an
+50:42 
+
+50:42 average. So you give one input you
+50:44 
+
+50:44 compute these how much nudge. Okay. You
+50:46 
+
+50:46 give second example you again try to
+50:48 
+
+50:48 compute what should be the value how how
+50:50 
+
+50:50 should be this w12. So this is second
+50:52 
+
+50:52 image. Okay. When you give second get
+50:54 
+
+50:54 example. Similarly, when you give third
+50:55 
+
+50:55 example, so it will try tell you to it
+50:58 
+
+50:58 will try to tell you to change this W1
+50:60 
+
+51:00 by this third example because all of
+51:02 
+
+51:02 these examples will try to make their
+51:04 
+
+51:04 network learn themselves. Okay? So if
+51:06 
+
+51:06 I'm having one if we had just one
+51:08 
+
+51:08 output, you can just pass it again again
+51:09 
+
+51:09 again. Okay? And it will tell you okay
+51:11 
+
+51:11 change it will try to give all the
+51:13 
+
+51:13 probability to the cat. It'll it'll try
+51:15 
+
+51:15 to make the neural network sort of over
+51:17 
+
+51:17 represent this cat. So whatever example
+51:19 
+
+51:19 now it give it will say okay this is a
+51:20 
+
+51:20 cat because it will give high
+51:21 
+
+51:21 probability distribution to this cat.
+51:23 
+
+51:23 This was just one example. So why are
+51:24 
+
+51:24 you giving a lot more examples? Because
+51:26 
+
+51:26 it tries to compute all these gradient
+51:28 
+
+51:28 vectors. So these vectors will be called
+51:29 
+
+51:29 as gradient vectors. So they are all
+51:31 
+
+51:31 gradients.
+51:33 
+
+51:33 So one example will give one gradient
+51:34 
+
+51:34 vector. Second example will give second
+51:36 
+
+51:36 gradient vector. Third example will give
+51:37 
+
+51:37 third gradient vector. So what do you do
+51:39 
+
+51:39 after that? You take average of all of
+51:40 
+
+51:40 these. So you'll take this all these
+51:42 
+
+51:42 gradient vectors. Suppose this is wi and
+51:44 
+
+51:44 you sum them and you divide it by total
+51:47 
+
+51:47 examples. So how many examples did you
+51:50 
+
+51:50 take? So now if you see we have million
+51:52 
+
+51:52 examples. So now we have to perform
+51:54 
+
+51:54 forward pass 1 million times suppose and
+51:56 
+
+51:56 then for each of the example we'll get
+51:57 
+
+51:57 one gradient vector that will tell you
+51:59 
+
+51:59 how to change what change should be made
+52:00 
+
+52:00 the network. So a cat example is trying
+52:03 
+
+52:03 to uh tell you okay based on this image
+52:05 
+
+52:05 so you should get this distribution up
+52:07 
+
+52:07 you should get the this neuron so you
+52:08 
+
+52:08 should give it more value. Similarly
+52:10 
+
+52:10 when second value is given to the dog.
+52:11 
+
+52:11 So each of the example is telling to try
+52:14 
+
+52:14 trying to tell the neural network that
+52:16 
+
+52:16 you adjust these values according to
+52:18 
+
+52:18 this. But what do we do then? So we
+52:19 
+
+52:19 average it out. We not just listen to
+52:21 
+
+52:21 one example. We average it out. But the
+52:23 
+
+52:23 realistic problem is if you have 1
+52:24 
+
+52:24 million data points.
+52:26 
+
+52:26 So 1 million data points if you have
+52:28 
+
+52:28 then you have to perform forward pass
+52:29 
+
+52:29 and then you have to compute backward
+52:31 
+
+52:31 pass for each million point. It'll be a
+52:33 
+
+52:33 lot more computationally expensive.
+52:34 
+
+52:34 That's why we go to what's called as
+52:36 
+
+52:36 batching. We do mini batchs.
+52:38 
+
+52:38 So why do we take mini bags? So we'll
+52:40 
+
+52:40 shuffle the data. We have 1 million
+52:42 
+
+52:42 points. So you'll shuffle it.
+52:45 
+
+52:45 So once you shuffle it.
+52:47 
+
+52:47 So you'll let's suppose after shuffling
+52:48 
+
+52:48 you will take 32 examples randomly out
+52:50 
+
+52:50 of that. So once you take those 32
+52:52 
+
+52:52 example you'll just perform forward pass
+52:54 
+
+52:54 on those 32 examples. Now after that
+52:56 
+
+52:56 what will happen because of that thing
+52:57 
+
+52:57 so you will get some gradient and you'll
+52:59 
+
+52:59 average out on that and you are uh you
+53:01 
+
+53:01 you'll be getting some direction so as
+53:03 
+
+53:03 to nudge the parameters in but that
+53:05 
+
+53:05 won't be the exact that those are the
+53:07 
+
+53:07 parameters where you'll exactly get the
+53:09 
+
+53:09 better value for this loss function. But
+53:11 
+
+53:11 still because you took these randomly so
+53:13 
+
+53:13 but along the way you are thinking that
+53:15 
+
+53:15 if I just take these three examples so
+53:16 
+
+53:16 I'll get some direction which will be a
+53:18 
+
+53:18 little bit right direction. So it is
+53:20 
+
+53:20 basically trying to navigate that terine
+53:22 
+
+53:22 basically trying navigate that manifold.
+53:25 
+
+53:25 So if you are here it'll give you some
+53:26 
+
+53:26 wrong direction but that wrong direction
+53:27 
+
+53:27 won't be much. So it'll be like a
+53:29 
+
+53:29 drunkard person navigating the that
+53:31 
+
+53:31 terine. So if you understood this
+53:33 
+
+53:33 example why why won't why don't we do
+53:34 
+
+53:34 with one example and then update it one
+53:36 
+
+53:36 example then update it. So it'll be
+53:38 
+
+53:38 computationally very expensive if you
+53:39 
+
+53:39 just give it perform back propagation
+53:41 
+
+53:41 update one example perform back
+53:42 
+
+53:42 propagation update. So it'll be
+53:43 
+
+53:43 completely expensive. So in real uh one
+53:45 
+
+53:45 problem is or in real neural networks
+53:47 
+
+53:47 when you code it up. So what do we do?
+53:48 
+
+53:48 So you give some batch of this. So why
+53:51 
+
+53:51 you do this? So you might have heard
+53:52 
+
+53:52 about SGD
+53:55 
+
+53:55 such a costic gradient mini grad
+53:57 
+
+53:57 batching algorithm. So what so how is it
+53:59 
+
+53:59 happening? Because you give it probably
+54:01 
+
+54:01 you give it a real shuffle. So you have
+54:03 
+
+54:03 1 million points you shuffle the whole
+54:04 
+
+54:04 data. So after that you took randomly 32
+54:07 
+
+54:07 points that's why this stoasticity came
+54:09 
+
+54:09 to the picture the probabilistic
+54:10 
+
+54:10 algorithm came into the picture and then
+54:11 
+
+54:11 you applied gradient descent on this you
+54:13 
+
+54:13 accumulate those gradients and average
+54:14 
+
+54:14 it out and after that you applied that
+54:16 
+
+54:16 to you applied those change to network
+54:17 
+
+54:17 otherwise you would have applied by each
+54:19 
+
+54:19 example and that is not computationally
+54:20 
+
+54:20 feasible or it might be but it's not
+54:22 
+
+54:22 practically done why is it not done
+54:24 
+
+54:24 because you don't have that much
+54:25 
+
+54:25 computation power to perform it on first
+54:26 
+
+54:26 point and second point and third point
+54:28 
+
+54:28 that's why you use rather use batch of
+54:30 
+
+54:30 this sort is it clear this is what back
+54:32 
+
+54:32 propagation is Okay.
+54:35 
+
+54:35 So all in all now what is back
+54:36 
+
+54:36 propagation trying to do if you see
+54:37 
+
+54:37 this. So back propagation is trying to
+54:40 
+
+54:40 give one data point. It is performing
+54:41 
+
+54:41 forward path and one data point is
+54:43 
+
+54:43 telling the network how to adjust these
+54:45 
+
+54:45 weights and biases because corresponding
+54:46 
+
+54:46 to each point you'll get a gradient
+54:48 
+
+54:48 vector. You'll get a vector of these
+54:49 
+
+54:49 gradients which we call as gradients. We
+54:52 
+
+54:52 get a gradient of rather than you'll get
+54:54 
+
+54:54 vector of these derivatives which you
+54:55 
+
+54:55 call gradient. So you'll get this
+54:57 
+
+54:57 gradient and after that you will say
+54:58 
+
+54:58 okay I made these adjustment in the
+54:60 
+
+54:60 network. So you don't do it immediately
+55:01 
+
+55:01 because you might have 1 million points.
+55:03 
+
+55:03 So what you do is you do it for one
+55:05 
+
+55:05 point. So that one point network okay
+55:07 
+
+55:07 adjust in this direction. Okay. And then
+55:08 
+
+55:08 you take it second point first point
+55:10 
+
+55:10 second point third point fourth point.
+55:11 
+
+55:11 You keep on calculating these gradients
+55:13 
+
+55:13 and after that what do you average it
+55:15 
+
+55:15 out otherwise there's a problem. If
+55:18 
+
+55:18 let's suppose one point told you okay do
+55:20 
+
+55:20 this and you made those changes and then
+55:21 
+
+55:21 you did a second time that second time
+55:23 
+
+55:23 can undo that change can undone those
+55:24 
+
+55:24 changes. So we want to do what is what
+55:26 
+
+55:26 should we do at average? So what should
+55:28 
+
+55:28 what should be done at average?
+55:31 
+
+55:31 This is what companies do. Let's suppose
+55:32 
+
+55:32 let's suppose if you're going to a
+55:33 
+
+55:33 company how much CTC are we giving at
+55:35 
+
+55:35 average to the candidate they won't just
+55:37 
+
+55:37 check okay one candidate we're giving 50
+55:38 
+
+55:38 lakhs second candidate 30 lakhs then
+55:40 
+
+55:40 third candidate comes give him 30 lakhs
+55:42 
+
+55:42 or no so on each they will they'll
+55:44 
+
+55:44 compute at average because we believe in
+55:45 
+
+55:45 probability we believe in large numbers
+55:47 
+
+55:47 that it will somehow stabilize after a
+55:49 
+
+55:49 while. Okay, that's what we do. Give one
+55:51 
+
+55:51 point, compute its gradient, second
+55:53 
+
+55:53 point, compute its gradient, third
+55:54 
+
+55:54 point, compute it gradient and then
+55:55 
+
+55:55 average out all the gradients and make
+55:57 
+
+55:57 the change in the network. But it's not
+55:59 
+
+55:59 feasible to do it on 1 million points
+56:00 
+
+56:00 altogether. So what do we do? We take
+56:02 
+
+56:02 mini batch in this. So we take mini
+56:04 
+
+56:04 batch. So many batch of 32 points, 128
+56:08 
+
+56:08 points. But it's it's very good if we
+56:10 
+
+56:10 can do it one 1 million points
+56:11 
+
+56:11 altogether because that will that will
+56:12 
+
+56:12 be giving you a better average. Okay?
+56:14 
+
+56:14 But rather than that you just shuffle
+56:16 
+
+56:16 the data. You shuffle data and you then
+56:18 
+
+56:18 randomly sample let's suppose some mini
+56:20 
+
+56:20 batch of size 32 64 128 something of
+56:23 
+
+56:23 this sort. Okay. After this based on
+56:25 
+
+56:25 these 128 points based on the 64 points
+56:28 
+
+56:28 so you compute this gradient you compute
+56:30 
+
+56:30 these derivatives and you compute a
+56:31 
+
+56:31 vector of these derivatives that's
+56:32 
+
+56:32 called gradient and then you do do those
+56:34 
+
+56:34 changes and then you apply gradient
+56:36 
+
+56:36 descent to this. That's why this is
+56:37 
+
+56:37 called as SGD stcastic gradient descent
+56:41 
+
+56:41 algorithm because you this is a
+56:42 
+
+56:42 probabilistic thing. You shuffle it and
+56:43 
+
+56:43 then you sample it again randomly out of
+56:45 
+
+56:45 that thing. And we just did a small
+56:47 
+
+56:47 calculation that that there are hiccups
+56:50 
+
+56:50 possible but the hiccup those
+56:51 
+
+56:51 probability of happening those hiccups
+56:53 
+
+56:53 is very less. This is what back
+56:54 
+
+56:54 propagation does in nutshell. Okay. And
+56:56 
+
+56:56 then if you got this intuition right
+56:58 
+
+56:58 we'll have to see the mathematics behind
+56:59 
+
+56:59 it. So can I assume that you people got
+57:01 
+
+57:01 the intuition right?
+57:06 
+
+57:06 So this lecture will start with just a
+57:08 
+
+57:08 revision of these notations. Okay. So if
+57:09 
+
+57:09 you see all of this, so this is my input
+57:11 
+
+57:11 layer. So where k is equal 0 and layer
+57:13 
+
+57:13 number is zero. And this is denoted by h
+57:15 
+
+57:15 of zero that is this x. If you can see
+57:17 
+
+57:17 over here, if I can zoom it a bit and
+57:18 
+
+57:18 you can see it over here. So this is my
+57:19 
+
+57:19 input layer that you can see. I have
+57:21 
+
+57:21 made a neural network over here. And
+57:23 
+
+57:23 these are two hidden layers. Okay. And
+57:24 
+
+57:24 each of this is denoted by and you know
+57:26 
+
+57:26 that here we have let's suppose if you
+57:29 
+
+57:29 see this I can write this is a1.
+57:33 
+
+57:33 Similarly I can have a2 a3 I will write
+57:36 
+
+57:36 a1 like this a in supererscript so that
+57:38 
+
+57:38 it corresponds to layer. So this will be
+57:40 
+
+57:40 a11 because we have pre-activation this
+57:42 
+
+57:42 a11 is a pre-activation after this you
+57:44 
+
+57:44 apply some activation function
+57:46 
+
+57:46 coordinate you get this h11. And
+57:48 
+
+57:48 similarly uh for this let's suppose
+57:50 
+
+57:50 after this this will be a2 and this will
+57:52 
+
+57:52 be h2. So this is your pre-activation
+57:54 
+
+57:54 and this is your activation. Okay. And
+57:56 
+
+57:56 all of these things are written over
+57:57 
+
+57:57 here. So do pause the video to see it.
+57:59 
+
+57:59 So you have weight matrix and you have
+58:01 
+
+58:01 this bias and each of this weight if I
+58:03 
+
+58:03 have to write this weight this will be
+58:05 
+
+58:05 w111.
+58:06 
+
+58:06 So it belongs to weight matrix 1 and it
+58:09 
+
+58:09 connects for first uh neuron first input
+58:12 
+
+58:12 with the first neuron or the first layer
+58:14 
+
+58:14 first hidden layer. So if I have to
+58:15 
+
+58:15 write this let's suppose what will be
+58:16 
+
+58:16 the weight of this will be w 21. So
+58:19 
+
+58:19 first input now gets connected to second
+58:21 
+
+58:21 neuron. So this is written as w21 the
+58:23 
+
+58:23 way I wrote it here. Okay. So I have
+58:25 
+
+58:25 written all the notations over here. So
+58:27 
+
+58:27 if you see this the key notations. So
+58:29 
+
+58:29 you have NK is the number of neurons in
+58:31 
+
+58:31 the layer K and this F is activation. AK
+58:33 
+
+58:33 is pre-activation values. HK is post
+58:35 
+
+58:35 activation. Okay. I hope that this is
+58:36 
+
+58:36 clear. So now this thing I can remove it
+58:39 
+
+58:39 from here and I can go back to my normal
+58:41 
+
+58:41 screen.
+58:44 
+
+58:44 Okay. Now if you see this so we have
+58:45 
+
+58:45 learned this. So we will have to apply
+58:47 
+
+58:47 back propagation on this. Previously I
+58:48 
+
+58:48 told you the essence of back
+58:49 
+
+58:49 propagation. Back propagation is an
+58:52 
+
+58:52 algorithm by the help of which you train
+58:53 
+
+58:53 a network. So I also told you what's the
+58:55 
+
+58:55 meaning of training. You have these
+58:56 
+
+58:56 parameters theta in which you have these
+58:58 
+
+58:58 weights and biases. You have weights and
+58:60 
+
+58:60 biases. So and you have to somehow
+59:04 
+
+59:04 you have these parameters theta
+59:07 
+
+59:07 in which you have these weights and
+59:08 
+
+59:08 biases which you try to adjust based on
+59:11 
+
+59:11 that you you try to actually you are
+59:13 
+
+59:13 navigating
+59:15 
+
+59:15 navigating an error surface an error
+59:17 
+
+59:17 surface
+59:19 
+
+59:19 and you want to reach that point where
+59:21 
+
+59:21 the value is minimum. So how to
+59:22 
+
+59:22 navigate? You saw that we have to
+59:24 
+
+59:24 navigate by using gradient descent. And
+59:25 
+
+59:25 now you should get a direction why to
+59:27 
+
+59:27 take steps and you saw that we have to
+59:29 
+
+59:29 compute gradients. Now we'll see how to
+59:31 
+
+59:31 compute those gradients and how to do
+59:32 
+
+59:32 this with with a real network. Okay. So
+59:35 
+
+59:35 you'll have your loss function. Okay.
+59:36 
+
+59:36 You have some loss function of L which
+59:38 
+
+59:38 takes some parameters. Let's suppose the
+59:40 
+
+59:40 parameters are these W's W1 W2 bias one
+59:44 
+
+59:44 bias 2 bias one bias 2 and so on. And it
+59:48 
+
+59:48 gives you certain value. Call that cost.
+59:49 
+
+59:49 Let's suppose it gives you some cost or
+59:51 
+
+59:51 some loss. So we call this as loss
+59:52 
+
+59:52 function. So based on this loss we have
+59:55 
+
+59:55 to optimize the parameters. So first
+59:57 
+
+59:57 thing you should know all these things
+59:58 
+
+59:58 about you should know all of these
+59:60 
+
+59:60 things in order to understand the back
+60:01 
+
+60:01 propagation algorithm. Okay, you have to
+60:03 
+
+60:03 somehow know all of these things. So I I
+60:04 
+
+60:04 hope that at least these things are
+60:05 
+
+60:05 clear for you. So in the first thing
+60:07 
+
+60:07 what do you do is we have also rehearsed
+60:09 
+
+60:09 a bit about calculus. So you saw that we
+60:12 
+
+60:12 saw how actually one thing is impacting
+60:15 
+
+60:15 other things. So we saw somewhere if you
+60:16 
+
+60:16 have x and if it has some dependency or
+60:19 
+
+60:19 this y has dependency or x. So how are
+60:21 
+
+60:21 these things depending if you want to
+60:22 
+
+60:22 optimize this what can you do you say
+60:24 
+
+60:24 that these things are connected by say
+60:25 
+
+60:25 about do y by do x ais how you calculate
+60:27 
+
+60:27 them and then we saw if we have x y z
+60:29 
+
+60:29 and z and we also saw that I think it's
+60:31 
+
+60:31 all covered in the previous lecture
+60:33 
+
+60:33 while we saw all of these things and now
+60:34 
+
+60:34 we'll today we'll see back propagation
+60:36 
+
+60:36 so in order to introduce back
+60:37 
+
+60:37 propagation now the mathematics behind
+60:39 
+
+60:39 the back propagation give me a second so
+60:41 
+
+60:41 we're discussing with this so in order
+60:42 
+
+60:42 to understand the back propagation okay
+60:44 
+
+60:44 you should know all these stuff you have
+60:45 
+
+60:45 to optimize loss somehow okay now before
+60:48 
+
+60:48 going to these things I we'll start with
+60:50 
+
+60:50 very basic stuff. So let's suppose you
+60:53 
+
+60:53 have an expression of this sort. You
+60:54 
+
+60:54 have say you have this L is equal A + B
+60:58 
+
+60:58 * C. Okay. So this is what we actually
+61:00 
+
+61:00 do in the neural net. If you see a
+61:01 
+
+61:01 neural network that is nothing but uh
+61:04 
+
+61:04 function of function there's a
+61:05 
+
+61:05 composition of function over here. So
+61:06 
+
+61:06 here let's consider these two these
+61:08 
+
+61:08 three things. So you have some parameter
+61:10 
+
+61:10 A, you have some parameter B and you
+61:11 
+
+61:11 have some parameter C and they are let's
+61:14 
+
+61:14 add we're adding a plus B and then give
+61:15 
+
+61:15 multiplying the C and then we're
+61:16 
+
+61:16 computing this loss. Okay. Now let's
+61:18 
+
+61:18 suppose suppose you can adjust these you
+61:20 
+
+61:20 can adjust these things in order to get
+61:22 
+
+61:22 the least value of this. So you can see
+61:23 
+
+61:23 that this is the function. So L takes
+61:25 
+
+61:25 values of a comma b comma c and they're
+61:28 
+
+61:28 relating related with this a plus b
+61:31 
+
+61:31 multiplied by c something of this sort.
+61:33 
+
+61:33 Okay and somewhere it'll take the least
+61:35 
+
+61:35 value. Okay here you can easily say you
+61:36 
+
+61:36 can give some negative positive values
+61:38 
+
+61:38 here and there and you can come up with
+61:39 
+
+61:39 the least value somewhere around there.
+61:41 
+
+61:41 So now if you see this I can make a
+61:42 
+
+61:42 graph out of this. I can say this you
+61:44 
+
+61:44 have this a and then you add it. You
+61:46 
+
+61:46 have a node A suppose okay and then you
+61:51 
+
+61:51 perform certain operation on this
+61:54 
+
+61:54 and then you have this node B these are
+61:56 
+
+61:56 values and it produces let's suppose
+61:58 
+
+61:58 something which I can call let's suppose
+62:01 
+
+62:01 E let's suppose some X or AB I can call
+62:03 
+
+62:03 it node AB okay and then this AB it gets
+62:08 
+
+62:08 n the node okay and we multiply these
+62:12 
+
+62:12 things together and you get let's
+62:13 
+
+62:13 suppose C
+62:16 
+
+62:16 and you get output as a * a a b and c i
+62:21 
+
+62:21 write this okay let's call this l the l
+62:24 
+
+62:24 that we have over here the thing that I
+62:27 
+
+62:27 made over here is called as a
+62:28 
+
+62:28 computational graph
+62:30 
+
+62:30 this is called as a computational graph
+62:34 
+
+62:34 okay this is what we'll be implementing
+62:35 
+
+62:35 once we implement these things in our uh
+62:38 
+
+62:38 library that we want to make the library
+62:40 
+
+62:40 for the neural networks so we'll we'll
+62:42 
+
+62:42 basically make these computation graphs
+62:43 
+
+62:43 so we have some nodes A and B Okay. And
+62:46 
+
+62:46 we have a node let's say plus node. So
+62:47 
+
+62:47 we add these things together and then
+62:49 
+
+62:49 they produce AB. Okay. And then we
+62:51 
+
+62:51 multiply it with C and it produce some
+62:52 
+
+62:52 loss. Now we'll have to see there is
+62:54 
+
+62:54 some value for this loss. Now I will see
+62:56 
+
+62:56 if I tweak let's suppose this value C or
+62:59 
+
+62:59 if I tweak this node. If I tweak nodes A
+63:01 
+
+63:01 how can I tweak nodes A? I have to tweak
+63:02 
+
+63:02 node A or B. So consider in setting of
+63:04 
+
+63:04 neural network. So you have loss
+63:06 
+
+63:06 function that is dependent on some
+63:07 
+
+63:07 activation function. That activation
+63:09 
+
+63:09 function is dependent on some
+63:10 
+
+63:10 aggregation. That aggregation is
+63:11 
+
+63:11 dependent on weights and biases. That's
+63:13 
+
+63:13 what is happening over here. So if you
+63:14 
+
+63:14 have to compute let's suppose how
+63:16 
+
+63:16 nudging this value will impact this.
+63:18 
+
+63:18 Okay. So what you'll do is you'll
+63:19 
+
+63:19 compute derivative of this. You'll see
+63:21 
+
+63:21 dl by da that's what you have to compute
+63:24 
+
+63:24 the partial because you know the l is
+63:26 
+
+63:26 you have an expression of this sort but
+63:28 
+
+63:28 in n it'll be huge expression. Now you
+63:30 
+
+63:30 have to compute this dl by da. So if you
+63:32 
+
+63:32 see this previously from the from the
+63:34 
+
+63:34 refresher of calculus you know that how
+63:36 
+
+63:36 to compute this. So this is being impact
+63:37 
+
+63:37 this l is being impacted by a from here.
+63:40 
+
+63:40 Here it goes till here it goes from
+63:42 
+
+63:42 here. So this is how it's it's being
+63:43 
+
+63:43 impacted. So you will now see okay this
+63:45 
+
+63:45 L is being impacted by this AB. Okay. So
+63:48 
+
+63:48 how is how is it impacting it? So we can
+63:50 
+
+63:50 say DL by DA DAB. So this is that node
+63:54 
+
+63:54 this is getting impacted by this. But
+63:56 
+
+63:56 this AB in turn is getting impacted by
+63:58 
+
+63:58 A. If you see this if you follow this by
+64:01 
+
+64:01 chain rule you'll write it like this.
+64:02 
+
+64:02 How is this AB being impacted by A.
+64:05 
+
+64:05 Okay. Then I can compute how is loss
+64:07 
+
+64:07 function or L being how is it it being
+64:09 
+
+64:09 affected by A. And similarly you can say
+64:11 
+
+64:11 how is this how is this B impacting this
+64:13 
+
+64:13 L you can say
+64:16 
+
+64:16 do L by D b so basically if I nudge this
+64:19 
+
+64:19 value B if I do slight change in this
+64:21 
+
+64:21 how what is the effect that L is having
+64:23 
+
+64:23 okay that that's what we want
+64:28 
+
+64:28 so I was talking about this so if I make
+64:30 
+
+64:30 slight change in B if I make some small
+64:31 
+
+64:31 change in what will be the impact that
+64:33 
+
+64:33 we'll see in L because we want to
+64:35 
+
+64:35 somehow get this loss function down if
+64:36 
+
+64:36 consider this L as your loss function
+64:38 
+
+64:38 you want to get it down so you can write
+64:39 
+
+64:39 it in calculus like this take partial
+64:41 
+
+64:41 derivative of this loss function with
+64:43 
+
+64:43 respect to B. So how to do that? You
+64:45 
+
+64:45 know that this B actually I cannot
+64:47 
+
+64:47 compute directly because it comes
+64:48 
+
+64:48 through accommodation graph. It comes
+64:50 
+
+64:50 through this because this L is being
+64:51 
+
+64:51 impacted by AB. Okay. And this AB in
+64:54 
+
+64:54 turn is impacted by B. Again we can use
+64:56 
+
+64:56 chain rule of calculus because we have
+64:58 
+
+64:58 seen that. So how to write that? So you
+64:59 
+
+64:59 can say this is equal to do L by D A.
+65:03 
+
+65:03 Okay. How is this L impacted by AB? But
+65:06 
+
+65:06 but in turn this AB is impacted by this
+65:08 
+
+65:08 AB is impacted by B. So how to do that?
+65:10 
+
+65:10 Then you multiply this by do a b divide
+65:12 
+
+65:12 by do b
+65:16 
+
+65:16 again for this parameter c. Let's
+65:17 
+
+65:17 suppose we have all these parameters. We
+65:19 
+
+65:19 can nudge these values a b and c. So how
+65:21 
+
+65:21 to compute? Now you can see this c has
+65:23 
+
+65:23 direct it can if you nudge this c it has
+65:26 
+
+65:26 direct impact on this l. So I can write
+65:28 
+
+65:28 do l by do c. Okay. What is if I make
+65:30 
+
+65:30 slight change in c what will be the
+65:32 
+
+65:32 impact on l. So I can say this do l by
+65:34 
+
+65:34 do c is like you can directly comput you
+65:37 
+
+65:37 you don't need to even apply chain rule.
+65:38 
+
+65:38 Okay. Okay, for this you can directly
+65:40 
+
+65:40 compute it this one. So now I got these
+65:43 
+
+65:43 three things I got 1 2 and three things.
+65:44 
+
+65:44 So if I collect all of these three
+65:46 
+
+65:46 things I call that gradient. So I get
+65:47 
+
+65:47 I'd get do l by do a d l by d b do d do
+65:53 
+
+65:53 l by do c. So I computed the derivatives
+65:57 
+
+65:57 and I collected them together. So this
+65:58 
+
+65:58 is what I call as gradient. And then you
+66:00 
+
+66:00 know what to do this because gradient
+66:02 
+
+66:02 gives you steepest ascent. It gives you
+66:04 
+
+66:04 like the where where you can if you go
+66:06 
+
+66:06 in a direction of gradient it will give
+66:07 
+
+66:07 you the direction where the function
+66:09 
+
+66:09 increases but you have to decrease the
+66:10 
+
+66:10 function you have to get the loss down.
+66:12 
+
+66:12 So that's why you go reverse then you
+66:13 
+
+66:13 apply gradient you apply gradient
+66:14 
+
+66:14 descent on this. So you apply gradient
+66:16 
+
+66:16 descent after computing these gradient
+66:19 
+
+66:19 after computing these derivative
+66:21 
+
+66:21 vectors. So you have a vector of
+66:23 
+
+66:23 derivatives which called as gradient. So
+66:24 
+
+66:24 then you apply gradient descent on this.
+66:26 
+
+66:26 Any questions still here? Now that you
+66:28 
+
+66:28 understood this after this we apply
+66:30 
+
+66:30 gradient descent and now we'll see how
+66:31 
+
+66:31 to perform this back propagation. You
+66:33 
+
+66:33 can you saw that we can perform it
+66:35 
+
+66:35 easily over here. If a had certain
+66:36 
+
+66:36 values, you'll get some gradient and
+66:37 
+
+66:37 you'll have you'll just remove these.
+66:39 
+
+66:39 You'll say a minus let's suppose if you
+66:41 
+
+66:41 have to update a so you'll have a new is
+66:44 
+
+66:44 equal a old let's suppose you had some
+66:46 
+
+66:46 old minus some ea some learning rate
+66:48 
+
+66:48 multiplied by you have created this. So
+66:50 
+
+66:50 you'll say dol by do a this is what this
+66:53 
+
+66:53 is how you apply gradient descent. Now
+66:54 
+
+66:54 we'll have to do the same thing over
+66:56 
+
+66:56 these neural networks. Okay consider
+66:58 
+
+66:58 this. Yeah, we'll take a small example
+67:01 
+
+67:01 and then we'll slowly go towards the
+67:02 
+
+67:02 whole neural network towards the back
+67:03 
+
+67:03 propagation and we'll understand the
+67:05 
+
+67:05 whole mathematics behind that. Suppose
+67:06 
+
+67:06 you have this X1. So X1 is the input
+67:08 
+
+67:08 that you have and then you have this
+67:10 
+
+67:10 A11. You have this pre uh activation or
+67:14 
+
+67:14 you can call it linear transformation
+67:16 
+
+67:16 transformation. You take X and you have
+67:18 
+
+67:18 this A11. After this you apply
+67:20 
+
+67:20 activation, you get H11. Okay. After
+67:22 
+
+67:22 this you'll again apply suppose it's a
+67:24 
+
+67:24 two-layer neural network. So this is X1
+67:26 
+
+67:26 A11 H11. then you'll get a21 then this
+67:29 
+
+67:29 will be again h21 you'll give it some
+67:32 
+
+67:32 activation and then at the end till you
+67:34 
+
+67:34 can keep on going and you'll say I have
+67:37 
+
+67:37 a huge network of this sort
+67:39 
+
+67:39 and let me bring it over here
+67:45 
+
+67:45 okay H21 after that you can have let's
+67:47 
+
+67:47 suppose some layers and you'll have some
+67:48 
+
+67:48 al1 okay layer you'll have
+67:51 
+
+67:51 pre-activation at earth layer and after
+67:53 
+
+67:53 that you'll have hl and finally you'll
+67:55 
+
+67:55 convert that into output so this will be
+67:57 
+
+67:57 converted into output. let's suppose
+67:59 
+
+67:59 some prediction y or you can directly
+67:60 
+
+68:00 use this as prediction and then after
+68:02 
+
+68:02 you have this so these the this thing
+68:04 
+
+68:04 along with the original y okay and there
+68:07 
+
+68:07 will be some divergence function which
+68:08 
+
+68:08 will give us loss this will be giving us
+68:10 
+
+68:10 the loss function if I just talk about
+68:12 
+
+68:12 and network I'm just taking one neuron
+68:14 
+
+68:14 out of that so I'm taking a single
+68:15 
+
+68:15 neuron now you see this is a
+68:16 
+
+68:16 computational graph the graph that I
+68:18 
+
+68:18 just made this x1 is our input feature
+68:20 
+
+68:20 then this a11 is linear combination
+68:22 
+
+68:22 weighted sum in the first layer this is
+68:24 
+
+68:24 the activation in the first layer first
+68:25 
+
+68:25 hidden layer this a21 is the linear
+68:27 
+
+68:27 combination second layer activation in
+68:29 
+
+68:29 the second layer. So this is uh linear
+68:32 
+
+68:32 combination in the Lith layer and this
+68:33 
+
+68:33 is the output output layer or HL we can
+68:36 
+
+68:36 call this as activation in the L layer
+68:39 
+
+68:39 and then you get out of this you will
+68:40 
+
+68:40 apply some activation again you'll get
+68:43 
+
+68:43 some output because of that so this
+68:45 
+
+68:45 output and the ground truth you'll have
+68:46 
+
+68:46 you apply divergence on that the loss
+68:48 
+
+68:48 function basically you'll get loss out
+68:49 
+
+68:49 of this and now suppose you have you
+68:51 
+
+68:51 have to perform computation on this so
+68:53 
+
+68:53 what you'll do you'll initially do
+68:54 
+
+68:54 forward pass
+68:56 
+
+68:56 so you'll do forward pass you know what
+68:58 
+
+68:58 forward pass
+68:60 
+
+68:60 Forward pass basically is you compute
+69:01 
+
+69:01 all of this stuff. You compute this a11
+69:03 
+
+69:03 h11 because you know what a11 is equal.
+69:05 
+
+69:05 If I if you have to compute that a11 is
+69:08 
+
+69:08 equal to w11. You take the first uh
+69:12 
+
+69:12 weight and that you take this weight if
+69:14 
+
+69:14 if I show you the network again the
+69:15 
+
+69:15 network that we had. So this weight over
+69:17 
+
+69:17 here this is not pretty visible but I
+69:19 
+
+69:19 think you can figure it out. So this
+69:21 
+
+69:21 weight w11 if you take this and you are
+69:23 
+
+69:23 having this x1. So I'm I'm talking about
+69:25 
+
+69:25 this layer. So you have you have this
+69:27 
+
+69:27 this line this will give you a11 then
+69:29 
+
+69:29 you have this h11 so you'll go here
+69:32 
+
+69:32 you'll go here so this is what I made
+69:33 
+
+69:33 okay till earth layer so I'm speaking
+69:35 
+
+69:35 about this one unit over here everybody
+69:38 
+
+69:38 should be clear on this point so I'm
+69:39 
+
+69:39 speaking about this path and going from
+69:41 
+
+69:41 this path to this path
+69:44 
+
+69:44 okay I hope this is clear for everybody
+69:45 
+
+69:45 okay let me move them
+69:48 
+
+69:48 now you have this x1 it goes through a11
+69:50 
+
+69:50 h11 okay so this is these are the values
+69:52 
+
+69:52 so this this is the first layer
+69:53 
+
+69:53 activation a11 and this
+69:55 
+
+69:55 And this is first layer
+69:57 
+
+69:57 activation. This is first layer fine
+69:60 
+
+69:60 transformation. Okay. Or linear
+70:02 
+
+70:02 transformation. So now forward pass. How
+70:04 
+
+70:04 will I calculate that? This a11 is equal
+70:06 
+
+70:06 to w11 from the first layer multiplied
+70:09 
+
+70:09 with the x1. Okay. This is how you can
+70:12 
+
+70:12 get it if if you have take the linear
+70:13 
+
+70:13 combination and then you can also speak
+70:15 
+
+70:15 about bias plus let's suppose you have
+70:16 
+
+70:16 this v11. So if I also connect these
+70:19 
+
+70:19 bias over here. So how can I connect
+70:21 
+
+70:21 bias? So usually bias is so a node is
+70:24 
+
+70:24 there which is given value one okay a
+70:26 
+
+70:26 node will be there which will be given
+70:28 
+
+70:28 value one this will be a smaller node
+70:29 
+
+70:29 let's suppose this will be constant one
+70:32 
+
+70:32 and all its connections will be given
+70:33 
+
+70:33 here here here so this is how bias is
+70:36 
+
+70:36 defined in the networks similarly for
+70:38 
+
+70:38 this network again one will be given
+70:41 
+
+70:41 suppose here one will be given here and
+70:43 
+
+70:43 then all of its connections will be
+70:44 
+
+70:44 connected like this so this will act as
+70:46 
+
+70:46 bias because you know you know those
+70:48 
+
+70:48 matrix multiplications that we have seen
+70:50 
+
+70:50 now We will do forward pass initially
+70:52 
+
+70:52 like this. So forward pass you have a11.
+70:53 
+
+70:53 So that will be you take the matrix take
+70:55 
+
+70:55 that w11 and one that is the weight.
+70:58 
+
+70:58 This is this is that weight multiply it
+70:59 
+
+70:59 with the x1 the input and this plus b11
+71:02 
+
+71:02 the bias corresponding to this. After
+71:03 
+
+71:03 this you this will be the linear
+71:05 
+
+71:05 combination or fine transformation the
+71:07 
+
+71:07 first step. Okay linear linear
+71:09 
+
+71:09 transformation or fine transformation.
+71:12 
+
+71:12 So in this case this is fine
+71:13 
+
+71:13 transformation because it has bias in
+71:15 
+
+71:15 it. Now after this we'll do activation.
+71:17 
+
+71:17 So how to perform activation? I'm
+71:18 
+
+71:18 showing you on the single step and then
+71:19 
+
+71:19 we'll go it over uh over the vector
+71:22 
+
+71:22 notation and now we'll have to compute
+71:24 
+
+71:24 h11. How to compute h11? You'll apply
+71:26 
+
+71:26 some function. Let's call that function
+71:27 
+
+71:27 reu in this case or sigmoid. Let's call
+71:29 
+
+71:29 that function f. So you'll apply f on
+71:31 
+
+71:31 this a11. Okay? And you'll get some
+71:34 
+
+71:34 value out of this. If you have value
+71:35 
+
+71:35 suppose you have this is zero this is
+71:37 
+
+71:37 suppose 0.5 this is 0 this suppose 2
+71:40 
+
+71:40 this value is 2. So this will be equal
+71:42 
+
+71:42 to 1.0. And after applying let's suppose
+71:44 
+
+71:44 you have relu. So du basically is max of
+71:47 
+
+71:47 0 comma a11. If you apply relu or sigma
+71:49 
+
+71:49 depends on that you will get still a
+71:50 
+
+71:50 value of 1.0 over here. Okay. And then
+71:52 
+
+71:52 you'll have to perform second layer and
+71:54 
+
+71:54 you know how to perform the forward
+71:55 
+
+71:55 pass. So basically you store these
+71:57 
+
+71:57 values. You have a11 h11 h21. You have
+71:59 
+
+71:59 all these values. Now now this is in the
+72:01 
+
+72:01 forward pass. After you have this now
+72:04 
+
+72:04 what you have to do you have to compute
+72:05 
+
+72:05 gradients. So you have to compute
+72:07 
+
+72:07 gradient such that you nudge these
+72:08 
+
+72:08 values. You'll get based on the forward
+72:10 
+
+72:10 pass you'll compute loss. So after you
+72:12 
+
+72:12 have the forward pass you have a loss
+72:13 
+
+72:13 that's that will be a single number this
+72:15 
+
+72:15 will be a single number.
+72:17 
+
+72:17 So what will happen as a corresponding
+72:19 
+
+72:19 that you will see okay how is how good
+72:20 
+
+72:20 is my neural network. So if the number
+72:22 
+
+72:22 is very high you will say that I have
+72:23 
+
+72:23 very high loss that means my network is
+72:25 
+
+72:25 not learning very good I have to do
+72:26 
+
+72:26 something with it. Okay. Now let's see
+72:28 
+
+72:28 how to do this with a gradients. The
+72:31 
+
+72:31 general approach would be so use let's
+72:33 
+
+72:33 suppose do something of this sort.
+72:34 
+
+72:34 You'll take as we read in this. But if
+72:36 
+
+72:36 you have to perform the back propagation
+72:37 
+
+72:37 in the network okay the first thing you
+72:40 
+
+72:40 you'll do is you'll say I have to
+72:41 
+
+72:41 compute this dl by d theta. This is what
+72:43 
+
+72:43 I have to compute. Okay. So how to do
+72:46 
+
+72:46 that? So dl divid what was the output.
+72:48 
+
+72:48 Okay. And then multiply by what was the
+72:50 
+
+72:50 how was output dependent on these
+72:52 
+
+72:52 parameters. So that's what this is the
+72:54 
+
+72:54 general approach. So then suppose you
+72:55 
+
+72:55 have these parameters theta you'll say
+72:57 
+
+72:57 I'll take partial derivative of this L
+72:59 
+
+72:59 with respect to this output what
+73:01 
+
+73:01 whatever output I had and then partial
+73:03 
+
+73:03 output with respect to this theta and
+73:04 
+
+73:04 then you'll have to again use a chain
+73:05 
+
+73:05 rule consider this I'll take a small
+73:07 
+
+73:07 example I'll take example of this sort
+73:08 
+
+73:08 let's suppose you need to compute what
+73:11 
+
+73:11 is d do l by do111 the first weight
+73:15 
+
+73:15 suppose you have to do this you have to
+73:17 
+
+73:17 do this is everybody following me so far
+73:20 
+
+73:20 okay now this is the general threading
+73:21 
+
+73:21 so this is what we generally want to do
+73:23 
+
+73:23 in general this is what we want to We
+73:24 
+
+73:24 have we have a loss function and we want
+73:26 
+
+73:26 to compute the derivative with resp to
+73:28 
+
+73:28 all the parameters. So we'll do it step
+73:29 
+
+73:29 by step. So you have seen the forward
+73:31 
+
+73:31 pass. Okay. Let's do this. This
+73:33 
+
+73:33 algorithm can be seen from two
+73:34 
+
+73:34 perspectives. We can see it element wise
+73:36 
+
+73:36 and then in the vector notation. We'll
+73:38 
+
+73:38 see both the things in this in sync.
+73:40 
+
+73:40 Let's suppose you have this aig. Okay.
+73:42 
+
+73:42 This is how you perform forward pass.
+73:43 
+
+73:43 You have a i a iik. Can anybody tell me
+73:46 
+
+73:46 what this is? If I write a iik mahmud.
+73:49 
+
+73:49 Okay. The first thing that we will see
+73:51 
+
+73:51 over here is element wise. So now so far
+73:53 
+
+73:53 we have seen forward pass like this we
+73:55 
+
+73:55 have ak pre-activation on the fine
+73:58 
+
+73:58 transformation this is equal to w k this
+73:60 
+
+74:00 is a huge this is a whole matrix and
+74:02 
+
+74:02 then we have hk minus one and then we
+74:04 
+
+74:04 are writing plus bias so this was in
+74:07 
+
+74:07 vector form this is what we have seen so
+74:08 
+
+74:08 far how forward pass looks like and then
+74:10 
+
+74:10 we said okay after applying so we can
+74:12 
+
+74:12 apply this we can apply activation on
+74:14 
+
+74:14 this so we have hk hk is equal some
+74:17 
+
+74:17 activation function f applied on f k but
+74:20 
+
+74:20 here now we'll see element wise what is
+74:22 
+
+74:22 happening element wise. So how is this
+74:25 
+
+74:25 happening element wise? So each of this
+74:26 
+
+74:26 AK is a vector. So you know that so this
+74:28 
+
+74:28 AK is a vector of this sort. So you have
+74:30 
+
+74:30 AK1 AK2 depends on how many neurons are
+74:34 
+
+74:34 there. Okay. Similarly this H is a
+74:36 
+
+74:36 vector. So this WK is a matrix. Okay.
+74:38 
+
+74:38 And all of these things should be clear.
+74:41 
+
+74:41 This is a matrix of weights. Okay.
+74:43 
+
+74:43 Between K and K K minus one layer. And
+74:45 
+
+74:45 this is the activation after activation.
+74:49 
+
+74:49 And this is bias or all this is a
+74:50 
+
+74:50 vector. This is a vector. This is a
+74:52 
+
+74:52 matrix and this is a vector. And here
+74:54 
+
+74:54 when you apply this activation you do
+74:56 
+
+74:56 element wise you apply this on each
+74:59 
+
+74:59 element. So now we'll see we'll see
+75:00 
+
+75:00 single element of this A K. So if I
+75:02 
+
+75:02 write that so I can write A KI I element
+75:05 
+
+75:05 of this. So how to get that? So I'll
+75:07 
+
+75:07 basically query this vector. So I can
+75:09 
+
+75:09 query this matrix. So I have matrix W of
+75:11 
+
+75:11 this sort. Okay. If my I have a network
+75:14 
+
+75:14 of this sort. I have four neurons in the
+75:16 
+
+75:16 coming layer and in the present layer I
+75:18 
+
+75:18 have three neurons. So W matrix over
+75:19 
+
+75:19 here will be of size 4 + 3. 4 + 3. This
+75:23 
+
+75:23 is how the matrix would look like. If I
+75:25 
+
+75:25 if we have something of this sort if we
+75:26 
+
+75:26 have in the next layer we have n
+75:28 
+
+75:28 neurons. So n neurons in the next layer.
+75:30 
+
+75:30 In the previous layer if we have p
+75:32 
+
+75:32 neurons in the previous layer. So n
+75:33 
+
+75:33 cross p. So we write the dimension of n
+75:35 
+
+75:35 first and then p. That's how we adjust
+75:37 
+
+75:37 these weights. Now so in this we have
+75:38 
+
+75:38 weights. So now weights will look
+75:40 
+
+75:40 something of this. As I said you will
+75:42 
+
+75:42 see m cross n. m basically means next
+75:45 
+
+75:45 layer. Let me write n cross p. N means
+75:48 
+
+75:48 next and P means previous. Okay. So how
+75:51 
+
+75:51 to how to now write this? So if you see
+75:52 
+
+75:52 in this so you will have something of
+75:54 
+
+75:54 this sort. You'll have n values over
+75:56 
+
+75:56 here. N rows. You'll have n rows and p
+75:58 
+
+75:58 columns. In order to compute this so you
+76:01 
+
+76:01 have this whole matrix w and then you
+76:03 
+
+76:03 have a vector h. This h is a vector. You
+76:06 
+
+76:06 have to compute a. So you'll take i
+76:08 
+
+76:08 entry of this. You'll take i entry.
+76:10 
+
+76:10 Consider this is i entry. So you'll fix
+76:12 
+
+76:12 i value. So this value over here all
+76:15 
+
+76:15 these will be w i1 w i2 w i3 this how
+76:17 
+
+76:17 this is how we write it. So we'll write
+76:19 
+
+76:19 w i1
+76:21 
+
+76:21 w i2 w i2 w i3 something of this w i4
+76:26 
+
+76:26 until w i m. So this w i if you see so
+76:29 
+
+76:29 what is this I is the target node if we
+76:31 
+
+76:31 are talking in the neural network
+76:32 
+
+76:32 setting. So this let's if we talk about
+76:34 
+
+76:34 this neur if we talk about this neuron
+76:36 
+
+76:36 you have this neuron we are talking
+76:37 
+
+76:37 about this neuron. So this will be this
+76:40 
+
+76:40 multiplied let's say X1 multiplied by
+76:42 
+
+76:42 W11. Okay. Then X2 * W because it is now
+76:47 
+
+76:47 going to the first neuron W12. So one is
+76:50 
+
+76:50 fixed. So first I is fixed and then
+76:51 
+
+76:51 we're changing. And after this we'll
+76:53 
+
+76:53 write X3 multiplied by W13 because one
+76:56 
+
+76:56 is fixed. That's that's that's the
+76:57 
+
+76:57 reason we wrote this as flipped. So when
+76:59 
+
+76:59 I wrote the these weights I wrote it as
+77:02 
+
+77:02 Wig J. This I was from this was sync our
+77:05 
+
+77:05 target and this was our source. I think
+77:08 
+
+77:08 we have covered this in the previous
+77:09 
+
+77:09 lecture. So now this is some i this is
+77:11 
+
+77:11 some i weight vector okay it belong like
+77:14 
+
+77:14 all the these weights are basically all
+77:16 
+
+77:16 the weights that come towards a neuron.
+77:18 
+
+77:18 So I neuron here is fixed and now you'll
+77:20 
+
+77:20 have to come with come to this a i. So
+77:22 
+
+77:22 you'll do this you'll say take this
+77:24 
+
+77:24 weight matrix take this k weight matrix
+77:26 
+
+77:26 okay fix this i and take all the values
+77:29 
+
+77:29 let's suppose j. So j goes from let's
+77:31 
+
+77:31 say 1 to n something of this or how many
+77:33 
+
+77:33 values are there? So you have to see
+77:35 
+
+77:35 according to the value of n over here.
+77:38 
+
+77:38 So after you do this you'll multiply it
+77:40 
+
+77:40 with hk. Okay you have this hk. Now you
+77:43 
+
+77:43 have this whole matrix you have this
+77:45 
+
+77:45 whole value and you'll multiply this
+77:47 
+
+77:47 with hk over here. So hk how? You'll
+77:49 
+
+77:49 have to also have this point wise
+77:51 
+
+77:51 multiplication. You'll do hk of j. So
+77:53 
+
+77:53 this will be 1 2 3 4 that and in the
+77:56 
+
+77:56 bias. So in the bias if you see you'll
+77:58 
+
+77:58 get one value of this when you perform
+77:59 
+
+77:59 this and this this like this dot
+78:01 
+
+78:01 product. you'll get single value and
+78:02 
+
+78:02 then you'll have to just add bias. So in
+78:04 
+
+78:04 that bias also is the vector. So you
+78:06 
+
+78:06 have this vector bias vector what you
+78:08 
+
+78:08 will do in the bias vector you will just
+78:09 
+
+78:09 take e entry from that you have this bk
+78:12 
+
+78:12 and it has some i entry course. So you
+78:13 
+
+78:13 will take this i entry bk entry of this.
+78:16 
+
+78:16 Okay so this is the element wise forward
+78:20 
+
+78:20 pass. After you have this what will you
+78:22 
+
+78:22 do? So in order to get this in order to
+78:24 
+
+78:24 get activation of this you will write
+78:26 
+
+78:26 you'll write H K of J HK H KI basically
+78:30 
+
+78:30 activation so you'll perform this
+78:32 
+
+78:32 activation so H A I of K these two steps
+78:35 
+
+78:35 so this is applying activation so this
+78:38 
+
+78:38 is activation
+78:40 
+
+78:40 and this over here
+78:43 
+
+78:43 is fine transformation
+78:46 
+
+78:46 fine transformation for a point I just
+78:49 
+
+78:49 write fine transformation for a point
+78:52 
+
+78:52 And this should be clear by now. Any
+78:54 
+
+78:54 questions still here?
+78:56 
+
+78:56 I hope you understood this now. So if
+78:57 
+
+78:57 you understood this, so what we
+78:59 
+
+78:59 basically have? So after we get output.
+79:01 
+
+79:01 So let's h is our input and at the end
+79:03 
+
+79:03 we get hl. This is our y. So whole of
+79:06 
+
+79:06 this can be a vector. So this is a
+79:07 
+
+79:07 vector. This is a vector. How to write
+79:08 
+
+79:08 this? So this x could have been x11 x12.
+79:11 
+
+79:11 This can be a whole vector. And this
+79:12 
+
+79:12 prediction also could have been y11 y12.
+79:15 
+
+79:15 So this is all prediction. This could
+79:16 
+
+79:16 have been a this could be the all
+79:18 
+
+79:18 vector. And then what you do is you
+79:19 
+
+79:19 apply some divergence function which we
+79:21 
+
+79:21 call loss function. So divergence of so
+79:23 
+
+79:23 this prediction
+79:25 
+
+79:25 and the real value this is prediction is
+79:28 
+
+79:28 HL in our case and the and the ground
+79:31 
+
+79:31 true that's why and then this is your
+79:32 
+
+79:32 loss call this your loss and this loss
+79:35 
+
+79:35 you'll have to uh you you'll have to
+79:37 
+
+79:37 perform the back propagation on this so
+79:39 
+
+79:39 usually what we do we cache these AK and
+79:41 
+
+79:41 HK values so you have these vectors so
+79:43 
+
+79:43 that is why PyTorch is very efficient
+79:45 
+
+79:45 why because it does broadcasting it does
+79:46 
+
+79:46 multiplication on vectors and whole
+79:48 
+
+79:48 matrices in one go it doesn't do element
+79:51 
+
+79:51 wise okay We saw that in numpai as well.
+79:53 
+
+79:53 We saw that in maybe some other pandas
+79:56 
+
+79:56 as well. They perform what's called as
+79:57 
+
+79:57 broadcasting. They do broadcasting and
+79:59 
+
+79:59 they can do these things in one go. Not
+80:00 
+
+80:00 having these parallel threads.

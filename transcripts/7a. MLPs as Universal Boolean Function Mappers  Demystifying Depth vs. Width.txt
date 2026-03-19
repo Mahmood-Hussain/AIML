@@ -1,0 +1,5176 @@
+00:00 Hello and welcome everyone.
+00:02 
+
+00:02 So what we have done so far, we have
+00:05 
+
+00:05 done gradient descent in the previous
+00:07 
+
+00:07 lecture.
+00:09 
+
+00:09 So I'll put a star mark over here
+00:10 
+
+00:10 because we'll come again to this
+00:12 
+
+00:12 gradient descent and we'll cover it in
+00:14 
+
+00:14 detail and different variants of this
+00:15 
+
+00:15 gradient descent algorithm. Uh once we
+00:18 
+
+00:18 cover the back propagation and then we
+00:19 
+
+00:19 are come when we come to the
+00:20 
+
+00:20 implementation of uh gradient descent
+00:23 
+
+00:23 and different versions of it then we'll
+00:24 
+
+00:24 again look into into the gradient
+00:26 
+
+00:26 descent in detail. So today what we're
+00:28 
+
+00:28 going to see is a represent
+00:30 
+
+00:30 representation power of these MLPS
+00:34 
+
+00:34 representational power
+00:38 
+
+00:38 of multi-layer perceptrons we did about
+00:41 
+
+00:41 two types of multi-layer perceptrons. So
+00:43 
+
+00:43 actually it was only one. So by adding
+00:45 
+
+00:45 some other nonlinearity. So initially we
+00:47 
+
+00:47 had thresholding logic and then we said
+00:49 
+
+00:49 okay instead of let's say thresholding
+00:52 
+
+00:52 logic we can have uh a sigmoid a smooth
+00:55 
+
+00:55 function and we can have other
+00:56 
+
+00:56 activation functions as well. So now
+00:58 
+
+00:58 we'll see what is the representation but
+00:60 
+
+00:60 how much can they represent and what can
+01:01 
+
+01:01 they do. Okay the first thing that we'll
+01:04 
+
+01:04 discuss first is why are they called
+01:06 
+
+01:06 deep structures. Okay why is this deep?
+01:09 
+
+01:09 So if you know these neural networks can
+01:12 
+
+01:12 be geometrically or can be written in a
+01:16 
+
+01:16 visual sense by using direct graphs. You
+01:19 
+
+01:19 might have heard about directly as
+01:20 
+
+01:20 cyclic graph. What's a graph? So graph
+01:22 
+
+01:22 is a made up of nodes. Okay. And it's
+01:24 
+
+01:24 made up of edges. So this is a graph.
+01:28 
+
+01:28 It can be directed under there's a huge
+01:29 
+
+01:29 graph theory which I won't get into. So
+01:32 
+
+01:32 let's suppose this is a graph.
+01:35 
+
+01:35 So this thing here can also be
+01:36 
+
+01:36 considered as a neural network.
+01:41 
+
+01:41 But you can see that uh so there is a
+01:44 
+
+01:44 concept of source and sync. So here
+01:45 
+
+01:45 these are called nodes and we have edges
+01:49 
+
+01:49 and here this is a directed graph. So
+01:52 
+
+01:52 aesthetic graph basically means where
+01:53 
+
+01:53 you do not have a cycle. So if you have
+01:55 
+
+01:55 a cycle so you come back and the source
+01:58 
+
+01:58 and syncing basically you start from
+01:59 
+
+01:59 here. If you can come back to that node
+02:01 
+
+02:01 if it is a directed graph then we call a
+02:03 
+
+02:03 cyclic graph. A cyclic graph means where
+02:05 
+
+02:05 there is no cycle. So now we'll define
+02:07 
+
+02:07 this neural network in terms of this
+02:09 
+
+02:09 direct asyclic graphs. As I said this
+02:11 
+
+02:11 neural networks can be represent by
+02:12 
+
+02:12 these direct asyclic graphs. So in this
+02:14 
+
+02:14 we will have source and a sync. So what
+02:16 
+
+02:16 is the source? So source basically in
+02:18 
+
+02:18 terms of neural networks will be our
+02:20 
+
+02:20 node input nodes
+02:24 
+
+02:24 and sync is the output.
+02:27 
+
+02:27 So in terms of graph theory source is uh
+02:30 
+
+02:30 which does not have any incoming edge
+02:31 
+
+02:31 and sync is which does not have any
+02:33 
+
+02:33 outgoing edge. So in terms of graph
+02:35 
+
+02:35 theory, so now you have the source and
+02:36 
+
+02:36 sync in these uh graphs. So if we draw
+02:39 
+
+02:39 if we draw of any neural network, we
+02:41 
+
+02:41 will draw something of this sort. So
+02:42 
+
+02:42 usually we draw like this. So this is
+02:44 
+
+02:44 input and then we have some hidden
+02:47 
+
+02:47 layers. Today we'll see a detail in
+02:48 
+
+02:48 detail like we'll also introduce some
+02:50 
+
+02:50 notations also. So this is what where
+02:52 
+
+02:52 you usually see them. So this is uh the
+02:55 
+
+02:55 flow is going towards from left to
+02:56 
+
+02:56 right. So now if we draw a graph. So in
+02:58 
+
+02:58 order to define the depth first. So
+02:59 
+
+02:59 we'll see what is depth. So in order to
+03:02 
+
+03:02 define that consider this is the graph.
+03:04 
+
+03:04 So we have three nodes in the graph.
+03:05 
+
+03:05 Let's suppose these are the three nodes.
+03:07 
+
+03:07 So now I'll draw some edges. So this is
+03:09 
+
+03:09 the first edge the second edge and the
+03:11 
+
+03:11 third edge. Now you can see that this is
+03:13 
+
+03:13 a direct assembly graph. So now if you
+03:15 
+
+03:15 see what is the depth of this. So depth
+03:17 
+
+03:17 basically means if this is the source
+03:18 
+
+03:18 node and let's suppose this is a sync
+03:20 
+
+03:20 node. So what is the longest distance?
+03:22 
+
+03:22 Okay. So or the longest path.
+03:26 
+
+03:26 Okay. The number of nodes or edges that
+03:28 
+
+03:28 come on the longest path. Okay. Here if
+03:30 
+
+03:30 you see there are two edges. So if I can
+03:32 
+
+03:32 define it like this number of edges
+03:35 
+
+03:35 on the longest path. So here you can see
+03:38 
+
+03:38 from source to sync we have one and two.
+03:40 
+
+03:40 So we can say that the depth of this
+03:43 
+
+03:43 directly graph is two. Okay. Similarly
+03:46 
+
+03:46 again let's suppose from some other
+03:48 
+
+03:48 direct graph with couple of nodes like
+03:50 
+
+03:50 this. Okay. So here we have an edge. We
+03:54 
+
+03:54 have an edge
+03:56 
+
+03:56 edge like this. This and this. This
+03:59 
+
+03:59 again is a direct excite graph. If you
+04:01 
+
+04:01 see now if you see this is the source.
+04:02 
+
+04:02 Source doesn't have any incoming edge
+04:04 
+
+04:04 and sync which doesn't have any outgoing
+04:06 
+
+04:06 edge. So this is my source and sdash is
+04:09 
+
+04:09 my sync. So now what is the depth of
+04:12 
+
+04:12 this? So if you see we have to see from
+04:15 
+
+04:15 source to sync what is the longest path
+04:17 
+
+04:17 the number of edges on that path. So if
+04:19 
+
+04:19 you can see from here uh so I think one
+04:22 
+
+04:22 and two one two two and I think let's
+04:26 
+
+04:26 add one more so that this can be a bit
+04:28 
+
+04:28 different then
+04:31 
+
+04:31 okay so I want its depth to be three
+04:35 
+
+04:35 basically you can you can just construct
+04:36 
+
+04:36 this graph somehow so that number of
+04:38 
+
+04:38 edges on the longest path would be three
+04:40 
+
+04:40 number of edges
+04:41 
+
+04:41 on the longest path
+04:45 
+
+04:45 from source to sync from source to sync
+04:48 
+
+04:48 so here in this case I wanted to make
+04:49 
+
+04:49 graph such a way so that it is equal to
+04:51 
+
+04:51 three. So basically this is the meaning
+04:52 
+
+04:52 of depth. So in nutshell what is the
+04:54 
+
+04:54 meaning of depth? So if you have a
+04:55 
+
+04:55 source node and you have a sync node
+04:57 
+
+04:57 number of edges on the longest path so
+04:59 
+
+04:59 now if you have to define the depth of a
+05:01 
+
+05:01 neural network. So similar in the
+05:02 
+
+05:02 similar fashion as I said source is the
+05:04 
+
+05:04 input node and sync are the output
+05:06 
+
+05:06 nodes. So now if you have to define the
+05:07 
+
+05:07 depth so you'll again use the same
+05:10 
+
+05:10 definition that was using dict graph. So
+05:12 
+
+05:12 you'll say that the longest number of
+05:14 
+
+05:14 edge the on number of edge on the
+05:16 
+
+05:16 longest path. So if I now make a neural
+05:17 
+
+05:17 network of this sort. So usually you'll
+05:20 
+
+05:20 see neural network like this.
+05:23 
+
+05:23 Consider this as input. Okay. Let's
+05:25 
+
+05:25 suppose these are four inputs. Then
+05:26 
+
+05:26 we'll have some hidden layers.
+05:31 
+
+05:31 Okay. Something of this sort.
+05:35 
+
+05:35 So now you have edges like this this
+05:38 
+
+05:38 this something of this sort. Now you can
+05:40 
+
+05:40 see that if you take any here we have
+05:42 
+
+05:42 these are the sources because these are
+05:43 
+
+05:43 the input nodes and here this is the
+05:46 
+
+05:46 output layer. So if you take any source
+05:49 
+
+05:49 node to any sync node you can see that
+05:52 
+
+05:52 the number of edges is 1 2 3 and four.
+05:56 
+
+05:56 So you can say this deep learning
+05:58 
+
+05:58 network this deep neural network has
+05:60 
+
+05:60 depth of four.
+06:03 
+
+06:03 So why am I why am I giving this formal
+06:04 
+
+06:04 definitions because uh how is deep
+06:07 
+
+06:07 defined? So any any network where depth
+06:10 
+
+06:10 is greater than two is called a deep
+06:12 
+
+06:12 network.
+06:14 
+
+06:14 So these are the formal definitions. The
+06:16 
+
+06:16 first formal definition of depth. So the
+06:18 
+
+06:18 number of edges on the longest path from
+06:21 
+
+06:21 source to sync is called as depth. So in
+06:23 
+
+06:23 this case if you see then this is called
+06:25 
+
+06:25 uh this this network has depth four. And
+06:27 
+
+06:27 now what I'm saying is a deep network
+06:29 
+
+06:29 will be called a deep network or a
+06:30 
+
+06:30 network is called deep if the depth is
+06:32 
+
+06:32 greater than two. So if you see depth is
+06:34 
+
+06:34 two then we do not call it a deep
+06:36 
+
+06:36 network. So depth should be greater than
+06:37 
+
+06:37 2 3 4 5 6 and so on. So we'll call that
+06:40 
+
+06:40 a deep network. Is it clear what is
+06:42 
+
+06:42 meaning of the depth and what is a deep
+06:44 
+
+06:44 network? So I think it's pretty basic.
+06:46 
+
+06:46 And second thing we'll see is what is a
+06:48 
+
+06:48 layer.
+06:52 
+
+06:52 Okay. So how do we define layer? So if
+06:54 
+
+06:54 you see this let's suppose now you can
+06:57 
+
+06:57 see over here. So which nodes can we
+06:59 
+
+06:59 call that they belong to the same layer.
+07:01 
+
+07:01 So let's suppose this is our input.
+07:04 
+
+07:04 So you can have nodes like this this
+07:07 
+
+07:07 something of this sort even if the
+07:09 
+
+07:09 network is not made like this. So
+07:11 
+
+07:11 formally how the layer is defined. So
+07:13 
+
+07:13 what you can do is if this is the first
+07:15 
+
+07:15 edge and suppose this is second and here
+07:18 
+
+07:18 this
+07:20 
+
+07:20 I just make something random. So that
+07:28 
+
+07:28 okay. So now I have made the if you see
+07:30 
+
+07:30 this node consider this node the one I
+07:32 
+
+07:32 colored with a pink color.
+07:34 
+
+07:34 So now the longest path over here
+07:36 
+
+07:36 longest path over here is two. Okay. If
+07:38 
+
+07:38 you see the depth of this node actually
+07:39 
+
+07:39 is two. So this will be considered layer
+07:41 
+
+07:41 two. So the depth of node will give you
+07:43 
+
+07:43 its layer number. So now if you see if
+07:45 
+
+07:45 you consider this node so this node is
+07:46 
+
+07:46 connected only via one edge. So now no
+07:49 
+
+07:49 edges no edges there other than this
+07:51 
+
+07:51 there is no edge. So this is at layer 1
+07:53 
+
+07:53 this node. So I'll just write layer one.
+07:56 
+
+07:56 So again if you consider this again
+07:57 
+
+07:57 there is this is again layer one because
+07:60 
+
+07:60 the uh depth of this node is one. So now
+08:03 
+
+08:03 if you consider this so there are some
+08:04 
+
+08:04 paths over here but the longest path is
+08:06 
+
+08:06 this. So if you consider from here to
+08:08 
+
+08:08 here okay so the depth of this will be
+08:11 
+
+08:11 two. So this node will be considered in
+08:12 
+
+08:12 layer two. So now if you are given any
+08:14 
+
+08:14 neural network so if you are asked to
+08:17 
+
+08:17 demarcate these neurons what's the layer
+08:20 
+
+08:20 number they should be given. So what you
+08:21 
+
+08:21 should do is you should consider the
+08:23 
+
+08:23 depth. So whatever the depth of the
+08:24 
+
+08:24 neuron that neuron will go to that layer
+08:26 
+
+08:26 number. Okay is that clear? So we
+08:28 
+
+08:28 discussed three terms. First we
+08:30 
+
+08:30 discussed what is depth and then we
+08:32 
+
+08:32 discussed what is meaning of a deep
+08:33 
+
+08:33 network
+08:36 
+
+08:36 and then we discussed how to demarcate
+08:38 
+
+08:38 these neurons how to assign them layer
+08:40 
+
+08:40 numbers. So depth basically what I said
+08:42 
+
+08:42 is is the number of edges on the longest
+08:44 
+
+08:44 path from source to sync. Okay, from
+08:46 
+
+08:46 source to sync what is the longest path
+08:48 
+
+08:48 and count the number of edges on that.
+08:49 
+
+08:49 What is the deep network? If the uh
+08:51 
+
+08:51 network has greater than two layers okay
+08:54 
+
+08:54 and basically when you have this when
+08:57 
+
+08:57 when the depth of the network is greater
+08:59 
+
+08:59 than two. So how is a neuron assigned a
+09:01 
+
+09:01 layer? So whatever is the depth of the
+09:03 
+
+09:03 neuron so it will be assigned to that
+09:04 
+
+09:04 layer. Is it clear? So these are the
+09:07 
+
+09:07 basic definitions which you should
+09:08 
+
+09:08 remember before the uh subsequent
+09:10 
+
+09:10 discussion. So if this is clear to you
+09:12 
+
+09:12 now I'll introduce very important
+09:14 
+
+09:14 notations which we we use throughout.
+09:17 
+
+09:17 So these notations are very important
+09:20 
+
+09:20 because we'll be using uh back
+09:22 
+
+09:22 propagation and then we'll have derived
+09:24 
+
+09:24 the equation of back propagation or
+09:25 
+
+09:25 wherever we are using these neural
+09:27 
+
+09:27 networks we'll use this notation. So
+09:28 
+
+09:28 I'll keep to be uh I'll try my level
+09:31 
+
+09:31 best to be thorough with this notation
+09:33 
+
+09:33 so that wherever I use it I'll try to
+09:35 
+
+09:35 use the same notation not deviating from
+09:37 
+
+09:37 the notation. So what is the notation
+09:38 
+
+09:38 now? Okay let me form a network first.
+09:40 
+
+09:40 Let me draw a network.
+09:43 
+
+09:43 So this is our input.
+09:47 
+
+09:47 Okay. And you know how we how we
+09:50 
+
+09:50 represent data. So data is represented
+09:51 
+
+09:51 like this x i and y i. and I goes from 1
+09:56 
+
+09:56 to N. This is how data is represented.
+09:59 
+
+09:59 If I take just one point so X1 let's
+10:02 
+
+10:02 suppose X1 will have X11 X12
+10:06 
+
+10:06 X1 3 and so on X1 N. So this is one data
+10:09 
+
+10:09 point. So these are the features the
+10:11 
+
+10:11 first feature second feature third
+10:12 
+
+10:12 fourth fifth and so on until nth
+10:14 
+
+10:14 feature. So this is our data and this is
+10:15 
+
+10:15 our corresponding label. Now in this
+10:18 
+
+10:18 case let's suppose we have three inputs.
+10:20 
+
+10:20 We have X1 we have X2. So let's suppose
+10:23 
+
+10:23 we have X11, X12 or X I1, I2 and I in N
+10:28 
+
+10:28 or let's suppose I3 in this case. So
+10:30 
+
+10:30 this is our input layer. So I'll use
+10:33 
+
+10:33 this notation throughout. And then we
+10:35 
+
+10:35 have will have in between we'll have
+10:37 
+
+10:37 layers. Consider this again. We'll have
+10:39 
+
+10:39 1 2 and three.
+10:44 
+
+10:44 Suppose we'll have again one two or
+10:48 
+
+10:48 rather I copy this to save time.
+10:55 
+
+10:55 Copy. We can paste couple of layers in
+10:57 
+
+10:57 between
+10:60 
+
+10:60 and I have been telling you these are
+11:01 
+
+11:01 called as hidden layers. Why are they
+11:02 
+
+11:02 called hidden layers? Because we do not
+11:04 
+
+11:04 use their output directly. Okay, their
+11:07 
+
+11:07 output of these layers gets used maybe
+11:10 
+
+11:10 in the in some intermediate steps but we
+11:12 
+
+11:12 do not use them directly. Okay, let's
+11:14 
+
+11:14 consider this.
+11:18 
+
+11:18 Let's say this is our final output.
+11:22 
+
+11:22 They may be
+11:25 
+
+11:25 like this. Okay. Now we we know that
+11:29 
+
+11:29 each neuron has two portions. One is the
+11:31 
+
+11:31 aggregation function and one is the
+11:32 
+
+11:32 activation function. Something of this
+11:33 
+
+11:33 sort.
+11:43 
+
+11:43 Okay. And at the end we apply some other
+11:44 
+
+11:44 activation function usually.
+11:50 
+
+11:50 Okay. And now this is input and this is
+11:51 
+
+11:51 our output
+11:53 
+
+11:53 and these are our hidden layers which
+11:54 
+
+11:54 you already know.
+11:57 
+
+11:57 So now I have introduced notation for
+11:58 
+
+11:58 these. Okay. So that notation should be
+12:00 
+
+12:00 same throughout. And now what you can
+12:02 
+
+12:02 see is
+12:04 
+
+12:04 I can I can add these weights and
+12:06 
+
+12:06 biases. Let's use this red color. So we
+12:09 
+
+12:09 can have arrow going from here to here
+12:12 
+
+12:12 here to here.
+12:16 
+
+12:16 Okay. These are my variation biases.
+12:20 
+
+12:20 Okay, these are these are the weights
+12:21 
+
+12:21 and bias usually is written within the
+12:23 
+
+12:23 neuron.
+12:27 
+
+12:27 Okay, same with this
+12:52 
+
+12:52 Okay. Now we'll remarket this. So you
+12:54 
+
+12:54 saw that input is represented by this.
+12:55 
+
+12:55 So input is represented like this. And
+12:57 
+
+12:57 now each of we have we have weights over
+12:59 
+
+12:59 here. Okay. So how how is how are these
+13:01 
+
+13:01 weights represented? So we represent
+13:03 
+
+13:03 them by a matrix W1. I'll write it in
+13:05 
+
+13:05 the supererscript. So W1 is the matrix
+13:08 
+
+13:08 of weights which which is in the which
+13:11 
+
+13:11 is in between layer 0 and layer 1. Okay.
+13:13 
+
+13:13 So this is W1. So how is W1 represented?
+13:16 
+
+13:16 So W1 if you see
+13:20 
+
+13:20 this is a matrix which contains these
+13:22 
+
+13:22 weights. So if I talk about this so here
+13:24 
+
+13:24 we have this input and then we it goes
+13:27 
+
+13:27 till here. So how can I assign weight?
+13:28 
+
+13:28 So this is let's suppose zero layer and
+13:30 
+
+13:30 this is first layer. So I can say this
+13:32 
+
+13:32 this is W to this weight over here. This
+13:35 
+
+13:35 is W and I can say it goes from zero
+13:38 
+
+13:38 let's suppose from layer zero and neuron
+13:41 
+
+13:41 one. So this is layer 0 neuron 1. If you
+13:43 
+
+13:43 see this okay and then I can say it goes
+13:46 
+
+13:46 from layer zero to neuron one. So this
+13:50 
+
+13:50 is basically I can write w1 in between
+13:51 
+
+13:51 this and then it goes from this to this.
+13:54 
+
+13:54 I can even start from zero or one. I'll
+13:56 
+
+13:56 have to decide here. So consider this as
+13:58 
+
+13:58 first neuron. This is also first neuron.
+13:59 
+
+13:59 I can say uh this goes from like let's
+14:02 
+
+14:02 suppose one one okay one one of this
+14:04 
+
+14:04 neuron. And again similarly then I can
+14:06 
+
+14:06 say this w. So now this is the second
+14:10 
+
+14:10 neuron. So I write 21. So this is the
+14:12 
+
+14:12 reverse. This is reverse. So usually
+14:13 
+
+14:13 it's written in reverse. So it will help
+14:14 
+
+14:14 us in back propagation. So again if you
+14:16 
+
+14:16 take this neuron so this will be W
+14:19 
+
+14:19 31
+14:21 
+
+14:21 and constant we will add one at the top.
+14:23 
+
+14:23 So if you see this so how are weights
+14:25 
+
+14:25 written now? So I can write it like this
+14:27 
+
+14:27 weights W11. Okay. And then I can write
+14:30 
+
+14:30 W12 W13 and I have to also add biases.
+14:33 
+
+14:33 So we have will have this W1 and
+14:35 
+
+14:35 similarly we'll have bias one also. So
+14:36 
+
+14:36 in this scenario we'll have also biases
+14:39 
+
+14:39 for the network. So I'll write W1
+14:43 
+
+14:43 here and B1 over here. So this will be
+14:46 
+
+14:46 having a matrix and a vector. So we'll
+14:48 
+
+14:48 have W1 like this and then we'll have
+14:51 
+
+14:51 bias B1 like this. Okay. In this case if
+14:54 
+
+14:54 you see bias will be B11, B11, B12 and
+14:58 
+
+14:58 B13. So similarly if you see this so
+15:01 
+
+15:01 we'll have W11 W12 W13
+15:06 
+
+15:06 something of this sort. And now this is
+15:08 
+
+15:08 three input. So this will this will be a
+15:10 
+
+15:10 3 + 3 matrix over here and this will be
+15:13 
+
+15:13 3 + 1.
+15:15 
+
+15:15 Okay, I can write this W. So this is
+15:18 
+
+15:18 rather 21. I should be writing it 21 W21
+15:22 
+
+15:22 W31. So because you know I I'm writing
+15:24 
+
+15:24 the in the opposite way. So this is
+15:27 
+
+15:27 going from let's suppose 1 to 1 one to
+15:30 
+
+15:30 two but I am indexing it in the opposite
+15:32 
+
+15:32 direction. So now if I write it here. So
+15:34 
+
+15:34 this if I write w I so this means this
+15:37 
+
+15:37 is the weight matrix
+15:41 
+
+15:41 this is weight matrix
+15:43 
+
+15:43 between
+15:45 
+
+15:45 I minus one and e layer.
+15:50 
+
+15:50 Okay. And you know that we demarcate it
+15:51 
+
+15:51 from zero layer. So this is our input
+15:53 
+
+15:53 layer is known as zeroth layer. And then
+15:55 
+
+15:55 we have first layer, second layer and
+15:56 
+
+15:56 nth layer or else layer usually. So this
+15:59 
+
+15:59 is our zeroth layer and this output
+16:00 
+
+16:00 layer is our L layer.
+16:04 
+
+16:04 So this is zero layer and this is
+16:07 
+
+16:07 else layer. Is it clear so far?
+16:09 
+
+16:09 Notation's clear. So we have WI matrix
+16:11 
+
+16:11 that is the weight matrix and similarly
+16:13 
+
+16:13 B I. So B I
+16:17 
+
+16:17 this is a bias vector that we have. So
+16:19 
+
+16:19 it is also in between this I and I minus
+16:23 
+
+16:23 one. So I minus one and I layer which
+16:27 
+
+16:27 also in between these.
+16:29 
+
+16:29 And now how do we define then we have
+16:31 
+
+16:31 activations. So in between let's suppose
+16:33 
+
+16:33 you have this you define it like this.
+16:34 
+
+16:34 So here
+16:37 
+
+16:37 so I'll just remove these so as to
+16:38 
+
+16:38 remove the clutter.
+16:42 
+
+16:42 Now if you see this so from uh in order
+16:44 
+
+16:44 to go from here to here we define the
+16:46 
+
+16:46 weight. And now we have to apply
+16:47 
+
+16:47 activation. So we also define a1 over
+16:49 
+
+16:49 here. Okay this is when you apply these
+16:51 
+
+16:51 functions. And then let's suppose you
+16:53 
+
+16:53 aggregate this and you get a1. After
+16:55 
+
+16:55 application of a1 you'll apply an
+16:56 
+
+16:56 activation. So we'll get h1. So okay.
+16:58 
+
+16:58 Here's how I write this. So let's
+17:01 
+
+17:01 suppose you have this AI. So what is
+17:03 
+
+17:03 this AI? So if you see how how do we get
+17:06 
+
+17:06 this AI? So AI basically we get by
+17:09 
+
+17:09 writing
+17:10 
+
+17:10 bi
+17:12 
+
+17:12 plus
+17:14 
+
+17:14 you just write this w1. So you get
+17:18 
+
+17:18 wi and then x whatever is the previous.
+17:21 
+
+17:21 So previous here if you see this so this
+17:23 
+
+17:23 is h1. So here it will be h0. So before
+17:25 
+
+17:25 this was h0 actually. So all these will
+17:27 
+
+17:27 be called h0. So this will be hi - 1.
+17:32 
+
+17:32 So a i is equal w i h i - 1 plus b i. So
+17:36 
+
+17:36 this is our aggregation. So when we
+17:38 
+
+17:38 aggregate
+17:39 
+
+17:39 after we apply activation. So we have to
+17:41 
+
+17:41 apply activation. Let's call this sigma
+17:42 
+
+17:42 or activation. Okay. Sigma of ai. So
+17:45 
+
+17:45 that is called as hi
+17:48 
+
+17:48 is equal to sigma of ai. So after we
+17:51 
+
+17:51 have apply activation.
+17:53 
+
+17:53 Is it clear?
+17:55 
+
+17:55 Can I assume that you're understanding
+17:56 
+
+17:56 it?
+17:59 
+
+17:59 Okay, as I said, I have to be very
+18:01 
+
+18:01 thorough with the notations because
+18:02 
+
+18:02 we'll be using these notations
+18:03 
+
+18:03 throughout. That's why I'm being very
+18:04 
+
+18:04 careful today. So now what we defined is
+18:06 
+
+18:06 first we define weight matrix and then
+18:08 
+
+18:08 we define bias. The bias is a vector and
+18:10 
+
+18:10 then we define this AI. So AI if you see
+18:13 
+
+18:13 here this will be A1. So this will be H1
+18:15 
+
+18:15 now. So H1 is after you apply this
+18:17 
+
+18:17 activation and now if you see this so
+18:19 
+
+18:19 this will be A2. Okay. And then this
+18:22 
+
+18:22 will be H2. H2 is after you apply
+18:25 
+
+18:25 activation function on this A2. So
+18:27 
+
+18:27 that's how I wrote what is so this is
+18:29 
+
+18:29 our aggregation function
+18:31 
+
+18:31 aggregation function
+18:33 
+
+18:33 or this usually you can see in the books
+18:35 
+
+18:35 sometimes it's written as this is our
+18:37 
+
+18:37 linear function
+18:41 
+
+18:41 okay or some sometimes it's written as
+18:44 
+
+18:44 fine transformation okay so this is fine
+18:46 
+
+18:46 transformation I'll tell you what fine
+18:47 
+
+18:47 transformation means so if you have
+18:49 
+
+18:49 let's suppose just a side note so if you
+18:52 
+
+18:52 have w i x i is equal to zero so this is
+18:55 
+
+18:55 called as linear transformation
+18:56 
+
+18:56 formation
+18:59 
+
+18:59 you know why linear because this is a
+19:00 
+
+19:00 linear combination of these weights are
+19:02 
+
+19:02 taken so if you write w i x i is equal
+19:05 
+
+19:05 that's minus b why you write plus b is
+19:07 
+
+19:07 equal z so because now you shift the
+19:09 
+
+19:09 whole linear circle so this is called as
+19:11 
+
+19:11 aine transformation
+19:15 
+
+19:15 so this is called a transformation so
+19:17 
+
+19:17 here if you see many of the times you
+19:18 
+
+19:18 will see either transform and fine
+19:20 
+
+19:20 transformation is also linear
+19:21 
+
+19:21 transformation okay so this is usually
+19:23 
+
+19:23 written as linear transformation or uh
+19:26 
+
+19:26 In good mo words of mathematics we can
+19:27 
+
+19:27 write fine transformation or aggregation
+19:29 
+
+19:29 function or or linear linear function.
+19:31 
+
+19:31 This is called as activation function or
+19:33 
+
+19:33 nonlinear function
+19:36 
+
+19:36 activation function
+19:38 
+
+19:38 or nonlinear function
+19:44 
+
+19:44 or nonlinear transformation because it's
+19:45 
+
+19:45 function is also a transformation and
+19:48 
+
+19:48 one more thing that we have seen over
+19:49 
+
+19:49 here. So we saw if this weight is
+19:51 
+
+19:51 written as wig. So this basically means
+19:54 
+
+19:54 so the weight is this is between a
+19:57 
+
+19:57 neuron let's suppose if this is J K so
+20:00 
+
+20:00 this K is layer number so this is the
+20:04 
+
+20:04 layer number
+20:06 
+
+20:06 uh coming after coming after
+20:10 
+
+20:10 so whatever layer number is after so
+20:12 
+
+20:12 before that we write so if you have WK
+20:14 
+
+20:14 weight matrix that means the K layer is
+20:16 
+
+20:16 next okay and then this I is here so
+20:18 
+
+20:18 this is to and this is wrong.
+20:22 
+
+20:22 So this is going actually from this J to
+20:24 
+
+20:24 I. So why am I saying we write in
+20:26 
+
+20:26 reverse? Because it is our calculation.
+20:28 
+
+20:28 So that's why we have these weights and
+20:31 
+
+20:31 then you have this biases also. So
+20:33 
+
+20:33 similar we can do it for biases also. So
+20:35 
+
+20:35 bias of let's suppose K this again will
+20:38 
+
+20:38 be a this again will be a L number.
+20:41 
+
+20:41 Okay. So if I because bias also goes
+20:43 
+
+20:43 from I to J. So if I write I J so this
+20:45 
+
+20:45 will be two and this will be from.
+20:49 
+
+20:49 Okay. Okay, any other notations? Okay,
+20:51 
+
+20:51 so all in all I think I have covered
+20:53 
+
+20:53 almost all the notations. Okay, so we
+20:56 
+
+20:56 have weights, we have biases and then we
+20:58 
+
+20:58 have activation and that's why this is
+21:00 
+
+21:00 called as hidden output hidden. So
+21:01 
+
+21:01 that's why we see hidden over here. So
+21:04 
+
+21:04 if you see this is H H H H H H H H H H H
+21:05 
+
+21:05 H H H H H H H H H H H H H H H H H H H H
+21:05 
+
+21:05 H H H H H H H H H H not so basically
+21:07 
+
+21:07 zero hidden layer. Okay and then we have
+21:08 
+
+21:08 H1 this is the first output of the first
+21:10 
+
+21:10 hidden layer and this is A1. A1 is when
+21:13 
+
+21:13 you aggregate all these functions. So
+21:14 
+
+21:14 hidden you get hidden output after
+21:15 
+
+21:15 activation. So this is A1, H1 and I
+21:18 
+
+21:18 think yes I think these are the
+21:21 
+
+21:21 notations. Is everybody clear with the
+21:22 
+
+21:22 notations? So if I miss some notation
+21:25 
+
+21:25 I'll come back to you maybe after that
+21:27 
+
+21:27 but I hope that every everything is over
+21:29 
+
+21:29 here. So we defined weight matrix we
+21:31 
+
+21:31 define bias vector we defined hidden
+21:34 
+
+21:34 layers we defined input output we also
+21:35 
+
+21:35 defined how data will be yes last and if
+21:38 
+
+21:38 you see this over here layer. So how
+21:40 
+
+21:40 will the L layer be shown? So L layer
+21:42 
+
+21:42 usually is written as HL like this. So
+21:45 
+
+21:45 because after this you'll get L layer
+21:47 
+
+21:47 output. So or this can be written as
+21:49 
+
+21:49 prediction or this can be written as
+21:51 
+
+21:51 prediction of this sort. This is how we
+21:53 
+
+21:53 can write the output from the last
+21:55 
+
+21:55 layer.
+21:57 
+
+21:57 Okay. And we can write it like HL. So
+21:59 
+
+21:59 this is
+22:01 
+
+22:01 L layer.
+22:04 
+
+22:04 Okay. So HL is
+22:07 
+
+22:07 L
+22:09 
+
+22:09 hidden layer output.
+22:12 
+
+22:12 So basically this is the final output
+22:14 
+
+22:14 that we have final output.
+22:17 
+
+22:17 Okay. Or we can write it like this y hat
+22:21 
+
+22:21 or we can also write it like f of x and
+22:24 
+
+22:24 that is prediction the prediction
+22:25 
+
+22:25 function that we have. I think I have
+22:27 
+
+22:27 covered almost everything.
+22:29 
+
+22:29 Yes. So you should be clear with these
+22:31 
+
+22:31 notations again just going through
+22:32 
+
+22:32 again. So we have input layer we have
+22:33 
+
+22:33 hidden layers. So what are they called
+22:34 
+
+22:34 hidden layers? They call hidden layers
+22:35 
+
+22:35 because we do not use their input
+22:37 
+
+22:37 directly. So we somehow use this
+22:40 
+
+22:40 intermediate input and then pro it
+22:41 
+
+22:41 again. Now in order to see the notation
+22:43 
+
+22:43 you have these weight matrices and you
+22:45 
+
+22:45 have these biases. So in here if you see
+22:46 
+
+22:46 this so this here because input is n and
+22:50 
+
+22:50 also here uh the output also is n. So
+22:52 
+
+22:52 this will be n cross n matrix in this
+22:54 
+
+22:54 case. Okay. So let's suppose if this was
+22:56 
+
+22:56 n okay and this was some k so this will
+22:58 
+
+22:58 be n cross k matrix. Okay. So it depends
+23:00 
+
+23:00 what's the matrix. So all in all what
+23:02 
+
+23:02 you have what you are doing here is this
+23:04 
+
+23:04 is just matrix manipulation. So in uh uh
+23:07 
+
+23:07 training of neural networks or when you
+23:09 
+
+23:09 do anything with neural network you
+23:10 
+
+23:10 usually are doing matrix manipulation.
+23:11 
+
+23:11 So which I said is we have this weight
+23:13 
+
+23:13 matrix. So what's the size of weight
+23:14 
+
+23:14 matrix depends on because this w1 is
+23:17 
+
+23:17 defined between zero and the first
+23:19 
+
+23:19 layer. So if you have wk it is defined
+23:21 
+
+23:21 by k minus 1 to kth layer. So when you
+23:23 
+
+23:23 have w i that is the weight matrix
+23:25 
+
+23:25 between i minus 1 to i layer. So now
+23:27 
+
+23:27 what is the size of that? It depends on
+23:30 
+
+23:30 how many neurons are here and how many
+23:31 
+
+23:31 neurons are here. So if K number of
+23:33 
+
+23:33 neurons are here and if let's suppose P
+23:36 
+
+23:36 number of neurons are here. So the
+23:37 
+
+23:37 weight matrix will be K cross P. So this
+23:40 
+
+23:40 weight matrix will have. So if you see
+23:41 
+
+23:41 this bias so this bias vector because it
+23:43 
+
+23:43 depends on how many inputs are coming.
+23:45 
+
+23:45 So each neuron over here. So if you see
+23:47 
+
+23:47 1 2 3 all of these will have their own
+23:48 
+
+23:48 biases. So the number of neurons will
+23:50 
+
+23:50 will tell you the bias. So it usually is
+23:53 
+
+23:53 so you have
+23:55 
+
+23:55 W I matrix which is K cross P. Okay.
+23:59 
+
+23:59 Because you write W cross X let's
+24:01 
+
+24:01 suppose. So all the time if you have if
+24:02 
+
+24:02 you have first neuron so first you
+24:04 
+
+24:04 should be very careful. So if you have
+24:05 
+
+24:05 wi so w i in this case let's if you have
+24:09 
+
+24:09 w1 so what should be because you do w x
+24:13 
+
+24:13 plus b. So what you try to do is if you
+24:15 
+
+24:15 have this w1 so the dimension should
+24:18 
+
+24:18 match if you if the input is n
+24:20 
+
+24:20 dimensional let's suppose input is n
+24:21 
+
+24:21 dimensional input is usually n cross one
+24:24 
+
+24:24 okay and this should be n cross let's
+24:27 
+
+24:27 suppose so if you have uh the other k
+24:29 
+
+24:29 cross n something of this sort okay so
+24:32 
+
+24:32 you usually write we'll write it as n
+24:34 
+
+24:34 cross k because you take a transpose of
+24:35 
+
+24:35 this after that so you'll usually see it
+24:37 
+
+24:37 written like this wrpose x + b so
+24:39 
+
+24:39 whatever matrix you have you you'll take
+24:41 
+
+24:41 a transpose of that okay it depends how
+24:42 
+
+24:42 you represent data uh in your neural
+24:45 
+
+24:45 networks and based on that you have to
+24:46 
+
+24:46 apply transpose sometimes if you write
+24:47 
+
+24:47 it in such a way so the transport is not
+24:50 
+
+24:50 transpose is not required but in this
+24:51 
+
+24:51 case if you define it like this so as as
+24:53 
+
+24:53 I have defined over here so I have
+24:55 
+
+24:55 defined it like this K cross P so you'll
+24:57 
+
+24:57 have to take transpose it depends how
+24:59 
+
+24:59 you define it
+25:01 
+
+25:01 okay I hope this is clear so then you
+25:03 
+
+25:03 have this vector bias vector so because
+25:05 
+
+25:05 you are taking this transpose now so you
+25:07 
+
+25:07 have w is n cross k let's suppose now
+25:09 
+
+25:09 you take a transpose of this and then
+25:11 
+
+25:11 you multiply it with the x so x is the
+25:13 
+
+25:13 data matrix in which you again basically
+25:16 
+
+25:16 are saying that you have n features and
+25:18 
+
+25:18 then you have let's suppose some x data
+25:20 
+
+25:20 point you have some let's suppose z
+25:21 
+
+25:21 number data points this again can be a
+25:23 
+
+25:23 matrix or you can just take one point of
+25:25 
+
+25:25 that so now you have to also add bias to
+25:28 
+
+25:28 that okay if I just talk about one data
+25:30 
+
+25:30 point say we talk about just one data
+25:31 
+
+25:31 point and cross one data point now you
+25:33 
+
+25:33 can see that uh this is k + one and this
+25:36 
+
+25:36 over here the bias over here should be k
+25:39 
+
+25:39 + 1 so this should be a vector which
+25:41 
+
+25:41 contains k number of elements in in in
+25:44 
+
+25:44 this. So this is this this should be the
+25:45 
+
+25:45 bias. So you should take care of
+25:46 
+
+25:46 dimensions. So big note here take care
+25:50 
+
+25:50 of dimensions.
+25:55 
+
+25:55 Okay define based on this. So should you
+25:57 
+
+25:57 apply transpose or should you not apply
+25:58 
+
+25:58 transpose? It depends how you define
+25:60 
+
+25:60 this weight matrix. So we have weight
+26:01 
+
+26:01 matrix and you have bias matrix and then
+26:03 
+
+26:03 you also have data. So you have the data
+26:05 
+
+26:05 matrix as a whole. Then you perform the
+26:06 
+
+26:06 multiplication in one go. Okay. When you
+26:08 
+
+26:08 have to apply forward pass. I hope that
+26:10 
+
+26:10 you you're clear with this now. So in
+26:12 
+
+26:12 order to now define let's suppose if
+26:13 
+
+26:13 somebody asks me can you define this
+26:14 
+
+26:14 neural network in terms of mathematics.
+26:16 
+
+26:16 So what I can do is so basically how it
+26:18 
+
+26:18 is happening is so you have this a I of
+26:21 
+
+26:21 X so before you have to aggregate this
+26:24 
+
+26:24 how do you aggregate you take BI plus
+26:26 
+
+26:26 you take this wi hi minus one which
+26:29 
+
+26:29 earlier showed so this is so whatever x
+26:31 
+
+26:31 you you getting so that's a
+26:33 
+
+26:33 pre-activation layer which we'll call
+26:34 
+
+26:34 pre-activation and then you'll apply
+26:36 
+
+26:36 activation on this okay you'll apply
+26:38 
+
+26:38 activation so activation will be h i of
+26:41 
+
+26:41 x is equal to g of a i of x okay which
+26:46 
+
+26:46 earlier showed you this is activation
+26:47 
+
+26:47 layer and this can be you can have a
+26:49 
+
+26:49 different function over here okay you'll
+26:50 
+
+26:50 have weight matrix something of this
+26:52 
+
+26:52 let's suppose W1 can be defined so in
+26:54 
+
+26:54 this case we have 3 + 3 matrix you'll be
+26:55 
+
+26:55 given numbers like the 0.5 0.2 0.3 0.1
+26:59 
+
+26:59 0.8 0.1 0.3 0.1 2 0.6 six or something
+27:05 
+
+27:05 of this sort. Okay, this will be weight
+27:07 
+
+27:07 one matrix and then you'll be given bias
+27:08 
+
+27:08 one vector. Okay, so you'll have
+27:10 
+
+27:10 something of this sort. So you'll you
+27:11 
+
+27:11 can write it in transport also the way
+27:13 
+
+27:13 you define it 0.1 minus 0.1 comma 0.2
+27:18 
+
+27:18 and then you'll have to apply you
+27:19 
+
+27:19 similarly you'll be given w2 bias 2 w3
+27:22 
+
+27:22 bias 3 and you'll have to apply this
+27:24 
+
+27:24 sort of notation on here. Okay, I hope
+27:26 
+
+27:26 this is clear. I hope this notation is
+27:28 
+
+27:28 clear and we will use mostly I will not
+27:30 
+
+27:30 try to deviate from this notation when
+27:33 
+
+27:33 I'm deriving the formulations or if I'm
+27:35 
+
+27:35 using it let's suppose in pytorch or if
+27:37 
+
+27:37 you are making our own library I'll try
+27:38 
+
+27:38 to abide through this notations maybe I
+27:40 
+
+27:40 can sometimes deviate but I made sure
+27:42 
+
+27:42 that because sometimes I can do this
+27:44 
+
+27:44 transpose and sometimes I may not do
+27:46 
+
+27:46 trans it depends how I define data
+27:47 
+
+27:47 matrix okay we'll see it there but I
+27:49 
+
+27:49 hope that you got the notion how did I
+27:52 
+
+27:52 uh define these things one by one can I
+27:54 
+
+27:54 assume that every everybody is clear on
+27:56 
+
+27:56 this
+27:58 
+
+27:58 Now that we laid the foundations, we at
+27:59 
+
+27:59 least said the okay now we have we are
+28:01 
+
+28:01 clear with notations. We know what depth
+28:02 
+
+28:02 is, what a layer is. Okay. And we know
+28:04 
+
+28:04 all these terminologies. Now we'll see
+28:06 
+
+28:06 representational power of these
+28:08 
+
+28:08 multi-layer perceptrons. Basically what
+28:09 
+
+28:09 they can represent. The first thing is
+28:11 
+
+28:11 these multi-layer perceptrons.
+28:14 
+
+28:14 They are
+28:16 
+
+28:16 multi-layer perceptrons can model any
+28:19 
+
+28:19 boolean function can model any boolean
+28:21 
+
+28:21 function that we have already seen.
+28:24 
+
+28:24 So I'm again showing it because today we
+28:27 
+
+28:27 spoke about depth. I want to show you
+28:29 
+
+28:29 that how is depth related. So how can we
+28:31 
+
+28:31 see the width and depth how are they
+28:32 
+
+28:32 related. So now you can see that we can
+28:34 
+
+28:34 let's suppose have a gate. So of this
+28:36 
+
+28:36 sort let's input is x and y. So say
+28:38 
+
+28:38 these are these are two inputs. So I can
+28:40 
+
+28:40 give one and one to weights over here.
+28:42 
+
+28:42 So if I say threshold is two. If I apply
+28:43 
+
+28:43 threshold in logic even so I can say
+28:45 
+
+28:45 that this is our end gate x and y. So
+28:49 
+
+28:49 once the these inputs are on the
+28:51 
+
+28:51 threshold will be two. then only uh this
+28:54 
+
+28:54 will fire. So we can uh similarly model
+28:58 
+
+28:58 X or gate
+29:00 
+
+29:00 not X or gate. So this is gate and this
+29:03 
+
+29:03 is we can also have N gate and other
+29:05 
+
+29:05 gates. So you know that single layer of
+29:07 
+
+29:07 single perceptron cannot model XR and we
+29:09 
+
+29:09 have also seen what's the problem with
+29:10 
+
+29:10 that. So why why can't it model so now
+29:12 
+
+29:12 I'll give you one. Uh so basically what
+29:14 
+
+29:14 we actually today I want to do is I want
+29:16 
+
+29:16 to show you what is the uh what is sort
+29:19 
+
+29:19 of uh the uh how can I compare the depth
+29:23 
+
+29:23 and the width. So now you know that if I
+29:24 
+
+29:24 have any type of boolean function if I
+29:26 
+
+29:26 have any boolean function
+29:29 
+
+29:29 any boolean function.
+29:31 
+
+29:31 Okay how many neurons like if I only
+29:34 
+
+29:34 have a single n so what do you think how
+29:36 
+
+29:36 many neurons do I require? How many
+29:39 
+
+29:39 neurons do I need?
+29:42 
+
+29:42 How many neurons do I need
+29:46 
+
+29:46 in the first hidden layer?
+29:49 
+
+29:49 In the first hidden layer. If I only if
+29:52 
+
+29:52 I only want to have this first hidden
+29:54 
+
+29:54 layer. You have seen that that because
+29:55 
+
+29:55 we want uh to model each of the
+29:57 
+
+29:57 combination. If I have an an input
+29:59 
+
+29:59 function n input function. So if I have
+30:02 
+
+30:02 an input function
+30:05 
+
+30:05 and you know the possible combinations
+30:06 
+
+30:06 are 2 to the^ n and we saw that we can
+30:09 
+
+30:09 model this by using 2 ^ n in in worst
+30:12 
+
+30:12 case scenario we can do this okay so
+30:14 
+
+30:14 let's see can we do something better
+30:16 
+
+30:16 than this can we somehow decrease the
+30:17 
+
+30:17 number of these neurons which we can use
+30:20 
+
+30:20 okay so this is this is the case that we
+30:22 
+
+30:22 want to do okay I'll take some let's
+30:24 
+
+30:24 suppose some examples
+30:26 
+
+30:26 the example that I'll take let's suppose
+30:29 
+
+30:29 is of this nature
+30:31 
+
+30:31 So I'll have a boolean function
+30:35 
+
+30:35 say of 16 inputs.
+30:40 
+
+30:40 How many of you know cornog maps? Do you
+30:42 
+
+30:42 know k maps? So I can rewrite this table
+30:45 
+
+30:45 into k maps. So I'll write truth table
+30:47 
+
+30:47 in k maps. So how what are these cornog
+30:49 
+
+30:49 maps? So if you see this. So let's
+30:50 
+
+30:50 suppose we know that if we have four
+30:53 
+
+30:53 inputs. So how we can write four inputs?
+30:54 
+
+30:54 Let's suppose X uh Y
+30:59 
+
+30:59 let's suppose PQR is something of this
+31:00 
+
+31:00 sort. So we can say 0 0 0 1 1 0 1 1
+31:04 
+
+31:04 again 0 0 1 1 0 1 1. So this is a K map
+31:08 
+
+31:08 of that function. Let's suppose if we
+31:09 
+
+31:09 have ones over here. So 1 one 1. So one
+31:13 
+
+31:13 something of this at 1 one and rest we
+31:14 
+
+31:14 have zeros. Let's say
+31:18 
+
+31:18 okay. Now in order to we can we can
+31:20 
+
+31:20 really take this. So why wherever we
+31:22 
+
+31:22 have one let's suppose we have one this
+31:23 
+
+31:23 we can write PQRS
+31:26 
+
+31:26 bar bar so because we have this one over
+31:28 
+
+31:28 here this is PQRS plus okay because all
+31:31 
+
+31:31 the wherever there are ones I have to
+31:33 
+
+31:33 make these neurons active okay rest I
+31:35 
+
+31:35 can leave them and you know how to
+31:36 
+
+31:36 create digital circuits for that you
+31:38 
+
+31:38 just take these ones place and then you
+31:40 
+
+31:40 make a gate out of that similarly you
+31:41 
+
+31:41 can take this so this is P bar
+31:44 
+
+31:44 uh Q R S bar bar so bar bar basically
+31:48 
+
+31:48 means wherever you you see zero and
+31:50 
+
+31:50 without bar is basically one. So this is
+31:52 
+
+31:52 called as DNF disjunct to normal form
+31:56 
+
+31:56 where what you do is you basically take
+31:58 
+
+31:58 ands wherever you see one and then you
+31:59 
+
+31:59 or or these together. Okay. So if you
+32:02 
+
+32:02 want to see a detailed K map you can
+32:04 
+
+32:04 just refer to any of the material where
+32:06 
+
+32:06 you can get the information about K
+32:08 
+
+32:08 maps. So this is usually how it is
+32:10 
+
+32:10 defined. So if you have a true table so
+32:11 
+
+32:11 you can define it like this. So now you
+32:13 
+
+32:13 see this one wherever you have ones you
+32:14 
+
+32:14 can club them together. Okay you can
+32:17 
+
+32:17 club these ones together. Okay, you can
+32:19 
+
+32:19 club these ones together. You can club
+32:22 
+
+32:22 these ones together. So basically you
+32:24 
+
+32:24 can create a what is called as minimal
+32:25 
+
+32:25 DNF. Okay, I can write this maximal DNF.
+32:28 
+
+32:28 So basically maximal DNA means so I can
+32:31 
+
+32:31 I can write all of these things
+32:32 
+
+32:32 together. So I wrote for this one, then
+32:34 
+
+32:34 I wrote for this one. I can write for
+32:35 
+
+32:35 this one plus PQ RS bar bar plus I can
+32:39 
+
+32:39 write for this one. Now this is PQ R and
+32:42 
+
+32:42 S bar bar because R RS here if you see
+32:44 
+
+32:44 this is 0 0 and then I can write for
+32:46 
+
+32:46 other three as well. Okay, other three
+32:48 
+
+32:48 in the similar fashion. So this is at
+32:50 
+
+32:50 disjunct to normal form but this is not
+32:51 
+
+32:51 the minimal form. Okay, this is not not
+32:54 
+
+32:54 the minimal.
+32:57 
+
+32:57 So what you can do is you can basically
+32:60 
+
+32:60 apply boolean algebra on this to get a
+33:01 
+
+33:01 minimized form. So why do we want
+33:03 
+
+33:03 minimized form? Because whenever you
+33:04 
+
+33:04 want to make a circuit, you usually if
+33:07 
+
+33:07 you have a bigger expression, you want
+33:08 
+
+33:08 to minimize the expression and then you
+33:11 
+
+33:11 make the circuit for that minimal
+33:12 
+
+33:12 expression because less gates will be
+33:13 
+
+33:13 used. Okay, is it clear? That's where
+33:16 
+
+33:16 KFS came into the picture. You don't
+33:17 
+
+33:17 have to perform boolean algebra by just
+33:19 
+
+33:19 seeing symbols. So you can as I said you
+33:20 
+
+33:20 can club over here. So what is the
+33:21 
+
+33:21 meaning of this? How can I club all four
+33:23 
+
+33:23 of these? So this basically says if RS
+33:26 
+
+33:26 is off off. So if both both R and S are
+33:28 
+
+33:28 off no matter what the value of PQ is,
+33:30 
+
+33:30 it's always on. So that's why I can club
+33:32 
+
+33:32 all these four. So from this DNF DNF by
+33:36 
+
+33:36 using K maps. So I can get K maps I can
+33:40 
+
+33:40 get minimal DNF.
+33:44 
+
+33:44 Minimal DNF. But these are called these
+33:45 
+
+33:45 are also equivalent because whatever DNF
+33:47 
+
+33:47 you have with this over with all these
+33:49 
+
+33:49 ones. So what you can do is by using K
+33:50 
+
+33:50 maps you can shrink it down and the
+33:52 
+
+33:52 circuit will perform equivalently. So
+33:54 
+
+33:54 whatever circuit you will get with this
+33:55 
+
+33:55 DNF and then if you apply K maps on that
+33:58 
+
+33:58 if you club these terms or apply boolean
+33:59 
+
+33:59 algebra on that so you'll get minimal
+34:01 
+
+34:01 disjunct to normal form. Okay. Is it
+34:03 
+
+34:03 clear? Can I assume that you understood
+34:05 
+
+34:05 this? Okay. Now once you have this so
+34:08 
+
+34:08 what what I can say is so you can create
+34:10 
+
+34:10 less neurons because now if you have
+34:11 
+
+34:11 this DNF so once you have this DNF so
+34:14 
+
+34:14 the number of the terms in DNF so these
+34:16 
+
+34:16 many number of neurons will be used okay
+34:18 
+
+34:18 I hope this is clear okay let me give an
+34:20 
+
+34:20 example let's suppose if we have a K map
+34:21 
+
+34:21 of this sort
+34:24 
+
+34:24 if we have a K map of this sort say this
+34:28 
+
+34:28 this this is one so the one the K map I
+34:31 
+
+34:31 made so this and this so these are ones
+34:34 
+
+34:34 and rest is zeros okay so what I can do
+34:36 
+
+34:36 with this is So now if you if you write
+34:39 
+
+34:39 reduced form of this if you write the
+34:40 
+
+34:40 minimal expression so how many terms
+34:42 
+
+34:42 will be there? So let's suppose this is
+34:44 
+
+34:44 uh wx y and z. Okay. So if I write
+34:47 
+
+34:47 reduced form of this so this is 0 0 0 1
+34:49 
+
+34:49 1 0 1 1 0 0 1 1 0 1 1. So I can club all
+34:54 
+
+34:54 four of these. So the output of this
+34:56 
+
+34:56 will be equal to y bar z bar. So because
+34:58 
+
+34:58 this is where all on and then I can club
+35:01 
+
+35:01 these two also. Then I'll get three
+35:03 
+
+35:03 terms. So I'll get plus w bar x y bar.
+35:07 
+
+35:07 So by using this so you have to include
+35:09 
+
+35:09 this and you have to include one of
+35:11 
+
+35:11 these. Okay. And plus I can include
+35:13 
+
+35:13 these. Okay. Plus this is
+35:18 
+
+35:18 x xar y z bar. Okay. Now I got these
+35:22 
+
+35:22 three terms. So if I got three term
+35:23 
+
+35:23 three terms what I can I do is I can
+35:25 
+
+35:25 just have three neurons
+35:27 
+
+35:27 one two and three. So one will handle
+35:32 
+
+35:32 this, one will handle this and one will
+35:33 
+
+35:33 handle this. Then what can I do is I can
+35:35 
+
+35:35 just or them together. Okay. To have an
+35:37 
+
+35:37 output I can just or them together.
+35:41 
+
+35:41 Okay. So basically this will handle this
+35:43 
+
+35:43 1 2 and third term. And then this is the
+35:45 
+
+35:45 orgate. And these are the number of
+35:47 
+
+35:47 neurons I use. So I use this is input.
+35:49 
+
+35:49 So I my input will be wx y and z. So I
+35:53 
+
+35:53 can give the input based on this. So
+35:55 
+
+35:55 that y z will go to this. Let's suppose
+35:57 
+
+35:57 something of this sort and wxy will go
+35:59 
+
+35:59 to this wxy something of this and I'll
+36:01 
+
+36:01 give the input in such a way that each
+36:03 
+
+36:03 of this neuron handles each one term in
+36:05 
+
+36:05 here. So what I can say is from this I
+36:07 
+
+36:07 can I just can use the hidden layer can
+36:09 
+
+36:09 just use three neurons. So otherwise
+36:12 
+
+36:12 what are the usual case? The usual case
+36:13 
+
+36:13 that we were that that we knew is that
+36:15 
+
+36:15 if you have n inputs we were using two
+36:17 
+
+36:17 to the power n two to the n neurons. So
+36:19 
+
+36:19 now I'm reducing the number of neurons I
+36:20 
+
+36:20 can use. Okay. Is the is is the goal
+36:22 
+
+36:22 clear? The goal here is I want to see
+36:24 
+
+36:24 what is the minimum number of neurons
+36:26 
+
+36:26 that I can use. Is it clear? Is the goal
+36:28 
+
+36:28 clear? Okay. So that you don't lose the
+36:30 
+
+36:30 track. What I'm showing you is that we
+36:32 
+
+36:32 want to see that how many neurons if we
+36:34 
+
+36:34 have just one hidden layer. So how many
+36:37 
+
+36:37 least neurons can be used. So let's
+36:38 
+
+36:38 suppose we have we are now seeing that
+36:40 
+
+36:40 two to the n neurons we can have any
+36:42 
+
+36:42 function. But in this case what I'm
+36:43 
+
+36:43 saying is if you are given a function so
+36:45 
+
+36:45 this is a boolean function and you can
+36:47 
+
+36:47 you can apply boolean algebra on it. So
+36:49 
+
+36:49 if you have n inputs the total possible
+36:50 
+
+36:50 combination of 2 to the^ n but you know
+36:52 
+
+36:52 that if you have this boolean function
+36:54 
+
+36:54 with 2 to the^ n so you can use k maps
+36:56 
+
+36:56 to get to a minimal dnf minimal digital
+36:59 
+
+36:59 to normal form. So where you'll get some
+37:01 
+
+37:01 terms will be eliminated so you'll get
+37:02 
+
+37:02 less terms than the original one. So
+37:04 
+
+37:04 from those less terms you know that one
+37:06 
+
+37:06 neuron can handle one term in this case.
+37:07 
+
+37:07 So and then you can reduce the number of
+37:09 
+
+37:09 neurons that you can use. Okay. So what
+37:11 
+
+37:11 is the largest irreducible DNF? So what
+37:15 
+
+37:15 is the largest
+37:18 
+
+37:18 irreducible
+37:20 
+
+37:20 DNF? So what do I mean mean by this? So
+37:22 
+
+37:22 I should be getting a K map which I
+37:24 
+
+37:24 cannot reduce. I have to anyway write
+37:26 
+
+37:26 all the terms. So in that in that case
+37:28 
+
+37:28 what what is that? So if you see if I
+37:29 
+
+37:29 have a K map of this sort. So I'll write
+37:33 
+
+37:33 something of this. These are 16 things.
+37:34 
+
+37:34 So I'm just writing uh with 16. So you
+37:37 
+
+37:37 can later on expand it to any variable.
+37:40 
+
+37:40 So I'm writing here for n is equal 4.
+37:43 
+
+37:43 Okay. So n is equal 4. So we have 2 ^ 4
+37:45 
+
+37:45 that's 16 combinations. So what is the
+37:47 
+
+37:47 largest irreducible DNF? So if you have
+37:49 
+
+37:49 a DNF which we cannot reduce. So that
+37:51 
+
+37:51 will be irreducible. We cannot reduce
+37:52 
+
+37:52 that by using K map. So that means we
+37:54 
+
+37:54 should not be able to club like this. So
+37:56 
+
+37:56 we can club twos, fours, eights. So in
+37:58 
+
+37:58 we should have a K map in which we
+37:59 
+
+37:59 cannot club these twos. So let's suppose
+38:01 
+
+38:01 I can start from here. So what I can do
+38:02 
+
+38:02 is I can have a checkered board. So in
+38:05 
+
+38:05 that checkered board I'll have no way of
+38:06 
+
+38:06 reducing. I'll have this and then this.
+38:08 
+
+38:08 Okay. something of this or and then this
+38:10 
+
+38:10 then this this this
+38:15 
+
+38:15 and this okay let's suppose this is wx y
+38:18 
+
+38:18 and z so now by using k map or by using
+38:21 
+
+38:21 boolean algebra I have no way of
+38:23 
+
+38:23 reducing this so I have no way to reduce
+38:28 
+
+38:28 so which terms have do I have to include
+38:30 
+
+38:30 I'll have to include the terms all these
+38:32 
+
+38:32 half terms okay can you can you
+38:34 
+
+38:34 recognize this what whose kap is this
+38:38 
+
+38:38 can you define this gate if you can see
+38:39 
+
+38:39 it. So this came up is for XR. So you
+38:42 
+
+38:42 take your time later on and to think why
+38:44 
+
+38:44 is it they came up for XR because once
+38:46 
+
+38:46 the so this is XR is called as modulo 2
+38:49 
+
+38:49 gate modulo 2. Okay when you have when
+38:52 
+
+38:52 you perform the modulus by two if it
+38:54 
+
+38:54 comes to be zero then XR is off. If if
+38:56 
+
+38:56 it comes up to be one then XR is gate is
+38:59 
+
+38:59 on. So you can see this is for XR. So
+39:02 
+
+39:02 now you saw that so you have 1 2 3 4 5 6
+39:05 
+
+39:05 7 8. So now this is the worst case
+39:08 
+
+39:08 possible because you cannot reduce the
+39:10 
+
+39:10 kapp in here. So what is the number of
+39:12 
+
+39:12 hidden neurons that you you should use
+39:14 
+
+39:14 them? So this is 2 ^ n minus one. Okay,
+39:18 
+
+39:18 you can use 2^ n minus one but you again
+39:20 
+
+39:20 have to use one more neuron to perform
+39:21 
+
+39:21 the or 2 the^ n - 1 - n. So this is the
+39:25 
+
+39:25 number of neurons that you have to use
+39:27 
+
+39:27 if you have one hidden layer. So if you
+39:30 
+
+39:30 have one hidden layer
+39:34 
+
+39:34 so in ter in XR because this is the
+39:37 
+
+39:37 largest irreducible DNF okay because I
+39:39 
+
+39:39 cannot reduce it. How can I reduce if I
+39:41 
+
+39:41 can club terms together here in this
+39:43 
+
+39:43 case I cannot club any term together. So
+39:45 
+
+39:45 now with one hidden layer so I have 2
+39:47 
+
+39:47 the^ n minus n minus one because I only
+39:49 
+
+39:49 have neurons for these. Why do you have
+39:51 
+
+39:51 this one one? But the gate is off. I
+39:53 
+
+39:53 don't need to consider that. Now this is
+39:55 
+
+39:55 2 the^ n minus one. Initially it was 2^
+39:57 
+
+39:57 n. Now we had divided by two. So 2 the^
+39:59 
+
+39:59 n divided by two is this because we are
+40:02 
+
+40:02 half inputs are on and half inputs are
+40:04 
+
+40:04 off. If you see this okay rather not not
+40:07 
+
+40:07 inputs half outputs are off. Okay. So
+40:08 
+
+40:08 the output of the function half for half
+40:10 
+
+40:10 of the combination it's off and for half
+40:12 
+
+40:12 the combination it's on. So that's why
+40:13 
+
+40:13 we are 2^ n divided by two s^ n minus
+40:16 
+
+40:16 one. So then we have one more layer. So
+40:18 
+
+40:18 one more neuron will be used for all. So
+40:20 
+
+40:20 you have let's suppose x1 x2 till say x
+40:23 
+
+40:23 n. And then what we will use in the
+40:25 
+
+40:25 hidden layer in between you'll have two
+40:28 
+
+40:28 n minus one neurons and then plus one
+40:29 
+
+40:29 neuron so as to perform the order of
+40:32 
+
+40:32 this. Okay. So these many neurons will
+40:35 
+
+40:35 be used if we just have one hidden
+40:37 
+
+40:37 layer. So this is the number of neurons
+40:41 
+
+40:41 number of neurons that will be used. So
+40:44 
+
+40:44 what I did is again coming back. So I
+40:46 
+
+40:46 said can we reduce this somehow. So we
+40:47 
+
+40:47 said if we are given any boolean
+40:49 
+
+40:49 expression so how can we reduce? We can
+40:51 
+
+40:51 make k maps. So we can see that if we
+40:53 
+
+40:53 are able to club some terms together. If
+40:54 
+
+40:54 we are able to club some terms together
+40:56 
+
+40:56 then we can reduce this DNF form. We can
+40:58 
+
+40:58 reduce this disjunct to normal form and
+41:00 
+
+41:00 we can have a minimal expression and
+41:02 
+
+41:02 which can be then we can use neurons to
+41:05 
+
+41:05 implement that and number of terms in
+41:07 
+
+41:07 that minimal DNF is the number of
+41:09 
+
+41:09 neurons we'll have. Then we said is
+41:11 
+
+41:11 there a largest irreducible DNF? So
+41:13 
+
+41:13 which we cannot reduce. So we came to
+41:14 
+
+41:14 this conclusion because we were clubbing
+41:16 
+
+41:16 the terms in K map if the address if
+41:19 
+
+41:19 there was a bit difference was only one.
+41:20 
+
+41:20 So now on purpose we are making this
+41:22 
+
+41:22 checkered pattern. So why are we making
+41:23 
+
+41:23 this checkered pattern? Because we do
+41:25 
+
+41:25 not want this DNF to be reduced by using
+41:27 
+
+41:27 K maps okay or by using any boolean
+41:30 
+
+41:30 algebra. So this is the large DNF. So
+41:32 
+
+41:32 what I'm saying is now so now if you
+41:34 
+
+41:34 only have one hidden layer so how many
+41:36 
+
+41:36 number of neurons will be used because
+41:37 
+
+41:37 we'll only have neurons for the terms
+41:39 
+
+41:39 where we have this 111. Okay for the
+41:40 
+
+41:40 other patterns for the other bit strings
+41:44 
+
+41:44 for the other combinations where the
+41:45 
+
+41:45 output is zero we will not have neurons
+41:47 
+
+41:47 for them. So the number of possible
+41:48 
+
+41:48 neurons is basically 2 ^ n / 2 that is
+41:50 
+
+41:50 2^ n minus one and plus one one more
+41:53 
+
+41:53 neuron because we are performing all
+41:56 
+
+41:56 operation of that. So this is the number
+41:58 
+
+41:58 of neurons we can we can use. So if you
+41:60 
+
+41:60 asked that so what what can you in terms
+42:02 
+
+42:02 of xar so we have to use if in within
+42:04 
+
+42:04 one layer we have to use this. So this
+42:05 
+
+42:05 is within with just one layer can we
+42:08 
+
+42:08 somehow do something we can make this
+42:11 
+
+42:11 network deeper. So if we can make this
+42:13 
+
+42:13 network deep.
+42:15 
+
+42:15 So if we can make this network deep so
+42:17 
+
+42:17 can we somehow reduce the neurons. So
+42:18 
+
+42:18 that is the question now that we are
+42:19 
+
+42:19 going to answer. So if now we saw that
+42:21 
+
+42:21 with one hidden layer so xR function
+42:23 
+
+42:23 because we cannot reduce it we have to
+42:25 
+
+42:25 use 2 to the^ n minus 1 + one neurons
+42:27 
+
+42:27 that is exponential number of neurons.
+42:28 
+
+42:28 So if you have n inputs n inputs and you
+42:31 
+
+42:31 have only one hidden layer you have one
+42:34 
+
+42:34 hidden layer.
+42:36 
+
+42:36 Okay. Then you have to use 2 ^ n minus
+42:39 
+
+42:39 one + 1 neurons
+42:42 
+
+42:42 and this is exponential number of
+42:44 
+
+42:44 neutrons. If you see over here
+42:47 
+
+42:47 exponential
+42:49 
+
+42:49 number of neurons.
+42:51 
+
+42:51 So what is the problem with using
+42:53 
+
+42:53 exponential number of neurons? The
+42:54 
+
+42:54 problem is that you have to implement
+42:56 
+
+42:56 this in the hardware. Okay. That you
+42:58 
+
+42:58 have to use expon exponential
+42:59 
+
+42:59 computation. Okay. This this is the
+43:01 
+
+43:01 problem with this. So now we are going
+43:02 
+
+43:02 to deep network. So we're going to deep
+43:04 
+
+43:04 networks. So why why are we rest in deep
+43:06 
+
+43:06 networks? The qu answer to the question
+43:08 
+
+43:08 is that we first want to look so can we
+43:10 
+
+43:10 somehow use these depth and we can trade
+43:12 
+
+43:12 off with width
+43:15 
+
+43:15 can we somehow decrease the width and
+43:16 
+
+43:16 then we can trade off with the depth and
+43:18 
+
+43:18 can we go to linear so uh if you if you
+43:21 
+
+43:21 see width so width was exponential
+43:23 
+
+43:23 exponential and it is pretty hard to
+43:26 
+
+43:26 train so if you have to train it because
+43:27 
+
+43:27 it will use exponential number of
+43:29 
+
+43:29 neurons to compute and you'll see how
+43:31 
+
+43:31 much resource intensity it would be so I
+43:33 
+
+43:33 want to see if I can make the network
+43:35 
+
+43:35 deep is there a possibility that I can
+43:36 
+
+43:36 make this network deep. Okay. So that I
+43:39 
+
+43:39 can go to polomial
+43:41 
+
+43:41 polinomial number of neurons. So you
+43:43 
+
+43:43 have exponential number of neurons then
+43:44 
+
+43:44 you have with basically one hidden
+43:46 
+
+43:46 neuron. So we have one hidden layer.
+43:47 
+
+43:47 Sorry, one hidden layer or some hidden
+43:50 
+
+43:50 layer. So then you have to use a lot of
+43:52 
+
+43:52 neurons. So can I have a trade-off? Can
+43:53 
+
+43:53 I make this network deep? Can I make
+43:55 
+
+43:55 this network deep so as I can use
+43:56 
+
+43:56 polinomial number of neurons?
+43:59 
+
+43:59 Polinomial number of neurons.
+44:02 
+
+44:02 Okay, we'll see in terms of XR because
+44:04 
+
+44:04 in in in our case XR was a function in
+44:07 
+
+44:07 which we couldn't reduce uh this DNF. We
+44:10 
+
+44:10 couldn't reduce it to the minimal DNF,
+44:12 
+
+44:12 minimal D into normal form. Okay, we'll
+44:14 
+
+44:14 see this.
+44:16 
+
+44:16 Okay. Now what we can do is if you see
+44:18 
+
+44:18 this I'll again make the checkered
+44:19 
+
+44:19 board. So checker in in that case was
+44:22 
+
+44:22 let's suppose in checkered we had I
+44:24 
+
+44:24 think I can copy this checkered one. So
+44:26 
+
+44:26 in this this was a checkered one. This
+44:28 
+
+44:28 case was a checkered one. So I can write
+44:30 
+
+44:30 these eight terms. Okay, let's write it
+44:32 
+
+44:32 like this. We can have xr of so call
+44:34 
+
+44:34 this this is xr of u xr. So this is u uh
+44:40 
+
+44:40 v ww x y and z something of this sort
+44:44 
+
+44:44 because we have these many number of
+44:45 
+
+44:45 terms. So consider this. So if you have
+44:47 
+
+44:47 this u v wxyz
+44:49 
+
+44:49 so u xr uh v xr
+44:53 
+
+44:53 w xr
+44:56 
+
+44:56 x y and z. Consider these are the terms.
+44:59 
+
+44:59 Now you know that if we have to
+45:01 
+
+45:01 implement this so we have to use at
+45:03 
+
+45:03 least 2 ^ n - 1 divid by two uh number
+45:06 
+
+45:06 of neurons. So what we can do is now you
+45:08 
+
+45:08 know that xr is an associated operation.
+45:10 
+
+45:10 Okay. So what I can do is I can use this
+45:12 
+
+45:12 u and v. So I can say u v w x y and z.
+45:17 
+
+45:17 So I know that this is an xr operation.
+45:19 
+
+45:19 So I can club these things together. So
+45:21 
+
+45:21 I can say u and v I can perform this
+45:25 
+
+45:25 with two neurons and then perform one
+45:27 
+
+45:27 more with one neuron. Let's suppose I
+45:29 
+
+45:29 I'll use for this term. So, uxv I can
+45:32 
+
+45:32 perform with three neurons.
+45:34 
+
+45:34 Okay. So, this can be performed by three
+45:37 
+
+45:37 neurons.
+45:38 
+
+45:38 So, this uxrv and now I know I should
+45:41 
+
+45:41 not start from initial. I can go from
+45:43 
+
+45:43 here now. So, this will be now one more
+45:46 
+
+45:46 neuron and one more neuron like this.
+45:48 
+
+45:48 Okay. Now, if you see this neuron is at
+45:51 
+
+45:51 is at depth two. So, this is at depth
+45:54 
+
+45:54 two. So, this will be considered in the
+45:55 
+
+45:55 in the second layer. Why? because it
+45:57 
+
+45:57 goes from it has two edges. So one from
+45:59 
+
+45:59 here W and then between this and this is
+46:01 
+
+46:01 the layer one over here. So this over
+46:03 
+
+46:03 here is layer 1.
+46:06 
+
+46:06 So this is layer 1. These two neurons
+46:09 
+
+46:09 and this is layer two. Okay.
+46:12 
+
+46:12 So this again is layer 1. So now this
+46:14 
+
+46:14 this can be considered layer three.
+46:16 
+
+46:16 Okay. This is at layer three. Sorry. So
+46:17 
+
+46:17 you have to con construct the maximum
+46:19 
+
+46:19 number of so this is at this is layer 1.
+46:21 
+
+46:21 So these things are this is at layer
+46:23 
+
+46:23 two. This is at layer three now. So
+46:26 
+
+46:26 layer three. Okay. And this one again is
+46:29 
+
+46:29 at layer 1. So now you have you
+46:31 
+
+46:31 performed ux or v. So here you performed
+46:34 
+
+46:34 ux or vv x or w. So again with this what
+46:36 
+
+46:36 you can do is
+46:38 
+
+46:38 this over here can again perform xr and
+46:41 
+
+46:41 you you keep on doing this xr. So
+46:43 
+
+46:43 initially what was the what would have
+46:45 
+
+46:45 you done? So you you would have done
+46:46 
+
+46:46 let's suppose 2 ^ n minus one that is 2
+46:49 
+
+46:49 the^ 3 let's suppose 2 the^ 3 + one. But
+46:53 
+
+46:53 then suppose nine perceptrons would have
+46:54 
+
+46:54 been used. So this network I think
+47:00 
+
+47:00 let me let me check the calculation
+47:02 
+
+47:02 wait.
+47:03 
+
+47:03 Now if you see so we had 1 2 3 4 5 and
+47:06 
+
+47:06 6. So we would have used 2 the^ n minus
+47:08 
+
+47:08 1 + 1. So that is 2 to the^ pi + 1. So
+47:11 
+
+47:11 this is equal to 33 neurons would have
+47:13 
+
+47:13 initially used if we directly use the
+47:15 
+
+47:15 dnf form and we could have reduced this.
+47:17 
+
+47:17 So what I said is but by using this
+47:19 
+
+47:19 depth because now we use this depth. So
+47:20 
+
+47:20 we can keep on increasing the depth. So
+47:22 
+
+47:22 how many neurons will we use? Because we
+47:23 
+
+47:23 are using three neurons for each of
+47:24 
+
+47:24 these pairs. So this is three neurons
+47:26 
+
+47:26 and three neurons because we have five
+47:28 
+
+47:28 pairs now. So this is three multiplied
+47:29 
+
+47:29 by 5. So this is equal to 15 neurons.
+47:34 
+
+47:34 So initially now how many were we using?
+47:35 
+
+47:35 We're using two n minus one + one. So
+47:38 
+
+47:38 these number of neurons with one hidden
+47:40 
+
+47:40 layer mean one hidden layer. Now if you
+47:44 
+
+47:44 increase the number of hidden layers. So
+47:45 
+
+47:45 what I can do is I have I will use three
+47:47 
+
+47:47 into n minus one. Okay. three because
+47:50 
+
+47:50 two because three is used. Now the
+47:53 
+
+47:53 number of layers so how many number of
+47:54 
+
+47:54 layers are there? So I think the number
+47:55 
+
+47:55 of layers are log to n. So the number of
+47:57 
+
+47:57 layers
+47:59 
+
+47:59 so this is after we reduce. So this is
+48:01 
+
+48:01 one hidden layer. So this is with more
+48:03 
+
+48:03 hidden layers with
+48:06 
+
+48:06 more
+48:09 
+
+48:09 hidden layers.
+48:13 
+
+48:13 Okay. So how many layers? So because
+48:15 
+
+48:15 each time it is reducing this n is
+48:17 
+
+48:17 reducing by two and then we have to add
+48:19 
+
+48:19 one more neuron to perform this. So here
+48:21 
+
+48:21 if you see we are reducing this layer
+48:23 
+
+48:23 two two but we have to add one neurons
+48:25 
+
+48:25 here. So two and then one layer. So we
+48:27 
+
+48:27 have to after each reduction we are
+48:29 
+
+48:29 increasing two two layers that's why
+48:30 
+
+48:30 login layers but two times this login.
+48:32 
+
+48:32 So this is the number of layers. So this
+48:34 
+
+48:34 is the number of layers. So I again
+48:37 
+
+48:37 summarize this thing. So now you can see
+48:39 
+
+48:39 that if you have only one hidden layer.
+48:41 
+
+48:41 So how many number of neurons you're
+48:42 
+
+48:42 using exponential. So now in we are just
+48:45 
+
+48:45 doing this treatment on XR. So in terms
+48:46 
+
+48:46 of XR because XR was the this was the
+48:49 
+
+48:49 irrevers this was irreducible DNA form.
+48:51 
+
+48:51 Okay. And largest irreducible DNA form.
+48:53 
+
+48:53 So 2 N minus 1 + one. So we had we had
+48:57 
+
+48:57 to use these many neurons if we have
+48:58 
+
+48:58 only one hidden layer. So when we
+48:60 
+
+48:60 increase the number of layers in terms
+49:01 
+
+49:01 of this XR. So what we use the the with
+49:03 
+
+49:03 more hidden layers. So the number of
+49:05 
+
+49:05 neurons. So this is number of neurons
+49:06 
+
+49:06 over here. So these are number of
+49:09 
+
+49:09 neurons.
+49:11 
+
+49:11 Okay. And now how many layers? So number
+49:13 
+
+49:13 of layers if you see is two log log n
+49:15 
+
+49:15 because each time we are reducing the
+49:17 
+
+49:17 number of levels by we are we're hinging
+49:19 
+
+49:19 basically we're each time we are
+49:21 
+
+49:21 decreasing it by dividing by two
+49:22 
+
+49:22 dividing by two. So if you see initially
+49:24 
+
+49:24 we had let's suppose six we went to
+49:26 
+
+49:26 let's suppose three over here and then
+49:28 
+
+49:28 we have to add one more thing basically
+49:29 
+
+49:29 but we have to add keep on adding one
+49:30 
+
+49:30 one so that's why we have we're with
+49:32 
+
+49:32 this two log n so why two log n because
+49:34 
+
+49:34 we are pairing the terms okay and two
+49:36 
+
+49:36 layers per x so I can write uh the
+49:39 
+
+49:39 reason for this is we are pairing
+49:42 
+
+49:42 pairing terms by pair I mean we are
+49:45 
+
+49:45 clubbing two terms together and the
+49:47 
+
+49:47 second thing is and then we have to use
+49:49 
+
+49:49 two layers per x or two layers per xr
+49:53 
+
+49:53 when we are pairing so you are keeping a
+49:55 
+
+49:55 layer and then for each xr you have to
+49:57 
+
+49:57 use two layer that's why the reason is
+49:58 
+
+49:58 two log 2 and these are the number of
+50:01 
+
+50:01 layers is it clear so now if you see
+50:03 
+
+50:03 this so in order to implement xr if we
+50:06 
+
+50:06 just use one hidden layer if we use one
+50:08 
+
+50:08 hidden layer
+50:10 
+
+50:10 so how many number of neurons are
+50:11 
+
+50:11 required 2 ^ n - 1 + 1 okay exponential
+50:16 
+
+50:16 number of neurons okay so now if we use
+50:19 
+
+50:19 multip if if we are given liberty to use
+50:21 
+
+50:21 multiple hidden layers so the number of
+50:23 
+
+50:23 hidden layers is 2 log 2 n and how many
+50:27 
+
+50:27 how many neurons can we use so we can
+50:29 
+
+50:29 use the number of neurons is 3 * n minus
+50:31 
+
+50:31 one
+50:33 
+
+50:33 okay and with this xr is with n input
+50:37 
+
+50:37 n input if we have n input xr so is it
+50:40 
+
+50:40 clear so You started from exponential.
+50:43 
+
+50:43 So this is exponential number of neurons
+50:45 
+
+50:45 and you now are at polomial number of
+50:47 
+
+50:47 neurons.
+50:50 
+
+50:50 Can you see it? So now you have a solid
+50:52 
+
+50:52 reason to make the network deep. Okay.
+50:54 
+
+50:54 Why? If asked why are you making network
+50:56 
+
+50:56 deep? So there is a high possibility
+50:58 
+
+50:58 that if we use network deep it will do
+51:01 
+
+51:01 the approximation of the function much
+51:02 
+
+51:02 better than if we just use a linear
+51:04 
+
+51:04 layer. And we can just give an example
+51:06 
+
+51:06 of XR function. If you have an XR
+51:07 
+
+51:07 function because this function is the
+51:10 
+
+51:10 irreducible disjunctive normal form. So
+51:12 
+
+51:12 if you can reduce this function there is
+51:14 
+
+51:14 no way you can reduce by boolean
+51:15 
+
+51:15 algebra. So if you just use one hidden
+51:17 
+
+51:17 layer. So what you can do is you have to
+51:18 
+
+51:18 use exponential number of neurons. But
+51:20 
+
+51:20 if you are given liberty to use multiple
+51:23 
+
+51:23 layers. So if you use if you if you are
+51:24 
+
+51:24 given liberty to use layer structure in
+51:26 
+
+51:26 the neurons then you can decrease the
+51:28 
+
+51:28 neurons from exponential to polinomial
+51:30 
+
+51:30 and it you can have the same you can
+51:32 
+
+51:32 approximate the same function. I think
+51:34 
+
+51:34 we have a question. Yes please. Yes,
+51:37 
+
+51:37 >> the questions that we received the first
+51:39 
+
+51:39 question was can we somehow reduce it
+51:42 
+
+51:42 more? Okay. Can we if we have number of
+51:43 
+
+51:43 neurons because here in this case of XR
+51:46 
+
+51:46 so you saw that the number of neurons if
+51:48 
+
+51:48 we just use one hidden layer was 2 the^
+51:50 
+
+51:50 n minus 1 + one and then when we used a
+51:54 
+
+51:54 couple of tricks let's suppose we use we
+51:57 
+
+51:57 club two terms we basically use a pair
+51:59 
+
+51:59 of terms and then we constructed a deep
+52:01 
+
+52:01 network so we reduced it from 2 to the^
+52:04 
+
+52:04 n minus1 + 1 to 3 n minus one. So the
+52:07 
+
+52:07 question is can you reduce it further?
+52:09 
+
+52:09 Maybe or maybe not. Why maybe or maybe
+52:11 
+
+52:11 not? If I say we cannot reduce it
+52:13 
+
+52:13 further then I'll have to prove it.
+52:14 
+
+52:14 Prove the thing that I said that give me
+52:17 
+
+52:17 the proof that this is the minimal
+52:18 
+
+52:18 number of uh units or this is the
+52:20 
+
+52:20 minimum number of uh computational units
+52:22 
+
+52:22 that I I can use. I have to give a proof
+52:24 
+
+52:24 of this. So rather than this maybe some
+52:26 
+
+52:26 other people can come up with a clever
+52:28 
+
+52:28 technique by the help of that we can
+52:29 
+
+52:29 reduce it further maybe. Okay there's a
+52:31 
+
+52:31 big if in this question. So can we
+52:33 
+
+52:33 reduce it further to approximate the
+52:34 
+
+52:34 function? But what I said is I said that
+52:37 
+
+52:37 Shannon's theorem it has proved that if
+52:39 
+
+52:39 n is greater than two. So if n is
+52:41 
+
+52:41 greater than two what shannon has proved
+52:42 
+
+52:42 is that it is not always possible that
+52:45 
+
+52:45 you can use polinomial number of gates
+52:47 
+
+52:47 for some of the boolean functions with n
+52:49 
+
+52:49 variables you you at least require 2 to
+52:51 
+
+52:51 the^ n divide by n number of gates. So
+52:53 
+
+52:53 this is what Shannon proved. So this is
+52:55 
+
+52:55 Shannon's theorem.
+52:59 
+
+52:59 The question is is it always possible to
+53:01 
+
+53:01 come up with the to come up with the
+53:04 
+
+53:04 sort of construction of a network or to
+53:07 
+
+53:07 come up with construction of a circuit
+53:09 
+
+53:09 by the help of which we can have let's
+53:11 
+
+53:11 say polinomial gates. So what Claude
+53:13 
+
+53:13 Shannon said is he said that if you have
+53:15 
+
+53:15 input that n is greater than two there
+53:16 
+
+53:16 is a boolean function in these n
+53:18 
+
+53:18 variables okay that requires 2 to the^ n
+53:21 
+
+53:21 divide by n boolean gates okay so
+53:23 
+
+53:23 regardless of its depth regardless of
+53:24 
+
+53:24 depth.
+53:26 
+
+53:26 So how much depth you can you are given
+53:28 
+
+53:28 liberty to increase depth as much as
+53:30 
+
+53:30 possible still you can come with a
+53:31 
+
+53:31 function that requires this. So as I
+53:33 
+
+53:33 said one more thing that I said in here
+53:35 
+
+53:35 is that if boolean functions or n inputs
+53:37 
+
+53:37 could be computed. So if you are saying
+53:38 
+
+53:38 that we have a boolean function which
+53:39 
+
+53:39 has n inputs if we could have a circuit
+53:42 
+
+53:42 if we have a circuit
+53:44 
+
+53:44 circuit of size
+53:47 
+
+53:47 circuit of size n that is polinomial
+53:49 
+
+53:49 size. Okay. And if we have n input n
+53:52 
+
+53:52 input
+53:53 
+
+53:53 we have n input boolean functions
+53:57 
+
+53:57 and if we can have a circuit of n size
+53:59 
+
+53:59 for that. So basically what you are
+54:00 
+
+54:00 trying to you are proving n is equal np.
+54:03 
+
+54:03 So if you somehow proved this so you can
+54:04 
+
+54:04 have a circuit for all this nan
+54:07 
+
+54:07 functions where you can compute the
+54:10 
+
+54:10 whole thing is in all in polinomial time
+54:12 
+
+54:12 that is in n. So you indirectly proing n
+54:14 
+
+54:14 is equal np and you will get a $1
+54:16 
+
+54:16 million price. So that was the first
+54:17 
+
+54:17 question asked very good question. Can
+54:18 
+
+54:18 you reduce it? Question second was
+54:22 
+
+54:22 Question second
+54:24 
+
+54:24 was if we can reduce this because we
+54:26 
+
+54:26 have this fully connected layer. So we
+54:28 
+
+54:28 have this fully connected. By fully
+54:28 
+
+54:28 connected we mean that the neurons go
+54:30 
+
+54:30 from one layer to other and all the
+54:32 
+
+54:32 neurons are connected to all other
+54:33 
+
+54:33 neurons in the in each of the layers.
+54:35 
+
+54:35 This layer one and layer two you'll see
+54:37 
+
+54:37 that all of the neurons are connected to
+54:38 
+
+54:38 each other. So that's fully connected.
+54:40 
+
+54:40 So if we leave some connections okay if
+54:41 
+
+54:41 we leave some connections. So what what
+54:43 
+
+54:43 are we achieving by leaving some
+54:44 
+
+54:44 connections? So what I say said is if
+54:46 
+
+54:46 you're leaving some connections maybe
+54:47 
+
+54:47 you'll gain some of some comput you
+54:51 
+
+54:51 lessen it by something but you will not
+54:53 
+
+54:53 fully reduce the thing why because you
+54:56 
+
+54:56 still have the same size. So what is the
+54:57 
+
+54:57 meaning of size? So I can define size
+54:60 
+
+54:60 number of computational units number of
+55:03 
+
+55:03 computational units.
+55:06 
+
+55:06 So if you are just removing these
+55:08 
+
+55:08 connections some connections maybe you
+55:09 
+
+55:09 can reduce some computation you can
+55:11 
+
+55:11 decrease some computation but it will
+55:13 
+
+55:13 not reduce the computation units okay it
+55:15 
+
+55:15 will not have much much impact. So that
+55:17 
+
+55:17 I said that so if you have if you see a
+55:19 
+
+55:19 human so human has 86 billion neurons
+55:22 
+
+55:22 okay 86 billion neurons. So these are
+55:25 
+
+55:25 the computational units. So these are
+55:27 
+
+55:27 the computational units of a human.
+55:32 
+
+55:32 How are they connected? So okay so they
+55:34 
+
+55:34 are connected by 100 trillion
+55:36 
+
+55:36 connections.
+55:38 
+
+55:38 Okay. So these are like our weights and
+55:40 
+
+55:40 biases.
+55:41 
+
+55:41 Weights and biases. So basically those
+55:44 
+
+55:44 connections the the the synaptic
+55:46 
+
+55:46 connections we have between these
+55:47 
+
+55:47 synapses within the neurons. Okay. So
+55:49 
+
+55:49 information what I said is if you have
+55:51 
+
+55:51 to see if a person is intelligent. So
+55:52 
+
+55:52 what usually is seen that let's suppose
+55:54 
+
+55:54 this is a neuron which we have seen in
+55:56 
+
+55:56 depth and then you have these axons. So
+55:60 
+
+55:60 you have axon and then you have
+56:04 
+
+56:04 this dendrites then synaptic terminals.
+56:06 
+
+56:06 So information basically comes in comes
+56:08 
+
+56:08 to this soma and then it gets
+56:09 
+
+56:09 transmitted via here. So I said that
+56:11 
+
+56:11 there is a covering onto this axon
+56:14 
+
+56:14 that's called as myelin sheath. Okay.
+56:16 
+
+56:16 And that is made up of fat. So what we
+56:18 
+
+56:18 have seen in humans that Einstein's
+56:20 
+
+56:20 brain was taken and it was compared with
+56:22 
+
+56:22 the average human brain. So it was seen
+56:24 
+
+56:24 that the neurons that are in the brain
+56:25 
+
+56:25 of Einstein they had this this milein
+56:28 
+
+56:28 sheath was quite thick. So there was
+56:29 
+
+56:29 more fat. So more fat was present. So
+56:32 
+
+56:32 more fat fat was present in there. So
+56:34 
+
+56:34 the possible reason is basically when
+56:36 
+
+56:36 the transmission of information is
+56:37 
+
+56:37 happening. So because there is this
+56:38 
+
+56:38 insulation sort of thing. So the uh
+56:40 
+
+56:40 information loss is very less. Okay. So
+56:42 
+
+56:42 that is why probably people are
+56:43 
+
+56:43 intelligent because of these connections
+56:45 
+
+56:45 and now you have these 100 trillion
+56:47 
+
+56:47 connections also. Okay. So this means
+56:49 
+
+56:49 how much you can how much you are
+56:50 
+
+56:50 storing the information that you are
+56:51 
+
+56:51 storing. So what I said is if you miss
+56:53 
+
+56:53 out these connections maybe you are
+56:55 
+
+56:55 missing some information. Okay. But you
+56:57 
+
+56:57 are still not doing very greater good by
+56:60 
+
+56:60 just removing the connect. If you are
+57:01 
+
+57:01 removing one computation unit and maybe
+57:04 
+
+57:04 there you can reduce a lot of
+57:05 
+
+57:05 computation because you are reducing
+57:07 
+
+57:07 these computation units. Um um so you're
+57:10 
+
+57:10 uing these things. So what happens
+57:11 
+
+57:11 basically is you are giving a network
+57:14 
+
+57:14 that you don't have this neuron. Now you
+57:15 
+
+57:15 don't have this neuron you don't in the
+57:17 
+
+57:17 forward pass if you see if there is no
+57:19 
+
+57:19 neuron less computation. If there's less
+57:20 
+
+57:20 computation less resource will be used.
+57:22 
+
+57:22 Okay. But now if you're reducing these
+57:24 
+
+57:24 things you are giving it less degrees of
+57:25 
+
+57:25 freedom. Okay less degrees of freedom.
+57:27 
+
+57:27 So what I what do I mean by this? Then I
+57:29 
+
+57:29 discuss about discuss about scaling
+57:30 
+
+57:30 laws.
+57:33 
+
+57:33 So what so what are scaling laws? Scale
+57:34 
+
+57:34 laws are saying that you have if you
+57:36 
+
+57:36 have more data you these models learn
+57:39 
+
+57:39 better. Why? The question is why?
+57:41 
+
+57:41 Because we assume that data contains
+57:42 
+
+57:42 information. Okay. The more data you
+57:44 
+
+57:44 give the we think that more information
+57:46 
+
+57:46 we are giving. Okay. So as I previously
+57:48 
+
+57:48 also discussed that if you give just few
+57:49 
+
+57:49 points so it is saying something about
+57:51 
+
+57:51 data distribution. If you now give more
+57:53 
+
+57:53 diverse data within the same
+57:54 
+
+57:54 distribution. So you are now nearly
+57:57 
+
+57:57 approaching distribution. So what is the
+57:58 
+
+57:58 actual real data distribution? You are
+57:60 
+
+57:60 approaching that by giving more data. So
+58:02 
+
+58:02 when you give more data it is expected
+58:04 
+
+58:04 that model will learn better. Okay.
+58:05 
+
+58:05 Second thing is if you increase the
+58:07 
+
+58:07 number of parameters
+58:09 
+
+58:09 if you increase number of parameters
+58:10 
+
+58:10 that is basically you're giving it more
+58:11 
+
+58:11 degrees of freedom. So when you give it
+58:13 
+
+58:13 more degrees of freedom so it can learn
+58:15 
+
+58:15 it it has no ability to capture more
+58:17 
+
+58:17 things from the data. Okay data has the
+58:19 
+
+58:19 information and it has to be captured by
+58:21 
+
+58:21 the model. So how can it how can a model
+58:22 
+
+58:22 capture the data? How can a model
+58:24 
+
+58:24 capture information from the data? So
+58:26 
+
+58:26 that is if you can grieve it more
+58:28 
+
+58:28 degrees of freedom. So when you increase
+58:30 
+
+58:30 parameters or the model size which we
+58:32 
+
+58:32 call as parameter
+58:34 
+
+58:34 okay usually I don't agree with model
+58:35 
+
+58:35 size because what I said is size is
+58:37 
+
+58:37 number of computation units but there is
+58:39 
+
+58:39 a relation though uh but if when you say
+58:41 
+
+58:41 size of these models they consider in
+58:43 
+
+58:43 with these weights and biases okay with
+58:45 
+
+58:45 weights and biases they don't consider
+58:47 
+
+58:47 the number of neurons they contain
+58:48 
+
+58:48 consider these weights and biases
+58:49 
+
+58:49 because this gives more precise number
+58:51 
+
+58:51 of parameters that you have weights and
+58:54 
+
+58:54 these biases are parameters so these
+58:56 
+
+58:56 neurons are now counted in the size but
+58:57 
+
+58:57 usually when we talk about size of a
+58:59 
+
+58:59 circuit. So you say what how many
+59:01 
+
+59:01 compute units are there? How many
+59:02 
+
+59:02 computational units are there? That's
+59:03 
+
+59:03 the size. So in case of these lab
+59:06 
+
+59:06 language models or deep learning models.
+59:07 
+
+59:07 So the size is given by weights and
+59:09 
+
+59:09 biases basically by these connections
+59:11 
+
+59:11 number of connections we have by this
+59:12 
+
+59:12 100 trillion that we have in human
+59:14 
+
+59:14 brain. So if you increase this you are
+59:16 
+
+59:16 increasing more you giving more degrees
+59:18 
+
+59:18 of freedom. So when you give more
+59:18 
+
+59:18 degrees of freedom there is a
+59:20 
+
+59:20 possibility to learn more and then if
+59:22 
+
+59:22 you give more resources so what will
+59:23 
+
+59:23 happen basically? So this will become
+59:26 
+
+59:26 easily trainable. So it will train
+59:27 
+
+59:27 faster. So when it trains faster, so it
+59:29 
+
+59:29 can compute gradients. It can so
+59:31 
+
+59:31 precision will be more. So then the
+59:33 
+
+59:33 training will be much more stable and
+59:34 
+
+59:34 the training will happen much more fast.
+59:36 
+
+59:36 That's what scaling loss is. And it is
+59:37 
+
+59:37 expected that this should happen till a
+59:39 
+
+59:39 certain point. Now after a certain point
+59:41 
+
+59:41 if you increase data, let's suppose you
+59:42 
+
+59:42 have data which already is giving you
+59:44 
+
+59:44 the complete distribution. Okay, then
+59:46 
+
+59:46 there is no point in the data. Okay. If
+59:48 
+
+59:48 you have model which can which has the
+59:50 
+
+59:50 ability uh to sort of understand or to
+59:52 
+
+59:52 sort of learn all the things that are
+59:54 
+
+59:54 there in the data then you don't need a
+59:56 
+
+59:56 lot of resources. So here so these
+59:58 
+
+59:58 companies are playing in in these they
+59:60 
+
+59:60 are playing with these three scaling
+60:01 
+
+60:01 logs why because they say that we have a
+60:03 
+
+60:03 lot of data with us nobody can beat us
+60:05 
+
+60:05 here. So we have we can increase the
+60:07 
+
+60:07 model parameter because we are the
+60:08 
+
+60:08 people who have only resources. Okay
+60:09 
+
+60:09 they are leaving these small companies
+60:11 
+
+60:11 out of this. This was the second
+60:13 
+
+60:13 question they asked. The third question
+60:15 
+
+60:15 can somebody recall the third question?
+60:17 
+
+60:17 What was the third question?
+60:20 
+
+60:20 Huh? The third question was if let's
+60:22 
+
+60:22 suppose tomorrow some other mod can we
+60:24 
+
+60:24 reduce the circuit size more. So let's
+60:25 
+
+60:25 say uh if you have right now we are
+60:28 
+
+60:28 going to the polinomial circuit size. So
+60:30 
+
+60:30 tomorrow if something happens okay can
+60:32 
+
+60:32 we reduce this can we have smaller
+60:34 
+
+60:34 networks which can do this better maybe.
+60:36 
+
+60:36 Why what I'm saying is uh that these the
+60:39 
+
+60:39 computational model that we have right
+60:40 
+
+60:40 now back propagation gradient descent
+60:42 
+
+60:42 everything this is suitable for the
+60:44 
+
+60:44 hardware that we are currently having
+60:45 
+
+60:45 and based on this the network is
+60:47 
+
+60:47 performed maybe we can come up with a
+60:48 
+
+60:48 better computational model for neuron.
+60:50 
+
+60:50 So if some other day we came up with
+60:52 
+
+60:52 better combination model we came up with
+60:53 
+
+60:53 better learning algorithms maybe we can
+60:55 
+
+60:55 learn from less data because that's how
+60:56 
+
+60:56 humans learn humans learn from less data
+60:60 
+
+61:00 and within humans it also varies some
+61:02 
+
+61:02 people learn very fast okay some people
+61:04 
+
+61:04 just see let's suppose some examples and
+61:06 
+
+61:06 they learn okay it also varies among
+61:08 
+
+61:08 humans so humans learn on less data and
+61:10 
+
+61:10 as I said it also varies among humans
+61:11 
+
+61:11 and tomorrow somebody can come up with a
+61:13 
+
+61:13 better computational model of a neuron
+61:14 
+
+61:14 or better computational model of
+61:16 
+
+61:16 learning and thinking so whatever we
+61:17 
+
+61:17 call learning right now and maybe you
+61:19 
+
+61:19 can reduce the network size more. So
+61:21 
+
+61:21 there I I came to the question of
+61:23 
+
+61:23 efficiency. So what do we consider
+61:25 
+
+61:25 efficient? So as I said humans are
+61:26 
+
+61:26 considered efficient. Why? Because the
+61:28 
+
+61:28 sources the resources they are using are
+61:30 
+
+61:30 ab abundantly available. So if you see
+61:32 
+
+61:32 we are let's breathing oxygen. Oxygen is
+61:35 
+
+61:35 available in abundance. So we are using
+61:36 
+
+61:36 water. Water is used water is available
+61:38 
+
+61:38 in abundance. And then evolution has
+61:40 
+
+61:40 some figured out way for the humans so
+61:43 
+
+61:43 that whatever resource are available in
+61:44 
+
+61:44 abundance or they can create these
+61:46 
+
+61:46 sources and then they can run their
+61:48 
+
+61:48 machinery or they can run their
+61:49 
+
+61:49 metabolism and they can run their life
+61:52 
+
+61:52 processes on that resources which are in
+61:54 
+
+61:54 abundance and they use least energy from
+61:55 
+
+61:55 this. So what I said is right now in
+61:58 
+
+61:58 these machines we using electricity as
+61:60 
+
+61:60 major resource or we are using let's
+62:02 
+
+62:02 suppose a lot of hardware is also
+62:03 
+
+62:03 required. So and to make that hardware
+62:05 
+
+62:05 and to produce electricity we need a lot
+62:08 
+
+62:08 of energy we need a lot more energy than
+62:09 
+
+62:09 is required for the humans. So maybe the
+62:12 
+
+62:12 second revolution which will be there if
+62:14 
+
+62:14 we have these machines they can do
+62:15 
+
+62:15 everything but we have to make them cost
+62:18 
+
+62:18 efficient. So how can we make them cost
+62:19 
+
+62:19 efficient? We can make better source of
+62:21 
+
+62:21 energy for them. As I said uh let's
+62:23 
+
+62:23 suppose right now the available energy
+62:24 
+
+62:24 that we have is lithium ion batteries.
+62:26 
+
+62:26 Okay, maybe we can come up with better
+62:28 
+
+62:28 materials which will have better energy
+62:31 
+
+62:31 density and they can produce much more
+62:32 
+
+62:32 energy if we are going to that uh so we
+62:35 
+
+62:35 will reduce a lot of cost on of these
+62:37 
+
+62:37 training models and stuff like that but
+62:38 
+
+62:38 I suppose people won't because of these
+62:41 
+
+62:41 skill because people want to be relevant
+62:43 
+
+62:43 uh they don't want to be like these big
+62:45 
+
+62:45 companies rather they don't want to lose
+62:47 
+
+62:47 their game they don't want to lose that
+62:48 
+
+62:48 top spot they usually won't fund the
+62:50 
+
+62:50 research which will reduce the energy
+62:52 
+
+62:52 because they are this like requiring
+62:55 
+
+62:55 more energy more resour sources more
+62:56 
+
+62:56 data is keeping them in the game.

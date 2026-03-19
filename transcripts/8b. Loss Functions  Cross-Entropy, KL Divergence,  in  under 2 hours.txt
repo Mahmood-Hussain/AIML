@@ -1,0 +1,9130 @@
+00:00 Before going again we'll take one more
+00:01 
+
+00:01 detour because we are on a hunt to
+00:04 
+
+00:04 understand loss functions. So we have to
+00:06 
+
+00:06 understand loss functions in machine
+00:07 
+
+00:07 learning. Okay. So basically what I'm
+00:09 
+
+00:09 trying to give you is I'm not just
+00:10 
+
+00:10 trying to give you loss functions. Okay.
+00:11 
+
+00:11 This is a loss function. Use it. I'm not
+00:13 
+
+00:13 trying to just say this is mean square
+00:15 
+
+00:15 error. You can use it. Rather I'm
+00:16 
+
+00:16 showing you how to come up with loss
+00:18 
+
+00:18 functions. So I I can give you some
+00:20 
+
+00:20 intuition be because now you know what
+00:21 
+
+00:21 information is. I'm giving you all the
+00:23 
+
+00:23 background necessary to come up with
+00:24 
+
+00:24 your own loss functions. If you
+00:25 
+
+00:25 understand these uh if you understand
+00:28 
+
+00:28 this information and you can construct
+00:29 
+
+00:29 any sort of loss function on your own.
+00:31 
+
+00:31 Okay, that that is the goal of these
+00:32 
+
+00:32 classes on deep learning otherwise you
+00:33 
+
+00:33 could have just taken any deep learning
+00:35 
+
+00:35 course. So rather I'm giving you
+00:36 
+
+00:36 formulation of what a loss function
+00:38 
+
+00:38 basically means. So loss function should
+00:39 
+
+00:39 somehow quantify it should quantify how
+00:41 
+
+00:41 much of is your model. So if your model
+00:43 
+
+00:43 is trying to predict say this g of x was
+00:45 
+
+00:45 a ground truth and then we had this f of
+00:48 
+
+00:48 x it was parameterized with these
+00:49 
+
+00:49 parameters theta we called them w in the
+00:51 
+
+00:51 previous session. So f of x comm y. So
+00:53 
+
+00:53 we said that there should be a function
+00:55 
+
+00:55 which we call a divergence function. So
+00:58 
+
+00:58 this function should somehow tell me how
+00:60 
+
+00:60 much off is this. And then we said that
+01:01 
+
+01:01 we can integrate between two functions.
+01:03 
+
+01:03 I made graph of some sort. I said let's
+01:04 
+
+01:04 suppose this is a graph and this is the
+01:06 
+
+01:06 ground truth and this is what we are
+01:07 
+
+01:07 predicting. And then we use integral. We
+01:09 
+
+01:09 said that we had problems in that. And
+01:11 
+
+01:11 then we resorted to this. We had to do
+01:13 
+
+01:13 this empirical risk minimization. Okay
+01:15 
+
+01:15 everybody follows me till here. I'll
+01:17 
+
+01:17 write that empirical risk minimization
+01:19 
+
+01:19 formulation. What was that?
+01:21 
+
+01:21 Let me just write it exactly. So that
+01:23 
+
+01:23 was
+01:25 
+
+01:25 this. So you had you basically were
+01:27 
+
+01:27 computing expectation. You were saying
+01:28 
+
+01:28 that you have a probability distribution
+01:30 
+
+01:30 P of X Y. Okay. So you have data points
+01:32 
+
+01:32 and the label. So you are sampling X and
+01:34 
+
+01:34 Y from this. You are sampling X Y from
+01:36 
+
+01:36 this. And now you are saying that we
+01:38 
+
+01:38 have a divergence function expectation
+01:39 
+
+01:39 of this. So you're saying divergence
+01:40 
+
+01:40 function and then you are taking this f
+01:42 
+
+01:42 of x and w comma y because you are given
+01:47 
+
+01:47 outputs as well. Okay. Okay. And you are
+01:49 
+
+01:49 taking the expectation and this we call
+01:50 
+
+01:50 as R of W. So this is R of W. So this
+01:53 
+
+01:53 over here was called our empirical risk
+01:56 
+
+01:56 or empirical error. So this was
+01:57 
+
+01:57 empirical. What was the minimization? So
+01:59 
+
+01:59 you said R of W. This is
+02:03 
+
+02:03 so you have to find optimal W such W for
+02:06 
+
+02:06 which we'll get the minimum value. R min
+02:08 
+
+02:08 of W. So what is the meaning of this
+02:10 
+
+02:10 argument? Take such a value for which
+02:12 
+
+02:12 this expression becomes minimum. Okay.
+02:14 
+
+02:14 So this was our
+02:18 
+
+02:18 empirical risk minimization where we're
+02:21 
+
+02:21 dealing with this and basically we were
+02:22 
+
+02:22 trying to come up with this divergence
+02:24 
+
+02:24 function such a function so that we'll
+02:26 
+
+02:26 have to minimize that you should somehow
+02:27 
+
+02:27 cont one number. So usually we call this
+02:30 
+
+02:30 a loss function cost function or these
+02:33 
+
+02:33 things we name it differently. Okay
+02:35 
+
+02:35 let's again take one more detail to
+02:37 
+
+02:37 understand this. So information theory
+02:38 
+
+02:38 is over. Let me just uh before coming to
+02:41 
+
+02:41 this loss function, we should also know
+02:43 
+
+02:43 like uh the output functions that we use
+02:45 
+
+02:45 in the neural networks.
+02:47 
+
+02:47 Okay, just before the loss function.
+02:49 
+
+02:49 Okay, if you see if you remember a
+02:50 
+
+02:50 neural network.
+02:52 
+
+02:52 So neural network was something of this
+02:54 
+
+02:54 sort. So you had an input layer.
+02:57 
+
+02:57 Okay, and then you have some hidden
+02:58 
+
+02:58 layers in between
+03:00 
+
+03:00 something of this sort.
+03:06 
+
+03:06 You had hidden layers a lot of a lot of
+03:08 
+
+03:08 them.
+03:10 
+
+03:10 So these were our hidden layers. And
+03:11 
+
+03:11 then you had output layers.
+03:16 
+
+03:16 You had let's consider this to be output
+03:18 
+
+03:18 layer.
+03:20 
+
+03:20 So these were our output layers
+03:23 
+
+03:23 which was giving you the output. Okay.
+03:25 
+
+03:25 And now if you see we also used
+03:27 
+
+03:27 activation functions. We use what's
+03:29 
+
+03:29 called as uh first we used linear
+03:31 
+
+03:31 transformation. So which was called as
+03:33 
+
+03:33 fine transformation or linear
+03:34 
+
+03:34 transformation. Fine was a better word
+03:35 
+
+03:35 to use for that because fine line
+03:37 
+
+03:37 transformation also fine transformation.
+03:39 
+
+03:39 So we made a neuron like this. We said
+03:41 
+
+03:41 initially we do aggregation that was
+03:43 
+
+03:43 called as fine transformation.
+03:46 
+
+03:46 So we performed fine transformation and
+03:49 
+
+03:49 on the second we used activation
+03:51 
+
+03:51 function.
+03:53 
+
+03:53 So why did we use activation function?
+03:55 
+
+03:55 Because if we do not use activation
+03:56 
+
+03:56 function your network is nothing better
+03:58 
+
+03:58 than a linear classifier. It will it
+04:01 
+
+04:01 will not do anything but just linear
+04:02 
+
+04:02 classification. If you do not use an
+04:04 
+
+04:04 activation function, activation function
+04:05 
+
+04:05 is what makes it nonlinear. Okay. And we
+04:07 
+
+04:07 saw that if you just use one perceptron
+04:09 
+
+04:09 and if you do not use this, you can just
+04:11 
+
+04:11 come up with the linear distance
+04:12 
+
+04:12 boundary. Even with the ML multi
+04:14 
+
+04:14 perceptrons, if you not have activation
+04:15 
+
+04:15 function, it'll be nothing but a bunch
+04:18 
+
+04:18 of neurons making a linear decision
+04:19 
+
+04:19 boundary. What's the meaning of linear?
+04:21 
+
+04:21 You people are well versed with that.
+04:23 
+
+04:23 Okay. And this activation function is
+04:24 
+
+04:24 nonlinear.
+04:28 
+
+04:28 Okay. And this fine transformation, it's
+04:30 
+
+04:30 linear transformation. So why is it
+04:32 
+
+04:32 called fine? I told you that if you add
+04:34 
+
+04:34 the device you are shifting maybe it
+04:36 
+
+04:36 from you're shifting it from the origin
+04:38 
+
+04:38 that's why it's called fine. So now you
+04:41 
+
+04:41 see this activation functions that we
+04:42 
+
+04:42 were using. We're using sigmoid
+04:43 
+
+04:43 functions. We can use hello functions.
+04:45 
+
+04:45 We'll have a detailed discussion of this
+04:46 
+
+04:46 as well. We'll have a lot of discussion
+04:48 
+
+04:48 activation functions. There are at least
+04:50 
+
+04:50 tens of functions which I know of
+04:52 
+
+04:52 activation functions can be used and
+04:53 
+
+04:53 they have a lot of impact on how neural
+04:55 
+
+04:55 networks will learn. Okay. How far how
+04:57 
+
+04:57 efficient it will learn that we
+04:58 
+
+04:58 establish. If you just have one non
+04:60 
+
+04:60 activation function representing power
+05:01 
+
+05:01 of neural networks that will all learn
+05:03 
+
+05:03 it can learn any function. It can
+05:04 
+
+05:04 approximate any function but how
+05:06 
+
+05:06 efficiently it will learn depends on it
+05:08 
+
+05:08 activation function as well. So fine
+05:10 
+
+05:10 transformation is good enough. You are
+05:11 
+
+05:11 just aggregating it somehow and then
+05:12 
+
+05:12 you're applying some non some
+05:13 
+
+05:13 nonlinearity some activation function on
+05:15 
+
+05:15 that. So we'll have a separate
+05:16 
+
+05:16 discussion we mark it with star. Right
+05:18 
+
+05:18 now we are having this discussion
+05:20 
+
+05:20 because last layer activation function
+05:22 
+
+05:22 if you see this last if you let's
+05:24 
+
+05:24 suppose have this is this is the last
+05:26 
+
+05:26 layer or the output layer
+05:28 
+
+05:28 if you use the same activation function
+05:30 
+
+05:30 let's suppose whatever we used if we are
+05:32 
+
+05:32 using softmax everywhere and if we use
+05:34 
+
+05:34 soft max here also so because you know
+05:36 
+
+05:36 that softmax value is between 0 to one
+05:38 
+
+05:38 so the value of soft max lies between 0
+05:40 
+
+05:40 to 1 sometimes we might have a problem
+05:42 
+
+05:42 that we are expecting problem where the
+05:45 
+
+05:45 values the output values are 2,000 5,000
+05:48 
+
+05:48 It's some continuous problem. But if you
+05:49 
+
+05:49 also apply the same activation function
+05:51 
+
+05:51 on the last output layer, the problem
+05:53 
+
+05:53 will be that you would not get always
+05:55 
+
+05:55 you'll not get the numbers that you
+05:56 
+
+05:56 want. Okay, that is the problem. If you
+05:58 
+
+05:58 use the same activation number first,
+05:60 
+
+05:60 we'll see the problem. Why are we using
+06:01 
+
+06:01 different activation? Why to use why to
+06:04 
+
+06:04 use different activation
+06:08 
+
+06:08 and different output activation?
+06:13 
+
+06:13 The reason I told you that if you are
+06:15 
+
+06:15 solving a problem where you don't need
+06:17 
+
+06:17 just the value between 0 and one because
+06:19 
+
+06:19 if you are if you keep on applying the
+06:20 
+
+06:20 sigmoid value you'll see that they
+06:22 
+
+06:22 somehow taper off the values some if you
+06:24 
+
+06:24 sigmo it so you'll get values between 0
+06:26 
+
+06:26 and one but sometimes you want the
+06:27 
+
+06:27 output values to be 2,000 5,000 6,000
+06:30 
+
+06:30 something of that sort. So we should not
+06:32 
+
+06:32 then use the normal activation functions
+06:34 
+
+06:34 that we used in the hidden layer. Okay.
+06:36 
+
+06:36 And in terms of let's suppose
+06:38 
+
+06:38 classification you can still adapt these
+06:39 
+
+06:39 but somehow you should use some
+06:41 
+
+06:41 different activation function for the
+06:42 
+
+06:42 output. So as to do whatever whatever
+06:45 
+
+06:45 expected from network. So you're making
+06:46 
+
+06:46 a network of this sort. So whatever
+06:48 
+
+06:48 you're expecting at the output you
+06:49 
+
+06:49 should accordingly choose the activation
+06:50 
+
+06:50 function. So how to choose the
+06:52 
+
+06:52 activation function is basically so
+06:54 
+
+06:54 whatever problem you are solving. So
+06:55 
+
+06:55 I'll just write one line. So why I I
+06:57 
+
+06:57 think I answered the Y part. And now
+06:59 
+
+06:59 what to choose?
+07:04 
+
+07:04 Okay, do not consider that we'll be done
+07:06 
+
+07:06 with activations here. I'm just speaking
+07:07 
+
+07:07 about the output activation functions.
+07:08 
+
+07:08 We will take maybe separate two three
+07:10 
+
+07:10 lecture on activation functions. So what
+07:12 
+
+07:12 to choose depends on the problem. It
+07:15 
+
+07:15 depends
+07:17 
+
+07:17 on the problem.
+07:20 
+
+07:20 Many other problems are regression
+07:21 
+
+07:21 problems. Some are classification
+07:22 
+
+07:22 problem. There are special cases as
+07:23 
+
+07:23 well. So without an output function, the
+07:25 
+
+07:25 network will just produce the raw output
+07:26 
+
+07:26 which are called logits. Okay. So raw
+07:29 
+
+07:29 outputs from network
+07:32 
+
+07:32 outputs from network
+07:37 
+
+07:37 they're called as logits
+07:39 
+
+07:39 okay many of you will also see pytor
+07:41 
+
+07:41 code written that you'll see I'm
+07:43 
+
+07:43 applying this to logit so whatever you
+07:44 
+
+07:44 get here so when you aggregate it till
+07:47 
+
+07:47 here so whatever you are getting at this
+07:49 
+
+07:49 point what I'm marking over here because
+07:51 
+
+07:51 you are not applying activation of the
+07:52 
+
+07:52 output you're calling that as logic so
+07:54 
+
+07:54 that this is the raw output okay you're
+07:55 
+
+07:55 calling it as logic so logic is
+07:58 
+
+07:58 basically what we have before we apply
+08:01 
+
+08:01 the output activation function. That's
+08:02 
+
+08:02 the logic. So uh now we'll have to do
+08:06 
+
+08:06 something because depending on task
+08:07 
+
+08:07 we'll have to some of convert these
+08:08 
+
+08:08 logic. So these logs should be convert
+08:10 
+
+08:10 converted to something which we can
+08:12 
+
+08:12 proceed which we can make sense of.
+08:13 
+
+08:13 Suppose if it is a regression problem
+08:16 
+
+08:16 say if it's a regression problem.
+08:21 
+
+08:21 So what regression problem you can take
+08:23 
+
+08:23 any continuous tings. Okay. So what we
+08:25 
+
+08:25 can do is we cannot we can just use
+08:27 
+
+08:27 logits as it is. We cannot use any
+08:29 
+
+08:29 activation function suppose. Okay. So
+08:31 
+
+08:31 let's suppose if you if it gives values
+08:33 
+
+08:33 2,000 initially but you know that by the
+08:35 
+
+08:35 help of loss function and by the help of
+08:36 
+
+08:36 adjusting those weights and biases it
+08:38 
+
+08:38 will adjust itself. So in terms of
+08:39 
+
+08:39 regression or you can use some something
+08:41 
+
+08:41 which will maybe if you have to get
+08:44 
+
+08:44 values between say 100 to 200. You can
+08:46 
+
+08:46 use something in which you will get
+08:48 
+
+08:48 values in this range for the regression
+08:49 
+
+08:49 problem. Let's suppose if you have a
+08:50 
+
+08:50 classification problem. Say if you have
+08:53 
+
+08:53 classification problem.
+08:58 
+
+08:58 So what you usually can do is you might
+09:00 
+
+09:00 want to you might want probability
+09:02 
+
+09:02 between 0 and one. Okay. So as I said in
+09:04 
+
+09:04 the regression the last thing will be
+09:06 
+
+09:06 you'll just take double transpose x plus
+09:08 
+
+09:08 b. You will not do anything. You will
+09:09 
+
+09:09 say as it is because it will give you
+09:10 
+
+09:10 answers from minus infinity to infinity.
+09:12 
+
+09:12 So that's what the value of is
+09:14 
+
+09:14 regression targets are usually unbounded
+09:15 
+
+09:15 because you don't have to bound them. So
+09:17 
+
+09:17 now if you let's suppose are doing
+09:18 
+
+09:18 classification task. So what you can do
+09:19 
+
+09:19 is you can use a sigmoid. Okay, you can
+09:21 
+
+09:21 use sigmoid in this because it will
+09:22 
+
+09:22 restrict the values between 0 to 1. So
+09:24 
+
+09:24 you can say 1 / 1 + e ^ minus z. So
+09:27 
+
+09:27 whatever you got values earlier, so
+09:28 
+
+09:28 you'll apply this. So say you say
+09:31 
+
+09:31 probability of y given the point x
+09:34 
+
+09:34 something of this probability of class
+09:36 
+
+09:36 one given probability is this. So you'll
+09:38 
+
+09:38 compute it after this. So you'll say
+09:40 
+
+09:40 probability of y is equal 0. The class
+09:42 
+
+09:42 label is zero given this probability x.
+09:43 
+
+09:43 So you'll at the end apply some sort of
+09:45 
+
+09:45 sigmoid. So it will give you value
+09:46 
+
+09:46 between 0 to 1. Say this is uh 0.5. So
+09:49 
+
+09:49 and this probability is 0.8. So
+09:51 
+
+09:51 whichever is higher you'll assign that
+09:52 
+
+09:52 to probability. So but you're using some
+09:54 
+
+09:54 other activation function. Okay. So this
+09:56 
+
+09:56 is with respect to the binary
+09:57 
+
+09:57 classification. So now if you have
+09:58 
+
+09:58 multiclassification problem okay if you
+10:00 
+
+10:00 have multiclass classification. Now here
+10:02 
+
+10:02 you can say just two here are two
+10:05 
+
+10:05 classes and I just predict the
+10:06 
+
+10:06 probability. So now if you have this
+10:07 
+
+10:07 multiclass
+10:10 
+
+10:10 classification
+10:13 
+
+10:13 so what what you can do is basically
+10:15 
+
+10:15 because you'll have to now have let's
+10:18 
+
+10:18 suppose 10 classes you have some 10
+10:20 
+
+10:20 classes you can have some probability
+10:21 
+
+10:21 over here and then you can directly
+10:23 
+
+10:23 convert this into probability
+10:25 
+
+10:25 distribution so you are given the values
+10:26 
+
+10:26 say we have some 10 classes so we'll
+10:28 
+
+10:28 have output 10 neurons at the output
+10:30 
+
+10:30 layer so now you will get some values in
+10:32 
+
+10:32 there you'll get values 200 500 logits
+10:34 
+
+10:34 basically some 100 some 30 something of
+10:36 
+
+10:36 this sort. Now you'll have to choose one
+10:38 
+
+10:38 class among them. So what you can do is
+10:39 
+
+10:39 you can convert whole of this into
+10:41 
+
+10:41 probability not individually. So what
+10:43 
+
+10:43 you can do is you can apply a function
+10:45 
+
+10:45 on this which called a soft max which
+10:47 
+
+10:47 we'll briefly see. So you can apply soft
+10:49 
+
+10:49 max function on this. So what softmax
+10:52 
+
+10:52 function does it will take all the
+10:54 
+
+10:54 neurons. It will take all these logits
+10:55 
+
+10:55 okay and it'll convert them into
+10:57 
+
+10:57 probabilities.
+11:00 
+
+11:00 Okay not just individually if you see
+11:02 
+
+11:02 the difference. So in this case when we
+11:04 
+
+11:04 were applying sigmoid so sigmoid was
+11:05 
+
+11:05 applied per neuron okay and it was given
+11:07 
+
+11:07 per neuron value from 0 to 1 and 0 to
+11:09 
+
+11:09 one and but if you sum up all the
+11:11 
+
+11:11 probabilities that can be greater than
+11:12 
+
+11:12 one because probability is between 0 to
+11:14 
+
+11:14 one for individual neurons but when
+11:15 
+
+11:15 you're applying the soft max you're
+11:16 
+
+11:16 applying it on the whole output layer so
+11:19 
+
+11:19 output layer in this case if it contains
+11:20 
+
+11:20 10 neurons so but if you now apply the
+11:23 
+
+11:23 soft max function on that you will get
+11:25 
+
+11:25 certain probabilities on these but if
+11:27 
+
+11:27 you sum them all all these up so if you
+11:29 
+
+11:29 sum probabilities if you sum all these
+11:31 
+
+11:31 probabilities so you will get
+11:31 
+
+11:31 probability is equal to one. Okay, so
+11:34 
+
+11:34 all of this will be given probability
+11:36 
+
+11:36 greater than equal to zero. But when you
+11:38 
+
+11:38 sum all of these things up together,
+11:39 
+
+11:39 you'll get one probability. Okay, and
+11:41 
+
+11:41 then whatever is the highest
+11:42 
+
+11:42 probability. So in turn, you actually
+11:44 
+
+11:44 wanted something of this sort. So let's
+11:46 
+
+11:46 suppose you have a random variable X the
+11:48 
+
+11:48 multiclass classification problem where
+11:50 
+
+11:50 you are classifying images, you're
+11:51 
+
+11:51 classifying cat, you're classifying
+11:53 
+
+11:53 dogs, you're classifying lines, you're
+11:55 
+
+11:55 classifying bear, something of this
+11:56 
+
+11:56 sort. Say these are the four classes we
+11:59 
+
+11:59 have. This is the random variable. So
+12:00 
+
+12:00 now once you get this so each of the
+12:03 
+
+12:03 neuron is responsible for predicting so
+12:06 
+
+12:06 what the output should be. So now I'm on
+12:08 
+
+12:08 applying this soft max. So we'll get
+12:10 
+
+12:10 some probability distribution. Suppose
+12:11 
+
+12:11 you got the probability distribution 2
+12:13 
+
+12:13 4.15
+12:17 
+
+12:17 maybe 0.25 I think this is equal to one.
+12:20 
+
+12:20 Now the class the label actually was say
+12:22 
+
+12:22 it was a cat. Suppose that was a cat. So
+12:24 
+
+12:24 what you ideally wanted is something of
+12:26 
+
+12:26 this sort 1 0 0 and 0. So this is the
+12:29 
+
+12:29 distribution that you wanted. But your
+12:31 
+
+12:31 network predicted something of this
+12:32 
+
+12:32 sort. It said that the catch with a
+12:34 
+
+12:34 probability of 02. But if you sum all
+12:35 
+
+12:35 these things up. So this will this will
+12:37 
+
+12:37 be equal to one. So now this encoding is
+12:39 
+
+12:39 called as one hot encoding
+12:44 
+
+12:44 because it's one at the class that we
+12:45 
+
+12:45 want and rest at the rest place it is
+12:48 
+
+12:48 zero and we can compare this. So we
+12:49 
+
+12:49 ideally wanted this but network actually
+12:51 
+
+12:51 picked a distribution. So in usually in
+12:53 
+
+12:53 multiclass classification case you will
+12:55 
+
+12:55 get a distribution. You will want to get
+12:57 
+
+12:57 a distribution. So that is why you apply
+12:60 
+
+12:60 the soft max function. So what is the
+13:01 
+
+13:01 softmax function? If you see, so you'll
+13:04 
+
+13:04 take all of these y's. So you have y1,
+13:07 
+
+13:07 y2, y3, y4, something of this sort. You
+13:09 
+
+13:09 have these four say you have this one,
+13:12 
+
+13:12 2, 3 and four outputs, four output
+13:16 
+
+13:16 neurons. Consider this as y1, y2, y3 and
+13:20 
+
+13:20 y4. Now this is prediction. We can put a
+13:22 
+
+13:22 hat on this so that it is clearly
+13:25 
+
+13:25 mentioned. This is predicted wise. Now
+13:26 
+
+13:26 what you can do is you can apply soft
+13:27 
+
+13:27 max on this. How? You can say yi this is
+13:30 
+
+13:30 equal to uh you will take first the
+13:32 
+
+13:32 exponent of this e to the power zi okay
+13:35 
+
+13:35 because you know this how this how did
+13:36 
+
+13:36 we get this yi okay because we'll get
+13:38 
+
+13:38 this from zi okay after this what you
+13:41 
+
+13:41 can do is e to the power zi whatever you
+13:42 
+
+13:42 got zi from here so you're getting yi
+13:44 
+
+13:44 from that so you take exponent of this
+13:47 
+
+13:47 and you take exponent of all of these
+13:48 
+
+13:48 also so this is e to the power zi i goes
+13:52 
+
+13:52 from 1 to 4 you sum up all the values
+13:55 
+
+13:55 over here and then you take an exponent
+13:57 
+
+13:57 of this Okay. And you will get a
+13:59 
+
+13:59 probability distribution. You can take
+14:01 
+
+14:01 sum. But the sum had the problem. So
+14:03 
+
+14:03 let's suppose if you have values 10, 20,
+14:05 
+
+14:05 30 and 40. If you want to convert this
+14:07 
+
+14:07 to probability distribution, you can sum
+14:08 
+
+14:08 all of these up. So this will be 70.
+14:10 
+
+14:10 This will be 100 I think. So this the
+14:12 
+
+14:12 total sum is 100. So you can divide
+14:15 
+
+14:15 everything by 100. So you'll get 10
+14:17 
+
+14:17 divid by 100. So you'll get 0.1
+14:20 
+
+14:20 2.3 and 4. This is now a probability
+14:23 
+
+14:23 distribution. But why don't you use sum?
+14:25 
+
+14:25 Because uh as we know that we'll be we
+14:28 
+
+14:28 want a differentiable function and it
+14:29 
+
+14:29 should be somehow smooth. So this
+14:30 
+
+14:30 function is that. Let's have a let's
+14:32 
+
+14:32 have some discussion on this softmax
+14:34 
+
+14:34 function for a while. So you understand
+14:35 
+
+14:35 this. So this function over here that I
+14:37 
+
+14:37 defined is called as soft max.
+14:41 
+
+14:41 So you'll take all the values. Okay.
+14:43 
+
+14:43 You'll first take exponent of these z
+14:45 
+
+14:45 and then you'll sum them up. So this is
+14:46 
+
+14:46 the summation part. This is the
+14:48 
+
+14:48 normalizing factor. So you basically
+14:49 
+
+14:49 want normalization.
+14:52 
+
+14:52 So this is normalizing factor and then
+14:54 
+
+14:54 you want to normalize each of the
+14:55 
+
+14:55 values. So you're taking value for this
+14:57 
+
+14:57 e to you taking it to the exponent and
+14:59 
+
+14:59 then you are dividing that with the
+15:01 
+
+15:01 normalizing factor and you are getting
+15:02 
+
+15:02 values between 0 to 1 that this value
+15:04 
+
+15:04 will be always greater or equal to zero
+15:06 
+
+15:06 and the summation of all of this will be
+15:08 
+
+15:08 equal to one after after you apply this.
+15:10 
+
+15:10 So summation of y predicted y after
+15:13 
+
+15:13 applying soft max. So i goes from 1 to
+15:15 
+
+15:15 let's in this case four in general n. So
+15:18 
+
+15:18 this will be equal to when after the
+15:20 
+
+15:20 soft max function is applied. Let's
+15:22 
+
+15:22 consider this soft max as s. So s of
+15:24 
+
+15:24 this so s of z is equal yi. So s of zi.
+15:29 
+
+15:29 So you know that s of zi is equal to yi
+15:32 
+
+15:32 hat. And here s is equal soft max
+15:36 
+
+15:36 and we define we get the definition of
+15:37 
+
+15:37 soft max over here. Okay. Let me just
+15:39 
+
+15:39 share a graph with you so that you can
+15:41 
+
+15:41 visualize this function. Give me maybe a
+15:43 
+
+15:43 second or so. So this is soft max. So if
+15:46 
+
+15:46 you see I have four values in there.
+15:48 
+
+15:48 First I'll explain this graph. So you
+15:49 
+
+15:49 have this A red okay and then you have
+15:51 
+
+15:51 this B orange C green and then you have
+15:55 
+
+15:55 this D value that is uh blue and then
+15:57 
+
+15:57 you have shift S and then you have
+15:58 
+
+15:58 multiplication V. So if you see these
+15:60 
+
+15:60 are the four values consider that random
+16:02 
+
+16:02 variable to cats, dogs and stuff like
+16:03 
+
+16:03 that. So these are the four values which
+16:05 
+
+16:05 we take. Okay this
+16:08 
+
+16:08 so if we now take these values let me
+16:10 
+
+16:10 just remove this
+16:12 
+
+16:12 because we are taking it to e to the
+16:14 
+
+16:14 power. So this is the e to the^ x
+16:15 
+
+16:15 function.
+16:21 
+
+16:21 I should not use this multiplication.
+16:23 
+
+16:23 Give me a second. I'll fix it somewhere.
+16:32 
+
+16:32 Huh. Now if you see these values, so
+16:34 
+
+16:34 these are the values on the graph. So
+16:35 
+
+16:35 one value is shown over here. So this is
+16:37 
+
+16:37 the value if you can see my arrow. So
+16:39 
+
+16:39 these are the four values. So they have
+16:41 
+
+16:41 they having different values. So I can
+16:43 
+
+16:43 take values like this also. So I can
+16:45 
+
+16:45 shift these values.
+16:47 
+
+16:47 Okay. Now I'm making the value so that
+16:48 
+
+16:48 it is easy to visualize. This is the
+16:50 
+
+16:50 value and then I'm taking a little bit
+16:51 
+
+16:51 greater value for this B and a little
+16:53 
+
+16:53 greater value for C and D a little bit
+16:55 
+
+16:55 greater. Something of this sort. So if
+16:57 
+
+16:57 you see the values this is A, this is
+16:59 
+
+16:59 point B, this is C and this is D. If I
+17:01 
+
+17:01 again zoom it. So these are the values
+17:02 
+
+17:02 A, B, C and D. So I'm parally showing
+17:04 
+
+17:04 the graphs as well. Now if I apply E to
+17:06 
+
+17:06 the power X on this. So this is a
+17:08 
+
+17:08 function E to the power X. If you see
+17:09 
+
+17:09 this function over here is E to the
+17:11 
+
+17:11 power X. the function over here and now
+17:14 
+
+17:14 if I just take these values so these are
+17:16 
+
+17:16 the base values
+17:18 
+
+17:18 and now if I exponent them so you'll get
+17:21 
+
+17:21 these values so these are this is e ^ x
+17:23 
+
+17:23 so for this value for this value this is
+17:25 
+
+17:25 e to the power x if I again go back so
+17:27 
+
+17:27 this is e ^ x
+17:30 
+
+17:30 and now you can clearly see over here
+17:32 
+
+17:32 also now what I'm doing is I'll have to
+17:33 
+
+17:33 apply softmax on these functions so what
+17:35 
+
+17:35 softmax will do is it'll compress this
+17:37 
+
+17:37 so if you see the below graph okay below
+17:39 
+
+17:39 graph if you see so it is taking these
+17:40 
+
+17:40 values the sum of all these values val
+17:42 
+
+17:42 is summing up to one. Okay. So this is
+17:45 
+
+17:45 the unsquashed graph if you see this and
+17:47 
+
+17:47 this is the squashed graph. So in below
+17:49 
+
+17:49 because we're squashing it. Okay. If I
+17:51 
+
+17:51 we can remove this you can clearly see
+17:54 
+
+17:54 all these values are there. So now below
+17:56 
+
+17:56 part is when you apply apply the sigmoid
+17:58 
+
+17:58 function. Okay. This is the squashed bar
+17:60 
+
+17:60 graph and this is unsquashed graph. So
+18:02 
+
+18:02 above is the unsquashed graph where we
+18:04 
+
+18:04 have and below basically is when we
+18:05 
+
+18:05 apply the soft max. So here we applying
+18:07 
+
+18:07 the soft max. So above part is the
+18:10 
+
+18:10 logics. We can consider this as logic.
+18:12 
+
+18:12 So let me write it. So these are the
+18:13 
+
+18:13 logits the outputs that we get directly.
+18:15 
+
+18:15 So these are the logits. And when we
+18:16 
+
+18:16 apply this so when you apply softmax on
+18:20 
+
+18:20 these so what you can do is you you'll
+18:21 
+
+18:21 get this. So we can call this as uh
+18:23 
+
+18:23 logits and you can call this as output.
+18:25 
+
+18:25 So these are the real outputs then we
+18:26 
+
+18:26 have so if you see this these values now
+18:29 
+
+18:29 you can see the all the bars added so
+18:32 
+
+18:32 they add up to one. So if you see the
+18:33 
+
+18:33 value over here they add up to one and
+18:35 
+
+18:35 they have different. If I change this,
+18:36 
+
+18:36 you will see the graph also gets changed
+18:38 
+
+18:38 over here. But this will not get changed
+18:40 
+
+18:40 here. The the proportion will get
+18:42 
+
+18:42 changed depends on the values of these
+18:44 
+
+18:44 A, B, C and D. The different four
+18:45 
+
+18:45 classes you can see the proportions are
+18:47 
+
+18:47 getting changed.
+18:50 
+
+18:50 I can change them here and there you are
+18:51 
+
+18:51 seeing the proportion is getting changed
+18:52 
+
+18:52 but all over the total is equal to one
+18:55 
+
+18:55 because it's a probability uh
+18:57 
+
+18:57 distribution. So the total probability
+18:59 
+
+18:59 will be one for these are four events.
+19:00 
+
+19:00 So you have these four events and that
+19:02 
+
+19:02 this is unsquashed one the logits we are
+19:04 
+
+19:04 having and then we initially apply e to
+19:05 
+
+19:05 the power x. So initially e to the^ x
+19:07 
+
+19:07 was this. So when you apply this soft x
+19:09 
+
+19:09 you'll see this you'll see this over
+19:10 
+
+19:10 here and this is how it will behave and
+19:12 
+
+19:12 this each of the value is normalized
+19:14 
+
+19:14 value. So this is e ^ x divide by
+19:16 
+
+19:16 normalized constant e to the^ x divide
+19:18 
+
+19:18 by the normalization divided by sum of
+19:19 
+
+19:19 all e^x and then this is the total
+19:21 
+
+19:21 distribution that you can see over here
+19:22 
+
+19:22 and this is the bar graph of this. So
+19:24 
+
+19:24 how many of you got this softmax
+19:27 
+
+19:27 function?
+19:29 
+
+19:29 pretty standard stuff. Uh
+19:31 
+
+19:31 >> so why is the softmax important? So if
+19:33 
+
+19:33 you see we'll use it for many uh
+19:35 
+
+19:35 problems. They might not seem
+19:36 
+
+19:36 classification problem but we'll use
+19:38 
+
+19:38 softmax there. How? Let's suppose you
+19:39 
+
+19:39 are building a language model. So
+19:42 
+
+19:42 language model is nothing but a next
+19:43 
+
+19:43 word prediction machine. So you have
+19:46 
+
+19:46 some context and then you have to
+19:48 
+
+19:48 predict what comes after this context.
+19:49 
+
+19:49 Let's suppose cat
+19:52 
+
+19:52 sat on the dash. Okay, this is the
+19:55 
+
+19:55 context. So if you see for our language
+19:57 
+
+19:57 mode this is the context
+20:00 
+
+20:00 and now over here this is the next word
+20:02 
+
+20:02 that we want to predict based on this
+20:03 
+
+20:03 context. So how to predict this? So now
+20:05 
+
+20:05 what you can what you have is in the
+20:07 
+
+20:07 language models you have vocabulary
+20:08 
+
+20:08 vocabulary basically means the number of
+20:10 
+
+20:10 tokens you have total total tokens. So
+20:12 
+
+20:12 total tokens you can have that c let's
+20:14 
+
+20:14 suppose this is a word level tokenizer
+20:16 
+
+20:16 if you have words so you'll have whole
+20:17 
+
+20:17 of this dictionary basically. So you'll
+20:19 
+
+20:19 have all the words that are there in
+20:20 
+
+20:20 English. So suppose there are some 1
+20:22 
+
+20:22 million words in English. So you'll have
+20:24 
+
+20:24 this dimensional vocabulary. So this is
+20:26 
+
+20:26 the vocabulary size. So what you want to
+20:28 
+
+20:28 give is you want to give each of them a
+20:30 
+
+20:30 probability. Okay. How much given this
+20:32 
+
+20:32 context probability of next word
+20:36 
+
+20:36 given the context.
+20:38 
+
+20:38 So if I'm given this context, what's the
+20:40 
+
+20:40 probability of next word? Let's suppose
+20:42 
+
+20:42 here the word starts with a then starts
+20:44 
+
+20:44 with AB then starts with apple and then
+20:46 
+
+20:46 all of these words. So all of this will
+20:47 
+
+20:47 be converted into probability
+20:48 
+
+20:48 distribution. So if you see these
+20:50 
+
+20:50 language models at the output they will
+20:52 
+
+20:52 the output layer basically will consist
+20:53 
+
+20:53 of this. So there will be a network
+20:55 
+
+20:55 which will have the outputs equal to
+20:57 
+
+20:57 number of the number of tokens in the
+20:60 
+
+21:00 vocabulary is equal to the number of
+21:02 
+
+21:02 output neurons. So what you will do
+21:03 
+
+21:03 there is so initially you'll get some
+21:05 
+
+21:05 random values 100 200 500. So you'll
+21:07 
+
+21:07 apply soft max on this once you apply
+21:09 
+
+21:09 softmax. So after you apply the softmax
+21:11 
+
+21:11 what you will get is you'll basically
+21:13 
+
+21:13 get a probability distribution. You'll
+21:14 
+
+21:14 get some 0.001 you'll get some 0.2.00
+21:17 
+
+21:17 0 something for all these words. Okay.
+21:20 
+
+21:20 Then the strategy comes into picture
+21:22 
+
+21:22 which which one to sample. So top K. So
+21:24 
+
+21:24 usually top K sampling is done. You can
+21:26 
+
+21:26 be greedy. You can just take one of
+21:27 
+
+21:27 them. Okay. You can take let's suppose
+21:29 
+
+21:29 the the topmost which has the highest
+21:31 
+
+21:31 probability of that. You'll sort them
+21:32 
+
+21:32 based on the probability and you will
+21:33 
+
+21:33 say this is the next the cat set on the
+21:35 
+
+21:35 mat. Okay. Now one more thing over
+21:38 
+
+21:38 there. So we can throw one more value
+21:41 
+
+21:41 called temperature. So you can just
+21:42 
+
+21:42 modify this softmax function which call
+21:45 
+
+21:45 as temperature. So we can modify it like
+21:47 
+
+21:47 this. I'll take your question just hold
+21:48 
+
+21:48 on for a second. This yi hat is equal to
+21:51 
+
+21:51 e to the power because you did zi. So
+21:54 
+
+21:54 you can divide it by t. So this factor
+21:56 
+
+21:56 is called temperature divide by
+21:58 
+
+21:58 summation of i goes from 1 to n.
+21:60 
+
+22:00 Whatever number of logits are there then
+22:02 
+
+22:02 e to the power z
+22:05 
+
+22:05 i or you should use j here because
+22:08 
+
+22:08 should not overload the symbols. J goes
+22:10 
+
+22:10 from 1 j / t. And this little number
+22:13 
+
+22:13 over here is called temperature.
+22:17 
+
+22:17 So it tells your model how to how much
+22:19 
+
+22:19 creative to be. So if you set the
+22:20 
+
+22:20 temperature to be highest it will be
+22:22 
+
+22:22 more creative. Basically it will give uh
+22:24 
+
+22:24 it will not distribute. So such you can
+22:27 
+
+22:27 you can check with this. I can show you
+22:28 
+
+22:28 the graph that this temperature has an
+22:29 
+
+22:29 effect. If you keep this temperature
+22:31 
+
+22:31 let's suppose this t is equal to 1. This
+22:33 
+
+22:33 becomes like soft max.
+22:37 
+
+22:37 Okay. So if you decrease the value it
+22:38 
+
+22:38 will become more creative. It will
+22:39 
+
+22:39 shuffle the problem here and there. But
+22:41 
+
+22:41 still this will have all the properties
+22:43 
+
+22:43 of the softmax function. That is it will
+22:44 
+
+22:44 be between giving value 0 to one. But
+22:46 
+
+22:46 this temperature one more term if you
+22:48 
+
+22:48 throw if it's equal to one you'll
+22:50 
+
+22:50 basically want it to be like soft max
+22:52 
+
+22:52 exactly behave like soft max. But if you
+22:53 
+
+22:53 just throw some temperature so when you
+22:55 
+
+22:55 have this value t you can give it value
+22:58 
+
+22:58 from let's suppose greater than zero
+22:59 
+
+22:59 because if the division you should not
+23:01 
+
+23:01 do division by zero. So and you can give
+23:03 
+
+23:03 it between one or you can give it more
+23:04 
+
+23:04 value as well. Okay. So as to control
+23:06 
+
+23:06 this factor all over. So that's why if
+23:08 
+
+23:08 you see language models if you have seen
+23:10 
+
+23:10 some playground or chat GPT if you have
+23:12 
+
+23:12 seen some Google development that there
+23:14 
+
+23:14 you can set the temperature. So this
+23:15 
+
+23:15 basically is having some control on this
+23:17 
+
+23:17 things. So it is
+23:19 
+
+23:19 basically controlling the probabilities
+23:20 
+
+23:20 that it can give to the last logits and
+23:22 
+
+23:22 it's converting uh them into it is
+23:24 
+
+23:24 giving some other distribution but still
+23:26 
+
+23:26 uh the distribution is controlled with t
+23:28 
+
+23:28 so that how much great your model can
+23:30 
+
+23:30 be. I think you have a question then we
+23:31 
+
+23:31 can start uh from here. Yes. So that's
+23:34 
+
+23:34 how temperature is. So usually this
+23:35 
+
+23:35 temperature will you you'll see this
+23:37 
+
+23:37 temperature in language models or maybe
+23:38 
+
+23:38 some other uh cases also where this
+23:40 
+
+23:40 temperature sort of controls creativity
+23:42 
+
+23:42 what I can call as creativity loosely
+23:44 
+
+23:44 speaking
+23:45 
+
+23:45 so it controls creativity. So this is
+23:47 
+
+23:47 the softmax version of softmax that is
+23:49 
+
+23:49 the less common function that we
+23:50 
+
+23:50 generally use. Okay so we can also use
+23:53 
+
+23:53 uh what are called as soft plus
+23:54 
+
+23:54 functions. You can use reo soft plus
+23:56 
+
+23:56 exponent a lot of other functions in the
+23:58 
+
+23:58 output but I wanted you to understand
+24:00 
+
+24:00 about softmax. I think that is clear
+24:02 
+
+24:02 now. Okay, the softmax function is going
+24:04 
+
+24:04 to be very important function which we
+24:06 
+
+24:06 usually use in terms of the distribution
+24:07 
+
+24:07 because we're talking about
+24:08 
+
+24:08 distributions p and q. So this is our
+24:11 
+
+24:11 distribution. Let's suppose the ground
+24:12 
+
+24:12 reality is some one hot encoding
+24:14 
+
+24:14 something of this sort which we earlier
+24:15 
+
+24:15 wrote that you have uh the image of cat
+24:18 
+
+24:18 and this is the actual distribution that
+24:19 
+
+24:19 you want. But whenever you run the
+24:21 
+
+24:21 network it will give you a probability
+24:22 
+
+24:22 distribution it will give you 0.2 0.3
+24:25 
+
+24:25 0.4 something of this sort. So and 0.1
+24:28 
+
+24:28 okay but you wanted the whole mass to be
+24:29 
+
+24:29 concentrated on cat. Okay. And now you
+24:32 
+
+24:32 can uh you have two probability
+24:34 
+
+24:34 distributions P and Q. Okay, this is the
+24:36 
+
+24:36 ground reality. Okay, and this is the
+24:38 
+
+24:38 predicted one. And then now we can have
+24:40 
+
+24:40 discussion on this divergence. Consider
+24:42 
+
+24:42 you have this uh Q. This is the ground
+24:45 
+
+24:45 reality G of X. And this is what model
+24:47 
+
+24:47 predicted.
+24:49 
+
+24:49 Okay. Now we'll have apply
+24:52 
+
+24:52 this divergence function on this.
+24:57 
+
+24:57 Okay. Okay. And then we'll have to
+24:58 
+
+24:58 compute basically expectation of this
+24:60 
+
+24:60 and we'll have discussion on divergence
+25:01 
+
+25:01 next. Any questions till here? Because
+25:04 
+
+25:04 we wanted to understand this divergence
+25:05 
+
+25:05 function if you see. Okay. The first
+25:07 
+
+25:07 thing that we saw is we read about some
+25:09 
+
+25:09 information theory. We read about some
+25:11 
+
+25:11 output how functions can be. The the one
+25:14 
+
+25:14 concept that you will see always coming
+25:15 
+
+25:15 in this dial function is cross entropy.
+25:18 
+
+25:18 So we'll first see what cross entropy is
+25:20 
+
+25:20 and then we'll see what cross entropy
+25:22 
+
+25:22 loss is. Okay. Now if you have two
+25:23 
+
+25:23 probability distribution P of X and Q of
+25:26 
+
+25:26 X
+25:28 
+
+25:28 these are two probability distributions
+25:30 
+
+25:30 in our case you had some ground reality
+25:31 
+
+25:31 and you had what the model predicted you
+25:33 
+
+25:33 have what the model predictions are and
+25:34 
+
+25:34 the ground reality so these are two
+25:36 
+
+25:36 probability distributions as I said
+25:37 
+
+25:37 there's one will be a one hot encoding
+25:38 
+
+25:38 vector because you'll have all the
+25:40 
+
+25:40 probability mass uh concentrated on one
+25:43 
+
+25:43 class it's a multi-class classification
+25:44 
+
+25:44 problem and then others model prediction
+25:47 
+
+25:47 will be usually a probability
+25:48 
+
+25:48 distribution so consider this to be a
+25:50 
+
+25:50 true probability distribution for
+25:51 
+
+25:51 outcome X And this is the model
+25:53 
+
+25:53 prediction qi. So this is our model
+25:55 
+
+25:55 prediction.
+25:57 
+
+25:57 This is model prediction.
+25:59 
+
+25:59 And this is the true probability
+26:01 
+
+26:01 distribution.
+26:04 
+
+26:04 True distribution.
+26:06 
+
+26:06 This is model prediction distribution.
+26:08 
+
+26:08 And now you know that what is the code
+26:09 
+
+26:09 length. If I apply log of say I'll apply
+26:12 
+
+26:12 log of qi.
+26:16 
+
+26:16 Log of q of qi. So this so this will be
+26:19 
+
+26:19 code length basically information
+26:20 
+
+26:20 content in this. So information
+26:24 
+
+26:24 information content. Let me again see if
+26:26 
+
+26:26 I'm choosing this as right. So P of X is
+26:29 
+
+26:29 the true probability and Q of X is the
+26:32 
+
+26:32 model predictor and this log of Q of X
+26:34 
+
+26:34 is the information content based on what
+26:37 
+
+26:37 model is predicting. Okay. So now what
+26:39 
+
+26:39 you can do is usually you had entropy.
+26:40 
+
+26:40 Entropy was like this. So you had let's
+26:42 
+
+26:42 say P of X I
+26:45 
+
+26:45 if I used for this model what is the
+26:46 
+
+26:46 entropy of this model? You can say q of
+26:49 
+
+26:49 x i minus say log of q of x i. So this
+26:53 
+
+26:53 will be called as entropy of the model
+26:56 
+
+26:56 one from 1 to n suppose this. So this is
+26:58 
+
+26:58 the entropy. But what you can do is if
+26:60 
+
+27:00 you because for each points you will
+27:02 
+
+27:02 know this probability because you have
+27:03 
+
+27:03 the sample and you can just say this is
+27:04 
+
+27:04 the one hot and cold vector. So somehow
+27:07 
+
+27:07 you can just unveil for that particular
+27:08 
+
+27:08 point what is the true label for that.
+27:11 
+
+27:11 So you can replace this with pi.
+27:14 
+
+27:14 So if I say p of x i. So now you see
+27:16 
+
+27:16 that we are having two probabilities. So
+27:18 
+
+27:18 this is the original one you had oral
+27:19 
+
+27:19 entropy. So if I just use the Qi but in
+27:22 
+
+27:22 this case I use pi. So I use cross
+27:24 
+
+27:24 entropy. So I use this uh probability
+27:26 
+
+27:26 what actually it should have been. Then
+27:28 
+
+27:28 I use information content pricked by the
+27:30 
+
+27:30 model. So this information content by
+27:31 
+
+27:31 the model but you multiplying it the pro
+27:33 
+
+27:33 the expectation you're saying that
+27:34 
+
+27:34 probability I'm taking is from the
+27:36 
+
+27:36 actual probability distribution. So you
+27:37 
+
+27:37 are some crossing it. You're taking one
+27:39 
+
+27:39 term from this and one term from this.
+27:41 
+
+27:41 So somehow this is crossing in a way. So
+27:44 
+
+27:44 but still you are computing the entropy.
+27:46 
+
+27:46 So this is called as cross entropy.
+27:51 
+
+27:51 Okay. So what is basically cross entropy
+27:53 
+
+27:53 saying? So you you can start from an you
+27:55 
+
+27:55 can start from a distribution P. So you
+27:57 
+
+27:57 can just say what is the minimum
+27:58 
+
+27:58 expected code length. Okay. If you have
+28:00 
+
+28:00 actual if you have actual entropy. So it
+28:03 
+
+28:03 is minimum
+28:05 
+
+28:05 expected
+28:07 
+
+28:07 code length
+28:10 
+
+28:10 or minimum I can say that what is the
+28:12 
+
+28:12 information content there. But you know
+28:13 
+
+28:13 that this generally is gives the minimum
+28:15 
+
+28:15 when you compute the entropy. So this
+28:17 
+
+28:17 will give you the minimum number of
+28:18 
+
+28:18 this. So when you compute this cross
+28:20 
+
+28:20 entropy. So what cross entropy basically
+28:21 
+
+28:21 is telling you. So it is telling you now
+28:24 
+
+28:24 you are not computing it based on the
+28:26 
+
+28:26 original distribution or you are not
+28:27 
+
+28:27 having the same distribution both
+28:28 
+
+28:28 things. So you are taking one actual
+28:30 
+
+28:30 distribution and you are taking one what
+28:32 
+
+28:32 is predicted by the model. So you are
+28:33 
+
+28:33 saying that if I use models modeling if
+28:36 
+
+28:36 I use because I said that this is called
+28:38 
+
+28:38 as encoding. So if I use models
+28:40 
+
+28:40 encoding,
+28:42 
+
+28:42 if I use encoding from the model,
+28:44 
+
+28:44 see it from the information thetic
+28:46 
+
+28:46 perspective. If I use encoding from the
+28:47 
+
+28:47 model, my model is just an encoder.
+28:49 
+
+28:49 Okay. So how much information content is
+28:51 
+
+28:51 there then? So basically it will tell
+28:52 
+
+28:52 you how many bits to use. So if the
+28:54 
+
+28:54 model is very close to the actual thing.
+28:55 
+
+28:55 So this is the encoding scheme. So I'm
+28:57 
+
+28:57 using model as an encoder and it'll
+28:59 
+
+28:59 predict me number of bits. It'll tell me
+29:01 
+
+29:01 number of bits that are using. And if I
+29:03 
+
+29:03 had actual probability the real
+29:05 
+
+29:05 probability the the the least encoding
+29:07 
+
+29:07 if I had the access to the actual data
+29:09 
+
+29:09 all the actual data so I would get the
+29:10 
+
+29:10 least number of bits least number of
+29:12 
+
+29:12 bits but you know that model will be
+29:14 
+
+29:14 somehow off so you know that this value
+29:16 
+
+29:16 if it is greater if this value is a lot
+29:18 
+
+29:18 more so that means you are not getting
+29:20 
+
+29:20 the optimal code length okay that means
+29:22 
+
+29:22 model is off by something okay if you're
+29:24 
+
+29:24 getting the least one if you actually
+29:25 
+
+29:25 had this if you access to P of X I and
+29:27 
+
+29:27 you computed log of X I but this log if
+29:31 
+
+29:31 you if you actually had the probability
+29:32 
+
+29:32 P. So you will get the least value. You
+29:34 
+
+29:34 you'll compute the least value as you
+29:37 
+
+29:37 call 1 to n and you'll have the minimum
+29:39 
+
+29:39 code length. But you know that you do
+29:40 
+
+29:40 not have access to the probability
+29:42 
+
+29:42 probability distribution. Actually all
+29:43 
+
+29:43 you have is basically a sample. So you
+29:45 
+
+29:45 will use this from the model and you
+29:48 
+
+29:48 will use this from the sample whatever
+29:50 
+
+29:50 you have. Okay. You are saying based on
+29:52 
+
+29:52 if I use this model how much discrepancy
+29:54 
+
+29:54 is there? How much of my model is? So
+29:56 
+
+29:56 this is somehow if this is if this is
+29:58 
+
+29:58 more if this is not optimal if this is
+29:60 
+
+29:60 more. So this will tell you the higher
+30:01 
+
+30:01 value of this will tell you that model
+30:03 
+
+30:03 has more error. Model has more problems
+30:06 
+
+30:06 more error. That's why you use cross
+30:09 
+
+30:09 entropy. Why? Because if you had the
+30:11 
+
+30:11 real probability distribution with you,
+30:12 
+
+30:12 you could have used the entropy. Entropy
+30:14 
+
+30:14 will give you the least number of bits.
+30:16 
+
+30:16 But you know that now I am not having
+30:17 
+
+30:17 the real probability. I all I have is
+30:19 
+
+30:19 model. So I'll use model and for that
+30:22 
+
+30:22 particular point I'll use what is its
+30:23 
+
+30:23 real value and I'll compute the cross
+30:25 
+
+30:25 entropy of that not the exact entropy.
+30:27 
+
+30:27 So the cross entropy if it is higher
+30:28 
+
+30:28 value that means model is not optimal.
+30:30 
+
+30:30 So it's not giving me the optimal code
+30:32 
+
+30:32 length rather what is it giving me it is
+30:33 
+
+30:33 giving me a little higher than that okay
+30:35 
+
+30:35 I can give you examples as well let's
+30:38 
+
+30:38 consider this if P is equal Q if
+30:40 
+
+30:40 probability of P is equal Q then you
+30:41 
+
+30:41 know that cross entropy is equal to the
+30:43 
+
+30:43 entropy okay so with that it's basically
+30:46 
+
+30:46 a perfect match say P is equal 0.8 comma
+30:49 
+
+30:49 0.2 2 and Q will also be equal to this
+30:51 
+
+30:51 because we are taking perfect match. So
+30:53 
+
+30:53 if you now compute this the minimum
+30:54 
+
+30:54 number of nets it will be 0 5 04. So
+30:59 
+
+30:59 this is the information content that
+31:00 
+
+31:00 average information content. So cross
+31:01 
+
+31:01 entropy is equal to entropy here. So
+31:03 
+
+31:03 this is the minimum this is the this is
+31:05 
+
+31:05 the encoding cost. Okay. So this is the
+31:07 
+
+31:07 minimum number of bits of ornats if I
+31:11 
+
+31:11 use natural log. So this is the minimum
+31:13 
+
+31:13 number of nets that I will use transmit
+31:14 
+
+31:14 information. Suppose if there is a
+31:16 
+
+31:16 mismatch. If there is a mismatch, I have
+31:18 
+
+31:18 probability P which is 0.5 comma 0.3
+31:21 
+
+31:21 comma 0.2 and I have probability Q. So
+31:24 
+
+31:24 this is my actual distribution and this
+31:26 
+
+31:26 is a predicted one. So I'm predicting
+31:27 
+
+31:27 something of this sort 0.4, 0.4, 0.2. It
+31:31 
+
+31:31 is little, it is odd by little. But if
+31:33 
+
+31:33 you compute this, if you compute H of P,
+31:35 
+
+31:35 Q. So this is cross entropy.
+31:38 
+
+31:38 This is cross entropy.
+31:41 
+
+31:41 Okay. So if you compute this, so this
+31:43 
+
+31:43 comes out to be 1.0549.
+31:47 
+
+31:47 Okay, this these many nats. So cross
+31:49 
+
+31:49 entropy is this much. So optimal value
+31:50 
+
+31:50 was this optimal value was 0504.
+31:54 
+
+31:54 But you are getting 1.5049. This so you
+31:57 
+
+31:57 you can see that this is higher value
+31:58 
+
+31:58 that means the model is not better. You
+31:60 
+
+31:60 can see that there is some mismatch. So
+32:01 
+
+32:01 this should have been 0.5 this is 0.4.
+32:03 
+
+32:03 This should have been 0.3 this is 0.4
+32:05 
+
+32:05 and this one is correct. But you still
+32:07 
+
+32:07 that you still can see that model is off
+32:09 
+
+32:09 by a bit. If model is off it is it is
+32:11 
+
+32:11 shown by the information content. So you
+32:13 
+
+32:13 are using encoding scheme from the model
+32:15 
+
+32:15 and you are using the probability
+32:16 
+
+32:16 distribution actual probability what you
+32:17 
+
+32:17 what you can observe what you can
+32:19 
+
+32:19 observe in the sample then you can see
+32:20 
+
+32:20 that you have greater number of nats. So
+32:22 
+
+32:22 if you have h of p this is called as
+32:24 
+
+32:24 entropy okay h of p comma q is called as
+32:27 
+
+32:27 cross entropy. Now you can see if you
+32:29 
+
+32:29 say h of p
+32:31 
+
+32:31 uh comma q and if you take cross entropy
+32:33 
+
+32:33 and you subtract entropy from it. So
+32:35 
+
+32:35 this is called as scale divergence.
+32:40 
+
+32:40 So how many of you are seeing it for the
+32:42 
+
+32:42 first time? This is scale divergence. So
+32:44 
+
+32:44 basically what scale divergence gives
+32:45 
+
+32:45 you? How much off are you? Okay, cross
+32:48 
+
+32:48 entropy can be directly used. You can
+32:49 
+
+32:49 still use scale divergence.
+32:52 
+
+32:52 So if you remember we were discussing
+32:53 
+
+32:53 about entropy. We went to entropy then
+32:55 
+
+32:55 we went to cross entropy and then we
+32:57 
+
+32:57 started introducing KL divergence. Okay.
+32:59 
+
+32:59 I said what is cross entropy now? So if
+33:02 
+
+33:02 you are using one distribution that's
+33:04 
+
+33:04 the model's distribution or predicted
+33:06 
+
+33:06 distribution by by the model and then
+33:08 
+
+33:08 you are using the ground reality and
+33:09 
+
+33:09 you're computing entropy based on that.
+33:11 
+
+33:11 So that's called as cross entropy. Okay.
+33:13 
+
+33:13 So this is the real distribution that
+33:14 
+
+33:14 you have and this is the model's
+33:16 
+
+33:16 prediction. If you use this this is
+33:17 
+
+33:17 called as cross entropy. So why was this
+33:19 
+
+33:19 useful? Because you are now trying to
+33:21 
+
+33:21 model you're trying to come up with a
+33:23 
+
+33:23 coding scheme optimal code by using the
+33:25 
+
+33:25 model and there is some real true there
+33:27 
+
+33:27 is some actual distribution. So if this
+33:30 
+
+33:30 model distribution if this prediction by
+33:32 
+
+33:32 the model is not good so you will have
+33:34 
+
+33:34 this deviation you'll have this
+33:35 
+
+33:35 divergence this metric which is called
+33:37 
+
+33:37 as cross entropy you'll have this more.
+33:39 
+
+33:39 So if this is more then you will not
+33:41 
+
+33:41 have it as the optimal code. So if this
+33:43 
+
+33:43 is optimal code then you will say that
+33:44 
+
+33:44 this is equal to entropy. So if that is
+33:46 
+
+33:46 equal to entropy the difference between
+33:48 
+
+33:48 entropy and cross entropy will give you
+33:50 
+
+33:50 the k divergence. That is what is
+33:51 
+
+33:51 written over here. So this over here is
+33:54 
+
+33:54 cross entropy
+33:56 
+
+33:56 I'll write C and this is entropy.
+33:60 
+
+34:00 Okay. So this is what is given by KL
+34:02 
+
+34:02 divergence. So there we took some
+34:04 
+
+34:04 examples also. Let's let's take some
+34:05 
+
+34:05 catastrophical case. Okay. Let's suppose
+34:07 
+
+34:07 if some probability distribution P is
+34:09 
+
+34:09 equal to 0a 1. So this is the
+34:11 
+
+34:11 probability distribution and your
+34:14 
+
+34:14 predicted model predicted this. So it
+34:17 
+
+34:17 did a catastrophe. So it's almost
+34:18 
+
+34:18 opposite what it should have predicted.
+34:20 
+
+34:20 Okay. Now you have to compute the cross
+34:23 
+
+34:23 entropy of the system. So what is cross
+34:25 
+
+34:25 entropy equal to? So you'll use
+34:28 
+
+34:28 summation of I goes from 1 to 2 in this
+34:31 
+
+34:31 case negative of. So this is probability
+34:33 
+
+34:33 X takes value X I log of
+34:39 
+
+34:39 let's suppose some probability is Q of X
+34:42 
+
+34:42 takes value X I something of this sort.
+34:44 
+
+34:44 So now if you see this so in this case
+34:46 
+
+34:46 it should be the answer will be one of
+34:48 
+
+34:48 if I use natural log instead of this log
+34:51 
+
+34:51 to the base e so I'll get something of
+34:52 
+
+34:52 this sort
+34:55 
+
+34:55 so if you evaluate this so this will
+34:57 
+
+34:57 tend to infinity
+34:59 
+
+34:59 okay because log 0 is infinity multiply
+35:01 
+
+35:01 1 this is infinity and this will be this
+35:03 
+
+35:03 quantity will be equal to zero so when
+35:04 
+
+35:04 there this is this catastrophic result
+35:06 
+
+35:06 this is opposite results whatever we
+35:08 
+
+35:08 wanted if the distribution that we had
+35:11 
+
+35:11 is this so this p is our ground
+35:12 
+
+35:12 distribution or the ground truth and
+35:14 
+
+35:14 this is our prediction by the model. So
+35:16 
+
+35:16 when we use the cross entropy you saw
+35:18 
+
+35:18 that it went to infinity. So it said
+35:19 
+
+35:19 that you are infinitely wrong. Okay.
+35:21 
+
+35:21 What is now cross entropy giving you? So
+35:23 
+
+35:23 it is giving you like based on this if
+35:24 
+
+35:24 you are constructing your optimal code
+35:27 
+
+35:27 by using the model for the distribution
+35:29 
+
+35:29 that is the real distribution. If there
+35:30 
+
+35:30 is some discrepancy so that model will
+35:32 
+
+35:32 show you. So I said that so KL
+35:34 
+
+35:34 divergence can be now seen as seen like
+35:36 
+
+35:36 this. So how much is now that if you
+35:38 
+
+35:38 want to quantify that you can quantify
+35:39 
+
+35:39 that by KL divergence. So this cross
+35:42 
+
+35:42 entropy will only give you it'll give
+35:45 
+
+35:45 you basically the number okay you are
+35:46 
+
+35:46 off but how much off are you so you can
+35:49 
+
+35:49 compute that by using KL divergence. So
+35:50 
+
+35:50 KL divergence will be effectively equal
+35:52 
+
+35:52 to so if you have this cross entropy and
+35:56 
+
+35:56 you you subtract entropy from it.
+36:01 
+
+36:01 So this is basically telling tell
+36:02 
+
+36:02 telling you uh number of
+36:07 
+
+36:07 number of additional bits rather number
+36:09 
+
+36:09 of additional bits
+36:14 
+
+36:14 used
+36:16 
+
+36:16 for encoding
+36:19 
+
+36:19 when
+36:21 
+
+36:21 the coding scheme
+36:25 
+
+36:25 we used was from the model we used
+36:31 
+
+36:31 was
+36:35 
+
+36:35 from the model. So this is what you
+36:36 
+
+36:36 should remember. So that's how the these
+36:38 
+
+36:38 two things are related. So you had cross
+36:40 
+
+36:40 entropy. So this is your cross entropy
+36:42 
+
+36:42 and this is your entropy. So when you
+36:43 
+
+36:43 subtract these these two things. So what
+36:45 
+
+36:45 you'll get you'll basically get the
+36:46 
+
+36:46 additional number of bits. So this is
+36:47 
+
+36:47 your optimal code if you had the actual
+36:49 
+
+36:49 distribution with you. So this is what
+36:51 
+
+36:51 optimal scheme is. This will give you
+36:53 
+
+36:53 the minimum number of bits. the minimum
+36:55 
+
+36:55 number of bits that you should have to
+36:57 
+
+36:57 encode the information or to transmit
+36:59 
+
+36:59 the information. Now this will be some
+37:01 
+
+37:01 additional thing. So this will be your
+37:02 
+
+37:02 cross entropy number of bits maybe it
+37:04 
+
+37:04 will it should be more it will be more
+37:06 
+
+37:06 than this optimal. So when you subtract
+37:07 
+
+37:07 these two things so what you will get
+37:09 
+
+37:09 you will get the additional number of
+37:10 
+
+37:10 bits that you have to use in case you
+37:13 
+
+37:13 use this this model you use basically
+37:15 
+
+37:15 the printed the model by the neural
+37:17 
+
+37:17 network and you are printing that for
+37:19 
+
+37:19 the real for some real distribution. So
+37:21 
+
+37:21 you'll get this you'll get the number of
+37:22 
+
+37:22 additional bits in that. Okay, this will
+37:24 
+
+37:24 tell you the discrepancy. So this whole
+37:26 
+
+37:26 thing will tell you the discrepancy
+37:29 
+
+37:29 or this will tell you the difference
+37:31 
+
+37:31 between these two distribution. So this
+37:32 
+
+37:32 is called as K levels in terms of
+37:34 
+
+37:34 entropy. Everybody clear on this point.
+37:38 
+
+37:38 So uh three questions are addressed. The
+37:40 
+
+37:40 first question we addressed yesterday
+37:41 
+
+37:41 was that why do we apply the soft max if
+37:44 
+
+37:44 you had soft max? Because as I said that
+37:46 
+
+37:46 if you use softmax you are converting
+37:47 
+
+37:47 all these things into probability and
+37:49 
+
+37:49 now suddenly what will happen is that
+37:51 
+
+37:51 all the theory that has been developed
+37:52 
+
+37:52 by probability the framework of
+37:54 
+
+37:54 probability will apply to these problems
+37:55 
+
+37:55 okay so that's why you apply softmax on
+37:58 
+
+37:58 this so now you convert that output you
+37:60 
+
+37:60 convert the outputs into probability
+38:01 
+
+38:01 distribution so whatever you know about
+38:02 
+
+38:02 probability certainly applies to that
+38:04 
+
+38:04 and in this case because this cross
+38:05 
+
+38:05 entropy if you see it is from
+38:06 
+
+38:06 information theory and then probability
+38:08 
+
+38:08 and now if you apply softax in the last
+38:11 
+
+38:11 layer so you can now use cross entropy
+38:12 
+
+38:12 because this cross entropy it's uh root
+38:15 
+
+38:15 are in probability and information
+38:16 
+
+38:16 theory. Okay. Second question is what
+38:19 
+
+38:19 was the second question? If somebody can
+38:20 
+
+38:20 remind me second question by Muzafar.
+38:23 
+
+38:23 Okay. And why do we use like different
+38:25 
+
+38:25 versions of these things? You can still
+38:27 
+
+38:27 use because sometimes computationally
+38:28 
+
+38:28 one thing is easier to calculate. As I
+38:30 
+
+38:30 said you usually will resort to log
+38:32 
+
+38:32 functions. Why? Because if you can see
+38:34 
+
+38:34 if you perform multiplications in
+38:36 
+
+38:36 computers. Let's suppose you have two
+38:37 
+
+38:37 numbers P Q and maybe more than two
+38:40 
+
+38:40 numbers PQR something of that sort. So
+38:42 
+
+38:42 if these numbers let's suppose big. So
+38:44 
+
+38:44 let's suppose they are 10 ^ 5 10^ 6. If
+38:46 
+
+38:46 you keep on doing that you know that we
+38:48 
+
+38:48 have finite memory to store these
+38:49 
+
+38:49 things. So what will happen? So you will
+38:51 
+
+38:51 have a problem of overflow. So if these
+38:52 
+
+38:52 numbers are too small let's suppose they
+38:54 
+
+38:54 are around zero. So let's suppose this
+38:55 
+
+38:55 is 10 ^ -4. This is 10 ^ - 10 something
+38:58 
+
+38:58 of this sort. So these numbers are too
+38:60 
+
+39:00 small. So what will happen? So in this
+39:02 
+
+39:02 case overflow might happen because of
+39:05 
+
+39:05 finite memory. In this case underflow
+39:06 
+
+39:06 might happen because we have finite
+39:08 
+
+39:08 memory and due to precision errors we'll
+39:10 
+
+39:10 have this uh floating point funkiness.
+39:13 
+
+39:13 So because of this if we use log because
+39:14 
+
+39:14 you know properties of log so properties
+39:16 
+
+39:16 of log is that if you have
+39:18 
+
+39:18 multiplication so if you apply log on
+39:20 
+
+39:20 multiplication what will happen so you
+39:22 
+
+39:22 can convert that multiplication into
+39:23 
+
+39:23 addition so you can now store these
+39:25 
+
+39:25 results more precisely that's why
+39:27 
+
+39:27 computationally these things are
+39:28 
+
+39:28 feasible that's why you will majority
+39:30 
+
+39:30 times see that there is some log
+39:31 
+
+39:31 involved in the in the loss functions
+39:33 
+
+39:33 and all these functions let's suppose
+39:35 
+
+39:35 this cross entropy function or the
+39:36 
+
+39:36 functions that we saw earlier soft max
+39:38 
+
+39:38 when we apply those functions because we
+39:40 
+
+39:40 have to somehow minimize things we have
+39:42 
+
+39:42 to find optim al points. So for that we
+39:44 
+
+39:44 should have differentiability. Okay. So
+39:47 
+
+39:47 one reason I gave earlier is that uh so
+39:49 
+
+39:49 when we convert things into probability
+39:51 
+
+39:51 so framework of probability comes into
+39:53 
+
+39:53 picture and second important thing is
+39:54 
+
+39:54 differentiability.
+39:59 
+
+39:59 So if a function is differentiable so
+40:00 
+
+40:00 you can apply calculus on that then so
+40:02 
+
+40:02 you can differentiate the function and
+40:03 
+
+40:03 then you can find the optimal points.
+40:05 
+
+40:05 Okay. So because since cross entropy is
+40:07 
+
+40:07 differentiable so it works very well
+40:08 
+
+40:08 with gradient descent optimization
+40:10 
+
+40:10 methods or or maybe some other
+40:13 
+
+40:13 modifications of gradient descent. Okay
+40:15 
+
+40:15 it makes suit them suitable for these
+40:16 
+
+40:16 neural networks. I hope that I answered
+40:18 
+
+40:18 the question. So one more question was
+40:19 
+
+40:19 in this catastrophic case. So this is
+40:21 
+
+40:21 the catastrophic. So if I have the
+40:23 
+
+40:23 probability which is 01 and then Q is
+40:26 
+
+40:26 almost opposite not the exactly opposite
+40:28 
+
+40:28 of this. So the answer was infinity. So
+40:30 
+
+40:30 the analogy I gave this is the worst
+40:32 
+
+40:32 case scenario. So if the probability was
+40:34 
+
+40:34 predicted probability was let's suppose
+40:36 
+
+40:36 0.99 and here it was 0.1 still it can be
+40:39 
+
+40:39 more wrong. So in this case it is wrong
+40:41 
+
+40:41 but it's not infinitely wrong. So what
+40:43 
+
+40:43 is infinity wrong? Basically the worst
+40:45 
+
+40:45 wrong that you can get. This is the
+40:46 
+
+40:46 worst wrong. You cannot you cannot do
+40:48 
+
+40:48 worse than this. You cannot do best than
+40:50 
+
+40:50 this also. So if you have zero and one
+40:52 
+
+40:52 though this is the best possible
+40:53 
+
+40:53 scenario. So what is the worst possible
+40:55 
+
+40:55 scenario? You do almost opposite of what
+40:56 
+
+40:56 is given. So because this cross entropy
+40:59 
+
+40:59 is telling you how much wrong are you.
+41:01 
+
+41:01 So in this case it is telling you that
+41:02 
+
+41:02 you are infinitely wrong. You cannot do
+41:04 
+
+41:04 worse than this. Okay. So these were the
+41:05 
+
+41:05 questions which were asked.
+41:08 
+
+41:08 Let's see different versions of this
+41:10 
+
+41:10 cross entropy that are used in trick
+41:11 
+
+41:11 deep learning. Okay. We'll just uh write
+41:13 
+
+41:13 the formulation first and then we'll do
+41:15 
+
+41:15 some probabistic treatment afterwards uh
+41:17 
+
+41:17 to reach those conclusions again. Okay.
+41:19 
+
+41:19 One uh uh one function that you'll use
+41:22 
+
+41:22 in terms of classification if you have
+41:25 
+
+41:25 classification problem.
+41:28 
+
+41:28 So what is classification problem? So
+41:30 
+
+41:30 because you know that many of these real
+41:32 
+
+41:32 world problems if you have to consider
+41:34 
+
+41:34 something some some problem where you
+41:36 
+
+41:36 have two classes okay that's binary
+41:38 
+
+41:38 classification and you can have
+41:39 
+
+41:39 multi-class classification problem let's
+41:41 
+
+41:41 first see binary classification
+41:44 
+
+41:44 binary classification
+41:47 
+
+41:47 I can also write it mathematically what
+41:48 
+
+41:48 a classification problem is so whatever
+41:50 
+
+41:50 labels you have they belong to these
+41:52 
+
+41:52 labels can take values 0 1 till some k
+41:55 
+
+41:55 they can take some discrete value in the
+41:57 
+
+41:57 classes and now binary classifications
+41:58 
+
+41:58 is where you can take two values 0 or
+42:00 
+
+42:00 one and multiclass classification is
+42:02 
+
+42:02 where you can take 0 to K some K classes
+42:05 
+
+42:05 are there. So this is multiclass
+42:07 
+
+42:07 classification.
+42:14 
+
+42:14 Okay. Now you might have heard about two
+42:16 
+
+42:16 types of cross entropy. So first cross
+42:18 
+
+42:18 entropy that you will be seeing is a
+42:20 
+
+42:20 binary class classification. So in that
+42:22 
+
+42:22 you have binary cross entropy BCE. You
+42:25 
+
+42:25 might have heard this short form a lot.
+42:27 
+
+42:27 So this is binary cross entropy.
+42:34 
+
+42:34 So now you know that how entropy is
+42:35 
+
+42:35 defined. So in this case I have two
+42:37 
+
+42:37 values in the binary classification
+42:38 
+
+42:38 case. There are two classes possible. If
+42:40 
+
+42:40 we can take a real world example you can
+42:42 
+
+42:42 have an example of two types of emails.
+42:44 
+
+42:44 Spam emails and non-spam emails and then
+42:47 
+
+42:47 you can have let's suppose uh happy sad
+42:49 
+
+42:49 some emotional classification. You can
+42:51 
+
+42:51 have whether a person will buy the
+42:52 
+
+42:52 product or not. Should I recommend the
+42:54 
+
+42:54 video or not? there will be a lot of
+42:55 
+
+42:55 problems which will be which can which
+42:58 
+
+42:58 which for which we can use this binary
+43:00 
+
+43:00 classification which will have two
+43:01 
+
+43:01 classes. So now for in that case we'll
+43:04 
+
+43:04 use binary classification. So now you
+43:06 
+
+43:06 know that we have only two classes in
+43:08 
+
+43:08 this zero or one. So how can you modify
+43:10 
+
+43:10 this loss function the generic loss
+43:11 
+
+43:11 function that we had. So you can say
+43:12 
+
+43:12 that we have this loss function L. You
+43:15 
+
+43:15 can use negative of Y log of prediction
+43:19 
+
+43:19 and then plus 1 - Y
+43:23 
+
+43:23 log of 1 -
+43:27 
+
+43:27 Y bar. So this over here is your binary
+43:31 
+
+43:31 cross entropy. Binary cross entropy loss
+43:35 
+
+43:35 BC which you generally use if you have
+43:37 
+
+43:37 coded in PyTorch or something directly
+43:39 
+
+43:39 you can use this binary cross entropy
+43:41 
+
+43:41 like this. So what is it doing? So this
+43:42 
+
+43:42 y over here is the actual thing the
+43:46 
+
+43:46 ground truth the actual uh value that
+43:49 
+
+43:49 the data point had. This y1 yhat is the
+43:51 
+
+43:51 prediction.
+43:54 
+
+43:54 Okay. Now what you can do is you can be
+43:56 
+
+43:56 either wrong or right. So there are
+43:57 
+
+43:57 there are four possibilities. So you can
+43:59 
+
+43:59 have something of this sort. So you'll
+43:60 
+
+43:60 have zero. So let's suppose your base
+44:02 
+
+44:02 truth is your base is zero or one. This
+44:06 
+
+44:06 is the ground truth. I can write GT. GT
+44:08 
+
+44:08 means ground truth. So prediction I can
+44:10 
+
+44:10 write it with PD.
+44:12 
+
+44:12 So the prediction could be zero and it
+44:16 
+
+44:16 could be this is one for this. So this
+44:18 
+
+44:18 is when the classification is right when
+44:20 
+
+44:20 you do not have an error. A ground truth
+44:22 
+
+44:22 could be 0 and one. So you could have
+44:25 
+
+44:25 mclassification.
+44:29 
+
+44:29 These are the four possibilities. Okay.
+44:31 
+
+44:31 So this is my ground truth. So ground
+44:33 
+
+44:33 truth is zero and the prediction is also
+44:34 
+
+44:34 zero. So you are right. So in this case
+44:37 
+
+44:37 this is correctly classified. So again
+44:40 
+
+44:40 in this case one and one correctly
+44:41 
+
+44:41 classified. Now you can have
+44:42 
+
+44:42 mclassifications. So if you can compute
+44:45 
+
+44:45 this loss in terms of all all these
+44:47 
+
+44:47 cases suppose you are using the first
+44:48 
+
+44:48 case because you are having y and y why
+44:50 
+
+44:50 why this? Because if you have so if you
+44:53 
+
+44:53 see this now so this will handle one
+44:56 
+
+44:56 class and this will handle another
+44:57 
+
+44:57 class. Why am I writing y and 1 minus y?
+44:59 
+
+44:59 Because it's in the probability. So if
+45:01 
+
+45:01 one has probability y other will have
+45:03 
+
+45:03 probability 1 - y because sum should be
+45:05 
+
+45:05 one. Similar case with this this is y
+45:06 
+
+45:06 and this is 1 - y prime. So if you have
+45:08 
+
+45:08 one neuron let's suppose at the end of
+45:10 
+
+45:10 the network. So if it gives you the
+45:12 
+
+45:12 probability of 04. So if you consider
+45:14 
+
+45:14 this 4 is the probability of event
+45:16 
+
+45:16 happening. Probability of a is equal to
+45:19 
+
+45:19 04. Probability of let's suppose if
+45:20 
+
+45:20 there are only two events and either of
+45:22 
+
+45:22 two events will happen. Either it will
+45:24 
+
+45:24 event a will happen or event b will
+45:26 
+
+45:26 happen. So automatically you will say
+45:27 
+
+45:27 that pro probability of b is equal to 1
+45:29 
+
+45:29 - 0.4 that is 6. So this is the case in
+45:32 
+
+45:32 this case. So you have two classes
+45:34 
+
+45:34 either one or one is zero. So one of the
+45:36 
+
+45:36 two will happen either it will be zero
+45:37 
+
+45:37 or it will be one. So if you are giving
+45:39 
+
+45:39 probability y to one class then you will
+45:41 
+
+45:41 give probability one minus y to other
+45:42 
+
+45:42 class. Now if you use these four things
+45:44 
+
+45:44 the things that I write out here let's
+45:46 
+
+45:46 suppose you use right predictions for
+45:48 
+
+45:48 the first case. So ground truth suppose
+45:50 
+
+45:50 ground truth was zero in this case. So
+45:52 
+
+45:52 let's suppose if you take if you take
+45:54 
+
+45:54 this zero and y prime was also zero. So
+45:56 
+
+45:56 this this will handle the zerooth class
+45:58 
+
+45:58 zero class or zero class. Oops.
+46:02 
+
+46:02 So if you take zero class
+46:05 
+
+46:05 this will be handled by that. Why?
+46:06 
+
+46:06 Because if it is zero so let's suppose
+46:08 
+
+46:08 if it is zero so this will become this
+46:10 
+
+46:10 will like vanish. So this over here will
+46:12 
+
+46:12 vanish because anything multiplied with
+46:15 
+
+46:15 zero will become zero. So if it is zero
+46:17 
+
+46:17 so this will be going to this case and
+46:19 
+
+46:19 then we'll rather shift on this. So
+46:21 
+
+46:21 anything that is now predicted will be
+46:22 
+
+46:22 based on this. So we'll take the first
+46:24 
+
+46:24 case. So for zero so this will this will
+46:26 
+
+46:26 be vanished this one and we'll move to
+46:28 
+
+46:28 this class then. Okay. Let's suppose if
+46:30 
+
+46:30 if now you give value zero over there
+46:32 
+
+46:32 here. If you give value zero over here
+46:34 
+
+46:34 if this y was suppose if you consider
+46:36 
+
+46:36 this case now if this y was zero over
+46:38 
+
+46:38 here so this will become one. Okay. So
+46:40 
+
+46:40 this is rather reverse. So this class is
+46:42 
+
+46:42 specifically for zero and other is for
+46:44 
+
+46:44 one. So this is for one class because
+46:46 
+
+46:46 one is this is making the whole thing
+46:48 
+
+46:48 zero. So if you're considering zero now
+46:50 
+
+46:50 so see this. So this this class this
+46:52 
+
+46:52 term will be vanished if you have ground
+46:54 
+
+46:54 truth is zero. Suppose suppose the
+46:56 
+
+46:56 ground truth is zero. Okay. And this
+46:58 
+
+46:58 will be vanished. We are left with this
+46:60 
+
+46:60 term. So 1 - 0 is 1. Okay. Now log of 1
+47:04 
+
+47:04 - y prediction. So if the prediction was
+47:06 
+
+47:06 also good. See over here if prediction
+47:08 
+
+47:08 was good that means it can be prediction
+47:10 
+
+47:10 is one that is prediction is right.
+47:12 
+
+47:12 Suppose so prediction is zero in this
+47:14 
+
+47:14 case. So then it will be log of one.
+47:16 
+
+47:16 Okay you can clearly see over here. So
+47:18 
+
+47:18 you'll have loss of zero. So log of one
+47:20 
+
+47:20 is zero. So in terms of prediction is
+47:22 
+
+47:22 right when you are using zero class over
+47:25 
+
+47:25 here and the prediction is also zero
+47:26 
+
+47:26 over here. So you'll be left with one
+47:27 
+
+47:27 log one. So 1 log 1 basically is zero
+47:30 
+
+47:30 and this term was vanished. So loss is
+47:32 
+
+47:32 equal to zero. So you are correct in
+47:34 
+
+47:34 this case. Okay. So the first term zero.
+47:37 
+
+47:37 Let's suppose if you are wrong. Suppose
+47:39 
+
+47:39 if you are wrong in this case. So the
+47:40 
+
+47:40 ground reality was zero. So ground
+47:42 
+
+47:42 reality was this. But what happened? You
+47:44 
+
+47:44 did mclassification. You said it is one.
+47:46 
+
+47:46 So this will again go to infinity. So
+47:48 
+
+47:48 this is log of 1 - 1 that is log of 0.
+47:50 
+
+47:50 This will go to infinity. You are wrong.
+47:51 
+
+47:51 Entirely wrong. Okay. So if you see this
+47:54 
+
+47:54 term, so this term handles the zero
+47:55 
+
+47:55 class. So by the meaning of zero class I
+47:58 
+
+47:58 mean that if the ground reality is zero
+47:60 
+
+47:60 if the ground truth is zero so that this
+48:02 
+
+48:02 is handled by that now if you see one
+48:03 
+
+48:03 okay so if you have class one so this
+48:06 
+
+48:06 will this will 1 - 1 will be equal to
+48:09 
+
+48:09 zero so this term will be vanished now
+48:10 
+
+48:10 we'll go to this if you have this one
+48:13 
+
+48:13 one that is the uh the prediction is
+48:15 
+
+48:15 right and the ground result in the
+48:17 
+
+48:17 prediction is same so what you can do is
+48:19 
+
+48:19 if y is equal 1 so you'll have y equal 1
+48:21 
+
+48:21 now log of 1 is also equal to 0 so loss
+48:23 
+
+48:23 will be zero okay if it is reversed now
+48:25 
+
+48:25 if a mclassification ification case.
+48:27 
+
+48:27 This case mclassification 1 and 0. The
+48:29 
+
+48:29 ground reality was one but the
+48:30 
+
+48:30 prediction was zero. Now we can see that
+48:32 
+
+48:32 y is equal to 1 log of 0 is infinity.
+48:34 
+
+48:34 Again you the loss will be infinity. So
+48:35 
+
+48:35 you can see that in in mclassification
+48:38 
+
+48:38 this loss term this binary cross entropy
+48:40 
+
+48:40 loss will be it will be going to
+48:42 
+
+48:42 infinity. Okay in this case when it is
+48:45 
+
+48:45 right so this will be going to zero.
+48:46 
+
+48:46 Loss will be zero in this case and loss
+48:48 
+
+48:48 will be infinity in this case that you
+48:49 
+
+48:49 can clearly see from here. And I also
+48:51 
+
+48:51 justified why do we use y and 1 - y over
+48:54 
+
+48:54 here? Because these are probabilities
+48:55 
+
+48:55 and we have only two values. If one
+48:56 
+
+48:56 takes value, let's suppose some value a
+48:59 
+
+48:59 other will take one minus a because the
+49:00 
+
+49:00 sum of probability should be equal to
+49:01 
+
+49:01 one. Any questions on this binary cross
+49:03 
+
+49:03 entropy loss.
+49:06 
+
+49:06 Okay. Now the second case will be
+49:08 
+
+49:08 categorical cross entropy because we
+49:11 
+
+49:11 have categorical classification where
+49:12 
+
+49:12 you have categories. Now multi-class
+49:14 
+
+49:14 classification the first class was
+49:15 
+
+49:15 binary classification where you had two
+49:16 
+
+49:16 classes only. Now you will have
+49:18 
+
+49:18 multiclass classification. So there you
+49:19 
+
+49:19 will have some categories. So as I said
+49:21 
+
+49:21 that you have data point D that is equal
+49:23 
+
+49:23 to X I comma YI. So these are the
+49:26 
+
+49:26 features and this is our label. So Yi
+49:28 
+
+49:28 here belongs to one the categories. The
+49:30 
+
+49:30 categories can be 0 to K. So this is a
+49:32 
+
+49:32 multiclass classification problem or we
+49:33 
+
+49:33 can call it categorical classification
+49:35 
+
+49:35 where you assign one category to the
+49:38 
+
+49:38 problem. So for this we define what is
+49:40 
+
+49:40 called as categorical cross entropy.
+49:45 
+
+49:45 categorical
+49:47 
+
+49:47 cross entropy loss.
+49:51 
+
+49:51 Okay. So for this
+49:54 
+
+49:54 what you can do is so you'll again use
+49:56 
+
+49:56 the same formulation that we used
+49:58 
+
+49:58 earlier. So you have this cross entropy
+49:60 
+
+49:60 PH of P comma Q and you will have the
+50:03 
+
+50:03 formulation that we used earlier. So I
+50:05 
+
+50:05 is equal to 1 to C. You'll have C
+50:06 
+
+50:06 categories let's suppose. So probability
+50:08 
+
+50:08 PI and then you'll have log of Qi
+50:12 
+
+50:12 something of this sort. So now you can
+50:14 
+
+50:14 convert it into like this. So you have
+50:15 
+
+50:15 one hot end code. Let's suppose if you
+50:16 
+
+50:16 use one hot encoding. So you use
+50:18 
+
+50:18 something of this sort. Suppose we have
+50:20 
+
+50:20 four classes 1 0 0 0. Okay. So this is
+50:23 
+
+50:23 true distribution and you will also
+50:26 
+
+50:26 have some prediction. So the prediction
+50:29 
+
+50:29 will be a distribution of this sort. So
+50:30 
+
+50:30 this is 0.2.4
+50:33 
+
+50:33 0.1 and 0.1 for the four classes. This
+50:35 
+
+50:35 is our prediction and this is a true
+50:37 
+
+50:37 distribution. This is suppose P and this
+50:40 
+
+50:40 is RQ. Now if you see all these things
+50:43 
+
+50:43 will go to zero. So if you expand this
+50:45 
+
+50:45 so 0 multiplied by let's say this is
+50:47 
+
+50:47 true pi will be zero pi will be zero for
+50:49 
+
+50:49 three these three cases and you'll be
+50:50 
+
+50:50 only left with the class that we have.
+50:52 
+
+50:52 So if you just uh take this cross
+50:54 
+
+50:54 entropy you will get this to be equal to
+50:58 
+
+50:58 log of Qi
+51:02 
+
+51:02 okay because for all other things you'll
+51:03 
+
+51:03 get zero let's in this case you left
+51:05 
+
+51:05 with only one point so this this is what
+51:07 
+
+51:07 you'll be left with so generally you
+51:09 
+
+51:09 will see only one thing written so
+51:11 
+
+51:11 because for pi it is either one or zero
+51:14 
+
+51:14 for one it will be left with qi let's in
+51:16 
+
+51:16 this case it be q1 and for all the other
+51:18 
+
+51:18 q's this pi will be zero and it'll
+51:21 
+
+51:21 multiply this zero with log of Qi and
+51:23 
+
+51:23 they will they'll be turning if I expand
+51:25 
+
+51:25 this rather I should expand it this will
+51:28 
+
+51:28 be pi P1 log of Q1 plus P2 log of Q2
+51:33 
+
+51:33 plus P2 log of P3 log of Q3 plus P 4 log
+51:41 
+
+51:41 Q4
+51:43 
+
+51:43 now if you see this so in this case P1
+51:45 
+
+51:45 is one rest is zero so this over here
+51:48 
+
+51:48 will be cancel this cancel this cancel
+51:50 
+
+51:50 they'll go to zero because P2 P3 P3 and
+51:52 
+
+51:52 P4 equal to Z only we'll be left with P1
+51:54 
+
+51:54 to log 1 but P1 is 1. So we'll be given
+51:57 
+
+51:57 P1 1 multiplied by this. So this is
+51:59 
+
+51:59 equal to log of Qi. So in this case log
+52:02 
+
+52:02 of Q1. So for a particular class so if
+52:05 
+
+52:05 you're asked what is the categorical
+52:07 
+
+52:07 cross entropy law you can just say log
+52:09 
+
+52:09 of Qi. I is the class I is the class
+52:14 
+
+52:14 which the data point belongs to the
+52:15 
+
+52:15 ground truth basically. So for that
+52:17 
+
+52:17 point we'll just optimize for that
+52:18 
+
+52:18 point. Yes please questions.
+52:22 
+
+52:22 Yes, good point. So it will be negative
+52:23 
+
+52:23 all all around.
+52:26 
+
+52:26 Okay, so here this is also negative
+52:28 
+
+52:28 sign. So I was missing that negative
+52:29 
+
+52:29 sign. So this will be minus log of Qi.
+52:31 
+
+52:31 Not just log of Qi, this will be minus.
+52:34 
+
+52:34 Okay, we can do some example also. So in
+52:37 
+
+52:37 that case you can clearly mention let's
+52:38 
+
+52:38 suppose a probability distribution. I'll
+52:40 
+
+52:40 just give you this. So once you watch
+52:42 
+
+52:42 the recording, so you'll do it by
+52:43 
+
+52:43 yourself. You have 0 1 0. So this is the
+52:45 
+
+52:45 ground reality when you sample data
+52:47 
+
+52:47 point. These are true class labels. And
+52:49 
+
+52:49 then you have the skew the prediction.
+52:50 
+
+52:50 Suppose the prediction is this because
+52:52 
+
+52:52 you know that once we apply soft max
+52:53 
+
+52:53 we'll get a distribution. So we'll get
+52:55 
+
+52:55 distribution in the output neurons. So
+52:57 
+
+52:57 you'll get something of this sort. Now
+52:58 
+
+52:58 you'll have to compute h p q. Now you
+53:02 
+
+53:02 know you have to only compute for this.
+53:03 
+
+53:03 So this will be actually the answer will
+53:04 
+
+53:04 be log
+53:07 
+
+53:07 0.7.
+53:08 
+
+53:08 I think this will be the answer.
+53:11 
+
+53:11 So this will go to zero and this will go
+53:13 
+
+53:13 to zero. We'll be left with log of 0.7.
+53:15 
+
+53:15 I think log of 0.7 is roughly equal to
+53:17 
+
+53:17 0.357.
+53:19 
+
+53:19 Okay. these many number of nets or
+53:21 
+
+53:21 whatever if it's log two. So it will
+53:23 
+
+53:23 based on that. Okay. And these are the
+53:26 
+
+53:26 two cross entropies which you will
+53:27 
+
+53:27 frequently see. You will see binary
+53:29 
+
+53:29 cross entropy loss or categorical cross
+53:31 
+
+53:31 entropy.
+53:34 
+
+53:34 Okay. Let me give you some real world
+53:35 
+
+53:35 examples to see why we will use this.
+53:37 
+
+53:37 Binary cross entropy is pretty clear. So
+53:39 
+
+53:39 why do we use this? So if you have
+53:40 
+
+53:40 emails like spam or ham emails or any
+53:44 
+
+53:44 classification problem suppose uh you
+53:46 
+
+53:46 have to predict if something uh is dog
+53:50 
+
+53:50 or a cat dog or not dog or dog or cat
+53:53 
+
+53:53 something of this sort or or something
+53:54 
+
+53:54 else. So in this categorical cross
+53:57 
+
+53:57 entropy law so it usually is used in
+53:59 
+
+53:59 language models.
+54:03 
+
+54:03 So you'll use this cross entropy laws
+54:05 
+
+54:05 there. Why? Because there you have a
+54:06 
+
+54:06 vocabulary. So you have a context given
+54:09 
+
+54:09 a context yesterday to do the example.
+54:11 
+
+54:11 So you are given a context. Let's
+54:12 
+
+54:12 suppose we are in a dash mean right away
+54:17 
+
+54:17 in the class. So this is our context.
+54:20 
+
+54:20 This thing is our context given this
+54:23 
+
+54:23 context. So you will actually apply the
+54:25 
+
+54:25 probability because as I said the last
+54:27 
+
+54:27 layer of that neural network the output
+54:28 
+
+54:28 layer will contain how many neurons? The
+54:30 
+
+54:30 number of neurons in last layer.
+54:33 
+
+54:33 The number of neurons or computition
+54:35 
+
+54:35 units rather uh in the last layer or in
+54:38 
+
+54:38 the output layer
+54:40 
+
+54:40 in the output layer. The number of
+54:43 
+
+54:43 neurons in the output layer
+54:47 
+
+54:47 is equal to
+54:50 
+
+54:50 cardality of vocabulary.
+54:53 
+
+54:53 Cardinality
+54:55 
+
+54:55 or vocabulary size. I can just say vocab
+54:57 
+
+54:57 size.
+54:59 
+
+54:59 Okay. Okay, you know that what is
+54:60 
+
+54:60 vocabulary? Vocabulary is the total
+55:01 
+
+55:01 number of tokens that that language
+55:04 
+
+55:04 model can predict. Okay, that is equal
+55:05 
+
+55:05 to that and then what you basically do
+55:07 
+
+55:07 is in that you'll apply soft max on
+55:08 
+
+55:08 this. So you'll apply softmax on these
+55:10 
+
+55:10 neurons.
+55:12 
+
+55:12 So once you apply softmax on this and if
+55:15 
+
+55:15 this problem as I previously also said
+55:16 
+
+55:16 this is called as self-supervised
+55:18 
+
+55:18 learning. So here uh this is a
+55:19 
+
+55:19 supervised training. So here you know
+55:21 
+
+55:21 that what is the word. So let's suppose
+55:22 
+
+55:22 the word is class and it will give the
+55:25 
+
+55:25 probability distribution to all the
+55:26 
+
+55:26 words in the vocabulary. whatever
+55:27 
+
+55:27 vocabulary you have 0.1 let's say 01 02
+55:31 
+
+55:31 because there will be maybe around
+55:32 
+
+55:32 roughly around thousands of words or
+55:34 
+
+55:34 thousands of tokens. So it will give the
+55:37 
+
+55:37 probability distribution to everything
+55:38 
+
+55:38 and then you will have to do the cross
+55:40 
+
+55:40 entropy loss. So what you will do is you
+55:42 
+
+55:42 will use this categorical cross entropy.
+55:44 
+
+55:44 You'll say that actual probability of
+55:46 
+
+55:46 this word should have been one. So the
+55:47 
+
+55:47 class should have been one because
+55:48 
+
+55:48 you'll have one hot and cold relative.
+55:50 
+
+55:50 The class has the probability one but it
+55:51 
+
+55:51 has given probability distribution to
+55:53 
+
+55:53 everything. So you'll try to optim
+55:54 
+
+55:54 you'll try to compute this. what was the
+55:56 
+
+55:56 uh probability that was given to class.
+55:58 
+
+55:58 If the class was given probability as a2
+55:60 
+
+55:60 so you will say log of 0.2 2 negative of
+56:03 
+
+56:03 this. So this is the cross loss for that
+56:04 
+
+56:04 particular example and you want to
+56:05 
+
+56:05 reduce that and next time when you are
+56:07 
+
+56:07 training on this. So you will again give
+56:09 
+
+56:09 it you will try to give the higher
+56:11 
+
+56:11 probability to the predicted one to the
+56:13 
+
+56:13 actual token which has been predicted
+56:16 
+
+56:16 given the context. Okay, this is one
+56:17 
+
+56:17 example where you use categorical cross
+56:19 
+
+56:19 entropy loss. Okay, in language model so
+56:21 
+
+56:21 I'll write it here in language model.
+56:24 
+
+56:24 This is where you use it.
+56:27 
+
+56:27 I hope you got uh this right. Any
+56:30 
+
+56:30 questions still here?
+56:34 
+
+56:34 Now you at least understood binary cross
+56:35 
+
+56:35 entropy loss and you understood
+56:37 
+
+56:37 categorical cross entropy loss and you
+56:39 
+
+56:39 saw different applications where they
+56:40 
+
+56:40 usually are used in the real world.
+56:42 
+
+56:42 Let's now move on again because we were
+56:43 
+
+56:43 discussing about KL divergences. You
+56:45 
+
+56:45 probably might be interested in some
+56:47 
+
+56:47 different way. So we'll have a generic
+56:49 
+
+56:49 concept which called as f divergence
+56:51 
+
+56:51 because we were trying to find that
+56:53 
+
+56:53 divergence function. If you have
+56:54 
+
+56:54 probability distribution P let's suppose
+56:56 
+
+56:56 P of theta and then you have other
+56:57 
+
+56:57 probability distrib P of X. Okay. And
+56:59 
+
+56:59 this may be your predictor one. This can
+57:01 
+
+57:01 be your ground truth. So this is your
+57:02 
+
+57:02 ground truth. This can be predicted one.
+57:04 
+
+57:04 So how can you tell me tell me a
+57:06 
+
+57:06 discrepancy? We said
+57:08 
+
+57:08 let's say this is f of x w and this is
+57:12 
+
+57:12 my prediction y. And then we said that
+57:13 
+
+57:13 we had divergence function of this sort
+57:15 
+
+57:15 which takes input as the two these two
+57:16 
+
+57:16 things
+57:18 
+
+57:18 and it can give me some value. It can
+57:20 
+
+57:20 give me some sense of how much off they
+57:22 
+
+57:22 are, how much different they are. Okay.
+57:25 
+
+57:25 Now we'll introduce the concept of
+57:27 
+
+57:27 what's called as f divergences.
+57:30 
+
+57:30 So what is this F divergence? So this F
+57:32 
+
+57:32 divergence basically it's a unifying
+57:34 
+
+57:34 framework. You might have just heard
+57:35 
+
+57:35 about KL divergences but there are more
+57:36 
+
+57:36 than KL divergences. So F divergence
+57:38 
+
+57:38 this represents a broad category of a
+57:41 
+
+57:41 broad category of this divergence. It's
+57:42 
+
+57:42 a it's a unifying the it's a unifying
+57:44 
+
+57:44 framework in information theory. So I
+57:46 
+
+57:46 can say unifying
+57:48 
+
+57:48 framework
+57:51 
+
+57:51 in information theory
+57:54 
+
+57:54 it
+57:55 
+
+57:55 by it I mean information theory. So it
+57:57 
+
+57:57 will give a generic template. It will
+57:59 
+
+57:59 give a generic template of these
+57:60 
+
+57:60 divergences. All of these divergence are
+58:01 
+
+58:01 all called F divergences. And then in
+58:03 
+
+58:03 that you just have to change this F
+58:05 
+
+58:05 function. Okay. Let's see what this F
+58:07 
+
+58:07 divergence is. So you have you are
+58:08 
+
+58:08 having this divergence function.
+58:09 
+
+58:09 Consider this as D of F. So DF and you
+58:12 
+
+58:12 have two distributions P and Q. So you
+58:14 
+
+58:14 write this as like this P and Q. What is
+58:17 
+
+58:17 the F divergence between P and Q. So P
+58:20 
+
+58:20 is one distribution and Q is another
+58:21 
+
+58:21 distribution. You may not know both of
+58:23 
+
+58:23 these distribution. You may know one of
+58:24 
+
+58:24 them. You may know both of them. And you
+58:26 
+
+58:26 just want to compute so how one
+58:27 
+
+58:27 distribution is different from other
+58:29 
+
+58:29 distribution. How much is the
+58:30 
+
+58:30 discrepancy or how much similar are
+58:31 
+
+58:31 they? Okay. And they are both are
+58:33 
+
+58:33 defined on state space X. Consider that.
+58:35 
+
+58:35 Okay. So you have this F divergence. So
+58:37 
+
+58:37 how do you now define that? By
+58:38 
+
+58:38 definition this is equal to Q of X and
+58:41 
+
+58:41 then F of P of X / Q of X DX. So this is
+58:46 
+
+58:46 if you have this P and Q these
+58:48 
+
+58:48 distributions are continuous. So if P
+58:50 
+
+58:50 and Q are continuous distributions
+58:54 
+
+58:54 because you know that distributions can
+58:56 
+
+58:56 be discrete distributions or it can be
+58:58 
+
+58:58 continuous distribution and we have
+58:59 
+
+58:59 written probability that if
+59:02 
+
+59:02 P and Q are discrete distributions so
+59:05 
+
+59:05 we'll change this into summation okay
+59:06 
+
+59:06 this thing will be changed into
+59:07 
+
+59:07 summation and rest will follow like that
+59:10 
+
+59:10 okay and this is called as f divergence
+59:12 
+
+59:12 as I wrote in the heading
+59:15 
+
+59:15 this is by definition and this term over
+59:17 
+
+59:17 here if you see P of X Q of X this is
+59:19 
+
+59:19 called as likelihood.
+59:23 
+
+59:23 So why why this term is there? If you
+59:24 
+
+59:24 have two distributions P of X P and you
+59:26 
+
+59:26 have other distribution Q you want to
+59:28 
+
+59:28 see how similar they are. Okay. So how
+59:30 
+
+59:30 you can compute them? You are computing
+59:31 
+
+59:31 some sort of ratio. You're saying that I
+59:33 
+
+59:33 can divide P by Q. If they're exactly
+59:34 
+
+59:34 equal I'll get ratio around one. Okay.
+59:37 
+
+59:37 If there is some discrepancy it will be
+59:39 
+
+59:39 it'll be less than greater than one
+59:40 
+
+59:40 house because difference will not be
+59:42 
+
+59:42 equal to one. So somehow you are
+59:43 
+
+59:43 computing this likelihood over here. And
+59:45 
+
+59:45 now you have given this chance this
+59:48 
+
+59:48 function. So you can you have a chance
+59:49 
+
+59:49 of choosing this function and this
+59:50 
+
+59:50 function should have certain properties.
+59:52 
+
+59:52 It should be what's called as absolute
+59:54 
+
+59:54 continuous with respect to Q. Okay. And
+59:56 
+
+59:56 there are other values as well. I won't
+59:58 
+
+59:58 go into the properties of this. And this
+59:59 
+
+59:59 f should be convex function. What is
+60:01 
+
+60:01 convex function? I would define it here.
+60:03 
+
+60:03 I think many of you might know this. So
+60:04 
+
+60:04 this function has certain properties
+60:06 
+
+60:06 that it should follow. And one of the
+60:07 
+
+60:07 functions that we have in our case. So
+60:10 
+
+60:10 we can use t log t. So if you have this
+60:12 
+
+60:12 function f of t. So this if this
+60:14 
+
+60:14 function f of t is equal t log t. So
+60:17 
+
+60:17 this over here is K k divergence.
+60:20 
+
+60:20 So we'll get kl divergence.
+60:23 
+
+60:23 So if this f of t. So here you have this
+60:25 
+
+60:25 f of p of x q of x. So in this case if I
+60:27 
+
+60:27 say f of x also f of x is x log x. So if
+60:31 
+
+60:31 you use this function
+60:33 
+
+60:33 okay so you will be getting the scale
+60:35 
+
+60:35 divergence. So now let's go to kale
+60:37 
+
+60:37 divergence and I can give you different
+60:39 
+
+60:39 functions. So if you have suppose this
+60:43 
+
+60:43 if you have now K divergence of P and Q
+60:47 
+
+60:47 distri if you have two given two
+60:48 
+
+60:48 distribution it can be for discrete case
+60:50 
+
+60:50 it can be for continuous case because
+60:51 
+
+60:51 these P and Q it can they can be
+60:53 
+
+60:53 discrete random variable or continuous
+60:54 
+
+60:54 random variable let's do it for the
+60:55 
+
+60:55 discrete case divergence is P of given Q
+60:58 
+
+60:58 now this change integral will change to
+61:00 
+
+61:00 summation so what I can write is I can
+61:02 
+
+61:02 say summation of I I basically is the
+61:05 
+
+61:05 sample space that it has P of X I and
+61:07 
+
+61:07 then this log of P X ID by Q of X I okay
+61:14 
+
+61:14 this is a function I have used over here
+61:15 
+
+61:15 so if you see this over here so this
+61:18 
+
+61:18 somehow looks like entropy the earlier
+61:20 
+
+61:20 one that we discussed and now you can
+61:22 
+
+61:22 use the you can use properties of log to
+61:25 
+
+61:25 expand this so how how can you expand
+61:26 
+
+61:26 this so you can expand it like this is
+61:29 
+
+61:29 summation of I keep on keep an eye if I
+61:32 
+
+61:32 do some algebraic mistake so this is
+61:34 
+
+61:34 probability of X I log of probability of
+61:37 
+
+61:37 X I okay I'm just multiplying this with
+61:40 
+
+61:40 this so this is division so this will be
+61:42 
+
+61:42 now subtraction this will be log of
+61:44 
+
+61:44 minus qi but this px is multiplication
+61:46 
+
+61:46 of both and the summation is what this
+61:48 
+
+61:48 and then minus
+61:51 
+
+61:51 this is qp of x i log of qi
+61:57 
+
+61:57 if I give summation separately to both
+61:59 
+
+61:59 of these so I can say summation of i p
+62:02 
+
+62:02 of x i log of p of x i minus
+62:07 
+
+62:07 P of X I log of Q of X I. So if you see
+62:13 
+
+62:13 this over here this term
+62:16 
+
+62:16 this should be also given summation of
+62:17 
+
+62:17 A.
+62:18 
+
+62:18 If you see this term over here this is
+62:20 
+
+62:20 entropy
+62:24 
+
+62:24 and if you see this term over here this
+62:26 
+
+62:26 is cross entropy. Can you see this?
+62:30 
+
+62:30 Everybody clear on this? So what I said
+62:32 
+
+62:32 is so in in our case so what we can do
+62:35 
+
+62:35 is we can say f of if f of x is x log x
+62:37 
+
+62:37 so we can just replace this so this was
+62:40 
+
+62:40 the given formulation and in this case
+62:42 
+
+62:42 we are considering that this is a
+62:43 
+
+62:43 discrete this is a continuous random
+62:44 
+
+62:44 variable if you take the discrete case
+62:46 
+
+62:46 we'll have to summation of this x so now
+62:48 
+
+62:48 after applying log of this so this is x
+62:51 
+
+62:51 log of x so what we can do is so once we
+62:54 
+
+62:54 expand this so you'll get entropy minus
+62:56 
+
+62:56 cost entropy that's what I call kl
+62:58 
+
+62:58 divergence when I was introducing
+62:59 
+
+62:59 entropy and cost entropy difference
+63:01 
+
+63:01 between cross entropy and entropy is
+63:03 
+
+63:03 scale divergence. Any questions on this?
+63:05 
+
+63:05 So I can write this as h of p minus h of
+63:10 
+
+63:10 p comma q something of this sort.
+63:14 
+
+63:14 I think it should be the other way
+63:15 
+
+63:15 around. So are we missing somewhere
+63:18 
+
+63:18 something
+63:19 
+
+63:19 that's why I told you give me have a
+63:21 
+
+63:21 look at my algebraic manipulations.
+63:27 
+
+63:27 There was there was a slight mistake
+63:29 
+
+63:29 over here. So this should be Q of X I
+63:31 
+
+63:31 because divergence F divergence if you
+63:33 
+
+63:33 see how it was defined. So this was
+63:36 
+
+63:36 defined like this. So it was defined
+63:38 
+
+63:38 like Q of X I then function of P of X I
+63:43 
+
+63:43 divided by Q of X I and this over here
+63:46 
+
+63:46 was called as likelihood. So this term
+63:47 
+
+63:47 was likelihood.
+63:50 
+
+63:50 So when I said that log of when I said f
+63:53 
+
+63:53 of x this function is equal to x log x.
+63:55 
+
+63:55 So if I insert this function so as I
+63:58 
+
+63:58 said there should be properties of these
+63:59 
+
+63:59 functions should have different
+64:00 
+
+64:00 properties. So now if you insert these
+64:02 
+
+64:02 values over here and it will have
+64:04 
+
+64:04 integral with it or summation with it
+64:06 
+
+64:06 depends on if you are doing it with
+64:07 
+
+64:07 continuous case or discrete case. So
+64:08 
+
+64:08 let's suppose we're doing it with
+64:09 
+
+64:09 discrete case.
+64:12 
+
+64:12 Now summation of q of x i and then this
+64:14 
+
+64:14 f of this will be multiplied by p of x i
+64:19 
+
+64:19 / q of x i and then log of this whole
+64:22 
+
+64:22 term p of x i / q of x i. Now you can
+64:27 
+
+64:27 see this and this will be cancelled. So
+64:28 
+
+64:28 you'll be left with summation of p of x
+64:30 
+
+64:30 i log of
+64:34 
+
+64:34 p of x iid
+64:37 
+
+64:37 of x i. So that's what is written over
+64:40 
+
+64:40 there. So here if you see q of x log of
+64:42 
+
+64:42 p of x. Now if you did the logarithm
+64:45 
+
+64:45 manipulation so you will be left with
+64:46 
+
+64:46 this. Now if you see this term over here
+64:48 
+
+64:48 so this is not cross entropy. So this is
+64:51 
+
+64:51 negative of cross entropy and then minus
+64:53 
+
+64:53 and this term over here. So this is
+64:55 
+
+64:55 minus of cross entropy.
+64:58 
+
+64:58 So this is our entropy only entropy.
+65:01 
+
+65:01 This is negative of entropy and this is
+65:02 
+
+65:02 negative of cross entropy. Now if you
+65:04 
+
+65:04 see now the thing that we'll get is
+65:07 
+
+65:07 we'll get KL divergence
+65:10 
+
+65:10 is equal to H of P comma Q that is the
+65:13 
+
+65:13 cross entropy minus the entropy. The
+65:16 
+
+65:16 entropy is H of P. So this is what K
+65:20 
+
+65:20 divergence is. Everybody clear so far?
+65:22 
+
+65:22 So we saw two things. So we saw it from
+65:24 
+
+65:24 the entropy perspective. We first
+65:25 
+
+65:25 defined what entropy is and then we said
+65:27 
+
+65:27 okay what is the difference between? We
+65:29 
+
+65:29 also defined cross entropy. Then so if
+65:30 
+
+65:30 we take a difference if we actually want
+65:32 
+
+65:32 to quantify this difference so that is
+65:33 
+
+65:33 given by the k divergence. Now we saw
+65:35 
+
+65:35 also saw that by f divergence what I
+65:37 
+
+65:37 said. So I said f divergence is a
+65:39 
+
+65:39 unifying framework in information
+65:40 
+
+65:40 theory. What does it unify? It unifies a
+65:42 
+
+65:42 lot of divergences. So you have this
+65:44 
+
+65:44 function f over here. You have you have
+65:46 
+
+65:46 uh liberty to take this function as it
+65:48 
+
+65:48 is but the function should have some
+65:50 
+
+65:50 properties. The the function should be
+65:51 
+
+65:51 convex. It should be non- negativity. It
+65:53 
+
+65:53 should have what's called as
+65:54 
+
+65:54 identifiability. It should have
+65:55 
+
+65:55 convexity and it should have symmetry.
+65:57 
+
+65:57 So this function should be there. But
+65:58 
+
+65:58 taking those things aside, I'm telling
+65:60 
+
+65:60 you that one function is log. Log is the
+66:02 
+
+66:02 one function. So if you take log of if
+66:04 
+
+66:04 you take f of x is equal to x log of x.
+66:07 
+
+66:07 So this will be equal to kl divergence.
+66:09 
+
+66:09 Okay. I'll just now name few of other
+66:11 
+
+66:11 divergences.
+66:13 
+
+66:13 So this is called as scale divergence
+66:15 
+
+66:15 forward method. So because scale
+66:17 
+
+66:17 divergence is asymmetric by that I mean
+66:19 
+
+66:19 so if you calculate kale divergence P
+66:21 
+
+66:21 and Q. So this will be different from K
+66:23 
+
+66:23 divergence of Q and P. So this is not
+66:26 
+
+66:26 equal. So it's asymmetric as asymmetric
+66:28 
+
+66:28 divergence. So if you now take f ofx is
+66:30 
+
+66:30 equal to let's suppose minus log of x.
+66:33 
+
+66:33 If you take this so this is called as
+66:36 
+
+66:36 reverse scale divergence.
+66:38 
+
+66:38 Reverse scale divergence.
+66:40 
+
+66:40 Now I'm just changing the functions. I
+66:41 
+
+66:41 told you what f divergence is. F
+66:43 
+
+66:43 divergence is a unifying framework. So
+66:45 
+
+66:45 what you can do is you can just change f
+66:47 
+
+66:47 and it will tell you how much difference
+66:49 
+
+66:49 is there in the distributions between
+66:50 
+
+66:50 distributions p and q. If you now have
+66:52 
+
+66:52 this function x log x and this will be k
+66:54 
+
+66:54 divergence forward. And if you have f of
+66:56 
+
+66:56 x is minus log of x you have kale
+66:57 
+
+66:57 divergence but in reverse. Why is it
+66:60 
+
+66:60 defined separately reverse and forward?
+67:02 
+
+67:02 As I said that this scale divergence is
+67:04 
+
+67:04 not symmetric at all. It's not
+67:05 
+
+67:05 symmetric. So this is not equal to this.
+67:07 
+
+67:07 So if you have k divergence between p
+67:08 
+
+67:08 and q this is not equal to k d between q
+67:10 
+
+67:10 and p. So now if you have let's suppose
+67:13 
+
+67:13 this f ofx is equal to x - 1 square. So
+67:17 
+
+67:17 this is called as pearson pearson's k
+67:20 
+
+67:20 square divergence. Okay. Then you have
+67:22 
+
+67:22 square helinger jensen shannon. So there
+67:24 
+
+67:24 are a lot of other functions which I can
+67:26 
+
+67:26 write over here. So this all comes under
+67:27 
+
+67:27 these divergence. But one of the
+67:29 
+
+67:29 interesting cases for us was the scale
+67:31 
+
+67:31 divergence. Any questions till here. Any
+67:34 
+
+67:34 questions?
+67:36 
+
+67:36 So if you now saw we I'll just summarize
+67:38 
+
+67:38 the things that we did so far. Okay. Be
+67:40 
+
+67:40 attentive here. So we first defined what
+67:42 
+
+67:42 an entropy is and then we said what
+67:45 
+
+67:45 cross entropy is and then we defined KL
+67:47 
+
+67:47 divergence. Okay. And then we said uh
+67:50 
+
+67:50 this was from the entropy perspective.
+67:51 
+
+67:51 Then we defined f divergence. F
+67:53 
+
+67:53 divergence over here and then from F
+67:55 
+
+67:55 divergence we again derived this scale
+67:56 
+
+67:56 divergence. It again had some link with
+67:59 
+
+67:59 K divergence and entropy. So K scale
+68:00 
+
+68:00 divergence had link with entropy again.
+68:02 
+
+68:02 So now we'll see a probabilistic
+68:03 
+
+68:03 perspective on this loss. So I'll give a
+68:05 
+
+68:05 heading probabilistic
+68:11 
+
+68:11 perspective on these loss functions.
+68:16 
+
+68:16 Okay. And I'll now tell you the scheme
+68:18 
+
+68:18 or the method or an algorithm to
+68:20 
+
+68:20 consider a loss function. Now you have
+68:21 
+
+68:21 enough background in information theory
+68:23 
+
+68:23 because you know what entropy is, you
+68:24 
+
+68:24 know what cross entropy is, scale
+68:25 
+
+68:25 divergence are. So now how can you
+68:27 
+
+68:27 construct loss functions? Okay. Now
+68:28 
+
+68:28 we'll see the probability problem lens
+68:30 
+
+68:30 and you'll see that now you know that we
+68:32 
+
+68:32 have a function f and x and this is a
+68:35 
+
+68:35 parameterized function. This is what a
+68:36 
+
+68:36 neural network is. So you are sort of
+68:38 
+
+68:38 giving an input x to that and you have
+68:40 
+
+68:40 some weights that you have that you can
+68:42 
+
+68:42 change. You have these parameters w and
+68:43 
+
+68:43 I can write theta or five to these but
+68:45 
+
+68:45 we have stick with the notation w. So
+68:47 
+
+68:47 this w basically a set of parameters.
+68:48 
+
+68:48 You can adjust these parameters to get a
+68:50 
+
+68:50 prediction of that. So basically what is
+68:51 
+
+68:51 it saying is it is saying that if we are
+68:54 
+
+68:54 having these pairs x y. So the our data
+68:56 
+
+68:56 looks like this. So data looks like x i
+68:59 
+
+68:59 y i. So you have these pairs. Now what
+69:02 
+
+69:02 is bas this basically tell this is
+69:03 
+
+69:03 telling you compute the probability of y
+69:06 
+
+69:06 given that you have this data point and
+69:08 
+
+69:08 you have these parameters for the model.
+69:10 
+
+69:10 You are given this input and you are
+69:12 
+
+69:12 given these weights for the model. So
+69:14 
+
+69:14 what is the probability? So this is what
+69:15 
+
+69:15 basically you are computing when you are
+69:16 
+
+69:16 giving this. So or in turn I can write
+69:18 
+
+69:18 you are computing probability given Y
+69:21 
+
+69:21 and given this model.
+69:24 
+
+69:24 Okay this is what you want you want to
+69:25 
+
+69:25 basically maximize. Now you want to do
+69:27 
+
+69:27 it for every point say so this this
+69:29 
+
+69:29 thing over here. So if I say probability
+69:32 
+
+69:32 of Y probability that label given that
+69:35 
+
+69:35 you have this data point X I you have a
+69:37 
+
+69:37 particular data point. So I can write
+69:38 
+
+69:38 probability of Yi. What is the
+69:39 
+
+69:39 probability of Yi? Given you are given
+69:41 
+
+69:41 this probability point X I and you are
+69:43 
+
+69:43 given certain parameters at a certain
+69:45 
+
+69:45 position. Let's suppose consider them as
+69:46 
+
+69:46 W or maybe you can also consider WI
+69:48 
+
+69:48 because we'll have family of these
+69:49 
+
+69:49 models depends on how W changes. Okay.
+69:52 
+
+69:52 So now this is what you have to
+69:54 
+
+69:54 basically maximize. So if
+69:57 
+
+69:57 so this is this thing over here that you
+69:59 
+
+69:59 see. So you have to maximize this for
+70:01 
+
+70:01 all the points. So this is for all the
+70:02 
+
+70:02 points I goes from one to let's suppose
+70:04 
+
+70:04 we have n data points over here. And
+70:06 
+
+70:06 you'll have to find such a W. You'll
+70:08 
+
+70:08 have to you'll have to find such optimal
+70:09 
+
+70:09 W for which this is maximized. So how
+70:11 
+
+70:11 can we write that? We'll say that
+70:12 
+
+70:12 optimal W or W star is equal to multiply
+70:16 
+
+70:16 all these things together and then
+70:18 
+
+70:18 probability Yi given you have X I and
+70:21 
+
+70:21 you have this W and this over here is
+70:24 
+
+70:24 called as maximum likelihood criteria
+70:28 
+
+70:28 maximum
+70:33 
+
+70:33 likelihood
+70:35 
+
+70:35 criterion.
+70:39 
+
+70:39 Okay. If you again if I again like say
+70:42 
+
+70:42 what we what we doing. So we had this
+70:44 
+
+70:44 function we had this neural network
+70:45 
+
+70:45 which was given some input and it had
+70:47 
+
+70:47 some weights. So now if you have to turn
+70:49 
+
+70:49 this into probabilistic if you have to
+70:50 
+
+70:50 see it from the probabilistic length. So
+70:51 
+
+70:51 I'm saying basically what are we doing?
+70:53 
+
+70:53 We're saying what is the probability of
+70:55 
+
+70:55 y given this point and these weights. So
+70:57 
+
+70:57 we'll compute it for everything. So
+70:59 
+
+70:59 we'll comput basically if we have two
+71:00 
+
+71:00 classes say we have y1 and y2 suppose.
+71:03 
+
+71:03 So I'll compute probability of y1 given
+71:05 
+
+71:05 this point x and these weights.
+71:07 
+
+71:07 probability of Y2 given this point X and
+71:10 
+
+71:10 W. Okay, I'll assign probability to both
+71:12 
+
+71:12 of these things if you see over here. So
+71:14 
+
+71:14 now I want to assign prob high
+71:16 
+
+71:16 probability to the right class. Suppose
+71:17 
+
+71:17 this point X belongs to class one
+71:19 
+
+71:19 suppose. So if this belongs to class
+71:21 
+
+71:21 one, if this belongs to this Y1 class,
+71:22 
+
+71:22 so I'll assign higher probability to
+71:24 
+
+71:24 this. Okay, I'll assign lower
+71:25 
+
+71:25 probability to this. Ideally, I should
+71:27 
+
+71:27 assign probability one to this and
+71:28 
+
+71:28 probability zero to this. Okay, that's
+71:30 
+
+71:30 what I have written over here. So what
+71:31 
+
+71:31 I'm trying to do is I'm trying to get
+71:33 
+
+71:33 the maximum probability and I'm
+71:34 
+
+71:34 multiplying these properties together.
+71:35 
+
+71:35 Okay. So I am doing arg max of this. So
+71:37 
+
+71:37 I should do arg max arg max or w I
+71:41 
+
+71:41 should adjust these w in such a way so
+71:44 
+
+71:44 that this wi given that x i for this I
+71:47 
+
+71:47 should get the maximum value for these
+71:49 
+
+71:49 things over here. So this thing as I
+71:50 
+
+71:50 said is called as maximum likelihood
+71:52 
+
+71:52 criteria. Okay. So that is what you want
+71:54 
+
+71:54 to maximize. So this is the optimization
+71:56 
+
+71:56 problem you have. But the assumption
+71:57 
+
+71:57 that we're taking two assumptions over
+71:59 
+
+71:59 here. So the first assumption is so
+72:01 
+
+72:01 we're taking two assumptions.
+72:04 
+
+72:04 two assumptions that we are trying to
+72:06 
+
+72:06 take here. The first assumption is that
+72:09 
+
+72:09 when you are taking these data points,
+72:10 
+
+72:10 they're identically distributed. So data
+72:12 
+
+72:12 points are identically distributed.
+72:14 
+
+72:14 Identically distributed. What is the
+72:16 
+
+72:16 meaning of that? So the meaning of that
+72:18 
+
+72:18 is distribution is not suddenly
+72:20 
+
+72:20 changing. So when you are having one
+72:21 
+
+72:21 point so you when you take the other
+72:23 
+
+72:23 point it's again also coming from that
+72:24 
+
+72:24 same distribution. So as I usually give
+72:26 
+
+72:26 the example when that Nokia phones were
+72:28 
+
+72:28 trained, they were trained on European
+72:29 
+
+72:29 people. Now they were tested on suppose
+72:31 
+
+72:31 African people. Now distribution is not
+72:33 
+
+72:33 same. So that's not identically
+72:35 
+
+72:35 distributed. So if you are training
+72:36 
+
+72:36 model on one distribution, you should
+72:38 
+
+72:38 also test model on the same
+72:39 
+
+72:39 distribution. So that's the first
+72:40 
+
+72:40 assumption here that your data points
+72:42 
+
+72:42 are identically distributed. That is so
+72:44 
+
+72:44 all the data points come from the same
+72:45 
+
+72:45 distribution that can be written in this
+72:47 
+
+72:47 if probability of Y given X. So this if
+72:49 
+
+72:49 the distribution so this should hold for
+72:51 
+
+72:51 all the point and second thing is that
+72:53 
+
+72:53 there these data points are sampled
+72:55 
+
+72:55 independently. Okay. So they are
+72:56 
+
+72:56 independent
+72:59 
+
+72:59 independent examples. So the outputs are
+73:01 
+
+73:01 conditioned they are conditionally
+73:02 
+
+73:02 independent given given given their
+73:04 
+
+73:04 inputs. If you are given an input and if
+73:06 
+
+73:06 you are given output they do not have
+73:07 
+
+73:07 any any dependence on each other. So how
+73:10 
+
+73:10 can I write it mathematically? So if you
+73:11 
+
+73:11 are given probability of yi given x i
+73:14 
+
+73:14 okay and then I'm saying that let's
+73:16 
+
+73:16 suppose consider the say this
+73:18 
+
+73:18 probability of x y1 comma y2 till yn
+73:22 
+
+73:22 given the points x1 x2 till xn suppose
+73:26 
+
+73:26 something of this sort. If I'm given
+73:27 
+
+73:27 this so I can I should write it by
+73:29 
+
+73:29 independence or probability I should
+73:30 
+
+73:30 write this as multiplication. I goes
+73:32 
+
+73:32 from 1 to say n probability of y i given
+73:35 
+
+73:35 x i. So this is the meaning of
+73:37 
+
+73:37 independence. If you if you have seen
+73:40 
+
+73:40 our property lectures you probably will
+73:41 
+
+73:41 understand that I think you all all have
+73:43 
+
+73:43 attended property lecture. So these are
+73:44 
+
+73:44 the two assumptions that we take. So
+73:46 
+
+73:46 this is what what we call as iid.
+73:49 
+
+73:49 So what is iid then? So iid basically
+73:51 
+
+73:51 mean this is independent and identically
+73:53 
+
+73:53 distributed.
+73:55 
+
+73:55 So independent
+73:57 
+
+73:57 and
+73:59 
+
+73:59 identically
+74:01 
+
+74:01 distributed.
+74:04 
+
+74:04 Okay. Again telling you the same problem
+74:07 
+
+74:07 the we had a model and then we said that
+74:09 
+
+74:09 this basically can be seen from a
+74:11 
+
+74:11 probability that probability for a class
+74:13 
+
+74:13 given you have a data point and the
+74:14 
+
+74:14 weights. So this can be also written
+74:16 
+
+74:16 like this. Now what we have to do is we
+74:18 
+
+74:18 have to maximize the probability for the
+74:19 
+
+74:19 right classes. So we are saying that so
+74:21 
+
+74:21 we'll find such a w for which the
+74:23 
+
+74:23 probability x i and y this should be
+74:24 
+
+74:24 maximum. So basically probability of y1
+74:27 
+
+74:27 given point x1. So this should be
+74:28 
+
+74:28 maximum. For other point x2 so y2 should
+74:30 
+
+74:30 be maximum. So for the probability of
+74:32 
+
+74:32 the right class should maximum as as in
+74:34 
+
+74:34 this case if x was from y1. Okay. And we
+74:37 
+
+74:37 had two classes y1 and y2. We wanted
+74:39 
+
+74:39 this to be maximum. And if we multiply
+74:41 
+
+74:41 all these probabilities together. So
+74:43 
+
+74:43 you'll get basically this. You'll get
+74:44 
+
+74:44 probability yi given x i and w. If you
+74:46 
+
+74:46 take all the points because we're
+74:48 
+
+74:48 assuming that these data points are
+74:49 
+
+74:49 identically distributed and the first
+74:51 
+
+74:51 thing is they're identically distributed
+74:53 
+
+74:53 and they're independent. So we can use
+74:54 
+
+74:54 independence we can say that if you
+74:56 
+
+74:56 multiply these two things together you
+74:57 
+
+74:57 want to maximize this you want to find
+74:59 
+
+74:59 such a w which will maximize this number
+75:01 
+
+75:01 okay for a particular x i to that y
+75:04 
+
+75:04 corresponding yi should be given the
+75:05 
+
+75:05 most probability all other if let's
+75:08 
+
+75:08 suppose this is y j that should be given
+75:11 
+
+75:11 less probability if I say probability of
+75:12 
+
+75:12 yj some other j given x i so this should
+75:14 
+
+75:14 be given less probability that's what I
+75:16 
+
+75:16 told over here everybody satisfied with
+75:18 
+
+75:18 this and this thing over here is called
+75:19 
+
+75:19 as maximum maximum likelihood criterion
+75:22 
+
+75:22 any questions on
+75:24 
+
+75:24 Okay. Now if you see that two
+75:26 
+
+75:26 assumptions we have these data points I
+75:28 
+
+75:28 now we have this what's called as
+75:29 
+
+75:29 maximum likelihood criterion. So now if
+75:31 
+
+75:31 you see again the problem here so we are
+75:34 
+
+75:34 having these probabilities will be less
+75:35 
+
+75:35 than one and they will be greater than
+75:37 
+
+75:37 zero. So these things over here if you
+75:39 
+
+75:39 see if you see this or that I wrote over
+75:44 
+
+75:44 here the arg max
+75:48 
+
+75:48 if you see these probabilities because
+75:49 
+
+75:49 you know probability are between 0 and
+75:50 
+
+75:50 one. So you know this and all these
+75:53 
+
+75:53 probability will be less than one and
+75:54 
+
+75:54 there are a number which which is less
+75:55 
+
+75:55 than one. So you have w star the ideal w
+75:59 
+
+75:59 star should be you should arg max of w
+76:02 
+
+76:02 the w should be addressed such that
+76:04 
+
+76:04 probability of probability of yi given a
+76:08 
+
+76:08 particular point x i and w
+76:12 
+
+76:12 for all the data points you should
+76:13 
+
+76:13 multiply this okay for all data points 1
+76:15 
+
+76:15 to n. So now the problem is that this
+76:18 
+
+76:18 quantity over here this will be less
+76:19 
+
+76:19 than one or at max this will be one. So
+76:21 
+
+76:21 if you keep on multiplying quantity
+76:23 
+
+76:23 which are less than one let's suppose
+76:24 
+
+76:24 0.8 multiplied by 0.3 * 0.4 something of
+76:29 
+
+76:29 this this will again tend to zero. So
+76:31 
+
+76:31 this quantity keep on multiply. So this
+76:32 
+
+76:32 will be diminishing and again the
+76:34 
+
+76:34 problem you will have in computers
+76:37 
+
+76:37 because you have limited you have finite
+76:38 
+
+76:38 memory. So because of that this will
+76:40 
+
+76:40 approach to zero or this will even
+76:41 
+
+76:41 sometimes do underflow
+76:45 
+
+76:45 that is the problem. So we won't use
+76:46 
+
+76:46 this as it is. So we won't use this
+76:48 
+
+76:48 maximum likelihood criterion. So what
+76:50 
+
+76:50 we'll use is we'll apply log on that. So
+76:52 
+
+76:52 if we apply log onto this. So this
+76:54 
+
+76:54 multiplication will be converted into
+76:55 
+
+76:55 addition. So if you apply log on this.
+76:58 
+
+76:58 So you have maximum
+77:01 
+
+77:01 likelihood criterion.
+77:06 
+
+77:06 So now what you do is you apply log onto
+77:08 
+
+77:08 this.
+77:10 
+
+77:10 So this is called as log likelihood. You
+77:12 
+
+77:12 might have heard about log likelihood.
+77:13 
+
+77:13 Log maximum log likelihood. So because
+77:16 
+
+77:16 now you're applying log onto this. So
+77:17 
+
+77:17 what will happen is because log is a
+77:18 
+
+77:18 monotonic function. What is the meaning
+77:19 
+
+77:19 of monotonicity? So if let's suppose you
+77:22 
+
+77:22 are having a function you have you have
+77:25 
+
+77:25 this function if it is let's suppose
+77:26 
+
+77:26 increasing over here. So if you see log
+77:28 
+
+77:28 function that is something of this sort.
+77:30 
+
+77:30 So it it is always monotonic function.
+77:32 
+
+77:32 So if you apply log on to something if
+77:34 
+
+77:34 something is an increasing function and
+77:35 
+
+77:35 you apply log on to that it will still
+77:36 
+
+77:36 remain that function. Okay. So and you
+77:38 
+
+77:38 are interested in finding the max value.
+77:40 
+
+77:40 You are trying to find that value for
+77:42 
+
+77:42 which it will maximum. So maximum won't
+77:44 
+
+77:44 be changing. So it won't change the
+77:45 
+
+77:45 function. That is the meaning of
+77:47 
+
+77:47 monotonicity. The log is monotonic
+77:50 
+
+77:50 function.
+77:52 
+
+77:52 So by that I mean that if you apply this
+77:55 
+
+77:55 monotonic function onto some other
+77:56 
+
+77:56 function, it won't change its maximum or
+77:58 
+
+77:58 minimum values. It won't change its max
+78:00 
+
+78:00 values. So where the max value was
+78:03 
+
+78:03 initially if it was that suppose at x=
+78:04 
+
+78:04 5, it'll still remain at x= 5 if you
+78:06 
+
+78:06 apply log on to that. That's why we can
+78:07 
+
+78:07 apply log. And we are interested here in
+78:10 
+
+78:10 finding the maximum value. So here the
+78:12 
+
+78:12 problem that we had maximum likelihood
+78:13 
+
+78:13 criterion that got converted into log
+78:15 
+
+78:15 likelihood. So we'll have this war star
+78:18 
+
+78:18 is equal to arg min r arg max
+78:21 
+
+78:21 did they write min somewhere arg max
+78:23 
+
+78:23 everywhere I suppose arg max is
+78:25 
+
+78:25 everywhere yes
+78:27 
+
+78:27 so arg max basically means give me that
+78:29 
+
+78:29 value for which the value is maximum arg
+78:31 
+
+78:31 max on w give me such a w so that this
+78:33 
+
+78:33 value gets maximum now I'm applying log
+78:35 
+
+78:35 onto this log of
+78:38 
+
+78:38 this product goes from 1 to n that's for
+78:40 
+
+78:40 all the samples probability of yi given
+78:42 
+
+78:42 this x i and this parameter is you. So
+78:46 
+
+78:46 this thing over here is called as log
+78:48 
+
+78:48 likelihood.
+78:50 
+
+78:50 Now in machine learning the problem is
+78:52 
+
+78:52 that we do not want to maximize we want
+78:54 
+
+78:54 to minimize things because loss usually
+78:56 
+
+78:56 we want to minimize you not you don't
+78:58 
+
+78:58 want to find likelihood you want to find
+78:60 
+
+78:60 loss okay if let's suppose if something
+79:02 
+
+79:02 function is f of x okay and if you want
+79:05 
+
+79:05 to find let's suppose some max value of
+79:07 
+
+79:07 it if you convert this function into f
+79:09 
+
+79:09 of x whatever the max was it will
+79:10 
+
+79:10 convert it will be converted into
+79:12 
+
+79:12 minimum value because you're inverting
+79:13 
+
+79:13 the function you're giving it negative
+79:14 
+
+79:14 value so now you had maximum likelihood
+79:17 
+
+79:17 function the problem there was it had a
+79:19 
+
+79:19 lot of multiplications and all the
+79:20 
+
+79:20 values were less than one. So now if you
+79:22 
+
+79:22 multiply all these things together what
+79:23 
+
+79:23 will happen? Underflow might happen
+79:25 
+
+79:25 because we have finite memory. So we
+79:26 
+
+79:26 said okay we can solve this. We can
+79:28 
+
+79:28 convert these multiplications into
+79:29 
+
+79:29 addition. How can you do that? You can
+79:30 
+
+79:30 apply log on to this and you can convert
+79:32 
+
+79:32 these multiply into addition. Good. Now
+79:34 
+
+79:34 the problem is usually in machine
+79:35 
+
+79:35 learning we want loss to be minimized.
+79:38 
+
+79:38 So here we are talking about likelihood.
+79:40 
+
+79:40 So what we should do is that we should
+79:41 
+
+79:41 not talk about likelihood in this term.
+79:43 
+
+79:43 We should negate the likelihood. Then
+79:44 
+
+79:44 we'll call it negative log likelihood.
+79:48 
+
+79:48 All of these terms you might have heard
+79:50 
+
+79:50 negative
+79:52 
+
+79:52 log likelihood
+79:55 
+
+79:55 and this thing over here if I apply
+79:57 
+
+79:57 negation sign on this if I now convert
+79:59 
+
+79:59 this optimal w star. So I want to find
+80:02 
+
+80:02 such a function for which this I want to
+80:04 
+
+80:04 find arg min of this. So minus
+80:07 
+
+80:07 arg min of w minus of log. So argument
+80:11 
+
+80:11 of minus log of
+80:14 
+
+80:14 y = 1 to n probability of y i given x i
+80:19 
+
+80:19 and w
+80:21 
+
+80:21 this over here is called as negative log
+80:23 
+
+80:23 likelihood. The function that I wrote
+80:25 
+
+80:25 over here this is called as negative log
+80:27 
+
+80:27 likelihood. This is the loss that we
+80:31 
+
+80:31 sometimes will again see. Okay. And I
+80:32 
+
+80:32 can now show you that this is equal to
+80:34 
+
+80:34 binary cross entropy loss in term in
+80:36 
+
+80:36 case of binary classification. This is
+80:37 
+
+80:37 equal to categorical cross entropy loss
+80:40 
+
+80:40 in terms of categorical or multiclass
+80:43 
+
+80:43 classification problem. So if you see
+80:44 
+
+80:44 this this is taking that shape. Okay.
+80:46 
+
+80:46 This will be getting converted to
+80:47 
+
+80:47 summation. Okay. Can you see that over
+80:49 
+
+80:49 here? Is everything clear so far? So we
+80:52 
+
+80:52 started with maximum likelihood
+80:53 
+
+80:53 criterion. So we started with maximum
+80:56 
+
+80:56 likelihood. Maximum likelihood and then
+80:58 
+
+80:58 we converted that into log likelihood.
+81:01 
+
+81:01 Log likelihood.
+81:05 
+
+81:05 Okay. This was converted into negative
+81:06 
+
+81:06 log likelihood.
+81:08 
+
+81:08 Negative log likelihood something of
+81:10 
+
+81:10 this sort. And then this is what we want
+81:11 
+
+81:11 to minimize. We'll minimize this because
+81:14 
+
+81:14 in machine learning we consider loss. So
+81:16 
+
+81:16 loss should be minimized. We should not
+81:17 
+
+81:17 maximize a thing. Okay. Here we had
+81:19 
+
+81:19 maximum likelihood should be maximized
+81:21 
+
+81:21 but loss should be minimized. So we are
+81:22 
+
+81:22 saying negative log likelihood though
+81:24 
+
+81:24 this is somewhat like loss. That's why
+81:26 
+
+81:26 it's named air loss.
+81:29 
+
+81:29 Can I assume that you people understood
+81:30 
+
+81:30 everything? So as I was telling you
+81:32 
+
+81:32 people that why do why are we covering
+81:34 
+
+81:34 this loss function in such a detail
+81:35 
+
+81:35 because we'll be back propagating
+81:37 
+
+81:37 through these loss functions. So because
+81:38 
+
+81:38 we want to minimize loss.
+81:41 
+
+81:41 So we want to minimize loss. So how to
+81:43 
+
+81:43 minimize loss. So because we'll be using
+81:44 
+
+81:44 this loss function and we'll be using
+81:46 
+
+81:46 calculus or in particular
+81:49 
+
+81:49 differentiation so that we can get the
+81:51 
+
+81:51 optimal values. In this particular case
+81:53 
+
+81:53 we will get this we'll take the first
+81:56 
+
+81:56 derivative so as to minimize the loss so
+81:57 
+
+81:57 as to reduce the loss in iterative way
+81:59 
+
+81:59 and we'll apply gradient descent on
+82:01 
+
+82:01 these things. So if you know what is
+82:03 
+
+82:03 this loss function if you know cross
+82:04 
+
+82:04 entropy binary cross entropy k
+82:05 
+
+82:05 divergences log like they have different
+82:07 
+
+82:07 names so you will have a different
+82:09 
+
+82:09 appreciation when you will do the back
+82:10 
+
+82:10 propagation algorithm when you will
+82:12 
+
+82:12 adjust these weights and bias and you
+82:14 
+
+82:14 will see that the loss is actually
+82:15 
+
+82:15 adjusting the loss is decreasing it is
+82:17 
+
+82:17 increasing if I do some adjustment the
+82:18 
+
+82:18 parameters then because you know the
+82:20 
+
+82:20 loss you know how it behaves you know
+82:21 
+
+82:21 the behavior of these loss you'll have a
+82:23 
+
+82:23 way different appreciation than the
+82:24 
+
+82:24 people who are just doing it
+82:25 
+
+82:25 mechanically they are given this is a
+82:26 
+
+82:26 loss function apply derivatives on this
+82:28 
+
+82:28 they still have some understanding but
+82:30 
+
+82:30 the people who know what loss functions
+82:32 
+
+82:32 are and how is this constructed why is
+82:34 
+
+82:34 this important why should I not use this
+82:36 
+
+82:36 loss function and why should I use this
+82:37 
+
+82:37 type of loss function in this case they
+82:39 
+
+82:39 have a different appreciation when they
+82:40 
+
+82:40 do this back propagation algorithm now
+82:42 
+
+82:42 how to inference now so now because you
+82:44 
+
+82:44 have found this so you have this you had
+82:48 
+
+82:48 r minimum of this so you are doing
+82:50 
+
+82:50 minimum you are doing minimization of
+82:52 
+
+82:52 log like negative log likelihood that's
+82:54 
+
+82:54 sometimes written as minus ll so this is
+82:56 
+
+82:56 negative log likelihood
+83:02 
+
+83:02 So once you have this negative like
+83:03 
+
+83:03 likelihood what how do you do the
+83:05 
+
+83:05 inference
+83:07 
+
+83:07 because your model is now predicting a
+83:09 
+
+83:09 distribution because I said at the end
+83:10 
+
+83:10 of the layer you usually if uh this is a
+83:12 
+
+83:12 classification problem or a multiclass
+83:14 
+
+83:14 you are giving output as a distribution
+83:16 
+
+83:16 so now you're giving output distribution
+83:17 
+
+83:17 something of this sort 0.2 0.5 0.1 0.4
+83:21 
+
+83:21 something of this sort. So now what is
+83:23 
+
+83:23 this yhat equal to? How to now if you
+83:25 
+
+83:25 have give what's called as point
+83:27 
+
+83:27 estimate if you have to just assign one
+83:29 
+
+83:29 label. Okay because it's a
+83:30 
+
+83:30 classification problem you have to give
+83:31 
+
+83:31 just one class. So what you do is you
+83:33 
+
+83:33 take ark max of this
+83:35 
+
+83:35 arg max what is the ark max ark max
+83:37 
+
+83:37 basically means maximum value of y. So
+83:39 
+
+83:39 if you have probability of y given this
+83:41 
+
+83:41 x and these parameters and these optimal
+83:44 
+
+83:44 parameters say w star. So this is our
+83:47 
+
+83:47 inference. This is our prediction
+83:50 
+
+83:50 prediction
+83:52 
+
+83:52 or inference.
+83:54 
+
+83:54 So when you infer these model so you
+83:57 
+
+83:57 basically see at what label is the
+83:60 
+
+83:60 probability highest. So that's why I'm
+84:01 
+
+84:01 saying that yhat that is prediction is
+84:04 
+
+84:04 equal to arg max of y on this
+84:05 
+
+84:05 probability. So as I said you will have
+84:07 
+
+84:07 classes let's suppose y1 y2 y3 and y4
+84:09 
+
+84:09 say you have these four classes and now
+84:12 
+
+84:12 this will give probability 0.1.4 4 0.1
+84:16 
+
+84:16 and then you'll have 0 suppose this is
+84:19 
+
+84:19 0.2 2 and this is 0.3. So now if you
+84:21 
+
+84:21 take arg max of this so arg max is the
+84:24 
+
+84:24 operator. So when you apply this so this
+84:25 
+
+84:25 basically will give you such a y on
+84:27 
+
+84:27 which the value is maximum. So for this
+84:29 
+
+84:29 y2 value is maximum. So y hat in this
+84:32 
+
+84:32 case is equal to y2.
+84:34 
+
+84:34 So this is the inference step. So but
+84:36 
+
+84:36 how do you get it from? You get it from
+84:38 
+
+84:38 likelihood and you want to like decrease
+84:40 
+
+84:40 the loss. Basically you want to minimize
+84:42 
+
+84:42 this negative log likelihood. Likelihood
+84:44 
+
+84:44 is you want to increase that. But
+84:45 
+
+84:45 negative likelihood is the opposite of
+84:46 
+
+84:46 likelihood. That's why you want to
+84:48 
+
+84:48 minimize this.
+84:50 
+
+84:50 You might have seen me writing this arc
+84:52 
+
+84:52 max and arc min. Arg min basically is an
+84:54 
+
+84:54 operator which gives you that value for
+84:56 
+
+84:56 which the whole expression gets the
+84:57 
+
+84:57 minimum value and arc max is again
+84:59 
+
+84:59 operator for which arg max of y
+85:02 
+
+85:02 basically means such a y for which this
+85:03 
+
+85:03 whole expression gets the maximum value
+85:05 
+
+85:05 and ar if I write ar min of y that means
+85:08 
+
+85:08 such a y for which this expression gets
+85:10 
+
+85:10 the minimum value. So that's the
+85:11 
+
+85:11 difference. So we now saw that you
+85:13 
+
+85:13 started from likelihood and then you
+85:14 
+
+85:14 went to log likelihood because of
+85:16 
+
+85:16 underflow operation then you went to log
+85:19 
+
+85:19 likelihood because you have to give it
+85:20 
+
+85:20 some sense of loss it should not be you
+85:22 
+
+85:22 have to increase something in always in
+85:23 
+
+85:23 deep learning machine learning you'll be
+85:25 
+
+85:25 talking about loss okay and loss you
+85:26 
+
+85:26 have to decrease you don't have to
+85:27 
+
+85:27 increase that that's why we went to this
+85:29 
+
+85:29 log likelihood and I also told you how
+85:31 
+
+85:31 to do inference so what you do is you
+85:34 
+
+85:34 take the arg max of that y such a y for
+85:36 
+
+85:36 which the whole expression gets the
+85:37 
+
+85:37 maximum value okay so this is how you do
+85:40 
+
+85:40 the inference
+85:41 
+
+85:41 the score as point estimate also point
+85:44 
+
+85:44 estimate
+85:46 
+
+85:46 because you just want to give one class
+85:48 
+
+85:48 if you have to give multiple classes you
+85:49 
+
+85:49 maybe do some other things over there
+85:51 
+
+85:51 and now you have to find an algorithm or
+85:52 
+
+85:52 a recipe to construct a loss function
+85:54 
+
+85:54 how to construct a loss function now
+85:56 
+
+85:56 given this background how to
+85:59 
+
+85:59 construct a loss function
+86:05 
+
+86:05 so this is the question if you are given
+86:08 
+
+86:08 a problem now for that if you have to
+86:09 
+
+86:09 construct a loss what to do. The first
+86:11 
+
+86:11 thing is because we have spoken about
+86:13 
+
+86:13 probable distributions a lot. We have
+86:14 
+
+86:14 learned about discrete probability
+86:15 
+
+86:15 distributions like distributions. We
+86:18 
+
+86:18 have learned about uh uh let's suppose
+86:21 
+
+86:21 binomial distributions, polygon
+86:23 
+
+86:23 distribution are distributions that we
+86:24 
+
+86:24 have covered and in the continuous case
+86:26 
+
+86:26 we'll also cover gshian distributions a
+86:27 
+
+86:27 lot other distributions as well. The
+86:29 
+
+86:29 first step in here when you have to
+86:31 
+
+86:31 construct a loss function. So you have
+86:32 
+
+86:32 to choose a probability distribution.
+86:34 
+
+86:34 Okay, for step one select a suitable
+86:36 
+
+86:36 probability distribution. at a suitable
+86:41 
+
+86:41 probability
+86:44 
+
+86:44 distribution.
+86:48 
+
+86:48 Okay, this is the first case. So now
+86:50 
+
+86:50 what to select for which usually for
+86:51 
+
+86:51 real valued for real valued or
+86:54 
+
+86:54 regression problems. So for real valued
+86:56 
+
+86:56 outputs, so you use gshian gshian
+86:59 
+
+86:59 distribution.
+87:01 
+
+87:01 Okay, gshian distribution. And then if
+87:04 
+
+87:04 you have binary classification,
+87:06 
+
+87:06 if you have a binary classification,
+87:11 
+
+87:11 you will use Bernoli distribution.
+87:17 
+
+87:17 And if you have multiclass
+87:18 
+
+87:18 classification, you will use categorical
+87:19 
+
+87:19 distribution. If you have counts, you
+87:21 
+
+87:21 use poison distribution. If you have
+87:22 
+
+87:22 angles and directions, you use circular
+87:23 
+
+87:23 distributions. Okay? It depends on the
+87:26 
+
+87:26 problem at your hand. Okay? You have the
+87:28 
+
+87:28 first thing is you have to select a
+87:29 
+
+87:29 distribution. So why do we select
+87:30 
+
+87:30 distribution? because you believe that
+87:31 
+
+87:31 this choice encodes our assumption that
+87:33 
+
+87:33 data determines some form of this. So
+87:35 
+
+87:35 some form and then second thing is you
+87:37 
+
+87:37 have to parameterize that distribution
+87:38 
+
+87:38 using the model. So first thing is you
+87:40 
+
+87:40 selected a distribution because you are
+87:42 
+
+87:42 now modeling this process and you know
+87:44 
+
+87:44 that each distribution has some
+87:45 
+
+87:45 parameters. If you remember the lectures
+87:47 
+
+87:47 from probability you know that each
+87:49 
+
+87:49 distribution has some parameter. Let's
+87:50 
+
+87:50 suppose Bernoli distribution it has
+87:51 
+
+87:51 parameter P. Bin distribution has two
+87:54 
+
+87:54 parame n and p. Gshian distribution has
+87:56 
+
+87:56 parameter sigma and mu that is variance
+87:58 
+
+87:58 and mu. So I'll just write them. If you
+88:00 
+
+88:00 talk about Bernoli distribution, Bernol
+88:02 
+
+88:02 distribution had a parameter known as P
+88:04 
+
+88:04 probability. Binomial distribution has
+88:06 
+
+88:06 had two parameters N comma P. So it had
+88:09 
+
+88:09 number of trials and the probability in
+88:10 
+
+88:10 each trial. And we said that this
+88:12 
+
+88:12 binomial distribution is repeated
+88:14 
+
+88:14 Bernoli distribution and Bernal
+88:15 
+
+88:15 distribution you have it is some way you
+88:17 
+
+88:17 have two possibility has a tail. So we
+88:19 
+
+88:19 apply Bernal distribution success and
+88:21 
+
+88:21 failure. So success probability is P.
+88:22 
+
+88:22 Everybody so far everybody here with me?
+88:26 
+
+88:26 Okay. Okay. Now as I said that these
+88:28 
+
+88:28 distributions have some parameters. Now
+88:29 
+
+88:29 you have to find these parameters by by
+88:31 
+
+88:31 that model. That's what the second step
+88:33 
+
+88:33 is. You have to parameterize the
+88:34 
+
+88:34 distribution using model. You have to
+88:37 
+
+88:37 parameterize
+88:39 
+
+88:39 the distribution.
+88:44 
+
+88:44 Okay. Let me just write this somewhere
+88:47 
+
+88:47 else.
+88:49 
+
+88:49 Take it here.
+88:51 
+
+88:51 parameterize the distributions using
+88:54 
+
+88:54 your model because you are using a
+88:55 
+
+88:55 parameterized model a neural network. So
+88:58 
+
+88:58 how to do that? Because you have some
+88:59 
+
+88:59 parameters theta. So let's suppose you
+89:02 
+
+89:02 have and theta can be p in this case and
+89:04 
+
+89:04 np in binomial case in gshian
+89:06 
+
+89:06 distribution
+89:07 
+
+89:07 you have sigma and mu. Sigma square is
+89:10 
+
+89:10 variance and mu is mean there. Now theta
+89:13 
+
+89:13 in this case will be sum of these. So
+89:14 
+
+89:14 you have to parameterize this. So you
+89:15 
+
+89:15 are having this f of x and weights. You
+89:17 
+
+89:17 have these weights and biases. You have
+89:19 
+
+89:19 the model parameters and you're having X
+89:20 
+
+89:20 and you are estimating these these
+89:22 
+
+89:22 parameters the distribution parameters
+89:24 
+
+89:24 by using the model. Okay, this basically
+89:26 
+
+89:26 is equivalent to probability of now you
+89:29 
+
+89:29 after you estimate this after you find
+89:30 
+
+89:30 the after you adjust W to get these
+89:32 
+
+89:32 parameters. So you are trying to
+89:33 
+
+89:33 probability of Y given this theta given
+89:35 
+
+89:35 the parameters of this model this
+89:37 
+
+89:37 basically will be equivalent to
+89:38 
+
+89:38 probability of Y of F of X W or XW.
+89:45 
+
+89:45 This is what you want to find. This is
+89:46 
+
+89:46 the second second step. This again
+89:48 
+
+89:48 maximum like estimates some sort of
+89:50 
+
+89:50 things like that. So you want to
+89:51 
+
+89:51 estimate the parameters of the
+89:52 
+
+89:52 distribute either P, NP, P or P because
+89:54 
+
+89:54 you want to fit that distribution
+89:55 
+
+89:55 somehow and you'll find those parameters
+89:57 
+
+89:57 by using the model. Okay. And your model
+89:59 
+
+89:59 is parameterized by these W the model
+90:01 
+
+90:01 parameters. So these is these are model
+90:03 
+
+90:03 parameters.
+90:05 
+
+90:05 You might confuse between these
+90:06 
+
+90:06 parameter. I will explicitly write. And
+90:08 
+
+90:08 these are distribution parameters.
+90:14 
+
+90:14 These are distribution parameters. These
+90:15 
+
+90:15 are our model parameters and now you
+90:17 
+
+90:17 know that this thing and you have to
+90:19 
+
+90:19 basically find this probability for a y
+90:22 
+
+90:22 given given that theta and you have to
+90:24 
+
+90:24 come up with the this is the second
+90:25 
+
+90:25 step. Third step is define this negative
+90:27 
+
+90:27 log likelihood. So step three or third
+90:30 
+
+90:30 third step over here is define the loss
+90:33 
+
+90:33 as negative log likelihood. Define
+90:37 
+
+90:37 loss as negative log likelihood n. Okay.
+90:42 
+
+90:42 So now you have to compute the training
+90:43 
+
+90:43 object. So what should you do? So you
+90:45 
+
+90:45 should say that let's suppose I have
+90:46 
+
+90:46 this L of W. So L of W is a loss
+90:50 
+
+90:50 function. So you you want to find such a
+90:51 
+
+90:51 W optimal W and you want to see R min
+90:55 
+
+90:55 of W on this L of W. This is your
+90:58 
+
+90:58 optimization problem
+91:00 
+
+91:00 because now you want to do it with log
+91:02 
+
+91:02 likelihood. So how to do that? L of W is
+91:06 
+
+91:06 equal to minus summation of I is equal 1
+91:09 
+
+91:09 to let's suppose I or whatever. And then
+91:12 
+
+91:12 you want to see log of probability yi
+91:16 
+
+91:16 for particular x comma w. Okay. Now I'm
+91:20 
+
+91:20 converting that pi into this because
+91:21 
+
+91:21 after applying log I can convert them
+91:23 
+
+91:23 into I can convert all these
+91:24 
+
+91:24 multiplications by this addition. So
+91:27 
+
+91:27 this over here is applying that log like
+91:29 
+
+91:29 on the distribution.
+91:31 
+
+91:31 Okay. Let me write this box a better
+91:36 
+
+91:36 way. Okay. So this is that. So this is
+91:39 
+
+91:39 your negative log likel loss. So this is
+91:42 
+
+91:42 your loss which is negative log
+91:45 
+
+91:45 likelihood.
+91:46 
+
+91:46 And fourth thing is now you have to
+91:48 
+
+91:48 perform inference. Step four
+91:50 
+
+91:50 or fourth perform the inference.
+91:54 
+
+91:54 Perform inference basically means do the
+91:56 
+
+91:56 forward pass. Perform inference.
+91:59 
+
+91:59 Inference basically means you have to do
+92:01 
+
+92:01 point is called as maximum point
+92:03 
+
+92:03 estimate. MAP prediction. So return a
+92:05 
+
+92:05 point estimate. So how to do that? So y
+92:07 
+
+92:07 prediction is equal to r max. So you
+92:10 
+
+92:10 want to get the maximum value for a y
+92:12 
+
+92:12 such that this probability for a
+92:14 
+
+92:14 particular whatever the class is that
+92:15 
+
+92:15 you should get maximum value for that.
+92:18 
+
+92:18 Okay. I hope that you are clear with
+92:20 
+
+92:20 this now. And now let's let's take an
+92:22 
+
+92:22 example. We'll take example of binary
+92:23 
+
+92:23 classification. I'll tell you that we
+92:24 
+
+92:24 we'll land up at binary cross entropy
+92:26 
+
+92:26 loss by using the algorithm that I just
+92:28 
+
+92:28 laid out. So example is for binary
+92:31 
+
+92:31 classification.
+92:33 
+
+92:33 So before doing this let's again see the
+92:36 
+
+92:36 four steps. The first step is choose a
+92:38 
+
+92:38 distribution and second step is so once
+92:40 
+
+92:40 you choose the distribution so as I said
+92:42 
+
+92:42 for real valued output you can take
+92:44 
+
+92:44 gshian distribution for classification
+92:46 
+
+92:46 you can take bernoli distribution and
+92:48 
+
+92:48 for other distribution you according
+92:49 
+
+92:49 take some distributions at hand and
+92:51 
+
+92:51 second thing is you parameterize the
+92:52 
+
+92:52 distribution using your model some
+92:53 
+
+92:53 something of this sort you will estimate
+92:55 
+
+92:55 the parameters by using the model okay
+92:58 
+
+92:58 that's how you and then on on that you
+92:60 
+
+92:60 will define the loss function you'll
+93:01 
+
+93:01 define this loss function and after that
+93:03 
+
+93:03 you'll do the inference now let's
+93:04 
+
+93:04 suppose we have binary classification
+93:05 
+
+93:05 where we have two classes. Okay. So why
+93:08 
+
+93:08 belongs to zero or one label can be
+93:11 
+
+93:11 positive, negative, success, failure,
+93:13 
+
+93:13 something of this sort. So now binary
+93:14 
+
+93:14 classific as as you know most common
+93:16 
+
+93:16 task in machine learning. Now we have to
+93:18 
+
+93:18 choose probability distribution for
+93:19 
+
+93:19 this. As I said we will use Bernoli.
+93:21 
+
+93:21 This is the step one. Choose a
+93:23 
+
+93:23 distribution. I'm choosing Bernoli
+93:24 
+
+93:24 distribution.
+93:26 
+
+93:26 Bernoli distribution.
+93:29 
+
+93:29 And you know what Bernal distribution
+93:30 
+
+93:30 is? So Bernal distribution has let's
+93:32 
+
+93:32 suppose uh it's parameterized with W. So
+93:35 
+
+93:35 we have lambda gives 0 or one. So this
+93:39 
+
+93:39 is what it has. If I define this, if I
+93:42 
+
+93:42 define probability of y given lambda. So
+93:44 
+
+93:44 if you are given some lambda, we'll say
+93:45 
+
+93:45 that this is 1 minus lambda or p the
+93:48 
+
+93:48 probability because I don't want to
+93:49 
+
+93:49 confuse this p with some other things.
+93:50 
+
+93:50 So here I'm using lambda the standard
+93:52 
+
+93:52 notation probability y given lambda. So
+93:54 
+
+93:54 this lambda is the parameter and this is
+93:57 
+
+93:57 equal to when y is equal 0 and when y is
+93:60 
+
+93:60 equal 1. So this is the probability. So
+94:01 
+
+94:01 this is how we define the probability
+94:02 
+
+94:02 mass function of that. Okay. Or
+94:03 
+
+94:03 compactly we can write it like this
+94:05 
+
+94:05 probability of y given lambda. So this
+94:08 
+
+94:08 is equal to 1 - lambda
+94:11 
+
+94:11 * 1 - y and multiplied by lambda
+94:15 
+
+94:15 multiply y. I think this also you have
+94:17 
+
+94:17 seen previously in the probability
+94:19 
+
+94:19 classes.
+94:21 
+
+94:21 This is what I how I write it. So now I
+94:25 
+
+94:25 have select distribution. The problem
+94:27 
+
+94:27 was binary classification and binary
+94:29 
+
+94:29 classification problem. Once selected I
+94:30 
+
+94:30 said that now I have to choose a
+94:31 
+
+94:31 distribution. I chose the distribution
+94:33 
+
+94:33 bon distribution. I know that this
+94:36 
+
+94:36 lambda is the prob probability of
+94:38 
+
+94:38 success because you can have such
+94:39 
+
+94:39 failure and the parameter over here is
+94:41 
+
+94:41 probability of success. So probability
+94:43 
+
+94:43 of y given this lambda. So it is defined
+94:45 
+
+94:45 like this. So I can write probability
+94:46 
+
+94:46 mass function like this. Any doubts
+94:48 
+
+94:48 still here.
+94:51 
+
+94:51 So now we selected this. If you again
+94:53 
+
+94:53 see the steps the first step was uh to
+94:55 
+
+94:55 select at distribution. So because we
+94:57 
+
+94:57 had binary classification we selected
+94:59 
+
+94:59 bal distribution. And the second thing
+95:01 
+
+95:01 is you have to parameterize the
+95:02 
+
+95:02 distribution using your model. Okay. Now
+95:04 
+
+95:04 if you know if you see the model suppose
+95:06 
+
+95:06 we have this model. Now model gives the
+95:08 
+
+95:08 outputs. So if you see f of x, w so this
+95:12 
+
+95:12 will be our outputs or logits which we
+95:14 
+
+95:14 call. So we'll have these logs. So they
+95:15 
+
+95:15 can be from minus infinity to infinity.
+95:18 
+
+95:18 We'll have to apply some function onto
+95:19 
+
+95:19 them so as to give them some
+95:21 
+
+95:21 probabilistic meaning. Let's suppose if
+95:22 
+
+95:22 it's a binary class, we'll have just
+95:24 
+
+95:24 single neuron. Say at the end we'll have
+95:25 
+
+95:25 single neuron. So we we can apply
+95:27 
+
+95:27 logistic sigmoid function on this
+95:30 
+
+95:30 logistic
+95:32 
+
+95:32 sigmoid function. So what is that
+95:34 
+
+95:34 function? We have covered that in
+95:35 
+
+95:35 detail. I suppose you people will be
+95:38 
+
+95:38 understanding that. So sigma of let's
+95:40 
+
+95:40 suppose z if the z is uh this output
+95:43 
+
+95:43 function the logic and you apply sigma
+95:44 
+
+95:44 of z that is 1 / 1 + e minus this is the
+95:48 
+
+95:48 function that we usually apply so that
+95:49 
+
+95:49 it converts into probability
+95:50 
+
+95:50 distribution. So this will the value
+95:52 
+
+95:52 will be between 0 to 1. This is what the
+95:54 
+
+95:54 logistic function does. Okay. Once we
+95:57 
+
+95:57 have this now what we can do is we can
+95:59 
+
+95:59 say that this lambda the because we have
+96:02 
+
+96:02 to parameterize distribution parameter
+96:04 
+
+96:04 should be parameterized by the model
+96:05 
+
+96:05 parameter. So what to do that? So we can
+96:07 
+
+96:07 say this lambda is equal to sigma of f
+96:09 
+
+96:09 of x w.
+96:12 
+
+96:12 Okay. So this is how I can write this.
+96:14 
+
+96:14 Now step three is this was step two.
+96:16 
+
+96:16 Step this was step two. Step one was
+96:19 
+
+96:19 choose a distribution. Step two, I
+96:20 
+
+96:20 parameterize that with the model because
+96:22 
+
+96:22 I know that at the output of the model
+96:24 
+
+96:24 and use this I'm using this sigmoid so
+96:26 
+
+96:26 as to convert that into probability.
+96:28 
+
+96:28 Step three is now you have to write it
+96:29 
+
+96:29 into log likelihood. So what is log
+96:31 
+
+96:31 likelihood? You already know that. So
+96:33 
+
+96:33 now if I write probability of yi given x
+96:36 
+
+96:36 i and the model parameters because I
+96:39 
+
+96:39 have to write it for let's for a single
+96:40 
+
+96:40 training example. I'll just write for
+96:41 
+
+96:41 one training example x i which has
+96:44 
+
+96:44 corresponding yi label.
+96:46 
+
+96:46 So what is this equal to? So this will
+96:48 
+
+96:48 be equal to 1 minus sigmoid of
+96:54 
+
+96:54 f of x i
+96:57 
+
+96:57 comma w because I sigmoid and multiply
+97:00 
+
+97:00 this is basically lambda 1 - lambda if
+97:02 
+
+97:02 you see that's here 1 - lambda 1 by y so
+97:05 
+
+97:05 the probability I'm applying this
+97:07 
+
+97:07 probability so 1 - lambda 1 - y and
+97:09 
+
+97:09 lambda of y so this is multiplied
+97:13 
+
+97:13 so I'm saying 1 - sigma of f of x of y
+97:16 
+
+97:16 and then add this I'm writing 1 - yi and
+97:19 
+
+97:19 then multiplied by sigmoid of f of x i w
+97:26 
+
+97:26 yi so if you see this over here
+97:30 
+
+97:30 so if you see this over here so this is
+97:31 
+
+97:31 some s some of some of like this now you
+97:33 
+
+97:33 know that I if I apply this log
+97:35 
+
+97:35 likelihood on this if I now convert the
+97:37 
+
+97:37 step four is apply log likelihood step
+97:39 
+
+97:39 four convert this into log likelihood
+97:41 
+
+97:41 once I apply log onto this so this thing
+97:44 
+
+97:44 if I apply log onto this so this will be
+97:46 
+
+97:46 l of let's suppose w So this will be
+97:48 
+
+97:48 converted to x= i = 1 to i and minus of.
+97:51 
+
+97:51 So I'll apply log onto this. So this
+97:53 
+
+97:53 function will be applied. I will I'll
+97:54 
+
+97:54 apply log on this. So you'll get 1 minus
+97:57 
+
+97:57 y i. So I'm just copying the equation.
+97:60 
+
+97:60 But I hope you will do the calculation.
+98:01 
+
+98:01 Basically when I'm applying log on this.
+98:02 
+
+98:02 So I'm applying log on this. So once I
+98:04 
+
+98:04 apply log on this function, this 1 - i
+98:06 
+
+98:06 will go down. So this will come down
+98:08 
+
+98:08 over here and you will be left and again
+98:10 
+
+98:10 you'll apply this log on this. This yi
+98:12 
+
+98:12 will go down. So you'll be left with
+98:13 
+
+98:13 summation of this
+98:16 
+
+98:16 and then 1 - yi
+98:19 
+
+98:19 log of
+98:23 
+
+98:23 let me just see 1 - 1 - sigma of f of x
+98:28 
+
+98:28 i and w and plus
+98:33 
+
+98:33 this is with the whole braces plus
+98:35 
+
+98:35 second thing is yi because I also apply
+98:37 
+
+98:37 log on this this is negative log I'm
+98:39 
+
+98:39 applying negative log likel so yi again
+98:41 
+
+98:41 log
+98:42 
+
+98:42 this sigma will remain as it is sigma of
+98:45 
+
+98:45 f of x i w and this will be closed. So
+98:49 
+
+98:49 if you see this over here this is again
+98:51 
+
+98:51 binary cross entropy loss. This loss
+98:53 
+
+98:53 over here is binary cross entropy loss.
+98:56 
+
+98:56 So how many of you can recognize this
+98:57 
+
+98:57 binary cross entropy loss.
+98:60 
+
+98:60 So let's suppose this this is predicted
+99:01 
+
+99:01 yi. This is our prediction. So I can
+99:03 
+
+99:03 write it L of W is equal to minus sigma
+99:06 
+
+99:06 of I = 1 to I and then 1 - Y this is the
+99:11 
+
+99:11 ground truth and then log of 1 minus
+99:14 
+
+99:14 this is prediction by the network so Y -
+99:16 
+
+99:16 Yhat and then plus this is YI this is
+99:21 
+
+99:21 prediction of this this is log of
+99:23 
+
+99:23 prediction of network
+99:26 
+
+99:26 can you see that this again is binary
+99:27 
+
+99:27 cross how many of you appreciate this
+99:29 
+
+99:29 now we did the same four steps I again
+99:32 
+
+99:32 came up to binary cross entropy loss by
+99:33 
+
+99:33 using the maximum likelihood criterion.
+99:36 
+
+99:36 Okay. Now you saw an algorithm you saw
+99:39 
+
+99:39 loss function algorithm by which by the
+99:41 
+
+99:41 help of which you can construct loss.
+99:43 
+
+99:43 Again when that the first thing you are
+99:44 
+
+99:44 doing is you are selecting a suitable
+99:46 
+
+99:46 probability distribution. Okay. Whatever
+99:48 
+
+99:48 the problem is there will be some
+99:49 
+
+99:49 probability distribution which match it.
+99:51 
+
+99:51 So in our case in our case let's suppose
+99:53 
+
+99:53 where we took a classification problem
+99:55 
+
+99:55 because in classification you have class
+99:56 
+
+99:56 zero or class one. Consider this as
+99:58 
+
+99:58 class success. Consider this to be class
+99:60 
+
+99:60 success and this to be class failure.
+100:04 
+
+100:04 Okay. And then there will be some
+100:05 
+
+100:05 probability of success. So when you
+100:06 
+
+100:06 sample these images or let's suppose in
+100:09 
+
+100:09 these emails there'll be some
+100:10 
+
+100:10 probability of success. Consider that
+100:12 
+
+100:12 probability is lambda. That is the
+100:13 
+
+100:13 parameter we had. So if you see this
+100:15 
+
+100:15 this is the exact template that was
+100:17 
+
+100:17 there for Bernoli distribution. So what
+100:19 
+
+100:19 was Bernoli distribution? So Bernal
+100:20 
+
+100:20 distribution of lambda was if you have
+100:22 
+
+100:22 some experiments where there there is
+100:24 
+
+100:24 this template that you have success and
+100:26 
+
+100:26 failure.
+100:28 
+
+100:28 So when I was teaching you this I said
+100:29 
+
+100:29 in the real world there are a lot of
+100:31 
+
+100:31 problems which are like this where you
+100:32 
+
+100:32 have success failure. So we took example
+100:34 
+
+100:34 there head tail to just make the point
+100:36 
+
+100:36 through otherwise you could have taken
+100:37 
+
+100:37 any example. So in this binary
+100:39 
+
+100:39 classification case this exactly is like
+100:41 
+
+100:41 bernoli trials. So if you perform bol
+100:43 
+
+100:43 trials so basically you're just taking
+100:45 
+
+100:45 image if it is scatter dog you are
+100:46 
+
+100:46 saying that is a bernoli trial. You are
+100:48 
+
+100:48 taking let's suppose an email it is a
+100:50 
+
+100:50 bernoli trial. It can be ham it can be
+100:52 
+
+100:52 it can be normal email no spam or it can
+100:55 
+
+100:55 be spam emails or it can be ham emails.
+100:56 
+
+100:56 So some some of one of them it can be
+100:58 
+
+100:58 failure or a success. So you are now
+100:60 
+
+100:60 adjusting this you are saying that okay
+101:01 
+
+101:01 so this thing is like that distribution.
+101:03 
+
+101:03 Now if I model this with my probability
+101:05 
+
+101:05 distribution. So I'm saying that
+101:06 
+
+101:06 basically I have to find this lambda.
+101:08 
+
+101:08 That's what I said in the second step.
+101:09 
+
+101:09 The step first was choose a probability
+101:12 
+
+101:12 distribution and that should be chosen
+101:13 
+
+101:13 on the basis of problem. So as I said if
+101:15 
+
+101:15 you have binary classification you'll
+101:17 
+
+101:17 choose Bernoli distribution because you
+101:18 
+
+101:18 have learned about Bernoli distribution
+101:20 
+
+101:20 you see okay Bern distribution and this
+101:22 
+
+101:22 classification they are almost same
+101:23 
+
+101:23 problems abstraction of same problem.
+101:26 
+
+101:26 And now second thing is you have to
+101:27 
+
+101:27 parameterize. Now I told you you have
+101:29 
+
+101:29 distribution parameters and then you
+101:31 
+
+101:31 have these model parameters by using
+101:32 
+
+101:32 this model. You have to par you have to
+101:34 
+
+101:34 come up with these parameters. So in our
+101:36 
+
+101:36 case we had this lambda. If you see in
+101:38 
+
+101:38 this in in this case we had to par we
+101:40 
+
+101:40 had parameterized by lambda. You had to
+101:41 
+
+101:41 find that. So what I said this lambda in
+101:43 
+
+101:43 the step two is equal sigmoid. This
+101:45 
+
+101:45 you'll apply output on the sigmoid. So
+101:46 
+
+101:46 you parameterize by these models. So
+101:48 
+
+101:48 this is our distribution parameter
+101:50 
+
+101:50 distribution parameter and this w was
+101:52 
+
+101:52 our model parameter. Can you
+101:54 
+
+101:54 parameterize basically this distribution
+101:56 
+
+101:56 with the model? So that's what the
+101:58 
+
+101:58 second step was. Parameterize the model.
+101:60 
+
+101:60 Parameterize distribution using our
+102:01 
+
+102:01 model. Third step was define the loss.
+102:03 
+
+102:03 Now you have to define the loss. So how
+102:04 
+
+102:04 to define the loss. Now I said okay loss
+102:07 
+
+102:07 should be defined somehow like this. You
+102:08 
+
+102:08 have to you have certain example XY Y1
+102:11 
+
+102:11 is the example. So you're saying that
+102:12 
+
+102:12 probability why I given this X I and W.
+102:14 
+
+102:14 Okay. This should be defined like this.
+102:16 
+
+102:16 Whatever probability you have used over
+102:17 
+
+102:17 here. Okay. And you you got it from
+102:20 
+
+102:20 here. So you directly used it here. You
+102:21 
+
+102:21 defined loss in this way.
+102:23 
+
+102:23 Okay. Now you're using applying negative
+102:26 
+
+102:26 log likelihood. After applying negative
+102:28 
+
+102:28 log likelihood, you landed up at binary
+102:30 
+
+102:30 cross entropy law. So this is what we
+102:32 
+
+102:32 also saw when we were defining entropy.
+102:34 
+
+102:34 So the amazing thing that the thing that
+102:35 
+
+102:35 you should be amazed at is that we
+102:37 
+
+102:37 started with entropy. Okay, we start
+102:40 
+
+102:40 with basically information content
+102:41 
+
+102:41 entropy and we landed up at binary cross
+102:44 
+
+102:44 entropy and we landed up at let's
+102:46 
+
+102:46 suppose categorical cross entropy or in
+102:47 
+
+102:47 general cross entropy something of that
+102:48 
+
+102:48 sort and then we took care divergence.
+102:50 
+
+102:50 We again landed up at this entropy
+102:51 
+
+102:51 somehow it was related. Then we saw
+102:53 
+
+102:53 probability we again landed by this
+102:54 
+
+102:54 concept that we can come up with this
+102:56 
+
+102:56 binary cross entropy. If you again use
+102:57 
+
+102:57 this algorithm let's suppose for this
+102:59 
+
+102:59 categorical distribution
+103:02 
+
+103:02 if you use it for categorical
+103:06 
+
+103:06 this was classification where you have
+103:07 
+
+103:07 multi classification you'll use
+103:08 
+
+103:08 categorical distribution for that and
+103:10 
+
+103:10 that distribution is again some
+103:11 
+
+103:11 properties you again use the same thing
+103:13 
+
+103:13 you know you'll come to categorical
+103:15 
+
+103:15 cross entropy loss you'll find that I'm
+103:17 
+
+103:17 now bo everything is boiling down to
+103:19 
+
+103:19 categorical cross entropy loss if you
+103:20 
+
+103:20 use some regression problem if you have
+103:22 
+
+103:22 so here this categorical distribution
+103:24 
+
+103:24 was used in terms of multiclass
+103:25 
+
+103:25 classification
+103:27 
+
+103:27 multiclass
+103:29 
+
+103:29 classification
+103:31 
+
+103:31 and you land it up as categorical cross
+103:33 
+
+103:33 entropy loss. If you have a regression
+103:34 
+
+103:34 problem, if you have regression
+103:38 
+
+103:38 regression problem,
+103:41 
+
+103:41 so what you can do is you can use gshian
+103:42 
+
+103:42 distribution.
+103:47 
+
+103:47 So if you use gshian distribution and
+103:48 
+
+103:48 follow the four steps that I told you
+103:50 
+
+103:50 step one uh choose a distribution and
+103:52 
+
+103:52 after that model the parameters of this
+103:55 
+
+103:55 distribution by using the model. So you
+103:56 
+
+103:56 have to parameterize this by using the
+103:58 
+
+103:58 model parameters and you choose this go
+104:00 
+
+104:00 you know you will land at mean squared
+104:03 
+
+104:03 error loss.
+104:08 
+
+104:08 So this is what you will do. So after
+104:10 
+
+104:10 you choose the equation then you
+104:11 
+
+104:11 construct a loss function and then you
+104:14 
+
+104:14 apply negative log likelihood on that
+104:16 
+
+104:16 and you will come to all these loss
+104:17 
+
+104:17 functions by using these things. Okay, I
+104:20 
+
+104:20 hope that everything is clear. So I'll
+104:21 
+
+104:21 stop this recording now and I'll take
+104:23 
+
+104:23 your questions if you have any.

@@ -1,0 +1,6547 @@
+00:01 Asam everyone.
+00:03 
+
+00:03 So we had now laid the foundations to
+00:06 
+
+00:06 perceptron learning algorithm. We know
+00:08 
+
+00:08 how it learns and we also uh said that
+00:10 
+
+00:10 we have to prove its convergence. Proof
+00:12 
+
+00:12 of convergence
+00:17 
+
+00:17 and we mathematically model the proof of
+00:19 
+
+00:19 convergence. Okay. The first thing is we
+00:21 
+
+00:21 have to make sure that the data is
+00:22 
+
+00:22 linearly separable. The assumption was
+00:25 
+
+00:25 The assumption in that was
+00:29 
+
+00:29 data is linearly separable.
+00:36 
+
+00:36 Why am I showing you this proof? Again,
+00:38 
+
+00:38 for the sake of proving that's the first
+00:40 
+
+00:40 thing and the thing is that I want to
+00:41 
+
+00:41 show you how to prove things. If you
+00:43 
+
+00:43 have to sometimes prove things and
+00:45 
+
+00:45 you'll be given a physical example, a
+00:47 
+
+00:47 real world example, first you'll have to
+00:48 
+
+00:48 computationally model it. You'll have to
+00:50 
+
+00:50 bring it in the mathematics. And once
+00:51 
+
+00:51 you are current this is the thing that I
+00:53 
+
+00:53 have to prove and then you should know
+00:54 
+
+00:54 how to prove things we have in between
+00:56 
+
+00:56 in probability also I showed you certain
+00:58 
+
+00:58 proofs. So here again we'll go with
+00:59 
+
+00:59 this. So the first assumption that we'll
+01:01 
+
+01:01 take here that this data is linearly
+01:03 
+
+01:03 separable and after this so I'll now
+01:05 
+
+01:05 state this formula. So now you have two
+01:07 
+
+01:07 finite sets finite sets of data finite
+01:12 
+
+01:12 sets which we call it P and N.
+01:16 
+
+01:16 So P is for positive points N is for
+01:18 
+
+01:18 negative points. Okay. And they are in n
+01:21 
+
+01:21 dimension space which we wrote
+01:24 
+
+01:24 previously also. So they're in mime
+01:25 
+
+01:25 space. And then we have to show that
+01:27 
+
+01:27 perceptron learn algorithm it converts
+01:29 
+
+01:29 that we have to show that there is a w
+01:31 
+
+01:31 star. W star is that optimal w it is
+01:33 
+
+01:33 that uh normal vector to the plane. So
+01:36 
+
+01:36 when we take this positive point. So if
+01:38 
+
+01:38 we take transpose of this star this
+01:41 
+
+01:41 should be greater than equal to zero for
+01:43 
+
+01:43 positive points and for negative points
+01:45 
+
+01:45 war transpose do.x X that is dot product
+01:48 
+
+01:48 of this should be less than zero. So
+01:50 
+
+01:50 this is what I mean by convergence. So
+01:52 
+
+01:52 it should not make any mistakes. Okay.
+01:53 
+
+01:53 As I said the first definition that I
+01:55 
+
+01:55 write what is linear separability. So
+01:57 
+
+01:57 that is this is also called as linearly
+02:01 
+
+02:01 separable.
+02:02 
+
+02:02 So if this thing happens if there is a
+02:04 
+
+02:04 war that is for all the positive points
+02:06 
+
+02:06 this will happen and for all the
+02:07 
+
+02:07 negative points this will happen. This
+02:09 
+
+02:09 is the definition of linear linearly
+02:12 
+
+02:12 separable data. Okay. So what we can do
+02:14 
+
+02:14 is now in order to prove this thing. So
+02:17 
+
+02:17 what I have to prove is if I make the
+02:18 
+
+02:18 update if I make the update. So as I
+02:20 
+
+02:20 said previously if you just see the
+02:22 
+
+02:22 geometrical interpretation. So you have
+02:23 
+
+02:23 this W. Okay. And this is the let's
+02:26 
+
+02:26 suppose plane that this W belongs to.
+02:28 
+
+02:28 And now you have this point which is
+02:29 
+
+02:29 mclassified. So that means this angle
+02:32 
+
+02:32 over here the angle it is making with
+02:33 
+
+02:33 this is less than 90. So it should have
+02:36 
+
+02:36 been greater than 90. So you have to
+02:38 
+
+02:38 make it such that it it should be
+02:39 
+
+02:39 greater than 90 then. Okay. So you have
+02:41 
+
+02:41 to something do with this. So you have
+02:43 
+
+02:43 this W let's call this T. Okay. WT means
+02:46 
+
+02:46 the current WT and WT + 1 is the updated
+02:49 
+
+02:49 one once we update this. So you somehow
+02:51 
+
+02:51 have to show that within limited number
+02:53 
+
+02:53 of steps it should converge the WT + 1.
+02:56 
+
+02:56 So once we take this WT to WT + 1 we
+02:60 
+
+02:60 should be sure that in limited number of
+03:01 
+
+03:01 steps it somehow makes the such it does
+03:05 
+
+03:05 the data separate in such a way that
+03:07 
+
+03:07 this is followed that for all these
+03:09 
+
+03:09 positive points it is greater than zero
+03:10 
+
+03:10 when we perform the dot product and for
+03:12 
+
+03:12 all the negative points it's less than
+03:13 
+
+03:13 zero. Okay. Now we'll see it how so what
+03:16 
+
+03:16 we can do is like for the simplicity we
+03:18 
+
+03:18 can transform this negative points into
+03:21 
+
+03:21 positive points. So how can we do that?
+03:24 
+
+03:24 So if we have this negative point n so
+03:26 
+
+03:26 if we have a point which belongs to this
+03:27 
+
+03:27 let's suppose x. So if I write x belongs
+03:29 
+
+03:29 to n. So let's if I take minus n that
+03:32 
+
+03:32 will belong to positive class then so it
+03:34 
+
+03:34 is like just having a reflection. So
+03:36 
+
+03:36 I'll make it like this. So you have this
+03:38 
+
+03:38 plane. So let's suppose these were the
+03:39 
+
+03:39 positive points and these were the
+03:40 
+
+03:40 negative points. See this was a negative
+03:42 
+
+03:42 point and this was a negative point. If
+03:44 
+
+03:44 I take minus x probably it will be here
+03:46 
+
+03:46 and here. So I'm just flipping this. I'm
+03:48 
+
+03:48 I'm taking the converse of this. That
+03:50 
+
+03:50 means if it was initially in the
+03:51 
+
+03:51 negative class now it'll be in the
+03:52 
+
+03:52 positive class. Am I clear till this
+03:53 
+
+03:53 point? So this is one thing that I want
+03:55 
+
+03:55 you to be sure of. That is I'm making an
+03:57 
+
+03:57 assumption. I'm converting this negative
+03:58 
+
+03:58 points into positive points. So why am I
+04:00 
+
+04:00 doing it? So that I have a set of
+04:02 
+
+04:02 points. Let's suppose I will have a set
+04:03 
+
+04:03 of points. Now P any point I can take it
+04:06 
+
+04:06 from either positive class or union of
+04:08 
+
+04:08 negative class. So now these all these
+04:10 
+
+04:10 points will be my positive points.
+04:14 
+
+04:14 I think we have a question. Yes, please
+04:17 
+
+04:17 go ahead.
+04:19 
+
+04:19 So I'll just answer the question over
+04:20 
+
+04:20 here. The question was let's suppose
+04:21 
+
+04:21 this is the coordinate system. I'll just
+04:23 
+
+04:23 clarify it if somebody has this
+04:24 
+
+04:24 question. So whenever I say something
+04:26 
+
+04:26 about W that means this W is the normal
+04:29 
+
+04:29 vector to the plane. So let's call this
+04:30 
+
+04:30 as plane. So we have this 2D coordinate
+04:32 
+
+04:32 system. So this is our 2D coordinate
+04:34 
+
+04:34 system.
+04:38 
+
+04:38 So now points can be anywhere there. You
+04:40 
+
+04:40 can have point here, you can have here,
+04:41 
+
+04:41 you can have here. Let's suppose you can
+04:43 
+
+04:43 have points here
+04:46 
+
+04:46 anywhere in this. So now when I'm
+04:48 
+
+04:48 drawing this line, suppose I'm drawing
+04:49 
+
+04:49 this line. Say this is a plane which is
+04:51 
+
+04:51 separating them quite perfectly. It's
+04:53 
+
+04:53 having error of zero. So I am drawing
+04:55 
+
+04:55 the W. This W is the normal value to
+04:58 
+
+04:58 this plane or in this case to the line.
+04:60 
+
+04:60 When I'm updating this W. So let's
+05:02 
+
+05:02 suppose I update this W to towards this.
+05:04 
+
+05:04 So what is happening basically is I am
+05:05 
+
+05:05 basically updating the plane. Okay. So
+05:08 
+
+05:08 this is the updated plane. This is the
+05:09 
+
+05:09 initial plane. Okay. And this this is
+05:12 
+
+05:12 determined by W's. So you have W initial
+05:14 
+
+05:14 and you have W final. Something of this
+05:16 
+
+05:16 sort. Okay. I hope this clarifies some
+05:17 
+
+05:17 of the doubts. The first thing which I
+05:20 
+
+05:20 said is we have made assumption. So if
+05:21 
+
+05:21 initially we had a point which belonged
+05:23 
+
+05:23 to negative class. So what I'm saying is
+05:25 
+
+05:25 I'll have minus X. Now it will belong to
+05:27 
+
+05:27 positive class. So now I'll have all the
+05:28 
+
+05:28 points P which will belong to either
+05:30 
+
+05:30 positive or negative of this. So all of
+05:32 
+
+05:32 these will be positive points.
+05:36 
+
+05:36 Okay, I hope this assumption is clear.
+05:37 
+
+05:37 So this is what we're making. Why are we
+05:39 
+
+05:39 making this assumption? Because if I now
+05:40 
+
+05:40 take any P, if I take any P from this
+05:42 
+
+05:42 class, so if I take a W, if I initially
+05:45 
+
+05:45 randomly initialize W and I take uh W
+05:48 
+
+05:48 transpose of that X, it will be always
+05:50 
+
+05:50 greater than equal to Z. So this is what
+05:51 
+
+05:51 I have to do because now all the points
+05:53 
+
+05:53 are positive and this is what it should
+05:55 
+
+05:55 satisfy. So once I'm transforming this
+05:57 
+
+05:57 into positive points so any W if it
+05:59 
+
+05:59 rightly classifies all those points then
+06:01 
+
+06:01 if I take any point this P let's call
+06:03 
+
+06:03 this P now so if I take any of the P
+06:06 
+
+06:06 that P is from positive class or
+06:08 
+
+06:08 negative one that's also positive class
+06:09 
+
+06:09 then it should follow this so it should
+06:11 
+
+06:11 rightly classify it should give me this
+06:13 
+
+06:13 as greater than equal to zero that's dot
+06:15 
+
+06:15 product of W and P should be this okay
+06:18 
+
+06:18 now we'll do one more thing so one one
+06:20 
+
+06:20 more thing that can be done is we'll
+06:21 
+
+06:21 normalize the vector so if you have this
+06:23 
+
+06:23 P point so we have P which will belong
+06:25 
+
+06:25 to let's let's call this now P dash say
+06:27 
+
+06:27 this is P ddash so P ddash here is P
+06:31 
+
+06:31 union N dash and minus that so you have
+06:34 
+
+06:34 this P which is P dash so if we take any
+06:36 
+
+06:36 P from this P ddash now okay we'll
+06:38 
+
+06:38 normalize the vector because we have now
+06:39 
+
+06:39 considered the direction so what is the
+06:40 
+
+06:40 meaning of normalization so this mod of
+06:43 
+
+06:43 P should be equal to one that's
+06:44 
+
+06:44 magnitude should be one so we'll
+06:45 
+
+06:45 normalize it how can we normalize if you
+06:47 
+
+06:47 have any vector P let's suppose divide
+06:49 
+
+06:49 it by its magnitude so if you have P1
+06:52 
+
+06:52 say divided by magnitude of P1 so you'll
+06:54 
+
+06:54 get this as a normal vector So you'll
+06:56 
+
+06:56 normalize it. So this is what because it
+06:57 
+
+06:57 will simplify our analysis. So these are
+06:60 
+
+06:60 the things. The first thing which I said
+07:01 
+
+07:01 is you have to do this. So this is the
+07:02 
+
+07:02 first thing and this is the second thing
+07:04 
+
+07:04 we're normalizing. Okay. The second
+07:06 
+
+07:06 thing is we now want to find the optimal
+07:08 
+
+07:08 W. The assumption is that the data is
+07:10 
+
+07:10 linearly separable. If the data is
+07:11 
+
+07:11 linearly separable that means there must
+07:13 
+
+07:13 be war. This is given. There must be the
+07:16 
+
+07:16 W star. So for this war if we take all
+07:18 
+
+07:18 of these P all of which belongs to this
+07:20 
+
+07:20 Pdash because now we know how the Pdash
+07:22 
+
+07:22 is defined. So for all of this if I take
+07:24 
+
+07:24 war star I'll write it like this w star
+07:27 
+
+07:27 of trans warst star transpose dotp that
+07:30 
+
+07:30 is dotproduct of this with p this should
+07:32 
+
+07:32 be be greater than equal to zero. Okay
+07:34 
+
+07:34 this is what should be given to me that
+07:37 
+
+07:37 should exist this okay this is the third
+07:38 
+
+07:38 condition assumption is because I'm
+07:40 
+
+07:40 using the assumption here assumption is
+07:42 
+
+07:42 that this data is linearly separable so
+07:44 
+
+07:44 by using assumption there must be a war
+07:47 
+
+07:47 which should somehow linearly se
+07:49 
+
+07:49 separate the data and we should be
+07:50 
+
+07:50 dividing the data into class one and
+07:52 
+
+07:52 class two. Okay. Now what was the
+07:53 
+
+07:53 perceptual learning algorithm? The
+07:54 
+
+07:54 perceptual learning algorithm was we'll
+07:56 
+
+07:56 initially randomly initialize this W
+07:58 
+
+07:58 knot. We'll call this W knot. Okay. So
+08:01 
+
+08:01 the step one in the if you remember that
+08:04 
+
+08:04 so step one in that was randomly
+08:05 
+
+08:05 initialize W knot. So this is randomly
+08:07 
+
+08:07 initialize
+08:11 
+
+08:11 randomly initialize this and what we'll
+08:14 
+
+08:14 do is we'll repeat it until convergence.
+08:16 
+
+08:16 Okay. So till it's not converge. So
+08:17 
+
+08:17 we'll repeat something. We are repeating
+08:18 
+
+08:18 a step. Repeat until convergence. And
+08:21 
+
+08:21 you know what's the meaning of
+08:22 
+
+08:22 convergence? We have also seen the code
+08:24 
+
+08:24 of this. So repeat and what should we
+08:25 
+
+08:25 repeat? So we'll pick up a point
+08:27 
+
+08:27 randomly. So we'll
+08:30 
+
+08:30 pick a P belongs to Pdash. We'll pick a
+08:33 
+
+08:33 P randomly. So if so then we'll write
+08:36 
+
+08:36 condition if if W of this let's suppose
+08:38 
+
+08:38 if we have WI at a particular time
+08:40 
+
+08:40 instance or WT let's suppose if WT of
+08:43 
+
+08:43 this transform if dot product is less
+08:44 
+
+08:44 than zero that means the point is
+08:47 
+
+08:47 wrongly classified. It's mclassified
+08:49 
+
+08:49 then we'll update this. So we'll say wt
+08:51 
+
+08:51 + 1 is equal wt + p. Okay, how many of
+08:56 
+
+08:56 you remember this? So this is how we
+08:57 
+
+08:57 update the rule and then otherwise do
+08:59 
+
+08:59 nothing. So here else do nothing.
+09:03 
+
+09:03 Okay, and then come come out of this.
+09:05 
+
+09:05 Okay, then here we'll check for the
+09:06 
+
+09:06 convergence is all the points. So
+09:08 
+
+09:08 wherever when you go through when you
+09:09 
+
+09:09 cycle with all the points and you do not
+09:12 
+
+09:12 have the if this condition is never
+09:14 
+
+09:14 satisfied if no point is mclassified
+09:15 
+
+09:15 then you will see that we have converged
+09:17 
+
+09:17 the data our algorithm has converged
+09:19 
+
+09:19 because it has now clearly classified
+09:20 
+
+09:20 positive class points into positive
+09:22 
+
+09:22 class and negative class points into
+09:23 
+
+09:23 negative class. How many of you
+09:24 
+
+09:24 understood this? Okay again repeating
+09:26 
+
+09:26 this. So why are we doing this? Why are
+09:28 
+
+09:28 we converting this negative class into
+09:30 
+
+09:30 positive class so that we have to do
+09:31 
+
+09:31 proof for only one case otherwise we
+09:33 
+
+09:33 have to separately do it for positive
+09:34 
+
+09:34 points and negative points. So in order
+09:36 
+
+09:36 to save us from that at least one more
+09:39 
+
+09:39 trouble of doing it separately. So we'll
+09:40 
+
+09:40 just convert we could have done other
+09:42 
+
+09:42 way around also we could have done
+09:44 
+
+09:44 convert positive points to negative
+09:45 
+
+09:45 points and we'll have to do this. So
+09:47 
+
+09:47 here in the rather than this condition
+09:48 
+
+09:48 we'll say greater than zero and then
+09:50 
+
+09:50 we'll update it. Okay. So this is what
+09:51 
+
+09:51 we'll do. Now we will prove this. Now
+09:53 
+
+09:53 the the proof that we have to show is
+09:55 
+
+09:55 that this perceptron will take finite
+09:58 
+
+09:58 time step. So this updation will happen
+09:59 
+
+09:59 finite times. It will not go infinitely.
+10:01 
+
+10:01 Okay. If we have to find this war it
+10:03 
+
+10:03 will not keep on going on. Okay, it will
+10:05 
+
+10:05 some way there will be a point where we
+10:07 
+
+10:07 will stop because it will have
+10:09 
+
+10:09 classified the data clearly if the data
+10:11 
+
+10:11 is linearly separate. Okay, so let's
+10:13 
+
+10:13 suppose when do we update? Now we have
+10:14 
+
+10:14 to see when do we update? Okay, we
+10:16 
+
+10:16 update on this condition when you
+10:17 
+
+10:17 mclassify that is where we update it.
+10:20 
+
+10:20 Okay, so if this is the case if wrpose
+10:24 
+
+10:24 P. So if you take any point let's
+10:26 
+
+10:26 suppose at P I I case. So if this is
+10:28 
+
+10:28 less than or equal to zero that means we
+10:30 
+
+10:30 have to make a correction. we have to
+10:34 
+
+10:34 make a correction.
+10:37 
+
+10:37 So why should we make a correction?
+10:39 
+
+10:39 Because this is mclassification. This
+10:40 
+
+10:40 over here is mclassification.
+10:45 
+
+10:45 Okay. Now we'll update it. Once we
+10:47 
+
+10:47 update it, so it will go to we have
+10:49 
+
+10:49 let's suppose WT it would it should be
+10:51 
+
+10:51 it should go to WT + 1. So how are these
+10:53 
+
+10:53 two quantities related? WT + 1 is equal
+10:56 
+
+10:56 WT + P. We're adding the P to that.
+10:59 
+
+10:59 Okay? Because it is mclassified. Now if
+11:01 
+
+11:01 you see what is happening with the what
+11:03 
+
+11:03 is happening with that angle. So if I
+11:04 
+
+11:04 write the dot product so I can write uh
+11:07 
+
+11:07 wt multiplied by wt + 1 these two
+11:10 
+
+11:10 vectors. So initially the vector was
+11:11 
+
+11:11 this wt was like this. So I have to
+11:13 
+
+11:13 update it. Let's suppose wt + 1 was like
+11:16 
+
+11:16 this. Now so I have this angle is there.
+11:18 
+
+11:18 Let's call this maybe alpha beta
+11:19 
+
+11:19 whatever let's call this angle beta or
+11:20 
+
+11:20 theta whatever you call let's say beta.
+11:23 
+
+11:23 Okay this angle. Now if I take dot
+11:25 
+
+11:25 product of this if I say dot product of
+11:26 
+
+11:26 wt plus wt + 1. If I take dot product so
+11:28 
+
+11:28 what is that equal to? that is equal to
+11:31 
+
+11:31 magnitude of this magnitude of this cos
+11:32 
+
+11:32 cos theta or cos beta in this case
+11:34 
+
+11:34 magnitude of wt
+11:37 
+
+11:37 magnitude of uh wt + 1 cos of beta so
+11:42 
+
+11:42 this is this is how if I oops give me a
+11:44 
+
+11:44 second something happened
+11:49 
+
+11:49 okay
+11:53 
+
+11:53 till here it's clear if I take product
+11:55 
+
+11:55 these things so I should I should be
+11:57 
+
+11:57 going till here so now what I can do is
+11:60 
+
+11:60 I can do like this. I can say cos of
+12:02 
+
+12:02 beta. So this cos of beta it is equal to
+12:04 
+
+12:04 so now let's suppose I have to find this
+12:06 
+
+12:06 optimal w by definition I have to find
+12:07 
+
+12:07 optimal w say I have this optimal w star
+12:10 
+
+12:10 is there okay war star multiplied by w t
+12:14 
+
+12:14 + 1 so if I keep on updating let's
+12:16 
+
+12:16 suppose I updated a lot of times and I
+12:18 
+
+12:18 have to see what will happen with this
+12:19 
+
+12:19 angle say I have this war star and there
+12:21 
+
+12:21 will be some angle it'll form with this
+12:23 
+
+12:23 this is the dot product and divided by
+12:25 
+
+12:25 mod of wt + 1 okay multip by mod of this
+12:29 
+
+12:29 so I'll have normalized this so mod of
+12:30 
+
+12:30 if you take mod of w star so that will
+12:32 
+
+12:32 be equal equal to one because I have
+12:33 
+
+12:33 normalized this so I I need not to write
+12:35 
+
+12:35 this so okay this is the case right now
+12:37 
+
+12:37 so once I reach this war star so once I
+12:39 
+
+12:39 reach this war star so I'll have some
+12:41 
+
+12:41 angle that will be formed between this
+12:42 
+
+12:42 now I have to see okay how many times do
+12:44 
+
+12:44 I have to do updation if the updation is
+12:46 
+
+12:46 for the infinite times then I'm stuck I
+12:48 
+
+12:48 am not proving the convergence somehow I
+12:50 
+
+12:50 should prove that this beta is somehow
+12:52 
+
+12:52 confined so we'll reach the we'll reach
+12:54 
+
+12:54 beta in some finite steps okay or we
+12:57 
+
+12:57 will just take some finite step this is
+12:58 
+
+12:58 bounded somehow so we'll have to prove
+12:60 
+
+12:60 the boundedness this. Okay. So this once
+13:04 
+
+13:04 we update once we keep on updating this
+13:05 
+
+13:05 this updation is happening with a finite
+13:08 
+
+13:08 number of steps and we'll say that we
+13:10 
+
+13:10 have converged if this is not going to
+13:11 
+
+13:11 infinity. Okay. Now we'll see a detailed
+13:13 
+
+13:13 treatment of this numerator and
+13:14 
+
+13:14 denominator. So if you take this war dot
+13:17 
+
+13:17 product with wt + 1. So this is what we
+13:19 
+
+13:19 have. Okay. W star wt + 1. So now if I
+13:22 
+
+13:22 take this numerator. So how can I expand
+13:26 
+
+13:26 it? Okay. I'll show you how to expand
+13:28 
+
+13:28 this. So this can be written like this.
+13:30 
+
+13:30 So this is W star dot product. WT + 1 is
+13:33 
+
+13:33 basically previous T plus P. Okay, this
+13:36 
+
+13:36 is WT + P. Everybody agreeing with me on
+13:40 
+
+13:40 this? So because I'm just expanding
+13:42 
+
+13:42 this. Okay, this is the dot product and
+13:43 
+
+13:43 I I can expand it more. This is equal to
+13:46 
+
+13:46 W star W plus W star P plus W star. This
+13:54 
+
+13:54 is W star WT. Okay, I think this is the
+13:56 
+
+13:56 case. So I multiplied this with this. I
+13:58 
+
+13:58 just opened the brackets up. Okay, wow
+14:00 
+
+14:00 wt plus w star.p. This is what I did.
+14:03 
+
+14:03 Everybody with me so far? Now I'll just
+14:05 
+
+14:05 do one more thing. So now I have these
+14:07 
+
+14:07 pis. I have P1, P2 which all all of
+14:10 
+
+14:10 these belong to till P and all of these
+14:12 
+
+14:12 belong to that P ddash. Okay. So if I
+14:15 
+
+14:15 multiply this with star if I multiply
+14:17 
+
+14:17 them with W star
+14:19 
+
+14:19 W star as all of these are positive
+14:22 
+
+14:22 points. So all of these will be greater
+14:23 
+
+14:23 than zero. This will be greater than 0.
+14:24 
+
+14:24 This will be greater than 0 greater than
+14:26 
+
+14:26 0 all of them. But there will be some
+14:27 
+
+14:27 least point. Let's suppose this is say
+14:30 
+
+14:30 1.1. Say this is 0.9. Say this is 0.3.
+14:33 
+
+14:33 All of these are positive. So there will
+14:34 
+
+14:34 be one least point. Let me call that
+14:36 
+
+14:36 delta. Okay. So what is this delta? So
+14:38 
+
+14:38 this delta is defined that among all of
+14:40 
+
+14:40 these. So there will be least. So this
+14:42 
+
+14:42 delta basically is less than equal to
+14:45 
+
+14:45 war pi. Take any pi. So this w and
+14:49 
+
+14:49 multiply it with a w star. Multiply with
+14:51 
+
+14:51 optimal w because we know that there
+14:53 
+
+14:53 should be optimal w. So this delta is
+14:55 
+
+14:55 basically less than equal to this
+14:57 
+
+14:57 because this is the least number that we
+14:59 
+
+14:59 got from any of these. So okay, how many
+15:01 
+
+15:01 of you understood this step? Okay, if
+15:03 
+
+15:03 you understand this delta now I can
+15:04 
+
+15:04 expand it. So this is equal to so this
+15:06 
+
+15:06 is wrpose
+15:08 
+
+15:08 this is w star I can I I should keep on
+15:10 
+
+15:10 writing transpose but that's all right.
+15:12 
+
+15:12 So here this is being dot product and
+15:14 
+
+15:14 now I can just this is the point which I
+15:17 
+
+15:17 I can take any other point I can replace
+15:18 
+
+15:18 it with delta. Okay. Now this will not
+15:21 
+
+15:21 be equal to this thing will be equal to
+15:23 
+
+15:23 greater than equal to. Okay. So you
+15:25 
+
+15:25 should understand this point. So now w
+15:28 
+
+15:28 star wt + 1 is greater than equal to w*
+15:33 
+
+15:33 wt + delta. Why? Because this is the
+15:35 
+
+15:35 least point. So if I take any random
+15:38 
+
+15:38 point that will be either equal to or
+15:40 
+
+15:40 greater than. That's why I have written
+15:41 
+
+15:41 greater than equal to this. Everybody
+15:42 
+
+15:42 should agree on this point with me.
+15:44 
+
+15:44 Okay. If you understood the definition
+15:45 
+
+15:45 of delta. So this is what I came to. And
+15:47 
+
+15:47 now I can expand this wt also. So I can
+15:49 
+
+15:49 say this is greater than equal to w
+15:51 
+
+15:51 star. So this wt can be written as w t -
+15:55 
+
+15:55 1 t - 1 + p because if I had made the
+15:59 
+
+15:59 correction I would have added plus p to
+16:01 
+
+16:01 it also and this is plus w plus delta
+16:03 
+
+16:03 and I can expand it more. So I'll say w
+16:06 
+
+16:06 star w tus 1 plus w star some other p
+16:11 
+
+16:11 okay plus delta and this again can be
+16:15 
+
+16:15 replaced by delta. This will be some
+16:16 
+
+16:16 other delta but it'll still be some I
+16:17 
+
+16:17 can combine this delta. I can say is
+16:19 
+
+16:19 greater than equal to w* dot wt + 1 + 2
+16:23 
+
+16:23 delta. Okay, if I keep on going there
+16:26 
+
+16:26 still w kn okay okay recursively if I
+16:29 
+
+16:29 keep on if I keep on substituting the
+16:30 
+
+16:30 values so this is t minus one
+16:34 
+
+16:34 if I keep on doing it recursively you'll
+16:36 
+
+16:36 see this will be war dot w0 okay plus
+16:41 
+
+16:41 how many times delta so I have I am
+16:44 
+
+16:44 doing it t t times so I'm running the
+16:45 
+
+16:45 algorithm t times until convergence so I
+16:48 
+
+16:48 could say let's suppose there is some
+16:49 
+
+16:49 number because updation is not made for
+16:50 
+
+16:50 every step updation is made for only the
+16:53 
+
+16:53 things which are mclassified so if
+16:54 
+
+16:54 there's mclassification that will make
+16:56 
+
+16:56 updation otherwise we will not make the
+16:57 
+
+16:57 updation. So in total we're assuming
+16:59 
+
+16:59 that the algorithm runs three times. T
+17:00 
+
+17:00 is the maximum number of steps it runs.
+17:02 
+
+17:02 T can be let's suppose if we want to if
+17:04 
+
+17:04 we want to see it can be infinite as
+17:06 
+
+17:06 well. But here updation will happen only
+17:08 
+
+17:08 limited number of times. So let's let's
+17:09 
+
+17:09 call that updation say uh some step m*s.
+17:13 
+
+17:13 This is running m times. Okay. How many
+17:14 
+
+17:14 of you understood this m? So here m is
+17:17 
+
+17:17 less than or equal to t. So it can
+17:19 
+
+17:19 either for all the points it will be
+17:20 
+
+17:20 updated. Sometimes it will be updated
+17:22 
+
+17:22 for less number of points. That's why
+17:24 
+
+17:24 I'm saying this m is less than equal to
+17:25 
+
+17:25 t. T is the number of basically number
+17:28 
+
+17:28 of iterations we are doing. If we are
+17:29 
+
+17:29 doing infinite iterations we are doing
+17:30 
+
+17:30 infinite times. So but it will be either
+17:33 
+
+17:33 for all the iterations for all the
+17:34 
+
+17:34 points let's suppose. So these this
+17:36 
+
+17:36 thing basically can be updated if
+17:39 
+
+17:39 everything is mclassified or if some of
+17:41 
+
+17:41 them are correctly classified then this
+17:42 
+
+17:42 will be less than t. Okay as I said the
+17:46 
+
+17:46 assumption here is that t should be
+17:47 
+
+17:47 finite. So we should do it for finite
+17:48 
+
+17:48 points. So this t cannot go to infinity
+17:50 
+
+17:50 because the first assumption was we have
+17:52 
+
+17:52 finite p union. So this is what we are
+17:55 
+
+17:55 doing. So how many of you understood
+17:56 
+
+17:56 this uh constant m over here? Okay again
+17:59 
+
+17:59 again going through. So what we are up
+18:00 
+
+18:00 to now so we are saying this cos beta is
+18:02 
+
+18:02 equal war do wt + 1 divid by this. So I
+18:05 
+
+18:05 did the treatment to the to this
+18:07 
+
+18:07 numerator. What I came up with I said
+18:09 
+
+18:09 this numerator should be greater than
+18:11 
+
+18:11 warst + m * w. So initially we started
+18:14 
+
+18:14 with this and we'll finally reach this
+18:15 
+
+18:15 war. Okay. And this m * delta will
+18:18 
+
+18:18 happen. Now I'll do the treatment of
+18:19 
+
+18:19 this wt + 1. Okay. So let's do that.
+18:22 
+
+18:22 So what I can do is I can write wt + 1²
+18:26 
+
+18:26 like this. So I can say this is w t + p
+18:31 
+
+18:31 okay and multiplied by wt + p two times.
+18:35 
+
+18:35 Okay. So I'm just doing the treatment to
+18:36 
+
+18:36 the square of this term. Okay this is
+18:38 
+
+18:38 square and I'm opening this up. So if I
+18:40 
+
+18:40 now open this so this will be magnitude
+18:41 
+
+18:41 of wt okay square + 2 * w * t transpose
+18:47 
+
+18:47 * p plus transpose is everything because
+18:50 
+
+18:50 I'm writing the dot product p²
+18:53 
+
+18:53 okay this is I expanded this okay this
+18:55 
+
+18:55 multiplied by this this multiplied by
+18:57 
+
+18:57 this this multiply this and then p
+18:58 
+
+18:58 square so if you see this so this is
+18:60 
+
+19:00 equal to wt²
+19:03 
+
+19:03 + 2 * wtrpose of p and this is equal to
+19:09 
+
+19:09 because this is under normal because we
+19:11 
+
+19:11 have normalized all of these piece. If
+19:12 
+
+19:12 we keep on going now what we'll do is
+19:14 
+
+19:14 we'll uh we'll keep on doing this. So
+19:17 
+
+19:17 now we'll take this let's suppose we'll
+19:19 
+
+19:19 go to t minus one and we'll keep on
+19:20 
+
+19:20 doing this. So if we keep on doing this
+19:22 
+
+19:22 what will happen is
+19:24 
+
+19:24 okay so what what will happen over here
+19:26 
+
+19:26 is so if you if you even see this
+19:28 
+
+19:28 quantity let's I'll do one more thing so
+19:30 
+
+19:30 if you if you take this quantity we'll
+19:32 
+
+19:32 see one more quantity we can reduce it.
+19:33 
+
+19:33 So we know that if we take dot product
+19:35 
+
+19:35 of this t because it was mclassified. So
+19:37 
+
+19:37 this thing is less than zero. Okay. So I
+19:40 
+
+19:40 can write this thing over here is less
+19:41 
+
+19:41 than wrpose
+19:43 
+
+19:43 whole square + 1. Okay. Less than or
+19:46 
+
+19:46 equal to because this can be either 0 or
+19:48 
+
+19:48 less than z. Okay. So it should be
+19:50 
+
+19:50 strictly less than zero. How many of you
+19:52 
+
+19:52 understood this point? Because this was
+19:53 
+
+19:53 mclassified point. So if you take dot
+19:55 
+
+19:55 product of these two. Okay. So this will
+19:56 
+
+19:56 be this will be some negative quantity.
+19:59 
+
+19:59 Okay. So this was a quantity which had
+20:01 
+
+20:01 some negative quantity. Mean if I remove
+20:02 
+
+20:02 the negative quantity so this quantity
+20:04 
+
+20:04 will become more okay that's why I'm
+20:05 
+
+20:05 saying this this quantity over here that
+20:08 
+
+20:08 means this w transpose + 1 so this will
+20:11 
+
+20:11 be less than this w transpose square + 1
+20:13 
+
+20:13 how many of you agree on this point now
+20:16 
+
+20:16 if you see this so I have to do this for
+20:18 
+
+20:18 wtus 1 now okay if I keep on doing this
+20:20 
+
+20:20 so this will be less than if I expand
+20:22 
+
+20:22 this also so now what will happen is
+20:24 
+
+20:24 it'll it'll keep on happening so till
+20:25 
+
+20:25 once I go to w not okay so I'll have m*s
+20:29 
+
+20:29 of this one so I'll have plus m or plus
+20:31 
+
+20:31 M this M is again less than equal to 2 T
+20:33 
+
+20:33 because once I expand this so you'll
+20:35 
+
+20:35 somehow get this and plus one more term
+20:37 
+
+20:37 plus one so I'll keep on adding those
+20:38 
+
+20:38 ones so this this one will be M * 1 so
+20:41 
+
+20:41 that will be M okay I'll be I'll be left
+20:42 
+
+20:42 with this so now I have two things so I
+20:45 
+
+20:45 have wt + 1 square this or I can write
+20:50 
+
+20:50 it like this this is less than under
+20:52 
+
+20:52 root of w²
+20:56 
+
+20:56 + m okay so if I cancel I I should not
+20:60 
+
+20:60 cancel like
+21:01 
+
+21:01 Okay. So if you see this I got this so
+21:03 
+
+21:03 far. Okay. So if I got this now if I
+21:05 
+
+21:05 take if I if you see this angle the the
+21:07 
+
+21:07 other thing that I got is the numerator.
+21:10 
+
+21:10 So now what I can write is cos beta. If
+21:11 
+
+21:11 I put the cos beta's value. So cos beta.
+21:14 
+
+21:14 Let me see it if I have written so that
+21:15 
+
+21:15 I don't.
+21:17 
+
+21:17 Okay. Now the cos beta that is equal to
+21:19 
+
+21:19 w*
+21:21 
+
+21:21 w plus k * delta. Okay. And I should not
+21:25 
+
+21:25 even write equal to this is the
+21:28 
+
+21:28 numerator. So if you see it over here,
+21:31 
+
+21:31 okay this this term over here. So W star
+21:33 
+
+21:33 WT plus and this is greater than this.
+21:35 
+
+21:35 So this and then in the numerator
+21:36 
+
+21:36 divided by in the numerator I should
+21:38 
+
+21:38 write this. So this is under root of W²
+21:42 
+
+21:42 + K. Okay. So if this term is greater
+21:45 
+
+21:45 than and this term is less than okay cos
+21:47 
+
+21:47 beta now you see cos beta. So you have
+21:50 
+
+21:50 initially it was equal to. So now
+21:52 
+
+21:52 numerator this was actually greater than
+21:54 
+
+21:54 and this was less than. So this will be
+21:55 
+
+21:55 greater than this. How many of you How
+21:58 
+
+21:58 many of you understood this? So this
+22:00 
+
+22:00 point over here. So because the
+22:02 
+
+22:02 numerator was now greater than and this
+22:03 
+
+22:03 was less than. Okay. So that means the
+22:06 
+
+22:06 whole term will be greater than this.
+22:07 
+
+22:07 This cos beta should be greater than
+22:08 
+
+22:08 this.
+22:10 
+
+22:10 Okay. Cos beta should be rather equal
+22:12 
+
+22:12 also because the upper side was equal.
+22:14 
+
+22:14 Now you see this is there are two terms.
+22:16 
+
+22:16 So this is somehow proportional to this
+22:18 
+
+22:18 K and this K. Okay. If you take this
+22:22 
+
+22:22 that I have written K in here. So here
+22:23 
+
+22:23 in in my case it should be M. Okay. In
+22:26 
+
+22:26 my case, it should be m over here
+22:27 
+
+22:27 because I'm taking m*s and clearly m is
+22:30 
+
+22:30 less than equal to t. T is the number of
+22:32 
+
+22:32 steps. So what I'm saying is the
+22:34 
+
+22:34 numerator was greater. Okay, this was
+22:36 
+
+22:36 greater than that the numerator that we
+22:38 
+
+22:38 originally had. Okay, and this was less
+22:40 
+
+22:40 than. So in in whole this should be
+22:42 
+
+22:42 greater than equal. So this symbol
+22:43 
+
+22:43 should be and you should convince
+22:44 
+
+22:44 yourself of this because the initial
+22:47 
+
+22:47 numerator that we have we changed that
+22:48 
+
+22:48 and we got that numerator is we got this
+22:51 
+
+22:51 equation and then we got this less than.
+22:52 
+
+22:52 So that from those two things what I'm
+22:54 
+
+22:54 computing is cos beta is greater equal
+22:56 
+
+22:56 to this thing. Okay. Now if you see this
+22:60 
+
+22:60 now cos beta grows somehow towards this.
+23:02 
+
+23:02 So if you here we have a root root of k
+23:04 
+
+23:04 and we have this. So cos beta
+23:07 
+
+23:07 somehow grows proportional to under root
+23:09 
+
+23:09 of m. Okay there is some relation with
+23:11 
+
+23:11 this. So if you see this proportionality
+23:13 
+
+23:13 because both numerator as well as
+23:15 
+
+23:15 denominator. So it goes proportionally
+23:17 
+
+23:17 to this root of m because we have m /
+23:18 
+
+23:18 root m. If you rationalize it you'll get
+23:20 
+
+23:20 this root of m. So what I'm saying is
+23:22 
+
+23:22 this cos beta is proportional to this
+23:24 
+
+23:24 root of m. Now if this root of m is
+23:26 
+
+23:26 infinity so this cos beta should
+23:29 
+
+23:29 accordingly grow with this but you know
+23:31 
+
+23:31 that cos is bounded cos is bounded by
+23:33 
+
+23:33 one. So the maximum value of cos that
+23:34 
+
+23:34 you have can be one. Okay once you have
+23:37 
+
+23:37 this one that means this cannot go to
+23:38 
+
+23:38 infinity. So this thing cannot go to
+23:40 
+
+23:40 infinity
+23:42 
+
+23:42 because cos beta the angle the value of
+23:44 
+
+23:44 cos beta cannot go to infinity. So if
+23:46 
+
+23:46 you take this to infinity so we will
+23:47 
+
+23:47 assume that this is so that this means
+23:49 
+
+23:49 this thing is bounded. This root of m
+23:51 
+
+23:51 this will be bound because cos beta has
+23:52 
+
+23:52 the maximum value of cos beta is equal
+23:54 
+
+23:54 to one. So the as we increase this cos
+23:57 
+
+23:57 of beta so if we make it arbitally large
+23:60 
+
+23:60 that means if we make it any any large
+24:02 
+
+24:02 still you have to bound cos beta by one
+24:03 
+
+24:03 because the maximum value the cos beta
+24:05 
+
+24:05 can take is one that means this will not
+24:07 
+
+24:07 be infinitely long. So here there there
+24:09 
+
+24:09 must be some maximum value where cos
+24:11 
+
+24:11 beta becomes one. Okay. So it it will be
+24:13 
+
+24:13 bound by that. So now we are saying if
+24:15 
+
+24:15 this if this does not grow infinity that
+24:17 
+
+24:17 means this will be bounded. So m is
+24:19 
+
+24:19 bounded. M is not infinity that means M
+24:21 
+
+24:21 will be something finite. So if M is
+24:24 
+
+24:24 finite that means I'll assume that that
+24:26 
+
+24:26 should be the W star. So we'll find that
+24:28 
+
+24:28 W star infinite number of steps. So how
+24:30 
+
+24:30 many of you people understand this?
+24:33 
+
+24:33 The first question was why this delta.
+24:35 
+
+24:35 So why this delta over here? So if you
+24:36 
+
+24:36 understand definition of delta we have
+24:38 
+
+24:38 all the positive points. So under the
+24:39 
+
+24:39 assumption that data is linearly
+24:40 
+
+24:40 separable. That means that if I take the
+24:43 
+
+24:43 output of any of these points with this
+24:44 
+
+24:44 W star that will be a positive quantity
+24:46 
+
+24:46 that will be greater than equal to zero.
+24:48 
+
+24:48 Okay. it will be non- negative. So now
+24:50 
+
+24:50 what I'm doing is I'm taking least among
+24:51 
+
+24:51 them. So if I take any least that's
+24:53 
+
+24:53 called that is delta. So why am I taking
+24:54 
+
+24:54 the least? Because I want to establish
+24:56 
+
+24:56 this relationship. I want to establish
+24:58 
+
+24:58 this w do wt + 1. It should be greater
+25:00 
+
+25:00 than this. Okay, that's why I'm taking
+25:02 
+
+25:02 this delta. That's the rational behind
+25:03 
+
+25:03 delta. The second point is why I'm
+25:05 
+
+25:05 writing it like this. Now now what I
+25:07 
+
+25:07 said is if a is equal b and let's say a
+25:10 
+
+25:10 is equal b / say some d. I'm saying b is
+25:13 
+
+25:13 greater than some x and d is less than
+25:16 
+
+25:16 some y. Okay. So if I just take this so
+25:18 
+
+25:18 I can clearly write it as a is greater
+25:20 
+
+25:20 than this no and b was greater than x so
+25:22 
+
+25:22 I can write a is then greater than this
+25:24 
+
+25:24 x
+25:26 
+
+25:26 okay and then similarly for this so this
+25:28 
+
+25:28 case holds so that's why I wrote cos of
+25:30 
+
+25:30 beta is greater than equal to this okay
+25:32 
+
+25:32 when it is greater so I got this m term
+25:34 
+
+25:34 in both of these I got in denominator
+25:36 
+
+25:36 and numerator so from this what I can
+25:37 
+
+25:37 say is cos beta grows proportional to
+25:40 
+
+25:40 this root of m but I know that I cannot
+25:43 
+
+25:43 go till infinity in cos beta because cos
+25:45 
+
+25:45 beta is bounded by this okay that's why
+25:46 
+
+25:46 I take finite step. This was the proof
+25:48 
+
+25:48 and second thing was why this angle what
+25:50 
+
+25:50 are we adding? So if we have w transpose
+25:52 
+
+25:52 of let's suppose some wt dox if it less
+25:55 
+
+25:55 than zero and if this x was a positive
+25:57 
+
+25:57 point okay now we know this is
+25:59 
+
+25:59 mclassified what I said I said you
+26:01 
+
+26:01 should see wt + 1 is equal wt + x so you
+26:04 
+
+26:04 should add this x so why should you do
+26:05 
+
+26:05 it the proof goes like this if you take
+26:08 
+
+26:08 the angle initially if you take angle
+26:10 
+
+26:10 between this
+26:12 
+
+26:12 so you initially had this angle suppose
+26:14 
+
+26:14 your point was this this was your
+26:16 
+
+26:16 positive point now if you see the angle
+26:17 
+
+26:17 between this positive this was greater
+26:19 
+
+26:19 than 90 Okay, my point is my job is to
+26:21 
+
+26:21 get it less than 90. I should get angle
+26:23 
+
+26:23 less than 90. I should make it somehow
+26:25 
+
+26:25 lesser than 90. So if I have this, so if
+26:27 
+
+26:27 I write w
+26:29 
+
+26:29 let's suppose transpose do wt + 1. Okay,
+26:33 
+
+26:33 if I see this, I know by cross if I if I
+26:36 
+
+26:36 write it like this. So now I'll say cos
+26:38 
+
+26:38 of if I compute cos of theta for this
+26:40 
+
+26:40 and if if I compute cos of theta of
+26:42 
+
+26:42 initially, let's suppose this is the
+26:43 
+
+26:43 optimal w star is the optimal w cos of
+26:46 
+
+26:46 theta for this. And if I say w* do wt +
+26:49 
+
+26:49 1. If I compute theta for both of these
+26:52 
+
+26:52 things. So let's call this theta t and
+26:54 
+
+26:54 call this theta t + 1. You can easily
+26:56 
+
+26:56 compute that angle by using the
+26:57 
+
+26:57 definition of dot product and that will
+26:59 
+
+26:59 see cos theta. So by this if you add x.
+27:01 
+
+27:01 So if you add x basically you do wt + 1
+27:04 
+
+27:04 is equal wt
+27:06 
+
+27:06 plus x. If you do this, so from this
+27:08 
+
+27:08 relation you will see that this theta t
+27:10 
+
+27:10 + 1 will be less than or if you want it
+27:15 
+
+27:15 should be less than theta t. So this
+27:18 
+
+27:18 should be the relation that we should
+27:20 
+
+27:20 have. So that given the condition that
+27:22 
+
+27:22 we add this plus x then that then then
+27:24 
+
+27:24 only you'll get this. So what I'm trying
+27:25 
+
+27:25 to do is I'm trying to update this w
+27:27 
+
+27:27 this was initial wt. So I want to update
+27:30 
+
+27:30 this w such a way so that this angle
+27:32 
+
+27:32 becomes less because I it was larger
+27:34 
+
+27:34 than 90 it should be uh less than 90. It
+27:37 
+
+27:37 was initially greater than 90. I want
+27:39 
+
+27:39 this that's why I'm adding this x. So
+27:40 
+
+27:40 what will this x2 on adding this x? We
+27:43 
+
+27:43 will make sure that this wt + 1 is less
+27:45 
+
+27:45 than wt because this was less of greater
+27:47 
+
+27:47 than 90. That's why we're mclassifying.
+27:49 
+
+27:49 Okay. And sometimes this also will be
+27:51 
+
+27:51 greater than 90 still. Then we have to
+27:52 
+
+27:52 do multiple steps in order to get it.
+27:54 
+
+27:54 And that's why in either step but we
+27:56 
+
+27:56 want to ensure that this theta t is
+27:58 
+
+27:58 getting decreased. So this is for the
+27:59 
+
+27:59 positive points and similarly for
+28:00 
+
+28:00 negative points when I subtract that x.
+28:03 
+
+28:03 So what will happen is that t + 1 and t
+28:06 
+
+28:06 will have this relation. So you you are
+28:08 
+
+28:08 making the angle greater than. So angle
+28:09 
+
+28:09 between the normal vector and the making
+28:11 
+
+28:11 it greater. It might not happen in one
+28:13 
+
+28:13 step. It might happen in multiple steps.
+28:14 
+
+28:14 But this is the thing that we want to
+28:16 
+
+28:16 respect and each time in case of
+28:19 
+
+28:19 mclassification with positive points the
+28:21 
+
+28:21 angle should get somewhat less and in
+28:22 
+
+28:22 case of negative points the angle should
+28:24 
+
+28:24 somewhat get more. This is what and this
+28:26 
+
+28:26 will happen only in this case if you add
+28:28 
+
+28:28 X and this will happen if you subtract
+28:30 
+
+28:30 X. Okay. So these are the two questions
+28:32 
+
+28:32 we addressed and again I'll go through
+28:34 
+
+28:34 the algorithm
+28:36 
+
+28:36 the first thing that we did is so the
+28:38 
+
+28:38 first thing was we converted all the
+28:40 
+
+28:40 negative points to the positive points.
+28:41 
+
+28:41 Okay. And then we normalized the speed
+28:44 
+
+28:44 because there is nothing wrong in doing
+28:46 
+
+28:46 this because we just wanted its
+28:49 
+
+28:49 magnitude to be one. Okay. Once we did
+28:51 
+
+28:51 that so algorithm somehow changed now we
+28:53 
+
+28:53 don't have to do two steps. So we have
+28:54 
+
+28:54 to just do one step because every point
+28:55 
+
+28:55 is now considered to be positive point.
+28:57 
+
+28:57 So now if we take the dot product of the
+28:59 
+
+28:59 point and the vector so if it is less
+29:01 
+
+29:01 than zero that means it's a
+29:01 
+
+29:01 mclassification at that point we'll have
+29:03 
+
+29:03 to add this P add this X that I gave the
+29:05 
+
+29:05 explanation of. Okay. So now we'll have
+29:07 
+
+29:07 to see that this classification when you
+29:10 
+
+29:10 do this update it'll happen finite it'll
+29:12 
+
+29:12 happen it'll only happen finite times
+29:14 
+
+29:14 not happen infinitely. So we said cos
+29:16 
+
+29:16 beta is this if we have this optimal w
+29:18 
+
+29:18 because assumption is this optimal w
+29:20 
+
+29:20 will be there because data is linearly
+29:21 
+
+29:21 separable and then we'll update this wt
+29:23 
+
+29:23 + 1 and this is the relation between
+29:25 
+
+29:25 this I'll take this numerator and the
+29:26 
+
+29:26 denominator I expand the numerator this
+29:28 
+
+29:28 is what I got okay by expanding the
+29:30 
+
+29:30 numerator I got this wrpose uh w star w
+29:35 
+
+29:35 + m * delta and this is greater than
+29:37 
+
+29:37 this and when I expand the numerator
+29:39 
+
+29:39 what I got I got this wt + 1 is under
+29:42 
+
+29:42 root of w² + m so what I said I said
+29:46 
+
+29:46 this w cos of beta is then greater than
+29:48 
+
+29:48 this. So if it is greater you see the
+29:49 
+
+29:49 proportionality. If it is proportional
+29:51 
+
+29:51 as beta is bound that means this should
+29:54 
+
+29:54 not go to infinity this should be some
+29:55 
+
+29:55 finite. Okay I hope the proof is clear
+29:57 
+
+29:57 now
+30:01 
+
+30:01 and if you saw we proved a convergence
+30:03 
+
+30:03 of PLA that is perceptron learning
+30:06 
+
+30:06 algorithm. So now what we'll be doing is
+30:08 
+
+30:08 so we will now see what is the actual
+30:10 
+
+30:10 application because we have been seeing
+30:11 
+
+30:11 a lot of uh binary uh modeling by binary
+30:16 
+
+30:16 modeling I mean that we model uh all the
+30:18 
+
+30:18 gates like and gate or gate that all was
+30:23 
+
+30:23 based on binary so we'll have to see
+30:24 
+
+30:24 first the applications so is actually
+30:26 
+
+30:26 used somewhere is this uh binary thing
+30:29 
+
+30:29 will actually be used so first thing if
+30:31 
+
+30:31 you see let's we'll take a real world
+30:32 
+
+30:32 example so imagine that you are building
+30:34 
+
+30:34 a system to predict say if if a customer
+30:37 
+
+30:37 will buy your product or not. Okay. So
+30:39 
+
+30:39 that this is what you let's suppose
+30:40 
+
+30:40 building. Okay.
+30:42 
+
+30:42 So in that the first we'll have to see
+30:44 
+
+30:44 data. So we'll have to do data
+30:45 
+
+30:45 collection. So we'll I'll be giving this
+30:47 
+
+30:47 example because we this example will
+30:49 
+
+30:49 serve as a running example everywhere.
+30:51 
+
+30:51 So whatever we'll be doing today maybe
+30:52 
+
+30:52 tomorrow. So we'll take this example. So
+30:54 
+
+30:54 in that data we'll have a lot of
+30:55 
+
+30:55 features. So we'll have features X1, X2,
+30:58 
+
+30:58 X3 till Xn. So say I'll just name a few.
+31:01 
+
+31:01 The first X1 feature is time spent on
+31:03 
+
+31:03 the product page. Okay. So time spent
+31:08 
+
+31:08 on product page.
+31:12 
+
+31:12 Similarly, let's call this X1.
+31:13 
+
+31:13 Similarly, X2 can be a number of related
+31:16 
+
+31:16 products viewed. So, number
+31:19 
+
+31:19 of
+31:21 
+
+31:21 related
+31:23 
+
+31:23 products
+31:28 
+
+31:28 view and similarly X average customer
+31:31 
+
+31:31 average purchase history. Okay. So we
+31:33 
+
+31:33 can also write this average
+31:41 
+
+31:41 average history by that I mean in
+31:42 
+
+31:42 dollars. Okay. And all the features will
+31:44 
+
+31:44 be there. So we can first we can somehow
+31:47 
+
+31:47 uh make these features as binary as
+31:49 
+
+31:49 well. So let's suppose if time spent is
+31:51 
+
+31:51 greater than 10 minutes. So you call it
+31:52 
+
+31:52 one otherwise zero. So we'll sort of
+31:54 
+
+31:54 binaryize these features if that is a
+31:56 
+
+31:56 word. So we can binarize.
+31:59 
+
+31:59 Okay. And then this also if number of
+32:01 
+
+32:01 percolator if it is greater than let's
+32:02 
+
+32:02 suppose three then we can have one
+32:04 
+
+32:04 otherwise zero. Okay greater than three
+32:05 
+
+32:05 is one. Similarly average history
+32:08 
+
+32:08 average amount spent throughout the
+32:09 
+
+32:09 history if this is uh above certain
+32:11 
+
+32:11 dollar. So we can convert the whole
+32:13 
+
+32:13 problem into a binary problem. So after
+32:15 
+
+32:15 that what we can do is now you have this
+32:17 
+
+32:17 data. Okay you have x1 x2 and so on till
+32:20 
+
+32:20 xn and similarly now you have y1
+32:24 
+
+32:24 not this is call just call it y. So why
+32:27 
+
+32:27 basically is should we sell the product?
+32:29 
+
+32:29 Okay. Should will customer purchase the
+32:31 
+
+32:31 product? So will customer
+32:36 
+
+32:36 purchase the product?
+32:41 
+
+32:41 So as I said already so now we have we
+32:44 
+
+32:44 can make all these features binary. So
+32:46 
+
+32:46 you'll have customer one say this is
+32:47 
+
+32:47 customer one. So it'll have some 1 0 0
+32:50 
+
+32:50 something one something of this sort.
+32:52 
+
+32:52 And maybe let's suppose customer will
+32:53 
+
+32:53 have purchased this product and we'll
+32:54 
+
+32:54 have data like this. Similarly we have
+32:56 
+
+32:56 for customer two data will be like 1 1 0
+32:58 
+
+32:58 0. So if we binaryize all of this data.
+33:01 
+
+33:01 So now you see this is a real world
+33:02 
+
+33:02 problem. So this is a real world problem
+33:06 
+
+33:06 which we have somehow taken into the
+33:07 
+
+33:07 into the binary world and then what we
+33:09 
+
+33:09 did is we can now apply all the things
+33:11 
+
+33:11 that we have learned so far. So now I
+33:13 
+
+33:13 showed you that this binary even if we
+33:15 
+
+33:15 just work with binary things if we work
+33:18 
+
+33:18 like with ANDgate I showed you how to
+33:19 
+
+33:19 model ANDgate how to model or gate by
+33:21 
+
+33:21 using these perceptrons. So now you can
+33:23 
+
+33:23 similarly model you can similarly take
+33:25 
+
+33:25 this binary data and now you can sort of
+33:28 
+
+33:28 create a maybe a multi-layer perceptron
+33:31 
+
+33:31 which we'll shortly see how but I just
+33:33 
+
+33:33 wanted to pin this down that you can
+33:35 
+
+33:35 also use this binary uh data so it will
+33:37 
+
+33:37 have a lot of a lot of examples in the
+33:39 
+
+33:39 real world you will see that you can
+33:40 
+
+33:40 have this binary data so that and the
+33:43 
+
+33:43 reason will perform good okay so this is
+33:45 
+
+33:45 one of the example now we'll see that
+33:47 
+
+33:47 what are limitations the problem is we
+33:49 
+
+33:49 saw a lot of things in binary only so
+33:51 
+
+33:51 now we want to see the limitation of
+33:53 
+
+33:53 these perceptrons. Okay, we have we saw
+33:55 
+
+33:55 two things. We saw M pits neuron and
+33:58 
+
+33:58 then we saw a perceptron. So I wanted to
+34:00 
+
+34:00 show you the limitations also. So what
+34:03 
+
+34:03 is the limitations? Just keep this
+34:05 
+
+34:05 example in at the back of your head this
+34:06 
+
+34:06 example. I just wanted to touch on this
+34:08 
+
+34:08 example because I'll use this as a
+34:09 
+
+34:09 running example everywhere. Wherever I
+34:11 
+
+34:11 have to give some example, I'll just
+34:12 
+
+34:12 refer to this example. So now first
+34:15 
+
+34:15 we'll see limitation of micolopits
+34:16 
+
+34:16 neurons or and we'll also see the
+34:19 
+
+34:19 limitation of perceptron.
+34:24 
+
+34:24 Okay. So the limitation that we already
+34:27 
+
+34:27 have just mentioned now we'll discuss it
+34:28 
+
+34:28 thoroughly was that it cannot model XR
+34:31 
+
+34:31 gate. It cannot model XR. So basically
+34:33 
+
+34:33 to just generalize this it it is not
+34:36 
+
+34:36 capable of modeling what are nonlinear
+34:42 
+
+34:42 which is non the when the data is
+34:44 
+
+34:44 nonlinear
+34:46 
+
+34:46 so I said if data is linear if you have
+34:48 
+
+34:48 linear linearly separable data then you
+34:50 
+
+34:50 can take this perceptron or micropitch
+34:52 
+
+34:52 neurons then it can perfectly
+34:55 
+
+34:55 come up with a decision boundary which
+34:56 
+
+34:56 will divide into two classes positive
+34:58 
+
+34:58 half space and negative half space. The
+34:59 
+
+34:59 limitation comes with this nonlinearity.
+35:01 
+
+35:01 If the data is nonlinear, okay, let's
+35:03 
+
+35:03 see what is the problem. We'll see with
+35:04 
+
+35:04 XR gate. Okay, so if we see XR, so XR
+35:07 
+
+35:07 has say two inputs X1, X2 and then you
+35:10 
+
+35:10 have XR.
+35:12 
+
+35:12 This is the output. So this is 0 0 1 1 0
+35:16 
+
+35:16 and 1 1.
+35:19 
+
+35:19 So in this case you have this. Okay. So
+35:22 
+
+35:22 this is the truth table. Now let's
+35:23 
+
+35:23 suppose if you see you know that how
+35:25 
+
+35:25 perceptron is defined. So perceptron is
+35:26 
+
+35:26 defined w + w1 x1 + w2 x2 is greater
+35:32 
+
+35:32 than equal to 0 then you have 1
+35:35 
+
+35:35 okay else otherwise this is zero. So
+35:38 
+
+35:38 this is the definition of perceptron.
+35:42 
+
+35:42 Now let's suppose so if we put these
+35:45 
+
+35:45 values over here if we put these values
+35:47 
+
+35:47 w1 x1 w2 x2 so this over here so this is
+35:50 
+
+35:50 our x1 and this is our x2. So now if we
+35:52 
+
+35:52 put these values in this case so you
+35:53 
+
+35:53 will get so for each of this we'll get
+35:56 
+
+35:56 some condition okay let's suppose for
+35:57 
+
+35:57 this 0 0 so 0 0 gives us 0. So how can
+36:02 
+
+36:02 we do this this is w + w1 * 0 plus w2 *
+36:08 
+
+36:08 0 okay if you see this so this is this
+36:11 
+
+36:11 should be less than 0 because we want
+36:13 
+
+36:13 this to be off so this should be less
+36:15 
+
+36:15 than 0. So now what you can see is you
+36:16 
+
+36:16 can see w should be less than zero. So
+36:18 
+
+36:18 this is the first condition that we got
+36:20 
+
+36:20 from this case. We got 0 0 that is 0. So
+36:24 
+
+36:24 we just substitute the values in here
+36:25 
+
+36:25 and then you got this condition. Okay.
+36:27 
+
+36:27 Then the second thing. So we have this
+36:29 
+
+36:29 01 01 gives 1. This is how xr is. Now
+36:33 
+
+36:33 you know you just have to substitute the
+36:34 
+
+36:34 values of w1 and w x1 and x2. Okay. And
+36:39 
+
+36:39 then we'll see this. So let's suppose
+36:42 
+
+36:42 this w + w1 x1 is let's suppose in this
+36:46 
+
+36:46 case 0 and plus w
+36:50 
+
+36:50 2 1. Okay. Now we want this to be
+36:53 
+
+36:53 greater or equal to z. So this should be
+36:54 
+
+36:54 greater than equal to zero. Now what you
+36:56 
+
+36:56 can see over here is w2 is greater than
+36:59 
+
+36:59 equal to minus w. Okay. This is the
+37:01 
+
+37:01 second case that we got.
+37:04 
+
+37:04 The first case is w is less than 0.
+37:06 
+
+37:06 Second case w is greater than z.
+37:08 
+
+37:08 Similarly for other case what you'll get
+37:09 
+
+37:09 is you'll get w1 is greater than equal
+37:12 
+
+37:12 to w not.
+37:15 
+
+37:15 Okay. And then the third case fourth
+37:17 
+
+37:17 case you'll get is w1 + w2 is less than
+37:22 
+
+37:22 minus of w. So this is the four cases
+37:25 
+
+37:25 that you'll get. Okay. Let me just
+37:28 
+
+37:28 enclose them in the box.
+37:34 
+
+37:34 I think this should be clear to
+37:36 
+
+37:36 everyone. So no problem in
+37:39 
+
+37:39 this. So now you have this four cases.
+37:42 
+
+37:42 Now if you see this, so there is a
+37:44 
+
+37:44 contradiction in these inequalities.
+37:46 
+
+37:46 Okay? If you see from this 2 and three,
+37:48 
+
+37:48 you'll get w1 plus w is. So basically if
+37:51 
+
+37:51 you just combine them, so what you'll
+37:52 
+
+37:52 get is you'll get w1 + w2 is greater
+37:55 
+
+37:55 than minus w and then you'll from
+37:58 
+
+37:58 condition four you'll see that w1 + w2
+38:00 
+
+38:00 is less than w. So this is a
+38:02 
+
+38:02 contradiction in here. So this is
+38:06 
+
+38:06 contradiction.
+38:07 
+
+38:07 So when you see this so it is impossible
+38:09 
+
+38:09 to now solve it. Okay. So because the
+38:11 
+
+38:11 thing is you you won't have 2 C is less
+38:13 
+
+38:13 than this is not equal this is not less
+38:15 
+
+38:15 than C or C is not while C is greater
+38:18 
+
+38:18 than zero. So you can clearly see that
+38:19 
+
+38:19 there is a contradiction. So when you
+38:21 
+
+38:21 solve these four inequalities. So this
+38:23 
+
+38:23 is inequality number one number two
+38:25 
+
+38:25 number three and number four. Okay. If
+38:27 
+
+38:27 you try to solve these inequalities
+38:28 
+
+38:28 you'll get to this contradiction. And
+38:30 
+
+38:30 now you clearly saw that we cannot have
+38:32 
+
+38:32 any values for W1 and W2 where we can
+38:35 
+
+38:35 separate out these where where we can
+38:37 
+
+38:37 somehow classify these that this is a
+38:39 
+
+38:39 positive class or this is a negative
+38:40 
+
+38:40 class. This is a positive half space or
+38:41 
+
+38:41 a negative half space. Everybody with me
+38:43 
+
+38:43 so far.
+38:46 
+
+38:46 So if you see this what is uh now
+38:49 
+
+38:49 appearing on the screen. So I have given
+38:50 
+
+38:50 this labels A, B, C and D over here. So
+38:53 
+
+38:53 this is that labels which I have given.
+38:55 
+
+38:55 So this is A, B and C and D. And now
+38:57 
+
+38:57 what I will do is I'll suppose write the
+38:59 
+
+38:59 equation say w or maybe minus one will
+39:02 
+
+39:02 give some constant value to w maybe
+39:04 
+
+39:04 minus one plus uh say w1 * x okay plus
+39:11 
+
+39:11 w2
+39:13 
+
+39:13 * we'll have sliders for these w2 * y
+39:19 
+
+39:19 okay something of this sort
+39:23 
+
+39:23 okay so if you see this is a line so now
+39:25 
+
+39:25 if if I move it around. So you'll
+39:27 
+
+39:27 clearly see that nothing will happen. So
+39:29 
+
+39:29 there is no way that I can have this
+39:31 
+
+39:31 line in such a way so that so this point
+39:33 
+
+39:33 if you see these two points. So 0 1 and
+39:35 
+
+39:35 one. So I should somehow separate them
+39:37 
+
+39:37 as I should have one class of these
+39:39 
+
+39:39 points and I should have this one one
+39:40 
+
+39:40 class uh this is the other class. So
+39:42 
+
+39:42 basically this is class one point over
+39:45 
+
+39:45 here. So point this and this point if
+39:48 
+
+39:48 you see these corner points and if you
+39:49 
+
+39:49 see this point and this is class second.
+39:51 
+
+39:51 So if I can color color that with a
+39:53 
+
+39:53 different color. So this and this over
+39:55 
+
+39:55 here. So this is two classes but you can
+39:57 
+
+39:57 clearly see that there is no way if I
+39:59 
+
+39:59 can take a line and I can separate them.
+40:01 
+
+40:01 I can classify them by by using a linear
+40:03 
+
+40:03 surface by using this line. Okay. I I
+40:06 
+
+40:06 hope that you people will agree on this.
+40:07 
+
+40:07 Whatever values you give to this W1 and
+40:09 
+
+40:09 W2 there is no way that a line can
+40:12 
+
+40:12 separate these two classes out. Okay.
+40:14 
+
+40:14 There is no way. There is no way like
+40:15 
+
+40:15 that. Okay. There is there should be a
+40:17 
+
+40:17 nonlinear surface of this sort. Okay.
+40:19 
+
+40:19 Maybe this is this is the surface
+40:21 
+
+40:21 and this surface is somewhat nonlinear.
+40:24 
+
+40:24 Okay. So internal to this surface is
+40:26 
+
+40:26 class one. Exterior to this surface is
+40:28 
+
+40:28 class two. This is the surface which
+40:30 
+
+40:30 could separate it. But now given that we
+40:32 
+
+40:32 have this line there is no way that we
+40:33 
+
+40:33 can adjust we can give any values. You
+40:35 
+
+40:35 can try it at your home by giving any
+40:37 
+
+40:37 values to this. So you won't be able to
+40:39 
+
+40:39 get uh these two classes separated by
+40:41 
+
+40:41 using a linear surface. I hope this is
+40:43 
+
+40:43 clear to everyone. So what they show you
+40:45 
+
+40:45 this example? The motto of showing you
+40:48 
+
+40:48 this example was that there are some
+40:50 
+
+40:50 things which cannot be uh modeled by
+40:53 
+
+40:53 using this perceptron by using a single
+40:55 
+
+40:55 perceptron then what is the what should
+40:57 
+
+40:57 we do so the result is we should go to
+40:58 
+
+40:58 multi-layer perceptron okay we should go
+41:00 
+
+41:00 to multi-layer plus MLPS okay and we'll
+41:03 
+
+41:03 shortly come to that but we'll see we'll
+41:05 
+
+41:05 do some treatment of these boolean
+41:07 
+
+41:07 functions okay let's suppose we have
+41:09 
+
+41:09 this uh say we had these functions x1
+41:11 
+
+41:11 and x2 are the input and then you know
+41:13 
+
+41:13 that 0 0 1 1 0 and 0 0 are the
+41:17 
+
+41:17 possibilities of input that we can give
+41:18 
+
+41:18 to this and based on this how many
+41:20 
+
+41:20 functions are possible. So we can have
+41:22 
+
+41:22 function f_sub_1 which will have all
+41:24 
+
+41:24 zeros. So it will be off everywhere. We
+41:26 
+
+41:26 can have function f_sub_2 which will be
+41:28 
+
+41:28 0 1 0 0 something of this sort. So can
+41:31 
+
+41:31 you tell me how many such functions are
+41:32 
+
+41:32 possible.
+41:35 
+
+41:35 I'll give you a second to think.
+41:38 
+
+41:38 The question goes like this. If you have
+41:40 
+
+41:40 n inputs,
+41:42 
+
+41:42 n inputs, so how many functions are
+41:45 
+
+41:45 possible?
+41:50 
+
+41:50 Yes.
+41:53 
+
+41:53 So now the question was with n inputs
+41:54 
+
+41:54 how many such functions are possible? So
+41:57 
+
+41:57 uh if we have n input that means we have
+41:58 
+
+41:58 2 to the^ n possible combinations of
+42:00 
+
+42:00 these inputs. Now each of this again can
+42:03 
+
+42:03 be can take zero or corresponding to
+42:05 
+
+42:05 these combination. Let's suppose
+42:06 
+
+42:06 corresponding to this it can take either
+42:07 
+
+42:07 one or zero corresponding it can take
+42:08 
+
+42:08 one or zero. Now if you have this 2 the^
+42:10 
+
+42:10 n combinations possible then total
+42:12 
+
+42:12 functions will be 2 the^ 2 the^ n these
+42:14 
+
+42:14 many possible combinations. So now in
+42:16 
+
+42:16 case in this particular case you will
+42:18 
+
+42:18 have 16 functions 2 ^ 4 2 the^ 2 ^2 that
+42:21 
+
+42:21 is 2 ^ 4 that is 16 functions. So you
+42:24 
+
+42:24 know out of these 16 functions two are
+42:28 
+
+42:28 linearly non-separable. So two are
+42:30 
+
+42:30 nonlinear two functions are nonlinear.
+42:33 
+
+42:33 So one you saw one function is x or that
+42:35 
+
+42:35 is nonlinear. I think second function is
+42:36 
+
+42:36 x nor if I'm correct. So these two
+42:39 
+
+42:39 functions in this in these 16 functions
+42:42 
+
+42:42 are nonlinear functions. Okay. They
+42:44 
+
+42:44 cannot be uh modeled by using our
+42:47 
+
+42:47 perceptrons or makeup pitch neurons. I
+42:49 
+
+42:49 hope this is clear. So now the question
+42:50 
+
+42:50 is how many of how many such functions
+42:52 
+
+42:52 will be if I give you let's suppose n
+42:55 
+
+42:55 inputs and if I say okay the possible
+42:57 
+
+42:57 combination is 2 to the^2 and total
+42:59 
+
+42:59 number of functions is this much. How
+43:01 
+
+43:01 many functions are there which will be
+43:02 
+
+43:02 nonlinear? Okay. So this question is
+43:05 
+
+43:05 unsolved. This is an unsolved question.
+43:07 
+
+43:07 Nobody knows. Okay, there's a
+43:09 
+
+43:09 mathematical problem. You can try it on
+43:10 
+
+43:10 your own to find how many functions will
+43:12 
+
+43:12 be nonlinear. But uh so far I haven't
+43:14 
+
+43:14 found any solution for this. Okay, now
+43:17 
+
+43:17 you saw that there there will be a lot
+43:18 
+
+43:18 of functions which will be linearly
+43:20 
+
+43:20 non-separable. So so we'll have some
+43:22 
+
+43:22 functions which will be linearly
+43:23 
+
+43:23 separable. Then we'll have other
+43:24 
+
+43:24 functions linearly non-separable and
+43:26 
+
+43:26 non-separable functions will be the
+43:28 
+
+43:28 functions which cannot be modeled by
+43:29 
+
+43:29 using this perceptron or make all of its
+43:31 
+
+43:31 neurons. Okay. Now we have to generalize
+43:33 
+
+43:33 some of we'll have to do okay what to do
+43:35 
+
+43:35 with this. Now what we'll do is we'll
+43:36 
+
+43:36 come up with this multi-layer
+43:38 
+
+43:38 perceptrons. We'll see MLPS.
+43:41 
+
+43:41 Okay. Now we'll shift to our gears to
+43:43 
+
+43:43 multi-layer perceptrons.
+43:46 
+
+43:46 Multi-
+43:48 
+
+43:48 layer perceptrons.
+43:51 
+
+43:51 The constant question that we have to
+43:53 
+
+43:53 solve is okay now somehow we'll have to
+43:55 
+
+43:55 come up with these neurons. Uh we'll
+43:57 
+
+43:57 have to combine these neurons somehow so
+43:58 
+
+43:58 that we can model any given boolean
+43:60 
+
+43:60 function. If we are given a boolean
+44:01 
+
+44:01 function so we we should be able to
+44:03 
+
+44:03 model that. And uh as I showed you why
+44:06 
+
+44:06 only boolean function so I showed you
+44:07 
+
+44:07 one example that any problem can be made
+44:09 
+
+44:09 we can we can bindize that and I showed
+44:12 
+
+44:12 you example of that if a product will be
+44:13 
+
+44:13 purchased by a customer. Okay that's why
+44:15 
+
+44:15 we're interested in boolean and maybe
+44:16 
+
+44:16 slowly we'll move to the real world
+44:18 
+
+44:18 functions as well. Okay now that is the
+44:20 
+
+44:20 reason we are going to this multi-layer
+44:22 
+
+44:22 perceptron. So why is it failing? So you
+44:23 
+
+44:23 saw the reason of failure. So we had
+44:25 
+
+44:25 these contradictions. The contradiction
+44:26 
+
+44:26 that you saw is that we had these
+44:28 
+
+44:28 inequalities and so there was there was
+44:30 
+
+44:30 this contradiction in the inequalities.
+44:31 
+
+44:31 Now the question is how to solve that.
+44:34 
+
+44:34 Okay. So there should be some way of
+44:35 
+
+44:35 solving it. So how to solve that now? So
+44:37 
+
+44:37 in order to solve this we'll I'll give
+44:39 
+
+44:39 you some idea and then we'll have a
+44:40 
+
+44:40 discussion on that and then we'll come
+44:41 
+
+44:41 to come to the solution on our own.
+44:44 
+
+44:44 Okay. So solution is like this. So you
+44:46 
+
+44:46 had just one perceptron. You have you
+44:48 
+
+44:48 had this and then you had have input X1
+44:51 
+
+44:51 and X2 and then there was some output.
+44:54 
+
+44:54 Okay. Maybe because of this you are
+44:56 
+
+44:56 getting some issue. So because you are
+44:57 
+
+44:57 using you are using only one neuron. So
+44:59 
+
+44:59 you're you're overloading that. So every
+45:01 
+
+45:01 condition was sort of you only giving
+45:03 
+
+45:03 this neuron that condition or you you
+45:05 
+
+45:05 are giving these inputs to this and it
+45:07 
+
+45:07 was uh the the four equation four
+45:09 
+
+45:09 inequalities that were generated they
+45:11 
+
+45:11 were generated because of this. Now what
+45:13 
+
+45:13 I want you to think is can we somehow
+45:16 
+
+45:16 make multiple of these neurons which can
+45:19 
+
+45:19 handle these different different
+45:21 
+
+45:21 inequalities on their own and we just
+45:23 
+
+45:23 want to separate it out. So initially
+45:25 
+
+45:25 the concept goes like this. I was I'm
+45:27 
+
+45:27 telling you that this neuron is some
+45:28 
+
+45:28 overloaded. So why is it overloaded?
+45:31 
+
+45:31 Because all of the inequations that you
+45:33 
+
+45:33 saw so you saw four inequations in case
+45:35 
+
+45:35 of XR. So they were produced by this
+45:37 
+
+45:37 because this was given X1 X2 four
+45:40 
+
+45:40 combinations and it had to give some
+45:42 
+
+45:42 output. So what I'm telling you now is
+45:43 
+
+45:43 so now can we do this thing? So you had
+45:45 
+
+45:45 this input output pair you have possible
+45:47 
+
+45:47 combinations. Now for each of the in for
+45:50 
+
+45:50 each of the inequality just have one
+45:52 
+
+45:52 neuron have the one neuron and then
+45:54 
+
+45:54 combine them somehow. Okay, how many of
+45:56 
+
+45:56 you got this idea?
+45:58 
+
+45:58 Now you can clearly see that the problem
+45:59 
+
+45:59 arised because of this because we were
+46:01 
+
+46:01 some overloading this neuron. We were
+46:02 
+
+46:02 overloading this and it was generating
+46:04 
+
+46:04 four inequalities and we couldn't solve
+46:05 
+
+46:05 that four inequalities. Now what I'm
+46:07 
+
+46:07 telling you is the solution lies that
+46:08 
+
+46:08 you should somehow
+46:11 
+
+46:11 handle each of the combination. So the
+46:12 
+
+46:12 combination that you have or the
+46:14 
+
+46:14 permutation in particular you have so
+46:16 
+
+46:16 you should handle that by a single
+46:17 
+
+46:17 neuron. Okay. And then somehow combine
+46:20 
+
+46:20 these neurons. So that will give us that
+46:22 
+
+46:22 will give rise to this multi-layer
+46:23 
+
+46:23 perceptron. Okay. In the in this case so
+46:25 
+
+46:25 we have four combinations. So if you
+46:26 
+
+46:26 have two inputs,
+46:30 
+
+46:30 so if you have two inputs, so you have
+46:31 
+
+46:31 four possible combinations. Now what I'm
+46:33 
+
+46:33 telling you is I'm suggesting that we
+46:35 
+
+46:35 make four neurons.
+46:40 
+
+46:40 Okay? So this is the four neuron that we
+46:41 
+
+46:41 have. So once we have these four
+46:44 
+
+46:44 neurons, so what we can do now? So we
+46:46 
+
+46:46 can make these four neurons handle each
+46:48 
+
+46:48 of the possible combination whatever we
+46:50 
+
+46:50 have. So let's suppose 1 0 0 1 uh 0 0 1
+46:54 
+
+46:54 1. Each of this will handle a different
+46:56 
+
+46:56 sort of inequality and this will not
+46:58 
+
+46:58 lead to the contradiction. So this will
+46:59 
+
+46:59 somehow save us from that contradiction
+47:01 
+
+47:01 that we had initially when we had just a
+47:03 
+
+47:03 single neuron which was generating all
+47:04 
+
+47:04 the equations. So what can we do is
+47:06 
+
+47:06 simply so I'll just modify this problem
+47:07 
+
+47:07 so I have to show you this. Uh so we'll
+47:10 
+
+47:10 now consider + one as one and zero will
+47:13 
+
+47:13 be replaced with minus one. So we'll
+47:14 
+
+47:14 have + one and minus one so that we make
+47:16 
+
+47:16 this problem much simpler. So this is
+47:18 
+
+47:18 one and this is zero. Just a simple
+47:19 
+
+47:19 replacement. So wherever you see minus
+47:21 
+
+47:21 one that basically means zero.
+47:23 
+
+47:23 Okay. Now what we'll have we'll have
+47:25 
+
+47:25 this x1 and x2. So I'll write x1 and x2.
+47:28 
+
+47:28 So this will be our input. Okay. And
+47:30 
+
+47:30 then we'll have an output. So here we'll
+47:32 
+
+47:32 have an output.
+47:35 
+
+47:35 So this over here will be output
+47:38 
+
+47:38 and this is our input.
+47:41 
+
+47:41 So I'll write input over here. This
+47:43 
+
+47:43 thing is called an hidden layer.
+47:47 
+
+47:47 Now we'll have to somehow make this such
+47:50 
+
+47:50 that uh we we'll model x. Let's suppose
+47:54 
+
+47:54 so we'll model XR because that is the
+47:56 
+
+47:56 problem if if we solve that problem and
+47:57 
+
+47:57 then we can generalize it and I told the
+47:59 
+
+47:59 core idea the core idea is that so once
+48:01 
+
+48:01 you have each of this neuron handling a
+48:04 
+
+48:04 separate case and then we'll see if the
+48:06 
+
+48:06 contradiction can be solved somehow if
+48:07 
+
+48:07 that is solved then we can just
+48:09 
+
+48:09 generalize it so now what I can do is
+48:11 
+
+48:11 I'll write maybe uh with this red red
+48:14 
+
+48:14 means red will mean how can I write I'll
+48:17 
+
+48:17 write it here red will mean say minus
+48:19 
+
+48:19 one and uh we'll have say maybe this
+48:22 
+
+48:22 blue or purple whatever this color is.
+48:25 
+
+48:25 So purple will be + one. So I'll make
+48:27 
+
+48:27 these connections now. So starting with
+48:30 
+
+48:30 this so this will be red and this will
+48:34 
+
+48:34 be given red. Okay. Similarly what I can
+48:37 
+
+48:37 do is
+48:39 
+
+48:39 um one red
+48:42 
+
+48:42 and one purple.
+48:44 
+
+48:44 This is basically 0 1.
+48:47 
+
+48:47 This is
+48:49 
+
+48:49 1 and zero.
+48:53 
+
+48:53 This is 1 one.
+48:58 
+
+48:58 How many of you understood this? So over
+49:00 
+
+49:00 here if you see this is -1 - one. So
+49:03 
+
+49:03 this is -1 + one. Okay, that is
+49:06 
+
+49:06 basically 0 1. So this is 0 0. So this
+49:08 
+
+49:08 is 0 1. This is 1 0. Then 0 0. So this
+49:11 
+
+49:11 is what we have demarked over here.
+49:14 
+
+49:14 These are the connections that I made.
+49:15 
+
+49:15 And then what I can do is I can now
+49:17 
+
+49:17 combine all of these. So we have
+49:20 
+
+49:20 function which will combine all of
+49:21 
+
+49:21 these. So we'll combine.
+49:30 
+
+49:30 So now each of this output I can write
+49:32 
+
+49:32 it. Let's suppose this output can be 01,
+49:35 
+
+49:35 O2, O3 and O4. And this is the final
+49:38 
+
+49:38 output. Let's suppose O final.
+49:41 
+
+49:41 This will be final output. And here
+49:42 
+
+49:42 we'll now also assign weight. So we'll
+49:44 
+
+49:44 say this is W1, W2, W3 and W4. Okay, I
+49:50 
+
+49:50 made a now I sort of made a multi-layer
+49:53 
+
+49:53 perceptron. So now I have multiple
+49:54 
+
+49:54 perceptrons here. If you see this
+49:56 
+
+49:56 perceptron, this this and this we have
+49:57 
+
+49:57 four perceptrons in the layer. And now I
+49:59 
+
+49:59 can say bias also. So let's suppose bias
+50:01 
+
+50:01 is equal minus2. I I'm I'm constructing
+50:04 
+
+50:04 this. So what I now claim is that this
+50:06 
+
+50:06 will model XR without problems. Okay.
+50:09 
+
+50:09 Now I'll tell you why why will it model
+50:11 
+
+50:11 XR. So let's suppose this when will this
+50:14 
+
+50:14 neuron be activated? Okay. So a bias is
+50:16 
+
+50:16 minus2. So when this is minus1 and this
+50:18 
+
+50:18 is minus one. Okay. Let's suppose then
+50:21 
+
+50:21 then only this neuron will get
+50:22 
+
+50:22 activated. So you'll only have one
+50:24 
+
+50:24 neuron activated. So once you have this
+50:26 
+
+50:26 because this bias is minus2. So
+50:28 
+
+50:28 basically bias means if this is greater
+50:29 
+
+50:29 or equal to minus2 then you activate it.
+50:31 
+
+50:31 So for minus one minus one. So you'll
+50:33 
+
+50:33 get this. Let's suppose you'll add this
+50:34 
+
+50:34 up with this. So you'll get this
+50:36 
+
+50:36 activated or we can also say that we can
+50:39 
+
+50:39 add the bias have plus two maybe have
+50:42 
+
+50:42 bias plus two so that it is greater
+50:44 
+
+50:44 equal to zero. So this is min -1 plus
+50:47 
+
+50:47 this is also minus one because input if
+50:49 
+
+50:49 you see
+50:51 
+
+50:51 so let's suppose input give input minus
+50:52 
+
+50:52 one minus one I think b should be minus2
+50:55 
+
+50:55 I was right so -1 -1 once you have this
+50:58 
+
+50:58 so now these connections are min -1 -1
+51:00 
+
+51:00 so minus and minus is + one + 1 that
+51:03 
+
+51:03 means 2 2 - 2 is zero so this will be
+51:05 
+
+51:05 this will be activated this will be only
+51:06 
+
+51:06 activated if the input is minus1 and
+51:09 
+
+51:09 minus1 so this neuron will get activated
+51:11 
+
+51:11 so I can write this over here so if you
+51:12 
+
+51:12 have minus1 minus1 this will be
+51:14 
+
+51:14 activated so All the other won't be
+51:16 
+
+51:16 activated. How? Let's suppose take this
+51:17 
+
+51:17 example. So this will be minus one. Say
+51:19 
+
+51:19 minus one. This is one. Minus and plus
+51:21 
+
+51:21 one. This is one. So this will be zero.
+51:22 
+
+51:22 And it won't make this by zero. So here
+51:25 
+
+51:25 we had two then minus2. It was zero. And
+51:28 
+
+51:28 it was surpassing the it was it was
+51:29 
+
+51:29 greater equal to this. But this case
+51:31 
+
+51:31 it'll be again minus one. So you have 1
+51:33 
+
+51:33 - 2 that will be minus one. It won't be
+51:35 
+
+51:35 zero. Similarly in this case same story.
+51:37 
+
+51:37 Same story in this case also. Okay. When
+51:40 
+
+51:40 you have this input minus1 minus one.
+51:41 
+
+51:41 Okay. Now if you have this input
+51:44 
+
+51:44 let's say minus1 and + one.
+51:47 
+
+51:47 Okay. Now you see this is minus one and
+51:48 
+
+51:48 this is + one. So this will get
+51:50 
+
+51:50 activated.
+51:53 
+
+51:53 How many of you are understanding this?
+51:55 
+
+51:55 Can I assume that you understanding
+51:56 
+
+51:56 this?
+51:60 
+
+51:60 So what I'm saying in here is to clarify
+52:02 
+
+52:02 again. So I'm saying bias is minus2. So
+52:04 
+
+52:04 when you uh let's suppose star pass the
+52:06 
+
+52:06 bias. So when you pass this threshold
+52:08 
+
+52:08 then only you'll get activated. So when
+52:10 
+
+52:10 you give this - 1 - 1 input so so this
+52:12 
+
+52:12 will make it two and the bias is also
+52:14 
+
+52:14 minus2 so 2 -2 is 0 so this will get
+52:16 
+
+52:16 activated okay and similarly when you
+52:19 
+
+52:19 have this so because we have this that
+52:20 
+
+52:20 this will get activated if it is greater
+52:22 
+
+52:22 or equal to zero okay now it will be
+52:24 
+
+52:24 zero because bias is minus2 this will
+52:26 
+
+52:26 make it minus1 multiply -1 is 1 - 1
+52:31 
+
+52:31 multiply -1 is again one so initially
+52:33 
+
+52:33 and then what will happen is so this
+52:35 
+
+52:35 will be +2 -2 is 0 so this is activated
+52:37 
+
+52:37 all others won't be able to get this
+52:39 
+
+52:39 bias because you have this minus2 is the
+52:41 
+
+52:41 bias. So this will only produce plus2 so
+52:44 
+
+52:44 that you can surpass this otherwise for
+52:46 
+
+52:46 all other combin it will it won't
+52:48 
+
+52:48 produce. So all of these if you see this
+52:50 
+
+52:50 - 1 - 1 so this will one then you have +
+52:52 
+
+52:52 1 multiply 1 this is again one. So 1 - 1
+52:55 
+
+52:55 is zero. So it it is not surpassing
+52:57 
+
+52:57 this. So you can you should at least
+52:58 
+
+52:58 have +2 in order to surpass this. So + 2
+53:01 
+
+53:01 -2 is greater equal to 0. Similarly for
+53:04 
+
+53:04 all other so you have the same case for
+53:06 
+
+53:06 here. So in this case you have minus2.
+53:07 
+
+53:07 So -2 -2 is -4. So in this possible
+53:10 
+
+53:10 combination -1 only this neuron will get
+53:13 
+
+53:13 activated. Okay. Because this is the
+53:14 
+
+53:14 only neuron which will be able to pass
+53:17 
+
+53:17 the threshold. Basically it is giving
+53:19 
+
+53:19 +2. So plus 2 -2 is equal to 0. So it is
+53:21 
+
+53:21 greater than equal to 0. So we we will
+53:22 
+
+53:22 fire this neuron. So is it clear for
+53:24 
+
+53:24 everyone?
+53:27 
+
+53:27 Any questions on this?
+53:31 
+
+53:31 So have you understood this? Okay. Just
+53:33 
+
+53:33 summarizing this. So you had input. So
+53:34 
+
+53:34 we made sure that the uh the purpose
+53:36 
+
+53:36 that I said is that each neuron should
+53:39 
+
+53:39 somehow handle one possible combination.
+53:41 
+
+53:41 So if we make one neuron handle one
+53:43 
+
+53:43 possible combination then we can uh say
+53:45 
+
+53:45 that we will not have now this uh
+53:48 
+
+53:48 contradiction in those inequalities. So
+53:50 
+
+53:50 let's check that also now. Okay. Now
+53:51 
+
+53:51 let's check that.
+53:53 
+
+53:53 So if just have this diagram in your
+53:55 
+
+53:55 mind. So now you had this x1 x2. So this
+53:59 
+
+53:59 could have been -1 -1 -1 + 1 + 1 - 1 and
+54:04 
+
+54:04 + 1 + 1. Now xr would have been zero.
+54:08 
+
+54:08 This is 0 1 1 and 0. Okay. Then you have
+54:12 
+
+54:12 this 01 o234 01 O2 03 04. The output
+54:18 
+
+54:18 that you get at this position 01 O2
+54:19 
+
+54:19 because now you'll have to multiply all
+54:21 
+
+54:21 these things. Okay. Then only you'll
+54:23 
+
+54:23 have to make sure this this is there.
+54:26 
+
+54:26 So for this 01 so if you see this so
+54:29 
+
+54:29 this is 1 0 0 0
+54:32 
+
+54:32 for the first case
+54:35 
+
+54:35 okay one will be activated only in this
+54:38 
+
+54:38 case and second thing is let me just
+54:40 
+
+54:40 color it like this
+54:42 
+
+54:42 and this thing will get activated in the
+54:43 
+
+54:43 second case and this thing will get
+54:45 
+
+54:45 activated in the third case
+54:47 
+
+54:47 and this will be activated in the fourth
+54:49 
+
+54:49 case okay this output will be only
+54:51 
+
+54:51 activated once we reach the hair okay if
+54:54 
+
+54:54 you now take this so summation of all of
+54:56 
+
+54:56 these. So now you sum this up. So this
+54:58 
+
+54:58 over here. So output final. So I can
+55:00 
+
+55:00 write it O final. So how what is O
+55:02 
+
+55:02 final? O final is summation of all
+55:04 
+
+55:04 these. Summation of W1 O1 plus this is
+55:09 
+
+55:09 O2 W2. Similar like this I can write
+55:11 
+
+55:11 summation of OI WI.
+55:14 
+
+55:14 Now if you see this so this will be W1,
+55:16 
+
+55:16 this will be W2 and this will be W3.
+55:18 
+
+55:18 This will be W4. Okay. If you just sum
+55:21 
+
+55:21 these things up. So this will be W1, W2,
+55:23 
+
+55:23 W3 and W4. Now let's suppose in the
+55:25 
+
+55:25 first case in the first case you'll have
+55:28 
+
+55:28 W1 should be less than W knot. Why?
+55:32 
+
+55:32 Because you don't have to fire in this
+55:33 
+
+55:33 case. In this case you don't have to
+55:35 
+
+55:35 fire. In in the second case you have to
+55:37 
+
+55:37 fire. That means W2 should be greater
+55:40 
+
+55:40 than W greater than equal to W kn. And
+55:42 
+
+55:42 in the third case W3 should be greater
+55:44 
+
+55:44 than equal to W kn and W4 should be less
+55:47 
+
+55:47 than W kn because here in these two
+55:49 
+
+55:49 cases you don't have to fire not fire
+55:52 
+
+55:52 the neuron.
+55:54 
+
+55:54 So in the two cases you have to fire.
+55:57 
+
+55:57 Now you see these four inequations. You
+55:58 
+
+55:58 see these four inequalities. There is no
+55:60 
+
+55:60 contradiction. You can solve it. You can
+56:01 
+
+56:01 find this find values for w not such
+56:03 
+
+56:03 that all of these things are satisfied.
+56:05 
+
+56:05 So there is there is no contradiction.
+56:07 
+
+56:07 There is
+56:09 
+
+56:09 no contradiction.
+56:13 
+
+56:13 So how many of you can see this that
+56:14 
+
+56:14 there is no contradiction in this? There
+56:16 
+
+56:16 is clearly visible over here. So if you
+56:18 
+
+56:18 see because I made sure that each of
+56:20 
+
+56:20 this combination is handled by one
+56:21 
+
+56:21 neuron and only one of that gets
+56:22 
+
+56:22 activated. So if you now see this so W1
+56:25 
+
+56:25 in the first case this W1 because we
+56:27 
+
+56:27 have to make sure that this does not get
+56:29 
+
+56:29 activated in this case. Okay. This is
+56:30 
+
+56:30 the activation XR. So we'll say that
+56:33 
+
+56:33 this should be less than W not it should
+56:34 
+
+56:34 not cross the threshold. Okay. So W not
+56:36 
+
+56:36 should be set such that it is W1 is less
+56:38 
+
+56:38 than W not. In the second case W2 and W3
+56:42 
+
+56:42 we have to set these values such that
+56:43 
+
+56:43 they should surpass this W not. They
+56:45 
+
+56:45 should cause this threshold. Okay. or at
+56:47 
+
+56:47 least be equal and in in the last case
+56:50 
+
+56:50 W4 it should be less than W not and now
+56:52 
+
+56:52 if you see this inequality what I said
+56:53 
+
+56:53 is there is no contradiction you can set
+56:54 
+
+56:54 values for W1 W2 in such a and W2 W3 in
+56:58 
+
+56:58 such a way so that there is no problem
+56:60 
+
+56:60 with this so this over here this is
+57:02 
+
+57:02 modeling your XR so this is perfectly
+57:04 
+
+57:04 modeling your XR how many of you agree
+57:06 
+
+57:06 on this point that this is modeling XR
+57:09 
+
+57:09 okay now we can generalize this okay we
+57:11 
+
+57:11 can generalize so we can generalize this
+57:14 
+
+57:14 architecture to all boolean functions
+57:16 
+
+57:16 all booleans
+57:17 
+
+57:17 Because you know the core principle. The
+57:19 
+
+57:19 core principle is that you have to make
+57:21 
+
+57:21 sure that one neuron handles one
+57:22 
+
+57:22 combination so that you do not fall in
+57:24 
+
+57:24 the trap that we can have some
+57:26 
+
+57:26 inconsistencies or we have some
+57:27 
+
+57:27 contradictions when we form these
+57:28 
+
+57:28 inequalities. Okay. So now if you have n
+57:31 
+
+57:31 inputs so if you have n inputs that
+57:33 
+
+57:33 means corresponding to n inputs you'll
+57:34 
+
+57:34 have 2 to the^ n possible combinations.
+57:36 
+
+57:36 So that means we'll require 2 to the^ n
+57:38 
+
+57:38 neurons
+57:40 
+
+57:40 to the n neurons to model that and then
+57:42 
+
+57:42 we can map anything. So basically this
+57:44 
+
+57:44 is showing you the expressive power of
+57:47 
+
+57:47 expressive
+57:50 
+
+57:50 power of these multi-layer perceptrons.
+57:52 
+
+57:52 So you can just have one hidden layer.
+57:54 
+
+57:54 So one hidden layer with 2 to the^ n
+57:56 
+
+57:56 neurons. Okay, you can map any boolean
+57:59 
+
+57:59 function with this. Now the interesting
+58:00 
+
+58:00 question is is there a way can we
+58:03 
+
+58:03 optimize these neurons? Can we can I use
+58:05 
+
+58:05 less than 2 to the^ n neurons somehow
+58:07 
+
+58:07 and I don't have one layer? Can I have
+58:09 
+
+58:09 multiple layers? Okay, that is the
+58:10 
+
+58:10 question will will answer maybe in
+58:12 
+
+58:12 univers approximation theorem but and
+58:14 
+
+58:14 there this question is the answer to
+58:17 
+
+58:17 this question is this yes yes there is a
+58:18 
+
+58:18 possibility that you can uh reduce the
+58:21 
+
+58:21 number of neurons in that okay so now
+58:22 
+
+58:22 the terminology that I said is we had
+58:24 
+
+58:24 input layer input layer is it's not
+58:27 
+
+58:27 basically a layer it is where you take
+58:29 
+
+58:29 input from okay input and then we have
+58:30 
+
+58:30 these hidden layers
+58:32 
+
+58:32 so hidden layer is while the computation
+58:34 
+
+58:34 is happening and then output
+58:37 
+
+58:37 is where you take the output so in this
+58:38 
+
+58:38 case you saw You saw this. So here this
+58:40 
+
+58:40 was input. This was your hidden layer
+58:42 
+
+58:42 and we can have multiple of hidden
+58:43 
+
+58:43 layers. And then this is this is our
+58:45 
+
+58:45 output where we'll gather these output
+58:46 
+
+58:46 together. And now this is one more
+58:48 
+
+58:48 motivation of deep learning. So I said
+58:50 
+
+58:50 one motivation was from uh that
+58:53 
+
+58:53 experiment by hub and visel that did an
+58:55 
+
+58:55 experiment where they saw the
+58:56 
+
+58:56 hierarchical data extracting this and
+58:58 
+
+58:58 the second was this because we couldn't
+58:59 
+
+58:59 model these nonlinear uh nonlinear data
+59:03 
+
+59:03 it was not we are not able to model that
+59:05 
+
+59:05 by molopitz neurons or multi-layer
+59:07 
+
+59:07 perceptron or single layer perceptrons
+59:09 
+
+59:09 not not even layer single perceptron. So
+59:12 
+
+59:12 as a solution to that we now combine
+59:14 
+
+59:14 these neurons in in at least a layer. So
+59:16 
+
+59:16 we had input then a layer and then an
+59:18 
+
+59:18 output and we showed by con. This is
+59:20 
+
+59:20 called as proof by construction. This is
+59:22 
+
+59:22 a technique of proof. It's called as
+59:23 
+
+59:23 proof by construction.
+59:28 
+
+59:28 We have directly given a proof of
+59:29 
+
+59:29 construction. So if anybody asks you
+59:32 
+
+59:32 okay what is the proof that this also
+59:33 
+
+59:33 works. So you just give the construction
+59:34 
+
+59:34 steps. The step one is take input. Step
+59:37 
+
+59:37 two is have these number of neurons and
+59:39 
+
+59:39 step three is add weights and biases
+59:41 
+
+59:41 like this. And step four is compute
+59:42 
+
+59:42 this. Okay. So this is the proof by
+59:44 
+
+59:44 construction of the thing that we can
+59:46 
+
+59:46 model any boolean function of inputs
+59:48 
+
+59:48 with one hidden layer of 2 to the^ n
+59:51 
+
+59:51 neurons. I hope this is clear so far. Is
+59:53 
+
+59:53 it?
+59:54 
+
+59:54 Now this is what we solved. We saw this
+59:56 
+
+59:56 problem and we solved it for binary. Now
+59:58 
+
+59:58 the in the real world scenario uh the
+60:01 
+
+60:01 whole data is not binary. So we had two
+60:02 
+
+60:02 problems initially. Initially we solved
+60:04 
+
+60:04 it for binary and linear because we know
+60:07 
+
+60:07 that okay let's suppose if we could
+60:09 
+
+60:09 solve it for binary and nonlinear. Now
+60:11 
+
+60:11 we had solution for that also. Okay.
+60:12 
+
+60:12 Okay. Now the we have to somehow make it
+60:15 
+
+60:15 generalize. We have to generalize this
+60:17 
+
+60:17 to real real numbers.
+60:19 
+
+60:19 Okay. And before going to the real
+60:21 
+
+60:21 numbers and I'll also have the same
+60:22 
+
+60:22 running example over here. So you see
+60:24 
+
+60:24 this this is example. Suppose we want to
+60:26 
+
+60:26 have this data because this data won't
+60:27 
+
+60:27 be usually binary. So you'll have time
+60:29 
+
+60:29 spent in minutes. You'll have extra
+60:30 
+
+60:30 number of products will be a discrete
+60:32 
+
+60:32 number. Average will be some
+60:33 
+
+60:33 floatingoint number. And then this will
+60:34 
+
+60:34 be because this problem is a
+60:36 
+
+60:36 classification. It will be having a
+60:37 
+
+60:37 value y is equal one or one or zero.
+60:40 
+
+60:40 that is the person will purchase the
+60:42 
+
+60:42 product or person will not purchase the
+60:43 
+
+60:43 product. Okay. Then you have this
+60:44 
+
+60:44 variable problem. Now if you see this if
+60:47 
+
+60:47 you if you see this this thresholding
+60:50 
+
+60:50 logic or things that we s uh we saw the
+60:52 
+
+60:52 perceptron because this perceptron
+60:53 
+
+60:53 basically what it does is it was using
+60:55 
+
+60:55 this thresholding logic it was saying
+60:57 
+
+60:57 that if let's suppose you have summation
+60:60 
+
+60:60 it is this wixi is greater than equal to
+61:03 
+
+61:03 say thumb theta some threshold so give
+61:05 
+
+61:05 it one otherwise give it zero. So this
+61:08 
+
+61:08 was what perceptron said. So this is
+61:09 
+
+61:09 perceptron.
+61:14 
+
+61:14 Okay. So the activation the activation
+61:15 
+
+61:15 function basically. So what we I I'll
+61:17 
+
+61:17 now call it formula as activation
+61:19 
+
+61:19 function or the decision function.
+61:24 
+
+61:24 Decision function. Decision function was
+61:26 
+
+61:26 quite absurd. Why? Let's suppose I'll
+61:28 
+
+61:28 take this example. Say you are doing the
+61:30 
+
+61:30 same thing. You are doing this uh
+61:32 
+
+61:32 product purchase. If I have to recommend
+61:34 
+
+61:34 this product and if the person will
+61:35 
+
+61:35 purchase a product or similarly movie
+61:37 
+
+61:37 recommendation. Okay. for your
+61:38 
+
+61:38 recommendation will the person watch
+61:39 
+
+61:39 this movie or something of that sort. So
+61:41 
+
+61:41 let's suppose the threshold is 0.5 say
+61:43 
+
+61:43 threshold is 0.5.
+61:46 
+
+61:46 So if this summation wixi
+61:48 
+
+61:48 okay if this is let's suppose greater
+61:51 
+
+61:51 than.5 then you can say okay person will
+61:53 
+
+61:53 purchase a product or person will watch
+61:56 
+
+61:56 this movie. So if let's suppose if this
+61:58 
+
+61:58 came out to be 0.49 say
+62:01 
+
+62:01 you will say it as zero the person we
+62:03 
+
+62:03 should not recommend the movie or we
+62:05 
+
+62:05 should not recommend this product to the
+62:06 
+
+62:06 person. Okay. But you see the that there
+62:08 
+
+62:08 is very less gap is there.5 and 49. So
+62:13 
+
+62:13 the decision varies a lot. So you see
+62:15 
+
+62:15 this somehow looks very absurd.
+62:19 
+
+62:19 For how many of you this looks absurd?
+62:20 
+
+62:20 At least when I saw this first it looked
+62:22 
+
+62:22 absurd to me. Okay. You are changing
+62:24 
+
+62:24 your disc. You are having this there is
+62:26 
+
+62:26 a clearcut if it goes above this
+62:28 
+
+62:28 threshold then only you make it then
+62:30 
+
+62:30 only you purchase it. Okay. Somehow
+62:32 
+
+62:32 we'll have to find a solution to this.
+62:35 
+
+62:35 Okay. because we should now this
+62:36 
+
+62:36 decision function or the activation
+62:37 
+
+62:37 function had some problem. So if you see
+62:39 
+
+62:39 this this is a step function in our
+62:40 
+
+62:40 case. So this was like this. So if I
+62:41 
+
+62:41 make a graph so this graph would seem
+62:44 
+
+62:44 like something of this sort. So let's
+62:45 
+
+62:45 suppose 0.5 is is a threshold. So you'll
+62:47 
+
+62:47 have say 0.5 this will be activated or
+62:51 
+
+62:51 this will not be activated. So say till
+62:53 
+
+62:53 the value is not a particular value. So
+62:55 
+
+62:55 you'll have the zero. So say at this
+62:57 
+
+62:57 point you have this 0.5 and then you
+62:59 
+
+62:59 suddenly jump. Okay. This is how the
+63:02 
+
+63:02 function will look like.
+63:06 
+
+63:06 Okay, say this is one and this is zero.
+63:08 
+
+63:08 Okay, and this is this is this point is
+63:10 
+
+63:10 the activation point.
+63:14 
+
+63:14 So what we found is that this logic is
+63:16 
+
+63:16 quite harsh. Why is it quite harsh and
+63:17 
+
+63:17 absurd? Because you see that 0.5 if the
+63:20 
+
+63:20 uh if the whole summation if this this
+63:22 
+
+63:22 aggregation function if this aggregation
+63:24 
+
+63:24 function the value was let's say
+63:27 
+
+63:27 threshold was.5 then you should you
+63:29 
+
+63:29 would recommend the movie or you would
+63:30 
+
+63:30 say that okay the person will purchase
+63:31 
+
+63:31 the product but if it was slightly less
+63:33 
+
+63:33 that is 0.49 4 9 can see that oh it is
+63:36 
+
+63:36 saying zero but in the real world this
+63:38 
+
+63:38 is not what how things work okay in the
+63:40 
+
+63:40 real world so basically what we want is
+63:42 
+
+63:42 we want some we don't want this step we
+63:44 
+
+63:44 want something which is smooth so by
+63:47 
+
+63:47 smooth I want a function of this sort I
+63:49 
+
+63:49 want function like this so let's suppose
+63:52 
+
+63:52 it should be 0 0 and then it should
+63:53 
+
+63:53 slowly go okay and then it should taper
+63:55 
+
+63:55 off something of this sort okay I want
+63:57 
+
+63:57 this smooth function
+64:02 
+
+64:02 okay so how many of you agree on this
+64:04 
+
+64:04 point I don't want sudden jump. So what
+64:05 
+
+64:05 I want is basically I want a smooth
+64:06 
+
+64:06 curve of this sort. This is 0 to 1. So
+64:09 
+
+64:09 it will start at suppose from 0 0 and
+64:12 
+
+64:12 it'll slowly slowly go and after a point
+64:14 
+
+64:14 then it tapers off. Let's suppose so
+64:16 
+
+64:16 after let's suppose 0.8 you can give the
+64:18 
+
+64:18 value one always something of that sort.
+64:20 
+
+64:20 So that this curve is somewhat smooth
+64:22 
+
+64:22 curve.
+64:25 
+
+64:25 Okay. The curve that you see over here.
+64:26 
+
+64:26 So you see this is somewhat a smooth
+64:28 
+
+64:28 curve. Okay. In this how what is the
+64:30 
+
+64:30 behavior of the curve? So if you start
+64:32 
+
+64:32 with zero and you slowly slowly you can
+64:34 
+
+64:34 see that the value is increasing. You
+64:35 
+
+64:35 can clearly see the value is increasing
+64:36 
+
+64:36 over here. And after a certain point the
+64:38 
+
+64:38 function tapers off you can see so this
+64:40 
+
+64:40 is called tapering off. This behavior is
+64:41 
+
+64:41 called tapering off.
+64:45 
+
+64:45 Okay. So this is the behavior I want.
+64:47 
+
+64:47 How many of you agree with this behavior
+64:48 
+
+64:48 that we want this sort of behavior? This
+64:50 
+
+64:50 is this is the behavior that we want. We
+64:51 
+
+64:51 don't want a sudden jump.
+64:54 
+
+64:54 Okay. So a lot of research has been done
+64:56 
+
+64:56 on these functions. A lot of a lot of
+64:57 
+
+64:57 things have a lot of people study these
+64:58 
+
+64:58 functions activation functions and they
+64:60 
+
+64:60 wanted some some behavior like this and
+65:02 
+
+65:02 that's why you have been hearing terms
+65:03 
+
+65:03 like relu sigmoid uh this that and all
+65:06 
+
+65:06 of these basically these functions
+65:08 
+
+65:08 basically have this behavior and they
+65:10 
+
+65:10 want to remove this behavior they want
+65:11 
+
+65:11 to remove the sudden jump behavior. So
+65:13 
+
+65:13 what they basically want is they want
+65:14 
+
+65:14 this smooth behavior. So this is so if
+65:17 
+
+65:17 we now have this so you have the
+65:18 
+
+65:18 aggregation function if you keep the
+65:20 
+
+65:20 aggregation function same so you have
+65:21 
+
+65:21 same aggregation function same
+65:24 
+
+65:24 aggregation
+65:26 
+
+65:26 and now you come up with a function okay
+65:28 
+
+65:28 this function let's call this as this
+65:30 
+
+65:30 S-shaped function S-shaped function
+65:33 
+
+65:33 there are a lot of mathematical
+65:35 
+
+65:35 functions which will form this S shape
+65:36 
+
+65:36 so one of them is called as sigmoid okay
+65:38 
+
+65:38 so sigmoid is a family of functions
+65:41 
+
+65:41 so sigmoid is a family of functions
+65:44 
+
+65:44 there are a lot of functions called as
+65:46 
+
+65:46 sigmoid functions because they form this
+65:47 
+
+65:47 S-shaped they have this S-shaped
+65:49 
+
+65:49 behavior. So now you have same
+65:51 
+
+65:51 aggregation function and you take one of
+65:52 
+
+65:52 the sigmoid functions and you call this
+65:54 
+
+65:54 a sigmoid neuron.
+65:58 
+
+65:58 So what is a sigmoid neuron then? So and
+66:00 
+
+66:00 you you know the reason also. So we had
+66:02 
+
+66:02 this very harsh function which had the
+66:04 
+
+66:04 sudden jump which was taking a threshold
+66:06 
+
+66:06 logic. If you have threshold at this
+66:07 
+
+66:07 certain point and then only you fire
+66:09 
+
+66:09 otherwise you don't fire it. Then we
+66:10 
+
+66:10 wanted a smooth behavior of this sort.
+66:12 
+
+66:12 Okay. And as I said there are a lot of
+66:13 
+
+66:13 functions like this. So sigmoid
+66:15 
+
+66:15 functions is a family of functions which
+66:16 
+
+66:16 show one which show behavior of this
+66:18 
+
+66:18 sort. Okay, we'll see maybe logistic
+66:20 
+
+66:20 function we'll see tanh function all of
+66:22 
+
+66:22 these are uh sigmoid function. So just
+66:24 
+
+66:24 logistic how is this logistic logistic
+66:27 
+
+66:27 function.
+66:28 
+
+66:28 So we'll take one function which called
+66:30 
+
+66:30 logistic function. So if you now see
+66:32 
+
+66:32 this logistic function so how is it? It
+66:33 
+
+66:33 is y is equal 1 / 1 + e ^ minus let's
+66:37 
+
+66:37 suppose called x.
+66:39 
+
+66:39 This is the logistic function. This is
+66:41 
+
+66:41 again a sigmoid function because sigmoid
+66:43 
+
+66:43 is a family of functions. So this is how
+66:44 
+
+66:44 it behaves or maybe I can write it
+66:47 
+
+66:47 something of Z or something because X
+66:48 
+
+66:48 will be used a lot. X not Y not
+66:50 
+
+66:50 something of that sort. Okay
+66:53 
+
+66:53 say you have this Y. So you write it
+66:55 
+
+66:55 like this. So you have wrpose X dot
+66:58 
+
+66:58 product and you'll write sigma like
+66:59 
+
+66:59 this. Okay. So what is the value of
+67:02 
+
+67:02 this? So this will be equal to this is 1
+67:04 
+
+67:04 / 1 + e ^ -pose x. Yeah. And this
+67:09 
+
+67:09 function will have this behavior. It'll
+67:11 
+
+67:11 have this behavior. You can change this
+67:13 
+
+67:13 w1 w and you can expand it and it'll
+67:16 
+
+67:16 still have it will contain this
+67:17 
+
+67:17 behavior. And the beautiful thing about
+67:19 
+
+67:19 this is this gives values between 0 and
+67:21 
+
+67:21 1. So this sigmoid function gives values
+67:24 
+
+67:24 between 0 and one. Let me show you the
+67:25 
+
+67:25 sigmoid function again on desmos
+67:27 
+
+67:27 calculator. Give me a second. I'll show
+67:28 
+
+67:28 you on the desmos.
+67:31 
+
+67:31 So if you see this, so here I have given
+67:33 
+
+67:33 values w1 and w2. So if I let's suppose
+67:36 
+
+67:36 this is the this is our perceptron okay
+67:39 
+
+67:39 so this is a linear perceptron so you
+67:40 
+
+67:40 can see this
+67:42 
+
+67:42 okay so you can see this perceptron I
+67:44 
+
+67:44 can write a function which will just
+67:45 
+
+67:45 take values over here so what what
+67:47 
+
+67:47 actually I want to show you is this
+67:48 
+
+67:48 function so this is the sigmoid function
+67:50 
+
+67:50 if you see it over here
+67:52 
+
+67:52 you see this sshaped curve so how many
+67:54 
+
+67:54 of you can see this sshaped thing so I
+67:57 
+
+67:57 everyone can see this sshaped
+67:60 
+
+67:60 so now what is in this sshaped if you
+68:01 
+
+68:01 see over here it starts with zero and
+68:03 
+
+68:03 goes to one okay I can zoom it a bit to
+68:07 
+
+68:07 show it clearly.
+68:11 
+
+68:11 So this curve over here. So this is a
+68:13 
+
+68:13 logistic function. Okay. So in in in
+68:15 
+
+68:15 this particular case this is logistic
+68:16 
+
+68:16 function and the function is over here.
+68:18 
+
+68:18 So you see this the function is here.
+68:21 
+
+68:21 Okay. And this over here is a logistic
+68:22 
+
+68:22 function.
+68:25 
+
+68:25 This is logistic
+68:28 
+
+68:28 function. Basically as I said sigmoid is
+68:30 
+
+68:30 a family of function. So you can now see
+68:32 
+
+68:32 that it starts with zero and slowly goes
+68:34 
+
+68:34 up goes up and if you see exactly at
+68:36 
+
+68:36 this value zero you can see this uh if
+68:39 
+
+68:39 you go to and you'll find 0.5 in the
+68:41 
+
+68:41 middle okay somewhere around here I
+68:43 
+
+68:43 don't exactly I can't read this so small
+68:45 
+
+68:45 and then you will see that if it goes
+68:47 
+
+68:47 towards larger values and then it go
+68:49 
+
+68:49 after a while it goes it goes continuous
+68:50 
+
+68:50 to one okay and this is the behavior
+68:52 
+
+68:52 actually we want
+68:57 
+
+68:57 so if you see this function now if you
+68:58 
+
+68:58 see this function that is 1 / 1 + e to
+69:00 
+
+69:00 the or some minus Z suppose suppose this
+69:04 
+
+69:04 Z value is let's suppose it is going to
+69:07 
+
+69:07 minus infinity if you if you say let's
+69:08 
+
+69:08 it goes to minus infinity so we'll take
+69:10 
+
+69:10 extreme values so what will happen is 1
+69:12 
+
+69:12 / 1 + e to the power infinity okay and
+69:16 
+
+69:16 this will be 1 divid by infinity that is
+69:18 
+
+69:18 it will go towards zero so if it goes to
+69:20 
+
+69:20 minus infinity and you'll have the value
+69:21 
+
+69:21 goes towards zero okay and now what will
+69:24 
+
+69:24 happen is if it goes towards plus
+69:25 
+
+69:25 infinity
+69:27 
+
+69:27 okay you see it the the value will go
+69:29 
+
+69:29 towards one so if you increase value
+69:31 
+
+69:31 basically it starts with zero I wanted
+69:32 
+
+69:32 to show you this it starts with zero and
+69:34 
+
+69:34 it goes till one and it keeps the value
+69:36 
+
+69:36 between 0 to one given the values and if
+69:38 
+
+69:38 you have let's suppose value say in the
+69:40 
+
+69:40 middle and it will be some.5 and one
+69:43 
+
+69:43 more thing that you know probabilities
+69:45 
+
+69:45 also have these values so probabilities
+69:47 
+
+69:47 are the values which which are between 0
+69:48 
+
+69:48 to one so this has one more case in that
+69:50 
+
+69:50 so one thing is is a smooth function so
+69:53 
+
+69:53 what I mean by smooth it is a continuous
+69:55 
+
+69:55 and differential function okay and why
+69:57 
+
+69:57 do we care about differentiability
+69:58 
+
+69:58 because you know that we'll use
+69:60 
+
+69:60 propagation and we'll have to
+70:01 
+
+70:01 differentiate these functions and this
+70:03 
+
+70:03 function is smooth that it is continuous
+70:06 
+
+70:06 it is continuous and differentiable
+70:10 
+
+70:10 and because we'll using a lot of
+70:12 
+
+70:12 calculus for back propagation we'll have
+70:14 
+
+70:14 to flow the gradient and all of these
+70:15 
+
+70:15 things and these are the functions that
+70:17 
+
+70:17 we'll require because you know that
+70:18 
+
+70:18 we'll apply on these neurons the neurons
+70:20 
+
+70:20 that I made just now so these things
+70:23 
+
+70:23 will have activation functions now okay
+70:24 
+
+70:24 so activation functions will be written
+70:26 
+
+70:26 somewhere like this so you have
+70:27 
+
+70:27 activation functions so now once you
+70:28 
+
+70:28 compute the gradients So your function
+70:30 
+
+70:30 should be a smooth function. It should
+70:32 
+
+70:32 be a continuous and a differentiable
+70:34 
+
+70:34 function. Okay, this sigmoid function
+70:36 
+
+70:36 over here is a smooth and differentiable
+70:37 
+
+70:37 function. And the second thing it mimics
+70:40 
+
+70:40 the real world also. It mimics real
+70:43 
+
+70:43 world scenarios.
+70:46 
+
+70:46 Okay. So why does mimic real world
+70:48 
+
+70:48 scenario? Because I showed the example
+70:49 
+
+70:49 it's not that harsh function which we
+70:50 
+
+70:50 had that step function was quite harsh.
+70:52 
+
+70:52 So at 0.5 you are say suddenly saying
+70:54 
+
+70:54 that okay uh if the value is greater
+70:56 
+
+70:56 than 0.5 then we'll recommend this movie
+70:58 
+
+70:58 or we'll recommend this product to that
+70:59 
+
+70:59 person. If it is less than.5 even 0.4999
+71:03 
+
+71:03 you won't recommend. But now what is
+71:04 
+
+71:04 this giving? This is giving you the
+71:06 
+
+71:06 values which somehow mimic the reality
+71:08 
+
+71:08 because it it does not take hard
+71:09 
+
+71:09 decisions and it also is in terms of
+71:13 
+
+71:13 probability.
+71:15 
+
+71:15 It can be viewed as probability. Why?
+71:17 
+
+71:17 Let's suppose if if the value came out
+71:18 
+
+71:18 to be 0.67. So this is the recommend the
+71:21 
+
+71:21 product recommendation is 0.67. It will
+71:23 
+
+71:23 give you like this. It will say that
+71:25 
+
+71:25 with this much probability or with this
+71:27 
+
+71:27 much success rate you can recommend this
+71:28 
+
+71:28 product. So you can uh sort of uh
+71:31 
+
+71:31 understand these in terms of
+71:32 
+
+71:32 probabilities. Okay. I hope these three
+71:35 
+
+71:35 things are enough reasons to come up
+71:36 
+
+71:36 with better activation function. So this
+71:37 
+
+71:37 activation function is a great research
+71:39 
+
+71:39 area. So people still research on this
+71:43 
+
+71:43 research area. people
+71:46 
+
+71:46 almost like every year you will see a
+71:47 
+
+71:47 lot of functions activation functions
+71:49 
+
+71:49 coming up you'll see that swigloo is a
+71:51 
+
+71:51 function which was which meta came up
+71:53 
+
+71:53 with and then you have a lot of these
+71:54 
+
+71:54 functions and I think uh there has been
+71:57 
+
+71:57 a lot of things that have been done here
+71:59 
+
+71:59 and now people are researching a bit
+72:00 
+
+72:00 less on this area because now we are we
+72:03 
+
+72:03 have a lot of these functions where
+72:05 
+
+72:05 somehow people believe that these
+72:07 
+
+72:07 results are at at par the results that
+72:09 
+
+72:09 we wanted to get by using these
+72:11 
+
+72:11 activation but still it's a very good
+72:13 
+
+72:13 research area I don't see many types of
+72:15 
+
+72:15 aggregation functions. So the
+72:16 
+
+72:16 aggregation function you usually will
+72:18 
+
+72:18 see is this. So you'll see this
+72:20 
+
+72:20 aggregation function directly when you
+72:21 
+
+72:21 say dot forward. So this is what it
+72:22 
+
+72:22 does. So now you see this two things are
+72:24 
+
+72:24 here.
+72:26 
+
+72:26 So you have this forward pass.
+72:28 
+
+72:28 So what is this forward? We'll still see
+72:30 
+
+72:30 it in detail but I just wanted to show
+72:32 
+
+72:32 you this. So when you perform this
+72:33 
+
+72:33 wrpose X so you do this computation and
+72:36 
+
+72:36 then you apply an activation function of
+72:38 
+
+72:38 this. This is called as a forward pass
+72:40 
+
+72:40 in neural networks. Okay. So you have a
+72:42 
+
+72:42 neural network. So in that once you
+72:44 
+
+72:44 perform this computation now you know
+72:46 
+
+72:46 about neuron. So you have this I can
+72:47 
+
+72:47 make a diagram rough diagram.
+72:51 
+
+72:51 Okay. So now this is let's suppose this
+72:53 
+
+72:53 is our input. So x1 x2 something of this
+72:55 
+
+72:55 sort or maybe I can create one more
+72:57 
+
+72:57 layer and this is x1 x2 x3 and x4 x5
+73:02 
+
+73:02 some something of this sort x4 input.
+73:04 
+
+73:04 And once you compute this so you'll have
+73:05 
+
+73:05 weights and biases. You'll have weights
+73:07 
+
+73:07 and bice and each neuron will have its
+73:09 
+
+73:09 activation function. So if you perform
+73:11 
+
+73:11 this, if you perform this to get an
+73:12 
+
+73:12 output. So this is what is called as
+73:13 
+
+73:13 forward pass. So you do w1 x1 plus w2 x2
+73:18 
+
+73:18 plus wx. Then apply this activation
+73:20 
+
+73:20 function for all these neurons till you
+73:21 
+
+73:21 get here. This whole thing is called as
+73:23 
+
+73:23 forward pass. And then we'll see that
+73:25 
+
+73:25 there is a backward pass. So in backward
+73:27 
+
+73:27 pass we have so in forward pass you
+73:30 
+
+73:30 compute the stuff. You compute to get
+73:32 
+
+73:32 the result to get towards the result. So
+73:34 
+
+73:34 in backward pass you learn.
+73:37 
+
+73:37 So in the backward pass.
+73:43 
+
+73:43 So there is this learning happening.
+73:45 
+
+73:45 Okay. So now you saw an architecture. So
+73:47 
+
+73:47 they I wanted to show why is this
+73:49 
+
+73:49 learning happening now? So you have this
+73:50 
+
+73:50 forward pass. You have this computation
+73:51 
+
+73:51 and then you compare. Okay. It is giving
+73:53 
+
+73:53 me this results. So is is it the right
+73:55 
+
+73:55 result? Oh these are not result. Okay.
+73:56 
+
+73:56 Now let's do backward pass. That means I
+73:58 
+
+73:58 have to adjust these weights and biases.
+73:59 
+
+73:59 So adjustment of these weights and
+74:00 
+
+74:00 biases is done in backward pass by using
+74:02 
+
+74:02 algorithm known as back propagation.
+74:07 
+
+74:07 So back propagation is done by gradient
+74:09 
+
+74:09 descent.
+74:11 
+
+74:11 So gradient.
+74:14 
+
+74:14 So we'll have to now do a detailed
+74:15 
+
+74:15 treatment of what gradient descent is
+74:16 
+
+74:16 and how back propagation works. And
+74:18 
+
+74:18 before that we'll first try to code
+74:21 
+
+74:21 these neurons and then do the forward
+74:22 
+
+74:22 pass. So two important things. So one
+74:24 
+
+74:24 important thing is that you have this
+74:26 
+
+74:26 forward path. So once you create a
+74:27 
+
+74:27 neural network and this is called as the
+74:28 
+
+74:28 architecture of neural network.
+74:33 
+
+74:33 So what is architecture? argument is
+74:34 
+
+74:34 basically how are you combining these
+74:36 
+
+74:36 neurons now. So now you see a lot of
+74:37 
+
+74:37 research areas are there. I said one
+74:39 
+
+74:39 research area is activation function.
+74:40 
+
+74:40 Why do you come up with activation
+74:41 
+
+74:41 functions? Okay. So I said I saw I
+74:44 
+
+74:44 almost have never seen uh some research
+74:46 
+
+74:46 on this aggregation functions because
+74:48 
+
+74:48 people some believe okay w1 x1 and
+74:50 
+
+74:50 summation of this is good enough. Okay.
+74:52 
+
+74:52 And you see this activation functions.
+74:54 
+
+74:54 Now how do you combine these? What is
+74:55 
+
+74:55 the architecture you will do? Okay. You
+74:57 
+
+74:57 have these neurons. Now how will you
+74:58 
+
+74:58 combine these neurons? What blocks you
+74:60 
+
+74:60 will keep? Let's suppose I'll I'll
+75:01 
+
+75:01 create this block. I'll have these many
+75:02 
+
+75:02 layers. Okay. these many layers with
+75:04 
+
+75:04 this uh input size and with this output
+75:06 
+
+75:06 size this all is called as architecture.
+75:08 
+
+75:08 Okay. So we saw some terms. So we saw
+75:12 
+
+75:12 architecture,
+75:14 
+
+75:14 we saw forward pass
+75:17 
+
+75:17 and we saw backward pass.
+75:22 
+
+75:22 So what is architecture? Basically how
+75:24 
+
+75:24 are how are you now doing the
+75:25 
+
+75:25 arrangement? Now you know about neurons
+75:26 
+
+75:26 and now you have to arrange them in a
+75:27 
+
+75:27 certain ways and then this architectures
+75:29 
+
+75:29 can get very very complex. Okay. And
+75:31 
+
+75:31 then you'll have to reason okay why why
+75:33 
+
+75:33 am I creating this architecture what I
+75:34 
+
+75:34 what I need by this okay so you have
+75:36 
+
+75:36 this architecture and then you have the
+75:38 
+
+75:38 solver what is the solver every
+75:39 
+
+75:39 architecture will have this now you have
+75:40 
+
+75:40 to compute once you have this weights by
+75:42 
+
+75:42 input so what will you do is you will
+75:44 
+
+75:44 take this input and you will perform
+75:46 
+
+75:46 this computation basically wrpose x and
+75:48 
+
+75:48 then you apply activation functions at
+75:50 
+
+75:50 every neuron you'll do aggregation and
+75:52 
+
+75:52 then apply activation aggregation
+75:53 
+
+75:53 activation aggregation activation at
+75:55 
+
+75:55 every neuron till you go to the end but
+75:57 
+
+75:57 once you go to the end so what you'll
+75:59 
+
+75:59 what you'll do and you'll get a result
+76:01 
+
+76:01 So and then you will res and the whole
+76:03 
+
+76:03 of this process is called forward path
+76:05 
+
+76:05 till you go from the initial input to
+76:07 
+
+76:07 the final output that the network is
+76:09 
+
+76:09 giving. So this is called forward pass.
+76:10 
+
+76:10 Then you compare it with the ground
+76:12 
+
+76:12 realy and you compare it with the things
+76:14 
+
+76:14 that you want. So once you compare that
+76:16 
+
+76:16 then you have the possibility of
+76:17 
+
+76:17 learning. You have to adjust these
+76:18 
+
+76:18 weights and biases and then you have to
+76:20 
+
+76:20 flow the information backwards. Okay. So
+76:21 
+
+76:21 by using the back propagation and
+76:23 
+
+76:23 getting descent and you do the backward
+76:24 
+
+76:24 path. This is where learning happens.
+76:27 
+
+76:27 Okay. So far you have understood
+76:28 
+
+76:28 backward pass. So you you understood
+76:30 
+
+76:30 forward pass and theoretically also you
+76:31 
+
+76:31 know what backward pass is because it's
+76:33 
+
+76:33 all by using gradients and then flowing
+76:35 
+
+76:35 it. And now the task is we'll have to
+76:37 
+
+76:37 put all of these things together to
+76:39 
+
+76:39 train it. Okay. So in architecture the
+76:42 
+
+76:42 first thing that we'll have to create is
+76:43 
+
+76:43 a neuron.
+76:45 
+
+76:45 So we we'll write a Python code which
+76:46 
+
+76:46 will create neuron and it should be able
+76:48 
+
+76:48 to create these operations. Which
+76:50 
+
+76:50 operation? It should be able to add,
+76:52 
+
+76:52 subtract, multiply, exponentiation and
+76:54 
+
+76:54 all of these things should be done
+76:55 
+
+76:55 within this neuron. So this is a data
+76:57 
+
+76:57 structure or we will make a class of
+76:58 
+
+76:58 this and after that we'll make sure that
+77:00 
+
+77:00 it does the forward pass. Okay. And then
+77:02 
+
+77:02 we'll see it does and we'll have to
+77:04 
+
+77:04 write back propagation algorithm so that
+77:05 
+
+77:05 it does the backward pass and then in
+77:07 
+
+77:07 the architecture we'll combine these
+77:09 
+
+77:09 neurons together. Okay. And we can
+77:11 
+
+77:11 create a layer and we can let's suppose
+77:13 
+
+77:13 create a CNN layer and all of these
+77:14 
+
+77:14 things come in the architecture. Okay.
+77:16 
+
+77:16 Now I'll wrap this lecture up today. So
+77:18 
+
+77:18 maybe we'll take it in next session from
+77:20 
+
+77:20 here from coding to the neuron. uh it
+77:22 
+
+77:22 will go to forward and we'll go to
+77:23 
+
+77:23 forward pass and then we'll code the
+77:25 
+
+77:25 back propagation algorithm and then
+77:27 
+
+77:27 we'll be done with the at least basics
+77:29 
+
+77:29 of deep learning and then we can move on
+77:31 
+
+77:31 with different architectures. Am I clear
+77:32 
+
+77:32 on this? Any questions?

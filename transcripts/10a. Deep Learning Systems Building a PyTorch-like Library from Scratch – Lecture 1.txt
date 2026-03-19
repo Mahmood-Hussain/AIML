@@ -1,0 +1,5584 @@
+00:00 Hello and welcome everyone. So from this
+00:02 
+
+00:02 lecture onwards we'll be having a
+00:04 
+
+00:04 separate series of lectures on deep
+00:06 
+
+00:06 learning systems
+00:12 
+
+00:12 to just give some introduction of deep
+00:14 
+
+00:14 learning systems. So we'll rather code
+00:15 
+
+00:15 these stuff up because whatever we have
+00:17 
+
+00:17 learned that was the part of theory and
+00:18 
+
+00:18 in order to see how to make computers
+00:21 
+
+00:21 understand this how to make computers do
+00:23 
+
+00:23 such things like train a neural network
+00:25 
+
+00:25 and what to do what goes underneath. So
+00:27 
+
+00:27 specifically I'll write a target here
+00:28 
+
+00:28 you should be able to understand PyTorch
+00:32 
+
+00:32 at least at the abstraction level you'll
+00:34 
+
+00:34 be able to understand and you can sketch
+00:35 
+
+00:35 out all the operations that are
+00:36 
+
+00:36 happening inside suppose when you are
+00:38 
+
+00:38 writing a is equal suppose you importing
+00:39 
+
+00:39 torch and then you are writing a is
+00:41 
+
+00:41 equal suppose torch tensor or something
+00:44 
+
+00:44 of this or torch.tensor tensor and
+00:46 
+
+00:46 something giving arguments. So you
+00:47 
+
+00:47 should be able to know or sketch out
+00:49 
+
+00:49 what what might be happening inside.
+00:51 
+
+00:51 Okay. And we will also try to create
+00:53 
+
+00:53 something like pytor mini pytorch in
+00:55 
+
+00:55 which we'll write most important
+00:57 
+
+00:57 capabilities that should be there in
+00:59 
+
+00:59 order to perform the operations of
+01:00 
+
+01:00 neural net in order to make a neural and
+01:02 
+
+01:02 train it. Okay. And that will be the
+01:05 
+
+01:05 focus of these lectures. Okay. Now we'll
+01:07 
+
+01:07 start with differentiation again. And
+01:09 
+
+01:09 you might be bored to death by hearing
+01:11 
+
+01:11 these words. So we'll again start with
+01:14 
+
+01:14 differentiation.
+01:18 
+
+01:18 So you know that differentiation like
+01:20 
+
+01:20 particularly computing the gradient. So
+01:21 
+
+01:21 when you have to compute these bunch of
+01:23 
+
+01:23 uh derivatives. So we call that
+01:25 
+
+01:25 gradient. So it is a mathematical
+01:26 
+
+01:26 backbone of these modern machine
+01:28 
+
+01:28 learning on deep learning deep learning
+01:30 
+
+01:30 algorithms. So what it does is it
+01:32 
+
+01:32 enables us to optimize these models. So
+01:33 
+
+01:33 you know all of this stuff. So now we'll
+01:35 
+
+01:35 again see that where it fits in the
+01:37 
+
+01:37 framework. Okay. I'll keep on reminding
+01:38 
+
+01:38 you this stuff so that this somehow uh
+01:41 
+
+01:41 gets stuck to your brain and it won't be
+01:43 
+
+01:43 uh lost somewhere. So you know that we
+01:45 
+
+01:45 start with data. So we have this data in
+01:47 
+
+01:47 which we know that it contains
+01:48 
+
+01:48 information and we want to learn that
+01:50 
+
+01:50 information somehow and this is the
+01:52 
+
+01:52 first step we assume. Second step is we
+01:53 
+
+01:53 have this model or which we call that
+01:55 
+
+01:55 hypothesis class.
+01:58 
+
+01:58 So we have this hypothesis class. So
+02:00 
+
+02:00 what is this hypothesis class? So we
+02:01 
+
+02:01 have family of functions. So we can call
+02:03 
+
+02:03 we have a family of functions. Let's h
+02:06 
+
+02:06 theta of x. So which are parameterized
+02:08 
+
+02:08 by theta. So it can be a neural network,
+02:10 
+
+02:10 it can be a machine learning model, it
+02:11 
+
+02:11 can be any model. So this is called a
+02:12 
+
+02:12 hypothesis class. A class a class of
+02:15 
+
+02:15 functions which we can use let's suppose
+02:17 
+
+02:17 to model something and we generally call
+02:18 
+
+02:18 it a model also like linear regression
+02:20 
+
+02:20 neural network. So all all of that can
+02:22 
+
+02:22 be called as a hypothesis class and once
+02:24 
+
+02:24 we take one thing out of that that can
+02:25 
+
+02:25 be an instance of that hypothesis class
+02:27 
+
+02:27 and we once we choose a model. So then
+02:29 
+
+02:29 the third important thing is loss
+02:31 
+
+02:31 function
+02:35 
+
+02:35 because you have to now quantify how
+02:37 
+
+02:37 better your model is. Once you chose a
+02:39 
+
+02:39 model from this hypothesis class you
+02:40 
+
+02:40 have to quantify numerically that okay I
+02:43 
+
+02:43 have chosen this model based on these if
+02:45 
+
+02:45 it's a parameterized model based on
+02:46 
+
+02:46 these parames
+02:49 
+
+02:49 function. Now one more important thing
+02:51 
+
+02:51 in this loss function is which I can
+02:52 
+
+02:52 write as four step you have to learn or
+02:54 
+
+02:54 optimize. Generally we wrote learning
+02:56 
+
+02:56 method and then today here we'll name it
+02:59 
+
+02:59 as optimization method
+03:02 
+
+03:02 optimization method or optimization
+03:04 
+
+03:04 function.
+03:06 
+
+03:06 So what is this basically? So here in
+03:08 
+
+03:08 loss function we have seen binary cross
+03:09 
+
+03:09 entropy we have seen a lot of other
+03:11 
+
+03:11 functions as well. So in the
+03:13 
+
+03:13 optimization methods so you have to
+03:15 
+
+03:15 iteratively update these parameter. It's
+03:16 
+
+03:16 parametric model. So you have to
+03:18 
+
+03:18 iteratively update these parameters.
+03:19 
+
+03:19 Here
+03:21 
+
+03:21 is the the thing here is the most
+03:22 
+
+03:22 important point why we use these
+03:24 
+
+03:24 derivatives.
+03:26 
+
+03:26 So that's why these derivatives fitted
+03:28 
+
+03:28 in the bigger picture. So you should
+03:29 
+
+03:29 know this like why are we focusing so
+03:31 
+
+03:31 much on calculus because all of this
+03:32 
+
+03:32 data we have hypothesis class we have
+03:34 
+
+03:34 this loss functions and in order to
+03:35 
+
+03:35 learn a model you'll have to optimize
+03:37 
+
+03:37 something. You'll have to have
+03:38 
+
+03:38 optimization methods and in those
+03:39 
+
+03:39 optimization methods you will use these
+03:41 
+
+03:41 derivatives. Okay. And now we will see
+03:43 
+
+03:43 how to compute these derivatives
+03:44 
+
+03:44 numerically. Okay. How look how to
+03:46 
+
+03:46 compute the derivative without the
+03:48 
+
+03:48 computationally. So we'll see what are
+03:50 
+
+03:50 the computational methods to perform
+03:51 
+
+03:51 this computational
+03:54 
+
+03:54 methods to compute to calculate
+03:58 
+
+03:58 derivatives.
+04:05 
+
+04:05 So these lectures will be a little bit
+04:07 
+
+04:07 code heavy than theory heavy. So we'll
+04:09 
+
+04:09 write a lot of code to understand this
+04:10 
+
+04:10 stuff. Okay. And because I assume that
+04:12 
+
+04:12 you have understood the theory that we
+04:14 
+
+04:14 have discussed in the previous lectures.
+04:16 
+
+04:16 Okay. Let's start again with the code.
+04:17 
+
+04:17 So okay, we'll have a function and we
+04:19 
+
+04:19 can write that function and after that
+04:21 
+
+04:21 I'll tell you what to do with that
+04:22 
+
+04:22 function. Okay, I think you also can
+04:24 
+
+04:24 visibly see the things I write here and
+04:27 
+
+04:27 you know what the derivative is. So if
+04:28 
+
+04:28 you see what a derivative is so you'll
+04:30 
+
+04:30 have a function let's suppose something
+04:31 
+
+04:31 of this f of x and if you want to take a
+04:33 
+
+04:33 derivative of this you have an easiest
+04:34 
+
+04:34 method you can take suppose f of x plus
+04:36 
+
+04:36 some small value h minus f of x divided
+04:39 
+
+04:39 by the small value h okay and that's why
+04:41 
+
+04:41 you write this limit h goes to let's
+04:44 
+
+04:44 suppose zero so this is how you compute
+04:45 
+
+04:45 the derivative okay so if I take this if
+04:49 
+
+04:49 I again if I take the same thing and
+04:50 
+
+04:50 convert this into the code okay let me
+04:52 
+
+04:52 just show you that thing and we'll get
+04:55 
+
+04:55 started
+04:57 
+
+04:57 So we'll initially import the important
+04:59 
+
+04:59 libraries so that we can easily plot
+05:02 
+
+05:02 stuff and
+05:04 
+
+05:04 do let me know that if the code is
+05:06 
+
+05:06 visible. I think it is visible.
+05:11 
+
+05:11 Okay. So this is what I have done. I
+05:13 
+
+05:13 think it's visible good. So the first
+05:15 
+
+05:15 thing is I did these imports. Now if I
+05:17 
+
+05:17 write a function suppose I write a
+05:18 
+
+05:18 quadratic function. If I write a
+05:19 
+
+05:19 quadratic function say I'll name it as
+05:21 
+
+05:21 definition quadratic and I'll write all
+05:23 
+
+05:23 of these this code will be written in
+05:25 
+
+05:25 Python. So I'll write this function. So
+05:27 
+
+05:27 what is this function now? It'll return
+05:29 
+
+05:29 something. Okay, it has a function. I'll
+05:31 
+
+05:31 copy paste the code in order to save the
+05:33 
+
+05:33 time and I'll explain you what I'm
+05:35 
+
+05:35 doing. Suppose we have this quadratic
+05:36 
+
+05:36 function. So let's suppose we can change
+05:37 
+
+05:37 these values to 5x let's suppose instead
+05:39 
+
+05:39 of this 4x we can write some 7x or
+05:41 
+
+05:41 something of that sort. So you have this
+05:43 
+
+05:43 quadratic function. Okay. And now if you
+05:45 
+
+05:45 want to comput the derivative of these
+05:46 
+
+05:46 things or something. So first let's see
+05:47 
+
+05:47 how this function looks like. So we can
+05:49 
+
+05:49 say x values and we have we can compute
+05:51 
+
+05:51 y values. Suppose we have some x value
+05:53 
+
+05:53 that is equal to this. Say we have some
+05:56 
+
+05:56 x value is equal to this. And if we want
+05:58 
+
+05:58 to compute the y- value correspondence
+05:59 
+
+05:59 our function value correspond this. You
+06:00 
+
+06:00 easily know what can we do? We'll write
+06:02 
+
+06:02 f value this quadratic function and give
+06:04 
+
+06:04 this value. If we print it you can
+06:06 
+
+06:06 easily see that this value will be
+06:09 
+
+06:09 printed over here.
+06:11 
+
+06:11 Okay. So this is 29.0. So now if we want
+06:14 
+
+06:14 to see the whole graph of this. So how
+06:15 
+
+06:15 do we plot the graph? So I'll take uh a
+06:18 
+
+06:18 range of x values and I'll apply this
+06:20 
+
+06:20 function on that range of x values in
+06:22 
+
+06:22 order to compute with y values and then
+06:23 
+
+06:23 I'll use mattplot lib to come up with
+06:25 
+
+06:25 the graph. So the first thing is let's
+06:26 
+
+06:26 come up with the generate x values.
+06:29 
+
+06:29 Okay, how to come come up with x values?
+06:30 
+
+06:30 Pretty easy. So you know that we write
+06:33 
+
+06:33 this x range function is npa range.
+06:35 
+
+06:35 It'll go from minus 5 to 5 with this
+06:37 
+
+06:37 step size of 0.25 something of this. And
+06:40 
+
+06:40 then we'll compute this y range. So how
+06:43 
+
+06:43 to compute the y range? So we'll just
+06:44 
+
+06:44 apply this quadratic function on the x
+06:47 
+
+06:47 range. So if I write that so that will
+06:49 
+
+06:49 be y range quadratic function x range.
+06:50 
+
+06:50 So now I have x values and I have
+06:52 
+
+06:52 corresponding y values. I can print both
+06:54 
+
+06:54 of these values if I show you. So I can
+06:56 
+
+06:56 let's suppose print you you have seen
+06:58 
+
+06:58 this y range. So you know oops have we
+07:02 
+
+07:02 defined numpy
+07:04 
+
+07:04 this cell was not
+07:08 
+
+07:08 executed. So now you see you have x
+07:10 
+
+07:10 range and you have this y range and
+07:11 
+
+07:11 these are the values corresponding to
+07:12 
+
+07:12 that. And now you know how to plot the
+07:14 
+
+07:14 function. If I have to plot a function.
+07:15 
+
+07:15 So I'll just paste the code of plotting.
+07:18 
+
+07:18 So here you can see this. So this is
+07:22 
+
+07:22 the plotting code. So what is this? You
+07:24 
+
+07:24 can see plot figure. So I'm making this
+07:26 
+
+07:26 and then I'm telling you plot this is
+07:27 
+
+07:27 the x and this is y range and give the
+07:30 
+
+07:30 label correspond to this. And I have
+07:31 
+
+07:31 changed this function. So you can
+07:32 
+
+07:32 accordingly change the code and this is
+07:34 
+
+07:34 how these lines should and you also
+07:36 
+
+07:36 write a scatter plot and then I'll show
+07:37 
+
+07:37 you this code suppose. So if you see
+07:40 
+
+07:40 this is the point at which we wanted the
+07:42 
+
+07:42 value the the 2.5 point. Okay. So I'll
+07:45 
+
+07:45 just make it a little bit smaller so
+07:47 
+
+07:47 that the whole graph is visible. So if
+07:49 
+
+07:49 you see this this over here. So this is
+07:52 
+
+07:52 the visualization of this qualitative
+07:53 
+
+07:53 function. Okay. And now what is the
+07:55 
+
+07:55 derivative over here? So if you want to
+07:57 
+
+07:57 compute derivative I know you people
+07:58 
+
+07:58 know that what derivative is. So
+07:59 
+
+07:59 derivative basically means the rate of
+08:01 
+
+08:01 change. We have to see the rate of
+08:02 
+
+08:02 change. So in this if you see clearly
+08:03 
+
+08:03 this red point at say x is equal 3 or x=
+08:06 
+
+08:06 2. Whatever the value was. So this shows
+08:08 
+
+08:08 us that at f= 3 what is the value? So
+08:10 
+
+08:10 the value let's suppose over here if it
+08:11 
+
+08:11 is this 3x^2 - 4x + 5 at x= 3 I think
+08:15 
+
+08:15 this will be 30. So you can you can see
+08:16 
+
+08:16 that value and now we'll have to compute
+08:18 
+
+08:18 the derivative of this. How to comput d
+08:20 
+
+08:20 the formula the computer in order to
+08:21 
+
+08:21 comput you have this function f of x and
+08:23 
+
+08:23 you'll perturb it a bit. You'll add some
+08:26 
+
+08:26 value h to it because you want to see
+08:27 
+
+08:27 the rate of change and instantaneous
+08:29 
+
+08:29 rate of change and then you'll say this
+08:30 
+
+08:30 value f of x and then you will divide by
+08:32 
+
+08:32 h. This is what you'll do. Okay let me
+08:34 
+
+08:34 write that in the code as well. Okay. So
+08:36 
+
+08:36 how I can do that? If I have to do this
+08:37 
+
+08:37 called numerical derivative. So I'll
+08:39 
+
+08:39 write the code for numerical derivative.
+08:41 
+
+08:41 So the suppose numerical derivative I'll
+08:43 
+
+08:43 name a function definition of numerical
+08:45 
+
+08:45 derivative.
+08:47 
+
+08:47 Okay this is numerical fx h and then I
+08:50 
+
+08:50 will return the same thing that I wrote
+08:52 
+
+08:52 mathematically. Okay. So I'll return
+08:55 
+
+08:55 this. So I'll say fx + h minus f of x /
+08:58 
+
+08:58 h. So this will give me the numerical
+08:60 
+
+08:60 derivative. Suppose if I write h is
+09:02 
+
+09:02 equal to this. So I will write h is
+09:06 
+
+09:06 equal to 0.001 and then I'll comput a
+09:09 
+
+09:09 derivative at a particular point and you
+09:11 
+
+09:11 know we have defined x point at the top
+09:13 
+
+09:13 the value of x point if you see over
+09:14 
+
+09:14 here. So this is the point x point is
+09:17 
+
+09:17 three. So we want to compute derative at
+09:19 
+
+09:19 a particular point. Okay. Usually you
+09:22 
+
+09:22 know the rate of change is actually to
+09:23 
+
+09:23 be computed via two points. So we should
+09:26 
+
+09:26 have two points in order to compute the
+09:28 
+
+09:28 rate of change. But that is a specialty
+09:29 
+
+09:29 of derivative. You have to compute
+09:30 
+
+09:30 instantaneous rate of change and this
+09:32 
+
+09:32 rate of change will be at a particular
+09:33 
+
+09:33 point. So you have this point. I'll
+09:35 
+
+09:35 compute this derivative derative
+09:36 
+
+09:36 approximation. You take this derivative
+09:38 
+
+09:38 and you give this a function. So you're
+09:39 
+
+09:39 giving this as a function and then on
+09:41 
+
+09:41 this function you're applying this
+09:42 
+
+09:42 argument and subtracting f fx and then
+09:44 
+
+09:44 dividing by h. So this is my f of x. So
+09:46 
+
+09:46 f of x is the function. So and after
+09:48 
+
+09:48 that what I'm trying to do is I'm trying
+09:50 
+
+09:50 to give it a point and I'm trying to
+09:52 
+
+09:52 nudge the value. So I have x point and
+09:53 
+
+09:53 I'm trying to nudge it a bit and then I
+09:55 
+
+09:55 want to see what is the change and I
+09:56 
+
+09:56 want to print the derivative. So now if
+09:59 
+
+09:59 you see this
+10:01 
+
+10:01 so if many of you people will know so
+10:03 
+
+10:03 let's suppose if I write this function
+10:05 
+
+10:05 again so the function over here is this
+10:06 
+
+10:06 so this is the function so if I copy
+10:08 
+
+10:08 this function and I'll paste this
+10:11 
+
+10:11 function over here so as to have this in
+10:14 
+
+10:14 the view
+10:16 
+
+10:16 okay this is my function suppose okay
+10:18 
+
+10:18 you know if you take derivative of this
+10:20 
+
+10:20 with respect to x and you know it's a
+10:23 
+
+10:23 quadratic function it'll turn to linear
+10:24 
+
+10:24 so the answer should be 5x so and all of
+10:27 
+
+10:27 this so let's suppose the 5x - 7. So if
+10:29 
+
+10:29 you take derivative of this directly by
+10:31 
+
+10:31 using symbolic derivative representation
+10:34 
+
+10:34 and you can use that you can see that
+10:35 
+
+10:35 taking derivative with respect x you
+10:36 
+
+10:36 will get 5x - 7 will be the derative and
+10:39 
+
+10:39 if I have to compute that value at point
+10:41 
+
+10:41 3.0 now this is 5x - 7. So 5 * this x
+10:46 
+
+10:46 point now x is 3. So 5 into 3 is 15. 15
+10:49 
+
+10:49 - 7 is 8. So the value should be 8. So
+10:51 
+
+10:51 now we should get the same value by
+10:53 
+
+10:53 this. Okay. By the definition of
+10:54 
+
+10:54 derivatives. Okay. So if I have to print
+10:57 
+
+10:57 now these points. So what I will do is
+11:00 
+
+11:00 I'll paste these lines of code over
+11:02 
+
+11:02 here. So this is oops.
+11:05 
+
+11:05 So if I
+11:07 
+
+11:07 just paste this. So the numerical
+11:08 
+
+11:08 approximation says so this is the
+11:10 
+
+11:10 numerical approximation and this is the
+11:11 
+
+11:11 actual derivative. So actual derivative
+11:13 
+
+11:13 should be 5x. So this is 2 10 brother. I
+11:16 
+
+11:16 think I have made the wrong calculation.
+11:17 
+
+11:17 So 5x square means 10 x. So 10 x - 7.
+11:22 
+
+11:22 Okay. 10 x - 7 in this case will be 10
+11:24 
+
+11:24 into 3 means 30 30 - 7 is 21. So this
+11:27 
+
+11:27 will be 21. So this value should be 21
+11:29 
+
+11:29 and the approximate value should also
+11:30 
+
+11:30 give us 21. So if I just write it I
+11:33 
+
+11:33 think 23 some calculations here and
+11:35 
+
+11:35 there. So this is 10. This is point can
+11:40 
+
+11:40 you take the calculations? So is it
+11:41 
+
+11:41 right? 3 30 30 - 7 23. Yes. And 30 - 7
+11:46 
+
+11:46 is 23. Yes. So I'll because I'm thinking
+11:49 
+
+11:49 a lot at the same time when I'm speaking
+11:51 
+
+11:51 this. So I'll have calculation mistakes
+11:53 
+
+11:53 will be there. So if you see this is
+11:54 
+
+11:54 right. So I did this with the numerical
+11:57 
+
+11:57 derivative by applying the formula. And
+11:59 
+
+11:59 the second thing is I did it with the
+11:60 
+
+11:60 actual derivative by using symbolic
+12:01 
+
+12:01 representation. So as you clear can
+12:02 
+
+12:02 clearly see that this function was not
+12:04 
+
+12:04 this function was 5x². So the derivative
+12:06 
+
+12:06 will be 10 x - 7. So that's what we have
+12:08 
+
+12:08 written over here. The derivative is 10
+12:09 
+
+12:09 x - 7 and that is what we have. And now
+12:12 
+
+12:12 if you see this is an approximate value.
+12:14 
+
+12:14 There is some value here and there but
+12:16 
+
+12:16 you can see this these value are pretty
+12:18 
+
+12:18 comparable. So this is how you can
+12:19 
+
+12:19 compute derivative. Okay. And now
+12:22 
+
+12:22 usually you you will not use this method
+12:24 
+
+12:24 to compute derivative. As I said in the
+12:25 
+
+12:25 previous class as well, you won't use
+12:26 
+
+12:26 the symbolic representation. So you will
+12:28 
+
+12:28 use what is called autograd or automatic
+12:30 
+
+12:30 differentiation. So we'll later on see
+12:32 
+
+12:32 that also. But here usually we use these
+12:34 
+
+12:34 methods to check. So these methods are
+12:36 
+
+12:36 used to check the derivative because
+12:37 
+
+12:37 these autograd derivatives computing
+12:39 
+
+12:39 that it's it's a bit hectic and it
+12:42 
+
+12:42 involves a lot of symbols and a lot of
+12:43 
+
+12:43 computations. So sometimes you're not
+12:45 
+
+12:45 sure is the calculation right or wrong.
+12:46 
+
+12:46 That's why I'm here I'm showing you to
+12:48 
+
+12:48 write these things as well. Why? Because
+12:50 
+
+12:50 once you apply once you code these
+12:52 
+
+12:52 things up of auto grad or you code these
+12:55 
+
+12:55 things and you'll have to have a
+12:56 
+
+12:56 comparison method. So what you should do
+12:58 
+
+12:58 is you will compute that thing with this
+13:00 
+
+13:00 with let's suppose numerical derivatives
+13:02 
+
+13:02 and once you apply the autograd
+13:03 
+
+13:03 automatic differentiation and then you
+13:05 
+
+13:05 should be able to see okay the answer is
+13:06 
+
+13:06 quite near that means my answer is
+13:08 
+
+13:08 correct. Okay let's do a little bit uh
+13:11 
+
+13:11 better example than just accordion.
+13:13 
+
+13:13 We'll take some linear combination
+13:14 
+
+13:14 because you know in neural networks what
+13:15 
+
+13:15 do we do? we take some linear
+13:16 
+
+13:16 combination or fine transformation that
+13:18 
+
+13:18 we got. Let's take three values a b and
+13:20 
+
+13:20 c and I can write a multiply by b plus c
+13:22 
+
+13:22 something of this sort. Come up with a
+13:23 
+
+13:23 function of this sort. So we have a
+13:25 
+
+13:25 function definition linear combination
+13:27 
+
+13:27 and it'll return a * b + c. If I return
+13:31 
+
+13:31 this value return a into b plus c. So
+13:34 
+
+13:34 now I can give some initial values to a
+13:36 
+
+13:36 not b c not. So I want to create a
+13:38 
+
+13:38 function of this now. So this is the
+13:40 
+
+13:40 initial values. A not b c not is 2.0 3.0
+13:43 
+
+13:43 and 10. And if I have to have D not now.
+13:45 
+
+13:45 So this is what we'll do in the neural
+13:47 
+
+13:47 networks. We will have these weights and
+13:49 
+
+13:49 BS instead of this. So we'll have D not
+13:50 
+
+13:50 now. That is the inner combination of
+13:51 
+
+13:51 all of these values. Okay. I can print
+13:54 
+
+13:54 the initial value of all of these
+13:55 
+
+13:55 things. So I can say initial value of
+13:58 
+
+13:58 this. So you can clearly see initial
+13:60 
+
+13:60 value of D 2.0 3.0 and 10.0. This is
+14:03 
+
+14:03 4.0. Once you compute all this linear
+14:05 
+
+14:05 combination, so this D not is equal to
+14:06 
+
+14:06 this. Okay. So D of these values is
+14:09 
+
+14:09 equal 4.0. Okay. Now if I have to again
+14:11 
+
+14:11 compute the numerical partial
+14:13 
+
+14:13 derivatives in this case we will not
+14:14 
+
+14:14 compute the whole derivative. Now we'll
+14:16 
+
+14:16 compute the partial derivative and you
+14:17 
+
+14:17 know what partial derivative is. So in
+14:18 
+
+14:18 that other things will be kept constant
+14:20 
+
+14:20 and what will you do? You will just with
+14:22 
+
+14:22 respect to whatever you taking the
+14:24 
+
+14:24 derivative with respect to and you'll
+14:25 
+
+14:25 keep that term as variable and rest of
+14:27 
+
+14:27 the things will be constant. Let me also
+14:29 
+
+14:29 write a definition of that. So we'll
+14:31 
+
+14:31 call that numerical partial derivative.
+14:33 
+
+14:33 So numerical partial derivative will be
+14:35 
+
+14:35 written like this. And then what we'll
+14:37 
+
+14:37 do is we'll say put up values because
+14:38 
+
+14:38 we'll have a lot of these values. Now,
+14:40 
+
+14:40 so we can say we have we'll create a
+14:43 
+
+14:43 portable list of inputs.
+14:46 
+
+14:46 So if you see we are taking these we're
+14:48 
+
+14:48 taking this function as an input. Okay.
+14:49 
+
+14:49 And then we're taking variable index and
+14:51 
+
+14:51 then we are taking this variable index
+14:53 
+
+14:53 basically means at what which which is
+14:56 
+
+14:56 which among these list the values is a
+14:58 
+
+14:58 variable and rest will treat as
+14:59 
+
+14:59 constants. The first thing over here is
+15:01 
+
+15:01 we'll create a portable input. So put
+15:03 
+
+15:03 input is equal to list of the inputs.
+15:06 
+
+15:06 Okay. And put up inputs will just take
+15:08 
+
+15:08 that particular we'll index this we'll
+15:11 
+
+15:11 index this whole list and we'll just put
+15:12 
+
+15:12 up that value that particular value okay
+15:14 
+
+15:14 and then we'll say the part inputs is
+15:16 
+
+15:16 equal part of inputs basically we'll
+15:17 
+
+15:17 make a tuple out of it okay and after
+15:19 
+
+15:19 this we'll return this again the same
+15:21 
+
+15:21 thing
+15:24 
+
+15:24 okay we'll take we'll return this f of
+15:28 
+
+15:28 so because we'll be given a function and
+15:30 
+
+15:30 we'll have these inputs minus the actual
+15:32 
+
+15:32 inputs that we had divide by h so we did
+15:33 
+
+15:33 the same thing but rest here because we
+15:35 
+
+15:35 had lot of inputs again to show you this
+15:37 
+
+15:37 in the picture or writing because I can
+15:40 
+
+15:40 now consider mathematics as picture. So
+15:42 
+
+15:42 if you have let's suppose some derative
+15:44 
+
+15:44 you have a mult* b plus c okay and if
+15:46 
+
+15:46 you have to take derivative of this with
+15:48 
+
+15:48 respect to a partial derivative okay so
+15:50 
+
+15:50 what you will do is you will consider
+15:51 
+
+15:51 this to be a variable and these to be
+15:54 
+
+15:54 constant but you know this now you have
+15:55 
+
+15:55 these values a b and c this will be a
+15:57 
+
+15:57 suppose a list of values so you will
+15:59 
+
+15:59 take this as input and you will take
+15:60 
+
+15:60 function and you'll take a index let's
+16:02 
+
+16:02 suppose here you have index this at
+16:03 
+
+16:03 index zero index so this is what we will
+16:06 
+
+16:06 put up and rest will keep as constants
+16:08 
+
+16:08 and that's what I'm writing over here if
+16:10 
+
+16:10 you see this is what I'm writing I'm
+16:11 
+
+16:11 saying put inputs is list of inputs. So
+16:13 
+
+16:13 what are inputs I'm getting? Okay. And
+16:15 
+
+16:15 this is with respect to what are you
+16:16 
+
+16:16 differentiating okay and once you get
+16:19 
+
+16:19 these put up inputs and on that list
+16:22 
+
+16:22 basically it'll you'll be forming a list
+16:23 
+
+16:23 of this sort say list is this this is a
+16:25 
+
+16:25 b and c and you just want to put up this
+16:28 
+
+16:28 value a so how will you put up this
+16:30 
+
+16:30 because you have this variable index so
+16:32 
+
+16:32 you have the index on at which you want
+16:33 
+
+16:33 to put up so you will just increment
+16:35 
+
+16:35 this value. So that's what I'm doing for
+16:37 
+
+16:37 put up inputs variable in plus is equal
+16:40 
+
+16:40 to h. So I'm just incrementing this
+16:42 
+
+16:42 value by this value h and what I'm after
+16:44 
+
+16:44 that doing this portable inputs now I'm
+16:46 
+
+16:46 saying this is a tpple of all these
+16:47 
+
+16:47 inputs again make a tpple of this okay
+16:49 
+
+16:49 so make a tpple of this and then I'm
+16:51 
+
+16:51 saying return this so apply this
+16:52 
+
+16:52 function f on the portable inputs okay
+16:55 
+
+16:55 and then minus f of these inputs and if
+16:57 
+
+16:57 you see I have written star over here
+16:59 
+
+16:59 why this star because it it'll unpack
+17:01 
+
+17:01 these arguments okay if you haven't
+17:02 
+
+17:02 learned enough python to understand this
+17:04 
+
+17:04 so put input it will be a list of these
+17:06 
+
+17:06 things and it has to unpack the this
+17:08 
+
+17:08 function it will have to unpack these
+17:09 
+
+17:09 values okay so to unpack them these
+17:11 
+
+17:11 values and apply this function onto that
+17:13 
+
+17:13 and then I have written divide by h now
+17:16 
+
+17:16 okay let's compute this partial
+17:17 
+
+17:17 derivative suppose we have this again
+17:18 
+
+17:18 the same thing we have h is equal 01
+17:23 
+
+17:23 okay and now we'll compute partial
+17:25 
+
+17:25 derivative respect to a we have b and c
+17:27 
+
+17:27 so let me do that in one shot so this is
+17:30 
+
+17:30 partial derivative so you'll take this
+17:32 
+
+17:32 numerical derivative linear combination
+17:33 
+
+17:33 function because this is the function
+17:34 
+
+17:34 that you had and you want to say index
+17:36 
+
+17:36 zero basically partial derative with
+17:38 
+
+17:38 respect to a and then partial derivative
+17:40 
+
+17:40 is B. So you'll just change the index A1
+17:42 
+
+17:42 and then you change the index over here.
+17:45 
+
+17:45 So if I see this, so you can compute the
+17:48 
+
+17:48 partial derivative with respect to A
+17:49 
+
+17:49 with B and C over here. And these are
+17:50 
+
+17:50 the values exact values and you know
+17:52 
+
+17:52 where are you computing at and you are
+17:53 
+
+17:53 giving that that particular value also
+17:55 
+
+17:55 over here. I hope this is clear. Any
+17:58 
+
+17:58 questions still here?
+18:01 
+
+18:01 So if you understood this, let's move
+18:03 
+
+18:03 forward then.
+18:07 
+
+18:07 Okay. And you can also plot these
+18:08 
+
+18:08 partial derivatives if you want to see
+18:09 
+
+18:09 these partial derivatives because you
+18:11 
+
+18:11 know again this will be linear. So I we
+18:13 
+
+18:13 can fix let's suppose something we can
+18:14 
+
+18:14 fix B and C and vary let's suppose from
+18:18 
+
+18:18 let's suppose we'll take this A and
+18:19 
+
+18:19 we'll make make it vary from say - 5 to
+18:22 
+
+18:22 5 and we can show you the graphs as
+18:24 
+
+18:24 well. Okay let me show you that as well
+18:27 
+
+18:27 if I write that code. So what are we
+18:30 
+
+18:30 trying to do here? We are fixing B is
+18:31 
+
+18:31 equal minus3 and C is equal 10 and then
+18:33 
+
+18:33 we are varying A from minus 5 to 5
+18:35 
+
+18:35 because we want to have different A
+18:37 
+
+18:37 values and then we are taking this and
+18:39 
+
+18:39 you can have the partial derivative
+18:41 
+
+18:41 plots something of this sort. So you'll
+18:43 
+
+18:43 see this okay so uh this is partial
+18:47 
+
+18:47 derivative of D with respect to A. This
+18:50 
+
+18:50 is minus 3 roughly. So partial
+18:51 
+
+18:51 derivative of B with respect to partial
+18:53 
+
+18:53 dative of D with respect to B is roughly
+18:55 
+
+18:55 two and partial derivative of D with
+18:58 
+
+18:58 respect to C is 1. And now we are seeing
+18:60 
+
+19:00 given that a is equal to b is equal
+19:02 
+
+19:02 minus 3 and you are taking this c as
+19:04 
+
+19:04 variable. Okay. I hope that this is
+19:05 
+
+19:05 clear for everyone.
+19:10 
+
+19:10 So now if you understood this let's move
+19:12 
+
+19:12 on.
+19:14 
+
+19:14 So in order to do this now the first
+19:16 
+
+19:16 thing is we will have to have we'll have
+19:18 
+
+19:18 neural networks. So in that neural
+19:19 
+
+19:19 networks if you understood that so what
+19:22 
+
+19:22 we should do is let me just
+19:26 
+
+19:26 okay so in these we'll have these
+19:28 
+
+19:28 different expressions. So we'll have var
+19:29 
+
+19:29 and b you'll have w x plus bias okay
+19:31 
+
+19:31 something of this sort and then you'll
+19:32 
+
+19:32 apply some function onto this okay so
+19:34 
+
+19:34 each of this value if you take suppose
+19:36 
+
+19:36 we'll take the expression the small
+19:37 
+
+19:37 expression we have a multiplied by b
+19:38 
+
+19:38 plus c something of this sort so now we
+19:40 
+
+19:40 have learned about computation graphs so
+19:42 
+
+19:42 we saw that we have a okay and then once
+19:45 
+
+19:45 you let's suppose take a and you
+19:47 
+
+19:47 multiply this you have b you multiply
+19:49 
+
+19:49 this and you will get some a okay and
+19:51 
+
+19:51 then you add some c to this so you'll
+19:53 
+
+19:53 add some c to this
+19:56 
+
+19:56 suppose you'll add c to this and then
+19:58 
+
+19:58 you will you get an expression D
+19:59 
+
+19:59 something of this sort and all of these
+20:00 
+
+20:00 will be nodes in that computational
+20:02 
+
+20:02 graph okay and each of this thing each
+20:05 
+
+20:05 of this if this is a weight or a bias so
+20:07 
+
+20:07 this will be having corresponding like
+20:09 
+
+20:09 let's suppose for this particular thing
+20:10 
+
+20:10 so it will be having gradient so if we
+20:12 
+
+20:12 have to compute grad with respect to
+20:13 
+
+20:13 this so we'll have a loss function at
+20:15 
+
+20:15 the end so here we'll have loss function
+20:17 
+
+20:17 so loss functions gradient will be
+20:18 
+
+20:18 computed with respect to this let's
+20:20 
+
+20:20 suppose AB what is the derivative of
+20:22 
+
+20:22 loss function with respect to this node
+20:24 
+
+20:24 AB and you should know that how did this
+20:26 
+
+20:26 AB came into the picture so because we
+20:27 
+
+20:27 had this a and b and we multiply them
+20:29 
+
+20:29 together and then we got a so you have
+20:31 
+
+20:31 to have this thing into the mind so if
+20:32 
+
+20:32 you now have to construct a thing like
+20:34 
+
+20:34 that where you should store gradients
+20:36 
+
+20:36 you should store what operations were
+20:37 
+
+20:37 there and let's suppose which children
+20:39 
+
+20:39 are there something of this sort we'll
+20:41 
+
+20:41 have to come up with our own data
+20:43 
+
+20:43 structure
+20:46 
+
+20:46 so now you saw that we have these nodes
+20:48 
+
+20:48 and now for these nodes we should have
+20:49 
+
+20:49 some uh userdefined data structure
+20:54 
+
+20:54 user defined data structure
+20:57 
+
+20:57 that's We'll use classes. Okay. So we'll
+20:59 
+
+20:59 have to have these parameters because
+21:00 
+
+21:00 you know that each of these can be
+21:02 
+
+21:02 considered as parameter. This is a
+21:03 
+
+21:03 weight or a bias. So it should have
+21:05 
+
+21:05 gradient corresponding to that. It
+21:06 
+
+21:06 should also have which operation
+21:08 
+
+21:08 actually was done in order to get this.
+21:11 
+
+21:11 And what are the children nodes or what
+21:13 
+
+21:13 are the nodes which resulted in this.
+21:14 
+
+21:14 Okay. So let's suppose if you have this
+21:15 
+
+21:15 A and it has two nodes. It has some C
+21:17 
+
+21:17 and D. So you know this A was the
+21:20 
+
+21:20 causation of this C and D. Similarly in
+21:22 
+
+21:22 this case in this particular case this A
+21:23 
+
+21:23 we got it from A and B. A and B can be
+21:25 
+
+21:25 called as children of A. And then we had
+21:27 
+
+21:27 this operation star over here. So we
+21:29 
+
+21:29 said or multiplication. The operation
+21:31 
+
+21:31 multiplication once performed on this A
+21:33 
+
+21:33 and B gave us the result AB. So we have
+21:35 
+
+21:35 to come up with our own data structure.
+21:37 
+
+21:37 And we'll here use classes.
+21:40 
+
+21:40 Okay. You'll use object oriented design.
+21:41 
+
+21:41 So we'll first come up with the classes.
+21:43 
+
+21:43 Okay. We'll write a class which is known
+21:44 
+
+21:44 as parameters because I now want to
+21:46 
+
+21:46 first create those weights and biases.
+21:48 
+
+21:48 Okay. After that I'll create a whole
+21:50 
+
+21:50 network out of these things. I'll put
+21:51 
+
+21:51 them layer by layer and then I'll apply
+21:52 
+
+21:52 forward pass. I'll apply backward pass.
+21:54 
+
+21:54 We have to learn all of that stuff.
+21:55 
+
+21:55 Okay. Let me start with that. Now, so
+21:58 
+
+21:58 far what we have done is we just learned
+21:59 
+
+21:59 about derivatives and why they fit in.
+22:00 
+
+22:00 So I told you there is a method which
+22:02 
+
+22:02 called as numerical derivative
+22:04 
+
+22:04 derivative method and in that you
+22:05 
+
+22:05 basically use the definition of
+22:06 
+
+22:06 derivative and you get the approximate
+22:09 
+
+22:09 answers. Okay. And in order there is one
+22:11 
+
+22:11 one more method that people generally
+22:12 
+
+22:12 use I I should also tell you that that
+22:15 
+
+22:15 is way more accurate than the first
+22:17 
+
+22:17 order derivative. So when when you use
+22:18 
+
+22:18 this method and you have to you
+22:20 
+
+22:20 generally use this f of x plus h minus f
+22:22 
+
+22:22 of x. So it gives you some error. Okay.
+22:24 
+
+22:24 Okay. So in order to reduce the error
+22:26 
+
+22:26 there is a method this which called as
+22:29 
+
+22:29 two difference method I suppose.
+22:31 
+
+22:31 So we have difference method and this
+22:33 
+
+22:33 method basically f of x plus h minus f
+22:36 
+
+22:36 of x divided by h this is called
+22:38 
+
+22:38 difference method. So now in two
+22:40 
+
+22:40 different method what you generally do
+22:41 
+
+22:41 is so you'll take f of say x plus so
+22:45 
+
+22:45 this will be some h value and then f of
+22:48 
+
+22:48 x minus h and then you divide it by 2 h.
+22:51 
+
+22:51 So this thing is called as two different
+22:52 
+
+22:52 method and this is more this gives you
+22:54 
+
+22:54 more accurate value. So this is more
+22:56 
+
+22:56 accurate than this generally in order to
+22:57 
+
+22:57 check. So you'll use this method. So if
+22:59 
+
+22:59 I write this in terms of say these theta
+23:02 
+
+23:02 vector. So if you have this f of theta
+23:05 
+
+23:05 is your function and you want to take
+23:06 
+
+23:06 the derivative with respect to some
+23:08 
+
+23:08 theta i because you'll have a lot of
+23:09 
+
+23:09 thetas. So what you will do is so you
+23:11 
+
+23:11 write it like this. So you write f of
+23:12 
+
+23:12 theta plus epsilon or maybe that h is
+23:15 
+
+23:15 the small value and I'll write ei. So
+23:17 
+
+23:17 what is this ei? So this ei is the one
+23:19 
+
+23:19 hot vector. So it is 0 0 0 and just on i
+23:23 
+
+23:23 value it is one rest it's again 0 0 0
+23:24 
+
+23:24 because you have you have all these you
+23:26 
+
+23:26 have a vector of this. So you take all
+23:28 
+
+23:28 these thetas and you just want to put up
+23:30 
+
+23:30 one value that's what we did in the code
+23:31 
+
+23:31 right now and then this is
+23:35 
+
+23:35 minus f of theta / epsilon. Okay here
+23:39 
+
+23:39 you know that limit epsilon ts to zero
+23:42 
+
+23:42 something of this sort again similarly
+23:43 
+
+23:43 if you have to use two difference method
+23:45 
+
+23:45 okay which reduces error. So there you
+23:46 
+
+23:46 will say f of theta / by say we are
+23:51 
+
+23:51 doing it with respect theta i as in this
+23:53 
+
+23:53 case. So we'll now take two differences
+23:55 
+
+23:55 limit of epsilon goes to zero f of and
+23:59 
+
+23:59 in this case we'll take theta plus
+24:02 
+
+24:02 this epsilon ei minus f of theta minus
+24:08 
+
+24:08 epsilon
+24:10 
+
+24:10 ei
+24:11 
+
+24:11 oops epsilon ei divided by this is
+24:16 
+
+24:16 2 epsilon okay so this is the two
+24:18 
+
+24:18 reference method which is more accurate
+24:19 
+
+24:19 so this is this gives more accurate
+24:21 
+
+24:21 results
+24:25 
+
+24:25 Okay. And y part is left to you people
+24:28 
+
+24:28 and because you know Taylor series so
+24:29 
+
+24:29 you should be able to tell me why is
+24:31 
+
+24:31 this so okay I'll just leave this and
+24:34 
+
+24:34 because we will be mostly probably
+24:35 
+
+24:35 either using this or this for the
+24:38 
+
+24:38 checking purpose because as I told you
+24:40 
+
+24:40 this is not the optimal way to do it in
+24:42 
+
+24:42 computation but it will directly give
+24:44 
+
+24:44 you approximate answers and you can just
+24:45 
+
+24:45 check your value. So how do you
+24:46 
+
+24:46 generally do it? So what we basically do
+24:48 
+
+24:48 is so we have something called as
+24:49 
+
+24:49 numerical gradient checking. So in that
+24:51 
+
+24:51 what we try to do is so we'll have some
+24:53 
+
+24:53 delta t so we'll take some random value
+24:55 
+
+24:55 delta and if you have to compute this
+24:59 
+
+24:59 okay so you'll use the definition
+25:01 
+
+25:01 epsilon of so you'll put up these values
+25:04 
+
+25:04 a bit little bit and then you'll use
+25:06 
+
+25:06 let's if you use two difference method
+25:09 
+
+25:09 divided by so two epsilon so you'll use
+25:12 
+
+25:12 this so what you basically try to do is
+25:13 
+
+25:13 you'll compute this by autograd okay on
+25:16 
+
+25:16 the left hand side when you want to
+25:17 
+
+25:17 compute derivative you'll use some
+25:18 
+
+25:18 method okay so on this right hand You'll
+25:20 
+
+25:20 use this numerical differentiation
+25:22 
+
+25:22 method and you'll choose this delta
+25:24 
+
+25:24 coordinate and you will compare the
+25:25 
+
+25:25 value. Are they accurate? Are they do
+25:28 
+
+25:28 both sides agree? So you will use this
+25:30 
+
+25:30 to check the gradient. So this is called
+25:31 
+
+25:31 gradient checking. So gradient
+25:35 
+
+25:35 checking. So why do we need to check the
+25:37 
+
+25:37 gradient? You know why we need to check?
+25:39 
+
+25:39 Because we'll be performing a lot of
+25:40 
+
+25:40 back propagation and we'll have to check
+25:41 
+
+25:41 the gradients all the time. Okay, with
+25:44 
+
+25:44 this I was this was just a cover up.
+25:47 
+
+25:47 This was just the revision of what we
+25:48 
+
+25:48 covered so far. So we're discussing
+25:49 
+
+25:49 about we have to come up with this
+25:50 
+
+25:50 parameter. So we have to have parameter
+25:53 
+
+25:53 in which we we should have gradient and
+25:56 
+
+25:56 we should have operations corresponding
+25:57 
+
+25:57 what operation led to this and we should
+25:59 
+
+25:59 have what are the children it has.
+26:02 
+
+26:02 Okay. So all these things should be kept
+26:03 
+
+26:03 in some data structure. So as I said
+26:05 
+
+26:05 because we don't have the data structure
+26:06 
+
+26:06 where we can directly keep it. So we'll
+26:07 
+
+26:07 make a class out of this. So once we
+26:09 
+
+26:09 make class at least it should hold the
+26:10 
+
+26:10 it should hold gradient operation
+26:12 
+
+26:12 children and we'll see if it holds some
+26:14 
+
+26:14 other things and we'll keep on adding
+26:15 
+
+26:15 the functionalities to this. So this is
+26:16 
+
+26:16 similar to what we have in pytor tensor.
+26:18 
+
+26:18 So tensor in that tensor you have let's
+26:20 
+
+26:20 suppose it holds a value. Okay more
+26:22 
+
+26:22 important thing is it should also hold a
+26:24 
+
+26:24 value. Okay by value I mean let's
+26:26 
+
+26:26 suppose this a can be 2.0. It should
+26:28 
+
+26:28 have some value. Weight will be having a
+26:29 
+
+26:29 value. Bias will be having a particular
+26:31 
+
+26:31 value and bias will be having a gradient
+26:33 
+
+26:33 with respect to the loss function. It'll
+26:34 
+
+26:34 have what operations led towards this.
+26:36 
+
+26:36 Okay. And it should have uh the
+26:38 
+
+26:38 childrens basically what led to this and
+26:41 
+
+26:41 we will create a class now. Okay.
+26:45 
+
+26:45 Okay. have to understand all this
+26:46 
+
+26:46 background and now we'll go to code and
+26:47 
+
+26:47 this code will be used in the library.
+26:49 
+
+26:49 So you this is the primary thing that
+26:51 
+
+26:51 you should write because I expect from
+26:53 
+
+26:53 you people uh is that once I write this
+26:55 
+
+26:55 code and many of you people will clean
+26:56 
+
+26:56 up the code and what they'll do is
+26:58 
+
+26:58 they'll have separate files for all of
+26:60 
+
+26:60 these things and then they'll make a
+27:01 
+
+27:01 mini pytor thing and we'll later on name
+27:03 
+
+27:03 it. Okay, now let's go to the code
+27:05 
+
+27:05 again. So I hope the code is visible
+27:11 
+
+27:11 now.
+27:13 
+
+27:13 Okay, let's call a class parameters.
+27:14 
+
+27:14 Okay, we'll make a class parameters and
+27:16 
+
+27:16 first I'll import some things from a
+27:18 
+
+27:18 module called as typing because it'll
+27:20 
+
+27:20 make my life easier. So I'll import like
+27:23 
+
+27:23 suppose I set tuple and I'll also import
+27:25 
+
+27:25 math if I need it. I might be needing
+27:27 
+
+27:27 it. So the first thing that I'll do I'll
+27:29 
+
+27:29 create a class parameter okay and let me
+27:32 
+
+27:32 call that class class params and this
+27:33 
+
+27:33 will be my weights and biases. So if you
+27:36 
+
+27:36 see pytor pytors will have this as named
+27:38 
+
+27:38 tensor. So we'll name it as here as
+27:39 
+
+27:39 parameters. The first thing is I'll
+27:41 
+
+27:41 write this constructor or the
+27:42 
+
+27:42 initialization. So what I'll do is I'll
+27:44 
+
+27:44 write defaf initialization.
+27:47 
+
+27:47 Let me write these things. So defaf
+27:50 
+
+27:50 initialization and I'll start with self.
+27:52 
+
+27:52 So you people will be well versed with
+27:54 
+
+27:54 all of the syntax. If you have problems
+27:55 
+
+27:55 please let me know. The first things is
+27:57 
+
+27:57 we'll take data or the value which we
+27:59 
+
+27:59 call as value. So that value generally
+28:01 
+
+28:01 is a float value. We'll take float
+28:02 
+
+28:02 values. Okay. And the second thing as I
+28:04 
+
+28:04 said okay let's first make this and then
+28:05 
+
+28:05 we'll later on. So we'll initialize this
+28:07 
+
+28:07 value. I'll say self.
+28:10 
+
+28:10 Okay. And I'll say self data is equal
+28:12 
+
+28:12 data. Okay, I'm inside the data. And now
+28:15 
+
+28:15 I can create a class. Okay, I also need
+28:17 
+
+28:17 to define operations. But first thing is
+28:19 
+
+28:19 I should have these things. So if I
+28:21 
+
+28:21 let's suppose now construct a class.
+28:22 
+
+28:22 I'll I'll say my a is equal params.
+28:25 
+
+28:25 So if I construct some value params of
+28:28 
+
+28:28 say 2.0.
+28:30 
+
+28:30 So if I okay this runs correctly. So
+28:32 
+
+28:32 this is called instantane class or we
+28:34 
+
+28:34 are making object out of this. So you
+28:36 
+
+28:36 have a so now this gives value this. So
+28:37 
+
+28:37 you know that we have some dender
+28:38 
+
+28:38 methods. So these are called as magic
+28:40 
+
+28:40 methods or render methods in Python
+28:41 
+
+28:41 because I have not taught you Python
+28:43 
+
+28:43 object oriented programming. So whatever
+28:45 
+
+28:45 uh clarifications I'll need please ask
+28:48 
+
+28:48 me and I'll give clarifications and what
+28:50 
+
+28:50 I feel is needed I'll do that. So in
+28:52 
+
+28:52 order to print these values so what I'll
+28:53 
+
+28:53 do we have a special method which called
+28:54 
+
+28:54 as wrapper method. Okay what I'll do is
+28:57 
+
+28:57 so this is the method. So we have method
+28:60 
+
+28:60 wrapper. So if you don't want this ugly
+29:02 
+
+29:02 looking thing. So you basically want
+29:04 
+
+29:04 this value actually. So you'll uh from
+29:07 
+
+29:07 your own side you'll define this wrapper
+29:08 
+
+29:08 method. This actually is defined. So
+29:09 
+
+29:09 you'll basically override this method
+29:11 
+
+29:11 and what you can do is you will just
+29:13 
+
+29:13 return one thing. So you'll return
+29:15 
+
+29:15 parameters of data. So let me and then
+29:18 
+
+29:18 we'll keep on
+29:21 
+
+29:21 okay so is this right?
+29:24 
+
+29:24 Okay I'm returning this. So if I return
+29:26 
+
+29:26 this now so you'll see that it is now
+29:28 
+
+29:28 showing params of data. So I will close
+29:31 
+
+29:31 this brace over here. So look if you see
+29:33 
+
+29:33 tenses. So when you click on print
+29:35 
+
+29:35 tensor something of this will happen. So
+29:37 
+
+29:37 if I run now write print of a print of
+29:40 
+
+29:40 a. So you can see this. So this wrapper
+29:42 
+
+29:42 method is actually giving you the access
+29:43 
+
+29:43 to that to the values in that. So now
+29:47 
+
+29:47 I'm saying okay give me this value in
+29:49 
+
+29:49 this format. So that's why I'm using
+29:50 
+
+29:50 this wrapper method. Now let's suppose
+29:52 
+
+29:52 if I have other value B. So I'll say B
+29:54 
+
+29:54 is equal again params
+29:56 
+
+29:56 okay of say 3.0. And now I have this
+29:60 
+
+29:60 value B. Okay I have value A and I have
+30:02 
+
+30:02 value B. Now if I want to add these two
+30:04 
+
+30:04 things together suppose I want to add I
+30:05 
+
+30:05 want to say a plus b. So I have this a
+30:08 
+
+30:08 plus b. So if you see this will say
+30:09 
+
+30:09 unsupported operation because it
+30:11 
+
+30:11 expected something I have not this
+30:12 
+
+30:12 operation is not supported in this uh
+30:14 
+
+30:14 class it's not supported. So what I'll
+30:15 
+
+30:15 use I'll again use dender methods in
+30:17 
+
+30:17 python. So actually when you do this a
+30:19 
+
+30:19 plus b internally what python actually
+30:20 
+
+30:20 does is so if you even without this
+30:23 
+
+30:23 class I'll say say I'll say 1 + 2 in in
+30:26 
+
+30:26 this case I'll say x= 1. Okay say y is
+30:30 
+
+30:30 equal 2. Okay, when I'm saying x + y, so
+30:35 
+
+30:35 x + y,
+30:38 
+
+30:38 this is saying three. So you know
+30:39 
+
+30:39 actually internally what is happening
+30:40 
+
+30:40 internally this thing is happening. So I
+30:42 
+
+30:42 can say x dot add okay and then this y.
+30:47 
+
+30:47 So this is what is internally happening
+30:48 
+
+30:48 in python x dot add y. So if I now again
+30:51 
+
+30:51 do the same thing I'll get the same
+30:52 
+
+30:52 answer. There will be no change. So
+30:54 
+
+30:54 basically you know that each thing in
+30:56 
+
+30:56 Python is an object. So you see this x
+30:58 
+
+30:58 is an object this y is an object and
+30:60 
+
+30:60 this add is the method. So now I'm
+31:02 
+
+31:02 creating this class. I should be able to
+31:04 
+
+31:04 add these two things together. So how to
+31:05 
+
+31:05 add these two two things together? I'll
+31:07 
+
+31:07 again define my method that's add. So
+31:08 
+
+31:08 what I'll do is I'll say definition
+31:11 
+
+31:11 add. Okay. Because again this is the
+31:13 
+
+31:13 magic method. Okay. Or dender method. So
+31:15 
+
+31:15 now I'll say self to call it and I'll
+31:18 
+
+31:18 say other. Other basically is the other
+31:20 
+
+31:20 method. So other. So what what should be
+31:22 
+
+31:22 other? So other should be again a
+31:24 
+
+31:24 instance of param. So this param is
+31:26 
+
+31:26 basically this. I want this params.
+31:28 
+
+31:28 Okay. this basically I want other value
+31:30 
+
+31:30 to be also say if I having a I having b
+31:33 
+
+31:33 so I should be able to add them okay
+31:34 
+
+31:34 once I have these two two things what
+31:36 
+
+31:36 what will I do is so I will add these
+31:38 
+
+31:38 two things together so how I can add is
+31:40 
+
+31:40 I'll take the value of a and value of b
+31:43 
+
+31:43 I I'll try to add them so I'll say add
+31:47 
+
+31:47 or I'll say return out
+31:51 
+
+31:51 so what I'm trying to do if you see out
+31:53 
+
+31:53 I'm saying take the self of data okay
+31:55 
+
+31:55 self of data basically means so it'll
+31:57 
+
+31:57 take this data and add this other of
+31:59 
+
+31:59 data. Okay, so let me just remove all
+32:02 
+
+32:02 the other things because this is the
+32:04 
+
+32:04 code that I don't want right now. So I
+32:06 
+
+32:06 just want two things. I want self data
+32:08 
+
+32:08 plus other of data and then I just want
+32:10 
+
+32:10 to return that. So now I should be able
+32:12 
+
+32:12 to perform the addition. So if I do a
+32:14 
+
+32:14 plus b. So you should be able to see a
+32:16 
+
+32:16 plus b params is data. So I can even say
+32:19 
+
+32:19 this is equal to c. Okay. So I can now
+32:22 
+
+32:22 print c also.
+32:24 
+
+32:24 So if I show you c. So now you should be
+32:27 
+
+32:27 able to see this. Okay. So I have this A
+32:30 
+
+32:30 is equal params of this. B is equal
+32:31 
+
+32:31 params of this is now I also want a
+32:33 
+
+32:33 label. Okay. One more thing that I
+32:34 
+
+32:34 forgot while showing you the structure
+32:36 
+
+32:36 that we wanted to make. So I also want a
+32:37 
+
+32:37 label. So what I can do is I can say
+32:39 
+
+32:39 label over here also. Comma label.
+32:42 
+
+32:42 Okay. So label basically means I should
+32:44 
+
+32:44 also name the node. So if I have weight
+32:45 
+
+32:45 or a bias weight one, weight two, weight
+32:47 
+
+32:47 three, something of that sort. So label
+32:49 
+
+32:49 will be one more parameter. So it will
+32:50 
+
+32:50 be of type string. I don't want to do
+32:52 
+
+32:52 type checking. Leave it. So I'll say
+32:54 
+
+32:54 self dot and then I should have label
+32:57 
+
+32:57 that should be equal to label. Okay. So
+33:00 
+
+33:00 why when I'm doing this? So a is equal
+33:02 
+
+33:02 params of this. So this is optional. So
+33:04 
+
+33:04 let me make it optional. Okay. So let's
+33:06 
+
+33:06 let's take some default value of this
+33:07 
+
+33:07 sort
+33:09 
+
+33:09 label is equal to some default value. So
+33:12 
+
+33:12 let me just check if it works works.
+33:15 
+
+33:15 Yes. So what I can do is I can say a
+33:16 
+
+33:16 this is comma label is given is a. So
+33:19 
+
+33:19 label given is A and for this B label
+33:22 
+
+33:22 given is B and for this C let's suppose
+33:24 
+
+33:24 C is equal to this and I can say C dot
+33:26 
+
+33:26 label
+33:29 
+
+33:29 label is equal to C
+33:32 
+
+33:32 is equal C. I'm giving it label also.
+33:33 
+
+33:33 Now I also want to print that in the
+33:34 
+
+33:34 wrapper method and I don't just want to
+33:36 
+
+33:36 print the data. I also want to print the
+33:38 
+
+33:38 label. I'll write uh comma
+33:41 
+
+33:41 label is equal to
+33:45 
+
+33:45 self dot label.
+33:49 
+
+33:49 Okay. And I think this should work. So
+33:51 
+
+33:51 if you see this now
+33:54 
+
+33:54 if I print the C.
+33:57 
+
+33:57 Okay. You can see this params data is
+33:58 
+
+33:58 5.0 and the label is C. So I'm also
+34:00 
+
+34:00 holding it label because I want to make
+34:02 
+
+34:02 the whole compilation graph. So the
+34:03 
+
+34:03 first thing that you saw is I'm
+34:05 
+
+34:05 initializing everything in the
+34:06 
+
+34:06 constructor and then I'm writing this
+34:07 
+
+34:07 wrapper method in order when I call the
+34:08 
+
+34:08 print something so it will be calling
+34:10 
+
+34:10 this and if I'm calling that particular
+34:11 
+
+34:11 object and I'm adding this method over
+34:13 
+
+34:13 here. Okay. I one more thing that I
+34:15 
+
+34:15 should have is I also should hold
+34:16 
+
+34:16 operations because this C was the result
+34:19 
+
+34:19 of operations. So I will also have
+34:20 
+
+34:20 operations. Any questions still here so
+34:22 
+
+34:22 far?
+34:27 
+
+34:27 Okay. Okay, now you saw that we again
+34:29 
+
+34:29 added this label over here and we have
+34:31 
+
+34:31 added one more function that is add and
+34:33 
+
+34:33 I also want to add children. Okay, so
+34:35 
+
+34:35 let's let's call this children. So we'll
+34:37 
+
+34:37 say because we have to see okay if we
+34:39 
+
+34:39 add these two things if we perform some
+34:40 
+
+34:40 operation. Oh before before children
+34:42 
+
+34:42 we'll also have to have operation. So
+34:43 
+
+34:43 you have this add so I will also have an
+34:46 
+
+34:46 operation over here. So, comma operation
+34:49 
+
+34:49 okay by default and this should be
+34:51 
+
+34:51 compulsory rather okay let's make this
+34:52 
+
+34:52 compulsory if we are making this uh so
+34:55 
+
+34:55 we'll say if we have to make it
+34:57 
+
+34:57 compulsive we'll say operation is a
+34:59 
+
+34:59 string and we'll give it empty string by
+35:00 
+
+35:00 default if there is no operation that is
+35:02 
+
+35:02 by default and if we are adding these
+35:04 
+
+35:04 things so here so this should be taken
+35:06 
+
+35:06 so this in add so this will
+35:08 
+
+35:08 automatically take add so this will say
+35:10 
+
+35:10 operation is equal to add
+35:13 
+
+35:13 operation is equal plus okay that's how
+35:16 
+
+35:16 what I want to Give me a second. I did
+35:18 
+
+35:18 some mess up over here. Okay. In this
+35:20 
+
+35:20 I'll say self dot operation. Self dot
+35:23 
+
+35:23 operation is equal to operation.
+35:27 
+
+35:27 Okay. So what will happen now? Now if
+35:28 
+
+35:28 you call this params so if you don't
+35:30 
+
+35:30 give any operation so basically it'll
+35:32 
+
+35:32 just give this data and label and if you
+35:34 
+
+35:34 don't even give label. So I'm making
+35:35 
+
+35:35 these as optional because I'm giving
+35:36 
+
+35:36 these default values. So if you now
+35:39 
+
+35:39 perform some operation so you are saying
+35:41 
+
+35:41 C is equal A plus B. So if this
+35:42 
+
+35:42 operation is called now automatically
+35:45 
+
+35:45 now the C is a result of A plus B though
+35:47 
+
+35:47 this operation will be stored. Okay. So
+35:48 
+
+35:48 if I again run this
+35:51 
+
+35:51 okay let me run this. Let me see if
+35:53 
+
+35:53 there is a no there is no error. So if I
+35:55 
+
+35:55 now see C do operation. So what is the
+35:57 
+
+35:57 operation that caused it? So you can see
+35:59 
+
+35:59 uh uh some problem is there. Let me
+36:02 
+
+36:02 check the code.
+36:05 
+
+36:05 So in order to see this so you saw so
+36:06 
+
+36:06 what we did is we defined one more thing
+36:08 
+
+36:08 that's operation over here and I said
+36:10 
+
+36:10 operation is equal plus in in this
+36:12 
+
+36:12 addition so if I run this now
+36:15 
+
+36:15 okay so you can clearly see that C do
+36:17 
+
+36:17 operation is not plus because this was
+36:18 
+
+36:18 output if I now let's say say minus this
+36:22 
+
+36:22 is not again defined so how to define
+36:24 
+
+36:24 this so I'll copy whole of this code and
+36:26 
+
+36:26 I'll just paste this oops so I'll say
+36:30 
+
+36:30 subtraction okay this again will be a
+36:31 
+
+36:31 dender method so I'll say subtraction
+36:33 
+
+36:33 over here this is my subtraction ction.
+36:35 
+
+36:35 So I'm saying self other. So data take
+36:37 
+
+36:37 this data and just subtract it and give
+36:40 
+
+36:40 subtraction.
+36:42 
+
+36:42 So I'm saying a is equal param dot this
+36:44 
+
+36:44 b is equal this and I'm also giving this
+36:46 
+
+36:46 and cop operation. So or even if I print
+36:48 
+
+36:48 this I can also print operation over
+36:49 
+
+36:49 here but I don't want to print
+36:50 
+
+36:50 operations all the time. I just want to
+36:51 
+
+36:51 print the data and the label. So now
+36:53 
+
+36:53 this C do if you see this is minus. So
+36:55 
+
+36:55 what we did is over here so in the
+36:57 
+
+36:57 initialize or the constructor we defined
+36:58 
+
+36:58 this operation and we are setting it in
+36:60 
+
+36:60 the parameters in these operations and
+37:02 
+
+37:02 performing addition or subtraction and
+37:03 
+
+37:03 we are giving these operations and one
+37:05 
+
+37:05 more thing that we want I said we have
+37:06 
+
+37:06 value let's suppose we have these
+37:08 
+
+37:08 parameters parameter will have this data
+37:09 
+
+37:09 or value and it'll have label what is
+37:12 
+
+37:12 the label cost it'll have operation what
+37:13 
+
+37:13 operation calls it by default it will be
+37:15 
+
+37:15 empty string if this was a leaf node or
+37:17 
+
+37:17 if it was intermediate it will be caused
+37:19 
+
+37:19 by some operation so that operation is
+37:20 
+
+37:20 kept over here and one more thing that
+37:22 
+
+37:22 we have to keep is the uh children so
+37:25 
+
+37:25 we'll We'll see okay what what are the
+37:26 
+
+37:26 two values or what are the values that
+37:28 
+
+37:28 we took in order to reach there. So what
+37:30 
+
+37:30 we'll do is we'll take children we'll
+37:32 
+
+37:32 again define the constructor.
+37:34 
+
+37:34 So
+37:36 
+
+37:36 let me define it over here children.
+37:40 
+
+37:40 Okay. And this children by default let's
+37:42 
+
+37:42 take it set or we can take it also. Uh
+37:45 
+
+37:45 let's suppose we'll take it tle of these
+37:46 
+
+37:46 parameters or even we can say set and it
+37:48 
+
+37:48 depends we will see for the efficiency
+37:50 
+
+37:50 we later on make it efficient. So for
+37:52 
+
+37:52 now I'm taking it as tpple. So this
+37:55 
+
+37:55 children will be a tuple of these
+37:57 
+
+37:57 parameter values. So let's suppose if
+37:58 
+
+37:58 you created this add. So because add
+38:00 
+
+38:00 once we did that it should have also
+38:01 
+
+38:01 children. So what are the children?
+38:02 
+
+38:02 Children is self and other other
+38:04 
+
+38:04 childrens. Okay. So what I'll do is I'll
+38:06 
+
+38:06 say data self do data is this and other
+38:09 
+
+38:09 data of this and I am giving this as
+38:10 
+
+38:10 parents and comma instead of childrens
+38:13 
+
+38:13 I'll give it I'll give it t like this
+38:16 
+
+38:16 sort and what is the this is self comma
+38:19 
+
+38:19 other. Okay. Same thing over here. Same
+38:22 
+
+38:22 thing for the subtraction.
+38:25 
+
+38:25 So, same thing for subtraction. So, if I
+38:27 
+
+38:27 take this
+38:31 
+
+38:31 please let me know if you have
+38:32 
+
+38:32 questions. I'm thinking a lot of stuff
+38:34 
+
+38:34 in the meantime. So, I can make mistakes
+38:37 
+
+38:37 also but do let me know if you have
+38:39 
+
+38:39 questions as well. So, what I have done
+38:40 
+
+38:40 so far now is so I'm also giving this
+38:42 
+
+38:42 childrens as in the constructor so that
+38:44 
+
+38:44 whatever operation I'm doing so I'm
+38:46 
+
+38:46 giving the operation correspond to that
+38:48 
+
+38:48 and the children. So, if I now see if I
+38:50 
+
+38:50 run this first let me run this. So
+38:51 
+
+38:51 operation is mine. So if I now again say
+38:53 
+
+38:53 C dot children.
+38:57 
+
+38:57 Okay.
+38:59 
+
+38:59 Now you can see this there is some
+39:00 
+
+39:00 error. So is this is this right?
+39:07 
+
+39:07 So if you
+39:10 
+
+39:10 no if you see this this this is how I
+39:12 
+
+39:12 have named it.
+39:15 
+
+39:15 So now the now the issue here was I have
+39:17 
+
+39:17 not initialized it. I should also
+39:19 
+
+39:19 initialize these. So once I give these
+39:21 
+
+39:21 values I should initialize the values.
+39:22 
+
+39:22 So children so I'm initializing it over
+39:24 
+
+39:24 here. So if I now run it, it should be
+39:26 
+
+39:26 able to give me now if you see patterns
+39:28 
+
+39:28 data 2 it label is nothing and the label
+39:30 
+
+39:30 is I should also should I give labels
+39:33 
+
+39:33 correspond to this because if you see
+39:35 
+
+39:35 this the this is giving me the data data
+39:37 
+
+39:37 of this and that. So I should also give
+39:40 
+
+39:40 uh I should get basically this value.
+39:42 
+
+39:42 What is the label correspond to this? So
+39:44 
+
+39:44 it is giving me say if I subtracted this
+39:46 
+
+39:46 I'm giving self dot data and self and
+39:48 
+
+39:48 other. So I I can also give
+39:50 
+
+39:50 correspondent label by the but it's good
+39:52 
+
+39:52 that we at least got so far. So so far
+39:54 
+
+39:54 what we have done is uh I think most of
+39:56 
+
+39:56 the things are here and we need one more
+39:57 
+
+39:57 thing that is grad. Okay gradient we'll
+39:60 
+
+39:60 say we need one more thing that is the
+40:02 
+
+40:02 gradient. So we'll define it over here
+40:04 
+
+40:04 grad to make not made again the same
+40:06 
+
+40:06 mistake we'll initialize it first self
+40:08 
+
+40:08 dot grad.
+40:11 
+
+40:11 Okay, is equal to grad. Okay, and we'll
+40:13 
+
+40:13 have all these gradients over here. And
+40:15 
+
+40:15 we'll have to define for these things
+40:17 
+
+40:17 we'll have defined and we'll have by
+40:18 
+
+40:18 default it'll take value zero. Okay, and
+40:20 
+
+40:20 we'll have to see how to define the
+40:21 
+
+40:21 gradients by the way. Okay, and all of
+40:23 
+
+40:23 these will be having related gradient.
+40:24 
+
+40:24 So if I now say C.grad,
+40:28 
+
+40:28 okay, C.Grad is equal Z because it's
+40:30 
+
+40:30 taking the default value. So so far what
+40:32 
+
+40:32 we have done is we have made a data
+40:34 
+
+40:34 structure of our own. So in that we had
+40:36 
+
+40:36 it takes data. It takes children
+40:38 
+
+40:38 basically means what are the children
+40:40 
+
+40:40 that is that are output of this. So by
+40:41 
+
+40:41 default it'll take uh if this is just a
+40:44 
+
+40:44 value let's suppose this a value it will
+40:45 
+
+40:45 be a leaf node and then you have this
+40:47 
+
+40:47 grad grad basically will store the
+40:50 
+
+40:50 gradient with respect to the loss
+40:51 
+
+40:51 function and we have label. So label
+40:53 
+
+40:53 will be what what we name that node or
+40:55 
+
+40:55 what will be name weight or bias and the
+40:57 
+
+40:57 operation what was the operation that
+40:58 
+
+40:58 caused it. So these are the things we
+41:00 
+
+41:00 have defined and now we will define more
+41:02 
+
+41:02 methods. So we have defined this add we
+41:04 
+
+41:04 have defined subtraction. So we will
+41:05 
+
+41:05 also define suppose some other methods
+41:08 
+
+41:08 let's suppose multiplication
+41:11 
+
+41:11 okay definition.
+41:14 
+
+41:14 So we'll say we have actually r
+41:17 
+
+41:17 multiplication.
+41:19 
+
+41:19 Okay. And we'll keep on defining such
+41:21 
+
+41:21 functions and it'll take self and other
+41:26 
+
+41:26 okay let me say just say pass. So I'll
+41:28 
+
+41:28 I'll say to-do over here. So I'll write
+41:29 
+
+41:29 this is my to-do everything to-do. Any
+41:32 
+
+41:32 questions still here? Any questions? So
+41:34 
+
+41:34 if you have any questions I'll take some
+41:36 
+
+41:36 questions here. Again looking at this if
+41:39 
+
+41:39 you see so we have the sparams over
+41:40 
+
+41:40 here. So we have data, we have children,
+41:43 
+
+41:43 we have gradient, we have label and we
+41:44 
+
+41:44 have operation. And what we'll do now is
+41:46 
+
+41:46 so we'll let's suppose I have this a b
+41:48 
+
+41:48 and c. So a is my parameter for example
+41:51 
+
+41:51 a weight and then we have bias and then
+41:52 
+
+41:52 we can have a constant. Okay. So all of
+41:54 
+
+41:54 these things let's consider them for now
+41:56 
+
+41:56 as leaf nodes because a and b and c and
+42:00 
+
+42:00 let's suppose d will be the output of
+42:02 
+
+42:02 this. So if I print these so I have one
+42:06 
+
+42:06 argument missing. So what is that
+42:07 
+
+42:07 argument? So that is I think children.
+42:13 
+
+42:13 So this is a so what is or the missing
+42:15 
+
+42:15 or position or children children is
+42:16 
+
+42:16 missing. Okay. That's why I should be
+42:19 
+
+42:19 very careful while performing this. So
+42:21 
+
+42:21 children over here also keep it as set.
+42:24 
+
+42:24 Don't keep it this.
+42:28 
+
+42:28 Oops. Let's let's keep it like this. So
+42:31 
+
+42:31 as to keep it empty
+42:34 
+
+42:34 by default.
+42:36 
+
+42:36 Okay. And now if you see this so this is
+42:38 
+
+42:38 leaf nodes. So I have created these leaf
+42:40 
+
+42:40 nodes. A is equal 2.0 label is a
+42:42 
+
+42:42 parameter is this. And now if I let's
+42:43 
+
+42:43 suppose do something. If I create
+42:45 
+
+42:45 multiplication or if I do this. So
+42:47 
+
+42:47 should I create multiplication? Okay I
+42:49 
+
+42:49 think we need multiplication. So what
+42:50 
+
+42:50 we'll do is we'll create multiplication
+42:52 
+
+42:52 because we need a multiplied by b plus
+42:54 
+
+42:54 c. We have plus we don't have
+42:55 
+
+42:55 multiplication. Let's do this stuff.
+42:57 
+
+42:57 Definition of multiplication. I want to
+42:58 
+
+42:58 use aral. I'll def we have different
+43:01 
+
+43:01 aral and el. So I'll tell you what these
+43:02 
+
+43:02 are. So right now we'll just use this
+43:04 
+
+43:04 multiplication and then we'll use self
+43:06 
+
+43:06 and other self is
+43:09 
+
+43:09 the object that we are taking and other
+43:11 
+
+43:11 is the other operation and then what I
+43:14 
+
+43:14 do is I'll just output params and I'll
+43:16 
+
+43:16 multiply these two things. So I'll say
+43:21 
+
+43:21 output is params of cellular data and
+43:22 
+
+43:22 multiply with other of data and then the
+43:24 
+
+43:24 self and other this is uh my these are
+43:28 
+
+43:28 my children and this operation is equal
+43:30 
+
+43:30 this so operation is this. So if I now
+43:32 
+
+43:32 run it again, I think it works good. So
+43:35 
+
+43:35 now I will do one thing. So I will
+43:37 
+
+43:37 perform this.
+43:39 
+
+43:39 So I'll say D is equal to A multiply B.
+43:42 
+
+43:42 So I'll say something of this sort. So
+43:44 
+
+43:44 we have D that is A* B. And then I'll
+43:46 
+
+43:46 say E is equal D + C. So basically this
+43:49 
+
+43:49 is D + C. That's A multiply B + C. Okay.
+43:51 
+
+43:51 If I say F is equal E minus A. So
+43:54 
+
+43:54 basically I'm I'm telling you this so
+43:56 
+
+43:56 you people can easily understand this.
+43:57 
+
+43:57 So I'm starting with D. I'm saying take
+43:59 
+
+43:59 A multiply with B. So now I'm taking
+44:01 
+
+44:01 this D. I'm saying E is equal D plus C.
+44:03 
+
+44:03 So D plus C is A plus B A into B plus C.
+44:06 
+
+44:06 So if I just want one more thing. So I
+44:08 
+
+44:08 I'll say maybe I can just stop it over
+44:09 
+
+44:09 here. But anyway I'll take F is equal E
+44:11 
+
+44:11 minus A. So take this whole E that is A
+44:13 
+
+44:13 + B + C. A multiply B plus C and then
+44:16 
+
+44:16 minus this A. So this is my F. Okay. At
+44:18 
+
+44:18 at the end we have this function. So now
+44:21 
+
+44:21 if we have to print these things. So
+44:23 
+
+44:23 what I can do is
+44:25 
+
+44:25 so I will print all of these values. So
+44:27 
+
+44:27 after these operations
+44:29 
+
+44:29 I do I have subtraction. Yes I do have
+44:31 
+
+44:31 subtraction. Okay if you see now this.
+44:33 
+
+44:33 So print d. Initially I had a into b. So
+44:35 
+
+44:35 that is param - 6.0. You can check it. 2
+44:37 
+
+44:37 into 3 is - 6.0. And I still have issues
+44:40 
+
+44:40 with label. So that we'll fix because
+44:42 
+
+44:42 while while performing these operations
+44:44 
+
+44:44 these labels are not getting set
+44:45 
+
+44:45 somehow. So we we'll have to see this
+44:48 
+
+44:48 params and label is equal cell label.
+44:55 
+
+44:55 I I should also pass the label over here
+44:57 
+
+44:57 for these.
+44:60 
+
+44:60 Let me do it. Let me do it for now. At
+45:02 
+
+45:02 least this is working. So after
+45:04 
+
+45:04 operation, we have this. A multiply B is
+45:06 
+
+45:06 this. E is this. So this is now I have
+45:07 
+
+45:07 to create a graph out of this. Okay. So
+45:10 
+
+45:10 at least I
+45:12 
+
+45:12 I have at if I now want to make
+45:14 
+
+45:14 something of this right. If I now want
+45:16 
+
+45:16 to do W into X plus B something of this,
+45:18 
+
+45:18 I have I can have W, I can have bias, I
+45:20 
+
+45:20 can have some X, I can I should be able
+45:22 
+
+45:22 to perform this.
+45:25 
+
+45:25 Okay. So I can put I can have labels
+45:28 
+
+45:28 over here. So when I'm doing D, so what
+45:30 
+
+45:30 I can do is I can say D dot
+45:33 
+
+45:33 say over here
+45:35 
+
+45:35 I can say D dot label
+45:40 
+
+45:40 is equal D
+45:42 
+
+45:42 because I'm not setting it there. So if
+45:44 
+
+45:44 you now see this label D is coming over
+45:45 
+
+45:45 here. I can set separately set the
+45:47 
+
+45:47 labels and then I can see E dot label is
+45:52 
+
+45:52 equal to E and I can say
+45:56 
+
+45:56 F dot label
+45:58 
+
+45:58 is equal to F. I think now this is good
+45:60 
+
+45:60 enough.
+46:02 
+
+46:02 Okay. So you have A, B and C and then
+46:04 
+
+46:04 you perform some operations and now I
+46:06 
+
+46:06 want to create a competition graph.
+46:12 
+
+46:12 Now let's make the competition graph.
+46:14 
+
+46:14 What I mean by that is so now you have
+46:16 
+
+46:16 this a you have this let's suppose b and
+46:18 
+
+46:18 you have this c say something of this
+46:20 
+
+46:20 sort so you'll perform some multip
+46:22 
+
+46:22 addition or multiplication to get a b
+46:24 
+
+46:24 and for this you'll do you'll perform
+46:26 
+
+46:26 some addition to get let's suppose a b
+46:29 
+
+46:29 plus c or let's consider this as loss
+46:31 
+
+46:31 function and I want this to
+46:34 
+
+46:34 happen such I can visualize so I'll use
+46:35 
+
+46:35 a library called as graph biz okay so in
+46:38 
+
+46:38 that I'll have to use topological sort
+46:39 
+
+46:39 and stuff like that so I'll first
+46:41 
+
+46:41 explain you what I'm going to
+46:44 
+
+46:44 Okay. And then you you can ask me
+46:45 
+
+46:45 questions if you don't understand. Let
+46:48 
+
+46:48 me clean this up. Okay. The first step
+46:50 
+
+46:50 is like we have this root node. Now you
+46:52 
+
+46:52 you'll get hang of this.
+46:56 
+
+46:56 Okay. I'll keep on writing the code that
+46:57 
+
+46:57 I want.
+46:60 
+
+46:60 Okay. So we'll we'll build a trace of
+47:01 
+
+47:01 nodes. First we'll have to have our set
+47:04 
+
+47:04 of nodes and edges. So we should have
+47:06 
+
+47:06 our nodes and edges. So you know in the
+47:08 
+
+47:08 graph we have nodes. Say if you have
+47:09 
+
+47:09 this A and if you have this B these are
+47:11 
+
+47:11 nodes. And if we add them so and we get
+47:13 
+
+47:13 some other nodes say AB. So these are my
+47:16 
+
+47:16 edges. This is my edge. This is my edge
+47:18 
+
+47:18 and this is my edge over here or rather
+47:21 
+
+47:21 here if you just make two edge. So and
+47:23 
+
+47:23 this is plus is an operation which cause
+47:24 
+
+47:24 this. These are my nodes. So in in a
+47:26 
+
+47:26 graph I first want to collect these
+47:28 
+
+47:28 nodes and edges. That is my first job.
+47:30 
+
+47:30 Okay this is called as tracing the
+47:31 
+
+47:31 graph. So if you have to trace the graph
+47:33 
+
+47:33 okay and you have have to have all these
+47:35 
+
+47:35 and all of these nodes will be params.
+47:37 
+
+47:37 Okay. And these edges will be directed
+47:38 
+
+47:38 edges. it goes from A to let's suppose
+47:40 
+
+47:40 AB or B goes also go from B to A and
+47:43 
+
+47:43 there also I have to draw and there's a
+47:46 
+
+47:46 draw function in graph so I won't be
+47:47 
+
+47:47 telling you the the documentation of
+47:49 
+
+47:49 graph you can you can look that up so
+47:51 
+
+47:51 but that's what I want I will from the
+47:53 
+
+47:53 trace by the help of trace I'll get
+47:55 
+
+47:55 these nodes and edges and then I'll
+47:56 
+
+47:56 construct a graph of this sort let me
+47:59 
+
+47:59 write the code let me show the code
+48:02 
+
+48:02 and what we'll basically give we'll try
+48:03 
+
+48:03 to give it a root node so if we have a
+48:05 
+
+48:05 root node so if I have something of this
+48:07 
+
+48:07 sort I have this A this A B and it was
+48:10 
+
+48:10 product. Let's suppose it gave me C and
+48:12 
+
+48:12 then C was multiplied with something D
+48:15 
+
+48:15 it gave me some E and this E was given
+48:17 
+
+48:17 some F and we gave it last loss
+48:19 
+
+48:19 function. So we'll give it this L
+48:20 
+
+48:20 basically the root node and it'll
+48:21 
+
+48:21 construct a graph like this and it'll
+48:23 
+
+48:23 help me visualize.
+48:26 
+
+48:26 Let me write that code now. So the first
+48:28 
+
+48:28 thing is we'll add graph trace. Okay. So
+48:30 
+
+48:30 in the graph trace so I will again
+48:32 
+
+48:32 import some standard imports first.
+48:36 
+
+48:36 Okay. So this if you see the I'm
+48:39 
+
+48:39 importing these. So graph has something
+48:41 
+
+48:41 called as diagramraph. So diagramraph
+48:42 
+
+48:42 will let you have these nodes and edges.
+48:44 
+
+48:44 Okay. So from this typing I am importing
+48:46 
+
+48:46 this standard stuff. The first thing
+48:47 
+
+48:47 that I'll make is graph trace. So I'll
+48:50 
+
+48:50 make class. So that's named as graph
+48:52 
+
+48:52 trace. So what will it do is it will be
+48:54 
+
+48:54 a name tuple which will hold the result
+48:56 
+
+48:56 of trace. So that that's what this will
+48:58 
+
+48:58 be holding. It'll be holding nodes and
+48:59 
+
+48:59 the edges. That's what I'm saying. It'll
+49:01 
+
+49:01 be holding a node and I have created a
+49:03 
+
+49:03 set of parameters and then it'll be
+49:05 
+
+49:05 having edges. And this will be a tpple
+49:06 
+
+49:06 from from wire to wire. So that's why
+49:08 
+
+49:08 you see a couple of parameters. So it'll
+49:09 
+
+49:09 hold let's suppos. So if you have a
+49:11 
+
+49:11 graph like this, you have a and b. So
+49:14 
+
+49:14 now this nodes over here if you see the
+49:16 
+
+49:16 node nodes will be given parameters a
+49:18 
+
+49:18 and b. So these will be in the nodes.
+49:20 
+
+49:20 This will be a set of nodes. And now
+49:22 
+
+49:22 this edges. So edges over here. Let's
+49:24 
+
+49:24 suppose you have c. So this will be c
+49:26 
+
+49:26 also. Now edges are a comma c and b
+49:29 
+
+49:29 comma c. So these are edges over here.
+49:31 
+
+49:31 So that is what this will hold. So this
+49:33 
+
+49:33 graph trace will hold these two things.
+49:35 
+
+49:35 So the attribute will it will be a name
+49:36 
+
+49:36 tuple holding the result of the trace of
+49:38 
+
+49:38 the computational hook graph. Okay. So
+49:40 
+
+49:40 nodes will be a set and this edge also
+49:42 
+
+49:42 will be a set. So this will be unique.
+49:43 
+
+49:43 It will just contain those parameters
+49:45 
+
+49:45 these a b and c's or weights and biases
+49:48 
+
+49:48 and edges will be this will be a set of
+49:50 
+
+49:50 these two things. So it'll have
+49:51 
+
+49:51 something of this or a comp as I showed
+49:53 
+
+49:53 you and then b comma c something of this
+49:55 
+
+49:55 sort. Okay. So this is the first thing
+49:58 
+
+49:58 that I have done. So I have done this
+49:60 
+
+49:60 graph trace and then I'll actually do
+50:02 
+
+50:02 the trace. Okay. and it should give me
+50:04 
+
+50:04 output as a graph trace. So what I'll do
+50:07 
+
+50:07 is
+50:09 
+
+50:09 I'll say I'm creating a function
+50:11 
+
+50:11 definition which will I said we will
+50:12 
+
+50:12 trace it from the root. So we'll say we
+50:14 
+
+50:14 have root and then we'll take these
+50:16 
+
+50:16 parameters. Okay. So we'll try to build
+50:18 
+
+50:18 it.
+50:20 
+
+50:20 Okay. And nodes and set. Initially we'll
+50:22 
+
+50:22 have these nodes and edges as
+50:25 
+
+50:25 something we have empty sets. Uh this is
+50:28 
+
+50:28 nodes and this is edges. Nothing is in
+50:29 
+
+50:29 there so far. Now once we go to root and
+50:31 
+
+50:31 we'll perform a defer search and we'll
+50:33 
+
+50:33 keep on adding nodes and edges over
+50:34 
+
+50:34 here. Okay, let me again write the code
+50:37 
+
+50:37 that is build. So if I write a code
+50:40 
+
+50:40 build over here and I'll explain it
+50:41 
+
+50:41 briefly. So if you see oops
+50:52 
+
+50:52 let me again paste it back.
+50:57 
+
+50:57 Okay now if you see this over here. So
+50:59 
+
+50:59 what I'm trying to tell we have a
+51:01 
+
+51:01 function it takes a vortex suppose we
+51:02 
+
+51:02 have some HB. So what it does is it sees
+51:05 
+
+51:05 if V is in nodes if it is in nodes
+51:07 
+
+51:07 already so what it does so if it is not
+51:10 
+
+51:10 in nodes so then it performs if it is in
+51:12 
+
+51:12 node so it'll done nothing it'll skip
+51:13 
+
+51:13 that node. So if V is not in nodes so if
+51:16 
+
+51:16 it checks all of this suppose we have a
+51:19 
+
+51:19 graph in that we take a node and we want
+51:21 
+
+51:21 to see do we have to add it in nodes or
+51:22 
+
+51:22 not. So what we'll first do is we'll
+51:24 
+
+51:24 check if it is in nodes already. If it
+51:25 
+
+51:25 is not then the first thing we'll do is
+51:27 
+
+51:27 we'll add to it. Okay, then we have you
+51:29 
+
+51:29 know that we have children also. So what
+51:31 
+
+51:31 we have we have this uh with this
+51:33 
+
+51:33 previous also. So this previous should
+51:35 
+
+51:35 be set somewhere in the value object
+51:36 
+
+51:36 itself. Okay. So this V should have a
+51:39 
+
+51:39 previous value. Give me a second to set
+51:41 
+
+51:41 that. So instead of this previous let's
+51:44 
+
+51:44 use children. So we have this over here.
+51:48 
+
+51:48 Okay. So because we don't have previous.
+51:50 
+
+51:50 So in the original code I have written
+51:51 
+
+51:51 previous. So in this I have written
+51:52 
+
+51:52 children. So what I'm trying to do is
+51:54 
+
+51:54 now for child and children. So you know
+51:56 
+
+51:56 that this children again is a is a set.
+51:58 
+
+51:58 So it will go for this V of children. It
+51:59 
+
+51:59 will take each of the children and add
+52:01 
+
+52:01 those into edges. So it'll take both of
+52:02 
+
+52:02 these and it'll add those into edges and
+52:04 
+
+52:04 it'll again call recursively this build.
+52:06 
+
+52:06 So if you again see this so you have a
+52:07 
+
+52:07 graph suppose I I'll give you an
+52:09 
+
+52:09 example. You have a graph of this sort A
+52:11 
+
+52:11 B it gives rise to A suppose something
+52:14 
+
+52:14 of this sort and we have then plus C.
+52:16 
+
+52:16 This is multiplication and then we're
+52:18 
+
+52:18 adding C to it
+52:20 
+
+52:20 to this A.
+52:22 
+
+52:22 So we are getting AB and then we are
+52:24 
+
+52:24 adding C to it. So this is add and we
+52:26 
+
+52:26 have C and now at total we have A plus B
+52:29 
+
+52:29 plus C. Suppose you give it a node or a
+52:31 
+
+52:31 graph. So let me take A. So you have
+52:33 
+
+52:33 this B and suppose you have this C.
+52:36 
+
+52:36 Suppose you have D of this sort you have
+52:37 
+
+52:37 E. I'll just make some random graph now.
+52:39 
+
+52:39 So if you give it some vertex and A you
+52:40 
+
+52:40 know this C has these two these two are
+52:44 
+
+52:44 the children of this. So now when I'm
+52:45 
+
+52:45 trying to build this when I'm trying to
+52:47 
+
+52:47 come up with nodes and first I'm
+52:48 
+
+52:48 checking I'm making a list of I'm making
+52:50 
+
+52:50 a set rather. So if you see in this code
+52:52 
+
+52:52 so the code over here shows nodes and
+52:54 
+
+52:54 sets as empty first and then I'm trying
+52:55 
+
+52:55 to build this. So I'm giving the uh this
+52:58 
+
+52:58 vertex. So that's why you see build of v
+52:60 
+
+52:60 I'm supposed at C point now. So if I'm
+53:02 
+
+53:02 giving C I'll check if C is in nodes. If
+53:04 
+
+53:04 it is not nodes then I'll add this. So
+53:06 
+
+53:06 I'll add this C into the nodes and then
+53:08 
+
+53:08 because I have to see edges correspond
+53:09 
+
+53:09 the edges are A and C and B and C. These
+53:11 
+
+53:11 are the edges that I want. So that's
+53:13 
+
+53:13 what I'm saying for children in V comma
+53:14 
+
+53:14 this child comma V because anyway I'll
+53:17 
+
+53:17 have to consider I'll have to have a
+53:18 
+
+53:18 comma C as edge and B comma C as edge.
+53:20 
+
+53:20 These two should be my edges. So that is
+53:21 
+
+53:21 what I'm doing over here. So node I'm
+53:23 
+
+53:23 adding this I'm adding this node suppose
+53:25 
+
+53:25 this case is C and then I have to add
+53:27 
+
+53:27 edges A C and BC. So that I'm adding
+53:30 
+
+53:30 over here. So edges is this. So I'm
+53:31 
+
+53:31 again writing a for loop because I have
+53:33 
+
+53:33 the set of children with me. So the C
+53:35 
+
+53:35 has children A and B. So I'm iterating
+53:37 
+
+53:37 over A and B and then I'm adding those
+53:39 
+
+53:39 into edges. So you see the child, B. So
+53:41 
+
+53:41 initially I'll have child that is A. So
+53:43 
+
+53:43 I'll have B rather this will be
+53:46 
+
+53:46 initially a comma C and this is right
+53:47 
+
+53:47 and B comma C. So I'll have uh in
+53:50 
+
+53:50 children I have a and b. So I'll have
+53:52 
+
+53:52 children child comma b that is a comma
+53:54 
+
+53:54 v. V node in this case is c and the
+53:56 
+
+53:56 second iteration will be b comma c. I
+53:58 
+
+53:58 hope this is clear. Is this clear this
+53:59 
+
+53:59 build function? And again I I'll
+54:01 
+
+54:01 recursively call the same thing on
+54:02 
+
+54:02 children and then I'll start with a.
+54:04 
+
+54:04 I'll again do the same thing for the a.
+54:06 
+
+54:06 Okay. I'll keep on building this graph.
+54:07 
+
+54:07 I'll keep on building the edges and
+54:09 
+
+54:09 these nodes. Any questions on this?
+54:15 
+
+54:15 Now once we wrote this build function
+54:16 
+
+54:16 now we'll use this build function
+54:17 
+
+54:17 somewhere. So, so we are basically
+54:19 
+
+54:19 inside the function. So, if you see this
+54:20 
+
+54:20 trace actually we were this inside this
+54:22 
+
+54:22 we again defined one more function that
+54:24 
+
+54:24 was this and now we have to build from
+54:26 
+
+54:26 root. So, we'll call this build function
+54:28 
+
+54:28 from root. So, the root that we got okay
+54:31 
+
+54:31 this is where we will build it from.
+54:33 
+
+54:33 Okay. And then if let's there are not
+54:35 
+
+54:35 nodes we will raise an error and then
+54:37 
+
+54:37 we'll return a graph tray. So in this at
+54:39 
+
+54:39 the end so I will just paste these lines
+54:41 
+
+54:41 for checking error checking.
+54:44 
+
+54:44 So what I'm saying is so I am saying
+54:47 
+
+54:47 over here if not in no if not nodes so
+54:49 
+
+54:49 if I'm getting nothing so I'm saying
+54:50 
+
+54:50 empty graph no nodes were found of the
+54:52 
+
+54:52 root and then second thing I'm returning
+54:54 
+
+54:54 it graph trace I'm giving it to this
+54:56 
+
+54:56 nodes and edges so this is what I'm
+54:57 
+
+54:57 doing at the end okay so if I have to do
+54:59 
+
+54:59 it on the graph on some graph suppose
+55:02 
+
+55:02 and do we have graph here okay we do
+55:03 
+
+55:03 have so we do have this so if I can
+55:06 
+
+55:06 create a trace
+55:09 
+
+55:09 so before that should I draw basically
+55:11 
+
+55:11 let let me do one thing so I'll say
+55:12 
+
+55:12 trace of root so what is root we have.
+55:14 
+
+55:14 So we have root f over here. So trace of
+55:16 
+
+55:16 f. So if I see
+55:19 
+
+55:19 uh say trace
+55:23 
+
+55:23 trace of f
+55:25 
+
+55:25 and if you see this is the graph trace
+55:27 
+
+55:27 we have nodes. So in that nodes we have
+55:29 
+
+55:29 node label c and everything is over
+55:30 
+
+55:30 here. If you see we have we have got
+55:32 
+
+55:32 nodes. These are my node and we have got
+55:33 
+
+55:33 edges as well. If you see edges edges is
+55:36 
+
+55:36 a comma f. This is one one edge.
+55:39 
+
+55:39 Okay. And we have a lot of edges are
+55:41 
+
+55:41 there. we have the whole graph in which
+55:44 
+
+55:44 we have whole edge and we have whole of
+55:45 
+
+55:45 this. So this is what it's doing. I'm
+55:46 
+
+55:46 just applying trace on this f. So this
+55:49 
+
+55:49 is giving me nodes and f and you can
+55:51 
+
+55:51 again sketch it by hand. So if I have to
+55:53 
+
+55:53 write it hand you can write that but you
+55:55 
+
+55:55 can also check it over here with this.
+55:57 
+
+55:57 But I want to visualize this now. So I
+55:58 
+
+55:58 can now use graph. So in that we have a
+56:00 
+
+56:00 function which called as diagramraph as
+56:02 
+
+56:02 I said. So what I'll do is I'll have a
+56:04 
+
+56:04 function dot draw dot. So if I have to
+56:06 
+
+56:06 draw something so I'll draw the function
+56:09 
+
+56:09 because now I have nodes and these edges
+56:12 
+
+56:12 with me. So I'll say give me the root.
+56:14 
+
+56:14 Okay. And I'll give you the diagramraph.
+56:15 
+
+56:15 Diagram basically means in that graph we
+56:17 
+
+56:17 already have that defined. So what we
+56:19 
+
+56:19 can do is we can say from left to right
+56:21 
+
+56:21 draw this graph. So this is the syntax
+56:24 
+
+56:24 of graph. So I'm saying dot diagramraph
+56:27 
+
+56:27 and this diagramraph was imported from
+56:29 
+
+56:29 that graph. I'm saying format is SVG and
+56:31 
+
+56:31 we can have without SVG format even. And
+56:34 
+
+56:34 then I'm saying graph attribute is this.
+56:35 
+
+56:35 So this is all the standard
+56:36 
+
+56:36 documentation that you can check over
+56:37 
+
+56:37 there. And then I'll look for nodes and
+56:39 
+
+56:39 edges. I'll say nodes come edges.
+56:44 
+
+56:44 Okay.
+56:46 
+
+56:46 This is nodes and this is edges. I'm
+56:48 
+
+56:48 taking it from trace of root. So because
+56:50 
+
+56:50 I'm taking the trace and I'm getting
+56:52 
+
+56:52 nodes and edges from this. And now I'll
+56:53 
+
+56:53 plot the graph. So what I'll do is so
+56:56 
+
+56:56 I'll do this. So I'll iterate through
+56:58 
+
+56:58 all the nodes
+57:00 
+
+57:00 and I'll add them to a loop.
+57:05 
+
+57:05 So I'll write loop and then I'll explain
+57:07 
+
+57:07 the loop
+57:09 
+
+57:09 if you see for n in nodes. So I'm taking
+57:11 
+
+57:11 from each nodes I'm giving it a special
+57:13 
+
+57:13 ID a unique id for these memory
+57:15 
+
+57:15 addresses. Okay because I don't want to
+57:17 
+
+57:17 override it. So then label is this. So
+57:19 
+
+57:19 this is n dot label and this is the data
+57:21 
+
+57:21 we have and n.grad is also there. We
+57:23 
+
+57:23 have we are taking three we are printing
+57:24 
+
+57:24 three things. I'm printing label. I'm
+57:26 
+
+57:26 printing data and the gradient of that.
+57:28 
+
+57:28 Okay. Then I'm using this uh dot dot
+57:30 
+
+57:30 node because this is the diagramraph
+57:32 
+
+57:32 standard documentation that you can see.
+57:34 
+
+57:34 I'm saying name is this uid label is
+57:37 
+
+57:37 label string and shape is in a record
+57:39 
+
+57:39 shape and style is filled and fill color
+57:40 
+
+57:40 with light blue. I'm also giving it some
+57:42 
+
+57:42 color and then I also doing for the node
+57:44 
+
+57:44 we also have operation. So if operation
+57:46 
+
+57:46 is given for that node if it is not the
+57:48 
+
+57:48 node which is just at the end or if it
+57:50 
+
+57:50 just the start. So I'm giving the
+57:52 
+
+57:52 operation and I'm just creating a fake
+57:54 
+
+57:54 node. So this is a fake node. So why is
+57:56 
+
+57:56 this fake node there? because I wanted
+57:57 
+
+57:57 to create something of this sort. So I
+57:58 
+
+57:58 want to create if we have a so I will
+58:00 
+
+58:00 create a and then I'll create b. So then
+58:03 
+
+58:03 I'll create one more fake node plus and
+58:05 
+
+58:05 then this will give give me something.
+58:06 
+
+58:06 So that's why this code is for if there
+58:07 
+
+58:07 is an operation create a fake node. Okay
+58:10 
+
+58:10 this node won't be used for computation
+58:11 
+
+58:11 anywhere but this a and b will be used.
+58:14 
+
+58:14 Okay so I just want to clarify this why
+58:15 
+
+58:15 am I doing it here? So if n op is equal
+58:18 
+
+58:18 to this and then what we can do is we
+58:20 
+
+58:20 can again run one more and for child and
+58:22 
+
+58:22 parent in the edge we'll connect these
+58:25 
+
+58:25 two things.
+58:27 
+
+58:27 because we have this we're drawing these
+58:30 
+
+58:30 lines now and we'll have to connect
+58:31 
+
+58:31 these. So this uh iteration this loop
+58:34 
+
+58:34 that you saw over here these this loop
+58:36 
+
+58:36 so it'll take nodes and it'll draw these
+58:38 
+
+58:38 nodes and now you have to connect these
+58:39 
+
+58:39 nodes. So what I'm doing now is for
+58:41 
+
+58:41 children and parent and edges. So I'm
+58:43 
+
+58:43 taking these edges and I'm connecting
+58:44 
+
+58:44 this take this UID of the child and this
+58:47 
+
+58:47 is UID of the parent. Okay, I'm
+58:49 
+
+58:49 converting them and then I'm saying dot
+58:50 
+
+58:50 dot edge. So here if you see I have
+58:52 
+
+58:52 written dot dot node. So I'm creating a
+58:54 
+
+58:54 node and here I am creating node as well
+58:56 
+
+58:56 as edge. Okay. So here in this case I'm
+58:58 
+
+58:58 creating with child and parent in the
+59:00 
+
+59:00 edges because that that is a set uh and
+59:03 
+
+59:03 then we I'm taking this uid of parent
+59:05 
+
+59:05 and dot edge. And now I can return this
+59:07 
+
+59:07 dot. So return dot will give me that
+59:10 
+
+59:10 graph. So if you want to understand it
+59:13 
+
+59:13 more you just look at the graph is okay.
+59:16 
+
+59:16 So this is that. So this will give me
+59:17 
+
+59:17 the computation graph hopefully. Okay.
+59:20 
+
+59:20 I'll have to visualize this. And now
+59:22 
+
+59:22 let's suppose if I draw dot of f.
+59:26 
+
+59:26 So I am draw f
+59:30 
+
+59:30 there is some issue because we have not
+59:33 
+
+59:33 given this this because I told you I'm
+59:35 
+
+59:35 diverting a lot from oops we have
+59:39 
+
+59:39 defined op not this dash op
+59:43 
+
+59:43 is there something else okay can you see
+59:46 
+
+59:46 this this a and b we have data 2 and we
+59:49 
+
+59:49 have data this and then the gradient is
+59:51 
+
+59:51 zero by default and then we are
+59:52 
+
+59:52 multiplying this a and b and we are
+59:54 
+
+59:54 getting c out of this we're getting d
+59:56 
+
+59:56 out of this and this D is this and we're
+59:58 
+
+59:58 getting C and C and this is added and
+60:00 
+
+60:00 this is the competition graph. How many
+60:02 
+
+60:02 of you can see this
+60:10 
+
+60:10 so again showing you this. So what we
+60:12 
+
+60:12 did this is we try to visualize this. So
+60:14 
+
+60:14 this draw dot is that I'm drawing I'm
+60:15 
+
+60:15 taking the root node. So again showing
+60:17 
+
+60:17 it this. So it is taking this route.
+60:19 
+
+60:19 Okay, it is first coming up with trace
+60:20 
+
+60:20 and you know in trace we are using that
+60:21 
+
+60:21 build function and it is trying to build
+60:23 
+
+60:23 the nodes and edges and then with this
+60:25 
+
+60:25 nodes and edges what I'm trying to do
+60:26 
+
+60:26 I'm trying to get unique ID. So this is
+60:28 
+
+60:28 the unique ID I can get and I'm getting
+60:30 
+
+60:30 the label uh that is label data and
+60:34 
+
+60:34 grad. That's what you see over here. If
+60:35 
+
+60:35 you see one if you see a node in this it
+60:38 
+
+60:38 has label data and the gradient. So
+60:40 
+
+60:40 that's what I'm printing over here. This
+60:41 
+
+60:41 is the label of that and I'm saying dot
+60:43 
+
+60:43 node give it a name of this because I
+60:45 
+
+60:45 want to keep it in the memory location
+60:46 
+
+60:46 and if I want to connect these two edges
+60:47 
+
+60:47 together then I'm giving it a label I'm
+60:49 
+
+60:49 saying it that shape is like it should
+60:51 
+
+60:51 be a record and style is filled this is
+60:52 
+
+60:52 the standard documentation of graphist
+60:54 
+
+60:54 and now if it is an operation if it
+60:56 
+
+60:56 contains an operation okay if it is a
+60:57 
+
+60:57 node which was a result of some
+60:60 
+
+60:60 operation so I'm taking that and can
+61:02 
+
+61:02 having this one more node so if you see
+61:04 
+
+61:04 node in this I have written shape
+61:05 
+
+61:05 ellipse and it is filled and it is
+61:06 
+
+61:06 filled with light this color this is the
+61:08 
+
+61:08 color here it was light blue and some
+61:10 
+
+61:10 other color was given to Okay to in
+61:12 
+
+61:12 order to say that this is a fake node.
+61:13 
+
+61:13 Okay. And then we have to connect edge.
+61:15 
+
+61:15 So how to connect the edge? Because I
+61:16 
+
+61:16 have this operations node over here and
+61:18 
+
+61:18 then this UID. So if you see this node
+61:21 
+
+61:21 actually I want to come up with ID. It's
+61:23 
+
+61:23 unique ID. I said UID. UID was the ID of
+61:26 
+
+61:26 the node and then I said N dot
+61:27 
+
+61:27 operation. Okay. I added something to
+61:29 
+
+61:29 come up with this ID. So I took this ID
+61:31 
+
+61:31 and the ID of the node. So that's why
+61:32 
+
+61:32 it's connecting over here. So if you see
+61:34 
+
+61:34 this is getting connected. Okay. That is
+61:36 
+
+61:36 that's how the edge is being drawn. And
+61:38 
+
+61:38 similarly if you this goes on for a loop
+61:40 
+
+61:40 and then we are taking child and parent
+61:42 
+
+61:42 from the edges and giving child a unique
+61:44 
+
+61:44 ID parent a unique ID. So we are coming
+61:45 
+
+61:45 up with this parent ID and then we're
+61:47 
+
+61:47 again connecting these together. So you
+61:48 
+
+61:48 see this unique ids we we are using
+61:51 
+
+61:51 these unique ids to come up with these
+61:53 
+
+61:53 edges. And this is one of the graph.
+61:56 
+
+61:56 Okay. And you can again say weight plus
+61:58 
+
+61:58 bias this w of x plus b. So you can come
+62:00 
+
+62:00 up with this graph. And what we'll do is
+62:02 
+
+62:02 so this a b c and d e and f. So these
+62:07 
+
+62:07 things has gradients because this if you
+62:09 
+
+62:09 see this fake node it doesn't have
+62:11 
+
+62:11 gradient. So we'll have to set these
+62:12 
+
+62:12 gradients the competition graph that you
+62:14 
+
+62:14 see over here and now we'll initially do
+62:17 
+
+62:17 manually. So once I fill the gradients
+62:19 
+
+62:19 though I'll do the manual computation
+62:21 
+
+62:21 everything will be will be filled
+62:22 
+
+62:22 gradient. Let's suppose how can I do
+62:23 
+
+62:23 this? So I can say uh f dot okay let me
+62:27 
+
+62:27 just draw f cut it over here
+62:32 
+
+62:32 draw it over here. Okay.
+62:36 
+
+62:36 So that it is not part and then if I say
+62:38 
+
+62:38 f.grad is equal to one. So we'll compute
+62:40 
+
+62:40 manually everything and then we'll say
+62:41 
+
+62:41 this is gradient. So if I set the
+62:44 
+
+62:44 gradient over here and then if you see
+62:45 
+
+62:45 this is not changed yet. So if I again
+62:47 
+
+62:47 run it now you can see the gradient will
+62:49 
+
+62:49 be set over here. The gradient is equal
+62:51 
+
+62:51 to 1.0. So what I'll do is I'll take the
+62:53 
+
+62:53 whole of this composition graph. So I'll
+62:55 
+
+62:55 compute gradients by hand and I'll first
+62:57 
+
+62:57 do this numerical gradient that we have
+62:59 
+
+62:59 done uh in many cases. We'll do manual
+63:02 
+
+63:02 back propagation one by one. And after
+63:03 
+
+63:03 that we'll do the autograde we'll
+63:05 
+
+63:05 automatically we'll have one more method
+63:07 
+
+63:07 that will apply over here. So that I'll
+63:09 
+
+63:09 just name we'll say to-do. So in this
+63:15 
+
+63:15 in this we have def we'll define
+63:16 
+
+63:16 definition backwards defe backwards
+63:22 
+
+63:22 okay so once we call this so I'll just
+63:24 
+
+63:24 write pass over here or maybe this is my
+63:26 
+
+63:26 to-do okay what I'll do is so in the pre
+63:30 
+
+63:30 in the next class the first thing we'll
+63:31 
+
+63:31 do is we'll do manual back propagation
+63:33 
+
+63:33 so whatever we have studied we'll use
+63:34 
+
+63:34 those concepts to initialize all of
+63:36 
+
+63:36 these gradients by we'll compute
+63:37 
+
+63:37 gradients by hand and then we'll
+63:39 
+
+63:39 initialize these by hand And after once
+63:40 
+
+63:40 we are done with that so we'll write
+63:42 
+
+63:42 automatic differentiation. So we'll just
+63:44 
+
+63:44 apply fgrad. So in this case you saw we
+63:47 
+
+63:47 said f.grad is one position we'll write
+63:49 
+
+63:49 f dot backwards. So that will perform
+63:51 
+
+63:51 the auto gradient on the whole graph and
+63:53 
+
+63:53 once we are done with that we are done
+63:55 
+
+63:55 with networks. Then we just have to come
+63:56 
+
+63:56 with neuron a layer of neurons or else
+63:59 
+
+63:59 and then a network and then we can train
+64:00 
+
+64:00 something with this with the barebone
+64:02 
+
+64:02 basics and I I'll show you the whole
+64:03 
+
+64:03 network with this. So here I'll stop the
+64:05 
+
+64:05 recording. I'll take your questions.

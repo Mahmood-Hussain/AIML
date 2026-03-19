@@ -1,0 +1,4417 @@
+00:01 Hello and welcome everyone. So if you
+00:04 
+
+00:04 see what we have been discussing in the
+00:05 
+
+00:05 previous sessions, we saw gradient
+00:06 
+
+00:06 descent. We saw a lot of stuff. So one
+00:08 
+
+00:08 thing was constant. I'll again remind
+00:09 
+
+00:09 you that thing the thing that we start
+00:11 
+
+00:11 with was data. So we had data that we
+00:14 
+
+00:14 wanted uh to fit into our model and we
+00:16 
+
+00:16 wanted our model to train somehow. So
+00:18 
+
+00:18 this data was like this x i yi and it
+00:21 
+
+00:21 was we had some n samples. Okay, this
+00:24 
+
+00:24 class is probably going to one of the
+00:26 
+
+00:26 most important classes from a
+00:27 
+
+00:27 mathematical perspective. So that once
+00:29 
+
+00:29 you see these equations and you are not
+00:31 
+
+00:31 you are no more scared. Okay. So we have
+00:33 
+
+00:33 data. So what is data? Basically data
+00:34 
+
+00:34 contains information. So it contains
+00:36 
+
+00:36 information.
+00:42 
+
+00:42 Okay. After that what we have to do is
+00:44 
+
+00:44 we have model. So because you know what
+00:46 
+
+00:46 mathematically model is. Model is
+00:47 
+
+00:47 nothing but a function. It's a complex
+00:49 
+
+00:49 function. You give some input to it and
+00:50 
+
+00:50 it learns that. Okay. That is a model
+00:52 
+
+00:52 and model has to learn something. So
+00:54 
+
+00:54 what is the meaning of learning?
+00:55 
+
+00:55 Learning basically is to adjust these
+00:56 
+
+00:56 parameters. theta which we have weights
+00:58 
+
+00:58 and biases. So you can write it like
+00:59 
+
+00:59 this. You have theta, you have lot of
+01:01 
+
+01:01 weights and you have biases associated
+01:04 
+
+01:04 with those and this you have to learn.
+01:06 
+
+01:06 And then you have an objective function.
+01:08 
+
+01:08 You have an objective or cost function
+01:11 
+
+01:11 or you call it a loss function. Call it
+01:13 
+
+01:13 an error function. There are a lot of
+01:14 
+
+01:14 names for it. Okay. They're used in
+01:16 
+
+01:16 different context. Okay. You have a
+01:17 
+
+01:17 function by the help of which there one
+01:19 
+
+01:19 thing that we have seen. We have seen
+01:21 
+
+01:21 mean square error. Suppose you have some
+01:23 
+
+01:23 function based on which you are making
+01:25 
+
+01:25 prediction.
+01:27 
+
+01:27 Okay, this is the actual value. Okay,
+01:29 
+
+01:29 and then square it up and let's suppose
+01:32 
+
+01:32 you do it over all the data points from
+01:34 
+
+01:34 1 to n. Okay, and then you average it.
+01:37 
+
+01:37 You see what is the average error that I
+01:39 
+
+01:39 have. So now this is the machine
+01:40 
+
+01:40 learning setting that we were
+01:42 
+
+01:42 discussing. The first thing is we should
+01:43 
+
+01:43 somehow know about data. So we'll have a
+01:44 
+
+01:44 deep discussion on data. Okay, because
+01:46 
+
+01:46 there are different types of data that
+01:48 
+
+01:48 you might you should have. Sometimes you
+01:49 
+
+01:49 have to deal with speech. Sometimes you
+01:52 
+
+01:52 you have to deal with images.
+01:54 
+
+01:54 Sometimes you have to deal with uh
+01:56 
+
+01:56 videos. Sometimes you have to deal with
+01:58 
+
+01:58 text. There are a lot of types of data
+01:60 
+
+01:60 which you have to deal with. So we
+02:01 
+
+02:01 should know how to sort of encode this
+02:02 
+
+02:02 data. Okay. So we'll have a discussion
+02:04 
+
+02:04 on uh how to encode speech data, how to
+02:07 
+
+02:07 encode image data, what are different
+02:08 
+
+02:08 techniques, how to encode text data,
+02:10 
+
+02:10 video data or sometimes you have
+02:12 
+
+02:12 multimodel data. So where you have data
+02:14 
+
+02:14 which can be speech plus video or which
+02:17 
+
+02:17 can be let's suppose speech plus uh say
+02:20 
+
+02:20 some other dimension let's text
+02:22 
+
+02:22 sometimes you can have image plus text
+02:24 
+
+02:24 and a lot of things can be there you can
+02:25 
+
+02:25 have multimodal data as well
+02:30 
+
+02:30 because as I said machines only
+02:32 
+
+02:32 understand numbers they don't understand
+02:34 
+
+02:34 anything except numbers or rather binary
+02:36 
+
+02:36 so all the data should be given a number
+02:38 
+
+02:38 so we'll have a detailed discussion on
+02:39 
+
+02:39 all of these and the second thing is
+02:41 
+
+02:41 models okay and we'll have to learn a
+02:42 
+
+02:42 lot of models and then there comes the
+02:45 
+
+02:45 learning how to have this learning
+02:46 
+
+02:46 algorithm because we saw one algorithm
+02:47 
+
+02:47 gradient descent and then we'll have to
+02:49 
+
+02:49 see this object objective function so
+02:50 
+
+02:50 today we'll start our discussion with
+02:52 
+
+02:52 this objective function okay so we'll
+02:54 
+
+02:54 start our discussions on this so as I s
+02:57 
+
+02:57 as I told you this so you have this
+02:60 
+
+02:60 function that you want to learn so now
+03:02 
+
+03:02 let me plot a simple graph let's suppose
+03:04 
+
+03:04 this is ask me as many questions as
+03:06 
+
+03:06 possible okay suppose this is the real
+03:09 
+
+03:09 function that you want to learn okay
+03:11 
+
+03:11 this is the real function call is
+03:12 
+
+03:12 suppose some f of x. So this is a real
+03:14 
+
+03:14 function that you want to learn and now
+03:16 
+
+03:16 what you are learning is called g of x
+03:17 
+
+03:17 rather because I have used f of x. So
+03:20 
+
+03:20 now you are using your model. So that
+03:21 
+
+03:21 model is represent by f of x f of x but
+03:24 
+
+03:24 it's a parameterized model or a
+03:26 
+
+03:26 parameterized function. So it's
+03:27 
+
+03:27 parameterized by w is these weights and
+03:29 
+
+03:29 biases. I can collect them in one matrix
+03:33 
+
+03:33 that I I can just call that w. So w are
+03:35 
+
+03:35 these parameters or I can call this
+03:36 
+
+03:36 theta also. Okay, let me stick with this
+03:38 
+
+03:38 w notation for now. So this is my
+03:40 
+
+03:40 parametric function that I want to
+03:41 
+
+03:41 learn. Say the model learns this
+03:44 
+
+03:44 function. So this function over here
+03:47 
+
+03:47 something of this sort. So this is f of
+03:50 
+
+03:50 x w. So this is the model which model
+03:52 
+
+03:52 learns. Now if you see this
+03:55 
+
+03:55 so this orange portion that you see over
+03:58 
+
+03:58 here this is area between two curves.
+04:00 
+
+04:00 Okay one curve is the curve or the one
+04:02 
+
+04:02 one function is the function which is
+04:04 
+
+04:04 the actual function there that g of x.
+04:05 
+
+04:05 This is the function that is the
+04:07 
+
+04:07 generating process. whenever you have
+04:08 
+
+04:08 data. So this comes from this
+04:09 
+
+04:09 probability distribution and there's a
+04:10 
+
+04:10 function estate of that that is the g of
+04:12 
+
+04:12 x and then you are trying to approximate
+04:14 
+
+04:14 that function you're trying to model
+04:16 
+
+04:16 that function by using neural network
+04:18 
+
+04:18 and that function is approximated by f x
+04:21 
+
+04:21 w that means it is parameterized with w
+04:23 
+
+04:23 and it takes input x and now you see
+04:25 
+
+04:25 this is the error because I want to have
+04:26 
+
+04:26 a discussion on this cost function or
+04:28 
+
+04:28 objective function okay are clear on
+04:30 
+
+04:30 this so this is the error that we that
+04:32 
+
+04:32 we want to have so this is the error so
+04:34 
+
+04:34 can anybody tell me the idea how can I
+04:35 
+
+04:35 quantify this error
+04:38 
+
+04:38 Can anybody tell me how can I quantify
+04:40 
+
+04:40 this error?
+04:41 
+
+04:41 I'll give you maybe a minute or so. How
+04:44 
+
+04:44 can we quantify this? Yes, please.
+04:48 
+
+04:48 The answer given was that we have to use
+04:49 
+
+04:49 integral. Okay. So, we have to compute
+04:51 
+
+04:51 the total error. So, how can we compute
+04:52 
+
+04:52 total error?
+04:54 
+
+04:54 Total error somehow have to be computed
+04:56 
+
+04:56 by using function. We have to find this
+04:57 
+
+04:57 area between these. Okay. And we have to
+04:59 
+
+04:59 minimize the error. The total error
+05:01 
+
+05:01 because this takes W as an input. So, we
+05:03 
+
+05:03 have to compute the total error. So it
+05:04 
+
+05:04 will be integral of let's suppose from
+05:06 
+
+05:06 minus infinity to infinity because this
+05:08 
+
+05:08 function can be defined on this and we
+05:10 
+
+05:10 have to define a function let's call
+05:11 
+
+05:11 that divergence function some function
+05:13 
+
+05:13 which will quantify this error. So this
+05:15 
+
+05:15 function will take two other functions
+05:17 
+
+05:17 as input. So it will take this f of x
+05:20 
+
+05:20 and w and comma this g of x
+05:24 
+
+05:24 and then dx. Okay. So it is taking both.
+05:27 
+
+05:27 So what fal said is that we can put
+05:29 
+
+05:29 minus. So that is you are giving an
+05:30 
+
+05:30 example of a function. So what I said is
+05:32 
+
+05:32 this is the conceptual thing first. So
+05:34 
+
+05:34 here you have to have a function which
+05:35 
+
+05:35 will take input as these two functions.
+05:37 
+
+05:37 Okay. And then it will somehow quantify
+05:39 
+
+05:39 this error. So how many of you
+05:40 
+
+05:40 understood this point and agree on this
+05:42 
+
+05:42 point. So we have to come up with a
+05:43 
+
+05:43 function this divergence function. So it
+05:45 
+
+05:45 will see okay what is it will basically
+05:48 
+
+05:48 quantify that error and that that will
+05:49 
+
+05:49 be some function as one instance you can
+05:51 
+
+05:51 put a minus in here. Okay you can just
+05:52 
+
+05:52 subtract these two things. But this is
+05:54 
+
+05:54 very important you have to understand
+05:55 
+
+05:55 this. So this is what is our thing.
+05:58 
+
+05:58 Total error is this and you want to come
+05:60 
+
+05:60 up with you want to minimize this error.
+06:02 
+
+06:02 You want to find such w. Okay, which
+06:04 
+
+06:04 we'll call W star. So that I'll write
+06:05 
+
+06:05 this arg min of this. So arg min.
+06:10 
+
+06:10 Let's call this function as total error.
+06:11 
+
+06:11 R min of this function total error.
+06:14 
+
+06:14 Total error of W. So this is your
+06:16 
+
+06:16 objective.
+06:20 
+
+06:20 Okay. This is the objective function.
+06:23 
+
+06:23 Okay. The total error can be computed by
+06:25 
+
+06:25 this. You have to integrate from minus
+06:27 
+
+06:27 in because this area under two curves
+06:29 
+
+06:29 and two curves are this f of x and g of
+06:31 
+
+06:31 x. And now you want to find a function.
+06:33 
+
+06:33 You want to find a function which
+06:34 
+
+06:34 somehow if I give input this and then
+06:36 
+
+06:36 this function and it will tell me how
+06:38 
+
+06:38 much of are they from each other. Okay.
+06:40 
+
+06:40 And this divergence should have some
+06:41 
+
+06:41 properties. So if f of x w and this g of
+06:43 
+
+06:43 x is equal. So it should be given it
+06:45 
+
+06:45 should be given me equals zero. So I
+06:47 
+
+06:47 want some properties. This divergence
+06:48 
+
+06:48 function should have some properties.
+06:50 
+
+06:50 Give me a second. I'll just
+06:52 
+
+06:52 now I defined this divergence function.
+06:53 
+
+06:53 So what are the properties that
+06:55 
+
+06:55 divergence function should have? So I'm
+06:56 
+
+06:56 saying that this divergence function of
+06:58 
+
+06:58 f
+06:60 
+
+06:60 it'll take this f ofx and parameterized
+07:03 
+
+07:03 by w and this g of x. So this is the
+07:05 
+
+07:05 true function. This is the parameterized
+07:06 
+
+07:06 function that the model is learning. So
+07:08 
+
+07:08 it should be equal to zero. When should
+07:10 
+
+07:10 it be equal to z? If f of x w is equal
+07:14 
+
+07:14 to g of x if it exactly models that
+07:16 
+
+07:16 function. So it should be equal to zero.
+07:17 
+
+07:17 Otherwise what should happen? This
+07:18 
+
+07:18 divergence of f ofx w comma g of x it
+07:23 
+
+07:23 should be greater than zero. If it is
+07:25 
+
+07:25 not equal if x w is not equal to g of x.
+07:29 
+
+07:29 This is the property that I want my
+07:30 
+
+07:30 function to have. Why? Why this
+07:31 
+
+07:31 property? Because I am somehow trying to
+07:33 
+
+07:33 estimate the loss. I'm somehow trying to
+07:35 
+
+07:35 see how much of is this. So I want this
+07:38 
+
+07:38 error to be positive. This error is
+07:39 
+
+07:39 positive. It means there is some error.
+07:41 
+
+07:41 So our our model is not purely
+07:43 
+
+07:43 estimating or 100% it's not modeling
+07:45 
+
+07:45 this. There will be some error. Okay.
+07:48 
+
+07:48 And if it is equal, if our model is
+07:50 
+
+07:50 exactly giving the same function that we
+07:52 
+
+07:52 wanted that that was there in the
+07:54 
+
+07:54 generating process, then it should be
+07:55 
+
+07:55 equal. So these should be the properties
+07:56 
+
+07:56 followed by this divergence function
+07:58 
+
+07:58 followed by this objective function.
+07:60 
+
+07:60 Everybody on the same page for now.
+08:03 
+
+08:03 Okay. The question was asked was will it
+08:04 
+
+08:04 be a will it be a single number? Yes, it
+08:06 
+
+08:06 will be a scale. It will be a single
+08:08 
+
+08:08 number giving you this. So if you are
+08:10 
+
+08:10 having a number positive let's suppose
+08:11 
+
+08:11 20. So this is telling you that you have
+08:13 
+
+08:13 an error of 20. Suppose you have a
+08:14 
+
+08:14 divergence of 20 somehow. This is
+08:16 
+
+08:16 quantifying how much off you are. So if
+08:18 
+
+08:18 you did something to the network, if you
+08:19 
+
+08:19 adjusted weights and best and you went
+08:21 
+
+08:21 to let's suppose 18 it means oh you did
+08:23 
+
+08:23 some right things that's why your error
+08:25 
+
+08:25 or your this thing your what I can say
+08:28 
+
+08:28 is difference between these two
+08:30 
+
+08:30 distributions difference between these
+08:31 
+
+08:31 two functions got decreased. So if you
+08:33 
+
+08:33 again suddenly did something and it went
+08:34 
+
+08:34 to 30 say okay then you messed up
+08:37 
+
+08:37 something because now your difference of
+08:39 
+
+08:39 these functions is quite high. Okay this
+08:41 
+
+08:41 divergence is quite high. Okay this will
+08:43 
+
+08:43 be a single number. Now this is the
+08:45 
+
+08:45 property I want. Now there is there are
+08:46 
+
+08:46 big two problems. Okay, I'll tell you
+08:48 
+
+08:48 what two problems there are. So this
+08:50 
+
+08:50 assumes that input basically we have
+08:53 
+
+08:53 some inputs and we can we should know
+08:56 
+
+08:56 this g of x. But in reality you know
+08:57 
+
+08:57 that you don't know this g of x. So we
+08:59 
+
+08:59 don't do not know g of x.
+09:02 
+
+09:02 We do not know g of x.
+09:06 
+
+09:06 This is one problem. If we do not know g
+09:08 
+
+09:08 of x. Okay. So what do we know then? We
+09:10 
+
+09:10 just have samples. We can sample from
+09:12 
+
+09:12 this function only.
+09:15 
+
+09:15 we can sample from this. Okay, if you
+09:16 
+
+09:16 have a function, if you are given input
+09:18 
+
+09:18 output pairs or the or some data from
+09:21 
+
+09:21 that generating function, you only have
+09:22 
+
+09:22 access to the samples. So you can think
+09:24 
+
+09:24 it as we are sampling from the function.
+09:26 
+
+09:26 When you have this data, you have
+09:27 
+
+09:27 basically samples from that function.
+09:29 
+
+09:29 That is the only access you have. Okay,
+09:30 
+
+09:30 now we'll go to the probabilistic
+09:32 
+
+09:32 things. Okay, we now go to probability.
+09:33 
+
+09:33 You'll see that how probability is
+09:34 
+
+09:34 getting used. Now basically we cannot
+09:36 
+
+09:36 compute this. So if you if you if you
+09:38 
+
+09:38 cannot compute this integral, so total
+09:41 
+
+09:41 error, you cannot compute this. So what
+09:42 
+
+09:42 you can do is you had this you had
+09:44 
+
+09:44 integral of uh integral of this
+09:46 
+
+09:46 divergence function and then you had
+09:48 
+
+09:48 this input function.
+09:52 
+
+09:52 Okay, this is what what you had. Now if
+09:55 
+
+09:55 you do not if you cannot access this
+09:56 
+
+09:56 function. So what you should do is now
+09:58 
+
+09:58 you should somehow have the probability
+09:60 
+
+09:60 distribution then okay if you do not
+10:02 
+
+10:02 have access to all of these you can
+10:03 
+
+10:03 still create probability. You do not
+10:04 
+
+10:04 have this G of X but you can represent
+10:05 
+
+10:05 this G of X in terms of probability.
+10:07 
+
+10:07 Okay. So you can represent somehow that
+10:10 
+
+10:10 in terms of if you represent that in
+10:11 
+
+10:11 terms of probability okay what will
+10:13 
+
+10:13 happen because of that is once you
+10:14 
+
+10:14 represent that in terms of probability
+10:15 
+
+10:15 you can bring it into the expectation
+10:17 
+
+10:17 word okay so I'll write that thing so
+10:19 
+
+10:19 you know that I can and you know the
+10:21 
+
+10:21 definition expectation I don't need to
+10:22 
+
+10:22 go there expectation basically when we
+10:24 
+
+10:24 read about random variables so there we
+10:26 
+
+10:26 saw that if you have a discrete random
+10:28 
+
+10:28 variable you'll take summation of the
+10:30 
+
+10:30 random variable x i the value it takes
+10:31 
+
+10:31 then multipity of x i okay and then you
+10:34 
+
+10:34 sum it over all these things this is the
+10:35 
+
+10:35 expectation I'll not go there again so
+10:37 
+
+10:37 now what What you can do is you you not
+10:39 
+
+10:39 have access to samples. So you will say
+10:41 
+
+10:41 that I cannot compute the integral of
+10:43 
+
+10:43 this. So what I should do is I should
+10:44 
+
+10:44 compute expectation of this then because
+10:46 
+
+10:46 actually this can be converted into
+10:47 
+
+10:47 summation. Okay. Realistically by using
+10:50 
+
+10:50 let's suppose you cannot integrate over
+10:52 
+
+10:52 all the things. So you can you have to
+10:54 
+
+10:54 use an expectation. So you'll say this
+10:55 
+
+10:55 expectation X was drawn from this
+10:57 
+
+10:57 probability P of X. Okay. There will be
+10:59 
+
+10:59 some probability distribution of the
+10:60 
+
+10:60 generic function. You have G of X. You
+11:02 
+
+11:02 have X X is a function. Okay. This
+11:03 
+
+11:03 function will have some probability
+11:04 
+
+11:04 distribution called that P of X. Okay.
+11:06 
+
+11:06 this x is drawn from that if if a sample
+11:09 
+
+11:09 is drawn from that. So now how we can
+11:11 
+
+11:11 represent this? So you can you can
+11:12 
+
+11:12 represent this divergence function like
+11:15 
+
+11:15 this this divergence you are basically
+11:17 
+
+11:17 now computing expectation you cannot
+11:18 
+
+11:18 integrate over all these things because
+11:20 
+
+11:20 you only have access to the samples.
+11:22 
+
+11:22 This is how you can write it not
+11:24 
+
+11:24 computing this rather computing the
+11:26 
+
+11:26 expectation and now you can in turn
+11:27 
+
+11:27 again write it in terms of integral. So
+11:28 
+
+11:28 if you go back, so if you equate this,
+11:31 
+
+11:31 so this will be integral of divergence
+11:33 
+
+11:33 of f ofx w these two functions and then
+11:38 
+
+11:38 the probability of x. This is how
+11:40 
+
+11:40 expectation is being written. Okay, you
+11:42 
+
+11:42 have some value and multiplied by that
+11:44 
+
+11:44 probability. This is how we write
+11:45 
+
+11:45 expectation because as I said this thing
+11:47 
+
+11:47 can be converted into the expectation.
+11:48 
+
+11:48 Okay, and this was one problem. So the
+11:50 
+
+11:50 first problem was we did not have access
+11:52 
+
+11:52 to the g of x. So we only have samples.
+11:54 
+
+11:54 So you cannot compute this rather you
+11:55 
+
+11:55 can compute the expectation. So this is
+11:57 
+
+11:57 what we can compute.
+11:60 
+
+11:60 Look at our second problem. The second
+12:01 
+
+12:01 problem that we have is outputs can be
+12:04 
+
+12:04 random
+12:06 
+
+12:06 outputs
+12:08 
+
+12:08 can be random. So what what do I mean by
+12:10 
+
+12:10 that? By that I mean if let's suppose we
+12:13 
+
+12:13 have some input X it could yield two
+12:16 
+
+12:16 different labels. It can have one label
+12:17 
+
+12:17 Y1 and Y2. Sometimes the same data point
+12:19 
+
+12:19 can yield two different labels because
+12:21 
+
+12:21 of noise. Because you know in in real
+12:24 
+
+12:24 process in in real data you sometimes
+12:26 
+
+12:26 have noise and sometimes the same data
+12:28 
+
+12:28 point can have two labels. Okay. Uh once
+12:30 
+
+12:30 you have give the data point due to
+12:32 
+
+12:32 noise it gave label Y1 and uh at the
+12:34 
+
+12:34 time it gave Y2. So this is outputs are
+12:37 
+
+12:37 also rand outputs are random. The first
+12:38 
+
+12:38 thing was we do not have this was the
+12:40 
+
+12:40 first thing we do not have no G of X.
+12:42 
+
+12:42 The second thing was outputs can be
+12:43 
+
+12:43 random. Again if output again you you
+12:45 
+
+12:45 should not then use this G of X. So what
+12:47 
+
+12:47 you should do you should use
+12:48 
+
+12:48 corresponding label is then. So what
+12:49 
+
+12:49 I'll say is now you are taking this
+12:52 
+
+12:52 expectation X Y. Now this is taken from
+12:55 
+
+12:55 probability distribution of X Y.
+12:57 
+
+12:57 Initially we just were taking
+12:58 
+
+12:58 probability of X. We had a distribution
+12:59 
+
+12:59 G of X and we were taking these we're
+13:02 
+
+13:02 sampling this X from that probability
+13:03 
+
+13:03 distribution of X. Now we're taking a
+13:04 
+
+13:04 joint probability probability of X and
+13:06 
+
+13:06 Y. These are two things and then we
+13:08 
+
+13:08 sampling X Y from there. Okay. Now we'll
+13:10 
+
+13:10 also replace this G of X because G of X
+13:12 
+
+13:12 and we don't know its probability all
+13:14 
+
+13:14 together like because Y's can be random.
+13:16 
+
+13:16 So again expectation of this and we'll
+13:18 
+
+13:18 say divergence of f of x w comma yi okay
+13:24 
+
+13:24 because this is this is the axis that we
+13:26 
+
+13:26 have
+13:28 
+
+13:28 and this is called this thing over here
+13:31 
+
+13:31 is what we can derive okay this can be
+13:34 
+
+13:34 done this can be done
+13:38 
+
+13:38 the first problem we had we not have
+13:39 
+
+13:39 access to g of x so what do we do we
+13:41 
+
+13:41 said okay we'll sample from that
+13:42 
+
+13:42 distribution that points x then we said
+13:44 
+
+13:44 oh we have problem with labels as
+13:46 
+
+13:46 Because sometimes there will be a issue
+13:48 
+
+13:48 that one data point due to noise can be
+13:50 
+
+13:50 having multiple labels. Sometimes it can
+13:52 
+
+13:52 give one label the same data point
+13:53 
+
+13:53 because of the noise. So we again
+13:55 
+
+13:55 changed this. So now what is the best
+13:57 
+
+13:57 possible thing in theory? So what we can
+13:58 
+
+13:58 do is we have to minimize this. Let's
+14:00 
+
+14:00 call this thing as R of W.
+14:03 
+
+14:03 R of W. Okay. So this is called as base
+14:06 
+
+14:06 optimal predictor.
+14:08 
+
+14:08 Okay. Or we also call this as empirical
+14:10 
+
+14:10 error.
+14:13 
+
+14:13 Empirical error because this is not
+14:14 
+
+14:14 real. This is empirical because you're
+14:16 
+
+14:16 seeing it from data. So what you have to
+14:18 
+
+14:18 do is you have to find w star such that
+14:22 
+
+14:22 you minimize this expression over here
+14:25 
+
+14:25 or w r of w should be minimum. So this
+14:28 
+
+14:28 over here is your objective objective.
+14:31 
+
+14:31 This is your objective.
+14:34 
+
+14:34 Why can't we do it directly? Again p of
+14:37 
+
+14:37 uh this is this is not accessible. G of
+14:40 
+
+14:40 x is not accessible. And second thing is
+14:42 
+
+14:42 we do not have access to y because it
+14:44 
+
+14:44 can be random. So this is called as
+14:45 
+
+14:45 empirical risk. Okay. So this thing over
+14:48 
+
+14:48 here that you saw is called as empirical
+14:49 
+
+14:49 risk or empirical error. So we can write
+14:51 
+
+14:51 it empirical risk
+14:54 
+
+14:54 and this is objective and this is called
+14:55 
+
+14:55 as empirical risk minimization. So we
+14:57 
+
+14:57 have to minimize this. Okay. We have to
+14:59 
+
+14:59 empirically minimize this risk. How many
+15:02 
+
+15:02 of you are on the same page till till
+15:04 
+
+15:04 now? Okay. Well now we know that okay we
+15:06 
+
+15:06 can do this. Okay. Now we have to have a
+15:08 
+
+15:08 discussion on this divergence function.
+15:10 
+
+15:10 Somehow we should be able to know this
+15:11 
+
+15:11 divergence function. Now, now we know
+15:13 
+
+15:13 that okay we cannot have access to this.
+15:15 
+
+15:15 So this is what we want to minimize. Now
+15:17 
+
+15:17 moving on to the next discussion. Now
+15:19 
+
+15:19 we'll go to a bit of information theory
+15:21 
+
+15:21 then I'll come back. Okay before
+15:23 
+
+15:23 discussing all of these we'll go to
+15:24 
+
+15:24 information theory and then we'll come
+15:26 
+
+15:26 back and we'll define this. So now we
+15:27 
+
+15:27 can call this a loss function. This
+15:29 
+
+15:29 usually is called loss. Okay this is not
+15:31 
+
+15:31 right word to use because as I said it's
+15:32 
+
+15:32 called empirical risk. Sometimes you
+15:34 
+
+15:34 might have heard about loss. So this is
+15:35 
+
+15:35 also considered loss. Okay. Sometimes
+15:37 
+
+15:37 you have heard about cost. What is the
+15:38 
+
+15:38 difference between cost and loss? So you
+15:40 
+
+15:40 sometimes also add regularization terms
+15:42 
+
+15:42 you regularize the value then you call
+15:43 
+
+15:43 that cost function. Loss is basically
+15:45 
+
+15:45 defined for for one point or for one
+15:47 
+
+15:47 points without regularization. Sometimes
+15:48 
+
+15:48 you define cost as well. Cost is overall
+15:50 
+
+15:50 cost. Then you also add regularization
+15:53 
+
+15:53 and then we call we we'll differentiate
+15:54 
+
+15:54 this maybe in the later classes but here
+15:56 
+
+15:56 you have to know that actually this is
+15:58 
+
+15:58 this is the empirical risk. Okay. And
+15:59 
+
+15:59 this is the best we have. Okay. And does
+16:01 
+
+16:01 it guarantee that it'll model the
+16:03 
+
+16:03 functions exactly? No. Why? Because we
+16:05 
+
+16:05 are sampling. We don't know how good our
+16:06 
+
+16:06 samples are. Are our sampling
+16:08 
+
+16:08 representative of our distribution? Are
+16:10 
+
+16:10 the samples good enough that they are
+16:12 
+
+16:12 represent the function that we are
+16:13 
+
+16:13 trying to model? So it depends on or
+16:15 
+
+16:15 that's why it's called empirical risk.
+16:17 
+
+16:17 Now we have to have discussion on some
+16:19 
+
+16:19 some information theory. Okay. And then
+16:21 
+
+16:21 we'll come up with how to how to
+16:22 
+
+16:22 construct these divergence functions.
+16:24 
+
+16:24 Okay. You might have heard about uh like
+16:26 
+
+16:26 we have binary decision binary let's
+16:28 
+
+16:28 suppose loss and then you might have
+16:30 
+
+16:30 heard about cross entropy loss. You
+16:31 
+
+16:31 might have have heard about KL
+16:33 
+
+16:33 divergence. All of these come from this.
+16:36 
+
+16:36 So first we will have some discussion on
+16:37 
+
+16:37 information theory.
+16:42 
+
+16:42 Okay. How to understand this? As I said
+16:44 
+
+16:44 data contains information. Okay. That is
+16:46 
+
+16:46 the base assumption we have. Data
+16:48 
+
+16:48 whenever you sample uh from some
+16:49 
+
+16:49 distribution. So you assume that you are
+16:51 
+
+16:51 unwilling the distribution. You think it
+16:53 
+
+16:53 like this. You now see it from the
+16:55 
+
+16:55 probabilistic lens. You have an earn
+16:58 
+
+16:58 which contains balls. Okay. Let's it
+17:00 
+
+17:00 contains red, green, blue some three
+17:02 
+
+17:02 types of balls. And there is this N is
+17:04 
+
+17:04 totally sealed. You don't know what is
+17:06 
+
+17:06 inside that. Okay, you don't know what
+17:07 
+
+17:07 the distribution because you know about
+17:08 
+
+17:08 distributions now. So say you have 30
+17:11 
+
+17:11 red balls, you have 20 green balls, you
+17:13 
+
+17:13 have 10 blue balls that is inside it.
+17:15 
+
+17:15 But when you sample when you give it a
+17:16 
+
+17:16 real good shuffle and then you can
+17:18 
+
+17:18 basically only sample from it because
+17:21 
+
+17:21 this thing is hidden from you. Okay. And
+17:22 
+
+17:22 because it follows a distribution
+17:24 
+
+17:24 there's exact there's a real
+17:25 
+
+17:25 distribution in it. So whenever you
+17:26 
+
+17:26 sample a ball okay whenever you know
+17:28 
+
+17:28 that if it is a red ball you are getting
+17:30 
+
+17:30 some information for you're getting some
+17:32 
+
+17:32 information and that is helping you to
+17:34 
+
+17:34 estimate the distribution. Okay, that's
+17:35 
+
+17:35 what basically we are doing. So whenever
+17:37 
+
+17:37 you see a data point, there is some
+17:39 
+
+17:39 generating underlying process. There is
+17:40 
+
+17:40 some probably distribution, you do not
+17:42 
+
+17:42 know that you have no access to no
+17:43 
+
+17:43 access to that. If you had access, no
+17:45 
+
+17:45 point in machine learning, no point in
+17:46 
+
+17:46 doing deep learning. But we assume that
+17:48 
+
+17:48 nature is doing something and there is a
+17:50 
+
+17:50 generating process for that. So whenever
+17:51 
+
+17:51 you see something, whenever you observe
+17:53 
+
+17:53 something, that means it is giving you
+17:54 
+
+17:54 some information. So what is information
+17:56 
+
+17:56 now? So information is actually degree
+17:58 
+
+17:58 of surprisal.
+18:00 
+
+18:00 So it is degree of
+18:03 
+
+18:03 surprisal. So what I mean by that? So
+18:05 
+
+18:05 let's suppose if I tell you tomorrow you
+18:07 
+
+18:07 will see sun rising from east. Say I say
+18:10 
+
+18:10 this then there is nothing surprising
+18:12 
+
+18:12 it. It it is not adding anything to your
+18:14 
+
+18:14 information. If I say let's suppose uh
+18:16 
+
+18:16 we will have class tomorrow. Not much
+18:18 
+
+18:18 surprising because we have been having
+18:19 
+
+18:19 classes. So it is not like that
+18:22 
+
+18:22 surprising to it is not adding that that
+18:24 
+
+18:24 information. So when is information
+18:25 
+
+18:25 happening? So when is when when are you
+18:27 
+
+18:27 basically adding information into your
+18:28 
+
+18:28 database or when are you adding when are
+18:30 
+
+18:30 you getting knowledgeable? when you are
+18:32 
+
+18:32 feeling something surprise when you are
+18:33 
+
+18:33 feeling oh there is some surprise in
+18:35 
+
+18:35 this so if I can somehow quantify the
+18:37 
+
+18:37 degree of surpriser you see I'm again
+18:39 
+
+18:39 bringing the theory and then I'm telling
+18:40 
+
+18:40 you first I said data contains
+18:42 
+
+18:42 information now I have to quantify okay
+18:44 
+
+18:44 what is the meaning of information so
+18:45 
+
+18:45 how do you say that this data has
+18:46 
+
+18:46 information this doesn't have
+18:47 
+
+18:47 information so I I'm saying that you
+18:49 
+
+18:49 should somehow be surprised when you see
+18:52 
+
+18:52 that if you're not surprised that means
+18:54 
+
+18:54 it has not added anything to your
+18:55 
+
+18:55 information you are okay with that as I
+18:57 
+
+18:57 give an example if I say that today
+18:59 
+
+18:59 after let's suppose 7:00 p.m. you will
+19:01 
+
+19:01 you'll not see sun. Pretty okay enough.
+19:04 
+
+19:04 Why? Because it will be night time. I
+19:06 
+
+19:06 won't see I won't I won't be surprised.
+19:08 
+
+19:08 Okay. Now I have to quantify this.
+19:09 
+
+19:09 Basically I want to see what I what do I
+19:11 
+
+19:11 mean by information.
+19:14 
+
+19:14 Okay. As I said vaguely speaking
+19:16 
+
+19:16 information is the degree of surprise.
+19:18 
+
+19:18 Okay. How much surprised will I be? Now
+19:19 
+
+19:19 I'll have to quantify this. Okay. If I
+19:21 
+
+19:21 have if I will be surprised. So how can
+19:24 
+
+19:24 I quantify this? Now I I'll bring into
+19:25 
+
+19:25 the mathematics again. So how many of
+19:28 
+
+19:28 you agree that information is how much
+19:30 
+
+19:30 degree of surprise is there in the is in
+19:32 
+
+19:32 that data point
+19:35 
+
+19:35 okay now and now we'll bring it that
+19:37 
+
+19:37 okay now we'll see that let's suppose we
+19:39 
+
+19:39 can again bring probability you see how
+19:41 
+
+19:41 how powerful probability is if some
+19:43 
+
+19:43 event is very low in probability if
+19:46 
+
+19:46 there is an event which is which has
+19:47 
+
+19:47 very low probability of happening and it
+19:49 
+
+19:49 happened you'll be surprised okay if you
+19:52 
+
+19:52 are surprised that means it contains
+19:53 
+
+19:53 information it contains more information
+19:55 
+
+19:55 that means somehow this information I
+19:58 
+
+19:58 can say information if I have some
+19:60 
+
+19:60 message X information X is inversely
+20:03 
+
+20:03 proportional to probability
+20:06 
+
+20:06 so what is the meaning of this so I'm
+20:07 
+
+20:07 now trying to quantify this degree of
+20:09 
+
+20:09 surprise I'm saying if you are seeing
+20:11 
+
+20:11 data point and if it had very less
+20:13 
+
+20:13 probability say it had probability of
+20:14 
+
+20:14 0.1 and it occurred or you'll be
+20:16 
+
+20:16 surprised oh this event was very
+20:18 
+
+20:18 unlikely but it happened so it gave me a
+20:21 
+
+20:21 more degree of surprise so it adds to my
+20:23 
+
+20:23 information so when I said that Tomorrow
+20:26 
+
+20:26 you will see sun rising from the east.
+20:28 
+
+20:28 It almost was 0.99 probability was
+20:30 
+
+20:30 there. So there was very high
+20:32 
+
+20:32 probability. That means there's very
+20:33 
+
+20:33 less information. So more probability
+20:35 
+
+20:35 less information. That's why I'm saying
+20:37 
+
+20:37 there is some inverse relationship.
+20:40 
+
+20:40 Okay. If you see that some event has
+20:42 
+
+20:42 very low probability that means it
+20:44 
+
+20:44 contains more information. If it
+20:45 
+
+20:45 happened it will increase the
+20:46 
+
+20:46 information more. It will give you more
+20:48 
+
+20:48 information contrary to that. So now
+20:50 
+
+20:50 this is proportional. Now I somehow have
+20:52 
+
+20:52 to bring a function which will behave
+20:53 
+
+20:53 like this. Okay. Okay. Now if I say this
+20:55 
+
+20:55 if I say two events are there I have
+20:57 
+
+20:57 event A and I have event B. So these two
+20:59 
+
+20:59 events if they are let's suppose
+21:01 
+
+21:01 mutually exclusive events okay or I can
+21:04 
+
+21:04 say that these rather than mutually
+21:05 
+
+21:05 exclusive events I should say
+21:06 
+
+21:06 independent I'm rather confusing you
+21:08 
+
+21:08 people. So if they are independent
+21:09 
+
+21:09 events so we have seen what are the
+21:10 
+
+21:10 independent events. If happening of A
+21:13 
+
+21:13 gives us no information about B
+21:14 
+
+21:14 happening of B gives no information
+21:16 
+
+21:16 about A. So if something if P of A
+21:18 
+
+21:18 happened my probability about B is not
+21:21 
+
+21:21 shifting. I'm not doing any update to B
+21:23 
+
+21:23 because it is equivalent to that. That
+21:24 
+
+21:24 is how uh what that's the meaning of
+21:26 
+
+21:26 independent events. So now I have to
+21:28 
+
+21:28 have a function of this. So if I take
+21:30 
+
+21:30 this function if I take this function of
+21:33 
+
+21:33 probability of this X okay this function
+21:36 
+
+21:36 of probability of X. So somehow I should
+21:38 
+
+21:38 be quantifying this. I I need such a
+21:39 
+
+21:39 function which will follow this. So
+21:41 
+
+21:41 probability of if I have now P of X if I
+21:44 
+
+21:44 write f of P of A and P of B. Say F of
+21:48 
+
+21:48 probability of A and B. So this should
+21:50 
+
+21:50 be somehow equal to f a function of p of
+21:53 
+
+21:53 a plus p of b plus function of p of b.
+21:58 
+
+21:58 Okay, I will not discuss probability
+21:60 
+
+21:60 here because we have discussed in
+22:01 
+
+22:01 detail. Now you can say probability of p
+22:03 
+
+22:03 of a multiply by p of b. This is the
+22:05 
+
+22:05 meaning of independence. This is
+22:08 
+
+22:08 probability of p of a plus p of b
+22:12 
+
+22:12 plus f of p of b. So I need to find such
+22:16 
+
+22:16 a function which will sort of behave
+22:18 
+
+22:18 like this. Okay, if you see one function
+22:21 
+
+22:21 which behaves like that, that's log
+22:22 
+
+22:22 function. Okay, that function is log
+22:25 
+
+22:25 function.
+22:27 
+
+22:27 Okay, I was telling you that information
+22:28 
+
+22:28 of X is inversely proportional to 1 /
+22:32 
+
+22:32 probability of that event X. Now, what I
+22:34 
+
+22:34 said is instead of this, it means that
+22:36 
+
+22:36 there will be some function. If I give
+22:37 
+
+22:37 this input that should give me the
+22:38 
+
+22:38 information it has. So suppose I of X it
+22:41 
+
+22:41 should be equal to some function of this
+22:43 
+
+22:43 P of X. I basically want to remove this
+22:45 
+
+22:45 proportionality. I said that is a
+22:46 
+
+22:46 property if if it is in terms of
+22:48 
+
+22:48 probability. So that should somehow a
+22:50 
+
+22:50 function should behave like this. So
+22:51 
+
+22:51 what is that function? That function is
+22:52 
+
+22:52 log function. So I can apply log on to
+22:54 
+
+22:54 this. I'll say information of x is equal
+22:57 
+
+22:57 to
+22:58 
+
+22:58 function log of let's say 1x p of x
+23:00 
+
+23:00 because it's inversely proportional.
+23:03 
+
+23:03 Okay. So this is 1x p of x and you know
+23:07 
+
+23:07 information of x this is equal to minus
+23:09 
+
+23:09 log of p of x.
+23:13 
+
+23:13 The thing that you see over here
+23:16 
+
+23:16 okay this point over here. So this is
+23:18 
+
+23:18 your information content. Everybody
+23:19 
+
+23:19 agreeing on this point? So how many of
+23:22 
+
+23:22 you are understanding this? So this over
+23:23 
+
+23:23 here the thing that you are seeing over
+23:25 
+
+23:25 here. So if you if you are you giving me
+23:27 
+
+23:27 let's suppose a point if you are giving
+23:28 
+
+23:28 me let's suppose some instance X and I
+23:30 
+
+23:30 am applying this log. So I'm telling you
+23:32 
+
+23:32 what is the information content in that.
+23:33 
+
+23:33 So this is the information content by
+23:34 
+
+23:34 using the log. Any questions still here?
+23:38 
+
+23:38 Now you saw that this thing over here is
+23:40 
+
+23:40 we can say that this is information how
+23:42 
+
+23:42 much information is there. Okay. Now we
+23:43 
+
+23:43 have to define term entropy.
+23:47 
+
+23:47 Okay, entropy in terms of computer
+23:48 
+
+23:48 science. Now how is entropy defined? So
+23:51 
+
+23:51 what you can do is if you have this
+23:53 
+
+23:53 probability distribution now because you
+23:54 
+
+23:54 know we have a distribution say you have
+23:55 
+
+23:55 some distribution you have to you have
+23:58 
+
+23:58 distribution p and you have some other
+24:00 
+
+24:00 distribution q. So this p and q in terms
+24:03 
+
+24:03 of r distribution you had this function
+24:05 
+
+24:05 g and the real function g of x and then
+24:07 
+
+24:07 you had this f of x w basically the
+24:10 
+
+24:10 estimating one. Suppose you have four
+24:12 
+
+24:12 classes. You have class
+24:15 
+
+24:15 say class uh dog, cat, say bus and
+24:20 
+
+24:20 cycles. These are the class image that I
+24:22 
+
+24:22 given to you. And now you know that they
+24:24 
+
+24:24 will follow some probability
+24:25 
+
+24:25 distribution. Okay, this probability
+24:26 
+
+24:26 distribution is there. Let's suppose in
+24:28 
+
+24:28 those images if you keep on if you know
+24:29 
+
+24:29 if you know the real sample the dog is
+24:31 
+
+24:31 occurring 04 times suppose 0.25 times
+24:34 
+
+24:34 0.15 times and 2 times. So this is the
+24:36 
+
+24:36 probability distribution and you are
+24:37 
+
+24:37 trying to estimate this. Okay, you want
+24:39 
+
+24:39 to try you want to estimate this
+24:40 
+
+24:40 probability or in the similar fashion
+24:42 
+
+24:42 you let's suppose are now given one
+24:44 
+
+24:44 image and you are given one image you
+24:46 
+
+24:46 are saying okay I have seen the data set
+24:48 
+
+24:48 so let's suppose that image was actually
+24:49 
+
+24:49 of the cat okay so the vector should
+24:52 
+
+24:52 have been like this 0 1 0 0 so all the
+24:55 
+
+24:55 probability should be given to this so
+24:57 
+
+24:57 when you are estimating that but you
+24:58 
+
+24:58 will predict something you'll predict
+24:60 
+
+24:60 let's suppose with 04 probability it is
+25:02 
+
+25:02 a cat with 22
+25:05 
+
+25:05 and 02 so this this is the probability
+25:06 
+
+25:06 and you are giving some slight higher
+25:08 
+
+25:08 probability with this because you are
+25:09 
+
+25:09 not you don't know this probability and
+25:10 
+
+25:10 there is some underlying probability
+25:12 
+
+25:12 towards this so what you now do is so
+25:14 
+
+25:14 you have probability and you have that
+25:16 
+
+25:16 point also so you have the information
+25:17 
+
+25:17 content with that you have log of p of
+25:22 
+
+25:22 let's suppose x i so if I if I write it
+25:24 
+
+25:24 like this so this is the information
+25:25 
+
+25:25 content I can say so if I just multiply
+25:27 
+
+25:27 it with that so I'll multiply I'll say
+25:29 
+
+25:29 log of this I can say x takes value so
+25:32 
+
+25:32 this is a random variable x it takes
+25:33 
+
+25:33 value x i minus of this so this gives
+25:36 
+
+25:36 you the information content so if If you
+25:38 
+
+25:38 just multiply it with the probability of
+25:40 
+
+25:40 that if you say probability of X is
+25:42 
+
+25:42 equal to X I
+25:44 
+
+25:44 and you keep this minus over here. So
+25:46 
+
+25:46 this is how entropy is defined. So this
+25:47 
+
+25:47 is defined as entropy and if you sum it
+25:49 
+
+25:49 over all the things you sum it over X I
+25:52 
+
+25:52 goes from 1 to N how many the variables
+25:55 
+
+25:55 were there. So this over here is called
+25:56 
+
+25:56 as entropy.
+26:00 
+
+26:00 So what you can see entropy is basically
+26:02 
+
+26:02 expectation. Okay this is the
+26:03 
+
+26:03 expectation. What do you expect?
+26:07 
+
+26:07 Okay, as I was telling you that we are
+26:09 
+
+26:09 showing you the example of number of
+26:10 
+
+26:10 bits being used. Okay, and I did not
+26:12 
+
+26:12 record that though. So, but you got the
+26:14 
+
+26:14 point here. So, what is entropy? The
+26:15 
+
+26:15 entropy basically is defined expected.
+26:17 
+
+26:17 How do you define expectation in terms
+26:18 
+
+26:18 of random variable? If you have a random
+26:19 
+
+26:19 variable X, it takes values say A, B,
+26:21 
+
+26:21 comma, C, D. It takes these values and
+26:24 
+
+26:24 they have probability.1
+26:26 
+
+26:26 34
+26:28 
+
+26:28 point some probability of this sort.
+26:30 
+
+26:30 Okay. So now you are you are being said
+26:32 
+
+26:32 okay what is the expectation of X? Okay.
+26:35 
+
+26:35 And we have read this about expectation.
+26:36 
+
+26:36 So expectation of S is summation of this
+26:39 
+
+26:39 X takes value I probability X takes
+26:41 
+
+26:41 value X I multiplied
+26:44 
+
+26:44 by this value X I okay and this goes
+26:47 
+
+26:47 from I goes from 1 to N. So how so our
+26:50 
+
+26:50 numbers are there how how many values
+26:51 
+
+26:51 this random variable take this is called
+26:52 
+
+26:52 as expectation. So this entropy is
+26:54 
+
+26:54 basically this expectation but here what
+26:57 
+
+26:57 you are doing is you are applying log
+26:58 
+
+26:58 onto this. So you see over here it is
+27:02 
+
+27:02 like expect not exactly like expectation
+27:04 
+
+27:04 you are you are taking this probability
+27:05 
+
+27:05 of this and then you're taking the
+27:07 
+
+27:07 information content. So at average how
+27:09 
+
+27:09 much information you will you find
+27:10 
+
+27:10 there. So this is the probability of
+27:12 
+
+27:12 that and this is at average how much
+27:14 
+
+27:14 information will be there at average
+27:16 
+
+27:16 very vaguely speaking at average how
+27:19 
+
+27:19 much information
+27:22 
+
+27:22 how much information will you find? Okay
+27:24 
+
+27:24 you have to if you do not understand
+27:26 
+
+27:26 this then there is some problem with the
+27:28 
+
+27:28 expectation. We have done a lot of
+27:29 
+
+27:29 things on expectation. I hope that this
+27:30 
+
+27:30 gets this is clear for you people. Now
+27:32 
+
+27:32 this is giving me the expectation. It is
+27:34 
+
+27:34 like computing the probability and this
+27:35 
+
+27:35 is like the this is having that value.
+27:37 
+
+27:37 This is the value it takes. This is the
+27:39 
+
+27:39 information content and this is the
+27:40 
+
+27:40 probability having that value. Okay.
+27:42 
+
+27:42 When you multiply these two things
+27:44 
+
+27:44 together this is telling you at average
+27:45 
+
+27:45 what is the information content that you
+27:47 
+
+27:47 expecting and this is formally defined
+27:49 
+
+27:49 as entropy. So how many of you people
+27:51 
+
+27:51 are clear on entropy? What is entropy?
+27:53 
+
+27:53 Okay today's lecture is getting a little
+27:54 
+
+27:54 math heavy not not that much. So what
+27:56 
+
+27:56 I'm trying to tell you here is this is
+27:58 
+
+27:58 how entropy is defined. So entropy
+27:59 
+
+27:59 basically is telling you and sort of
+28:01 
+
+28:01 expectation. So but what is that expect?
+28:03 
+
+28:03 It is basically giving you the
+28:04 
+
+28:04 information content. Okay. At average
+28:06 
+
+28:06 what is the information content in that.
+28:08 
+
+28:08 So what is information? So I told you
+28:09 
+
+28:09 that information is the degree of
+28:11 
+
+28:11 surprisal. Okay. So degree of surprisal
+28:13 
+
+28:13 can be measured if the event has less
+28:14 
+
+28:14 probability and if it occurred that
+28:16 
+
+28:16 means it is giving you more information.
+28:17 
+
+28:17 Okay. It is inversely proportional to
+28:19 
+
+28:19 that. I have to find a function which
+28:21 
+
+28:21 somehow gives me that I want to remove
+28:22 
+
+28:22 this proportionality. I want to bring
+28:23 
+
+28:23 some function which will map this. So I
+28:25 
+
+28:25 said log is the easiest function which
+28:27 
+
+28:27 shows that behavior. So now if you see
+28:29 
+
+28:29 this log so this I of X is equal to
+28:31 
+
+28:31 minus log of PX is the information the
+28:34 
+
+28:34 amount of information that is there in
+28:35 
+
+28:35 this data point X or when that event
+28:37 
+
+28:37 when that thing is sampled or the sample
+28:39 
+
+28:39 X. Okay. Now what I said is I said if we
+28:41 
+
+28:41 have distribution we have the
+28:41 
+
+28:41 distribution P we have the distribution
+28:43 
+
+28:43 Q and we'll come to the distribution
+28:44 
+
+28:44 once we do this divergences. So this was
+28:47 
+
+28:47 the initial distribution that was actual
+28:50 
+
+28:50 there. So that why we had actually
+28:51 
+
+28:51 sampled the data points from. Now we
+28:54 
+
+28:54 want to define entropy. We want to say
+28:55 
+
+28:55 okay we are sampling points. Okay what
+28:57 
+
+28:57 is the expectation? What can I expect? I
+28:59 
+
+28:59 said okay can you take this information
+29:02 
+
+29:02 uh amount of information and then you
+29:04 
+
+29:04 multiply it with the probability. What
+29:05 
+
+29:05 was the actual probability of that? So
+29:07 
+
+29:07 this is called as entropy. Okay. So this
+29:10 
+
+29:10 thing over here is called entropy. So
+29:11 
+
+29:11 what we we are trying to understand
+29:13 
+
+29:13 basically these cost functions. Okay. We
+29:14 
+
+29:14 have to come up with these divergence
+29:16 
+
+29:16 function. So as I said by giving this uh
+29:18 
+
+29:18 information about information theory you
+29:21 
+
+29:21 are now I think good enough to
+29:23 
+
+29:23 understand the cost functions or the
+29:25 
+
+29:25 loss functions so we'll study about KL
+29:28 
+
+29:28 divergence
+29:30 
+
+29:30 so we'll study about cross entropy cross
+29:32 
+
+29:32 entropy loss we'll study about uh say
+29:36 
+
+29:36 mean square error that we already
+29:38 
+
+29:38 studied and we'll study about I think
+29:41 
+
+29:41 these three so this is usually used for
+29:43 
+
+29:43 say regression problems
+29:47 
+
+29:47 regression problems and this is usually
+29:50 
+
+29:50 used for classifications
+29:52 
+
+29:52 classification problems
+29:56 
+
+29:56 and I think maybe more than 80% of your
+29:59 
+
+29:59 deep learning will be either a
+30:00 
+
+30:00 regression problem or a classification
+30:02 
+
+30:02 problem you'll have to classify things
+30:04 
+
+30:04 or you will have to give some real value
+30:06 
+
+30:06 things so this much information about
+30:08 
+
+30:08 information theory is enough to
+30:10 
+
+30:10 understand all of these scale diver so
+30:11 
+
+30:11 what is the meaning now so what I have
+30:13 
+
+30:13 to do is This divergence function should
+30:16 
+
+30:16 somehow tell me how different are these
+30:18 
+
+30:18 functions. So we have f of x
+30:20 
+
+30:20 parameterized by w and this g of x.
+30:23 
+
+30:23 Okay. Now I said the problem is also
+30:25 
+
+30:25 that. So what you have to do is you'll
+30:26 
+
+30:26 have to sum up quantify. Okay. If I have
+30:28 
+
+30:28 one probability this I'll have this p.
+30:30 
+
+30:30 So that is the real distribution. The
+30:32 
+
+30:32 real distribution which we do not know.
+30:35 
+
+30:35 And then you have this Q.
+30:37 
+
+30:37 Q is basically this one. The one you
+30:39 
+
+30:39 estimate. Okay. So this is the one we
+30:41 
+
+30:41 predict.
+30:44 
+
+30:44 How much off are they or how much
+30:45 
+
+30:45 similar are they?
+30:50 
+
+30:50 What we were discussing in that we were
+30:52 
+
+30:52 discussing how to quantify this
+30:54 
+
+30:54 information content. So how to quantify
+30:56 
+
+30:56 the information content? It was
+30:57 
+
+30:57 information content of any event X. We
+30:60 
+
+30:60 said that it is proportional to the
+31:02 
+
+31:02 inverse pro it's proportional or inverse
+31:04 
+
+31:04 is proportional to the probability of
+31:05 
+
+31:05 that event. Okay. Then from this we came
+31:07 
+
+31:07 that information content we derived it
+31:09 
+
+31:09 that it had some properties of this. We
+31:12 
+
+31:12 we should have a function by the help of
+31:13 
+
+31:13 which we can remove this proportionality
+31:15 
+
+31:15 constant which this is equal to minus
+31:17 
+
+31:17 log of x. Okay, this is how information
+31:20 
+
+31:20 content was defined previously. And now
+31:23 
+
+31:23 after that we also discuss what is
+31:24 
+
+31:24 entropy.
+31:27 
+
+31:27 Do we discuss about entropy a bit
+31:29 
+
+31:29 because entropy can be seen by physics
+31:31 
+
+31:31 in a different way but in computer
+31:33 
+
+31:33 science we somehow relate this entropy
+31:35 
+
+31:35 with the information. So what was the
+31:37 
+
+31:37 definition of entropy? In nutshell it
+31:39 
+
+31:39 was expected surprise.
+31:44 
+
+31:44 I said that surprise somehow contains
+31:46 
+
+31:46 information. If you are more surprised
+31:48 
+
+31:48 on seeing an event that means that
+31:49 
+
+31:49 information that you gain from that
+31:51 
+
+31:51 event is more. I gave an example that if
+31:53 
+
+31:53 I let's suppose say uh we'll have the
+31:55 
+
+31:55 class tomorrow. So usually we will have
+31:57 
+
+31:57 the class tomorrow. So that the
+31:58 
+
+31:58 probability of hap that event happening
+31:59 
+
+31:59 is very high. So that means there is not
+32:02 
+
+32:02 much information content with that. So
+32:04 
+
+32:04 surprise when surprise is more
+32:06 
+
+32:06 information is less. So that is what
+32:08 
+
+32:08 this proportional we said that we can
+32:10 
+
+32:10 say the degree of surprise can be
+32:11 
+
+32:11 quantified by probability if an event is
+32:14 
+
+32:14 more likely to occur the surprise in
+32:16 
+
+32:16 that is less and information content in
+32:18 
+
+32:18 that is less and now we'll have to see
+32:20 
+
+32:20 what is the expected surprise because
+32:22 
+
+32:22 we'll be seeing the world around us and
+32:24 
+
+32:24 if we are observing a process so every
+32:26 
+
+32:26 process can be mapped by the probability
+32:27 
+
+32:27 distribution if you are seeing certain
+32:29 
+
+32:29 images if you are seeing let's suppose
+32:30 
+
+32:30 certain audios so all of these things
+32:32 
+
+32:32 which we have discussed in detail in
+32:34 
+
+32:34 functions and probability that you can
+32:35 
+
+32:35 see these problems like some generating
+32:37 
+
+32:37 function is there there is some
+32:38 
+
+32:38 underlying distribution which is
+32:39 
+
+32:39 generating these data points this
+32:42 
+
+32:42 entropy was now expected surprise so if
+32:44 
+
+32:44 surprise is minus log of x so I said if
+32:46 
+
+32:46 you have a probability distribution
+32:47 
+
+32:47 consider let's suppose we have some
+32:49 
+
+32:49 random variable x some discrete random
+32:51 
+
+32:51 variable x so we can call let's if it
+32:53 
+
+32:53 takes values say x1 x2
+32:56 
+
+32:56 till x n so these are the values it
+32:59 
+
+32:59 takes okay now for all of these there
+33:01 
+
+33:01 will be probability so probability x
+33:03 
+
+33:03 takes value x1 so this is how we write
+33:05 
+
+33:05 this so so we can Right? In general,
+33:07 
+
+33:07 probability X takes value X I has some
+33:09 
+
+33:09 probability. Okay? And this probability
+33:10 
+
+33:10 can be also defined by probability mass
+33:12 
+
+33:12 function. So, so what was the
+33:13 
+
+33:13 expectation? The expectation that we
+33:15 
+
+33:15 defined if you have to calculate the
+33:16 
+
+33:16 expectation of X. So, we calculate it
+33:18 
+
+33:18 like this. You have this X I multiplied
+33:20 
+
+33:20 by probability X. This value X takes
+33:24 
+
+33:24 value X I the probability mass function
+33:26 
+
+33:26 and you sum it over all the data points.
+33:29 
+
+33:29 And this was the this was how
+33:31 
+
+33:31 expectation was defined.
+33:34 
+
+33:34 Okay. And uh now in this case we have we
+33:36 
+
+33:36 are calculating expected surprise. So at
+33:38 
+
+33:38 at average what is the information
+33:40 
+
+33:40 content in that? So expected surprise or
+33:42 
+
+33:42 expected information content
+33:46 
+
+33:46 and how to define that now? So we can
+33:47 
+
+33:47 say entropy
+33:50 
+
+33:50 that is equal to
+33:52 
+
+33:52 so the first thing that we have to see
+33:54 
+
+33:54 is this probability distribution. So
+33:56 
+
+33:56 we'll say x i and the degree of surprise
+33:58 
+
+33:58 is log of x i. Okay. And we'll sum it
+34:01 
+
+34:01 over all the points I takes value from 1
+34:05 
+
+34:05 to n and this negative quantity because
+34:07 
+
+34:07 this is the degree of surprise is
+34:09 
+
+34:09 measured by minus log of x i. So this is
+34:12 
+
+34:12 how entropy is defined.
+34:14 
+
+34:14 Everybody clear till this point? Any
+34:17 
+
+34:17 questions? So let's let's now see this
+34:20 
+
+34:20 why why is this entropy? Why do we use
+34:21 
+
+34:21 this entropy? like uh how how does this
+34:24 
+
+34:24 measure some sort of information so it
+34:26 
+
+34:26 should information should have some
+34:27 
+
+34:27 units okay we I had a brief discussion
+34:29 
+
+34:29 with you in the previous session but I
+34:31 
+
+34:31 didn't record that so now this entropy
+34:33 
+
+34:33 has some units so what is the unit of
+34:35 
+
+34:35 entropy the unit of entropy is either
+34:37 
+
+34:37 bits or nats bits or nets depends on
+34:42 
+
+34:42 what is the base of log so if the log
+34:45 
+
+34:45 is having base two the information that
+34:47 
+
+34:47 you measure is bits and if it is having
+34:50 
+
+34:50 log to the base e that is natural log So
+34:52 
+
+34:52 you call this information content as
+34:54 
+
+34:54 nats. Okay. This is how we define the
+34:57 
+
+34:57 unit of this information entropy because
+34:58 
+
+34:58 entropy information is usually if you
+34:60 
+
+35:00 see this. So this is the this is log x.
+35:02 
+
+35:02 So if you say log of log to the base e
+35:04 
+
+35:04 you will say this much information
+35:05 
+
+35:05 content is there. So entropy and
+35:07 
+
+35:07 information content will have the same
+35:08 
+
+35:08 units. So let's suppose now if you take
+35:12 
+
+35:12 uh some sort of random variable x. So
+35:16 
+
+35:16 you take a random variable x which can
+35:17 
+
+35:17 take eight values. It can take some
+35:19 
+
+35:19 eight values. It can take x1, x2 till
+35:22 
+
+35:22 x8. So these are the values it can take.
+35:24 
+
+35:24 Okay. Now you know that if you have to
+35:26 
+
+35:26 see the information content in that. So
+35:28 
+
+35:28 you you'll have to know that the prob
+35:30 
+
+35:30 what is the probability distribution?
+35:31 
+
+35:31 What is the underlying probability
+35:32 
+
+35:32 distribution of this? So how is
+35:33 
+
+35:33 probability distribution defined? You
+35:34 
+
+35:34 have to give me the probability mass
+35:36 
+
+35:36 function for this. Because if this is a
+35:38 
+
+35:38 discrete random variable. So consider
+35:39 
+
+35:39 this to be discrete random variable. So
+35:41 
+
+35:41 you'll have probability mass function
+35:42 
+
+35:42 associated with this. Consider this as
+35:44 
+
+35:44 uniform random variable. Uniform
+35:45 
+
+35:45 discrete random variable. So each of
+35:47 
+
+35:47 this will have probability 1x8.
+35:50 
+
+35:50 Okay. All these events will have
+35:51 
+
+35:51 probability 1x8. So now if you have to
+35:54 
+
+35:54 compute if you have to compute the
+35:55 
+
+35:55 information content in this. Okay. So
+35:57 
+
+35:57 how do we compute the information
+35:58 
+
+35:58 content in this? This will be log we
+36:02 
+
+36:02 will here consider in bits. Now so this
+36:04 
+
+36:04 is log of minus log of 2 and then 1id 8.
+36:08 
+
+36:08 So each of this will have the
+36:10 
+
+36:10 probability
+36:11 
+
+36:11 for this event. If I have to compute
+36:13 
+
+36:13 only one event. So I'll take one events
+36:15 
+
+36:15 probability 1x 8 and then to the base
+36:17 
+
+36:17 log log to the base 2 and then this will
+36:19 
+
+36:19 be equal to I think three. So this is
+36:21 
+
+36:21 log 2 2 ^ minus 3 and this will be
+36:24 
+
+36:24 minus. So if you use the algebra of
+36:26 
+
+36:26 logarithm so you'll get the information
+36:28 
+
+36:28 content in this is three bits.
+36:32 
+
+36:32 Okay so yesterday I had a discussion
+36:33 
+
+36:33 with somebody so he was uh he went for
+36:35 
+
+36:35 the bark interview. So he said but they
+36:38 
+
+36:38 asked me a question but I couldn't
+36:40 
+
+36:40 answer that question and I don't know
+36:42 
+
+36:42 how to answer the question. The question
+36:43 
+
+36:43 that he was asked in Bark interview uh
+36:46 
+
+36:46 he was asked that interviewer was there
+36:48 
+
+36:48 he had two coins in the in his two
+36:50 
+
+36:50 hands. So he flipped both of these coins
+36:51 
+
+36:51 together and then he said what is the
+36:53 
+
+36:53 entropy of this? Can somebody answer
+36:55 
+
+36:55 that question for me now?
+37:01 
+
+37:01 So here there's a there is a slight
+37:02 
+
+37:02 mistake. It's not just x i. It is
+37:04 
+
+37:04 probability of x i.
+37:07 
+
+37:07 Okay probability of x i and information
+37:10 
+
+37:10 content also if you see over here. So
+37:12 
+
+37:12 this is log not event x. So this is
+37:14 
+
+37:14 probability of x. I think we were clear
+37:16 
+
+37:16 in the previous section about this
+37:18 
+
+37:18 because we just have to apply log on
+37:20 
+
+37:20 this log of this p of x. So I just wrote
+37:23 
+
+37:23 it as x. So now it's actually
+37:25 
+
+37:25 probability of x. So this is surprise.
+37:27 
+
+37:27 So now I said what is the expected
+37:29 
+
+37:29 surprise or expected information content
+37:31 
+
+37:31 that is this probability of x i and
+37:33 
+
+37:33 given this value x i. So now this
+37:35 
+
+37:35 equation becomes this is the right
+37:36 
+
+37:36 equation. Now so question that was asked
+37:38 
+
+37:38 is if we flip two coins together. So now
+37:40 
+
+37:40 on flipping two coins what is the
+37:41 
+
+37:41 entropy of the system. So we assume that
+37:43 
+
+37:43 each of the toss is independent of other
+37:45 
+
+37:45 toss. So now we have total four
+37:47 
+
+37:47 possibilities. First thing is we'll see
+37:48 
+
+37:48 that what is the value that this random
+37:50 
+
+37:50 variable can take. So this random
+37:51 
+
+37:51 variable can take these four values and
+37:53 
+
+37:53 this is uniformly distributed. So how
+37:55 
+
+37:55 can you say that this uniformly
+37:56 
+
+37:56 distributed because events were
+37:58 
+
+37:58 independent and we are not given any
+37:59 
+
+37:59 information. So the best assumption that
+38:00 
+
+38:00 we can take is that this is uniform
+38:02 
+
+38:02 distribution. And now we are assigning
+38:04 
+
+38:04 probability to each of these and on
+38:07 
+
+38:07 calculation you can just say 1x4 log of
+38:08 
+
+38:08 1x4 and you can add you will get two
+38:10 
+
+38:10 bits. So one important question that was
+38:13 
+
+38:13 raised for is if we just compute the
+38:14 
+
+38:14 information content of this event say
+38:16 
+
+38:16 any of this. So if you take probability
+38:18 
+
+38:18 x is equal 1x4 for first event. So you
+38:20 
+
+38:20 can directly compute log of p of x i. So
+38:24 
+
+38:24 that means log of minus log of 1 / 4. So
+38:27 
+
+38:27 this also comes out to be 2. So
+38:29 
+
+38:29 information content is equal to entropy.
+38:32 
+
+38:32 information content of X is equal to
+38:34 
+
+38:34 entropy
+38:36 
+
+38:36 entropy of that distribution. So when
+38:38 
+
+38:38 it's a uniform distribution,
+38:44 
+
+38:44 okay, let me let me first tell you the
+38:45 
+
+38:45 intuition. Why is it so? Okay, the
+38:48 
+
+38:48 entropy is like computing the average.
+38:50 
+
+38:50 Okay, let's suppose if you are 10 people
+38:52 
+
+38:52 in this class right now. So if each of
+38:55 
+
+38:55 you got gotten got 10 10 marks, let's
+38:57 
+
+38:57 suppose we took a test and marks were
+38:59 
+
+38:59 out of 15. So if each one of you got 10
+39:01 
+
+39:01 marks. So if I say what is the class
+39:03 
+
+39:03 average? So you just can speak to one
+39:06 
+
+39:06 person how how many marks do you get in
+39:08 
+
+39:08 the class? How many marks do you get out
+39:09 
+
+39:09 this? He said he'll say I got 10 marks.
+39:12 
+
+39:12 But you know that all the class all the
+39:14 
+
+39:14 people in the class they got equal
+39:15 
+
+39:15 marks. Then you can directly say that
+39:16 
+
+39:16 the average is also 10. You don't need
+39:18 
+
+39:18 to ask each each and every person that
+39:20 
+
+39:20 what are your marks and then compute the
+39:22 
+
+39:22 average sum then of divide by the number
+39:23 
+
+39:23 of because you know that each of the
+39:24 
+
+39:24 people in this class got the same mark.
+39:26 
+
+39:26 Similarly in this probability
+39:27 
+
+39:27 distribution. So when I'm computing
+39:29 
+
+39:29 average so I have to compute information
+39:31 
+
+39:31 content and then there is entropy.
+39:33 
+
+39:33 Entropy is average information content.
+39:35 
+
+39:35 So if you compute information content in
+39:38 
+
+39:38 uh let's suppose one case if you
+39:39 
+
+39:39 consider information content in let's
+39:41 
+
+39:41 suppose in this case where we have only
+39:43 
+
+39:43 this because now the distribution is
+39:45 
+
+39:45 uniform you need not to compute the
+39:46 
+
+39:46 average because whatever you you have
+39:48 
+
+39:48 the value for one uh instance the whole
+39:51 
+
+39:51 value is throughout because it's a
+39:52 
+
+39:52 uniform it's a uniform distribution or
+39:54 
+
+39:54 uh the probability for all the events is
+39:56 
+
+39:56 equal. So average is equal to whatever
+39:59 
+
+39:59 is for the one instance. So did you get
+40:01 
+
+40:01 the intuition? Pretty easy.
+40:04 
+
+40:04 Now you should not always always rely on
+40:06 
+
+40:06 this. You should not always rely that if
+40:07 
+
+40:07 I compute information content somehow
+40:09 
+
+40:09 and then I'll get the entropy. As I said
+40:11 
+
+40:11 entropy is expected surprise expect
+40:14 
+
+40:14 information content or expectation is
+40:16 
+
+40:16 usually computed when you don't have the
+40:17 
+
+40:17 whole data. You have some distribution
+40:19 
+
+40:19 of data. You given some samples. I think
+40:20 
+
+40:20 we have a question. Yes please. There
+40:22 
+
+40:22 was a very good question asked that why
+40:24 
+
+40:24 do we measure it with bits? Okay, what
+40:26 
+
+40:26 does this size signify? If the
+40:27 
+
+40:27 information content is said two bits, so
+40:29 
+
+40:29 what's the meaning of this? So usually
+40:31 
+
+40:31 when we say something is 2 kilogram, so
+40:33 
+
+40:33 we have some uh base measurement, we
+40:35 
+
+40:35 have some reference point with which we
+40:36 
+
+40:36 refer to it. So in this case, we said
+40:38 
+
+40:38 that this entropy was it was invented or
+40:41 
+
+40:41 it was discovered for communications.
+40:43 
+
+40:43 Okay. So when we have to communicate
+40:45 
+
+40:45 something, how much size will it occupy?
+40:47 
+
+40:47 How much bits will it occupy? So if it
+40:48 
+
+40:48 takes more space or if it is of more
+40:50 
+
+40:50 size, that means it contains more
+40:52 
+
+40:52 information.
+40:54 
+
+40:54 Loosely speaking
+40:56 
+
+40:56 the example is that if you have some
+40:58 
+
+40:58 file in which there are a lot of
+40:59 
+
+40:59 repeating patterns. So because usually
+41:01 
+
+41:01 in computer science a file is nothing
+41:03 
+
+41:03 but a a string of bits or a pattern of
+41:05 
+
+41:05 bits. So if you have 1 1 0 1 1 something
+41:07 
+
+41:07 of this or 0 0 0 a huge file of bits. So
+41:09 
+
+41:09 if there are a lot of repeating patterns
+41:11 
+
+41:11 in that. So you know that you can use
+41:13 
+
+41:13 Huffman
+41:14 
+
+41:14 encoding to compress this file. So you
+41:17 
+
+41:17 can compress the file.
+41:20 
+
+41:20 So when you are compressing the file the
+41:21 
+
+41:21 size will be less. So you took some size
+41:23 
+
+41:23 which is a little greater. So when you
+41:25 
+
+41:25 compressed it, it will be less size. So
+41:26 
+
+41:26 you have some more size. So when you
+41:28 
+
+41:28 compress it, you'll get less size. But
+41:30 
+
+41:30 one thing is constant. The information
+41:32 
+
+41:32 content that was previously there is
+41:34 
+
+41:34 equal to information content at the
+41:36 
+
+41:36 final stage. The initial information
+41:38 
+
+41:38 content was equal to the final
+41:39 
+
+41:39 information content. So this Huffman
+41:41 
+
+41:41 coding because you know that this is
+41:42 
+
+41:42 called as lossless compression.
+41:45 
+
+41:45 So why is it called lossless
+41:46 
+
+41:46 compression? Because you are not losing
+41:47 
+
+41:47 anything. Information content is still
+41:49 
+
+41:49 the same but you're just saving some
+41:51 
+
+41:51 space. So as I said size has something
+41:53 
+
+41:53 to do with information. So if you have
+41:55 
+
+41:55 you take more bits to store this
+41:57 
+
+41:57 information that means it has more
+41:58 
+
+41:58 information than that. So that's why we
+41:60 
+
+41:60 use this information of bits. The more
+42:02 
+
+42:02 bits you use that means probably after
+42:04 
+
+42:04 the compression after it's a lossless
+42:05 
+
+42:05 compression you can use maybe thousand
+42:06 
+
+42:06 bits but if you use some uh better
+42:09 
+
+42:09 encoding so these are called encoding
+42:10 
+
+42:10 schemes because you'll have to encode
+42:12 
+
+42:12 the information somehow. So if you're
+42:14 
+
+42:14 using better encoding if you're using
+42:15 
+
+42:15 optimal encoding. So what is the optim
+42:16 
+
+42:16 meaning of optimal encoding? So optimal
+42:19 
+
+42:19 encoding means if you cannot use less
+42:21 
+
+42:21 than that those number of bits. Okay. So
+42:23 
+
+42:23 in this case I said that information
+42:24 
+
+42:24 content is two. So you cannot use less
+42:27 
+
+42:27 than two bits to convey this
+42:28 
+
+42:28 information. If you have to send these
+42:29 
+
+42:29 four possibilities. Okay. You have to
+42:31 
+
+42:31 use two bits. You cannot use less than
+42:33 
+
+42:33 that. Why can't you use less than that?
+42:34 
+
+42:34 Because it's the uniform probability
+42:36 
+
+42:36 distribution. So one more thing here. So
+42:37 
+
+42:37 entropy is highest in uniformly
+42:39 
+
+42:39 distribute distributed distributions. So
+42:41 
+
+42:41 entropy is highest in uniform
+42:42 
+
+42:42 distributions. So when a data when the
+42:44 
+
+42:44 data is uniformly distributed entropy is
+42:46 
+
+42:46 highest. You cannot you cannot have uh
+42:49 
+
+42:49 less entropy in uniform distribution
+42:50 
+
+42:50 because each of this information content
+42:52 
+
+42:52 is equally likely occurring. Okay. But
+42:54 
+
+42:54 if there is some distribution if there
+42:56 
+
+42:56 are skew distribution not uniform
+42:57 
+
+42:57 distribution then maybe you can reduce
+42:59 
+
+42:59 the number of bits. So that's why I said
+43:00 
+
+43:00 optimal coding. So optimal coding
+43:02 
+
+43:02 basically means you cannot do better
+43:03 
+
+43:03 than this. If you use more bits and you
+43:05 
+
+43:05 can probably transmit the same
+43:06 
+
+43:06 information. The optimal encoding would
+43:08 
+
+43:08 be where you will use the least amount
+43:09 
+
+43:09 of bits that are that are needed to send
+43:12 
+
+43:12 or encode that information. So and this
+43:15 
+
+43:15 is called lossless compression. You can
+43:16 
+
+43:16 do lossy compression as well. So where
+43:18 
+
+43:18 you lose some data. Many of the
+43:19 
+
+43:19 compressions that you do in images are
+43:20 
+
+43:20 lossy compressions. You have a PNG file,
+43:22 
+
+43:22 you convert into JPG file, it's a lossy
+43:24 
+
+43:24 compression. You you maybe do something
+43:27 
+
+43:27 your image is 1 MB and you lose a lot of
+43:29 
+
+43:29 details in there. But it's not visible
+43:30 
+
+43:30 to human directly. And you can in
+43:32 
+
+43:32 machine learning you can do PCA
+43:34 
+
+43:34 principal component analysis. That's
+43:35 
+
+43:35 also lossy compression. Okay. Because
+43:37 
+
+43:37 there also you lose something. So but in
+43:39 
+
+43:39 Huffman input, it's a lossless
+43:40 
+
+43:40 compression. So when you do do this
+43:41 
+
+43:41 lossless compression so what you
+43:43 
+
+43:43 basically do is you keep the information
+43:44 
+
+43:44 content same information content
+43:46 
+
+43:46 initially is equal to information
+43:47 
+
+43:47 content at the final stage but what you
+43:49 
+
+43:49 do is you have more size initially but
+43:51 
+
+43:51 you have less size at the end so that's
+43:53 
+
+43:53 why we consider this information content
+43:55 
+
+43:55 we measure this information content or
+43:57 
+
+43:57 entropy in terms of bits I hope now this
+43:59 
+
+43:59 is clear to everyone
+44:01 
+
+44:01 okay now I was telling you that if it's
+44:03 
+
+44:03 not uniformly distributed okay one more
+44:05 
+
+44:05 thing is that entropy is entropy is
+44:08 
+
+44:08 maximum
+44:11 
+
+44:11 for uniform distribution.
+44:17 
+
+44:17 Okay, why is it maximum? Because you saw
+44:19 
+
+44:19 that there is no way that you can use
+44:20 
+
+44:20 less number of bits. Let me take an
+44:21 
+
+44:21 example to make you understand this.
+44:23 
+
+44:23 Suppose we have a random variable X
+44:25 
+
+44:25 again say it takes some eight states. It
+44:28 
+
+44:28 takes eight states a comma b comma c
+44:30 
+
+44:30 till h. So these are eight values it can
+44:33 
+
+44:33 take. Okay. Now I'll give you the
+44:34 
+
+44:34 probability distribution. I'll give you
+44:35 
+
+44:35 probability mass function because this
+44:36 
+
+44:36 is a discrete random variable. So
+44:38 
+
+44:38 discrete random variable. So I'll give
+44:39 
+
+44:39 you probability mass function. So
+44:41 
+
+44:41 probability mass function is like this.
+44:43 
+
+44:43 So probability uh that x takes value a.
+44:45 
+
+44:45 I'll directly write the values. I'll not
+44:46 
+
+44:46 write it one by one. So probability mass
+44:48 
+
+44:48 function goes like this. So 1x 2 1x4
+44:52 
+
+44:52 1x 8 1x 16 1x 64 1x 64 1x 64 and 1x 64.
+45:03 
+
+45:03 Okay. So this is the probability mass
+45:04 
+
+45:04 function that is given to this. Can
+45:06 
+
+45:06 somebody compute uh what is entropy of
+45:09 
+
+45:09 the system?
+45:11 
+
+45:11 Entropy of this. I'll give you maybe 2
+45:12 
+
+45:12 minutes. You can use calculators.
+45:15 
+
+45:15 Let me do it. So if I have to compute
+45:17 
+
+45:17 the entropy of this. So what's the
+45:18 
+
+45:18 formula of entropy? If you go by the
+45:20 
+
+45:20 mechanical methods, the entropy is
+45:21 
+
+45:21 basically expected surprise expected
+45:23 
+
+45:23 information content. So entropy let me
+45:25 
+
+45:25 call that E. Entropy is E that is equal
+45:29 
+
+45:29 to minus
+45:31 
+
+45:31 sum of all the observations that we have
+45:34 
+
+45:34 here. probability of x takes value x i
+45:36 
+
+45:36 and log of probability x is equal to x
+45:40 
+
+45:40 i. So if you do this so you'll be saying
+45:42 
+
+45:42 minus 1x2 log of 1x2.
+45:46 
+
+45:46 So if I just take this minus outside
+45:48 
+
+45:48 keep it outside plus 1x 4 log of 1x4 and
+45:53 
+
+45:53 so on.
+45:55 
+
+45:55 I think this will be four times this. So
+45:57 
+
+45:57 4 *
+45:59 
+
+45:59 1x 64 log of 1x 64 something of this
+46:03 
+
+46:03 sort. So if you calculate this so you
+46:05 
+
+46:05 will get two bits. So what's the meaning
+46:08 
+
+46:08 of this? The meaning of this is that you
+46:10 
+
+46:10 will require two bits to transmit this
+46:12 
+
+46:12 information because if this is the
+46:13 
+
+46:13 information that you are sending these
+46:15 
+
+46:15 codes in the let's suppose you are
+46:17 
+
+46:17 sending these eight things and you are
+46:18 
+
+46:18 repeatedly sending these eight things.
+46:19 
+
+46:19 Okay you can send let's suppose this
+46:20 
+
+46:20 message can be hi this can be hello and
+46:23 
+
+46:23 something can something can be something
+46:24 
+
+46:24 else. So now if you see in in the in the
+46:27 
+
+46:27 way that you are transferring this
+46:28 
+
+46:28 information now this X can take value
+46:30 
+
+46:30 eight values and but you know that this
+46:32 
+
+46:32 message has this distribution it follows
+46:34 
+
+46:34 this distribution or you are sending
+46:34 
+
+46:34 some eight characters in each message
+46:36 
+
+46:36 you are sending some eight characters
+46:37 
+
+46:37 and these characters are following this
+46:39 
+
+46:39 distribution. Now you can say that
+46:40 
+
+46:40 optimal encoding only uses two bits. So
+46:43 
+
+46:43 if you optimally use this okay let me
+46:44 
+
+46:44 show it at let's suppose if you now you
+46:46 
+
+46:46 can say that if X is taking eight values
+46:48 
+
+46:48 from let's suppose from A to H.
+46:52 
+
+46:52 So I can use three bits. Fair enough.
+46:55 
+
+46:55 But you know that this is a uniform
+46:56 
+
+46:56 distribution. So you can compress this
+46:58 
+
+46:58 way. You can compress this file. So what
+46:59 
+
+46:59 you can do is so you can only use two
+47:01 
+
+47:01 bits. How can you do that? At average
+47:02 
+
+47:02 you can use two bits not just two bits.
+47:04 
+
+47:04 So for a you can use zero. Okay. If you
+47:08 
+
+47:08 see the more probability you use less
+47:10 
+
+47:10 less bits for that. That's how you are
+47:11 
+
+47:11 bringing the expectation down. Okay.
+47:13 
+
+47:13 Because this a is occurring a lot of
+47:15 
+
+47:15 times because it has 1x2 probability 5
+47:17 
+
+47:17 times probability and it has 1x4 1x 8.
+47:19 
+
+47:19 So you give more bits to those which are
+47:21 
+
+47:21 less likely and you give less bits to
+47:23 
+
+47:23 those which are more likely. Okay, A is
+47:26 
+
+47:26 more probable. So you'll only give it
+47:27 
+
+47:27 one bit and this is one bit. And then if
+47:29 
+
+47:29 you see B now you'll give it two bits.
+47:31 
+
+47:31 You'll say you'll encode it with 1 0.
+47:33 
+
+47:33 For C you'll encode it with 1 1 0. For D
+47:36 
+
+47:36 you'll encode it with 1 1 0 four bits.
+47:38 
+
+47:38 For E maybe five bits 1 1 0 0 maybe six
+47:44 
+
+47:44 six. And then for for others also you'll
+47:47 
+
+47:47 give six. A B CDE E F G and H. So you'll
+47:50 
+
+47:50 give it six six bits for these but
+47:52 
+
+47:52 different combination of six bits. Now
+47:54 
+
+47:54 if you see at average how many bits are
+47:56 
+
+47:56 you using at average you'll come that
+47:57 
+
+47:57 you are using two bits. So here one so
+47:59 
+
+47:59 this is one this is two this is three
+48:02 
+
+48:02 this is four and then six six and six
+48:05 
+
+48:05 something you could have used five bits
+48:06 
+
+48:06 but again you'll have to use some six
+48:08 
+
+48:08 bits something of this sort. So now
+48:09 
+
+48:09 total if you compute the expect if you
+48:11 
+
+48:11 compute the average of this so you'll
+48:12 
+
+48:12 get two bits at average
+48:15 
+
+48:15 that's what you do in halfman encoding
+48:16 
+
+48:16 as well. So if some message is
+48:18 
+
+48:18 frequently occurring if there is a
+48:19 
+
+48:19 pattern which is repeating so you give
+48:21 
+
+48:21 it less number of bits that's what we
+48:22 
+
+48:22 did over here. So the information
+48:23 
+
+48:23 content in this case is two. Okay. One
+48:25 
+
+48:25 more thing is that uniform distribution
+48:27 
+
+48:27 always has the maximum number of maximum
+48:29 
+
+48:29 entropy over here and all the other
+48:31 
+
+48:31 distributions have less entropy than
+48:33 
+
+48:33 uniform distribution. Everybody clear on
+48:35 
+
+48:35 this point? Okay. If you see this why
+48:37 
+
+48:37 this discussion so this discussion
+48:38 
+
+48:38 actually was a detour because we were
+48:40 
+
+48:40 trying to see that divergence function.
+48:42 
+
+48:42 So if somebody remembers that we said
+48:44 
+
+48:44 that okay we have to somehow find the
+48:46 
+
+48:46 optimal function. So if you we have to
+48:48 
+
+48:48 do empirical risk minimization
+48:54 
+
+48:54 empirical risk minimize that's what we
+48:56 
+
+48:56 were doing.
+48:59 
+
+48:59 This is what we were doing for that.

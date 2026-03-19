@@ -1,0 +1,8125 @@
+00:00 So we're discussing about history of
+00:01 
+
+00:01 deep learning. So putting a pause to
+00:03 
+
+00:03 history of deep learning whatever things
+00:04 
+
+00:04 we have studied in history of deep
+00:06 
+
+00:06 learning. We'll first do a mathematical
+00:07 
+
+00:07 and a comprehment of those. So we'll see
+00:10 
+
+00:10 are there some computational models that
+00:11 
+
+00:11 were made by computational people and
+00:14 
+
+00:14 how do they how were they made and how
+00:18 
+
+00:18 much effect do they are and is are there
+00:20 
+
+00:20 some other lines of work which were
+00:22 
+
+00:22 done. Okay. So the first thing we saw is
+00:24 
+
+00:24 a neuron.
+00:27 
+
+00:27 Okay. Because we saw we saw we had a
+00:28 
+
+00:28 reticular theory the theory and then we
+00:30 
+
+00:30 have neural doctrine. So finally by
+00:33 
+
+00:33 using electron microscopy we could
+00:34 
+
+00:34 somehow assertain that there is this
+00:36 
+
+00:36 neuron. So at the heart of this deep
+00:38 
+
+00:38 learning or at the heart of these neural
+00:39 
+
+00:39 networks lies this most fundamental
+00:41 
+
+00:41 unit. So this is called a neuron. So
+00:43 
+
+00:43 this is the fundamental unit of
+00:45 
+
+00:45 computation.
+00:53 
+
+00:53 Again why do we call it neuron? because
+00:55 
+
+00:55 we wanted to mimic the brain and the
+00:57 
+
+00:57 inspirations comes from biology. So what
+00:59 
+
+00:59 are biological neurons? Okay. So a
+01:01 
+
+01:01 biological neuron is also called a nerve
+01:02 
+
+01:02 cell. Okay. And they are the building
+01:04 
+
+01:04 blocks of brain and our nervous system.
+01:05 
+
+01:05 So each neuron if you see so they
+01:08 
+
+01:08 transmit the information through these
+01:10 
+
+01:10 chemical and electrical signals. So what
+01:11 
+
+01:11 is a biological neuron? So I'll just
+01:14 
+
+01:14 make a rough diagram maybe. So in
+01:16 
+
+01:16 biological neuron you will have
+01:17 
+
+01:17 something of this sort.
+01:20 
+
+01:20 Okay. And then something of this sort.
+01:23 
+
+01:23 Okay. I'll I'll pull up an image also.
+01:24 
+
+01:24 But what is that? It has four important
+01:26 
+
+01:26 components.
+01:28 
+
+01:28 So one thing is I'll give a very
+01:29 
+
+01:29 simplistic explanation if any biologist
+01:31 
+
+01:31 is watching it and I know that biologist
+01:33 
+
+01:33 do watch iter. So I'm sorry if I give
+01:35 
+
+01:35 some wrong explanation. So this is so we
+01:38 
+
+01:38 have dendrites. Okay. So we have four as
+01:41 
+
+01:41 I said four important things dendrites.
+01:43 
+
+01:43 Then we have cell body which also called
+01:45 
+
+01:45 as soma
+01:47 
+
+01:47 and then we have axon.
+01:50 
+
+01:50 Okay. And then we have uh synaptic
+01:52 
+
+01:52 terminals which are called exxon
+01:53 
+
+01:53 terminals. Exxon
+01:57 
+
+01:57 terminals
+01:59 
+
+01:59 and uh these are also called as synap
+02:02 
+
+02:02 synaptic terminals
+02:06 
+
+02:06 and we have synapses.
+02:10 
+
+02:10 Okay, these are the important components
+02:11 
+
+02:11 in here. So the first is dendrite. Then
+02:14 
+
+02:14 we have a cell body or soma. Then we
+02:16 
+
+02:16 have axon and we have exxon terminals
+02:18 
+
+02:18 and the synapse. Here I like to pull up
+02:20 
+
+02:20 an image. Give me a so if you see it
+02:23 
+
+02:23 over here. So this is the neuron. So
+02:25 
+
+02:25 this over here is the neuron. So as I
+02:26 
+
+02:26 told you there are four five important
+02:28 
+
+02:28 parts. The one is dendrites cell one is
+02:30 
+
+02:30 dendrite. Then we have cell body or
+02:31 
+
+02:31 soma. Then we have axon exon terminal
+02:33 
+
+02:33 and synapsis. Rather we have five
+02:34 
+
+02:34 important parts. These are the five
+02:36 
+
+02:36 important parts. So if you see these are
+02:37 
+
+02:37 the dendrites. So neuron roughly looks
+02:39 
+
+02:39 like this. So as as we earlier saw that
+02:41 
+
+02:41 there are a lot of different types of
+02:43 
+
+02:43 neurons. So this is one of the
+02:44 
+
+02:44 simplistic uh neuron that we have shown
+02:47 
+
+02:47 in the screen over here. So this is the
+02:49 
+
+02:49 see here these are then dendrites and
+02:50 
+
+02:50 then this is the cell body over here.
+02:52 
+
+02:52 Okay, this is nucleus and this thing
+02:54 
+
+02:54 over here this long long thing that's
+02:56 
+
+02:56 extending from here to here. So this is
+02:58 
+
+02:58 called an axon and then we have this
+03:00 
+
+03:00 axon terminals. Okay, or the first thing
+03:02 
+
+03:02 is what are these dendrites? So these
+03:04 
+
+03:04 dendrites they are branch-like
+03:05 
+
+03:05 structures. So if you see the these are
+03:06 
+
+03:06 like branches. These are branch-like
+03:08 
+
+03:08 structures. So they receive the signal.
+03:10 
+
+03:10 So because when we see uh because neuron
+03:12 
+
+03:12 if you see the reticular theory was
+03:13 
+
+03:13 saying it's a it's a network of a single
+03:16 
+
+03:16 network. Then we found that that the
+03:17 
+
+03:17 screen units which we call as neurons.
+03:19 
+
+03:19 So in that network of these uh neurons
+03:21 
+
+03:21 so you you have these neurons
+03:23 
+
+03:23 interconnected. So now these branch-like
+03:24 
+
+03:24 structures they receive signals from
+03:26 
+
+03:26 other neurons. Okay. So they act as an
+03:28 
+
+03:28 input to the neurons. So I can say this
+03:30 
+
+03:30 acts as an input to neurons.
+03:33 
+
+03:33 Okay. Somehow we should get an input
+03:35 
+
+03:35 from maybe the neurons which are in the
+03:38 
+
+03:38 flow in the network which are maybe
+03:39 
+
+03:39 let's suppose coming before it. So we
+03:41 
+
+03:41 should get some input. So these
+03:42 
+
+03:42 generates receive those inputs. So they
+03:44 
+
+03:44 receive these signals and input is sort
+03:45 
+
+03:45 of a signal. Then you have this cell
+03:46 
+
+03:46 body over here. If you see this cell
+03:48 
+
+03:48 body. So this cell body. So this is the
+03:50 
+
+03:50 part which processes the incoming
+03:52 
+
+03:52 signal. So this processes incoming
+03:54 
+
+03:54 signal. So it processes
+03:58 
+
+03:58 incoming signals.
+04:01 
+
+04:01 Okay. So this cell body is the part
+04:02 
+
+04:02 which process the signals and it also
+04:04 
+
+04:04 houses the nucleus. As you clearly saw
+04:06 
+
+04:06 in this the diagram it's visible that uh
+04:08 
+
+04:08 it also houses this nucleus within it.
+04:10 
+
+04:10 Okay. So it somehow integrates all the
+04:13 
+
+04:13 incoming information. So how is
+04:14 
+
+04:14 information defined in biology? I'm not
+04:16 
+
+04:16 too sure about neither are biologists I
+04:18 
+
+04:18 think and but there are some theories
+04:20 
+
+04:20 which have been given. Okay. How does it
+04:21 
+
+04:21 conduct information as we have already
+04:23 
+
+04:23 seen that there is some chemical and
+04:24 
+
+04:24 electrical transmission that's
+04:26 
+
+04:26 happening. So we can del deeper into
+04:28 
+
+04:28 this but it'll take a separate course to
+04:30 
+
+04:30 understand this. But I'm here for the
+04:31 
+
+04:31 sake of completion for the sake of
+04:33 
+
+04:33 understanding how we make a complication
+04:34 
+
+04:34 counterpart of it. So we'll just maybe
+04:36 
+
+04:36 skim through it maybe gloss through it.
+04:38 
+
+04:38 And then you see this axon if you see
+04:40 
+
+04:40 this over here. So this axon this is
+04:41 
+
+04:41 like a long cable like structure. Okay.
+04:43 
+
+04:43 So it extendes and this actually
+04:45 
+
+04:45 transmits these electrical impulses. So
+04:47 
+
+04:47 this axon if you see so it transmits
+04:50 
+
+04:50 electrical impulses
+04:52 
+
+04:52 transmits
+04:55 
+
+04:55 electrical
+04:58 
+
+04:58 impulses. Okay. So this is that cable
+05:01 
+
+05:01 like structure. Okay. And this takes it
+05:03 
+
+05:03 from cell cell body towards the other
+05:04 
+
+05:04 neurons and other muscles. So each
+05:06 
+
+05:06 neuron usually has this one axon. Okay.
+05:08 
+
+05:08 So which can branch into many axon
+05:10 
+
+05:10 terminals. So if you see there are an
+05:11 
+
+05:11 axon terminals are there. So it
+05:13 
+
+05:13 branches. So you have dendrite. It's a
+05:14 
+
+05:14 treel like structure and then within
+05:16 
+
+05:16 that you have the cell body. Cell body
+05:17 
+
+05:17 has a nucleus. It houses the nucleus.
+05:19 
+
+05:19 Then you have this exxon. So axon it
+05:21 
+
+05:21 starts with this cell body and it then
+05:24 
+
+05:24 sort of terminates in those different
+05:26 
+
+05:26 axon terminal. So these are the axon
+05:28 
+
+05:28 terminal. So they are the end points of
+05:29 
+
+05:29 these exxons. So if you see it over here
+05:31 
+
+05:31 so these are the end points of this
+05:32 
+
+05:32 exam. So signal is passed to other
+05:34 
+
+05:34 neurons also via this. So via exxon
+05:36 
+
+05:36 terminals. So this is why pass and
+05:38 
+
+05:38 usually through the chemical messenger.
+05:39 
+
+05:39 So here so chemical process happening as
+05:41 
+
+05:41 I said it's an electrochemical process
+05:43 
+
+05:43 so you're also having electrical signals
+05:44 
+
+05:44 you're also having chemical signals so
+05:46 
+
+05:46 through
+05:48 
+
+05:48 chemicals so here the signal is passed
+05:50 
+
+05:50 from one neuron to the other neuron so
+05:52 
+
+05:52 one to other so one to other neuron
+05:54 
+
+05:54 usually through what usually through
+05:56 
+
+05:56 chemical messengers and then you have
+05:58 
+
+05:58 the syninnapse okay synapse is the gap
+05:60 
+
+05:60 between neurons okay when you if you see
+06:02 
+
+06:02 this neuron then there'll be other
+06:03 
+
+06:03 neurons so there will be a gap in
+06:04 
+
+06:04 between okay so it's called a synaptic
+06:05 
+
+06:05 lift the gap between the axon terminal
+06:08 
+
+06:08 of one neuron and the dendrite and the
+06:09 
+
+06:09 neuron. So this is called a synapse. So
+06:11 
+
+06:11 this is not a part of neuron though. So
+06:12 
+
+06:12 this is the gap between these two
+06:14 
+
+06:14 neurons. Okay. So this site is the
+06:16 
+
+06:16 communication of between neurons. So
+06:17 
+
+06:17 this is the side of communication. Site
+06:21 
+
+06:21 of communication.
+06:24 
+
+06:24 So now we saw these uh important parts.
+06:27 
+
+06:27 Oops. I'll just move it over here. The
+06:30 
+
+06:30 first thing that we saw is a dendrite.
+06:31 
+
+06:31 So what are dendrites then? They are
+06:32 
+
+06:32 these branch-like structures which
+06:34 
+
+06:34 receive the signal from other neurons.
+06:35 
+
+06:35 And then you saw the cell body or soma
+06:37 
+
+06:37 or it houses the nucleus. So what it
+06:39 
+
+06:39 does is this is the part of the neuron
+06:41 
+
+06:41 which processes the incoming information
+06:43 
+
+06:43 or incoming signals. Okay, it integrates
+06:45 
+
+06:45 all information. As I said that we don't
+06:46 
+
+06:46 understand very well enough that how
+06:48 
+
+06:48 information is stored in our brains. And
+06:51 
+
+06:51 then we have this exxon. So this exxon
+06:53 
+
+06:53 over here. So this is the exxon. So
+06:55 
+
+06:55 which extends from the cell body towards
+06:58 
+
+06:58 these exon terminal is a long cable like
+06:59 
+
+06:59 structure. It extends and it transmits
+07:02 
+
+07:02 electrical impulses away from the cell
+07:03 
+
+07:03 body to towards the other neurons. Okay.
+07:05 
+
+07:05 And as I said, each neuron usually have
+07:07 
+
+07:07 one of these exon. So it it branch into
+07:09 
+
+07:09 multiple exon terminals. Then you have
+07:11 
+
+07:11 these exxon terminals. So they're the
+07:12 
+
+07:12 end points where signals are passed from
+07:15 
+
+07:15 passed to other neurons. Okay? Usually
+07:17 
+
+07:17 through the chemical transmission. So if
+07:18 
+
+07:18 you see so the exxon usually has this
+07:20 
+
+07:20 exon over here, it does oops this exon
+07:24 
+
+07:24 it does the electrical transmission and
+07:26 
+
+07:26 here while these exon terminals you have
+07:28 
+
+07:28 this chemical transmission. Then you
+07:29 
+
+07:29 have the synapse or synaptic lift. The
+07:31 
+
+07:31 synapse basically is the gap between two
+07:32 
+
+07:32 neurons. So when we have this network of
+07:34 
+
+07:34 neurons so in that one neuron is
+07:36 
+
+07:36 connected to other neurons but there's a
+07:37 
+
+07:37 gap in between in one neuron neuron A
+07:39 
+
+07:39 and neuron B. So that gap in between is
+07:41 
+
+07:41 called as synapse. Okay this is the
+07:43 
+
+07:43 simplest explanation of a biological
+07:45 
+
+07:45 neuron. Any questions on biological
+07:46 
+
+07:46 neuron. So now you understand a bit
+07:48 
+
+07:48 about how biological neurons are okay
+07:50 
+
+07:50 and as I said disclaimer is this can be
+07:53 
+
+07:53 totally wrong. I I don't know much about
+07:55 
+
+07:55 biology but this is the general
+07:56 
+
+07:56 structure. Now the question was if you
+07:59 
+
+07:59 have a unit of if you have a fundamental
+08:00 
+
+08:00 unit of this computation can we come up
+08:02 
+
+08:02 with the counterpart can we somehow have
+08:04 
+
+08:04 a computation analogy so now we wanted
+08:07 
+
+08:07 computational analogy
+08:11 
+
+08:11 analogist that we can do is comput and
+08:13 
+
+08:13 we came up with what's called artificial
+08:15 
+
+08:15 neuron
+08:21 
+
+08:21 this is what we came up with so to mimic
+08:23 
+
+08:23 this behavior of biological neurons in
+08:26 
+
+08:26 machines So this is what researchers
+08:28 
+
+08:28 came up with the artificial neuron.
+08:30 
+
+08:30 Okay. So artificial neuron and now it's
+08:33 
+
+08:33 as you know that it's known as
+08:34 
+
+08:34 perceptron now perceptron.
+08:37 
+
+08:37 So it later on change this. Okay. So how
+08:39 
+
+08:39 what is the structure of this? So if you
+08:40 
+
+08:40 see I'll make a structure over here.
+08:45 
+
+08:45 Okay. Then what I'll do is I'll create
+08:49 
+
+08:49 let's suppose two halves of this. So
+08:52 
+
+08:52 here I'll write let's suppose some f and
+08:54 
+
+08:54 I'll write some g. And here I'll create
+08:56 
+
+08:56 these input signals.
+09:00 
+
+09:00 Okay. And here I'll create an output.
+09:03 
+
+09:03 Okay. Some of this sort. So I I'm making
+09:05 
+
+09:05 a computational counterpart. So think it
+09:07 
+
+09:07 as a as a rediscovery. Think it that if
+09:09 
+
+09:09 you were present at the moment when the
+09:11 
+
+09:11 artificial neuron was not there and you
+09:13 
+
+09:13 understood about neurons. So now you
+09:14 
+
+09:14 have to make a computational part of
+09:16 
+
+09:16 this. So whatever we know about neurons
+09:17 
+
+09:17 is they transmit information. They
+09:19 
+
+09:19 either fire. So by firing they mean they
+09:21 
+
+09:21 get activated or they they're not
+09:23 
+
+09:23 activated. Okay. They get some multiple
+09:24 
+
+09:24 inputs. So these are inputs.
+09:28 
+
+09:28 So we have to computationally and
+09:29 
+
+09:29 mathematically model it. So
+09:30 
+
+09:30 mathematically we'll make a picture and
+09:32 
+
+09:32 then we'll see how to perform
+09:33 
+
+09:33 computation on this. So what we can do
+09:35 
+
+09:35 is we can call these inputs as x1, x2,
+09:37 
+
+09:37 x3, x4. So these these inputs can come
+09:40 
+
+09:40 from multiple neurons which are uh in
+09:43 
+
+09:43 the huge image preceding this neuron in
+09:45 
+
+09:45 that huge network. So consider this as
+09:46 
+
+09:46 part in that huge network a unit. Okay.
+09:50 
+
+09:50 So coming up with this again. So what
+09:51 
+
+09:51 I'm saying is if you have to come with a
+09:52 
+
+09:52 count counter computational counterpart
+09:55 
+
+09:55 and you have to come up with a
+09:56 
+
+09:56 computational analogy the first thing is
+09:57 
+
+09:57 we have to map this input. So this is
+09:59 
+
+09:59 the input and then we said we have two
+10:00 
+
+10:00 functions we have this f and we have
+10:02 
+
+10:02 this g. So f function is g function is
+10:04 
+
+10:04 the aggregation it some aggregates all
+10:05 
+
+10:05 of this input. Then g f function is the
+10:07 
+
+10:07 activation function. So based on the
+10:09 
+
+10:09 aggregation it decision. So it'll say do
+10:11 
+
+10:11 I have to fire this neuron? Do I have to
+10:13 
+
+10:13 activate this neuron or not okay so this
+10:15 
+
+10:15 is based on this and the function and
+10:16 
+
+10:16 then you have this output firing of the
+10:18 
+
+10:18 neuron. Okay, I told this is like
+10:20 
+
+10:20 dendrites. Okay, and this processing FNG
+10:22 
+
+10:22 is like the cell body and then it
+10:24 
+
+10:24 transmits the information also and this
+10:26 
+
+10:26 output is like these axon terminals.
+10:27 
+
+10:27 Okay, I hope this is clear till here.
+10:30 
+
+10:30 Now the first this was the first
+10:31 
+
+10:31 biological simplest neuron. So now the
+10:34 
+
+10:34 thing is uh the first thing which we saw
+10:36 
+
+10:36 is micolopits neurons. So we'll see what
+10:39 
+
+10:39 these people did. So Micholitz neuron MP
+10:42 
+
+10:42 neurons
+10:43 
+
+10:43 we have seen this in the history portion
+10:45 
+
+10:45 also these two people came up with the
+10:47 
+
+10:47 neurons. So they came up with this
+10:48 
+
+10:48 neuron Michol neuron. So what they said
+10:50 
+
+10:50 in that neuron is so now everything is
+10:52 
+
+10:52 somewhat binary. So they said if you see
+10:54 
+
+10:54 this neuron.
+10:56 
+
+10:56 So they said we'll take input as binary.
+11:00 
+
+11:00 So these inputs will be taken binary.
+11:03 
+
+11:03 Okay. You'll have a function aggregation
+11:04 
+
+11:04 function and then you will have some
+11:06 
+
+11:06 decision function and then you'll have
+11:08 
+
+11:08 an output. So the input function over
+11:10 
+
+11:10 here. So they'll all take binary values.
+11:12 
+
+11:12 So binary values it basically means is
+11:14 
+
+11:14 there something or not? Let's suppose if
+11:16 
+
+11:16 you want to take a decision, do you want
+11:17 
+
+11:17 to go to school? So you say, is my
+11:19 
+
+11:19 friend coming? So it's a boolean value.
+11:20 
+
+11:20 Okay. Is my friend coming?
+11:24 
+
+11:24 Is it hot? Is it hot outside? Something
+11:26 
+
+11:26 of this sort. So all of these values
+11:27 
+
+11:27 will be boolean.
+11:30 
+
+11:30 So these values will be boolean. And
+11:31 
+
+11:31 then we aggregate some of them. Then by
+11:33 
+
+11:33 aggregation here we can directly sum
+11:34 
+
+11:34 them up. We can sum up these values. And
+11:36 
+
+11:36 then here we have what's called as
+11:38 
+
+11:38 thresholding logic.
+11:41 
+
+11:41 Thresholding logic.
+11:43 
+
+11:43 So if it passes certain threshold then
+11:45 
+
+11:45 I'll fire the neurons. So the output
+11:46 
+
+11:46 also will be binary.
+11:48 
+
+11:48 So this was the model that was given by
+11:50 
+
+11:50 the mor and pits. So we had this molo
+11:52 
+
+11:52 pits neurons. So what they said is you
+11:54 
+
+11:54 have input input are all boolean values
+11:55 
+
+11:55 that binary values either true or false.
+11:57 
+
+11:57 So then aggregation function is just a
+11:59 
+
+11:59 summation function. Then we'll have a
+12:00 
+
+12:00 thresholding logic over there. So
+12:02 
+
+12:02 thresholding logic basically is so you
+12:04 
+
+12:04 will just take a particular value.
+12:06 
+
+12:06 You'll say if the value is let's suppose
+12:08 
+
+12:08 of this sort. So I I'll have this. So
+12:10 
+
+12:10 this will be then if that threshold is
+12:12 
+
+12:12 crossed then we can give an output. We
+12:14 
+
+12:14 can say that the neuron is firing. Okay.
+12:16 
+
+12:16 So this was the if I write it
+12:17 
+
+12:17 mathematically. So mathematically it was
+12:19 
+
+12:19 like call call this as x1 x2 or
+12:21 
+
+12:21 something x3 and so on. So I can say
+12:24 
+
+12:24 summation of these x i these are inputs.
+12:26 
+
+12:26 Okay. I goes from 1 to n. Say these are
+12:29 
+
+12:29 n inputs. Okay. You have to sum them up.
+12:31 
+
+12:31 If they cross some threshold if they are
+12:33 
+
+12:33 equal to some threshold call this theta.
+12:35 
+
+12:35 So I'll file the neuron. This is called
+12:37 
+
+12:37 firing. Otherwise the neuron will be
+12:40 
+
+12:40 inactive. Okay. This is the logic. So
+12:43 
+
+12:43 this theta here is called as threshold.
+12:47 
+
+12:47 Okay. If my neuron if I got certain
+12:50 
+
+12:50 let's suppose you have this. So you have
+12:51 
+
+12:51 three inputs input x1 x2 x3. So what you
+12:54 
+
+12:54 can say is you can say that I have is is
+12:58 
+
+12:58 it sunny outside? Okay. Is my friend
+12:59 
+
+12:59 coming? Okay. Is there an exam? So now
+13:02 
+
+13:02 what you can do is if you if two of
+13:04 
+
+13:04 these condition is meeting if you have
+13:06 
+
+13:06 you can have threshold of two. You can
+13:07 
+
+13:07 say say if two among these things are
+13:10 
+
+13:10 having high value then only this neuron
+13:12 
+
+13:12 will then only I can take a decision
+13:14 
+
+13:14 that I I'll go to school or I'll go to
+13:15 
+
+13:15 college. Okay. So now you put this
+13:17 
+
+13:17 threshold as two. Okay. Otherwise you
+13:19 
+
+13:19 can say if one threshold is high. So if
+13:21 
+
+13:21 only one one of these threes is high if
+13:23 
+
+13:23 it is sunny if it is my exam is my
+13:25 
+
+13:25 friend coming if one of these is true I
+13:26 
+
+13:26 can put uh I can have this output one
+13:28 
+
+13:28 basically I will go to college and I'll
+13:30 
+
+13:30 go to school. So this depends on this
+13:31 
+
+13:31 threshold and it depends on you how do
+13:33 
+
+13:33 you set this threshold. You know there
+13:35 
+
+13:35 are two things which they mentioned in
+13:36 
+
+13:36 the paper mut they said it can be
+13:39 
+
+13:39 inhibitory or excitatory. So these
+13:41 
+
+13:41 inputs can be inhibitory or excitatory.
+13:43 
+
+13:43 Give me a second.
+13:46 
+
+13:46 So we can have
+13:48 
+
+13:48 inhibitory
+13:51 
+
+13:51 or excitatory inputs.
+13:57 
+
+13:57 So what is the meaning of these
+13:58 
+
+13:58 inhibitor? So this initiary input means
+14:01 
+
+14:01 so if that input is high irrespective of
+14:04 
+
+14:04 what is happening it will mask that it
+14:06 
+
+14:06 will not let the neuron fire. So let's
+14:07 
+
+14:07 suppose let's suppose you have x1 x2 x3
+14:10 
+
+14:10 is the input if temperature is quite
+14:12 
+
+14:12 high okay irrespective of if you or if
+14:14 
+
+14:14 you let's suppose if you are having a if
+14:17 
+
+14:17 you are fighting a fatal disease
+14:20 
+
+14:20 so will you go to college so this input
+14:22 
+
+14:22 if it is high god forbid so now what
+14:24 
+
+14:24 will happen is this output will always
+14:26 
+
+14:26 be zero so it's inhibiting it's
+14:27 
+
+14:27 inhibiting it it's having the inhibitor
+14:29 
+
+14:29 action irrespective of what other inputs
+14:31 
+
+14:31 are it doesn't matter so but if there is
+14:33 
+
+14:33 one thing let's suppose you have a fatal
+14:35 
+
+14:35 disease because of that you cannot go to
+14:37 
+
+14:37 You cannot go to school or college and
+14:38 
+
+14:38 the problem is other inputs maybe your
+14:41 
+
+14:41 friend is going to school you have exam
+14:43 
+
+14:43 it is sunny outside it doesn't matter
+14:44 
+
+14:44 but if this input is high so this output
+14:47 
+
+14:47 always will be low you cannot activate
+14:48 
+
+14:48 the this is called as inhibition so here
+14:50 
+
+14:50 some of these are called in some of
+14:52 
+
+14:52 these input signals are inhibitory
+14:54 
+
+14:54 signals so you can inhibit the things
+14:55 
+
+14:55 and some are excitatory inputs
+14:57 
+
+14:57 excitatory inputs are which will
+14:58 
+
+14:58 contribute towards this aggregation so
+14:60 
+
+14:60 they'll somehow contribute so inhibitory
+15:02 
+
+15:02 basically means which will make
+15:03 
+
+15:03 everything zero so by that I mean if
+15:06 
+
+15:06 that is high so neuron will never fire.
+15:08 
+
+15:08 Okay. And excited inputs means it will
+15:11 
+
+15:11 sort of contribute towards contribute
+15:13 
+
+15:13 towards threshold.
+15:19 
+
+15:19 So if you have to reach certain
+15:20 
+
+15:20 threshold so it will it'll help you in
+15:22 
+
+15:22 reaching the threshold. So these are the
+15:23 
+
+15:23 two things that they said they said that
+15:25 
+
+15:25 uh you have these functions. Now what is
+15:27 
+
+15:27 happening inside? So you have this g
+15:29 
+
+15:29 function. So initially you apply this f
+15:30 
+
+15:30 function you have this aggregation
+15:31 
+
+15:31 function on this input x. Okay. And on
+15:34 
+
+15:34 top of that you apply this g. So this f
+15:36 
+
+15:36 ofx so this is aggregation.
+15:41 
+
+15:41 Okay. And this function over here is
+15:43 
+
+15:43 activation function or decision
+15:44 
+
+15:44 function. Activation or decision
+15:47 
+
+15:47 function.
+15:50 
+
+15:50 And this x is a vector of values. So I'm
+15:53 
+
+15:53 just putting mathematic notation in
+15:54 
+
+15:54 place now. So this x is input values. So
+15:58 
+
+15:58 it's a set of values x1 x2 till xn. So
+16:02 
+
+16:02 this is inputs. So these are your
+16:05 
+
+16:05 inputs.
+16:07 
+
+16:07 Okay. And each x i belongs to either
+16:10 
+
+16:10 zero or one. Okay. And what is the
+16:12 
+
+16:12 thresholding logic? The logic basically
+16:14 
+
+16:14 tells you that sum these x i up from i
+16:16 
+
+16:16 is equal 1 to how many inputs there are.
+16:19 
+
+16:19 And if they are equal or greater than
+16:21 
+
+16:21 some threshold then you will fire
+16:23 
+
+16:23 otherwise. So this is else.
+16:26 
+
+16:26 Okay. So this over here is the model
+16:28 
+
+16:28 that I'm telling you. So if if you
+16:30 
+
+16:30 remember this so you understand the
+16:31 
+
+16:31 molop pitch neurons. So there are two
+16:33 
+
+16:33 functions. You have activation or
+16:34 
+
+16:34 aggregate activation and decision or
+16:36 
+
+16:36 decision function. You have an
+16:36 
+
+16:36 aggregation function. You have an input
+16:38 
+
+16:38 which is a vector maybe which because
+16:40 
+
+16:40 you know a bit of algebra now. So this
+16:42 
+
+16:42 is a vector. So each of this value can
+16:44 
+
+16:44 be binary. It it can be either zero or
+16:46 
+
+16:46 one. It's a boolean value. Okay. And
+16:47 
+
+16:47 then if you aggregate it and you take a
+16:50 
+
+16:50 decision based on the aggregation. Okay.
+16:51 
+
+16:51 This over here a decision function. So
+16:53 
+
+16:53 if it crosses certain threshold
+16:56 
+
+16:56 as I said this is called thresholding
+16:57 
+
+16:57 logic. Okay. So if it and then it'll
+16:60 
+
+16:60 fire over here. One is one over here
+17:02 
+
+17:02 means it'll fire and zero over here
+17:05 
+
+17:05 means not fire.
+17:07 
+
+17:07 So this was the micolopitz neurons. Any
+17:09 
+
+17:09 questions on micolitz neurons?
+17:12 
+
+17:12 Okay. The question was where are they
+17:13 
+
+17:13 used somewhere? So just hold on for
+17:16 
+
+17:16 maybe 5 to 10 minutes so that I first
+17:17 
+
+17:17 clarify where do we get this deep
+17:19 
+
+17:19 learning from initially. So we now
+17:21 
+
+17:21 understood the computational counterpart
+17:22 
+
+17:22 neuron. So we saw the generic version
+17:23 
+
+17:23 and then we saw micola pits neurons.
+17:25 
+
+17:25 Okay. Then we'll see how was it used. So
+17:27 
+
+17:27 before that I'll tell you. So why was
+17:30 
+
+17:30 this deep learning? Why was it a natural
+17:32 
+
+17:32 idea then? Because if you see the brain,
+17:34 
+
+17:34 if you see our nervous system, you saw
+17:36 
+
+17:36 that it's a network of neurons. Okay, it
+17:38 
+
+17:38 was pretty clear that there is this
+17:39 
+
+17:39 network. So then we saw that from CNN
+17:42 
+
+17:42 from that experiment which was done by
+17:43 
+
+17:43 Visel and Hubil. So there we saw that
+17:46 
+
+17:46 two two important things were done. So
+17:48 
+
+17:48 there is some hierarchical
+17:55 
+
+17:55 hierarchical
+17:57 
+
+17:57 computation is done. So by this I mean
+17:59 
+
+17:59 like features are
+18:01 
+
+18:01 computation.
+18:04 
+
+18:04 Okay. So in that what we observed is
+18:07 
+
+18:07 that these features are probably they're
+18:09 
+
+18:09 extracted in hierarchy. So in that I
+18:11 
+
+18:11 gave an example. Let's suppose if you
+18:13 
+
+18:13 have this word if you see this uh digit
+18:15 
+
+18:15 9 on the screen. So maybe your brain is
+18:17 
+
+18:17 initially extracting this information
+18:19 
+
+18:19 then it's extracting this information
+18:21 
+
+18:21 then it's extracting then it's putting
+18:23 
+
+18:23 all of them together. So the information
+18:24 
+
+18:24 that the extraction information is
+18:26 
+
+18:26 happening in hierarchy. Okay. And
+18:28 
+
+18:28 probably there are different parts of
+18:29 
+
+18:29 brain which are responsible. That's what
+18:31 
+
+18:31 we saw from that hub and visels
+18:32 
+
+18:32 experiment. So now we the first thing
+18:34 
+
+18:34 was we saw a network of neurons and in
+18:36 
+
+18:36 network we saw hierarchy. We saw layers
+18:38 
+
+18:38 there are different layers of working.
+18:40 
+
+18:40 So that is where this deep concept of
+18:42 
+
+18:42 deep came came into the picture because
+18:44 
+
+18:44 we know that there's a discrete neuron
+18:46 
+
+18:46 and then we know it's a network of
+18:47 
+
+18:47 neurons. So now the question was how to
+18:48 
+
+18:48 make it compute. So from this idea we
+18:51 
+
+18:51 came to know okay we should do it in
+18:52 
+
+18:52 hierarchy. We should have layers of
+18:54 
+
+18:54 these neurons. Okay. So somehow we
+18:56 
+
+18:56 should have initially some layer of
+18:57 
+
+18:57 neurons which will do some and then we
+18:58 
+
+18:58 should have other layers of information.
+18:60 
+
+18:60 We should have other layers of
+19:01 
+
+19:01 something. So each layer will have
+19:02 
+
+19:02 different representation. So here it
+19:04 
+
+19:04 will be a lowle representation. Then it
+19:05 
+
+19:05 will be some other representation and
+19:06 
+
+19:06 then finally you will club some of this
+19:08 
+
+19:08 information together so as to do and
+19:10 
+
+19:10 task. So this was done by hub and visels
+19:13 
+
+19:13 experiment which we also saw a video of
+19:14 
+
+19:14 in the previous lecture. So takeaway
+19:16 
+
+19:16 lesson is this. So deep learning
+19:18 
+
+19:18 actually came from that from the
+19:19 
+
+19:19 reticular theory we knew that we have
+19:22 
+
+19:22 this nervous system which is a net of
+19:23 
+
+19:23 neurons and from neuron neuron doctrine
+19:26 
+
+19:26 we know that now we have discrete units
+19:27 
+
+19:27 and how was this happening and this
+19:29 
+
+19:29 hubil and visel they told us okay this
+19:31 
+
+19:31 is happening in hierarchy you have
+19:33 
+
+19:33 information extract that is happening in
+19:34 
+
+19:34 hierarchy and it's happening in
+19:35 
+
+19:35 different parts of the even in the
+19:37 
+
+19:37 visual cortex okay it's happening in
+19:38 
+
+19:38 layers so let's suppose when you see
+19:40 
+
+19:40 something so there will be
+19:42 
+
+19:42 interconnection of neurons will be there
+19:43 
+
+19:43 and neurons will be so there will be a
+19:44 
+
+19:44 network of neurons laid down so it'll
+19:46 
+
+19:46 happen in hierarchy So that's how we
+19:48 
+
+19:48 came uh came up with the picture of this
+19:50 
+
+19:50 deep learning. So in the next class also
+19:51 
+
+19:51 I'll show you the about maybe visual
+19:53 
+
+19:53 cortex system. So we'll maybe see a
+19:54 
+
+19:54 brief video of how visual cortex works.
+19:57 
+
+19:57 So you will see that the features are
+19:58 
+
+19:58 extracted one by one. It's not that
+20:00 
+
+20:00 let's suppose when you see somebody it's
+20:02 
+
+20:02 not that you in one shot see the person.
+20:04 
+
+20:04 So probably you initially recognize
+20:06 
+
+20:06 nose, eyes, eyebrows, beard and maybe
+20:08 
+
+20:08 ears and something and then this level
+20:11 
+
+20:11 of information is transmitted to other
+20:12 
+
+20:12 neurons. So other neurons may put this
+20:13 
+
+20:13 information together and then it takes
+20:15 
+
+20:15 some time for our visual system to sort
+20:18 
+
+20:18 of understand this sort of understand
+20:20 
+
+20:20 the whole mechanism or understand the
+20:22 
+
+20:22 whole human being if you see or an
+20:23 
+
+20:23 object if you see an object if you see
+20:25 
+
+20:25 this pen so probably you you don't just
+20:26 
+
+20:26 see this pen initially so maybe you your
+20:29 
+
+20:29 visual cortex system understands it
+20:30 
+
+20:30 color first okay this color is golden
+20:31 
+
+20:31 color and then it has a tip at and this
+20:33 
+
+20:33 is the length of that so all this
+20:35 
+
+20:35 information all this information
+20:37 
+
+20:37 processing is happen it happens in the
+20:38 
+
+20:38 hierarchical level it happens in the
+20:40 
+
+20:40 different layers and then it's also put
+20:42 
+
+20:42 put together and then we understand okay
+20:43 
+
+20:43 this is a pen but it happens it maybe
+20:45 
+
+20:45 within milliseconds or nanconds even and
+20:47 
+
+20:47 that's why this transmission is quite
+20:49 
+
+20:49 fast and we do not have any lag and
+20:51 
+
+20:51 sometimes it be it is also laggy because
+20:53 
+
+20:53 if something is very blurry you cannot
+20:55 
+
+20:55 figure out it takes you maybe a couple
+20:56 
+
+20:56 of seconds to identify that object till
+20:58 
+
+20:58 your brain process all the information
+20:59 
+
+20:59 so all in all what I'm saying is here
+21:01 
+
+21:01 the hierarchal computation is done so
+21:02 
+
+21:02 that means we came up with this layers
+21:04 
+
+21:04 layer of network so we should do it in
+21:05 
+
+21:05 the hierarchies so this was the
+21:07 
+
+21:07 inspiration of deep learning okay so
+21:08 
+
+21:08 this is why the deep learning came from
+21:10 
+
+21:10 now we have the neuron now we have to
+21:11 
+
+21:11 somehow come up with this concept of
+21:14 
+
+21:14 deep learning. So before going there so
+21:16 
+
+21:16 we'll first see where was this used. So
+21:17 
+
+21:17 if you have this molopitz neurons you
+21:19 
+
+21:19 have this aggregation function you have
+21:20 
+
+21:20 the decision function or activation then
+21:22 
+
+21:22 you have this thresholding logic. Okay.
+21:24 
+
+21:24 Now what we can do is so I'll show you
+21:25 
+
+21:25 the working of what it can be done. So
+21:27 
+
+21:27 if you see any computer so if you if you
+21:30 
+
+21:30 have read about computer architecture
+21:32 
+
+21:32 digital logic design you know that whole
+21:33 
+
+21:33 of these computers whatever they perform
+21:34 
+
+21:34 it is done by digital gate. It's done by
+21:37 
+
+21:37 logic gates.
+21:40 
+
+21:40 logic gates like and or not. So all of
+21:42 
+
+21:42 these gates are then we have these gates
+21:44 
+
+21:44 and we perform computation based on the
+21:46 
+
+21:46 these gates. Now if you have a neuron so
+21:48 
+
+21:48 the first natural question was if I have
+21:49 
+
+21:49 to use it for computation so can I
+21:51 
+
+21:51 implement gates with it? Okay, so that
+21:53 
+
+21:53 was the question. Okay, fair enough. Pad
+21:55 
+
+21:55 is it fair enough? If I check it, if I
+21:57 
+
+21:57 check the computation, can this sort of
+21:59 
+
+21:59 neuron can it do the logical operations?
+22:02 
+
+22:02 Can it do logical and can it do logical
+22:03 
+
+22:03 or? So if it is able to do that thing,
+22:05 
+
+22:05 probably we can do much more complex
+22:07 
+
+22:07 computation based on that. Fair enough.
+22:10 
+
+22:10 Okay. Now let's see how can we implement
+22:12 
+
+22:12 this. How can we use this microlopits
+22:14 
+
+22:14 neurons to implement uh these and or
+22:16 
+
+22:16 functions. So the question basically was
+22:19 
+
+22:19 we have to do computation. So we have to
+22:21 
+
+22:21 do computation and we understood that
+22:22 
+
+22:22 computation can be done by logic gates
+22:24 
+
+22:24 and now we have a neuron. Okay. Now we
+22:26 
+
+22:26 also know we can have a network of
+22:27 
+
+22:27 neurons that will come maybe later. So
+22:29 
+
+22:29 first we'll see by using this single
+22:31 
+
+22:31 neuron can I somehow computationally
+22:34 
+
+22:34 model this and let's let's start with
+22:36 
+
+22:36 and or maybe r. We'll start with and and
+22:40 
+
+22:40 both. So now you know the truth table.
+22:41 
+
+22:41 So the input is x1 x2 x3 house so
+22:44 
+
+22:44 because orgate they can take a lot more
+22:46 
+
+22:46 lot of inputs. It's not restricted two
+22:48 
+
+22:48 only. They can take more than two inputs
+22:49 
+
+22:49 also. And then we have an output.
+22:53 
+
+22:53 Similarly in and x1 x2 and you have an
+22:56 
+
+22:56 output.
+23:00 
+
+23:00 Now let's suppose you have this input
+23:03 
+
+23:03 you you know that this input is binary.
+23:04 
+
+23:04 So mico neuron works on binary. So you
+23:06 
+
+23:06 have this binary input. This can be 0 0
+23:09 
+
+23:09 0 1 1 0 1 1. Similarly inputs here can
+23:11 
+
+23:11 be this can be input. And you know in
+23:14 
+
+23:14 orgate one of them should be high. then
+23:17 
+
+23:17 you get the high input and here you have
+23:19 
+
+23:19 the zero. So this should be both of them
+23:21 
+
+23:21 should be high. So now let's suppose you
+23:23 
+
+23:23 know the truth table. So these are truth
+23:25 
+
+23:25 tables of R and and AND gate. Okay. Now
+23:27 
+
+23:27 if you have to implement this if you
+23:29 
+
+23:29 have to implement so what we can do is
+23:30 
+
+23:30 so you have this neuron you have this
+23:32 
+
+23:32 micolopits neurons. Okay. And then you
+23:34 
+
+23:34 have this aggregation function you have
+23:36 
+
+23:36 two inputs say X1 and X2 and then you
+23:39 
+
+23:39 have this output.
+23:42 
+
+23:42 So what we can do is we can say in order
+23:44 
+
+23:44 for let's suppose for this orgate so
+23:46 
+
+23:46 we'll say the summation of x i so we'll
+23:49 
+
+23:49 sum both of these things up. So if the
+23:51 
+
+23:51 threshold is greater or equal to one so
+23:54 
+
+23:54 you fire the neuron otherwise zero.
+23:57 
+
+23:57 So here theta is equal to one. So
+23:59 
+
+23:59 threshold in logic is equal to one. So
+24:01 
+
+24:01 don't you think that if I put this
+24:03 
+
+24:03 threshold in logic equal to one. So if I
+24:04 
+
+24:04 put one over here this threshold after
+24:06 
+
+24:06 the aggregation. So this will behave as
+24:08 
+
+24:08 an orgate. So how many of you agree with
+24:11 
+
+24:11 this? So how many of you agree with this
+24:13 
+
+24:13 logic? So if I put this threshold over
+24:15 
+
+24:15 here equal to one. So this thing over
+24:17 
+
+24:17 here will behave as an orgate.
+24:23 
+
+24:23 Good. Okay. So now you tell me the next
+24:25 
+
+24:25 one. If I have to implement and gate
+24:27 
+
+24:27 with this. Okay. So I am getting input
+24:30 
+
+24:30 X1. I'm getting input X2 and this is my
+24:34 
+
+24:34 output. So what should be the threshold?
+24:36 
+
+24:36 Anyone?
+24:40 
+
+24:40 So I fire this neuron
+24:43 
+
+24:43 this should be in this case it should be
+24:45 
+
+24:45 greater equal to two okay or or exactly
+24:47 
+
+24:47 equal to two in this case. So and this
+24:49 
+
+24:49 theta is equal to then so if it is two
+24:51 
+
+24:51 then we will fire it otherwise it will
+24:53 
+
+24:53 so this over here is the computational
+24:55 
+
+24:55 model of argate.
+25:01 
+
+25:01 So at least now we could sort of
+25:03 
+
+25:03 implement we could implement uh or uh we
+25:06 
+
+25:06 could implement orgate and get we could
+25:08 
+
+25:08 also implement Ngate but in that Ngate
+25:10 
+
+25:10 we we should have inhibitory output. So
+25:12 
+
+25:12 in in that we can have inhibitory
+25:14 
+
+25:14 output. So if this is high so this will
+25:16 
+
+25:16 be zero output and then and we can we
+25:17 
+
+25:17 can accordingly have threshold. So this
+25:19 
+
+25:19 is for the N gate. So because micolopits
+25:21 
+
+25:21 neuron also gave us inhibitor and
+25:23 
+
+25:23 excitatory input. So if this is high so
+25:25 
+
+25:25 computationally we can keep it low.
+25:27 
+
+25:27 Okay. And we can we can put a particular
+25:29 
+
+25:29 threshold if the value over here is one.
+25:31 
+
+25:31 So we can put the threshold. So now you
+25:33 
+
+25:33 could see that we can somehow simulate
+25:35 
+
+25:35 this. We can come up with the
+25:36 
+
+25:36 computational model of andgate. We can
+25:38 
+
+25:38 come up with the computational model of
+25:39 
+
+25:39 orgate. We can come with the
+25:40 
+
+25:40 computational model not gate. Maybe
+25:42 
+
+25:42 ngate also and we can come up with a lot
+25:43 
+
+25:43 of gates. So can we can we make
+25:45 
+
+25:45 everything? The question was can we come
+25:46 
+
+25:46 up with an every gate? Okay. The
+25:48 
+
+25:48 question come is is the answer is no.
+25:50 
+
+25:50 You cannot do this. Okay. So in order to
+25:53 
+
+25:53 understand this question, the question
+25:54 
+
+25:54 is
+25:58 
+
+25:58 can we model
+26:01 
+
+26:01 model every
+26:03 
+
+26:03 logical gate
+26:05 
+
+26:05 what I said is the answer is no we
+26:07 
+
+26:07 cannot model
+26:09 
+
+26:09 okay in order to understand this so
+26:11 
+
+26:11 we'll first have to understand the
+26:12 
+
+26:12 geometrical meaning of this okay we'll
+26:13 
+
+26:13 have to understand the geometrical
+26:15 
+
+26:15 building of these micolitz neurons so
+26:17 
+
+26:17 what is the geometrical Okay.
+26:23 
+
+26:23 So who is following me till now
+26:27 
+
+26:27 this the geometrical meaning was this?
+26:29 
+
+26:29 Let's suppose you know that if I take
+26:30 
+
+26:30 this X I'll take this. So I have values
+26:33 
+
+26:33 X1 and values X2. If I just restrict
+26:35 
+
+26:35 myself to only two inputs. Say we're
+26:37 
+
+26:37 discussing say orgate. Let's suppose
+26:39 
+
+26:39 this orgate is there. So we we have this
+26:41 
+
+26:41 logic X1 plus X2. If this is equal to
+26:44 
+
+26:44 one, okay, then I'll fire the neuron. So
+26:46 
+
+26:46 this will be fired that time. So
+26:48 
+
+26:48 summation of x i it is greater equal to
+26:50 
+
+26:50 one doesn't matter. So this is equal to
+26:51 
+
+26:51 one. So I'll fire otherwise zero.
+26:55 
+
+26:55 So if I see it geometrically so I'll
+26:56 
+
+26:56 make a coordinate system. So I'll see if
+26:58 
+
+26:58 I make a coordinate system of this sort.
+27:03 
+
+27:03 Okay. So I'll see the geometrical
+27:04 
+
+27:04 meaning. So here this value is 0 comma
+27:06 
+
+27:06 0. Okay. This value over here is say 1
+27:10 
+
+27:10 comma 0.
+27:12 
+
+27:12 This value over here is 0 comma 1. And
+27:16 
+
+27:16 this value over here is 1 comma 1. Okay,
+27:18 
+
+27:18 everybody is with me so far. Now what
+27:21 
+
+27:21 I'm saying is if you see this, if I say
+27:23 
+
+27:23 x1 + x2 is equal to 1. So this is a
+27:26 
+
+27:26 linear equation.
+27:28 
+
+27:28 Okay, call this x1. Okay, call this x2.
+27:31 
+
+27:31 This is x2. This is x1.
+27:35 
+
+27:35 So I have to satisfy this equation. So
+27:36 
+
+27:36 if I draw a line from here to here. So
+27:38 
+
+27:38 you see this.
+27:40 
+
+27:40 Okay, this line over here.
+27:44 
+
+27:44 Okay. So this line over here represents
+27:47 
+
+27:47 x1 + x2 is equal 1. How many of you
+27:49 
+
+27:49 understand this that this line over here
+27:51 
+
+27:51 represents x1 + x2 is equal to 1. Okay?
+27:55 
+
+27:55 Because let's suppose you take this
+27:56 
+
+27:56 point. So this is 1 + 0 is 1. You take
+27:58 
+
+27:58 this point 1 + 0 is 1. You take any
+27:60 
+
+28:00 point. Okay? Let's suppose you take
+28:02 
+
+28:02 midpoint. So that will be 1/2 + 1/2 is
+28:04 
+
+28:04 equal to 1. So this line over here
+28:05 
+
+28:05 represents x1 + x2 is equal to 1. So but
+28:08 
+
+28:08 if you see this line, it does something
+28:09 
+
+28:09 interesting. So it
+28:12 
+
+28:12 uh separates or it somehow divides this
+28:14 
+
+28:14 whole 2D plane into two portions. So one
+28:16 
+
+28:16 is this portion.
+28:19 
+
+28:19 Okay. One is this portion
+28:21 
+
+28:21 and other is this portion.
+28:25 
+
+28:25 Okay. So this here is called sometimes a
+28:27 
+
+28:27 decision boundary.
+28:29 
+
+28:29 Decision boundary because it is used to
+28:31 
+
+28:31 take decision.
+28:33 
+
+28:33 So whatever you see above this above. So
+28:35 
+
+28:35 whatever you see above in terms of orate
+28:37 
+
+28:37 so this the value is one. Okay. Okay,
+28:39 
+
+28:39 the value is one. So whatever is on
+28:41 
+
+28:41 below this line. So the value is zero.
+28:44 
+
+28:44 So if you see this value, so this is red
+28:46 
+
+28:46 over here. So I let me change this color
+28:48 
+
+28:48 to green so that I can show it with
+28:49 
+
+28:49 green.
+28:51 
+
+28:51 So these points, this point maybe green
+28:54 
+
+28:54 will not be visible. I'll maybe show
+28:55 
+
+28:55 with some other color.
+28:58 
+
+28:58 This point over here and this point over
+29:00 
+
+29:00 here and this point over here. So this
+29:04 
+
+29:04 for all these points the neuron gets
+29:06 
+
+29:06 activated. And for this red point for
+29:10 
+
+29:10 this red point the neuron does not fire.
+29:12 
+
+29:12 So you can clearly see that I can I can
+29:13 
+
+29:13 have a decision boundary. Okay. So what
+29:15 
+
+29:15 is so special about this and gate or
+29:18 
+
+29:18 gate and we can do the same treatment
+29:19 
+
+29:19 for let's suppose and gate. So if you do
+29:21 
+
+29:21 the same thing for and gate
+29:25 
+
+29:25 so what is the threshold logic? The
+29:26 
+
+29:26 threshold logic is x1 plus x2 this
+29:29 
+
+29:29 should be equal to two. Okay this is the
+29:31 
+
+29:31 threshold logic. So when you draw this
+29:35 
+
+29:35 so you'll have something of this sort.
+29:36 
+
+29:36 You have 0 0 over here. You have 1 0.
+29:40 
+
+29:40 You have 0 1 and you have 1 1 comma 1.
+29:46 
+
+29:46 Okay. Now what you can do is you can
+29:48 
+
+29:48 draw a line over here. So again this
+29:50 
+
+29:50 line so the line that passes through
+29:51 
+
+29:51 this one one. So what this line will say
+29:53 
+
+29:53 tell you. So this line will again
+29:55 
+
+29:55 separate into two parts. So this will
+29:57 
+
+29:57 divide the whole plane into two parts.
+29:59 
+
+29:59 So one part that I mentioned over here
+30:01 
+
+30:01 red. So this gets activated.
+30:04 
+
+30:04 Okay. It fires the neuron. So the other
+30:05 
+
+30:05 part over here. So this does not fire.
+30:08 
+
+30:08 So okay. So these are two different
+30:09 
+
+30:09 surfaces. So this is the decision
+30:11 
+
+30:11 boundary over here
+30:13 
+
+30:13 decision
+30:15 
+
+30:15 boundary. Okay. So now if you see this
+30:18 
+
+30:18 so here you saw this clearly we have
+30:20 
+
+30:20 decision boundary here again you saw we
+30:22 
+
+30:22 have a distance boundary. So these
+30:23 
+
+30:23 decision boundaries were what what we
+30:24 
+
+30:24 call as these surfaces where they were
+30:26 
+
+30:26 linearly separable.
+30:33 
+
+30:33 Okay. So what was it? So they were
+30:34 
+
+30:34 linearly separable. So if you saw we
+30:36 
+
+30:36 just draw we just drew a line and we
+30:38 
+
+30:38 could we could separate the inputs from
+30:40 
+
+30:40 each other. So here all these inputs
+30:42 
+
+30:42 lying on the blow side these here were
+30:44 
+
+30:44 one okay sorry here it was I think in
+30:47 
+
+30:47 and it was zero okay all these were zero
+30:50 
+
+30:50 and all these were one over here so they
+30:51 
+
+30:51 were activated here and they were not
+30:52 
+
+30:52 activated so still it was a linear
+30:54 
+
+30:54 decision boundary so it was a linear we
+30:56 
+
+30:56 could take linearly similarly in the
+30:58 
+
+30:58 orgate if you see same thing was here so
+31:01 
+
+31:01 below below this line so we had a line
+31:03 
+
+31:03 which decision boundary x1 + x2 is equal
+31:05 
+
+31:05 1 so this over here was not activated or
+31:08 
+
+31:08 zero not fired
+31:10 
+
+31:10 And similarly over on this side you can
+31:12 
+
+31:12 see this gets activated. Okay. On above
+31:14 
+
+31:14 side you have this surface whatever if
+31:17 
+
+31:17 you have a linear surface it divides the
+31:19 
+
+31:19 uh 2D surf it divides this 2D surface
+31:22 
+
+31:22 the linear line it divides into two
+31:24 
+
+31:24 parts. So one was called as positive
+31:26 
+
+31:26 half space. So this is called as
+31:27 
+
+31:27 positive half space
+31:30 
+
+31:30 and we have a negative half space.
+31:32 
+
+31:32 Negative half space. So what is positive
+31:34 
+
+31:34 half space? where the output was one,
+31:36 
+
+31:36 why the neuron was getting activated and
+31:37 
+
+31:37 what was negative half space where the
+31:39 
+
+31:39 neuron was not getting activated. So,
+31:40 
+
+31:40 but what we saw is that these things
+31:43 
+
+31:43 were modeled because the data or the
+31:46 
+
+31:46 input to output model it was it was
+31:48 
+
+31:48 linearly separable. We could linearly
+31:49 
+
+31:49 separate them. How many of you
+31:50 
+
+31:50 understood this point geometrically?
+31:53 
+
+31:53 So now the homework I am giving you is
+31:55 
+
+31:55 you see that you draw X or function for
+31:57 
+
+31:57 yourself. Okay. Then you see that in X
+31:59 
+
+31:59 or function this is not linearly
+32:01 
+
+32:01 separable. You cannot linearly separate
+32:03 
+
+32:03 it. So then what is the problem? So this
+32:05 
+
+32:05 micola pits neurons the neuron the
+32:07 
+
+32:07 modeling of neuron that we came up with
+32:09 
+
+32:09 it won't be able to model this XR
+32:10 
+
+32:10 function because XR is not linearly
+32:12 
+
+32:12 separable. So all the things that it was
+32:14 
+
+32:14 doing is it was only making a decision
+32:16 
+
+32:16 boundary where we had linearly separable
+32:18 
+
+32:18 things. So if your data is linearly
+32:20 
+
+32:20 separable then we could have modeled it
+32:21 
+
+32:21 by using these micolopits neurons. Okay.
+32:24 
+
+32:24 And then came even
+32:27 
+
+32:27 this problem was with this uh with this
+32:28 
+
+32:28 neuron with the micopitz neurons. We
+32:30 
+
+32:30 also have a different uh model. Now
+32:32 
+
+32:32 people thought okay there's a problem
+32:34 
+
+32:34 why do it take why why should we only
+32:36 
+
+32:36 take boolean inputs why not some other
+32:38 
+
+32:38 real valued inputs okay the problem with
+32:39 
+
+32:39 microlopitz neurons was it only taking
+32:41 
+
+32:41 boolean inputs so why not take why not
+32:44 
+
+32:44 real valued inputs
+32:47 
+
+32:47 real valued inputs
+32:49 
+
+32:49 this was the first second question was
+32:51 
+
+32:51 why is it giving equal weightage to
+32:53 
+
+32:53 every input so this is not the usual
+32:55 
+
+32:55 case that is that happens usually in
+32:57 
+
+32:57 dead life you give some inputs are given
+32:59 
+
+32:59 higher weight some inputs should be
+33:00 
+
+33:00 given lesser weight so So why not why
+33:04 
+
+33:04 not different weights?
+33:07 
+
+33:07 Okay, these are the two things two
+33:08 
+
+33:08 problems that people thought is with
+33:10 
+
+33:10 Michopitz neurons because it was taking
+33:12 
+
+33:12 binary inputs. So usually all the values
+33:15 
+
+33:15 are not binary. You can have real valued
+33:16 
+
+33:16 inputs and the second thing was it was
+33:18 
+
+33:18 giving equal weightage to everything.
+33:19 
+
+33:19 Okay, let's suppose as I said if you
+33:22 
+
+33:22 have to take a decision and you say I
+33:25 
+
+33:25 have to take a decision say should I
+33:27 
+
+33:27 watch this movie? Should I watch it if
+33:28 
+
+33:28 if you're going to watch a particular
+33:29 
+
+33:29 movie? So then you see is it from is it
+33:32 
+
+33:32 from let's a particular genre and is it
+33:34 
+
+33:34 directed by somebody?
+33:36 
+
+33:36 Okay. And then how much is the rating or
+33:38 
+
+33:38 something of that sort and maybe let's
+33:40 
+
+33:40 suppose if it rating is high so you give
+33:43 
+
+33:43 more weightage to this. Okay. And you
+33:44 
+
+33:44 don't give equal weightage. Say say you
+33:46 
+
+33:46 have more weightage to say if rating is
+33:49 
+
+33:49 above eight. So you will give some
+33:51 
+
+33:51 higher weight to this. So I'll assign a
+33:52 
+
+33:52 very high weight. If let's suppose
+33:54 
+
+33:54 director is not that much important to
+33:56 
+
+33:56 me. Okay. I'll give lesser weight to it.
+33:58 
+
+33:58 So this was the question why not to give
+33:59 
+
+33:59 different weights? Why to give equal
+34:01 
+
+34:01 weights? So then we came up with this
+34:04 
+
+34:04 perceptron. So in 1958
+34:08 
+
+34:08 in 19 and 58 Rosenblad Frank Rosenblad
+34:12 
+
+34:12 came up with this solution in 1958 that
+34:14 
+
+34:14 we saw in the history. We are still
+34:16 
+
+34:16 seeing the competition counterpart. So
+34:17 
+
+34:17 they came up what is called as
+34:18 
+
+34:18 perceptron.
+34:21 
+
+34:21 Okay. So Frank Rosenlat this was Frank
+34:26 
+
+34:26 rose black. So this person came up with
+34:28 
+
+34:28 this perceptron in order the problem is
+34:30 
+
+34:30 it it had binary inputs were there. That
+34:33 
+
+34:33 was the first problem. Second problem
+34:34 
+
+34:34 was uh why not to have different weights
+34:37 
+
+34:37 because the real decisions that we take
+34:39 
+
+34:39 in real life they're weighted decisions
+34:41 
+
+34:41 because we pitch or we leverage one
+34:44 
+
+34:44 input
+34:45 
+
+34:45 like to some very high extent and other
+34:47 
+
+34:47 to some very low extent. And the one
+34:49 
+
+34:49 more problem was why have this
+34:50 
+
+34:50 thresholding logic? Why?
+34:53 
+
+34:53 Why to have threshold logic? Right?
+34:54 
+
+34:54 Thresholding.
+34:57 
+
+34:57 Why do I have this hardcore
+34:59 
+
+34:59 thresholding? Okay. Then it does not
+35:00 
+
+35:00 leave any room for learning. We cannot
+35:02 
+
+35:02 learn it. If you have to learn
+35:03 
+
+35:03 something, so this threshold or
+35:05 
+
+35:05 hardcoded value should not be there.
+35:08 
+
+35:08 Hardcoded values. No hard-coded values
+35:10 
+
+35:10 should be there. So at least we saw
+35:11 
+
+35:11 three problems. The first problem is why
+35:13 
+
+35:13 only binary inputs. Okay. Second, why to
+35:17 
+
+35:17 why to only give same weights or why to
+35:20 
+
+35:20 weigh everything equally? And the third
+35:22 
+
+35:22 problem was why thresholding. So in
+35:24 
+
+35:24 order to uh answer these three three
+35:26 
+
+35:26 questions so natural idea was to come up
+35:28 
+
+35:28 with the perceptron. So what perceptron
+35:30 
+
+35:30 should do? So the first thing it should
+35:31 
+
+35:31 do is
+35:34 
+
+35:34 it should have a real valued inputs.
+35:36 
+
+35:36 Okay. So x1 x2 x3 x4. So all of these
+35:40 
+
+35:40 should be real valued. So now this x i
+35:43 
+
+35:43 values they should belong to real value.
+35:45 
+
+35:45 Okay. So this was the first problem was
+35:47 
+
+35:47 fixed. And the second problem was uh why
+35:50 
+
+35:50 different why not different weights? Why
+35:52 
+
+35:52 same weights? So everything was one. So
+35:53 
+
+35:53 we we can give w1 we can give weights to
+35:56 
+
+35:56 these now w2 w3 w4 and so on. So now we
+35:59 
+
+35:59 have these weights also the weights also
+36:01 
+
+36:01 belong to some real numbers. So now when
+36:03 
+
+36:03 you have this aggregation function you
+36:04 
+
+36:04 aggregate it like this. You see w1 x1
+36:07 
+
+36:07 plus w2 x2 and so on till w n xn you
+36:11 
+
+36:11 aggregate it like this. Okay and in this
+36:14 
+
+36:14 how I can write this equation I can
+36:16 
+
+36:16 write summation of w i x i goes from 1
+36:19 
+
+36:19 to n. Okay. This is my aggregation
+36:22 
+
+36:22 logic. Now I have to come up with
+36:23 
+
+36:23 threshold. Okay. The thing is now the
+36:25 
+
+36:25 question is why is this hard coding
+36:26 
+
+36:26 threshold? So what we can do is we can
+36:28 
+
+36:28 put a bias in here. Okay, let's call
+36:30 
+
+36:30 let's call this X0.
+36:33 
+
+36:33 X0 is sometimes you might be biased.
+36:35 
+
+36:35 Okay, biased towards something. So what
+36:37 
+
+36:37 you do is you can put let's suppose some
+36:40 
+
+36:40 bias or some bias term over here.
+36:43 
+
+36:43 Okay, this bias term X0 the X0 term or I
+36:46 
+
+36:46 I can call it B later on. So X0 term
+36:48 
+
+36:48 this term will be inherently saying that
+36:50 
+
+36:50 this neuron is biased towards something.
+36:52 
+
+36:52 Let's suppose if you have a bias if you
+36:54 
+
+36:54 want to go to college and you enjoy your
+36:56 
+
+36:56 college a lot. So you have a bias going
+36:58 
+
+36:58 towards college. So and this should be
+36:60 
+
+36:60 greater than equal to some threshold.
+37:02 
+
+37:02 Okay, let's suppose this should be equal
+37:05 
+
+37:05 to some zero. Even if you some people
+37:07 
+
+37:07 write it like this also they say this
+37:09 
+
+37:09 should be greater than equal to like
+37:10 
+
+37:10 threshold theta and then they take it
+37:12 
+
+37:12 over here. So they say you'll see many
+37:14 
+
+37:14 of these formulation. So I goes from 1
+37:17 
+
+37:17 to n w i x i minus theta should be equal
+37:21 
+
+37:21 to zero and then then they include this
+37:22 
+
+37:22 bias term. Then they say okay I'll put
+37:24 
+
+37:24 this bias. Why to put threshold? Just
+37:26 
+
+37:26 don't hard code it. Just put it as bias
+37:28 
+
+37:28 term I is equal they'll say 0 to n W I X
+37:33 
+
+37:33 I is greater than equal to Z how many of
+37:34 
+
+37:34 you understood this conversion so here
+37:36 
+
+37:36 this was theta I converted to X0 okay
+37:39 
+
+37:39 and then I said it starts from zero okay
+37:41 
+
+37:41 starts from zero and then X I maybe I
+37:43 
+
+37:43 can put that initially as one so one
+37:45 
+
+37:45 that that should be equal to one yes yes
+37:48 
+
+37:48 questions
+37:50 
+
+37:50 okay yes the question was like if we put
+37:52 
+
+37:52 this theta is equal X not then it should
+37:54 
+
+37:54 be weight ass w1 that you will consider
+37:56 
+
+37:56 W knot this W not will be equal to one
+37:60 
+
+37:60 okay so that we just put this bias over
+38:02 
+
+38:02 here okay so what is the meaning of bias
+38:04 
+
+38:04 I I just want you to know the meaning of
+38:05 
+
+38:05 bias the bias meaning of bias is that it
+38:07 
+
+38:07 is inherently biased towards something
+38:09 
+
+38:09 as I said let's suppose you people enjoy
+38:11 
+
+38:11 college so if you have to cross a
+38:12 
+
+38:12 certain threshold you already have a
+38:14 
+
+38:14 certain I'll go to college anyway so now
+38:16 
+
+38:16 all of these things will contribute
+38:17 
+
+38:17 towards the threshold in logic but you
+38:19 
+
+38:19 already are biased towards going college
+38:20 
+
+38:20 and let's suppose somebody is just
+38:22 
+
+38:22 looking for excuses of not studying so
+38:24 
+
+38:24 they have very high bias of not studying
+38:26 
+
+38:26 So if you give them a lot of inputs of
+38:27 
+
+38:27 studying. So but they they have the
+38:29 
+
+38:29 bias. So that's that's where you get
+38:31 
+
+38:31 these biases from. So you get three
+38:32 
+
+38:32 things now. So we get inputs.
+38:37 
+
+38:37 Okay. And inputs are now real valued. So
+38:40 
+
+38:40 they have real valued inputs. And the
+38:42 
+
+38:42 second thing you got is weights.
+38:44 
+
+38:44 Weights is now you can weight them. And
+38:46 
+
+38:46 the third thing is bias.
+38:48 
+
+38:48 Okay. And you now understood bias. How
+38:49 
+
+38:49 many of you now understood the these
+38:51 
+
+38:51 three terms? You have also these are
+38:52 
+
+38:52 also real value and bias also real. All
+38:54 
+
+38:54 of these things are real valued. So they
+38:56 
+
+38:56 belong to real values. Inputs basically
+38:57 
+
+38:57 knows the input that you get. Weights is
+38:59 
+
+38:59 how do you actually want to weigh them?
+39:01 
+
+39:01 And bias is do you have some inherently
+39:03 
+
+39:03 bias in this in this neuron. As I give
+39:05 
+
+39:05 an example of like somebody wants to go
+39:07 
+
+39:07 to college and they already love going
+39:09 
+
+39:09 college. They have a high bias of going
+39:10 
+
+39:10 to college. Somebody hates to go to
+39:12 
+
+39:12 college. They want to find an excuse of
+39:13 
+
+39:13 not going. Okay. They have a very high
+39:14 
+
+39:14 bias of not going. Okay. This is why
+39:16 
+
+39:16 this bias is for.
+39:19 
+
+39:19 So now you saw it that we had inputs, we
+39:21 
+
+39:21 had these weights and we had these
+39:22 
+
+39:22 biases in this. Okay. So this is what is
+39:24 
+
+39:24 called as a perceptron. So perceptron
+39:26 
+
+39:26 simply if I write it this is w i x i
+39:29 
+
+39:29 it's greater than or equal to zero. I
+39:30 
+
+39:30 goes from uh 0 to suppose n. So it will
+39:34 
+
+39:34 fire this time. Okay. Or it will not
+39:36 
+
+39:36 fire. This was called as perceptron. So
+39:39 
+
+39:39 we'll see how many problems did it
+39:41 
+
+39:41 solve. Okay. First thing is input is
+39:43 
+
+39:43 real value. It solved the problem. Okay.
+39:45 
+
+39:45 It was weighted. Now it was not giving
+39:47 
+
+39:47 the uniform weight to everything. It was
+39:48 
+
+39:48 not giving weight one basically to
+39:50 
+
+39:50 everything. So it is also weighted. So
+39:51 
+
+39:51 you also added some bias. So now you
+39:53 
+
+39:53 don't have only threshold low you have
+39:54 
+
+39:54 bias but did it can it map X or function
+39:59 
+
+39:59 the question again is no this also
+40:00 
+
+40:00 cannot map XR function okay and uh
+40:03 
+
+40:03 before going ahead so why did it map
+40:06 
+
+40:06 I'll also put again one more homework
+40:07 
+
+40:07 for you people you again use this
+40:09 
+
+40:09 perceptron you use this perceptron to
+40:11 
+
+40:11 map and or and other things and then you
+40:14 
+
+40:14 also see why can't it map XR
+40:17 
+
+40:17 okay and then what we can do is we can
+40:19 
+
+40:19 predict so from this what we can do is
+40:21 
+
+40:21 we can and have a perceptron what's
+40:24 
+
+40:24 called as perceptron learning algorithm
+40:27 
+
+40:27 perceptron
+40:29 
+
+40:29 learning algorithm.
+40:32 
+
+40:32 So we'll not we will not hardcode these
+40:34 
+
+40:34 values. We'll not hard code this W1, W2,
+40:36 
+
+40:36 W3. But we'll somehow learn these
+40:38 
+
+40:38 weights. But these weights will be
+40:40 
+
+40:40 learned from data. And this weights and
+40:42 
+
+40:42 biases. So these will be made learnable.
+40:45 
+
+40:45 So they'll be made learnable from data.
+40:47 
+
+40:47 So initially we're hard coding this.
+40:48 
+
+40:48 We're putting hardcoded values. Weights
+40:50 
+
+40:50 were uniform 111 and we did not have
+40:52 
+
+40:52 bias. Then we're saying okay this is the
+40:53 
+
+40:53 thresholded logic. Now what we can do is
+40:55 
+
+40:55 we can learn this from data and then
+40:57 
+
+40:57 there is an algorithm which called as
+40:59 
+
+40:59 perceptron learning algorithm. Okay that
+41:01 
+
+41:01 we'll see. And before going there so
+41:02 
+
+41:02 I'll just again uh reate I'll give an
+41:04 
+
+41:04 example of let's suppose you want to
+41:06 
+
+41:06 predict some college admission. Okay
+41:08 
+
+41:08 I'll see how I'll show you how this
+41:09 
+
+41:09 perceptron works. So say you have these
+41:11 
+
+41:11 three inputs you have input x1 x2 x3 x1
+41:15 
+
+41:15 x2 and x3 is the input and x1 is has
+41:18 
+
+41:18 high GPA high or GPA how much is the GPA
+41:22 
+
+41:22 because we take real values and then how
+41:25 
+
+41:25 much research experience
+41:27 
+
+41:27 okay and we can give some values to each
+41:29 
+
+41:29 paper. Okay. uh which school is it from
+41:31 
+
+41:31 a top school how like which school is
+41:33 
+
+41:33 this and based on that we'll have to
+41:35 
+
+41:35 output should we admit the person into
+41:36 
+
+41:36 our college or not or let's suppose if
+41:38 
+
+41:38 we have to enroll students in our
+41:40 
+
+41:40 research group so I'll say okay how much
+41:42 
+
+41:42 is the GPA in the undergrad okay do they
+41:44 
+
+41:44 have some research experience or which
+41:46 
+
+41:46 college are they from which college are
+41:48 
+
+41:48 they from okay then one more thing is
+41:51 
+
+41:51 there so I'll put a bias term also that
+41:53 
+
+41:53 is x0 so what is this bias basically
+41:54 
+
+41:54 this is how much scrutiny am I doing how
+41:57 
+
+41:57 how hard is it to get admission in my
+41:59 
+
+41:59 research or in my college how hard so
+42:00 
+
+42:00 I'll put some bias over here. So this is
+42:02 
+
+42:02 the bias term.
+42:04 
+
+42:04 Okay. So what is bias? Basically I'm
+42:06 
+
+42:06 inherently biased towards something. So
+42:08 
+
+42:08 let's suppose if it's a tier three
+42:09 
+
+42:09 college, it's pretty easy to get
+42:10 
+
+42:10 admission. If let's suppose a tier one
+42:12 
+
+42:12 college or let's suppose if it is a
+42:14 
+
+42:14 highly competitive college where people
+42:15 
+
+42:15 want to go in bulk. So what what will
+42:17 
+
+42:17 happen is so this value will be quite
+42:19 
+
+42:19 it'll be it'll be such a way so that it
+42:22 
+
+42:22 inherently has bias of not taking
+42:23 
+
+42:23 people. So if it is a tier three college
+42:25 
+
+42:25 people will like put this value such a
+42:27 
+
+42:27 way so that it's very easy to go there.
+42:29 
+
+42:29 So now this GPA this research people
+42:31 
+
+42:31 will give some weights to this. Let's
+42:32 
+
+42:32 suppose if they have research experience
+42:34 
+
+42:34 give more weight. So this will be
+42:36 
+
+42:36 assigned more weight.
+42:39 
+
+42:39 I'm just justifying like why was
+42:41 
+
+42:41 perceptron perceptron developed the way
+42:43 
+
+42:43 it was developed. Initially real value
+42:45 
+
+42:45 uh it is understandable. The second
+42:46 
+
+42:46 thing is weights. Why should we have
+42:48 
+
+42:48 these weights? Let's suppose more weight
+42:50 
+
+42:50 should be given to research. After this
+42:52 
+
+42:52 maybe a little a little more to GPA then
+42:54 
+
+42:54 which college? Let's suppose. So this
+42:55 
+
+42:55 college and this should be given least
+42:57 
+
+42:57 weight say least weight but highest
+43:00 
+
+43:00 weight should be given to research. Now
+43:02 
+
+43:02 it makes sense and it should be it can
+43:04 
+
+43:04 be inherently biased. Okay. So based on
+43:06 
+
+43:06 this now we can say based on this if we
+43:08 
+
+43:08 have this bias say let's suppose this is
+43:10 
+
+43:10 theta or x not we directly take it x
+43:11 
+
+43:11 not. So based on this we can again make
+43:13 
+
+43:13 perceptron work. We can say that if it
+43:14 
+
+43:14 passes this greater than equal to zero
+43:16 
+
+43:16 threshold. So this is w1 + w1 x1 + w2 x2
+43:22 
+
+43:22 + w3 x3 plus uh x
+43:26 
+
+43:26 okay if it's greater than equal to zero
+43:28 
+
+43:28 some and and this threshold over here so
+43:30 
+
+43:30 you'll all have to put the values so you
+43:33 
+
+43:33 can see that this weight can be given
+43:34 
+
+43:34 high so research experience this is our
+43:36 
+
+43:36 research experience so this weight will
+43:38 
+
+43:38 be high so weight will given will be
+43:40 
+
+43:40 high okay and maybe these will be given
+43:43 
+
+43:43 less weights or relatively this will be
+43:45 
+
+43:45 given more weight and this will be given
+43:46 
+
+43:46 a less weight. So this I can drop two
+43:49 
+
+43:49 maybe dots and here I can give one dot
+43:52 
+
+43:52 that means the weight is a little higher
+43:54 
+
+43:54 weight is least and here I can give five
+43:56 
+
+43:56 dots weight is the highest among them
+43:58 
+
+43:58 and this bias it depends on how hard it
+44:01 
+
+44:01 is to get into this college or how hard
+44:03 
+
+44:03 it is to get. So we can put let's
+44:04 
+
+44:04 suppose it is in the bias with three. So
+44:07 
+
+44:07 now based on these numbers I can see if
+44:09 
+
+44:09 it is greater than zero. If it if the
+44:10 
+
+44:10 value is greater than zero then I'll
+44:12 
+
+44:12 admit the person into the college
+44:13 
+
+44:13 otherwise I'll not. Okay. So this is how
+44:15 
+
+44:15 perceptron works. So but what I said is
+44:17 
+
+44:17 now we can still hardcode these we can
+44:19 
+
+44:19 give w1 w2 some values in order to like
+44:21 
+
+44:21 make this problem work but we as I said
+44:24 
+
+44:24 we will try to learn this algorith we'll
+44:25 
+
+44:25 try to learn these weights and biases
+44:27 
+
+44:27 from what we'll try to learn it from
+44:28 
+
+44:28 data we'll try to learn
+44:31 
+
+44:31 weights and biases from data from data
+44:37 
+
+44:37 to get an output
+44:39 
+
+44:39 okay because our output will be tuned
+44:41 
+
+44:41 it'll based on these weights and biases
+44:42 
+
+44:42 so we have two things we have learnable
+44:45 
+
+44:45 parameter ters
+44:47 
+
+44:47 learnable parameters.
+44:49 
+
+44:49 So in a neuron weights and biases are
+44:52 
+
+44:52 the learn we can learn weights and
+44:53 
+
+44:53 biases. So input is fixed input is
+44:56 
+
+44:56 fixed. It also it also varies on a
+44:59 
+
+44:59 network you can give multiple inputs but
+45:00 
+
+45:00 once you have a certain problem so you
+45:02 
+
+45:02 fix the input. So you assume the input
+45:04 
+
+45:04 to be fixed and this is variable. So
+45:06 
+
+45:06 this is variable
+45:09 
+
+45:09 or they're learnable and this is fixed
+45:12 
+
+45:12 and based on this you have to predict
+45:13 
+
+45:13 output.
+45:15 
+
+45:15 Okay. And you have in between the
+45:17 
+
+45:17 learning will happen. So what is a
+45:18 
+
+45:18 learning? If you ask what is a learning
+45:20 
+
+45:20 in machine learning. So in machine
+45:21 
+
+45:21 learning you have to adjust these
+45:23 
+
+45:23 weights and biases. You have to d you
+45:24 
+
+45:24 have these knobs. You have to adjust
+45:26 
+
+45:26 these weights and bias. So what is
+45:27 
+
+45:27 learning in machine learning terms? So
+45:28 
+
+45:28 you saw deep learning. So we justify
+45:30 
+
+45:30 what is deep. So deep basically it's
+45:32 
+
+45:32 hierarchical. It has layers of
+45:33 
+
+45:33 computation and it learns some
+45:36 
+
+45:36 intermediate represent learn some
+45:37 
+
+45:37 low-level representation in each layer.
+45:38 
+
+45:38 It's happening in hierarchy. Okay. And
+45:40 
+
+45:40 it's happening maybe in multiple it's
+45:42 
+
+45:42 happening at multiple nodes or multiple
+45:44 
+
+45:44 neurons at the same time. So that is
+45:46 
+
+45:46 what makes it deep. And second what is
+45:47 
+
+45:47 learning then? So learning basically if
+45:49 
+
+45:49 you see in in the setting of neural
+45:51 
+
+45:51 network it is basically to adjust these
+45:53 
+
+45:53 weights and biases. Adjust in such a way
+45:55 
+
+45:55 so that you get the desired output.
+45:58 
+
+45:58 Okay. That's why we call it deep
+45:60 
+
+45:60 learning. So how it is learning? So it
+46:01 
+
+46:01 is existing its weights and biases. So
+46:03 
+
+46:03 okay let's now delve deeper into this
+46:05 
+
+46:05 perceptron and we'll see maybe the
+46:08 
+
+46:08 expressive power and how much what can
+46:10 
+
+46:10 we do or what cannot we do and we again
+46:12 
+
+46:12 start with our or function. Okay we'll
+46:14 
+
+46:14 do some mathematical treatment because
+46:16 
+
+46:16 in the previous lectures we did some
+46:17 
+
+46:17 geometrical treatment. Now we'll see it
+46:18 
+
+46:18 mathematically what we want actually do.
+46:20 
+
+46:20 So take the take this or function. So we
+46:23 
+
+46:23 have our function you have the truth
+46:24 
+
+46:24 table x1 x2 and you have its output. So
+46:28 
+
+46:28 you have 0 0 0 1 1 0 1 1. Okay. And then
+46:32 
+
+46:32 you have this 0 1 1 and 1. Okay. So this
+46:36 
+
+46:36 is your example. Okay. Now you know that
+46:39 
+
+46:39 you have you have a perceptron of this
+46:40 
+
+46:40 sort in which you'll give let's suppose
+46:42 
+
+46:42 x1 and x2 as input. This will be w1 and
+46:46 
+
+46:46 w2. And then you have some output. Okay.
+46:49 
+
+46:49 Maybe as bias we can also add bias.
+46:52 
+
+46:52 Let's suppose we have w and this will be
+46:55 
+
+46:55 that. And now if we if you see this for
+46:57 
+
+46:57 this 00 if we take the first input
+47:00 
+
+47:00 if we take the 0 0 input. So what is the
+47:02 
+
+47:02 meaning of this? So this means you have
+47:04 
+
+47:04 to take w + w1
+47:08 
+
+47:08 multiplied by 0 plus w2 * 0. Okay. You
+47:11 
+
+47:11 have to give both of these inputs zero
+47:13 
+
+47:13 value. Okay. And then that thing should
+47:16 
+
+47:16 be less than equal because here you
+47:17 
+
+47:17 don't want to fire it. You don't want to
+47:18 
+
+47:18 fire this. Okay. This should be less
+47:21 
+
+47:21 than zero. This is the first linear
+47:24 
+
+47:24 inequality we are getting. So these are
+47:25 
+
+47:25 called as inequations or inequalities.
+47:27 
+
+47:27 And this is the first input. If we take
+47:29 
+
+47:29 second input now second input says w dot
+47:31 
+
+47:31 plus w1 dot0 or multip plus w2 * 1
+47:38 
+
+47:38 that's 1. So this is firing over here.
+47:40 
+
+47:40 So this should be greater or equal to z.
+47:43 
+
+47:43 This is for the first this for second.
+47:45 
+
+47:45 And now similarly we can make third and
+47:47 
+
+47:47 four in equations. So third and fourth
+47:50 
+
+47:50 will be w + w1
+47:54 
+
+47:54 and multiply by 1. Here we can also
+47:56 
+
+47:56 write 1 by 1 plus w2 * 0. This should
+47:59 
+
+47:59 also be greater than equal to zero
+48:00 
+
+48:00 because here also if you see in the
+48:02 
+
+48:02 truth table the neuron should fire at
+48:04 
+
+48:04 this point. Similarly on the four we
+48:06 
+
+48:06 have w plus then we have this w1 m* 1 +
+48:10 
+
+48:10 w2 * 1. This should also be equal to z.
+48:13 
+
+48:13 So you have to solve these four
+48:15 
+
+48:15 inequations. Okay, you have to solve
+48:17 
+
+48:17 these.
+48:19 
+
+48:19 So you have to solve these. So in order
+48:20 
+
+48:20 to come up with the values for w, w1 and
+48:24 
+
+48:24 w2. So this is the task that you that
+48:26 
+
+48:26 you have in the hand because what we
+48:27 
+
+48:27 said is this x1 and x2. So these are our
+48:30 
+
+48:30 inputs. So this inputs and usually the
+48:33 
+
+48:33 inputs are fixed and the things that you
+48:35 
+
+48:35 can change are these weights and biases.
+48:36 
+
+48:36 So these w1,
+48:38 
+
+48:38 w1
+48:40 
+
+48:40 and w2. So these things are called as
+48:42 
+
+48:42 weights and this is our bias. So this
+48:44 
+
+48:44 was our bias.
+48:47 
+
+48:47 Okay, this was these were the weights
+48:49 
+
+48:49 and these were learnable
+48:52 
+
+48:52 and we had to somehow learn this. Okay,
+48:54 
+
+48:54 is it is it clear for everyone?
+48:58 
+
+48:58 So this is the setting so far. So we
+49:00 
+
+49:00 have four uh inequalities. So we have to
+49:03 
+
+49:03 solve them. So what we can do is so
+49:05 
+
+49:05 there is a there's a set of possible
+49:06 
+
+49:06 solutions that can be there. So okay if
+49:08 
+
+49:08 we let's suppose give these values if we
+49:10 
+
+49:10 hardcode these values say w can be given
+49:13 
+
+49:13 let's suppose w not can be given minus
+49:15 
+
+49:15 one so this can be given let's suppose
+49:16 
+
+49:16 1.2 2 or this can be given 1.1 or
+49:18 
+
+49:18 something of that sort and then you will
+49:20 
+
+49:20 see that this these values so these
+49:23 
+
+49:23 values are the values of that normal
+49:25 
+
+49:25 vector. So if you remember your algebra
+49:28 
+
+49:28 basics so there we said that if you take
+49:30 
+
+49:30 an equation of like this or w + w1 x1 +
+49:33 
+
+49:33 w2 x2 okay is equal let's suppose is
+49:36 
+
+49:36 zero so this is equation of a plane
+49:41 
+
+49:41 equation of a plane
+49:44 
+
+49:44 okay and this the weights w comma w1 and
+49:48 
+
+49:48 w2
+49:49 
+
+49:49 w1 and w2 so these are the weights which
+49:53 
+
+49:53 we call as normal vector
+49:57 
+
+49:57 Okay, I hope that you have you remember
+49:59 
+
+49:59 this. So what I can do is I can just
+50:01 
+
+50:01 maybe show you some code and we'll plot
+50:03 
+
+50:03 this. Okay, give me a second or so. I'll
+50:06 
+
+50:06 show you some code to plot this. Okay,
+50:09 
+
+50:09 now what I'll do is I'll paste a snippet
+50:10 
+
+50:10 of code and then I'll explain it to you.
+50:12 
+
+50:12 Okay, basic code, nothing much. So what
+50:15 
+
+50:15 we'll do is
+50:17 
+
+50:17 So now I'll open this VS code. If you
+50:20 
+
+50:20 see this over here, so I'll change this
+50:22 
+
+50:22 to Python.
+50:25 
+
+50:25 Okay. So I'll go through this code. So
+50:27 
+
+50:27 if you see this standard imports then
+50:29 
+
+50:29 this is the or function. Okay. So I'm
+50:32 
+
+50:32 creating an array where I'm giving these
+50:34 
+
+50:34 inputs. So this is 0 0 0 1 1 0 and 1 1.
+50:36 
+
+50:36 So these are the inputs x1 and x2. And
+50:38 
+
+50:38 now you have this outputs outputs for
+50:40 
+
+50:40 this. So you have x as inputs and you
+50:42 
+
+50:42 have these labels. Now I'm hard coding
+50:44 
+
+50:44 these values. I'm saying w is equal
+50:46 
+
+50:46 minus 1.2 w1 is equal 1.3 and w2 is
+50:49 
+
+50:49 equal 1.2. Something of this sort. Okay?
+50:51 
+
+50:51 And then I'm plotting this. So I'm
+50:53 
+
+50:53 plotting these points and corresponding
+50:55 
+
+50:55 the labels and I'm also plotting this
+50:58 
+
+50:58 line. So if you see this line if you see
+50:59 
+
+50:59 this so for I in range of course so I'm
+51:02 
+
+51:02 running this loop four times. So I'm
+51:03 
+
+51:03 saying when yi is equal z okay so
+51:06 
+
+51:06 basically this is zero. So you plot this
+51:08 
+
+51:08 okay you plot this basically red and
+51:10 
+
+51:10 have a marker there basically plot that
+51:12 
+
+51:12 with red and for other points which are
+51:14 
+
+51:14 having label one basically class one
+51:15 
+
+51:15 give them as blue labels. Okay I'm
+51:17 
+
+51:17 plotting a scatter plot. Okay for all
+51:18 
+
+51:18 these four points that we have. Okay.
+51:20 
+
+51:20 Then this is the decision boundary that
+51:22 
+
+51:22 we have. Okay. Decision boundary is w +
+51:24 
+
+51:24 w1 x1 plus w2 x2 is equal 0. So this is
+51:27 
+
+51:27 a line equation of a line. Okay. This is
+51:29 
+
+51:29 y equ= mx + c sort of thing. Okay. Now
+51:31 
+
+51:31 here if you calculate the values I'm
+51:33 
+
+51:33 giving x values and I'm calculating y
+51:35 
+
+51:35 values based on these. Okay. Pretty
+51:37 
+
+51:37 standard stuff. And then I I'm plotting
+51:38 
+
+51:38 these things. Okay. And then I'll plot
+51:40 
+
+51:40 this perceptron. So if I now plot this
+51:44 
+
+51:44 say this is
+51:47 
+
+51:47 this is the graph that I'll get
+51:50 
+
+51:50 okay I hope that this is visible.
+51:54 
+
+51:54 So if you see this graph over here so
+51:56 
+
+51:56 this point almost is on the line and
+51:58 
+
+51:58 this point is above the line and this
+52:00 
+
+52:00 point is also above the line. So you
+52:02 
+
+52:02 know now this data is linearly
+52:03 
+
+52:03 separable. So you can clearly see that
+52:05 
+
+52:05 if you see your if you see this point so
+52:07 
+
+52:07 this point is the point that has class
+52:09 
+
+52:09 zero and all the other points have class
+52:11 
+
+52:11 one that's here we have to make neuron
+52:13 
+
+52:13 not fire. So in all these three points
+52:15 
+
+52:15 we have to make sure that neuron fires.
+52:16 
+
+52:16 So we have solved this equation somehow
+52:18 
+
+52:18 and we gave the hardcoded values. So
+52:19 
+
+52:19 what were the values? So if you again
+52:21 
+
+52:21 see the code so the values that were
+52:23 
+
+52:23 given are these values. So these are the
+52:25 
+
+52:25 values. So W is equal minus 1.2 W1 is
+52:29 
+
+52:29 equal 1.3 and W2 is equal 1.2. two
+52:34 
+
+52:34 we can change the values because there
+52:35 
+
+52:35 are a lot of possible values for these.
+52:38 
+
+52:38 It is not just one line that can
+52:39 
+
+52:39 separate them. Okay, if you see the
+52:40 
+
+52:40 graph again if you see this graph so you
+52:42 
+
+52:42 can clearly see that it is not only one
+52:44 
+
+52:44 line that can separate them. So what we
+52:46 
+
+52:46 can do is we can have a line of this
+52:47 
+
+52:47 sort. So we can have a line like this
+52:48 
+
+52:48 also it'll still separate them. So here
+52:51 
+
+52:51 it will separate the positive points. So
+52:52 
+
+52:52 here there will be negative points. So
+52:53 
+
+52:53 this line will have its own w1 and w2
+52:57 
+
+52:57 values. Okay. So what are these values?
+52:58 
+
+52:58 So this is the value of that normal
+52:60 
+
+52:60 vector. So I can have a normal vector
+53:01 
+
+53:01 like this with this vector over here the
+53:05 
+
+53:05 vector that I'm drawing right now. So
+53:06 
+
+53:06 this will be the normal vector to this
+53:08 
+
+53:08 line. Is it clear so far? Everybody
+53:11 
+
+53:11 following me?
+53:13 
+
+53:13 Then you geometrically saw and you
+53:15 
+
+53:15 mathematically saw that this is nothing
+53:16 
+
+53:16 but you have to solve these linear
+53:18 
+
+53:18 equations. Okay, you have to solve these
+53:19 
+
+53:19 linear equations. Now sometimes what you
+53:21 
+
+53:21 can do is you can make errors. Okay,
+53:23 
+
+53:23 let's suppose if you see this over here.
+53:24 
+
+53:24 So if you have drawn like line like
+53:26 
+
+53:26 this. Okay, then you would have made an
+53:28 
+
+53:28 error over here.
+53:30 
+
+53:30 Okay, you would have made error for this
+53:31 
+
+53:31 point. So this would have been error. So
+53:33 
+
+53:33 out of these four points, you would have
+53:34 
+
+53:34 one error. Again, if we have drawn like
+53:36 
+
+53:36 line let's suppose like this. Okay, say
+53:39 
+
+53:39 let's suppose like this. Now you will
+53:40 
+
+53:40 error for this point. Let's suppose this
+53:42 
+
+53:42 is now positive. So this this and this
+53:45 
+
+53:45 point will be considered now as
+53:47 
+
+53:47 negative. So for this it let's suppose
+53:48 
+
+53:48 it is correct. And for these two points
+53:50 
+
+53:50 wrong. So you'll have two errors. So now
+53:52 
+
+53:52 based on this W1 and W2, you will have
+53:54 
+
+53:54 the errors. Now your goal is to minimize
+53:57 
+
+53:57 that error. So if you if you now see
+53:59 
+
+53:59 okay if you now see you give these
+54:00 
+
+54:00 values you give these values w1 and w2
+54:03 
+
+54:03 you're getting a line as in output of
+54:05 
+
+54:05 these things and then you see is
+54:08 
+
+54:08 separating the points if they are
+54:10 
+
+54:10 separable by this line so you say that
+54:12 
+
+54:12 is and your task is to minimize that
+54:14 
+
+54:14 your task is to get almost zero error in
+54:16 
+
+54:16 this case it's perfectly linearly
+54:17 
+
+54:17 separable so now you have a function so
+54:19 
+
+54:19 your function is this initially your
+54:21 
+
+54:21 function is f of
+54:23 
+
+54:23 you have a function in which you you
+54:24 
+
+54:24 give this x as input and you have some
+54:26 
+
+54:26 fix you try to adjust these weights And
+54:28 
+
+54:28 based on these weights you get some
+54:30 
+
+54:30 output you get some output labels. And
+54:32 
+
+54:32 now you get lab output of the labels
+54:33 
+
+54:33 based on these w. So there's another
+54:35 
+
+54:35 function which we'll call as error
+54:36 
+
+54:36 function. So this error function will
+54:38 
+
+54:38 take values at as w dot w1 and w2. It
+54:41 
+
+54:41 will tell you how many errors. So it
+54:42 
+
+54:42 will give you what is the error. Okay.
+54:45 
+
+54:45 One function is the function that you
+54:47 
+
+54:47 are trying to learn. The line basically
+54:48 
+
+54:48 that you are trying to learn. The second
+54:50 
+
+54:50 function here over here is the function
+54:52 
+
+54:52 that will tell you how much good is your
+54:54 
+
+54:54 function. So this is giving you the
+54:55 
+
+54:55 estimate of how better is your
+54:57 
+
+54:57 approximation. Okay, I'll just remove
+54:59 
+
+54:59 this code.
+55:03 
+
+55:03 So this function is the approximation
+55:05 
+
+55:05 function. So this is approximative
+55:07 
+
+55:07 function. If you want to approximate
+55:08 
+
+55:08 something, so in this case you wanted to
+55:09 
+
+55:09 model or function. You want model the
+55:12 
+
+55:12 orgate by using a sing by using a single
+55:14 
+
+55:14 neuron. So I said okay you give the x as
+55:16 
+
+55:16 input and then you have fixed your
+55:17 
+
+55:17 weights. You have w fixed and then it
+55:20 
+
+55:20 gives you output. Output will be 0 or
+55:21 
+
+55:21 one is a classification. And now what
+55:23 
+
+55:23 would you have to do? You have to tell
+55:24 
+
+55:24 us because you cannot always draw this
+55:26 
+
+55:26 line because always you will not have
+55:28 
+
+55:28 only two inputs. You'll have a let's
+55:30 
+
+55:30 suppose high dimensional input sometime.
+55:32 
+
+55:32 So that then it becomes very hard to
+55:33 
+
+55:33 visualize. So that time what you will
+55:35 
+
+55:35 come up with you will come up with an
+55:36 
+
+55:36 error function. So this error function
+55:37 
+
+55:37 will take your weights as input. It will
+55:39 
+
+55:39 take this w1 and w2 the weights and b
+55:42 
+
+55:42 input and it'll tell you the error.
+55:42 
+
+55:42 It'll compute the error and your job
+55:44 
+
+55:44 usually is to minimize this.
+55:48 
+
+55:48 Okay. This is the error function that
+55:49 
+
+55:49 you have to minimize. So this is error
+55:52 
+
+55:52 function. So it tells you how better is
+55:54 
+
+55:54 your approximation. Okay. So what you
+55:56 
+
+55:56 can do is sometimes you can plot also.
+55:58 
+
+55:58 So in this case let's suppose if w not
+55:60 
+
+55:60 is fixed if we fix our bias. Okay. Then
+56:02 
+
+56:02 we can plot this. We can plot w1 and w2
+56:04 
+
+56:04 can be plotted. So this can be plotted
+56:06 
+
+56:06 and on let's suppose if we make this
+56:08 
+
+56:08 graph three dimensions. So here we can
+56:09 
+
+56:09 plot error also. So we can say based on
+56:11 
+
+56:11 this w1 and w2. So you'll get the error
+56:13 
+
+56:13 and you will try to see you'll try to
+56:15 
+
+56:15 sort of know that function and see okay
+56:17 
+
+56:17 we have to go to the local minima at
+56:19 
+
+56:19 least. So we should get the minimum
+56:21 
+
+56:21 minimum error in that. So okay I'll plot
+56:22 
+
+56:22 that as well. So if I again go to the
+56:24 
+
+56:24 code window I'll plot that and so the
+56:26 
+
+56:26 this thing is called these curves the
+56:28 
+
+56:28 curves that you will get over here this
+56:29 
+
+56:29 W1 and you'll get some curve let's
+56:30 
+
+56:30 suppose you'll get a curve of this sort
+56:32 
+
+56:32 or sometimes if it is just one variable
+56:33 
+
+56:33 if it is W1 and then here you have this
+56:36 
+
+56:36 error. So you'll have a curve of this
+56:38 
+
+56:38 sort. Let's suppose something of this
+56:39 
+
+56:39 sort. So these are called as error
+56:41 
+
+56:41 surfaces.
+56:45 
+
+56:45 Sometimes it's easy to visualize. You
+56:46 
+
+56:46 can visualize if you have one or two
+56:48 
+
+56:48 input variable. If you're just one one
+56:50 
+
+56:50 parameter w or maybe let's say w1 in
+56:52 
+
+56:52 other cases uh like for 99% of the cases
+56:56 
+
+56:56 you will have a lot of these parameters
+56:57 
+
+56:57 then you will not plot it but at least
+56:59 
+
+56:59 you should know it that these things can
+57:01 
+
+57:01 be plot if if we have very low dimension
+57:03 
+
+57:03 if we have let's suppose w1 and w2 only
+57:04 
+
+57:04 if we have w1 only then it becomes like
+57:06 
+
+57:06 this here over here here is 1d so this
+57:08 
+
+57:08 becomes 2d after that you cannot imagine
+57:10 
+
+57:10 so I'll just plot it so so that you
+57:12 
+
+57:12 understand these things quite well so
+57:13 
+
+57:13 I'll plot this error surface
+57:18 
+
+57:18 okay Just give me a second. I'll again
+57:20 
+
+57:20 bring the code and I'll copy a snippet
+57:22 
+
+57:22 of code and I'll paste it. And pretty
+57:24 
+
+57:24 easy to decode. And when you see the
+57:25 
+
+57:25 lecture again, so when you see these
+57:27 
+
+57:27 lectures again, please pause the video
+57:29 
+
+57:29 when I'm showing the codes that you
+57:30 
+
+57:30 decode each line of the code. It's not
+57:32 
+
+57:32 difficult because we have done enough
+57:33 
+
+57:33 Python and NF mat plot li
+57:36 
+
+57:36 now if you see this. So what I'll do is
+57:39 
+
+57:39 so again same thing we have this inputs
+57:41 
+
+57:41 and we have these targets and we have
+57:42 
+
+57:42 we're keeping this threshold that is
+57:44 
+
+57:44 bias is fixed. This W knot is some
+57:46 
+
+57:46 fixed. So now what we can do is we can
+57:47 
+
+57:47 plot this error function. So if you see
+57:50 
+
+57:50 this is the error surface and you want
+57:51 
+
+57:51 to go somewhere over here you want to
+57:52 
+
+57:52 see the minimum error and there is a
+57:54 
+
+57:54 possibility you'll get you'll get zero
+57:56 
+
+57:56 error. So zero error is possible over
+57:57 
+
+57:57 here and you see this a step function
+57:58 
+
+57:58 also. This is not a continuous step step
+57:60 
+
+57:60 function of some sort. So here you have
+58:02 
+
+58:02 this W1 and you have the W2 and on this
+58:04 
+
+58:04 you have the errors. Okay you have
+58:06 
+
+58:06 number of points that you basically make
+58:07 
+
+58:07 mistakes for. So in this case you have
+58:09 
+
+58:09 four points. So you can at at max make
+58:11 
+
+58:11 four mistakes. Okay. And uh it's almost
+58:15 
+
+58:15 probably impossible here to make all the
+58:16 
+
+58:16 four mistakes but here you can make the
+58:18 
+
+58:18 best is you can make three mistakes
+58:20 
+
+58:20 here. Okay. And this is the error
+58:21 
+
+58:21 surface. So from here what I want you to
+58:23 
+
+58:23 know is that there is a function which
+58:25 
+
+58:25 there are two underlying functions. One
+58:27 
+
+58:27 function is approximating function. The
+58:28 
+
+58:28 function that you want to learn. So in
+58:29 
+
+58:29 this case the or function or in that or
+58:31 
+
+58:31 function you get this input you have
+58:33 
+
+58:33 this f of x. Okay. The other function
+58:35 
+
+58:35 that we once you have f ofx here you
+58:38 
+
+58:38 have somehow chose the you chose the
+58:40 
+
+58:40 value of w1 w2. So you got this f of x.
+58:42 
+
+58:42 Now, now you're actually checking the
+58:43 
+
+58:43 output. This is your approximating
+58:45 
+
+58:45 function. The other function which will
+58:47 
+
+58:47 tell you how good is this approximation,
+58:48 
+
+58:48 how good is this approximation that will
+58:50 
+
+58:50 be told by this E of W. E of basically
+58:53 
+
+58:53 parameters. So I can say let's say let
+58:55 
+
+58:55 me write some variables E of W. So this
+58:58 
+
+58:58 is the function of W. It takes W as an
+58:60 
+
+58:60 input and it tells you what is the
+59:01 
+
+59:01 error, how better is the function. And
+59:03 
+
+59:03 this function can also be plotted on the
+59:04 
+
+59:04 screen. So here you can clearly see that
+59:06 
+
+59:06 if we have this W1 and W2, I plotted
+59:08 
+
+59:08 this and I made a 3D graph in which the
+59:10 
+
+59:10 height was telling me the error. And
+59:11 
+
+59:11 sometimes you can only have one variable
+59:14 
+
+59:14 where you can vary and you can also plot
+59:15 
+
+59:15 that and you want to find the minimum
+59:16 
+
+59:16 value. So minimum value is somewhere
+59:17 
+
+59:17 over here. Okay, somewhere over here.
+59:20 
+
+59:20 Okay, I hope you understand this. So how
+59:21 
+
+59:21 many of you understood now this error
+59:23 
+
+59:23 surfaces?
+59:26 
+
+59:26 So what I said is we have this
+59:27 
+
+59:27 approximating function. So in which
+59:29 
+
+59:29 you'll get input and you somehow learn
+59:31 
+
+59:31 the values of these learnable parameters
+59:33 
+
+59:33 w1 w to weights and biases. So once you
+59:35 
+
+59:35 have these values so you try to give it
+59:38 
+
+59:38 uh you try to give the input with these
+59:40 
+
+59:40 biases and you get an output
+59:41 
+
+59:41 corresponding but it's not always
+59:42 
+
+59:42 possible that you only have four inputs
+59:44 
+
+59:44 you'll be having millions and billions
+59:45 
+
+59:45 of inputs. So for that you should have a
+59:47 
+
+59:47 quantifiable metric you should have a
+59:48 
+
+59:48 function which will tell you how good
+59:50 
+
+59:50 you are or how bad the function is how
+59:52 
+
+59:52 good or how bad the approximation is.
+59:54 
+
+59:54 That's where this error function comes
+59:56 
+
+59:56 in. So here we had two parameters that
+59:58 
+
+59:58 were learnable were actually three
+59:59 
+
+59:59 parameters but we fixed this w not for
+60:01 
+
+60:01 the sake of visualization. we say this
+60:02 
+
+60:02 is w1 and this is w2. So if I put the
+60:05 
+
+60:05 value of this if I put let's suppose
+60:06 
+
+60:06 value of 0 and if I put value of two so
+60:09 
+
+60:09 this is the highest error you'll get
+60:10 
+
+60:10 over here. So w1 if given value 0 and w2
+60:13 
+
+60:13 if given value 2.0 so this over here so
+60:16 
+
+60:16 it has three a x y and z. So this axis
+60:18 
+
+60:18 is w1 and this axis is w2 and the height
+60:21 
+
+60:21 shows you the error. So this is number
+60:22 
+
+60:22 of errors number of errors you are
+60:24 
+
+60:24 making. That's why I'm saying here the
+60:25 
+
+60:25 maximum error you can make is three. The
+60:27 
+
+60:27 least error possible is zero. So the
+60:29 
+
+60:29 least error you are making it over here.
+60:30 
+
+60:30 So the better values are roughly around
+60:32 
+
+60:32 this. So two and maybe two. Two and two
+60:35 
+
+60:35 are the values where you can make almost
+60:37 
+
+60:37 you will make zero errors in this case.
+60:38 
+
+60:38 So okay two functions you'll have to
+60:40 
+
+60:40 memorize. One is approximating function.
+60:42 
+
+60:42 The function that you want to learn and
+60:43 
+
+60:43 the second function is when you are
+60:45 
+
+60:45 learning these parameters and weights
+60:47 
+
+60:47 and biases. So you have to have a way of
+60:49 
+
+60:49 knowing how good is the approximation.
+60:51 
+
+60:51 So that is given by this error function.
+60:53 
+
+60:53 So this surface over here the surface
+60:54 
+
+60:54 that you see is called as error surface.
+60:59 
+
+60:59 So I clearly mentioned this that this is
+61:01 
+
+61:01 not always possible to visualize. This
+61:02 
+
+61:02 is only possible to visualize if you
+61:04 
+
+61:04 have like only one or two parameters
+61:06 
+
+61:06 that you can adjust. Okay, usually
+61:07 
+
+61:07 you'll have billions and trillions of
+61:08 
+
+61:08 parameters. If not millions, millions at
+61:10 
+
+61:10 least you will have thousands of
+61:11 
+
+61:11 parameters to adjust. So there you
+61:12 
+
+61:12 cannot plot this decision. But you still
+61:14 
+
+61:14 should think mathematically that this is
+61:16 
+
+61:16 a function actually and what you are
+61:17 
+
+61:17 trying to do I am trying to minimize
+61:19 
+
+61:19 this function. I'm trying to minimize
+61:20 
+
+61:20 this error function. So this is also
+61:21 
+
+61:21 called sometime loss function. You are
+61:23 
+
+61:23 trying to minimize the loss function. So
+61:24 
+
+61:24 loss is a function. approximating
+61:26 
+
+61:26 function is a function.
+61:28 
+
+61:28 I hope so. So till now what we have seen
+61:31 
+
+61:31 is all that we have seen is basically
+61:33 
+
+61:33 linear separability. So we had this
+61:35 
+
+61:35 linear separations were there. So we had
+61:39 
+
+61:39 linearly
+61:41 
+
+61:41 separable points were there. So we had
+61:43 
+
+61:43 all these linear separable points. So
+61:45 
+
+61:45 why whenever we saw we had this linear
+61:46 
+
+61:46 separable and for that we had the
+61:48 
+
+61:48 decision boundary which was linear
+61:49 
+
+61:49 decision boundary. So in that I'll again
+61:51 
+
+61:51 remind you that we have this wi xi. So
+61:54 
+
+61:54 if it is greater than equal to zero so
+61:56 
+
+61:56 we call it a positive class and then if
+61:59 
+
+61:59 this is less than zero we call it a
+62:00 
+
+62:00 negative class. Okay. So because as I
+62:03 
+
+62:03 told you this usually if you have
+62:05 
+
+62:05 something like this and then if you have
+62:06 
+
+62:06 a line it divides the whole space into
+62:08 
+
+62:08 two half spaces. So one is called as
+62:10 
+
+62:10 positive half space and one is called as
+62:11 
+
+62:11 negative half space. It depends on the
+62:13 
+
+62:13 uh it depends on this vector and this w
+62:15 
+
+62:15 is called as normal vector. So you have
+62:16 
+
+62:16 w1
+62:18 
+
+62:18 w2 w3 till wn in n dimension. So this is
+62:23 
+
+62:23 called as normal vector normal to the
+62:25 
+
+62:25 plane
+62:28 
+
+62:28 which we have seen at length. Okay. So
+62:31 
+
+62:31 why why am I telling you this? Because
+62:32 
+
+62:32 before understand now the question is we
+62:34 
+
+62:34 were hard coding these values. We're
+62:35 
+
+62:35 hardcoding W1 W3. We should have a
+62:38 
+
+62:38 mechanism of learning. Okay. We should
+62:40 
+
+62:40 somehow learn this. So if we can learn
+62:41 
+
+62:41 this without even hard coding because
+62:43 
+
+62:43 otherwise it becomes pointless. If we
+62:45 
+
+62:45 have the hardcode values W1 and W2 it
+62:47 
+
+62:47 becomes pointless. Then it is almost
+62:48 
+
+62:48 like that binary pits neurons where we
+62:52 
+
+62:52 taking binary values and giving the
+62:53 
+
+62:53 threshold by hand. So here what we
+62:55 
+
+62:55 should do is we should somehow learn
+62:56 
+
+62:56 these w we should somehow learn these
+62:58 
+
+62:58 vectors so that we learn this hyper
+62:60 
+
+62:60 plane or we learn this uh line or plane
+63:02 
+
+63:02 or maybe hyper plane in high dimension.
+63:04 
+
+63:04 Okay I would like to show you this
+63:07 
+
+63:07 example again so that you are reminded
+63:09 
+
+63:09 of the thing that
+63:11 
+
+63:11 you are reminded at least of this plane
+63:13 
+
+63:13 concept of these planes and stuff. Okay,
+63:15 
+
+63:15 let me again go back to code and show
+63:16 
+
+63:16 you that
+63:19 
+
+63:19 if you see this over here. So what I'm
+63:21 
+
+63:21 doing is I'm on on purpose I'm
+63:23 
+
+63:23 generating 50 points which are linearly
+63:25 
+
+63:25 separable. Okay. And then what I'm doing
+63:27 
+
+63:27 is I am fixing this W, W1 and W2 so as
+63:29 
+
+63:29 to show you this and then I'm also
+63:31 
+
+63:31 plotting this normal vector over here
+63:33 
+
+63:33 also and this boundary is also plotted
+63:36 
+
+63:36 and you will see normal vector is also
+63:38 
+
+63:38 plotted. So if I show you a plot so if I
+63:40 
+
+63:40 just run it so you can clearly see over
+63:41 
+
+63:41 here. So this over here is the data
+63:43 
+
+63:43 which is linearly separable. Okay. And
+63:45 
+
+63:45 here the this is the vector and here we
+63:47 
+
+63:47 have this is positive class and this is
+63:48 
+
+63:48 as negative class. So you can clearly
+63:50 
+
+63:50 see that the whole space has been
+63:52 
+
+63:52 divided into two half spaces. One is as
+63:53 
+
+63:53 positive half space and one is negative
+63:55 
+
+63:55 half space. So you should be clear till
+63:56 
+
+63:56 here. Okay. Because I'll use this to
+63:58 
+
+63:58 come up with an algorithm. So I should
+63:59 
+
+63:59 be coming up with an algorithm so I can
+64:01 
+
+64:01 learn this. Okay. I will have to uh do
+64:03 
+
+64:03 something so that we come up with an
+64:04 
+
+64:04 algorithm. The first I'll give you some
+64:06 
+
+64:06 minutes to think. So what do you think?
+64:07 
+
+64:07 How can we learn this thing
+64:09 
+
+64:09 automatically? we can come up with the
+64:11 
+
+64:11 algorithm which can which can make it
+64:12 
+
+64:12 learn.
+64:14 
+
+64:14 So now we wanted to learn how to make
+64:19 
+
+64:19 a perceptron learn.
+64:23 
+
+64:23 This is our question. So what I said is
+64:26 
+
+64:26 the data is linearly separable here
+64:27 
+
+64:27 because we know the perceptron can only
+64:30 
+
+64:30 learn to separate the data or it can
+64:32 
+
+64:32 only sep it can only do the good
+64:34 
+
+64:34 classification when the data is linearly
+64:35 
+
+64:35 separable. So let's consider this
+64:37 
+
+64:37 example. So you have these data points
+64:39 
+
+64:39 and you have these red classes. Okay,
+64:42 
+
+64:42 you can clearly see this data is
+64:43 
+
+64:43 linearly separable. So this would have
+64:45 
+
+64:45 been a classifier or this would have
+64:46 
+
+64:46 been a boundary. This boundary over here
+64:47 
+
+64:47 decision boundary would have been the
+64:49 
+
+64:49 boundary which will classify them
+64:50 
+
+64:50 perfectly. So if you draw let's suppose
+64:52 
+
+64:52 a vector which we call as normal vector.
+64:54 
+
+64:54 So normal vector will be something of
+64:55 
+
+64:55 this sort.
+64:57 
+
+64:57 So this is my normal vector. So what is
+64:58 
+
+64:58 normal vector? It is basically W vector.
+65:00 
+
+65:00 W is w1
+65:04 
+
+65:04 w2 and so on. Something of this sort.
+65:06 
+
+65:06 Okay. Now what you have to do is if you
+65:08 
+
+65:08 observe this. So if you observe the
+65:10 
+
+65:10 angle between this point and this point
+65:12 
+
+65:12 angle between this point and this point.
+65:14 
+
+65:14 So basically the angle between the
+65:15 
+
+65:15 normal and the points on let's suppose
+65:18 
+
+65:18 positive half space. So you will see
+65:19 
+
+65:19 that the angle between the positive
+65:21 
+
+65:21 points and the normal is less than 90.
+65:23 
+
+65:23 You see it's less than 90°. Similarly if
+65:25 
+
+65:25 you make the observation for this. So
+65:27 
+
+65:27 angle between the normal vector and
+65:28 
+
+65:28 these points and these negative points.
+65:30 
+
+65:30 This is always greater than 90. So this
+65:32 
+
+65:32 is the observation that you have to do.
+65:33 
+
+65:33 Okay. Now once you observe this thing so
+65:36 
+
+65:36 the second point is we'll randomly
+65:37 
+
+65:37 initialize this we'll randomly
+65:38 
+
+65:38 initialize the weights. Okay so for
+65:42 
+
+65:42 positive points the angle is greater
+65:43 
+
+65:43 than 90 and less than 90. So for
+65:47 
+
+65:47 negative points the angle is greater
+65:49 
+
+65:49 than 90. So this is the observation. So
+65:51 
+
+65:51 algorithm should go like this. The first
+65:52 
+
+65:52 step in the algorithm is that you should
+65:54 
+
+65:54 randomly initialize these weight this
+65:56 
+
+65:56 weight vector so that you let's suppose
+65:57 
+
+65:57 got something of this sort. Say we got
+65:60 
+
+66:00 something of this sort. Now the normal
+66:02 
+
+66:02 vector is somewhat like this.
+66:04 
+
+66:04 Okay. Now clearly you can see that these
+66:06 
+
+66:06 things are well classified. These are
+66:08 
+
+66:08 mclass. This is this is misclass. This
+66:10 
+
+66:10 is also well classified. So my job is
+66:12 
+
+66:12 over here. So my job right now here is
+66:14 
+
+66:14 so this if you see the angle between
+66:16 
+
+66:16 here this is less than 90. But I want it
+66:17 
+
+66:17 to be greater than 90. Okay. So now if I
+66:20 
+
+66:20 formula mathematically so the actual
+66:22 
+
+66:22 thing should have been so if I write it
+66:23 
+
+66:23 this w1 x1 I should start from wx plus
+66:28 
+
+66:28 w2 x2 and so on should is greater than
+66:31 
+
+66:31 equal to 0. This is a positive point.
+66:33 
+
+66:33 Okay or in short I can write summation
+66:34 
+
+66:34 of w i x i goes from 0 to n this should
+66:38 
+
+66:38 be greater equal to z. This is a
+66:39 
+
+66:39 positive point. So I can write use the
+66:41 
+
+66:41 linear algebra. So I can just use a dot
+66:42 
+
+66:42 product. So I can write transpose of x.
+66:45 
+
+66:45 So here w is a vector which something of
+66:48 
+
+66:48 this w1 w2 and so on. And this x is x1
+66:54 
+
+66:54 till xn. Okay. So if I transpose this I
+66:57 
+
+66:57 can perform the dot product. So this
+66:58 
+
+66:58 will be like this. So I want this to be
+67:00 
+
+67:00 equal to zero. So this is for the
+67:01 
+
+67:01 positive positive class. And similarly
+67:03 
+
+67:03 for negative class, I want this. So this
+67:05 
+
+67:05 is my correct classification. This is
+67:07 
+
+67:07 correct. Okay. If something is is a
+67:10 
+
+67:10 positive point, I should get this over
+67:12 
+
+67:12 there. And if some point is a negative
+67:14 
+
+67:14 point, I should get this over there. So
+67:16 
+
+67:16 in this, so now if I am randomly
+67:18 
+
+67:18 initializing initially, so I'm giving
+67:20 
+
+67:20 some random weights. So for a point
+67:21 
+
+67:21 which is mclassified, there are there
+67:23 
+
+67:23 are two possibilities. So I can get
+67:25 
+
+67:25 Wrpose of X is greater equal to zero
+67:28 
+
+67:28 when a point is negative. The actual
+67:31 
+
+67:31 point was negative. Actual point
+67:34 
+
+67:34 was a negative class point. It was a
+67:36 
+
+67:36 negative point. So in this case somehow
+67:38 
+
+67:38 somehow in this case I should decrease
+67:40 
+
+67:40 the value. Okay. Because I'm getting
+67:42 
+
+67:42 positive value. I should get it less
+67:43 
+
+67:43 than value that what what can I do is
+67:45 
+
+67:45 I'll have to subtract something over
+67:46 
+
+67:46 here. I'll have to subtract this also
+67:49 
+
+67:49 justified by the angle. Okay. So if you
+67:51 
+
+67:51 see the angle we can justify it from the
+67:52 
+
+67:52 angle as well. Okay. Similarly if I have
+67:56 
+
+67:56 wrpose dox is less than zero. But this
+67:59 
+
+67:59 point actually was a positive point. So
+68:00 
+
+68:00 in actual this point was a positive
+68:02 
+
+68:02 point.
+68:05 
+
+68:05 So these two are my errors. So now I
+68:08 
+
+68:08 have to do something so as to adjust
+68:10 
+
+68:10 this error. So I should add something to
+68:12 
+
+68:12 it. So I should add something to W.
+68:14 
+
+68:14 Okay. Something should be added to this
+68:16 
+
+68:16 W. Something should be added to this W.
+68:18 
+
+68:18 Here something should be subtracted W.
+68:20 
+
+68:20 So add subtracted to W. Subtract
+68:22 
+
+68:22 something. W minus something.
+68:25 
+
+68:25 And here I should add W plus something.
+68:27 
+
+68:27 So why is why am I adding or subtracting
+68:29 
+
+68:29 something? Because I have to add this
+68:30 
+
+68:30 the angle. So when I subtract this
+68:32 
+
+68:32 thing, so when I subtract it, suppose if
+68:34 
+
+68:34 this was w okay and the point was over
+68:36 
+
+68:36 here. Now you can see if it's a
+68:38 
+
+68:38 mclassified point. I show you the
+68:40 
+
+68:40 geometrical interpretation. If this was
+68:42 
+
+68:42 a mclassified point, so now this is an
+68:44 
+
+68:44 obtuse angle. Let's suppose here it's
+68:45 
+
+68:45 greater than 90. But let's suppose this
+68:47 
+
+68:47 point let me write this as blue point.
+68:49 
+
+68:49 So this blue point was let's suppose
+68:51 
+
+68:51 positive class point. So this should
+68:52 
+
+68:52 have been less than 90. So what I should
+68:54 
+
+68:54 do is I should shift this vector. I
+68:55 
+
+68:55 shift this W somewhere over here. Okay.
+68:58 
+
+68:58 So at this angle the the updated angle
+69:00 
+
+69:00 basically it should become less than 90.
+69:03 
+
+69:03 And how how can I make it less than 90?
+69:06 
+
+69:06 I should somehow
+69:08 
+
+69:08 subtract something because I was getting
+69:09 
+
+69:09 W transpose X was actually the actual
+69:12 
+
+69:12 point was positive point. I was getting
+69:13 
+
+69:13 w^ X is less than this was my
+69:14 
+
+69:14 prediction. This is a prediction and
+69:16 
+
+69:16 this was the actual thing. Then what I
+69:18 
+
+69:18 should do is I should add something to
+69:19 
+
+69:19 W. So I have to make the vector shift.
+69:21 
+
+69:21 Okay. So I'm shifting vector from here
+69:23 
+
+69:23 to here.
+69:25 
+
+69:25 Okay. Similarly on in this case if I had
+69:27 
+
+69:27 a point in which I had let's suppose
+69:29 
+
+69:29 this was a negative point and this was
+69:30 
+
+69:30 let's suppose my normal vector. So the
+69:33 
+
+69:33 normal vector was something of this
+69:34 
+
+69:34 sort.
+69:36 
+
+69:36 Okay. So this angle over here. Okay. If
+69:38 
+
+69:38 you see this is less than 90 angle. So
+69:40 
+
+69:40 what I should do is I should subtract
+69:42 
+
+69:42 something from the angle so that I take
+69:43 
+
+69:43 away I take this W vector away. So this
+69:45 
+
+69:45 is new W. This is W new. So this is W
+69:48 
+
+69:48 old. So here this was W old and this is
+69:51 
+
+69:51 W new. So I'm shifting this vector over
+69:53 
+
+69:53 here. How can I shift? So this is the
+69:54 
+
+69:54 second key. This is the case when the
+69:56 
+
+69:56 point actually was a negative point. But
+69:58 
+
+69:58 when I predicted it, it was telling me
+69:59 
+
+69:59 it's a positive way or making the error.
+70:00 
+
+70:00 So what I'm doing is I have to subtract
+70:02 
+
+70:02 something from this W. So that I take W
+70:04 
+
+70:04 new away. So I can make this angle as an
+70:06 
+
+70:06 obtuse angle. I can make this angle like
+70:09 
+
+70:09 greater than 90. So this was this was
+70:11 
+
+70:11 predicted 90. This was the this was the
+70:14 
+
+70:14 actual value. It should be greater than
+70:16 
+
+70:16 90. And this is what was predicted.
+70:18 
+
+70:18 Okay. Now the algorithm becomes like
+70:20 
+
+70:20 this. So in algorithm so if I write the
+70:21 
+
+70:21 algorithm over here now. So algorithm
+70:23 
+
+70:23 should be of this sort.
+70:26 
+
+70:26 So initially what you can do is you
+70:30 
+
+70:30 randomly
+70:32 
+
+70:32 you randomly initialize vector W. Okay
+70:35 
+
+70:35 everybody with me so far? So what you
+70:37 
+
+70:37 can do is you can randomly initialize
+70:39 
+
+70:39 this vector. Okay. So what you will get
+70:41 
+
+70:41 out of this? So when you randomly
+70:42 
+
+70:42 initialize this vector so what you have
+70:44 
+
+70:44 to do is you then have to adjust. Okay.
+70:45 
+
+70:45 You have to loop through all the points
+70:47 
+
+70:47 because the points that you will have
+70:49 
+
+70:49 you have to loop through them. So once
+70:50 
+
+70:50 you loop through all of these points you
+70:52 
+
+70:52 have to make adjustments. So what should
+70:53 
+
+70:53 what should it be? So because you'll get
+70:55 
+
+70:55 input what will be the input of the
+70:56 
+
+70:56 algorithm. So I should also write input.
+70:57 
+
+70:57 So input will be points from positive
+70:59 
+
+70:59 class and points from negative class.
+70:60 
+
+71:00 This will be your input. So P these are
+71:02 
+
+71:02 the inputs
+71:04 
+
+71:04 which have label one and n is the inputs
+71:09 
+
+71:09 which have label zero. Depends if you
+71:12 
+
+71:12 call it minus one or plus one that's
+71:13 
+
+71:13 also fine. So then what you do is you
+71:15 
+
+71:15 randomly initialize this W and you also
+71:18 
+
+71:18 can initialize bias as well. So you in
+71:20 
+
+71:20 here I'll say let's bias is fixed and
+71:22 
+
+71:22 then what you can see is while not
+71:23 
+
+71:23 converged while not converged by
+71:26 
+
+71:26 convergence I mean that you are not
+71:28 
+
+71:28 getting the lowest error. So you take a
+71:30 
+
+71:30 you take you pick up a random point so
+71:32 
+
+71:32 okay you pick up a you sample a random
+71:34 
+
+71:34 point X which is from which uh belongs
+71:37 
+
+71:37 to P union N. Okay so this is our input.
+71:42 
+
+71:42 Inputs can be a positive or a negative
+71:43 
+
+71:43 point. You pick up this point if if this
+71:46 
+
+71:46 x belong to positive if this is a
+71:48 
+
+71:48 positive point. Okay. And then you have
+71:50 
+
+71:50 a condition and this wrpose x that means
+71:53 
+
+71:53 dot product is let's suppose less than
+71:55 
+
+71:55 zero because we want it greater than
+71:57 
+
+71:57 zero. Then what should you do? You
+71:58 
+
+71:58 should update this w.
+72:00 
+
+72:00 Okay. If in second case if x belongs to
+72:04 
+
+72:04 negative points and this wrpose dox this
+72:07 
+
+72:07 is greater equal to z greater than zero.
+72:09 
+
+72:09 You should again update this. Okay. I
+72:12 
+
+72:12 justified why should you update I
+72:14 
+
+72:14 justified it by using the angle because
+72:15 
+
+72:15 you have to brought it angle and then it
+72:16 
+
+72:16 will converge. So how many of you
+72:18 
+
+72:18 understood the algorithm? So these are
+72:19 
+
+72:19 inputs and at the end the output will be
+72:22 
+
+72:22 out will be war. So this war is which
+72:26 
+
+72:26 linearly separate and assumption here is
+72:27 
+
+72:27 assumption is
+72:29 
+
+72:29 assumption here is
+72:31 
+
+72:31 data is linearly septable.
+72:38 
+
+72:38 Okay I'll again go through the algorithm
+72:40 
+
+72:40 then I'll take the question. First you
+72:42 
+
+72:42 have a set of points. You have points P
+72:43 
+
+72:43 and you have points and P are the
+72:45 
+
+72:45 positive points. You have input label
+72:46 
+
+72:46 that is one and in negative points your
+72:48 
+
+72:48 input label as zero. The first step in
+72:50 
+
+72:50 the algorithm is you initialize this
+72:52 
+
+72:52 weight vector randomly. That is you take
+72:53 
+
+72:53 any weight vector and while it's not
+72:55 
+
+72:55 converged. So what can you do?
+72:58 
+
+72:58 I should rather put everything under
+72:60 
+
+72:60 while.
+73:03 
+
+73:03 Okay. So this is under while so that it
+73:05 
+
+73:05 becomes like Python code. Okay. So this
+73:08 
+
+73:08 if it is not converged by by convergence
+73:10 
+
+73:10 I mean that the values it should not it
+73:13 
+
+73:13 should not give the errors anymore. So
+73:14 
+
+73:14 you have this x so x should be taken
+73:17 
+
+73:17 randomly from p union n that is positive
+73:19 
+
+73:19 or negative point. If it is a positive
+73:20 
+
+73:20 point and you have mclassified it okay
+73:23 
+
+73:23 if it's a positive point and you have
+73:24 
+
+73:24 mclassified it then you should adjust
+73:26 
+
+73:26 the weight vector. So how should you
+73:27 
+
+73:27 adjust it? Because we had the earlier
+73:29 
+
+73:29 discussion that the angle basically was
+73:31 
+
+73:31 this angle should have been if it was a
+73:32 
+
+73:32 positive point the angle should be less
+73:34 
+
+73:34 than 90 but it was greater than 90. If
+73:36 
+
+73:36 you have to make it less than 90, you
+73:37 
+
+73:37 have to somehow change the value of the
+73:39 
+
+73:39 value. You have to add something on
+73:40 
+
+73:40 that. And similarly, if this is the
+73:42 
+
+73:42 negative point, okay, and the prediction
+73:44 
+
+73:44 says that it is a positive point, you
+73:45 
+
+73:45 are making an error. Okay? Uh negative
+73:47 
+
+73:47 point, the angle should have been
+73:48 
+
+73:48 greater than 90. But the angle here says
+73:50 
+
+73:50 that this is
+73:52 
+
+73:52 this is actually less than 90. So here
+73:55 
+
+73:55 you have to make it more than 90. You
+73:56 
+
+73:56 have to update this vector. Okay? So
+73:57 
+
+73:57 this is the algorithm. So if you keep on
+73:59 
+
+73:59 doing this, so if you keep on doing
+74:00 
+
+74:00 this, so what will happen is you'll get
+74:02 
+
+74:02 some optimal W, but it'll be it'll no
+74:04 
+
+74:04 more converge. Okay, it will say that
+74:06 
+
+74:06 your all the points are rightly
+74:08 
+
+74:08 classified. There is no mclassification
+74:09 
+
+74:09 under the assumption that the data is
+74:11 
+
+74:11 linearly severable. I'll take questions
+74:13 
+
+74:13 now. Yes,
+74:15 
+
+74:15 because of my shortcomings of not making
+74:16 
+
+74:16 diagrams better, I'll write some code
+74:18 
+
+74:18 which will show you the diagram that we
+74:19 
+
+74:19 explained over here.
+74:21 
+
+74:21 This is the diagram. So, you can clearly
+74:24 
+
+74:24 see over here.
+74:29 
+
+74:29 Give me a second. I'll Yes, yes, yes.
+74:33 
+
+74:33 Now you can see it.
+74:36 
+
+74:36 So what I did I I wrote some code. So
+74:38 
+
+74:38 this code was already written in my
+74:39 
+
+74:39 notebook. So I generated some data
+74:41 
+
+74:41 points which I already generated and
+74:42 
+
+74:42 then I also generated the angles between
+74:44 
+
+74:44 them. So you can clearly see over here.
+74:45 
+
+74:45 So this wherever you get I'm now
+74:47 
+
+74:47 mislabeling them as class 0 class one.
+74:49 
+
+74:49 So you can see because wherever you have
+74:51 
+
+74:51 this vector the direction of the vector
+74:53 
+
+74:53 is the positive class. So this usually
+74:54 
+
+74:54 is the positive class. This red class is
+74:56 
+
+74:56 positive class and this is the negative
+74:57 
+
+74:57 class. Okay. So if I show you with this
+75:00 
+
+75:00 so here so the vector is this W vector
+75:03 
+
+75:03 is here. So this vector W. So if you see
+75:05 
+
+75:05 the angles between these, so these are
+75:07 
+
+75:07 the points positive class points. These
+75:08 
+
+75:08 red points are the positive class
+75:09 
+
+75:09 points. Okay, so you see the angle
+75:11 
+
+75:11 between these points is less than 90.
+75:14 
+
+75:14 Okay, this is less than 90. And the
+75:16 
+
+75:16 angle between the points which are on
+75:18 
+
+75:18 the other side by that's basically
+75:19 
+
+75:19 opposite the normal. Okay, they have
+75:22 
+
+75:22 angle greater than 90. Okay, so what
+75:24 
+
+75:24 Mahmood is mentioning is if some line is
+75:26 
+
+75:26 something in a way such that it all the
+75:28 
+
+75:28 angles are wrong. Okay, it is let's
+75:30 
+
+75:30 suppose outside this something of this
+75:32 
+
+75:32 sort. It's a let's suppose and the W is
+75:35 
+
+75:35 over here. So it makes every angle is
+75:36 
+
+75:36 obtuse angle. So what I said is by using
+75:38 
+
+75:38 this perceptron learning algorithm you
+75:40 
+
+75:40 should somewhat get this line. You
+75:42 
+
+75:42 somewhat get this line if the algorithm
+75:43 
+
+75:43 is learning correctly. If we have the
+75:45 
+
+75:45 proof of convergence if that if we are
+75:46 
+
+75:46 guaranteed that this algorithm will
+75:48 
+
+75:48 converge. Okay. It will it should
+75:50 
+
+75:50 somehow give us roughly a line of this
+75:51 
+
+75:51 sort. The second question was which was
+75:53 
+
+75:53 given by that if these points are like
+75:56 
+
+75:56 they are jumbled and say there is very
+75:58 
+
+75:58 thin line between them. Okay. Let's
+75:59 
+
+75:59 suppose points are somewhat like this.
+76:01 
+
+76:01 Okay. Okay, this are these are one class
+76:02 
+
+76:02 points and this is and the class point
+76:04 
+
+76:04 and there's a very less margin of
+76:06 
+
+76:06 finding the line. So if this algorithm
+76:08 
+
+76:08 is right and if we have the proof of
+76:09 
+
+76:09 convergence then what I'm saying is so
+76:11 
+
+76:11 you should have some a line of this
+76:13 
+
+76:13 sort. We should we should almost
+76:15 
+
+76:15 classify it like this. Okay. So this is
+76:17 
+
+76:17 because we have this algorithm and we
+76:19 
+
+76:19 have it proof of convergence. So it
+76:20 
+
+76:20 should some converge but in this case it
+76:22 
+
+76:22 will probably take more iterations. It
+76:23 
+
+76:23 not just take less iterations but in
+76:25 
+
+76:25 this data if we have data which is quite
+76:27 
+
+76:27 well separated already okay then it
+76:29 
+
+76:29 should take less iterations. it should
+76:30 
+
+76:30 take less computation power. Is it
+76:31 
+
+76:31 clear?
+76:33 
+
+76:33 So let's code this algorithm step by
+76:35 
+
+76:35 step. Whatever we study in theory, we'll
+76:37 
+
+76:37 see if it works. Okay. So I'll have to
+76:39 
+
+76:39 show you all the steps involved in there
+76:41 
+
+76:41 and you will use the same algorithm.
+76:43 
+
+76:43 It's not that difficult to code. So now
+76:46 
+
+76:46 what we'll do is so initially I'll just
+76:48 
+
+76:48 copy paste the code. So here the first
+76:50 
+
+76:50 part will be generating the data. So
+76:52 
+
+76:52 this is linearly separable data that
+76:54 
+
+76:54 I'll generate. Okay. I'll gloss through
+76:56 
+
+76:56 the code because I understand that you
+76:57 
+
+76:57 are very well versed with the code. Now
+76:59 
+
+76:59 this is the generator function which
+76:60 
+
+77:00 will generate data which is linearly
+77:02 
+
+77:02 separable. Okay, this makes sure of that
+77:03 
+
+77:03 and then we will plot so in between
+77:05 
+
+77:05 because each each time I want to plot so
+77:07 
+
+77:07 because it will have multiple iterations
+77:09 
+
+77:09 and I want to plot it in each of the
+77:11 
+
+77:11 iteration. Okay, then I have a code over
+77:13 
+
+77:13 here which will plot in each iteration
+77:17 
+
+77:17 not difficult code because we have then
+77:19 
+
+77:19 done enough mattplot lab enough of all
+77:21 
+
+77:21 of this. So this is quite easy code to
+77:23 
+
+77:23 understand. So you should when you are
+77:24 
+
+77:24 watching this lecture please do pause it
+77:26 
+
+77:26 to understand this code thoroughly. The
+77:27 
+
+77:27 first is generate uh some complex nearly
+77:29 
+
+77:29 separable data. Okay, but it still
+77:31 
+
+77:31 should be separable. And the second
+77:32 
+
+77:32 thing is we are plotting this data and
+77:34 
+
+77:34 we are plotting it each step. The
+77:35 
+
+77:35 plotting is not done only once. So but
+77:38 
+
+77:38 this is done maybe in each of the
+77:40 
+
+77:40 iterations and then what I can do is I
+77:42 
+
+77:42 I'll code this algorithm. So this is the
+77:44 
+
+77:44 algorithm the main algorithm that we
+77:46 
+
+77:46 have studied so far. Okay, I'll explain
+77:47 
+
+77:47 this algorithm. This is what we have
+77:50 
+
+77:50 studied. So initialize with the random
+77:52 
+
+77:52 these are the W vectors random vectors.
+77:55 
+
+77:55 Okay. And then what we have is step is
+77:57 
+
+77:57 zero. The step count. Okay. Then you're
+77:59 
+
+77:59 plotting at the step. You're plotting
+78:00 
+
+78:00 step zero. Okay. You're plotting at this
+78:02 
+
+78:02 point. What was the value of W? Okay.
+78:04 
+
+78:04 This is the plot that we have. And then
+78:05 
+
+78:05 we are saying that go to these maximum
+78:07 
+
+78:07 iterations. Whatever the maximum
+78:08 
+
+78:08 iterations you are given. Can you go to
+78:11 
+
+78:11 100,000 iterations? So you see put this
+78:14 
+
+78:14 mclassified as false. Put this indicator
+78:16 
+
+78:16 the mclassified is false. So then go
+78:19 
+
+78:19 through all these permutations and np
+78:20 
+
+78:20 random and go through this length of x.
+78:22 
+
+78:22 So what you can do is and you put this x
+78:24 
+
+78:24 i is equal to this point because this
+78:25 
+
+78:25 this is your point x this is your labels
+78:27 
+
+78:27 corresponding and you make a prediction
+78:29 
+
+78:29 based on if np dot you make a dot
+78:31 
+
+78:31 product if that is greater than zero
+78:33 
+
+78:33 okay and you have to do if this is
+78:36 
+
+78:36 greater than zero or else 0 you put
+78:37 
+
+78:37 prediction is equal to one if wx i is 1
+78:41 
+
+78:41 is greater than z else you put the
+78:42 
+
+78:42 prediction equal to zero okay so this is
+78:44 
+
+78:44 what you are doing you are taking this
+78:45 
+
+78:45 point x one by one and it corresponding
+78:47 
+
+78:47 label also so what you are saying is
+78:48 
+
+78:48 you're saying prediction is one if the
+78:50 
+
+78:50 dot product is greater than equal to
+78:51 
+
+78:51 zero that's what we have studied So it
+78:52 
+
+78:52 is a positive class otherwise it's a
+78:54 
+
+78:54 negative class. Okay. If the prediction
+78:56 
+
+78:56 and the label is not correct. Okay. Then
+78:59 
+
+78:59 what you should do is you should do this
+79:01 
+
+79:01 change.
+79:03 
+
+79:03 Okay. This is the change that you should
+79:04 
+
+79:04 do. Okay. W plus is equal 2 yi minus 1.
+79:07 
+
+79:07 So this minus one and this thing is
+79:09 
+
+79:09 added over in order to make sure that
+79:10 
+
+79:10 you are either subtracting or adding
+79:12 
+
+79:12 things on it and then multiplied by the
+79:13 
+
+79:13 x i. Okay. So this this this thing keep
+79:16 
+
+79:16 make sure of that. Okay. And then you
+79:18 
+
+79:18 add this step again you plot it and then
+79:20 
+
+79:20 you say mclassify it. True. So, so you
+79:22 
+
+79:22 mclassified okay because in the
+79:23 
+
+79:23 iteration you are saying this you're
+79:25 
+
+79:25 keeping this and then if not mclassified
+79:28 
+
+79:28 if nothing was miscl if no point was
+79:29 
+
+79:29 mclassified that that's basically
+79:30 
+
+79:30 convergence so this is convergence and
+79:32 
+
+79:32 then you have to break out of the loop
+79:33 
+
+79:33 there are two things so why are you
+79:35 
+
+79:35 keeping this mclassified variable so as
+79:36 
+
+79:36 to come out of the loop because you you
+79:38 
+
+79:38 know that if it is converted the
+79:40 
+
+79:40 algorithm that I wrote I said if
+79:41 
+
+79:41 converged then you should not run it
+79:42 
+
+79:42 anymore for that I'm creating this
+79:45 
+
+79:45 indicator variable so in that I'm saying
+79:46 
+
+79:46 if mclassified is false it is not
+79:49 
+
+79:49 becoming true in this that means
+79:50 
+
+79:50 everything is well classified. So you
+79:51 
+
+79:51 should break the loop you should come
+79:52 
+
+79:52 out with this W. So this is my W star.
+79:54 
+
+79:54 Okay, this is my optimal W. So otherwise
+79:56 
+
+79:56 what am I doing is so I am doing this.
+79:58 
+
+79:58 So I'm initially predicting. So NP uh
+80:01 
+
+80:01 dot is this is the dot product of W and
+80:02 
+
+80:02 Xi. So if it is greater than equal to Z,
+80:04 
+
+80:04 prediction is one. If it is less than
+80:05 
+
+80:05 zero, prediction is zero. And then I'm
+80:07 
+
+80:07 saying if label is not equal to
+80:08 
+
+80:08 prediction. Okay, then accordingly
+80:10 
+
+80:10 adjust this W. Okay. Now let's suppose
+80:12 
+
+80:12 I'll run this. Is algorithm clear? Is it
+80:16 
+
+80:16 clear?
+80:18 
+
+80:18 I hope this should be clear. pretty easy
+80:19 
+
+80:19 because we learned every theory and you
+80:20 
+
+80:20 know python you know mattplotive you
+80:22 
+
+80:22 know everything so I don't need to spend
+80:24 
+
+80:24 much time on this again now what I
+80:26 
+
+80:26 should do is I will generate the data
+80:28 
+
+80:28 first and based on that what I can do is
+80:30 
+
+80:30 I can run this algorithm and plot it
+80:32 
+
+80:32 okay if I press Ctrl + V so here you
+80:35 
+
+80:35 should see something
+80:37 
+
+80:37 okay so this is step one
+80:40 
+
+80:40 this is step zero step zero you saw like
+80:42 
+
+80:42 this this was very good separable data
+80:44 
+
+80:44 okay clearly separable now it made a
+80:46 
+
+80:46 mclassification okay mclassification
+80:48 
+
+80:48 over and then it went to step zero. So W
+80:50 
+
+80:50 over here was 0.67 0.36 0.81. So this
+80:54 
+
+80:54 was the initial W the randomly the
+80:55 
+
+80:55 random W and then when you once you had
+80:58 
+
+80:58 this so this was the uh decision
+80:60 
+
+80:60 boundary that we're getting. So you were
+81:01 
+
+81:01 having mclassification so still again
+81:02 
+
+81:02 the loop will run okay so this was step
+81:05 
+
+81:05 one W was changed minus 1.67 2.03 and
+81:08 
+
+81:08 1.4 and W1 and W2 okay again there were
+81:12 
+
+81:12 probably some mis over here. Okay. Again
+81:14 
+
+81:14 in step two. So you see messed up again.
+81:16 
+
+81:16 It messed up and slowly slowly if you
+81:18 
+
+81:18 see here you can see the perfect and it
+81:20 
+
+81:20 stopped in each step. It showed it took
+81:22 
+
+81:22 us three only four steps. So in the
+81:24 
+
+81:24 fourth step it exactly distribute the
+81:26 
+
+81:26 data. It it made a distance boundary
+81:27 
+
+81:27 which is perfectly classifying the data.
+81:29 
+
+81:29 Okay. And this is W not W1 and W2. These
+81:32 
+
+81:32 are the optimal W's. And if I run it
+81:34 
+
+81:34 again because this is random. So you can
+81:36 
+
+81:36 see these values can be different
+81:37 
+
+81:37 because there can be a lot of possible
+81:38 
+
+81:38 W's that will perfectly classify this
+81:41 
+
+81:41 data. So if I run this again,
+81:44 
+
+81:44 okay, this is.33, 2.79, 4.29, 4.29.
+81:49 
+
+81:49 Okay, if I run it again, you should see
+81:51 
+
+81:51 that different value should be there.
+81:53 
+
+81:53 Okay, it is somehow getting the same
+81:54 
+
+81:54 value. Maybe I have added something. But
+81:56 
+
+81:56 if you keep on running this, so in step
+81:57 
+
+81:57 three, this is this is classifying it.
+81:60 
+
+81:60 Okay, so how many of you understood the
+82:01 
+
+82:01 algorithm now?
+82:03 
+
+82:03 But how many of you can assume that you
+82:06 
+
+82:06 have understood this algorithm? Perfect.
+82:09 
+
+82:09 So here I showed you real world example
+82:11 
+
+82:11 in which we had real separable data. We
+82:13 
+
+82:13 generate the data and then we could sort
+82:16 
+
+82:16 of find the values of these w1 and w2 in
+82:19 
+
+82:19 which we had the w is the normal vector
+82:21 
+
+82:21 that we had. So in this case w not was
+82:23 
+
+82:23 the bias that
+82:25 
+
+82:25 I think mahmul pointed out. And one more
+82:28 
+
+82:28 question that we received is that can we
+82:30 
+
+82:30 adapt this? Can we somehow if we have
+82:32 
+
+82:32 multiple classes. Okay, if I turn this
+82:35 
+
+82:35 off. So can we if we have multiple
+82:36 
+
+82:36 classes.
+82:38 
+
+82:38 So if we have these multiple classes. So
+82:40 
+
+82:40 now this works on binary classes. So if
+82:43 
+
+82:43 you have two classes, so how can you
+82:44 
+
+82:44 adapt this to do the multiclass
+82:46 
+
+82:46 classification? So what I said is so
+82:48 
+
+82:48 there's a technique which called as one
+82:49 
+
+82:49 versus all. Okay. So in this let's
+82:52 
+
+82:52 suppose you have 10 classes.
+82:56 
+
+82:56 So when you have 10 classes so you have
+82:58 
+
+82:58 let's suppose from 1 2 till 10. So in
+83:01 
+
+83:01 the initial step what can you do is you
+83:02 
+
+83:02 can use this binary classifier to say 1
+83:05 
+
+83:05 versus 2 to 10. So you can say from this
+83:07 
+
+83:07 root and I'll consider this as one class
+83:09 
+
+83:09 and I'll consider this one as separate
+83:10 
+
+83:10 class. So I'll do the uh classification
+83:13 
+
+83:13 based on this. So once whole of this one
+83:15 
+
+83:15 is classified one is separated from
+83:16 
+
+83:16 others. So I can repeat the process on
+83:18 
+
+83:18 these. I can say 2 versus 3 to 10. Okay.
+83:21 
+
+83:21 So once this is also separated I can say
+83:23 
+
+83:23 this 3 versus 4 to 10. Okay. I can keep
+83:26 
+
+83:26 on doing this. Okay, I am doing it in
+83:27 
+
+83:27 multi levels. Okay, so that's how I can
+83:30 
+
+83:30 adapt this binary classifier to do the
+83:32 
+
+83:32 multi-classification. So binary
+83:35 
+
+83:35 classifier
+83:37 
+
+83:37 can be adapted to do multiclass
+83:39 
+
+83:39 classification.
+83:41 
+
+83:41 Multiclass classification
+83:48 
+
+83:48 by using this one versus all.
+83:50 
+
+83:50 This was the question that we received
+83:52 
+
+83:52 and this is the answer to that. Now the
+83:54 
+
+83:54 question in this case, so this was just
+83:56 
+
+83:56 a side note. Now the question in this
+83:57 
+
+83:57 case was this. So if you have this
+83:58 
+
+83:58 perceptron learning algorithm, okay, in
+84:00 
+
+84:00 which we were adjusting these uh W's,
+84:03 
+
+84:03 we're adjusting the W vector so as to
+84:05 
+
+84:05 get it to the W star vector which
+84:08 
+
+84:08 perfectly if the data is inseparable
+84:10 
+
+84:10 which perfectly then separates out two
+84:12 
+
+84:12 classes. Now the question is something
+84:13 
+
+84:13 like this. So what is the proof that
+84:15 
+
+84:15 this does not toggle forever. So what is
+84:18 
+
+84:18 the meaning of that? Let's suppose one
+84:19 
+
+84:19 point is something of this sort and
+84:20 
+
+84:20 another point is like this. So this
+84:22 
+
+84:22 point tells let's suppose this is the
+84:24 
+
+84:24 linear separate separate boundary and
+84:25 
+
+84:25 there is some mclassifications or there
+84:27 
+
+84:27 will be some mclassification
+84:29 
+
+84:29 okay and there is some right
+84:30 
+
+84:30 classifications also something of this
+84:31 
+
+84:31 sort
+84:33 
+
+84:33 I'm just keeping it so that maybe I'll
+84:35 
+
+84:35 put it something of this sort that it is
+84:36 
+
+84:36 linearly classified
+84:39 
+
+84:39 okay so let's take this example okay if
+84:42 
+
+84:42 this example is mclassified say it w
+84:45 
+
+84:45 vector is something of this sort or in
+84:46 
+
+84:46 this case w vector is something like
+84:47 
+
+84:47 this so if you take if you randomly
+84:49 
+
+84:49 sample you take this point and it Ask W
+84:51 
+
+84:51 vector okay you should shift towards
+84:53 
+
+84:53 this okay and then if you take some
+84:54 
+
+84:54 other point say this point this is again
+84:56 
+
+84:56 misclass say this is mclassified so it
+84:58 
+
+84:58 can bring this vector updated vector
+84:60 
+
+84:60 again to this okay it can keep on
+85:01 
+
+85:01 toggling so if you take one point it'll
+85:03 
+
+85:03 bring it to right direction if you take
+85:04 
+
+85:04 another point it can bring it to left
+85:05 
+
+85:05 direction so what is the proof that this
+85:08 
+
+85:08 will not happen so this is not desirable
+85:11 
+
+85:11 even this should not this is not
+85:12 
+
+85:12 desirable why is it not desirable
+85:14 
+
+85:14 because otherwise it will not converge
+85:16 
+
+85:16 okay so if the data is line separable so
+85:18 
+
+85:18 now there should be some mathematical
+85:19 
+
+85:19 way of proving this this perceptron
+85:21 
+
+85:21 learning algorithm will always converge.
+85:23 
+
+85:23 Okay. So first we'll formulate the
+85:25 
+
+85:25 mathematical problem. So we'll formulate
+85:27 
+
+85:27 the problem and then we'll have to give
+85:28 
+
+85:28 the proof. So this is the technique that
+85:29 
+
+85:29 I'll teach you. So in today's class
+85:30 
+
+85:30 we'll learn how to come up from this.
+85:33 
+
+85:33 You have the thinking you have the
+85:34 
+
+85:34 problem right now and you'll have to
+85:35 
+
+85:35 model it mathematically. Okay. The
+85:37 
+
+85:37 question is this which I described like
+85:40 
+
+85:40 with hand wave arguments. I said if you
+85:41 
+
+85:41 have data of this sort so if one point
+85:43 
+
+85:43 of the data it brings it updates W and
+85:45 
+
+85:45 other point undone that it undo the
+85:47 
+
+85:47 update. Okay. So whatever updation was
+85:49 
+
+85:49 done in the previous step so current
+85:50 
+
+85:50 step let's suppose under the update so
+85:53 
+
+85:53 if it un so it will it looks that it
+85:55 
+
+85:55 might keep on toggling so there should
+85:56 
+
+85:56 be some proof that this perceptual
+85:59 
+
+85:59 learning algorithm will always converge.
+86:01 
+
+86:01 So it there should be a proof that they
+86:03 
+
+86:03 should always converge. So how many of
+86:04 
+
+86:04 you understood the problem so that this
+86:06 
+
+86:06 is the problem.
+86:09 
+
+86:09 Okay. So you understood the problem. So
+86:11 
+
+86:11 you now agree that there can be this
+86:13 
+
+86:13 problem that one point can take it to
+86:14 
+
+86:14 the right other point can bring it back
+86:15 
+
+86:15 to the left. So this can happen keep on
+86:17 
+
+86:17 happening then there should be some
+86:18 
+
+86:18 proof which which could tell us
+86:20 
+
+86:20 mathematically okay so that this
+86:22 
+
+86:22 algorithm will always converge. So now
+86:24 
+
+86:24 first thing is we have to somehow
+86:25 
+
+86:25 formulate the problem okay how should we
+86:26 
+
+86:26 what should we mathematically prove I
+86:28 
+
+86:28 know okay this is what is the problem
+86:30 
+
+86:30 then I'll have to come up with a
+86:31 
+
+86:31 mathematical thinking which will tell me
+86:32 
+
+86:32 okay this is how you have to model the
+86:34 
+
+86:34 problem and now based on this modeling
+86:36 
+
+86:36 you'll have to prove this so I'll have
+86:37 
+
+86:37 to set up some permise okay so now how
+86:39 
+
+86:39 to formulate the problem so I'll teach
+86:41 
+
+86:41 you how to formulate such problems
+86:43 
+
+86:43 now the the theorem should go like this
+86:45 
+
+86:45 so the first thing you should state that
+86:46 
+
+86:46 I have two finite sets so the the point
+86:49 
+
+86:49 should be finite otherwise infinite
+86:51 
+
+86:51 points then you will be in trouble okay
+86:52 
+
+86:52 so finite Add points points can be
+86:54 
+
+86:54 positive or negative. So I can have
+86:56 
+
+86:56 positive points and I can have negative
+86:57 
+
+86:57 points and then they can they can belong
+86:59 
+
+86:59 to Rn.
+87:01 
+
+87:01 They can be Rn. So you have positive
+87:02 
+
+87:02 class points and you have and and these
+87:04 
+
+87:04 negative class points. So they can
+87:06 
+
+87:06 belong to n dimensional space but they
+87:08 
+
+87:08 should be linearly separable.
+87:10 
+
+87:10 Linearly separable. Okay. I'm I'm trying
+87:13 
+
+87:13 to first formulate the problem that we
+87:15 
+
+87:15 have. Okay. Then the perceptron learning
+87:17 
+
+87:17 algorithm. Okay. It should converge. So
+87:19 
+
+87:19 that means you should get a W. What's
+87:21 
+
+87:21 the meaning of convergence? So
+87:22 
+
+87:22 convergence basically means you should
+87:24 
+
+87:24 get say war star. So for w star or war
+87:28 
+
+87:28 star dot x is greater than zero for all
+87:33 
+
+87:33 x belongs to positive class. Okay. W
+87:35 
+
+87:35 star x is less than zero for all x
+87:38 
+
+87:38 belongs to negative class. So this is
+87:41 
+
+87:41 called this is convergence. So I should
+87:42 
+
+87:42 find such a w. So this is convergence.
+87:46 
+
+87:46 So assumption is this. So this is
+87:47 
+
+87:47 linearly separable. Okay. How many of
+87:50 
+
+87:50 you understood the formulation? So what
+87:52 
+
+87:52 I said is initially we should have a
+87:53 
+
+87:53 finite point that is positive points and
+87:54 
+
+87:54 negative points and they should be n
+87:56 
+
+87:56 dimensional points and these points
+87:57 
+
+87:57 should be linearly separable. So what is
+87:59 
+
+87:59 the meaning of convergence? Then the
+88:00 
+
+88:00 meaning of convergence is this. I should
+88:02 
+
+88:02 have war Okay, which should give me
+88:04 
+
+88:04 this. And one more thing that's very
+88:05 
+
+88:05 important. So this should happen in
+88:07 
+
+88:07 finite steps.
+88:10 
+
+88:10 Finite steps. Let's suppose this should
+88:11 
+
+88:11 happen in within t steps. So t is some
+88:14 
+
+88:14 finite number. T is finite.
+88:17 
+
+88:17 So this is how you should format the
+88:19 
+
+88:19 problem for you should know how to
+88:20 
+
+88:20 format problem. Now once I pinned it
+88:22 
+
+88:22 down mathematically. Now this is the
+88:23 
+
+88:23 thing I have to prove. Okay? I have to
+88:24 
+
+88:24 prove this mathematically. So I told you
+88:26 
+
+88:26 something verbally. I told you okay what
+88:28 
+
+88:28 is the proof that perceptual learning
+88:30 
+
+88:30 algorithm will converge okay what's the
+88:32 
+
+88:32 proof for that so in order to prove it
+88:33 
+
+88:33 mathematically I wrote clearly the
+88:35 
+
+88:35 assumptions I wrote everything clearly
+88:36 
+
+88:36 so first thing I wrote is there are
+88:38 
+
+88:38 finite points which are either from
+88:39 
+
+88:39 positive class or from the negative
+88:40 
+
+88:40 class okay and these points are n
+88:42 
+
+88:42 dimensional and they are linearly
+88:44 
+
+88:44 separable okay if I have to say that
+88:45 
+
+88:45 this converges so what's the meaning of
+88:47 
+
+88:47 that I'll find such a w star I'll find
+88:48 
+
+88:48 such a w vector this vector such that if
+88:51 
+
+88:51 I take any point from positive class
+88:53 
+
+88:53 then the dot product should be greater
+88:55 
+
+88:55 than equal to zero if I take any point
+88:56 
+
+88:56 from negative to class then the dot
+88:58 
+
+88:58 product should be less than zero and
+88:59 
+
+88:59 this I should get in finite steps and
+89:02 
+
+89:02 finite steps t t should be finite okay
+89:03 
+
+89:03 it should not be infinite so this is the
+89:05 
+
+89:05 formulation of the problem so this is
+89:08 
+
+89:08 formulation and then we'll have to prove
+89:09 
+
+89:09 this so you'll have to prove okay and
+89:12 
+
+89:12 maybe in the subsequent section we'll
+89:13 
+
+89:13 subsequent section we'll prove this so
+89:15 
+
+89:15 how many of you understood the
+89:16 
+
+89:16 formulation formulation okay the essence
+89:18 
+
+89:18 of this problem is that the first thing
+89:20 
+
+89:20 is you should learn uh to bring the real
+89:23 
+
+89:23 world problem into the mathematical
+89:25 
+
+89:25 problem okay you should somehow
+89:26 
+
+89:26 formulate the problem. This is a very
+89:27 
+
+89:27 important skill that you have a real
+89:29 
+
+89:29 world problem, you can formulate it, you
+89:30 
+
+89:30 can model the problem. So the first step
+89:32 
+
+89:32 was that so you took a problem. So in
+89:33 
+
+89:33 this case you have the perceptual
+89:34 
+
+89:34 learning algorithm and I gave you some
+89:36 
+
+89:36 verbose argument that this personal
+89:38 
+
+89:38 learning algorithm should always
+89:39 
+
+89:39 converge. So then I have to bring it to
+89:41 
+
+89:41 the mathematical world. Okay, this is
+89:43 
+
+89:43 how I brought this into the mathematical
+89:45 
+
+89:45 world. So I somehow wrote down some
+89:46 
+
+89:46 mathematics and I can then I can use
+89:48 
+
+89:48 algebra and everything on this. Okay,
+89:50 
+
+89:50 once I have this in the mathematical
+89:51 
+
+89:51 world, the next step is to bring it in
+89:53 
+
+89:53 the computational world. So what is the
+89:55 
+
+89:55 computational world? that basically is
+89:57 
+
+89:57 you should somehow tell me the ways of
+89:59 
+
+89:59 computation. What things can I do so
+90:00 
+
+90:00 that so as to compute this okay once you
+90:03 
+
+90:03 have the mathematics pinned down and
+90:05 
+
+90:05 then you bring it to the computation and
+90:06 
+
+90:06 after that you have to create an
+90:08 
+
+90:08 algorithm to solve it because you have
+90:10 
+
+90:10 to have a step-wise procedure of solving
+90:11 
+
+90:11 it. So that is bringing a real world
+90:14 
+
+90:14 problem into a computational world
+90:15 
+
+90:15 problem into a mathematical then into a
+90:17 
+
+90:17 computational world and then into an
+90:19 
+
+90:19 algorithm. Okay. So once you have the
+90:20 
+
+90:20 algorithm and the next steps basically
+90:21 
+
+90:21 are you can optimize you can make it
+90:24 
+
+90:24 more efficient you can make it resource
+90:26 
+
+90:26 efficient time efficient and things like
+90:27 
+
+90:27 that and as I I cannot emphasize enough
+90:29 
+
+90:29 this is a very important skill to have
+90:31 
+
+90:31 okay this is what is the differentiating
+90:32 
+
+90:32 factor between a person who has the real
+90:34 
+
+90:34 understand of the subject and the person
+90:36 
+
+90:36 who is just intelligent who can be
+90:38 
+
+90:38 thought as intelligent okay to to
+90:40 
+
+90:40 mathematically model these as I giving
+90:42 
+
+90:42 you the example that if you are learning
+90:43 
+
+90:43 calculus so one way is that somebody is
+90:46 
+
+90:46 teaching you a calculus so he is giving
+90:48 
+
+90:48 you a mathematical model itself. He's
+90:50 
+
+90:50 just teaching you maths. But there is a
+90:52 
+
+90:52 missing link in between. So how did
+90:54 
+
+90:54 people come up from this? They took the
+90:56 
+
+90:56 real world example and they brought it
+90:57 
+
+90:57 into mathematics. Okay. They somehow
+90:59 
+
+90:59 model the problem. That's a missing link
+91:01 
+
+91:01 which which students are not taught in
+91:03 
+
+91:03 schools. Okay. I from these sessions I
+91:05 
+
+91:05 want you to ensure and I want you to
+91:07 
+
+91:07 practice enough so that you can take a
+91:08 
+
+91:08 real world problem can convert that into
+91:10 
+
+91:10 mathematical problem and from
+91:11 
+
+91:11 mathematical you can take that into
+91:13 
+
+91:13 computational world and from the
+91:14 
+
+91:14 computation you can come up with the
+91:15 
+
+91:15 algorithm and then optimize it. So with
+91:17 
+
+91:17 this I'll stop the recording.

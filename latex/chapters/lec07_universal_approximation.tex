@@ -1,0 +1,158 @@
+% ============================================================================
+% CHAPTER 7: UNIVERSAL APPROXIMATION AND NETWORK EXPRESSIVITY
+% ============================================================================
+
+\chapter{Universal Approximation and Network Expressivity}
+\label{ch:universal_approximation}
+
+% ============================================================================
+% OVERVIEW
+% ============================================================================
+
+\section{Chapter Overview}
+
+In previous chapters, we introduced the Multi-Layer Perceptron (MLP) and explored the mechanics of forward propagation and gradient descent. This chapter addresses a fundamental theoretical question: \textit{What kinds of functions can a neural network actually learn?} 
+
+We will demonstrate that MLPs possess extraordinary representational power. They act as \textbf{universal boolean function mappers}, \textbf{universal decision boundary modelers}, and ultimately, \textbf{universal function approximators}. Furthermore, we will rigorously explore the trade-off between network \textbf{depth} and \textbf{width}, proving mathematically why deep architectures are exponentially more efficient than shallow ones.
+
+% ============================================================================
+% NEURAL NETWORKS AS DAGS
+% ============================================================================
+
+\section{Neural Networks as Directed Acyclic Graphs (DAGs)}
+
+To analyze the expressivity of neural networks formally, we represent them as \textbf{Directed Acyclic Graphs (DAGs)}.
+
+\begin{definitionbox}[Neural Network as a DAG]
+A feedforward neural network is a DAG $G = (V, E)$ where:
+\begin{itemize}
+    \item $V$ is the set of vertices (neurons or nodes).
+    \item $E$ is the set of directed edges representing synaptic connections and weights. 
+    \item \textbf{Source nodes}: Vertices with in-degree 0 (the input layer).
+    \item \textbf{Sink nodes}: Vertices with out-degree 0 (the output layer).
+    \item \textbf{Acyclic property}: Information flows strictly from source to sink without loops.
+\end{itemize}
+\end{definitionbox}
+
+\subsection{Defining Depth and Layers}
+
+Within this graph-theoretic framework, we precisely define the depth of a network.
+
+\begin{itemize}
+    \item \textbf{Depth}: The length of the longest path from a source node to a sink node. A network with depth $> 2$ is formally considered a \textbf{deep neural network}.
+    \item \textbf{Layers}: Neurons are grouped into layers based on their distance from the input. Nodes at depth $k$ form the $k$-th hidden layer.
+\end{itemize}
+
+% ============================================================================
+% MLPS AS UNIVERSAL BOOLEAN MAPPERS
+% ============================================================================
+
+\section{MLPs as Universal Boolean Function Mappers}
+
+We previously established that a single perceptron can model fundamental boolean gates like AND, OR, and NOT. However, it fails on non-linearly separable functions like XOR. When we introduce hidden layers, MLPs gain the ability to model \textit{any} boolean function.
+
+\subsection{Disjunctive Normal Form (DNF)}
+
+Any boolean function can be represented in \textbf{Disjunctive Normal Form (DNF)}---an "OR of ANDs". We can construct a two-layer MLP to directly implement a DNF expression:
+\begin{enumerate}
+    \item The first hidden layer computes the logical AND for each minterm.
+    \item The output neuron computes the logical OR over all activated minterms.
+\end{enumerate}
+
+By mapping Karnaugh maps (K-maps) to DNF, we can minimize the boolean expression, directly translating into a reduced number of hidden neurons.
+
+\subsection{The Worst-Case Scenario: The XOR Function}
+
+If we consider an $n$-input parity function (like a generalized XOR), the K-map perfectly alternates, resembling a checkerboard pattern. It cannot be reduced. 
+
+\begin{theorembox}[Exponential Neuron Requirement for Shallow Networks]
+To model an $n$-input XOR function with a \textit{shallow network} (containing exactly one hidden layer), the network requires $2^{n-1}$ hidden neurons. The neuron requirement grows \textbf{exponentially} with respect to the input size.
+\end{theorembox}
+
+% ============================================================================
+% DEPTH VS. WIDTH
+% ============================================================================
+
+\section{Demystifying Depth vs. Width}
+
+The exponential blowup of the shallow XOR implementation illustrates the primary limitation of simply making a network "wider." 
+
+\subsection{The Efficiency of Deep Networks}
+
+By adding \textit{depth} (more hidden layers) instead of width, we fundamentally change the efficiency of the network. We can compute an $n$-input XOR by constructing a binary tree of 2-input XOR operations.
+
+\begin{itemize}
+    \item A single 2-input XOR requires a small, constant number of neurons (e.g., 3 hidden, 1 output).
+    \item By cascading these operations hierarchically, an $n$-input XOR resolves in $\sim \log_2(n)$ layers.
+    \item The total number of neurons required scales linearly to roughly $3n - 1$.
+\end{itemize}
+
+\begin{bluebox}[Deep vs. Shallow architectures]
+By increasing the depth of the network, we reduced the computational units required to solve the $n$-input XOR from an \textbf{exponential} amount ($2^{n-1}$) to a \textbf{polynomial} amount ($3n-1$). This is the core mathematical validation for Deep Learning: deep networks represent complex hierarchical functions drastically more efficiently than wide, shallow networks.
+\end{bluebox}
+
+% ============================================================================
+% UNIVERSAL DECISION BOUNDARY MODELERS
+% ============================================================================
+
+\section{Universal Decision Boundary Modelers}
+
+Beyond discrete boolean functions, deep networks can enclose complex, non-linear decision spaces.
+
+\subsection{Polygon Construction}
+A single perceptron creates a linear boundary (a hyperplane). By configuring a hidden layer with multiple neurons, we can combine several hyperplanes. For example:
+\begin{itemize}
+    \item 3 neurons can define a triangle.
+    \item 5 neurons can define a pentagon.
+    \item The output neuron acts as an AND gate, firing only if a point falls within the intersection space of all hyperplanes.
+\end{itemize}
+
+\subsection{Approximating Arbitrary Shapes}
+By scaling the hidden layer to 32, 64, or infinitely many neurons, the network can smoothly approximate a perfect circle or any arbitrarily complex, non-convex decision boundary. Consequently, an MLP with even a single hidden layer is a \textbf{universal classifier}.
+
+% ============================================================================
+% THE UNIVERSAL APPROXIMATION THEOREM
+% ============================================================================
+
+\section{The Universal Approximation Theorem}
+
+The ultimate display of network expressivity is its ability to approximate continuous mathematical functions.
+
+\begin{theorembox}[Universal Approximation Theorem (Informal)]
+A feedforward neural network with a single hidden layer containing a finite number of neurons can approximate any continuous function $f(\vect{x})$ on compact subsets of $\R^n$, to any desired degree of accuracy $\epsilon$, given appropriate activation functions.
+\end{theorembox}
+
+\subsection{Constructing 2D "Tower Functions"}
+
+How does a network accomplish this approximation? By constructing piecewise continuous steps called \textbf{tower functions}.
+If we take two sigmoid neurons operating on the same input axis, we can strategically adjust their weights and biases:
+\begin{itemize}
+    \item \textbf{Weights} control the steepness (slope) of the sigmoid curve.
+    \item \textbf{Biases} control the horizontal shift of the curve.
+\end{itemize}
+By subtracting the output of the second shifted sigmoid from the first (done via negative weights at the output layer), we isolate a rectangular "step" or "tower." The network can place hundreds of these towers next to each other, adjusting their heights, to trace any 2D curve perfectly.
+
+\subsection{Constructing 3D Tower Functions for Complex Terrains}
+
+The concept extends into higher dimensions. To model a 3D manifold (hills and valleys on a surface):
+\begin{enumerate}
+    \item We create a pair of opposing sigmoids along the $x_1$ axis to form a "ridge".
+    \item We create another pair of opposing sigmoids along the $x_2$ axis to form an intersecting "ridge".
+    \item An output neuron sums these ridges. By applying a threshold, the intersecting region forms a solid, standalone 3D block or "tower".
+\end{enumerate}
+
+By tiling these 3D towers across the input space, the network can approximate the volume under any continuous multi-dimensional surface!
+
+% ============================================================================
+% SUMMARY
+% ============================================================================
+
+\section{Chapter Summary}
+
+\begin{itemize}
+    \item MLPs are \textbf{universal boolean function modelers}, leveraging DNFs to map logic gates.
+    \item The worst-case non-linear pattern ($n$-input XOR) proves that shallow networks require exponential width ($2^{n-1}$).
+    \item Adding \textbf{depth} resolves the XOR problem in polynomial time ($3n-1$), providing the theoretical backbone for preferring deep networks over wide networks.
+    \item By combining linear hyperplanes, MLPs act as \textbf{universal decision boundary modelers}, capable of enclosing any arbitrary feature space.
+    \item The \textbf{Universal Approximation Theorem} guarantees that networks can map any continuous function by constructing and superimposing multi-dimensional "tower functions".
+\end{itemize}
